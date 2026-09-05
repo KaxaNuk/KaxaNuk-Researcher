@@ -1,0 +1,32 @@
+# --- Your library is yours ------------------------------------------------------------------------
+# Sources are usually copyrighted files you may hold but not redistribute, and private notes are
+# private. Both stay out of any push by default. Plain-text clippings you wrote yourself may be
+# tracked; remove a pattern below if you want a kind of source in your own private clone.
+Sources/**/*.pdf
+Sources/**/*.epub
+Sources/**/*.docx
+Sources/**/*.pptx
+Sources/**/*.xlsx
+Sources/**/*.zip
+Sources/**/*.png
+Sources/**/*.jpg
+Sources/**/*.jpeg
+Notes/Private/*
+!Notes/Private/.gitkeep
+
+# --- AI setup, managed by APM per machine ---------------------------------------------------------
+# The researcher's own commands and its library-query skill are committed; everything APM installs
+# beside them is not.
+.agents/
+apm_modules/
+apm.lock.yaml
+.mcp.json
+.claude/settings.local.json
+.claude/skills/*
+!.claude/skills/library-query/
+
+# --- IDE and OS --------------------------------------------------------------------------------------
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

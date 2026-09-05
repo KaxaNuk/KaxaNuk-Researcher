@@ -1,0 +1,12 @@
+name: kaxanuk-researcher
+version: 0.1.0
+description: A KaxaNuk researcher — a companion you name and teach, with core knowledge of the KN Research Process and the Investment Lab modules
+author: KaxaNuk
+dependencies:
+  apm:
+    - KaxaNuk/KaxaNuk-APM/common
+    - KaxaNuk/KaxaNuk-APM/data-curator
+    - KaxaNuk/KaxaNuk-APM/investment-lab
+  mcp: []
+targets:
+  - claude
