@@ -18,8 +18,8 @@ been read, so every claim in it points back to a source. `$ARGUMENTS` is the str
 ## 2. Contrast with the library
 
 Walk `Library/INDEX.md` and the links for the domains the strategy touches. Read the owner's
-`Notes/` on how they invest. Where the library or a note says something the strategy's Bibliotheca does not,
-that is either a lead for the strategy or a warning for the claim.
+`Notes/` on how they invest. Where the library or a note says something the strategy's
+Bibliotheca does not, that is either a lead for the strategy or a warning for the claim.
 
 ## 3. Draft, in the file's own shape
 
