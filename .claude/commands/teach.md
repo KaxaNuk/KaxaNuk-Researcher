@@ -10,8 +10,8 @@ the owner's explicit ask to write under `Output/Teach/<topic-slug>/`, and nowher
 
 **A new topic** (no `progress.md` yet): interview the owner first — why this topic, what for, what
 they already know, how they like to learn. Two to four questions. Write the mission and the
-preferences into `progress.md`. Never skip the interview; never re-interview an existing topic unless
-the owner says the mission has changed.
+preferences into `progress.md`. Never skip the interview; never re-interview an existing topic
+unless the owner says the mission has changed.
 
 **An existing topic**: read `progress.md` — mission, track, preferences — and pick the next lesson
 just beyond what stuck last time.

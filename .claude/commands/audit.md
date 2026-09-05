@@ -26,8 +26,8 @@ Review the library and report. **Nothing is changed by this command except one e
 
 ## Report
 
-In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them as
-a plan and wait for a go; approved fixes append their own log entry. Append one entry to
+In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them
+as a plan and wait for a go; approved fixes append their own log entry. Append one entry to
 `Library/LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep`.
 
 Never read `Notes/Private/`. Never touch `Notes/` or `Sources/`. Never fix silently.

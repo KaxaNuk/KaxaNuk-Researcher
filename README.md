@@ -44,7 +44,8 @@ Skills installed by APM are discoverable in a **new** session.
 ## What is in here
 
 ```
-RESEARCHER.md         who the researcher is: name, owner, domains, voice, non-negotiables — written by /researcher-init
+RESEARCHER.md         who the researcher is — name, owner, domains, voice, non-negotiables;
+                      written by /researcher-init
 AGENTS.md             the library's rules: what each folder is, who may write where, the commands
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
 CHANGELOG.md          every version of this repository, newest first

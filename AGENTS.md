@@ -59,8 +59,8 @@ A strategy is a separate repository copied from the KN Research Process template
 job there is **the hypothesis**: reading the strategy's `Bibliotheca/` notes and its `OBJECTIVE.md`,
 contrasting them with `Library/`, and drafting what the strategy claims and predicts.
 
-- **Drafts go to `Output/<strategy>/`**, never into the strategy repository. The owner copies a draft
-  in, edits it, and commits it. The blueprint is a human act.
+- **Drafts go to `Output/<strategy>/`**, never into the strategy repository. The owner copies a
+  draft in, edits it, and commits it. The blueprint is a human act.
 - **Every claim and every prediction cites its source** — a note in the strategy's `Bibliotheca/`
   (relative path as it will be inside that repository) or an article in `Library/`. A prediction
   with no source is written as a **lead**: *read X before predicting this.*
