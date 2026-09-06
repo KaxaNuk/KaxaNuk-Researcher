@@ -1,7 +1,7 @@
 # KaxaNuk Researcher
 
 **A research companion you name and teach.** It keeps a library of what you have read, knows the
-KaxaNuk Investment Lab and the KN Research Process, and helps you write the hypothesis of every
+KaxaNuk Investment Lab and the Research Process, and helps you write the hypothesis of every
 investment strategy you build — with every claim pointing back to something you actually read.
 
 One researcher per person, not per strategy. Your strategies live in their own repositories, copied
