@@ -1,5 +1,5 @@
 ---
-description: Write a source note for a strategy's Bibliotheca/ in the KN Research Process convention — to Output/, for the owner to copy in
+description: Write a source note for a strategy's Bibliotheca/ in the KN Research Process convention — to Projects/, for the owner to copy in
 argument-hint: "<path to the strategy repository> <source: a file under Sources/, a path in the strategy's Bibliotheca, or a citation>"
 ---
 
@@ -25,7 +25,7 @@ about finance in general.
 
 ## 3. Draft
 
-Write the note to `Output/<strategy name>/Bibliotheca/Papers/Author_Year_Title.md` — or
+Write the note to `Projects/<strategy name>/Bibliotheca/Papers/Author_Year_Title.md` — or
 `Books/Author_Year_Title/INDEX.md` for a book — and show it in chat. The implication blockquote says
 what this source changes about the strategy's claims, and names the claim by its number in
 `OBJECTIVE.md`. If the source argues *against* a claim, say so; that is the most useful note there is.

@@ -11,8 +11,8 @@ Sources/**/*.zip
 Sources/**/*.png
 Sources/**/*.jpg
 Sources/**/*.jpeg
-Notes/Private/*
-!Notes/Private/.gitkeep
+Philosophy/Private/*
+!Philosophy/Private/.gitkeep
 
 # --- AI setup, managed by APM per machine ---------------------------------------------------------
 # The researcher's own commands and its library-query skill are committed; everything APM installs

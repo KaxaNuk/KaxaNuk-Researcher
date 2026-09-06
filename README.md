@@ -30,11 +30,11 @@ a return — is done by the Lab's libraries, which the researcher calls and neve
    each Lab module (`pip install apm-cli` first, or say yes and it does it).
 
 3. **Drop a paper into `Sources/` and run `/compile`.** The researcher proposes how to file it,
-   waits for your go, and writes it into `Library/` with a link to everything it relates to.
+   waits for your go, and writes it into `Knowledge/` with a link to everything it relates to.
 
 4. **Point it at a strategy.** `/blueprint <path to a strategy repo> 1` drafts the first
    blueprint's thesis and predictions from that strategy's `Bibliotheca/` and your library — every
-   prediction cites its note — into `Output/<strategy>/`. You copy it in, edit it, and commit it
+   prediction cites its note — into `Projects/<strategy>/`. You copy it in, edit it, and commit it
    before the rule.
 
 Skills installed by APM are discoverable in a **new** session.
@@ -52,21 +52,25 @@ CHANGELOG.md          every version of this repository, newest first
 apm.yml               the KaxaNuk packages the researcher learns from; `apm install` pulls them
 
 Sources/              what you read: PDFs, papers, clippings. The researcher reads, never writes
-Library/              what the researcher compiled: one article per idea, grouped by domain
+  Books/                file by kind, and add your own kinds — the taxonomy is yours
+  Papers/
+  Notes/                clippings and transcripts you collected, never your own writing
+Knowledge/            what the researcher compiled: one article per idea, grouped by domain
   INDEX.md              the one index of the library — read first, always
   LOG.md                append-only record of every compile, audit and refresh
-Notes/                your voice: how you invest, what you believe. Read and cited, never edited
+Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
   Private/              never read without your explicit permission
-Output/               what you asked for: source notes, objective and blueprint drafts, lessons
+Projects/             what you asked for: source notes, objective and blueprint drafts, lessons
 
 .claude/commands/     the commands below
 .claude/skills/       library-query, and whatever APM installs beside it
 ```
 
-**Directionality:** `Sources/ → Library/ → Output/`. `Notes/` is a side channel the researcher
-cites but never generates from, so your judgement stays yours. Your library is **private to you**:
-a person's clone is theirs, and nothing in `Sources/` or `Notes/Private/` should ever be pushed
-anywhere public — the `.gitignore` keeps PDFs and private notes out by default.
+**Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
+researcher cites but never generates from, so your judgement stays yours. Your library is
+**private to you**: a person's clone is theirs, and nothing in `Sources/` or `Philosophy/Private/`
+should ever be pushed anywhere public — the `.gitignore` keeps PDFs and private notes out by
+default.
 
 ---
 
@@ -75,16 +79,16 @@ anywhere public — the `.gitignore` keeps PDFs and private notes out by default
 | Command | What it does |
 | --- | --- |
 | `/researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders, offers to install the KaxaNuk packages |
-| `/compile` | files what is in `Sources/` into `Library/` — plan first, your go, then write; contradictions flagged, never overwritten |
-| `/query <question>` | answers from `Library/` first, then `Notes/`, then `Sources/`; every claim cited; gaps named |
-| `/note <strategy> <source>` | writes a source note for a strategy's `Bibliotheca/` in the KN convention, to `Output/` |
+| `/compile` | files what is in `Sources/` into `Knowledge/` — plan first, your go, then write; contradictions flagged, never overwritten |
+| `/query <question>` | answers from `Knowledge/` first, then `Philosophy/`, then `Sources/`; every claim cited; gaps named |
+| `/note <strategy> <source>` | writes a source note for a strategy's `Bibliotheca/` in the KN convention, to `Projects/` |
 | `/objective <strategy>` | drafts the strategy's `OBJECTIVE.md` — the main idea and its claims — from its notes and your library |
 | `/blueprint <strategy> <N>` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — with every prediction citing a note or a measurement |
 | `/brainstorm <strategy> <N>` | drafts a dated `BRAINSTORMING_N.md` entry for the next thing to try |
 | `/teach <topic>` | a multi-session tutor grounded in your library |
 | `/audit` | read-only review of the library: broken links, duplicates, stale index, orphans; `deep` adds contradictions |
 | `/refine <path>` | a voice-preserving editor pass over one of your notes, diff first |
-| `/refresh-index` | rebuilds `Library/INDEX.md` from what is on disk |
+| `/refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 
 Questions about what your library says fire the `library-query` skill on their own.
 

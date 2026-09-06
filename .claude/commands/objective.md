@@ -1,5 +1,5 @@
 ---
-description: Draft a strategy's OBJECTIVE.md — the main idea and its claims — from the strategy's Bibliotheca notes and the library, every claim citing a note; to Output/
+description: Draft a strategy's OBJECTIVE.md — the main idea and its claims — from the strategy's Bibliotheca notes and the library, every claim citing a note; to Projects/
 argument-hint: "<path to the strategy repository>"
 ---
 
@@ -17,8 +17,8 @@ been read, so every claim in it points back to a source. `$ARGUMENTS` is the str
 
 ## 2. Contrast with the library
 
-Walk `Library/INDEX.md` and the links for the domains the strategy touches. Read the owner's
-`Notes/` on how they invest. Where the library or a note says something the strategy's
+Walk `Knowledge/INDEX.md` and the links for the domains the strategy touches. Read the owner's
+`Philosophy/` on how they invest. Where the library or a note says something the strategy's
 Bibliotheca does not, that is either a lead for the strategy or a warning for the claim.
 
 ## 3. Draft, in the file's own shape
@@ -39,7 +39,7 @@ the objective as a capability, not a number; the claims table with each claim's 
 
 ## 4. Deliver
 
-Write `Output/<strategy name>/OBJECTIVE.draft.md`, show it in chat, and list the leads it depends
+Write `Projects/<strategy name>/OBJECTIVE.draft.md`, show it in chat, and list the leads it depends
 on — the notes to write first, with `/note` — and the claims the owner should sharpen. Never write
 into the strategy repository; the owner copies the draft in and commits it.
 

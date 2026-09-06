@@ -1,5 +1,5 @@
 ---
-description: File what is in Sources/ into Library/ — plan first, the owner's go, then write; contradictions flagged, never overwritten
+description: File what is in Sources/ into Knowledge/ — plan first, the owner's go, then write; contradictions flagged, never overwritten
 argument-hint: "[a path under Sources/ to compile only that]"
 ---
 
@@ -10,8 +10,8 @@ before writing any file.**
 
 ## 1. Know what happened recently
 
-Read the last five entries of `Library/LOG.md` and `Library/INDEX.md` end to end. A source already
-compiled is not compiled again unless the owner says so.
+Read the last five entries of `Knowledge/LOG.md` and `Knowledge/INDEX.md` end to end. A source
+already compiled is not compiled again unless the owner says so.
 
 ## 2. Survey the sources
 
@@ -23,7 +23,7 @@ each, read it and decide:
 - **What it links to.** The existing articles it relates to, by path.
 - **What it contradicts or supersedes.** Any claim in a touched article that the new source
   conflicts with, quoted.
-- **Which notes it touches.** Any file in `Notes/` on the same subject, to be cited from the
+- **Which notes it touches.** Any file in `Philosophy/` on the same subject, to be cited from the
   article — never compiled into it.
 
 ## 3. Present the plan
@@ -40,9 +40,9 @@ rejection.**
   this changes for the owner's investing, plus one line on what it does not settle.
 - For every contradiction the owner confirmed: keep the original claim in the older article and
   place a `> [!WARNING]` callout above it naming the newer article by link. Never delete the claim.
-- Update `Library/INDEX.md`: one line per article under its domain — a link and the sentence that
-  says what the article settles.
-- Append one entry to `Library/LOG.md` in the format `AGENTS.md` gives.
+- Update `Knowledge/INDEX.md`: one line per article under its domain — a link and the sentence
+  that says what the article settles.
+- Append one entry to `Knowledge/LOG.md` in the format `AGENTS.md` gives.
 
 ## 5. Report
 
@@ -51,8 +51,8 @@ library leans on with no source behind it — as a suggestion for `Sources/`.
 
 ## Never
 
-- Write to `Sources/`, `Notes/` or `Output/` during a compile.
-- Read `Notes/Private/`.
+- Write to `Sources/`, `Philosophy/` or `Projects/` during a compile.
+- Read `Philosophy/Private/`.
 - Generate an article from a note alone; articles are born from sources.
 - Write a plan or a report as a file. The chat and the log entry are the record.
 - Rewrite an existing article in a different voice. Match what is there.

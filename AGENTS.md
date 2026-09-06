@@ -8,20 +8,25 @@ the researcher may do, where, and how. The two together are the operating manual
 | Folder | What it holds | The researcher may |
 | --- | --- | --- |
 | `Sources/` | what the owner reads — PDFs, papers, decks, clippings, transcripts | **read only.** Never move, rename or delete a source |
-| `Library/` | compiled knowledge: one article per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
-| `Library/INDEX.md` | the single index of every article | rewrite, only through `/compile` and `/refresh-index` |
-| `Library/LOG.md` | append-only record of every compile, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
-| `Notes/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `/refine`, diff first |
-| `Notes/Private/` | what the owner keeps to themselves | **never read** unless the owner names the file in the request; never quote into a file |
-| `Output/` | what the owner asked for: source notes, objective and blueprint drafts, lessons | write, only when asked — a command counts as asking |
+| `Knowledge/` | compiled knowledge: one article per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
+| `Knowledge/INDEX.md` | the single index of every article | rewrite, only through `/compile` and `/refresh-index` |
+| `Knowledge/LOG.md` | append-only record of every compile, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
+| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `/refine`, diff first |
+| `Philosophy/Private/` | what the owner keeps to themselves | **never read** unless the owner names the file in the request; never quote into a file |
+| `Projects/` | what the owner asked for: source notes, objective and blueprint drafts, lessons | write, only when asked — a command counts as asking |
 
-**Directionality:** `Sources/ → Library/ → Output/`. Articles are born from sources, never from
-notes alone; notes are cited from articles, never compiled into them. That wall is what keeps the
-owner's judgement recognisably theirs.
+**Directionality:** `Sources/ → Knowledge/ → Projects/`. Articles are born from sources, never
+from notes alone; notes are cited from articles, never compiled into them. That wall is what keeps
+the owner's judgement recognisably theirs.
 
-## Library conventions
+**Inside `Sources/`** the owner files by kind — `Sources/Books/`, `Sources/Papers/`,
+`Sources/Notes/` — and may add more. The taxonomy is theirs; a compile walks all of it. Note that
+`Sources/Notes/` is raw material the owner collected, never the owner's own writing: their voice
+lives in `Philosophy/`, and the two are never confused.
 
-- **One article per idea, flat inside a domain folder** (`Library/Finance/`, `Library/AI/`, the
+## Knowledge conventions
+
+- **One article per idea, flat inside a domain folder** (`Knowledge/Finance/`, `Knowledge/AI/`, the
   domains `RESEARCHER.md` lists). No subfolders inside a domain, no per-folder indexes.
 - **Frontmatter, four fields:** `source` (the path under `Sources/` or the URL), `read` (the date it
   was compiled), `tags` (from the owner's tag policy in `RESEARCHER.md`), `writer` (the researcher's
@@ -34,12 +39,12 @@ owner's judgement recognisably theirs.
 - **Contradictions are recorded, never smoothed.** When a new source conflicts with or supersedes
   a claim in an existing article, keep the original claim and put a `> [!WARNING]` callout above
   it naming the newer article. Time-bound claims carry their date inline.
-- **Never invent a citation, a URL or a page number.** If it is not in `Sources/`, `Library/` or
-  `Notes/`, say so. A gap is reported as a gap, and the fix is a source in `Sources/`.
+- **Never invent a citation, a URL or a page number.** If it is not in `Sources/`, `Knowledge/` or
+  `Philosophy/`, say so. A gap is reported as a gap, and the fix is a source in `Sources/`.
 
 ## The log
 
-`Library/LOG.md` is the library's memory of what was done. One entry at the end of every completed
+`Knowledge/LOG.md` is the library's memory of what was done. One entry at the end of every completed
 `/compile`, `/audit` and `/refresh-index`:
 
 ```
@@ -49,20 +54,20 @@ owner's judgement recognisably theirs.
 - flagged: `finance/dynamic-allocation.md` superseded by `finance/aim-portfolio.md`
 ```
 
-Name files by path in backticks, never as links. Record file-level actions on `Library/` only —
-never query content, never answers, never anything under `Notes/Private/`. Read the last few entries
-at the start of a compile or an audit to know what happened recently.
+Name files by path in backticks, never as links. Record file-level actions on `Knowledge/` only —
+never query content, never answers, never anything under `Philosophy/Private/`. Read the last few
+entries at the start of a compile or an audit to know what happened recently.
 
 ## Working with a strategy repository
 
 A strategy is a separate repository copied from the KN Research Process template. The researcher's
 job there is **the hypothesis**: reading the strategy's `Bibliotheca/` notes and its `OBJECTIVE.md`,
-contrasting them with `Library/`, and drafting what the strategy claims and predicts.
+contrasting them with `Knowledge/`, and drafting what the strategy claims and predicts.
 
-- **Drafts go to `Output/<strategy>/`**, never into the strategy repository. The owner copies a
+- **Drafts go to `Projects/<strategy>/`**, never into the strategy repository. The owner copies a
   draft in, edits it, and commits it. The blueprint is a human act.
 - **Every claim and every prediction cites its source** — a note in the strategy's `Bibliotheca/`
-  (relative path as it will be inside that repository) or an article in `Library/`. A prediction
+  (relative path as it will be inside that repository) or an article in `Knowledge/`. A prediction
   with no source is written as a **lead**: *read X before predicting this.*
 - **A source without a note cannot be cited.** Write the note first (`/note`), in the template's
   convention: frontmatter `source`, `citation`, `local_copy`, `read`; the body says what the source
@@ -80,8 +85,8 @@ the `LOG.md` entry are the record.
 
 ## Hard don'ts
 
-- Don't write into `Sources/`, `Notes/` (outside `/refine`) or a strategy repository.
-- Don't read `Notes/Private/` unless the owner names the file.
+- Don't write into `Sources/`, `Philosophy/` (outside `/refine`) or a strategy repository.
+- Don't read `Philosophy/Private/` unless the owner names the file.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's
   libraries, and a number without an engine behind it is not quoted.

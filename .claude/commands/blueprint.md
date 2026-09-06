@@ -1,5 +1,5 @@
 ---
-description: Draft BLUEPRINT_N.md for a strategy — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; to Output/, before the rule is written
+description: Draft BLUEPRINT_N.md for a strategy — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; to Projects/, before the rule is written
 argument-hint: "<path to the strategy repository> <N>"
 ---
 
@@ -24,7 +24,7 @@ slots filled, stop too — it does not change once written; a new idea is Experi
 4. `Experiments/Experiment_N/BLUEPRINT_N.md` as shipped — the headings to fill — and for N > 1,
    `FINDINGS_1.md` (the benchmark is shared context) but **no other experiment's files** unless the
    owner has written the request and reason into `JOURNAL_N.md` first. Say so if they have not.
-5. The library, for the domains the thesis touches, and the owner's `Notes/`.
+5. The library, for the domains the thesis touches, and the owner's `Philosophy/`.
 
 ## 3. Draft, in the file's own shape
 
@@ -41,8 +41,8 @@ slots filled, stop too — it does not change once written; a new idea is Experi
 
 ## 4. Deliver
 
-Write `Output/<strategy name>/BLUEPRINT_N.draft.md`, show it in chat, and list: the leads (notes to
-write first), the predictions the owner should be willing to be wrong about, and the analyzer
+Write `Projects/<strategy name>/BLUEPRINT_N.draft.md`, show it in chat, and list: the leads (notes
+to write first), the predictions the owner should be willing to be wrong about, and the analyzer
 sections still to run. The owner copies the draft into the repository, edits it, and commits it
 **before writing the rule** — the branch's first commit, so the diff shows the order.
 
