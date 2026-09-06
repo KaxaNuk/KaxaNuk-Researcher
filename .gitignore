@@ -14,16 +14,58 @@ Sources/**/*.jpeg
 Philosophy/Private/*
 !Philosophy/Private/.gitkeep
 
+# --- Generated harness output ----------------------------------------------------------------------
+# `.apm/skills/` is the source; `apm install` generates everything below from it. Two copies are
+# committed so that a fresh clone works with no tooling at all: `.claude/skills/` for Claude Code,
+# and `.agents/skills/` — the location Copilot, Cursor, Codex, Gemini, OpenCode and Windsurf all
+# read. The per-harness directories are not committed; `apm install` rebuilds them per machine.
+.cursor/
+.codex/
+.gemini/
+.github/
+.opencode/
+.windsurf/
+.grok/
+.kiro/
+.claude/commands/
+.claude/rules/
+.claude/settings.local.json
+
+# Skills that came from installed dependencies are per-machine. Only the researcher's own eleven
+# are committed — they are the repository.
+.claude/skills/*
+!.claude/skills/audit/
+!.claude/skills/blueprint/
+!.claude/skills/brainstorm/
+!.claude/skills/compile/
+!.claude/skills/note/
+!.claude/skills/objective/
+!.claude/skills/query/
+!.claude/skills/refine/
+!.claude/skills/refresh-index/
+!.claude/skills/researcher-init/
+!.claude/skills/teach/
+
+.agents/*
+!.agents/skills/
+.agents/skills/*
+!.agents/skills/audit/
+!.agents/skills/blueprint/
+!.agents/skills/brainstorm/
+!.agents/skills/compile/
+!.agents/skills/note/
+!.agents/skills/objective/
+!.agents/skills/query/
+!.agents/skills/refine/
+!.agents/skills/refresh-index/
+!.agents/skills/researcher-init/
+!.agents/skills/teach/
+
 # --- AI setup, managed by APM per machine ---------------------------------------------------------
-# The researcher's own commands and its library-query skill are committed; everything APM installs
-# beside them is not.
-.agents/
 apm_modules/
 apm.lock.yaml
 .mcp.json
-.claude/settings.local.json
-.claude/skills/*
-!.claude/skills/library-query/
+build/
 
 # --- IDE and OS --------------------------------------------------------------------------------------
 .idea/

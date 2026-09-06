@@ -1,5 +1,6 @@
 ---
-description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs and non-negotiables; scaffold the folders; offer to install KaxaNuk's core knowledge
+name: researcher-init
+description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs and non-negotiables; scaffold the folders; offer to install KaxaNuk's core knowledge. Only when the owner runs it by name; never on its own.
 argument-hint: "[force]"
 ---
 

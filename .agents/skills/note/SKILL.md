@@ -1,5 +1,6 @@
 ---
-description: Write a source note for a strategy's Bibliotheca/ in the KN Research Process convention — to Projects/, for the owner to copy in
+name: note
+description: Write a source note for a strategy's Bibliotheca/ in the KN Research Process convention — to Projects/, for the owner to copy in. Only when the owner runs it by name, on a strategy they name.
 argument-hint: "<path to the strategy repository> <source: a file under Sources/, a path in the strategy's Bibliotheca, or a citation>"
 ---
 

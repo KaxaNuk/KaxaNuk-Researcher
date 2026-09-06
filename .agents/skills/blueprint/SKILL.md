@@ -1,5 +1,6 @@
 ---
-description: Draft BLUEPRINT_N.md for a strategy — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; to Projects/, before the rule is written
+name: blueprint
+description: Draft BLUEPRINT_N.md for a strategy — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; to Projects/, before the rule is written. Only when the owner runs it by name, on a strategy they name.
 argument-hint: "<path to the strategy repository> <N>"
 ---
 

@@ -1,12 +1,36 @@
 name: kaxanuk-researcher
-version: 0.1.0
+version: 0.2.0
 description: A KaxaNuk researcher — a companion you name and teach, with core knowledge of the KN Research Process and the Investment Lab modules
 author: KaxaNuk
+license: MIT
+
+# The researcher's own skills live in `.apm/skills/`. Everything under `.claude/`, `.agents/` and
+# the other harness directories is generated from them by `apm install` — edit the source, never
+# the output. Nothing goes in `.apm/instructions/`: `AGENTS.md` and `CLAUDE.md` are hand-written,
+# and `apm compile` would overwrite them.
 dependencies:
   apm:
     - KaxaNuk/KaxaNuk-APM/common
-    - KaxaNuk/KaxaNuk-APM/data-curator
-    - KaxaNuk/KaxaNuk-APM/investment-lab
+    # `data-curator` and `investment-lab` are declared by the KN roadmap but do not exist in
+    # KaxaNuk/KaxaNuk-APM yet. Listing them makes every `apm install` fail, so they wait here
+    # until the packages land.
+    # - KaxaNuk/KaxaNuk-APM/data-curator
+    # - KaxaNuk/KaxaNuk-APM/investment-lab
   mcp: []
+
 targets:
   - claude
+  - copilot
+  - cursor
+  - codex
+  - gemini
+  - opencode
+  - windsurf
+
+# What publishes. Named explicitly rather than inferred: a wrong inference here would ship
+# somebody's private reading list.
+includes:
+  - apm.yml
+  - .apm/
+  - README.md
+  - LICENSE

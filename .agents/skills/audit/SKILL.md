@@ -1,4 +1,5 @@
 ---
+name: audit
 description: Read-only review of Knowledge/ — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, never fixes on its own
 argument-hint: "[deep]"
 ---

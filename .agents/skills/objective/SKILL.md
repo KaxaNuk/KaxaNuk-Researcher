@@ -1,5 +1,6 @@
 ---
-description: Draft a strategy's OBJECTIVE.md — the main idea and its claims — from the strategy's Bibliotheca notes and the library, every claim citing a note; to Projects/
+name: objective
+description: Draft a strategy's OBJECTIVE.md — the main idea and its claims — from the strategy's Bibliotheca notes and the library, every claim citing a note; to Projects/. Only when the owner runs it by name, on a strategy they name.
 argument-hint: "<path to the strategy repository>"
 ---
 

@@ -1,4 +1,5 @@
 ---
+name: compile
 description: File what is in Sources/ into Knowledge/ — plan first, the owner's go, then write; contradictions flagged, never overwritten
 argument-hint: "[a path under Sources/ to compile only that]"
 ---

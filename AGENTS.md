@@ -13,7 +13,7 @@ the researcher may do, where, and how. The two together are the operating manual
 | `Knowledge/LOG.md` | append-only record of every compile, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `/refine`, diff first |
 | `Philosophy/Private/` | what the owner keeps to themselves | **never read** unless the owner names the file in the request; never quote into a file |
-| `Projects/` | what the owner asked for: source notes, objective and blueprint drafts, lessons | write, only when asked — a command counts as asking |
+| `Projects/` | what the owner asked for: source notes, objective and blueprint drafts, lessons | write, only when asked — a skill the owner runs counts as asking |
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. Articles are born from sources, never
 from notes alone; notes are cited from articles, never compiled into them. That wall is what keeps
@@ -78,14 +78,30 @@ contrasting them with `Knowledge/`, and drafting what the strategy claims and pr
 
 ## Plan first, then write
 
-Every command that writes a file presents a plan in chat — what will be written, where, and what it
+Every skill that writes a file presents a plan in chat — what will be written, where, and what it
 supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing anything.
 Never write on a rejected or unanswered plan. Never write a plan or a report as a file; the chat and
 the `LOG.md` entry are the record.
 
+## Where the skills live
+
+The researcher's eleven skills are authored once, in `.apm/skills/<name>/SKILL.md`, and `apm
+install` generates a copy for every harness it supports. Two of those copies are committed, so a
+fresh clone works with no tooling at all: `.claude/skills/` for Claude Code, and `.agents/skills/`,
+the location Copilot, Cursor, Codex, Gemini, OpenCode and Windsurf all read. The rest are rebuilt
+per machine and are not in git.
+
+- **Edit `.apm/skills/`, never a generated copy.** A copy that differs from its source is skipped
+  as locally authored at the next install, and the two drift apart without saying so.
+- **`.apm/instructions/` stays empty.** `apm compile` renders that directory into the root context
+  files and overwrites them: it would replace this file and strip `@RESEARCHER.md` out of
+  `CLAUDE.md`, leaving the researcher without its own name. Both are hand-written and stay so.
+- **A skill is discoverable in a new session,** never in the one that installed it.
+
 ## Hard don'ts
 
 - Don't write into `Sources/`, `Philosophy/` (outside `/refine`) or a strategy repository.
+- Don't edit a generated skill copy under `.claude/` or `.agents/`; the source is `.apm/skills/`.
 - Don't read `Philosophy/Private/` unless the owner names the file.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's

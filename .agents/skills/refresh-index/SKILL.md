@@ -1,4 +1,5 @@
 ---
+name: refresh-index
 description: Rebuild Knowledge/INDEX.md from what is on disk — one line per article under its domain, diff shown before writing
 ---
 

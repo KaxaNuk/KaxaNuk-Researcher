@@ -1,5 +1,6 @@
 ---
-description: Draft a dated BRAINSTORMING_N.md entry for a strategy — the next thing to try, considered against the library — to Projects/
+name: brainstorm
+description: Draft a dated BRAINSTORMING_N.md entry for a strategy — the next thing to try, considered against the library — to Projects/. Only when the owner runs it by name, on a strategy they name.
 argument-hint: "<path to the strategy repository> <N> [the idea, in a phrase]"
 ---
 
