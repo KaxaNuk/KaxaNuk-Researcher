@@ -1,9 +1,0 @@
-{
-  "name": "kaxanuk-researcher",
-  "version": "0.2.0",
-  "description": "A KaxaNuk researcher \u2014 a companion you name and teach, with core knowledge of the KN Research Process and the Investment Lab modules",
-  "author": {
-    "name": "KaxaNuk"
-  },
-  "license": "MIT"
-}

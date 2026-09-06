@@ -66,6 +66,7 @@ apm_modules/
 apm.lock.yaml
 .mcp.json
 build/
+.claude-plugin/
 
 # --- IDE and OS --------------------------------------------------------------------------------------
 .idea/
