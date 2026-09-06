@@ -9,20 +9,25 @@ from the [KN Research Process template](https://github.com/KaxaNuk/KaxaNuk-Resea
 researcher reads each strategy's `Bibliotheca/` and drafts its `OBJECTIVE.md` claims and its
 `BLUEPRINT_N.md` hypotheses from those notes. It never writes into a strategy repository uninvited.
 
-**There is almost no code here.** The researcher is a folder architecture, a set of commands and an
+**There is almost no code here.** The researcher is a folder architecture, a set of skills and an
 interview. The deterministic work — downloading data, computing signals, pricing a book, attributing
 a return — is done by the Lab's libraries, which the researcher calls and never imitates.
+
+It is not tied to one assistant. The skills are authored once and built for Claude Code, Copilot,
+Cursor, Codex, Gemini, OpenCode and Windsurf.
 
 ---
 
 ## Start
 
-1. **Clone this repository under the name you give your researcher**, and open that folder in
-   Claude Code:
+1. **Clone this repository under the name you give your researcher**, and open that folder in your
+   agent:
 
    ```bash
    git clone https://github.com/KaxaNuk/KaxaNuk-Researcher.git Luna
    ```
+
+   The skills are committed, so this works with nothing else installed.
 
 2. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
    be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality. It
@@ -37,7 +42,21 @@ a return — is done by the Lab's libraries, which the researcher calls and neve
    prediction cites its note — into `Projects/<strategy>/`. You copy it in, edit it, and commit it
    before the rule.
 
-Skills installed by APM are discoverable in a **new** session.
+A skill is discoverable in a **new** session, never the one that installed it.
+
+### Or add the researcher to a project you already have
+
+The eleven skills are an [APM](https://github.com/microsoft/apm) package, so they can be installed
+beside whatever else you are running:
+
+```bash
+apm install KaxaNuk/KaxaNuk-Researcher
+```
+
+Then run `/researcher-init`, which scaffolds `Sources/`, `Knowledge/`, `Philosophy/` and
+`Projects/` wherever you ran it. If you would rather not use APM at all, `apm pack` turns this
+repository into a plain plugin bundle — a `plugin.json` and the skills — that your agent can load
+directly.
 
 ---
 
@@ -46,10 +65,11 @@ Skills installed by APM are discoverable in a **new** session.
 ```
 RESEARCHER.md         who the researcher is — name, owner, domains, voice, non-negotiables;
                       written by /researcher-init
-AGENTS.md             the library's rules: what each folder is, who may write where, the commands
+AGENTS.md             the library's rules: what each folder is, who may write where, the skills
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
 CHANGELOG.md          every version of this repository, newest first
-apm.yml               the KaxaNuk packages the researcher learns from; `apm install` pulls them
+apm.yml               the skills this repository publishes, the harnesses they are built for, and
+                      the KaxaNuk packages the researcher learns from; `apm install` pulls them
 
 Sources/              what you read: PDFs, papers, clippings. The researcher reads, never writes
   Books/                file by kind, and add your own kinds — the taxonomy is yours
@@ -62,8 +82,9 @@ Philosophy/           your voice: how you invest, what you believe. Read and cit
   Private/              never read without your explicit permission
 Projects/             what you asked for: source notes, objective and blueprint drafts, lessons
 
-.claude/commands/     the commands below
-.claude/skills/       library-query, and whatever APM installs beside it
+.apm/skills/          the eleven skills below — the one place they are authored
+.claude/skills/       generated for Claude Code, and committed, so a clone needs no tooling
+.agents/skills/       generated for Copilot, Cursor, Codex, Gemini, OpenCode and Windsurf
 ```
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
@@ -74,9 +95,12 @@ default.
 
 ---
 
-## The commands
+## The skills
 
-| Command | What it does |
+Each one is a skill, so it works the same way on every harness in `apm.yml`. On those that support
+slash commands — Claude Code, Cursor, Gemini, OpenCode, Windsurf — you also get it as `/name`.
+
+| Skill | What it does |
 | --- | --- |
 | `/researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders, offers to install the KaxaNuk packages |
 | `/compile` | files what is in `Sources/` into `Knowledge/` — plan first, your go, then write; contradictions flagged, never overwritten |
@@ -90,7 +114,7 @@ default.
 | `/refine <path>` | a voice-preserving editor pass over one of your notes, diff first |
 | `/refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 
-Questions about what your library says fire the `library-query` skill on their own.
+Questions about what your library says fire `query` on their own; the rest run when you name them.
 
 ---
 

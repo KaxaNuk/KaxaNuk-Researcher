@@ -4,6 +4,43 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.2.0 (2026-09-06)
+
+**MINOR** — the folders are renamed, and the researcher is no longer tied to one assistant.
+
+**What to do differently:** if you already have a clone, rename three folders — `Library/` to
+`Knowledge/`, `Notes/` to `Philosophy/`, `Output/` to `Projects/` — and nothing else moves. The
+commands are skills now, so `/compile`, `/query` and the rest still work by the same names, but
+they are discoverable only in a **new** session after you pull.
+
+### Changed
+
+* `Library/` is now `Knowledge/`, `Notes/` is now `Philosophy/`, and `Output/` is now `Projects/`.
+  The directionality is unchanged: `Sources/ → Knowledge/ → Projects/`, with `Philosophy/` cited
+  and never compiled from.
+* The eleven commands are eleven **skills**, authored once in `.apm/skills/<name>/SKILL.md`.
+  Skills are the one primitive every harness supports, and on the ones with slash commands a skill
+  still gives you `/name` — so nothing is lost on Claude Code and six more harnesses are gained.
+  `apm install` generates the per-harness copies; `.claude/skills/` and `.agents/skills/` are
+  committed so a fresh clone works with no tooling installed.
+* `/query` and the `library-query` skill were the same procedure reached two ways, and are merged
+  into one `query` skill that still answers a direct question and still fires on its own.
+* `apm.yml` builds for `claude`, `copilot`, `cursor`, `codex`, `gemini`, `opencode` and `windsurf`,
+  and declares what publishes, so a person's `Sources/` and `Philosophy/` can never be packed.
+* `Sources/` now has `Books/`, `Papers/` and `Notes/`, and the taxonomy is yours to extend.
+  `Sources/Notes/` is raw material you collected; your own writing stays in `Philosophy/`.
+
+### Added
+
+* Two more ways to install: `apm install KaxaNuk/KaxaNuk-Researcher` adds the skills to a project
+  you already have, and `apm pack` builds a plain plugin bundle for agents that do not use APM.
+* `.gitattributes`, so prose checks out with the bytes it was committed with on every platform.
+
+### Fixed
+
+* `apm.yml` declared `KaxaNuk/KaxaNuk-APM/data-curator` and `.../investment-lab`, which do not
+  exist in that repository, so every `apm install` failed. They are commented out until they land.
+
 ## 0.1.0 (2026-09-05)
 
 **MINOR** — the first researcher skeleton.

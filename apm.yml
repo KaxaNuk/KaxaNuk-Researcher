@@ -30,7 +30,4 @@ targets:
 # What publishes. Named explicitly rather than inferred: a wrong inference here would ship
 # somebody's private reading list.
 includes:
-  - apm.yml
   - .apm/
-  - README.md
-  - LICENSE
