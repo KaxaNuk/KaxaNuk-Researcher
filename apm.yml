@@ -4,18 +4,19 @@ description: A KaxaNuk researcher — a companion you name and teach, with core 
 author: KaxaNuk
 license: MIT
 
-# The researcher's own skills live in `.apm/skills/`. Everything under `.claude/`, `.agents/` and
-# the other harness directories is generated from them by `apm install` — edit the source, never
-# the output. Nothing goes in `.apm/instructions/`: `AGENTS.md` and `CLAUDE.md` are hand-written,
-# and `apm compile` would overwrite them.
+# The skills are authored in `.claude/skills/`, the only directory Claude Code reads, and mirrored
+# to `.agents/skills/`, which the other assistants read. Both are committed, so a clone works with
+# nothing installed. This file exists so the same skills can also be installed into a project
+# somebody already has — `apm install KaxaNuk/KaxaNuk-Researcher` — and packed as a plain plugin
+# bundle with `apm pack`.
+
+# No dependencies. `KaxaNuk/KaxaNuk-APM/common` was here, but it installs Python style rules —
+# pep8, test-writing, bloom-code — into every assistant's context, and there is almost no code in
+# this repository. It comes back when there is a KaxaNuk package that teaches research rather than
+# linting. `data-curator` and `investment-lab` are on the KN roadmap but do not exist in that
+# repository yet.
 dependencies:
-  apm:
-    - KaxaNuk/KaxaNuk-APM/common
-    # `data-curator` and `investment-lab` are declared by the KN roadmap but do not exist in
-    # KaxaNuk/KaxaNuk-APM yet. Listing them makes every `apm install` fail, so they wait here
-    # until the packages land.
-    # - KaxaNuk/KaxaNuk-APM/data-curator
-    # - KaxaNuk/KaxaNuk-APM/investment-lab
+  apm: []
   mcp: []
 
 targets:
@@ -30,4 +31,4 @@ targets:
 # What publishes. Named explicitly rather than inferred: a wrong inference here would ship
 # somebody's private reading list.
 includes:
-  - .apm/
+  - .claude/skills/

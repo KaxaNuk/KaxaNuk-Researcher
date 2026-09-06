@@ -85,23 +85,25 @@ the `LOG.md` entry are the record.
 
 ## Where the skills live
 
-The researcher's eleven skills are authored once, in `.apm/skills/<name>/SKILL.md`, and `apm
-install` generates a copy for every harness it supports. Two of those copies are committed, so a
-fresh clone works with no tooling at all: `.claude/skills/` for Claude Code, and `.agents/skills/`,
-the location Copilot, Cursor, Codex, Gemini, OpenCode and Windsurf all read. The rest are rebuilt
-per machine and are not in git.
+The eleven skills live in two directories, because no single one serves every assistant:
+`.claude/skills/`, which is the only place Claude Code looks, and `.agents/skills/`, which Copilot,
+Cursor, Codex, Gemini, OpenCode and Windsurf read. Both are committed, so a clone works with
+nothing installed.
 
-- **Edit `.apm/skills/`, never a generated copy.** A copy that differs from its source is skipped
-  as locally authored at the next install, and the two drift apart without saying so.
-- **`.apm/instructions/` stays empty.** `apm compile` renders that directory into the root context
-  files and overwrites them: it would replace this file and strip `@RESEARCHER.md` out of
-  `CLAUDE.md`, leaving the researcher without its own name. Both are hand-written and stay so.
-- **A skill is discoverable in a new session,** never in the one that installed it.
+- **`.claude/skills/<name>/SKILL.md` is the original; `.agents/skills/` mirrors it.** Edit the
+  first, then copy it across — `cp -r .claude/skills/. .agents/skills/`, or in PowerShell
+  `Copy-Item .claude/skills/* .agents/skills/ -Recurse -Force`.
+- **The two must never drift.** A skill changed in one and not the other means Claude and Cursor
+  are running different researchers and nothing says so. `/audit` checks it.
+- **Nothing goes in `.apm/`.** `apm compile` renders that directory into the root context files and
+  overwrites them: it would replace this file and strip `@RESEARCHER.md` out of `CLAUDE.md`,
+  leaving the researcher with no name. `apm.yml` is here to publish the skills, nothing else.
+- **A skill is discoverable in a new session,** never in the one that wrote it.
 
 ## Hard don'ts
 
 - Don't write into `Sources/`, `Philosophy/` (outside `/refine`) or a strategy repository.
-- Don't edit a generated skill copy under `.claude/` or `.agents/`; the source is `.apm/skills/`.
+- Don't edit `.agents/skills/` by hand; it mirrors `.claude/skills/`. Edit there, then copy across.
 - Don't read `Philosophy/Private/` unless the owner names the file.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's

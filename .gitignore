@@ -14,11 +14,11 @@ Sources/**/*.jpeg
 Philosophy/Private/*
 !Philosophy/Private/.gitkeep
 
-# --- Generated harness output ----------------------------------------------------------------------
-# `.apm/skills/` is the source; `apm install` generates everything below from it. Two copies are
-# committed so that a fresh clone works with no tooling at all: `.claude/skills/` for Claude Code,
-# and `.agents/skills/` — the location Copilot, Cursor, Codex, Gemini, OpenCode and Windsurf all
-# read. The per-harness directories are not committed; `apm install` rebuilds them per machine.
+# --- The skills, and everything a tool might generate beside them -----------------------------------
+# The skills are committed in the two directories that assistants actually read: `.claude/skills/`,
+# which is the only one Claude Code looks in, and `.agents/skills/`, which Copilot, Cursor, Codex,
+# Gemini, OpenCode and Windsurf read. Everything below is generated per machine — by `apm install`
+# if this repository is ever given dependencies again — and stays out of git.
 .cursor/
 .codex/
 .gemini/

@@ -30,9 +30,8 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
    The skills are committed, so this works with nothing else installed.
 
 2. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
-   be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality. It
-   also offers to install KaxaNuk's core knowledge, the APM packages that teach the KN process and
-   each Lab module (`pip install apm-cli` first, or say yes and it does it).
+   be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality, and
+   scaffolds any folder that is missing.
 
 3. **Drop a paper into `Sources/` and run `/compile`.** The researcher proposes how to file it,
    waits for your go, and writes it into `Knowledge/` with a link to everything it relates to.
@@ -68,8 +67,8 @@ RESEARCHER.md         who the researcher is — name, owner, domains, voice, non
 AGENTS.md             the library's rules: what each folder is, who may write where, the skills
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
 CHANGELOG.md          every version of this repository, newest first
-apm.yml               the skills this repository publishes, the harnesses they are built for, and
-                      the KaxaNuk packages the researcher learns from; `apm install` pulls them
+apm.yml               what this repository publishes, so the skills can be installed into a
+                      project you already have. Nothing needs it to clone and run
 
 Sources/              what you read: PDFs, papers, clippings. The researcher reads, never writes
   Books/                file by kind, and add your own kinds — the taxonomy is yours
@@ -82,9 +81,9 @@ Philosophy/           your voice: how you invest, what you believe. Read and cit
   Private/              never read without your explicit permission
 Projects/             what you asked for: source notes, objective and blueprint drafts, lessons
 
-.apm/skills/          the eleven skills below — the one place they are authored
-.claude/skills/       generated for Claude Code, and committed, so a clone needs no tooling
-.agents/skills/       generated for Copilot, Cursor, Codex, Gemini, OpenCode and Windsurf
+.claude/skills/       the eleven skills below. Edit them here — Claude Code reads only this
+.agents/skills/       the same eleven, mirrored: Copilot, Cursor, Codex, Gemini, OpenCode and
+                      Windsurf read this one instead
 ```
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
@@ -115,6 +114,10 @@ slash commands — Claude Code, Cursor, Gemini, OpenCode, Windsurf — you also 
 | `/refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 
 Questions about what your library says fire `query` on their own; the rest run when you name them.
+
+They are yours to change. Edit a skill in `.claude/skills/`, then mirror it with
+`cp -r .claude/skills/. .agents/skills/` so the other assistants get the same one. `/audit` tells
+you if the two have drifted.
 
 ---
 

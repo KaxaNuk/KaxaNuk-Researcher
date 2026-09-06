@@ -18,15 +18,17 @@ they are discoverable only in a **new** session after you pull.
 * `Library/` is now `Knowledge/`, `Notes/` is now `Philosophy/`, and `Output/` is now `Projects/`.
   The directionality is unchanged: `Sources/ → Knowledge/ → Projects/`, with `Philosophy/` cited
   and never compiled from.
-* The eleven commands are eleven **skills**, authored once in `.apm/skills/<name>/SKILL.md`.
-  Skills are the one primitive every harness supports, and on the ones with slash commands a skill
-  still gives you `/name` — so nothing is lost on Claude Code and six more harnesses are gained.
-  `apm install` generates the per-harness copies; `.claude/skills/` and `.agents/skills/` are
-  committed so a fresh clone works with no tooling installed.
+* The eleven commands are eleven **skills**. Skills are the one primitive every assistant supports,
+  and on the ones with slash commands a skill still gives you `/name` — so nothing is lost on
+  Claude Code and six more assistants are gained. They live in two committed directories, because
+  no single one serves everybody: `.claude/skills/`, which is the only place Claude Code reads and
+  where you edit them, and `.agents/skills/`, mirrored for Copilot, Cursor, Codex, Gemini, OpenCode
+  and Windsurf. A clone needs nothing installed. `/audit` reports it if the two drift apart.
 * `/query` and the `library-query` skill were the same procedure reached two ways, and are merged
   into one `query` skill that still answers a direct question and still fires on its own.
-* `apm.yml` builds for `claude`, `copilot`, `cursor`, `codex`, `gemini`, `opencode` and `windsurf`,
-  and declares what publishes, so a person's `Sources/` and `Philosophy/` can never be packed.
+* `apm.yml` no longer builds anything. It declares what publishes — `.claude/skills/` and nothing
+  else — so the skills can be installed into a project you already have, and so a person's
+  `Sources/` and `Philosophy/` are structurally incapable of being packed.
 * `Sources/` now has `Books/`, `Papers/` and `Notes/`, and the taxonomy is yours to extend.
   `Sources/Notes/` is raw material you collected; your own writing stays in `Philosophy/`.
 
@@ -36,10 +38,16 @@ they are discoverable only in a **new** session after you pull.
   you already have, and `apm pack` builds a plain plugin bundle for agents that do not use APM.
 * `.gitattributes`, so prose checks out with the bytes it was committed with on every platform.
 
+### Removed
+
+* The `KaxaNuk/KaxaNuk-APM/common` dependency. It installed Python style rules — pep8,
+  test-writing, bloom-code — into every assistant's context, and there is almost no code in this
+  repository. It returns when there is a KaxaNuk package that teaches research rather than linting.
+
 ### Fixed
 
 * `apm.yml` declared `KaxaNuk/KaxaNuk-APM/data-curator` and `.../investment-lab`, which do not
-  exist in that repository, so every `apm install` failed. They are commented out until they land.
+  exist in that repository, so every `apm install` failed before it did anything.
 
 ## 0.1.0 (2026-09-05)
 

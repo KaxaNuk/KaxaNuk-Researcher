@@ -18,6 +18,9 @@ Review the library and report. **Nothing is changed by this command except one e
 - Frontmatter with fields other than `source`, `read`, `tags`, `writer`, or missing one.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts an article leans on that no article defines.
+- `.agents/skills/` out of step with `.claude/skills/` — any skill present in one and not the
+  other, or differing between them. Report it as drift and give the copy command; the researcher
+  runs on both, and a difference means two different researchers.
 
 ## With `deep` — expensive; monthly, not per session
 

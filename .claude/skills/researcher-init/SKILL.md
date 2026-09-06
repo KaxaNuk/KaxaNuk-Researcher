@@ -44,17 +44,10 @@ If they asked, write `Philosophy/how-i-invest.md` with their words verbatim unde
 
 ## Core knowledge
 
-Ask whether to install KaxaNuk's core knowledge — the APM packages in `apm.yml` that teach the KN
-Research Process, the Data Curator's calculations and the Lab modules. If yes:
-
-```sh
-pip install apm-cli
-apm config set target claude
-apm install
-```
-
-Say that installed skills are discoverable in a **new** session. If `apm` is missing after the
-install, say how to add it to the path and stop; do not guess.
+There is nothing to install. `apm.yml` declares no dependencies — the package that used to be
+there taught Python style, not research. If the owner asks about KaxaNuk's core knowledge, say it
+is not packaged yet, and that the library is built the ordinary way: a source into `Sources/`, then
+`/compile`.
 
 ## Hand over
 
