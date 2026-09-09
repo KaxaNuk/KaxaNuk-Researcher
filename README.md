@@ -20,7 +20,7 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
 
 ## Start
 
-1. **Clone this repository under the name you give your researcher**, and open that folder in your
+1. **+ this repository under the name you give your researcher**, and open that folder in your
    agent:
 
    ```bash
@@ -32,6 +32,10 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
 2. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
    be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality, and
    scaffolds any folder that is missing.
+   
+   ```bash
+   /researcher-init
+   ```
 
 3. **Drop a paper into `Sources/` and run `/compile`.** The researcher proposes how to file it,
    waits for your go, and writes it into `Knowledge/` with a link to everything it relates to.
