@@ -3,6 +3,23 @@
 Read this before touching anything. `RESEARCHER.md` says who the researcher is; this file says what
 the researcher may do, where, and how. The two together are the operating manual.
 
+## The researcher's home
+
+The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills —
+`Sources/`, `Knowledge/`, `Philosophy/`, `Projects/` — is relative to the home, never to wherever
+the session happened to open. There are two ways to work:
+
+- **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
+  path: `/blueprint D:\Research\Golden-Flow 1`.
+- **Invited into a strategy.** Open the assistant in the strategy's folder and add the
+  researcher's folder to the session — `claude --add-dir D:\Research\Luna`, or `/add-dir` once
+  inside. The skills load from there on their own; `RESEARCHER.md` and this file do not, unless
+  `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is set, which is why every skill begins by
+  reading them from home. The strategy's own `AGENTS.md` still governs that repository.
+
+Either way the researcher reads the strategy and writes its drafts to `Projects/<strategy>/` at
+home, for the owner to copy in. It never writes into a strategy repository.
+
 ## What each folder is, and who may write in it
 
 | Folder | What it holds | The researcher may |
@@ -12,8 +29,7 @@ the researcher may do, where, and how. The two together are the operating manual
 | `Knowledge/INDEX.md` | the single index of every article | rewrite, only through `/compile` and `/refresh-index` |
 | `Knowledge/LOG.md` | append-only record of every compile, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `/refine`, diff first |
-| `Philosophy/Private/` | what the owner keeps to themselves | **never read** unless the owner names the file in the request; never quote into a file |
-| `Projects/` | what the owner asked for: source notes, objective and blueprint drafts, lessons | write, only when asked — a skill the owner runs counts as asking |
+| `Projects/` | what the owner asked for: strategy drafts, source notes, lessons, and anything else they ask for in chat | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. Articles are born from sources, never
 from notes alone; notes are cited from articles, never compiled into them. That wall is what keeps
@@ -55,8 +71,8 @@ lives in `Philosophy/`, and the two are never confused.
 ```
 
 Name files by path in backticks, never as links. Record file-level actions on `Knowledge/` only —
-never query content, never answers, never anything under `Philosophy/Private/`. Read the last few
-entries at the start of a compile or an audit to know what happened recently.
+never query content, never answers. Read the last few entries at the start of a compile or an audit
+to know what happened recently.
 
 ## Working with a strategy repository
 
@@ -104,7 +120,6 @@ nothing installed.
 
 - Don't write into `Sources/`, `Philosophy/` (outside `/refine`) or a strategy repository.
 - Don't edit `.agents/skills/` by hand; it mirrors `.claude/skills/`. Edit there, then copy across.
-- Don't read `Philosophy/Private/` unless the owner names the file.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's
   libraries, and a number without an engine behind it is not quoted.

@@ -1,7 +1,7 @@
 # --- Your library is yours ------------------------------------------------------------------------
-# Sources are usually copyrighted files you may hold but not redistribute, and private notes are
-# private. Both stay out of any push by default. Plain-text clippings you wrote yourself may be
-# tracked; remove a pattern below if you want a kind of source in your own private clone.
+# Sources are usually copyrighted files you may hold but not redistribute, so they stay out of
+# any push by default. Plain-text clippings you wrote yourself may be tracked; remove a pattern
+# below if you want a kind of source in your own private clone.
 Sources/**/*.pdf
 Sources/**/*.epub
 Sources/**/*.docx
@@ -11,8 +11,6 @@ Sources/**/*.zip
 Sources/**/*.png
 Sources/**/*.jpg
 Sources/**/*.jpeg
-Philosophy/Private/*
-!Philosophy/Private/.gitkeep
 
 # --- The skills, and everything a tool might generate beside them -----------------------------------
 # The skills are committed in the two directories that assistants actually read: `.claude/skills/`,

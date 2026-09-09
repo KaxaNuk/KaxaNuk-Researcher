@@ -12,6 +12,10 @@ argument-hint: "<the question>"
 
 # Query — answer from what was read, and say where it came from
 
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
 The owner built this library so that answers rest on sources they chose. Answering from general
 knowledge defeats the point; answering from one article in isolation misses the connections that
 are the library's value.
@@ -40,7 +44,6 @@ When it is invoked by name, `$ARGUMENTS` is the question.
 
 ## Never
 
-- Read `Philosophy/Private/` unless the owner names the file in the question.
 - Invent a source, a page or a URL. If it is not in `Knowledge/`, `Philosophy/` or `Sources/`, the
   honest answer is that the library does not know, followed by what the researcher would read to
   find out.

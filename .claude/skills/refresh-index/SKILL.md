@@ -5,6 +5,10 @@ description: Rebuild Knowledge/INDEX.md from what is on disk — one line per ar
 
 # /refresh-index
 
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
 `Knowledge/INDEX.md` is the one index of the library, and the first thing every query reads. Rebuild
 it from the files.
 

@@ -4,7 +4,7 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
-## 0.2.0 (2026-09-06)
+## 0.2.0 (2026-09-09)
 
 **MINOR** — the folders are renamed, and the researcher is no longer tied to one assistant.
 
@@ -31,15 +31,25 @@ they are discoverable only in a **new** session after you pull.
   `Sources/` and `Philosophy/` are structurally incapable of being packed.
 * `Sources/` now has `Books/`, `Papers/` and `Notes/`, and the taxonomy is yours to extend.
   `Sources/Notes/` is raw material you collected; your own writing stays in `Philosophy/`.
+* Every skill now works from wherever the session is open. Each begins by finding the researcher's
+  home — the folder that holds `RESEARCHER.md` — and reading `RESEARCHER.md` and `AGENTS.md`
+  there, so the researcher is itself when invited into a strategy and not only at home.
+* `/compile` walks every subfolder of `Sources/` and compiles a book a part at a time, naming the
+  parts done in the log so the rest can follow. `/brainstorm` and `/teach` now read `Philosophy/`,
+  so how you invest weighs on what to try next and on what you are taught.
 
 ### Added
 
+* The researcher can be invited into a strategy: open your assistant in the strategy's folder, add
+  the researcher's folder to the session, and the skills come along.
 * Two more ways to install: `apm install KaxaNuk/KaxaNuk-Researcher` adds the skills to a project
   you already have, and `apm pack` builds a plain plugin bundle for agents that do not use APM.
 * `.gitattributes`, so prose checks out with the bytes it was committed with on every platform.
 
 ### Removed
 
+* `Philosophy/Private/`, and the rule that it was read only when named. `Philosophy/` is one
+  folder, read and cited in full; anything you would not want read does not go in the repository.
 * The `KaxaNuk/KaxaNuk-APM/common` dependency. It installed Python style rules — pep8,
   test-writing, bloom-code — into every assistant's context, and there is almost no code in this
   repository. It returns when there is a KaxaNuk package that teaches research rather than linting.

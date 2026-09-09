@@ -6,6 +6,10 @@ argument-hint: "<path to the strategy repository>"
 
 # /objective
 
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
 `OBJECTIVE.md` is the first thing a CIO reads and the last thing that changes. Draft it from what has
 been read, so every claim in it points back to a source. `$ARGUMENTS` is the strategy's path.
 

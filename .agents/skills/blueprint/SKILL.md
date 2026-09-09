@@ -6,8 +6,12 @@ argument-hint: "<path to the strategy repository> <N>"
 
 # /blueprint
 
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
 The blueprint is the hypothesis, fixed once written, recorded before the notebook's rule cell
-exists. This command drafts it so that every prediction can be traced to something read or
+exists. This skill drafts it so that every prediction can be traced to something read or
 measured. `$ARGUMENTS` is the strategy's path and the experiment number `N`.
 
 ## 1. Refuse if the order is wrong

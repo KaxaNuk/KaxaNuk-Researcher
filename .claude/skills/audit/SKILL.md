@@ -6,7 +6,11 @@ argument-hint: "[deep]"
 
 # /audit
 
-Review the library and report. **Nothing is changed by this command except one entry appended to
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
+Review the library and report. **Nothing is changed by this skill except one entry appended to
 `Knowledge/LOG.md`.** Fixes are a plan the owner approves separately.
 
 ## Always
@@ -34,4 +38,4 @@ In chat, grouped by kind, each finding with its path. Then, if the owner wants f
 as a plan and wait for a go; approved fixes append their own log entry. Append one entry to
 `Knowledge/LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep`.
 
-Never read `Philosophy/Private/`. Never touch `Philosophy/` or `Sources/`. Never fix silently.
+Never touch `Philosophy/` or `Sources/`. Never fix silently.

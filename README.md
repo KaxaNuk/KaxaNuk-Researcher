@@ -36,10 +36,12 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
 3. **Drop a paper into `Sources/` and run `/compile`.** The researcher proposes how to file it,
    waits for your go, and writes it into `Knowledge/` with a link to everything it relates to.
 
-4. **Point it at a strategy.** `/blueprint <path to a strategy repo> 1` drafts the first
-   blueprint's thesis and predictions from that strategy's `Bibliotheca/` and your library — every
-   prediction cites its note — into `Projects/<strategy>/`. You copy it in, edit it, and commit it
-   before the rule.
+4. **Invite it to a strategy.** Point at it from here — `/blueprint D:\Research\Golden-Flow 1` —
+   or open your assistant in the strategy's folder and add this one to the session, with
+   `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. Either way it
+   reads that strategy's `Bibliotheca/` and your library, drafts the blueprint with every prediction
+   citing its note, and writes it to `Projects/<strategy>/` here. You copy it in, edit it, and
+   commit it before the rule.
 
 A skill is discoverable in a **new** session, never the one that installed it.
 
@@ -78,8 +80,7 @@ Knowledge/            what the researcher compiled: one article per idea, groupe
   INDEX.md              the one index of the library — read first, always
   LOG.md                append-only record of every compile, audit and refresh
 Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
-  Private/              never read without your explicit permission
-Projects/             what you asked for: source notes, objective and blueprint drafts, lessons
+Projects/             what you asked for: strategy drafts, source notes, lessons, anything in chat
 
 .claude/skills/       the eleven skills below. Edit them here — Claude Code reads only this
 .agents/skills/       the same eleven, mirrored: Copilot, Cursor, Codex, Gemini, OpenCode and
@@ -88,9 +89,9 @@ Projects/             what you asked for: source notes, objective and blueprint 
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
 researcher cites but never generates from, so your judgement stays yours. Your library is
-**private to you**: a person's clone is theirs, and nothing in `Sources/` or `Philosophy/Private/`
-should ever be pushed anywhere public — the `.gitignore` keeps PDFs and private notes out by
-default.
+**private to you**: a person's clone is theirs, and nothing in `Sources/` should ever be pushed
+anywhere public — the `.gitignore` keeps PDFs out by default. Anything you would not want read
+does not go in the repository at all.
 
 ---
 
@@ -101,7 +102,7 @@ slash commands — Claude Code, Cursor, Gemini, OpenCode, Windsurf — you also 
 
 | Skill | What it does |
 | --- | --- |
-| `/researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders, offers to install the KaxaNuk packages |
+| `/researcher-init` | the interview; writes `RESEARCHER.md` and scaffolds the folders |
 | `/compile` | files what is in `Sources/` into `Knowledge/` — plan first, your go, then write; contradictions flagged, never overwritten |
 | `/query <question>` | answers from `Knowledge/` first, then `Philosophy/`, then `Sources/`; every claim cited; gaps named |
 | `/note <strategy> <source>` | writes a source note for a strategy's `Bibliotheca/` in the KN convention, to `Projects/` |
@@ -126,7 +127,7 @@ you if the two have drifted.
 | | |
 | --- | --- |
 | [KaxaNuk-Research-Process](https://github.com/KaxaNuk/KaxaNuk-Research-Process) | the template every strategy is copied from — eight steps as folders, no code on `main` |
-| [KaxaNuk-APM](https://github.com/KaxaNuk/KaxaNuk-APM) | the packages the researcher learns from: the process, the Data Curator's calculations, one skill per Lab module as they land |
+| [KaxaNuk-APM](https://github.com/KaxaNuk/KaxaNuk-APM) | where KaxaNuk's packages will come from — the Data Curator's calculations, one skill per Lab module — once they teach research rather than linting. None is installed today |
 | the Investment Lab | the platform that runs the deterministic parts, and — later — reads a strategy's `Bibliotheca/` to show what cites what |
 
 ---

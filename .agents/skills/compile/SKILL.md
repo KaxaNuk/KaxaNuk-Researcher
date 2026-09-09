@@ -6,6 +6,10 @@ argument-hint: "[a path under Sources/ to compile only that]"
 
 # /compile
 
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
 Turn raw sources into library articles. **You must present a plan in chat and receive an explicit go
 before writing any file.**
 
@@ -16,11 +20,15 @@ already compiled is not compiled again unless the owner says so.
 
 ## 2. Survey the sources
 
-List what is in `Sources/` — or only under `$ARGUMENTS` when given — that has no article yet. For
-each, read it and decide:
+List what is in `Sources/` — every subfolder, `Books/`, `Papers/`, `Notes/` and any the owner has
+added — or only under `$ARGUMENTS` when given — that has no article yet. For each, read it and
+decide:
 
 - **Where it goes.** An existing article to update, or a new article and its domain folder. One
   article per idea, so a long paper may become several articles and two thin sources may merge.
+- **Whether it is too big for one run.** A book is compiled a part at a time. Propose the split in
+  the plan — by chapter, or by the sections that carry distinct ideas — and compile the parts the
+  owner picks. The log entry names the parts done, so the rest can follow in later runs.
 - **What it links to.** The existing articles it relates to, by path.
 - **What it contradicts or supersedes.** Any claim in a touched article that the new source
   conflicts with, quoted.
@@ -53,7 +61,6 @@ library leans on with no source behind it — as a suggestion for `Sources/`.
 ## Never
 
 - Write to `Sources/`, `Philosophy/` or `Projects/` during a compile.
-- Read `Philosophy/Private/`.
 - Generate an article from a note alone; articles are born from sources.
 - Write a plan or a report as a file. The chat and the log entry are the record.
 - Rewrite an existing article in a different voice. Match what is there.

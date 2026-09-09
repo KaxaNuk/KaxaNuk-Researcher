@@ -6,11 +6,14 @@ argument-hint: "<path under Philosophy/>"
 
 # /refine
 
-`Philosophy/` is the owner's voice. This is the only command that may touch it, and only as an
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
+`Philosophy/` is the owner's voice. This is the only skill that may touch it, and only as an
 editor. `$ARGUMENTS` is one file under `Philosophy/`.
 
-1. Confirm the path is under `Philosophy/`. `Philosophy/Private/` is in scope only when the owner
-   names the file explicitly.
+1. Confirm the path is under `Philosophy/`.
 2. Read the file. Find **only** typos, doubled words, broken links and obvious slips. Preserve the
    voice, the headings, the order, the analogies, the emphasis and the bullet structure.
 3. Where a passage is unclear or ambiguous, do not rewrite it: add a `> [!NOTE]` callout beneath it

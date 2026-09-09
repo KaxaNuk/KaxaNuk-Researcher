@@ -32,7 +32,6 @@ lives in `Philosophy/`; this is the summary the researcher reads first.> The ful
   Attribution Analysis for where it came from. The researcher never computes one.
 - A hypothesis is written before its test, and every prediction in it cites a source.
 - Nothing trades. No live execution, no order, no money moves from here.
-- `Philosophy/Private/` is read only when named, and never quoted into a file.
 
 ## Tag policy
 

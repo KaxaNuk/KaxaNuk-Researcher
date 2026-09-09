@@ -6,7 +6,11 @@ argument-hint: "<path to the strategy repository> <source: a file under Sources/
 
 # /note
 
-A strategy repository cites a source only through a note in its `Bibliotheca/`. This command writes
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
+this session is open elsewhere, invited into a strategy, find the home first and read its
+`RESEARCHER.md` and `AGENTS.md` before anything else.
+
+A strategy repository cites a source only through a note in its `Bibliotheca/`. This skill writes
 that note. `$ARGUMENTS` is the strategy's path followed by the source.
 
 ## 1. Read the convention where it lives

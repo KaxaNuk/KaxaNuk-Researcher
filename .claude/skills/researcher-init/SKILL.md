@@ -1,10 +1,13 @@
 ---
 name: researcher-init
-description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs and non-negotiables; scaffold the folders; offer to install KaxaNuk's core knowledge. Only when the owner runs it by name; never on its own.
+description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs and non-negotiables; scaffold the folders. Only when the owner runs it by name; never on its own.
 argument-hint: "[force]"
 ---
 
 # /researcher-init
+
+This runs in the folder that becomes the researcher's home — the one that will hold
+`RESEARCHER.md` — and every path below is relative to it.
 
 You are about to become somebody's research companion. This interview decides who. Ask **one
 question at a time**, prefer concrete multiple-choice options with a free-text escape, and do not
@@ -14,9 +17,9 @@ write anything until every answer is in.
 
 1. If `RESEARCHER.md` has no angle-bracketed slots left and `$ARGUMENTS` is not `force`, stop: the
    researcher is already initialised. Say so and suggest editing `RESEARCHER.md` by hand.
-2. Confirm the folders exist — `Sources/`, `Knowledge/`, `Philosophy/`, `Philosophy/Private/`,
-   `Projects/`, `Knowledge/INDEX.md`, `Knowledge/LOG.md`. Create any that are missing; never
-   overwrite an existing `INDEX.md` or `LOG.md`.
+2. Confirm the folders exist — `Sources/` with `Books/`, `Papers/` and `Notes/`, `Knowledge/`,
+   `Philosophy/`, `Projects/`, and `Knowledge/INDEX.md` and `Knowledge/LOG.md`. Create any that are
+   missing; never overwrite an existing `INDEX.md` or `LOG.md`.
 
 ## The interview
 
@@ -28,9 +31,9 @@ write anything until every answer is in.
 4. **How should I speak?** Terse / standard / thorough; which language; challenge or defer.
 5. **What do you believe about markets?** Two or three sentences. Offer to save the long version
    as `Philosophy/how-i-invest.md` in their exact words — never paraphrased — if they say more.
-6. **Non-negotiables.** Show KaxaNuk's four defaults (numbers only from the Lab's libraries; the
-   hypothesis before the test with every prediction cited; nothing trades from here;
-   `Philosophy/Private/` read only when named). Keep, change, add.
+6. **Non-negotiables.** Show KaxaNuk's three defaults (numbers only from the Lab's libraries; the
+   hypothesis before the test with every prediction cited; nothing trades from here). Keep, change,
+   add.
 7. **Tag policy.** Strict — a fixed list they give now — or loose — proposed on compile, pruned at
    audit.
 8. **Strategies.** Paths to any strategy repositories on this machine built from the KN Research
@@ -51,5 +54,6 @@ is not packaged yet, and that the library is built the ordinary way: a source in
 
 ## Hand over
 
-Three sentences, in the voice the owner chose: who the researcher is now, what to do first (drop a
-source into `Sources/` and run `/compile`), and where the rules live (`AGENTS.md`).
+Four sentences, in the voice the owner chose: who the researcher is now, what to do first (drop a
+source into `Sources/` and run `/compile`), how to invite it into a strategy (open the assistant in
+the strategy's folder and add this one to the session), and where the rules live (`AGENTS.md`).
