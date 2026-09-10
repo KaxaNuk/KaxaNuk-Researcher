@@ -6,9 +6,10 @@ argument-hint: "[path to the strategy repository, if not the one the session is 
 
 # /objective
 
-Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
-this session is open elsewhere, invited into a strategy, find the home first and read its
-`RESEARCHER.md` and `AGENTS.md` before anything else.
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
+it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
+repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
+`AGENTS.md` says where each of these paths lands.
 
 `OBJECTIVE.md` is the first thing a CIO reads and the last thing that changes. Draft it from what
 has been read, so every claim in it points back to a source. `$ARGUMENTS` is the strategy's path,
@@ -21,7 +22,6 @@ left out when the session is open in it.
   words before drafting anything; the researcher's part is the claims and their sources.
 - Every note in `Bibliotheca/Papers/` and `Bibliotheca/Books/`, and `BIBLIOGRAPHY.md` — which
   sources have notes, and which are only leads.
-- `Bibliotheca/Knowledge/`, through its `INDEX.md`, for what the strategy has compiled.
 - `AGENTS.md` in that repository, for the bar any new signal must clear.
 
 ## 2. Contrast with the researcher's library
@@ -38,8 +38,8 @@ the objective as a capability, not a number; the claims table with each claim's 
 **untested**; what is not claimed. Rules:
 
 - **Every claim cites a note** in the strategy's `Bibliotheca/`, by relative path. A claim that
-  rests only on a home article is written with no link **and marked as a lead**: *write the note
-  for X before this claim stands.*
+  rests only on a home note is written with no link **and marked as a lead**: *write the note for
+  X before this claim stands.*
 - **Name the columns.** Each claim says which `c_*` or `r_*` column will carry it, if the owner
   already knows; otherwise a slot.
 - **Include the source that argues against the idea** if the library holds one. An objective that
@@ -49,7 +49,7 @@ the objective as a capability, not a number; the claims table with each claim's 
 
 ## 4. Show, wait, then write
 
-Show the draft in chat and list the leads it depends on — the notes to write first, with `/note` —
+Show the draft in chat and list the leads it depends on — the notes to write first, with `/read` —
 and the claims the owner should sharpen. Wait for the go. Then write it into the strategy's
 `OBJECTIVE.md`, keeping every line the owner wrote. The owner reviews the diff and commits; that
 commit is what makes the objective theirs.

@@ -15,8 +15,8 @@ Sources/**/*.jpeg
 # --- The skills, and everything a tool might generate beside them -----------------------------------
 # The skills are committed in the two directories that assistants actually read: `.claude/skills/`,
 # which is the only one Claude Code looks in, and `.agents/skills/`, which Copilot, Cursor, Codex,
-# Gemini, OpenCode and Windsurf read. Everything below is generated per machine — by `apm install`
-# if this repository is ever given dependencies again — and stays out of git.
+# Gemini, OpenCode and Windsurf read. Both are versioned whole — a new skill needs no line here.
+# Everything else below is generated per machine and stays out of git.
 .cursor/
 .codex/
 .gemini/
@@ -28,36 +28,15 @@ Sources/**/*.jpeg
 .claude/commands/
 .claude/rules/
 .claude/settings.local.json
-
-# Skills that came from installed dependencies are per-machine. Only the researcher's own eleven
-# are committed — they are the repository.
-.claude/skills/*
-!.claude/skills/audit/
-!.claude/skills/blueprint/
-!.claude/skills/brainstorm/
-!.claude/skills/compile/
-!.claude/skills/note/
-!.claude/skills/objective/
-!.claude/skills/query/
-!.claude/skills/refine/
-!.claude/skills/refresh-index/
-!.claude/skills/researcher-init/
-!.claude/skills/teach/
-
 .agents/*
 !.agents/skills/
-.agents/skills/*
-!.agents/skills/audit/
-!.agents/skills/blueprint/
-!.agents/skills/brainstorm/
-!.agents/skills/compile/
-!.agents/skills/note/
-!.agents/skills/objective/
-!.agents/skills/query/
-!.agents/skills/refine/
-!.agents/skills/refresh-index/
-!.agents/skills/researcher-init/
-!.agents/skills/teach/
+
+# --- Derived from the sources and the code: regenerable, never versioned --------------------------
+# Extracts are the text the read skill's script pulls out of the PDFs, one file per chapter. They
+# are the PDF's words, under the PDF's copyright, and they come back with one command.
+Extracts/
+__pycache__/
+.venv/
 
 # --- AI setup, managed by APM per machine ---------------------------------------------------------
 apm_modules/

@@ -1,35 +1,34 @@
 ---
 name: audit
-description: Read-only review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, never fixes on its own
+description: A review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, and appends one line to the log; never fixes on its own
 argument-hint: "[deep]"
 ---
 
 # /audit
 
-Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
-this session is open elsewhere, invited into a strategy, find the home first and read its
-`RESEARCHER.md` and `AGENTS.md` before anything else.
-
-**Which library.** At home, the sources are `Sources/` and the library is `Knowledge/`. In a
-strategy — the session is open in a repository with a `Bibliotheca/`, or the owner named one by
-path — the library is that strategy's: `Bibliotheca/Papers/`, `Books/` and `Notes/` are the
-sources, `Bibliotheca/Knowledge/` is the library with its own `INDEX.md` and `LOG.md`, and every
-path below reads accordingly. Home's `Knowledge/` and `Philosophy/` are context there: read, named
-in prose, never linked, never written.
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
+it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
+repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
+`AGENTS.md` says where each of these paths lands.
 
 Review the library and report. **Nothing is changed by this skill except one entry appended to
-the library's `LOG.md`** — `Knowledge/LOG.md` at home, `Bibliotheca/Knowledge/LOG.md` in a
-strategy, never the other. Fixes are a plan the owner approves separately.
+the library's `LOG.md`** — `Knowledge/LOG.md` at home, `Bibliotheca/LOG.md` in a strategy, never
+the other. Fixes are a plan the owner approves separately.
 
 ## Always
 
-- Links that do not resolve, and articles nothing links to.
-- Duplicate or overlapping articles — two files on one idea.
-- `INDEX.md` entries with no article, and articles with no index entry.
-- Articles whose `source` is no longer among the sources.
-- Frontmatter with fields other than `source`, `read`, `tags`, `writer`, or missing one.
+- Links that do not resolve, and notes nothing links to — a chapter note is linked from its book's
+  `INDEX.md`.
+- Duplicate or overlapping notes — two files on one source, or one chapter read twice.
+- Index entries with no note, and notes with no index entry — `INDEX.md` at home, the rows of
+  `BIBLIOGRAPHY.md` in a strategy; a book's `INDEX.md` whose table disagrees with the chapter files
+  beside it.
+- Notes whose `local_copy` names a file that is not there.
+- Frontmatter with fields other than `source`, `citation`, `local_copy`, `read` and `tags`, or
+  missing one of the first four.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
-- Concepts an article leans on that no article defines.
+- Concepts a note leans on that no note defines.
+- A note that cites an extract or links into `Extracts/`. Notes cite the source and its pages.
 - `.agents/skills/` out of step with `.claude/skills/` at home — any skill present in one and not
   the other, or differing between them. Report it as drift and give the copy command; the
   researcher runs on both, and a difference means two different researchers.
@@ -44,8 +43,8 @@ strategy, never the other. Fixes are a plan the owner approves separately.
 
 ## With `deep` — expensive; monthly, not per session
 
-- Contradictory claims between articles.
-- A claim superseded by a newer article without a `> [!WARNING]` callout above it.
+- Contradictory claims between notes.
+- A claim superseded by a newer note without a `> [!WARNING]` callout above it.
 - Gaps: things the library assumes that no source supports.
 
 ## Report

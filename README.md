@@ -6,14 +6,16 @@ investment strategy you build — with every claim pointing back to something yo
 
 One researcher per person, not per strategy. Your strategies live in their own repositories, copied
 from the [KN Research Process template](https://github.com/KaxaNuk/KaxaNuk-Research-Process); the
-researcher works in each strategy's `Bibliotheca/` — compiling its sources, writing its notes,
-drafting its `OBJECTIVE.md` claims and its `BLUEPRINT_N.md` hypotheses — with your library as the
-contrast. What it learns in a strategy stays there: it writes nothing back home unless you ask, so
-one experiment never leaks into the researcher every strategy shares.
+researcher works in each strategy's `Bibliotheca/` — reading its sources into notes, drafting its
+`OBJECTIVE.md` claims and its `BLUEPRINT_N.md` hypotheses — with your library as the contrast. What
+it learns in a strategy stays there: it writes nothing back home unless you ask, so one experiment
+never leaks into the researcher every strategy shares.
 
-**There is almost no code here.** The researcher is a folder architecture, a set of skills and an
-interview. The deterministic work — downloading data, computing signals, pricing a book, attributing
-a return — is done by the Lab's libraries, which the researcher calls and never imitates.
+**There is almost no code here.** The researcher is a folder architecture, a set of skills, an
+interview, and one script that turns a PDF into its chapters as text — extraction is deterministic,
+so a script does it. The rest of the deterministic work — downloading data, computing signals,
+pricing a book, attributing a return — is done by the Lab's libraries, which the researcher calls
+and never imitates.
 
 It is not tied to one assistant. The skills are authored once and built for Claude Code, Copilot,
 Cursor, Codex, Gemini, OpenCode and Windsurf.
@@ -32,22 +34,24 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
    The skills are committed, so this works with nothing else installed.
 
 2. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
-   be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality, and
-   scaffolds any folder that is missing.
+   be spoken to, what is never allowed, what you are reading for right now — writes
+   `RESEARCHER.md`, the researcher's personality, and scaffolds any folder that is missing.
    
    ```bash
    /researcher-init
    ```
 
-3. **Drop a paper into `Sources/` and run `/compile`.** The researcher asks why you added it,
-   proposes how to file it, waits for your go, and writes it into `Knowledge/` with a link to
-   everything it relates to.
+3. **Drop a paper or a book into `Sources/` and run `/read`.** For a book the researcher shows you
+   its table of contents and asks which chapters serve which of your questions; it reads only
+   those, proposes how to file them, waits for your go, and writes one note per chapter read into
+   `Knowledge/`, linked to everything it relates to. The extraction is a script run with
+   [`uv`](https://docs.astral.sh/uv/) — or `pip install pypdf` and plain `python`.
 
 4. **Invite it to a strategy.** Point at it from here — `/blueprint D:\Research\Golden-Flow 1` —
    or open your assistant in the strategy's folder and add this one to the session, with
    `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. There, the
-   strategy's `Bibliotheca/` is its library: `/compile` fills `Bibliotheca/Knowledge/` from the
-   strategy's papers, `/note` writes the notes, and `/blueprint` drafts the hypothesis into
+   strategy's `Bibliotheca/` is its library: `/read` writes the notes beside the strategy's PDFs,
+   each with its row in `BIBLIOGRAPHY.md`, and `/blueprint` drafts the hypothesis into
    `BLUEPRINT_N.md` with every prediction citing its note — each after a plan and your go. You
    review the diff and commit it, before the rule. Nothing is written here at home.
 
@@ -55,7 +59,7 @@ A skill is discoverable in a **new** session, never the one that installed it.
 
 ### Or add the researcher to a project you already have
 
-The eleven skills are an [APM](https://github.com/microsoft/apm) package, so with the `apm` CLI
+The ten skills are an [APM](https://github.com/microsoft/apm) package, so with the `apm` CLI
 installed — `pip install apm-cli`, or an installer from its page — they can be added beside
 whatever else you are running:
 
@@ -73,8 +77,8 @@ directly.
 ## What is in here
 
 ```
-RESEARCHER.md         who the researcher is — name, owner, domains, voice, non-negotiables;
-                      written by /researcher-init
+RESEARCHER.md         who the researcher is — name, owner, domains, voice, non-negotiables — and
+                      what you are reading for; written by /researcher-init
 AGENTS.md             the library's rules: what each folder is, who may write where, the skills
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
 CHANGELOG.md          every version of this repository, newest first
@@ -84,16 +88,21 @@ apm.yml               what this repository publishes, so the skills can be insta
 Sources/              what you read: PDFs, papers, clippings. The researcher reads, never writes
   Books/                file by kind, and add your own kinds — the taxonomy is yours
   Papers/
-  Notes/                clippings and transcripts you collected, never your own writing
-Knowledge/            what the researcher compiled: one article per idea, grouped by domain
+  Clippings/            articles, transcripts and threads you collected, never your own writing
+Extracts/             the text the script pulled out of your PDFs, one file per chapter;
+                      regenerable, gitignored, never cited
+Knowledge/            what the researcher read: one note per paper, one folder per book with a note
+                      per chapter read, grouped by domain
   INDEX.md              the one index of the library — read first, always
-  LOG.md                append-only record of every compile, audit and refresh
+  LOG.md                append-only record of every read, audit and refresh
 Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
 Projects/             what you asked for at home: lessons, anything in chat. Strategy work lives
                       in the strategy
 
-.claude/skills/       the eleven skills below. Edit them here — Claude Code reads only this
-.agents/skills/       the same eleven, mirrored: Copilot, Cursor, Codex, Gemini, OpenCode and
+.claude/skills/       the ten skills below. Edit them here — Claude Code reads only this
+  read/scripts/         extract.py, the one script: a PDF's table of contents, and its
+                        chapters as text
+.agents/skills/       the same ten, mirrored: Copilot, Cursor, Codex, Gemini, OpenCode and
                       Windsurf read this one instead
 ```
 
@@ -113,21 +122,20 @@ slash commands — Claude Code, Cursor, Gemini, OpenCode, Windsurf — you also 
 | Skill | What it does |
 | --- | --- |
 | `/researcher-init` | the interview; writes `RESEARCHER.md` and scaffolds the folders |
-| `/compile` | files the sources into the library — `Sources/` into `Knowledge/` at home, a strategy's `Bibliotheca/` papers into its `Bibliotheca/Knowledge/` — asks why each source is there, plans, waits for your go, then writes; contradictions flagged, never overwritten |
+| `/read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten |
 | `/query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named |
-| `/note [strategy] <source>` | writes a source note into the strategy's `Bibliotheca/` in the KN convention, and its line in `BIBLIOGRAPHY.md` |
 | `/objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — from its notes and your library |
 | `/blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place — thesis, rules, predictions — with every prediction citing a note or a measurement |
 | `/brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
 | `/teach <topic>` | a multi-session tutor grounded in your library |
-| `/audit` | read-only review of the library at hand: broken links, duplicates, stale index, orphans; `deep` adds contradictions |
-| `/refine <path>` | a voice-preserving editor pass over one of your notes, diff first |
+| `/audit` | reviews the library at hand — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions — and reports; one line in the log, never a fix on its own |
+| `/refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files, diff first |
 | `/refresh-index` | rebuilds the library's `INDEX.md` from what is on disk |
 
 Questions about what your library says fire `query` on their own; the rest run when you name them.
 Every one that writes shows its plan first and waits for your go.
 
-In a strategy, the library skills work on that strategy's `Bibliotheca/` and the four strategy
+In a strategy, the library skills work on that strategy's `Bibliotheca/` and the three strategy
 skills write into its own files; the strategy's path can be left out when the session is open in
 it. None of them writes here at home from there unless you ask for it by name.
 

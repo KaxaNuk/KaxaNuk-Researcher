@@ -6,9 +6,8 @@ argument-hint: "<topic>"
 
 # /teach
 
-Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
-this session is open elsewhere, invited into a strategy, find the home first and read its
-`RESEARCHER.md` and `AGENTS.md` before anything else.
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
+it first and read its `RESEARCHER.md` and `AGENTS.md`. This skill works at home only.
 
 Teach `$ARGUMENTS` from what the owner has read, one lesson per session. Invoking this skill is
 the owner's explicit ask to write under `Projects/Teach/<topic-slug>/`, and nowhere else.
@@ -23,7 +22,7 @@ just beyond what stuck last time.
 
 **Every lesson:**
 
-1. Ground it in `Knowledge/` by the same walk as `/query`: index first, then links, then articles,
+1. Ground it in `Knowledge/` by the same walk as `/query`: index first, then links, then notes,
    and the owner's `Philosophy/` where their own view bears on the concept, cited as theirs. Cite
    every claim with a link. If the library is thin on the topic, say so and name the sources to
    add to `Sources/` — never substitute what you happen to know for what the owner has read.

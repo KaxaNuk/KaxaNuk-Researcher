@@ -4,6 +4,78 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## Unreleased
+
+**What to do differently:** run `/read` where you ran `/compile` or `/note`. Reading a PDF needs
+[`uv`](https://docs.astral.sh/uv/) on the machine, or `pip install pypdf`. If your `RESEARCHER.md`
+is already filled, add the section *What you are reading for* by hand — the shape is in the
+template — or leave it out and `/read` asks for it the next time a source arrives. A strategy needs
+the matching KN Research Process template — the branch `researcher-unified-note` until it is
+released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and ignores
+`Bibliotheca/Extracts/`. In an existing clone, rename `Sources/Notes/` to `Sources/Clippings/`.
+
+### Changed
+
+* **One note, one convention, both repositories.** A note has the same shape at home and in a
+  strategy: the KN Research Process note's frontmatter — `source`, `citation`, `local_copy`, `read`
+  — plus `tags` for the owner's tag policy; the name `Author_Year_Title`; the source's claims as
+  headings, in its authors' terms, and what each implies for the owner's question — or the
+  strategy's claim, by number — as a blockquote; `## Why it is here` first and `## What it changes`
+  last. In a strategy `/read` writes the note beside the PDF in `Bibliotheca/Papers/` or `Books/`,
+  its row in `BIBLIOGRAPHY.md`, and a line in `Bibliotheca/LOG.md`; `Bibliotheca/Knowledge/` is no
+  longer written. A note the home library already holds travels into a strategy without re-reading
+  the PDF: the source's part is carried, and the implications are written anew for the strategy's
+  claims. The `writer` field is gone — git records who wrote — and the word *article* with it: every
+  skill says *note*. `/refresh-index` is home only, because a strategy's `BIBLIOGRAPHY.md` is
+  curated by hand; `/read` writes each note's row and `/audit` reports the gaps.
+* `/compile` is `/read`, rebuilt around the owner's choice. A script pulls a PDF's table of contents
+  and its chapters into text; the researcher shows the table of contents, proposes *read*, *skim* or
+  *skip* for each chapter against the owner's questions, reads only what they choose, and writes
+  one note per chapter read. A book is a folder, with an `INDEX.md` that records what became of
+  every chapter; a paper is one file. "One article per idea" gives way to one note per unit read —
+  an idea that spans sources is a synthesis, written on request, linking the notes it rests on.
+  The chapter and pages read go in a provenance line under the title.
+* `Sources/Notes/` is `Sources/Clippings/` — articles, transcripts and threads the owner collected.
+  Now that *note* names what the researcher writes, a folder of raw material could not keep the
+  word. The strategy template still says `Bibliotheca/Notes/`; the table in `AGENTS.md` maps one to
+  the other.
+* Every skill opens with the same lines — find the home, read `RESEARCHER.md` and `AGENTS.md`, and
+  in a strategy take the paths from *Working in a strategy* — and that table in `AGENTS.md` is now
+  the one place that says where a path lands there, the owner's questions included. The *Which
+  library* paragraph that `read`, `query` and `audit` each carried is gone.
+* `/refine` says what it edits — a file in `Philosophy/`, the owner's own writing — and `/audit`
+  says what it does: reports, appends one line to the log, never fixes on its own. Neither was
+  described that way before.
+
+### Added
+
+* `RESEARCHER.md` gains *What you are reading for*: the owner's open questions, numbered, each with
+  what it feeds and what would change their mind, and what is out of scope for now. It is the one
+  section meant to change often, and the owner edits it by hand. `/researcher-init` asks for it as
+  its last question. `/read` reads it before every source and asks which question each one serves,
+  by number, instead of a free reason — that is what `## Why it is here` now records and what
+  `## What it changes` is measured against. When the section is empty at home, `/read` asks for the
+  questions first and offers to write them, on the owner's go; in a strategy the numbered claims in
+  `OBJECTIVE.md` play that role, and nothing is written at home.
+* `.claude/skills/read/scripts/extract.py`, the first code in this repository, because extraction
+  is deterministic and the researcher was doing it by hand, twenty pages at a time. It reads the
+  PDF's outline, prints the chapters with their pages, and writes one markdown file per chapter
+  asked for, a marker before every page — `pdftotext` when it is on the machine, `pypdf` otherwise,
+  and it says which. It refuses a PDF with no text layer instead of guessing, takes page ranges by
+  hand when a PDF has no outline, and runs with `uv run`, its one dependency declared inline, so it
+  travels with the skill. Its output lives in `Extracts/` at home and `Bibliotheca/Extracts/` in a
+  strategy: a cache, gitignored, regenerable, never cited.
+* `.claude/skills/read/reference/note.md`, the shape of every note the researcher writes, at home
+  and in a strategy — paths and names, frontmatter, the chapter note, the paper note, the book's
+  `INDEX.md` and its status vocabulary, what the indexes show, how a home note travels.
+
+### Removed
+
+* `/note`, merged into `/read`: the strategy note is what `/read` writes there.
+* The `writer` frontmatter field.
+* The per-skill whitelist in `.gitignore`. Both skill directories are versioned whole, so a new
+  skill needs no line there. `Extracts/`, `__pycache__/` and `.venv/` are ignored instead.
+
 ## 0.2.0 (2026-09-09)
 
 **MINOR** — the folders are renamed, and the researcher is no longer tied to one assistant.

@@ -6,9 +6,10 @@ argument-hint: "[path to the strategy repository, if not the one the session is 
 
 # /blueprint
 
-Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. If
-this session is open elsewhere, invited into a strategy, find the home first and read its
-`RESEARCHER.md` and `AGENTS.md` before anything else.
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
+it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
+repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
+`AGENTS.md` says where each of these paths lands.
 
 The blueprint is the hypothesis, fixed once written, recorded before the notebook's rule cell
 exists. This skill drafts it so that every prediction can be traced to something read or measured,
@@ -24,8 +25,8 @@ slots filled, stop too — it does not change once written; a new idea is Experi
 ## 2. Read, in this order
 
 1. `OBJECTIVE.md` — the claims this experiment tests, by number.
-2. The strategy's `Bibliotheca/` notes, and which sources are still leads; and its
-   `Bibliotheca/Knowledge/`, through the index, for what the strategy has compiled.
+2. The strategy's `Bibliotheca/` notes, through `BIBLIOGRAPHY.md`, and which sources are still
+   leads.
 3. `RESULTS.md`, section *Before any experiment*, and anything in `Data/Analyzer/` — the
    measurements the analyzer has already made about the signal. For Experiment 1 there may be none.
 4. `Experiments/Experiment_N/BLUEPRINT_N.md` as shipped — the headings to fill — and for N > 1,

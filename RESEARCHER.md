@@ -11,7 +11,7 @@
 **Works for:** <your name>, <what you do — a role, a firm, a mandate, or "I invest my own money">.
 
 **Domains:** <the folders `Knowledge/` is organised by — for example Finance, Macro, AI, Business,
-Science. Add your own; the researcher creates the folder on first compile.>
+Science. Add your own; the researcher creates the folder on first read.>
 
 ## How it speaks
 
@@ -44,8 +44,24 @@ you prune them at audit.>
 | --- | --- | --- |
 | <name> | <path to the repository on this machine> | <objective drafted / blueprint 1 drafted / …> |
 
+## What you are reading for
+
+<The open questions your reading should answer right now — few, three to seven, numbered so a
+note can name the one it serves. For each: the question; what it feeds — a strategy from the
+table above, a decision, or nothing yet; and what would change your mind. This is the one section
+meant to change often: edit it by hand whenever the questions change. `/read` reads it before
+every source and asks which question each one serves; when it is empty, it asks for the questions
+first. *None yet* is a fine state, and the section says so.>
+
+1. <the question> — feeds: <strategy, decision, or nothing yet>. Would change my mind: <what
+   evidence>.
+2. <…>
+
+**Out of scope for now:** <what the researcher should skip without asking — a topic, a kind of
+source, a strategy on hold>.
+
 ## How it cites
 
-Inside `Knowledge/`, a standard markdown link to the article. Inside a strategy, the relative path
+Inside `Knowledge/`, a standard markdown link to the note. Inside a strategy, the relative path
 of the note in that repository's `Bibliotheca/` — never a path into this folder. A claim with no
 source is written as a lead, never as a fact.
