@@ -6,8 +6,10 @@ investment strategy you build — with every claim pointing back to something yo
 
 One researcher per person, not per strategy. Your strategies live in their own repositories, copied
 from the [KN Research Process template](https://github.com/KaxaNuk/KaxaNuk-Research-Process); the
-researcher reads each strategy's `Bibliotheca/` and drafts its `OBJECTIVE.md` claims and its
-`BLUEPRINT_N.md` hypotheses from those notes. It never writes into a strategy repository uninvited.
+researcher works in each strategy's `Bibliotheca/` — compiling its sources, writing its notes,
+drafting its `OBJECTIVE.md` claims and its `BLUEPRINT_N.md` hypotheses — with your library as the
+contrast. What it learns in a strategy stays there: it writes nothing back home unless you ask, so
+one experiment never leaks into the researcher every strategy shares.
 
 **There is almost no code here.** The researcher is a folder architecture, a set of skills and an
 interview. The deterministic work — downloading data, computing signals, pricing a book, attributing
@@ -20,7 +22,7 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
 
 ## Start
 
-1. **+ this repository under the name you give your researcher**, and open that folder in your
+1. **Clone this repository under the name you give your researcher**, and open that folder in your
    agent:
 
    ```bash
@@ -37,22 +39,25 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
    /researcher-init
    ```
 
-3. **Drop a paper into `Sources/` and run `/compile`.** The researcher proposes how to file it,
-   waits for your go, and writes it into `Knowledge/` with a link to everything it relates to.
+3. **Drop a paper into `Sources/` and run `/compile`.** The researcher asks why you added it,
+   proposes how to file it, waits for your go, and writes it into `Knowledge/` with a link to
+   everything it relates to.
 
 4. **Invite it to a strategy.** Point at it from here — `/blueprint D:\Research\Golden-Flow 1` —
    or open your assistant in the strategy's folder and add this one to the session, with
-   `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. Either way it
-   reads that strategy's `Bibliotheca/` and your library, drafts the blueprint with every prediction
-   citing its note, and writes it to `Projects/<strategy>/` here. You copy it in, edit it, and
-   commit it before the rule.
+   `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. There, the
+   strategy's `Bibliotheca/` is its library: `/compile` fills `Bibliotheca/Knowledge/` from the
+   strategy's papers, `/note` writes the notes, and `/blueprint` drafts the hypothesis into
+   `BLUEPRINT_N.md` with every prediction citing its note — each after a plan and your go. You
+   review the diff and commit it, before the rule. Nothing is written here at home.
 
 A skill is discoverable in a **new** session, never the one that installed it.
 
 ### Or add the researcher to a project you already have
 
-The eleven skills are an [APM](https://github.com/microsoft/apm) package, so they can be installed
-beside whatever else you are running:
+The eleven skills are an [APM](https://github.com/microsoft/apm) package, so with the `apm` CLI
+installed — `pip install apm-cli`, or an installer from its page — they can be added beside
+whatever else you are running:
 
 ```bash
 apm install KaxaNuk/KaxaNuk-Researcher
@@ -84,7 +89,8 @@ Knowledge/            what the researcher compiled: one article per idea, groupe
   INDEX.md              the one index of the library — read first, always
   LOG.md                append-only record of every compile, audit and refresh
 Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
-Projects/             what you asked for: strategy drafts, source notes, lessons, anything in chat
+Projects/             what you asked for at home: lessons, anything in chat. Strategy work lives
+                      in the strategy
 
 .claude/skills/       the eleven skills below. Edit them here — Claude Code reads only this
 .agents/skills/       the same eleven, mirrored: Copilot, Cursor, Codex, Gemini, OpenCode and
@@ -107,18 +113,23 @@ slash commands — Claude Code, Cursor, Gemini, OpenCode, Windsurf — you also 
 | Skill | What it does |
 | --- | --- |
 | `/researcher-init` | the interview; writes `RESEARCHER.md` and scaffolds the folders |
-| `/compile` | files what is in `Sources/` into `Knowledge/` — plan first, your go, then write; contradictions flagged, never overwritten |
-| `/query <question>` | answers from `Knowledge/` first, then `Philosophy/`, then `Sources/`; every claim cited; gaps named |
-| `/note <strategy> <source>` | writes a source note for a strategy's `Bibliotheca/` in the KN convention, to `Projects/` |
-| `/objective <strategy>` | drafts the strategy's `OBJECTIVE.md` — the main idea and its claims — from its notes and your library |
-| `/blueprint <strategy> <N>` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — with every prediction citing a note or a measurement |
-| `/brainstorm <strategy> <N>` | drafts a dated `BRAINSTORMING_N.md` entry for the next thing to try |
+| `/compile` | files the sources into the library — `Sources/` into `Knowledge/` at home, a strategy's `Bibliotheca/` papers into its `Bibliotheca/Knowledge/` — asks why each source is there, plans, waits for your go, then writes; contradictions flagged, never overwritten |
+| `/query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named |
+| `/note [strategy] <source>` | writes a source note into the strategy's `Bibliotheca/` in the KN convention, and its line in `BIBLIOGRAPHY.md` |
+| `/objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — from its notes and your library |
+| `/blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place — thesis, rules, predictions — with every prediction citing a note or a measurement |
+| `/brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
 | `/teach <topic>` | a multi-session tutor grounded in your library |
-| `/audit` | read-only review of the library: broken links, duplicates, stale index, orphans; `deep` adds contradictions |
+| `/audit` | read-only review of the library at hand: broken links, duplicates, stale index, orphans; `deep` adds contradictions |
 | `/refine <path>` | a voice-preserving editor pass over one of your notes, diff first |
-| `/refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
+| `/refresh-index` | rebuilds the library's `INDEX.md` from what is on disk |
 
 Questions about what your library says fire `query` on their own; the rest run when you name them.
+Every one that writes shows its plan first and waits for your go.
+
+In a strategy, the library skills work on that strategy's `Bibliotheca/` and the four strategy
+skills write into its own files; the strategy's path can be left out when the session is open in
+it. None of them writes here at home from there unless you ask for it by name.
 
 They are yours to change. Edit a skill in `.claude/skills/`, then mirror it with
 `cp -r .claude/skills/. .agents/skills/` so the other assistants get the same one. `/audit` tells
@@ -130,7 +141,7 @@ you if the two have drifted.
 
 | | |
 | --- | --- |
-| [KaxaNuk-Research-Process](https://github.com/KaxaNuk/KaxaNuk-Research-Process) | the template every strategy is copied from — eight steps as folders, no code on `main` |
+| [KaxaNuk-Research-Process](https://github.com/KaxaNuk/KaxaNuk-Research-Process) | the template every strategy is copied from — eight steps as folders, no code on `main`. Its `Bibliotheca/` is where the researcher works when invited |
 | [KaxaNuk-APM](https://github.com/KaxaNuk/KaxaNuk-APM) | where KaxaNuk's packages will come from — the Data Curator's calculations, one skill per Lab module — once they teach research rather than linting. None is installed today |
 | the Investment Lab | the platform that runs the deterministic parts, and — later — reads a strategy's `Bibliotheca/` to show what cites what |
 

@@ -34,9 +34,22 @@ they are discoverable only in a **new** session after you pull.
 * Every skill now works from wherever the session is open. Each begins by finding the researcher's
   home — the folder that holds `RESEARCHER.md` — and reading `RESEARCHER.md` and `AGENTS.md`
   there, so the researcher is itself when invited into a strategy and not only at home.
-* `/compile` walks every subfolder of `Sources/` and compiles a book a part at a time, naming the
-  parts done in the log so the rest can follow. `/brainstorm` and `/teach` now read `Philosophy/`,
-  so how you invest weighs on what to try next and on what you are taught.
+* Strategy work lives in the strategy. Invited into a repository built from the KN Research
+  Process template, the researcher's library is that repository's `Bibliotheca/` — `Papers/`,
+  `Books/` and `Notes/` are the sources, `Bibliotheca/Knowledge/` the articles with their own
+  index and log — and `/note`, `/objective`, `/blueprint` and `/brainstorm` write into the
+  strategy's own files, after the plan and your go, for you to commit. `Projects/` keeps lessons
+  and what you ask for in chat at home. **Nothing flows back:** while it works on a strategy the
+  researcher writes nothing at home unless you ask for that write by name, so one experiment
+  cannot leak into the researcher every strategy shares.
+* `/compile` asks, before it reads, why each source is there. The answer opens the article as
+  `## Why it is here`, in your words — the reason you added a source decides where it files, what
+  it links to, which part of a book matters and what `## What it changes` is measured against —
+  and a source read for a strategy ends with the `/note` that would carry it there. It walks every
+  subfolder of `Sources/`, compiles a book a part at a time, naming in the log the parts done and
+  the parts to come, and reports a source it cannot open rather than filling it in from memory.
+  `/brainstorm` and `/teach` now read `Philosophy/`, so how you invest weighs on what to try next
+  and on what you are taught.
 
 ### Added
 
@@ -53,6 +66,9 @@ they are discoverable only in a **new** session after you pull.
 * The `KaxaNuk/KaxaNuk-APM/common` dependency. It installed Python style rules — pep8,
   test-writing, bloom-code — into every assistant's context, and there is almost no code in this
   repository. It returns when there is a KaxaNuk package that teaches research rather than linting.
+* `requirements-dev.txt`. It pinned `apm-cli`, which nothing here needs: the skills are committed,
+  and the APM CLI matters only to install them into another project — the README says where it
+  comes from.
 
 ### Fixed
 

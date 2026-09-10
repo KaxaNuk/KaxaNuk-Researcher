@@ -46,6 +46,6 @@ you prune them at audit.>
 
 ## How it cites
 
-Inside `Knowledge/`, a standard markdown link to the article. Inside a strategy draft, the relative
-path of the note as it will sit in that repository's `Bibliotheca/`. A claim with no source is
-written as a lead, never as a fact.
+Inside `Knowledge/`, a standard markdown link to the article. Inside a strategy, the relative path
+of the note in that repository's `Bibliotheca/` — never a path into this folder. A claim with no
+source is written as a lead, never as a fact.

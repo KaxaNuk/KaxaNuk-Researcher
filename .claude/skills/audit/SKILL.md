@@ -1,6 +1,6 @@
 ---
 name: audit
-description: Read-only review of Knowledge/ — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, never fixes on its own
+description: Read-only review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, never fixes on its own
 argument-hint: "[deep]"
 ---
 
@@ -10,32 +10,48 @@ Every path below is relative to the researcher's home — the folder that holds 
 this session is open elsewhere, invited into a strategy, find the home first and read its
 `RESEARCHER.md` and `AGENTS.md` before anything else.
 
+**Which library.** At home, the sources are `Sources/` and the library is `Knowledge/`. In a
+strategy — the session is open in a repository with a `Bibliotheca/`, or the owner named one by
+path — the library is that strategy's: `Bibliotheca/Papers/`, `Books/` and `Notes/` are the
+sources, `Bibliotheca/Knowledge/` is the library with its own `INDEX.md` and `LOG.md`, and every
+path below reads accordingly. Home's `Knowledge/` and `Philosophy/` are context there: read, named
+in prose, never linked, never written.
+
 Review the library and report. **Nothing is changed by this skill except one entry appended to
-`Knowledge/LOG.md`.** Fixes are a plan the owner approves separately.
+the library's `LOG.md`** — `Knowledge/LOG.md` at home, `Bibliotheca/Knowledge/LOG.md` in a
+strategy, never the other. Fixes are a plan the owner approves separately.
 
 ## Always
 
 - Links that do not resolve, and articles nothing links to.
 - Duplicate or overlapping articles — two files on one idea.
-- `Knowledge/INDEX.md` entries with no article, and articles with no index entry.
-- Articles whose `source` is no longer in `Sources/`.
+- `INDEX.md` entries with no article, and articles with no index entry.
+- Articles whose `source` is no longer among the sources.
 - Frontmatter with fields other than `source`, `read`, `tags`, `writer`, or missing one.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts an article leans on that no article defines.
-- `.agents/skills/` out of step with `.claude/skills/` — any skill present in one and not the
-  other, or differing between them. Report it as drift and give the copy command; the researcher
-  runs on both, and a difference means two different researchers.
+- `.agents/skills/` out of step with `.claude/skills/` at home — any skill present in one and not
+  the other, or differing between them. Report it as drift and give the copy command; the
+  researcher runs on both, and a difference means two different researchers.
+
+## In a strategy, also
+
+- Notes under `Bibliotheca/Papers/` or `Books/` that `BIBLIOGRAPHY.md` does not list, and lines in
+  it that link to a note that does not exist.
+- A link from the strategy into the researcher's home. Links stay inside the strategy.
+- A claim in `OBJECTIVE.md` or a prediction in a `BLUEPRINT_N.md` that cites no note and is not
+  marked as a lead.
 
 ## With `deep` — expensive; monthly, not per session
 
 - Contradictory claims between articles.
 - A claim superseded by a newer article without a `> [!WARNING]` callout above it.
-- Gaps: things the library assumes that no source in `Sources/` supports.
+- Gaps: things the library assumes that no source supports.
 
 ## Report
 
 In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them
-as a plan and wait for a go; approved fixes append their own log entry. Append one entry to
-`Knowledge/LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep`.
+as a plan and wait for a go; approved fixes append their own log entry. Append one entry to the
+library's `LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep`.
 
-Never touch `Philosophy/` or `Sources/`. Never fix silently.
+Never touch `Philosophy/` or the sources. Never fix silently. In a strategy, never write at home.
