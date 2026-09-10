@@ -1,7 +1,7 @@
 ---
-name: researcher-init
-description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs and non-negotiables; scaffold the folders. Only when the owner runs it by name; never on its own.
+description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs and non-negotiables; scaffold the folders.
 argument-hint: "[force]"
+disable-model-invocation: true
 ---
 
 # /researcher-init
@@ -47,10 +47,11 @@ If they asked, write `Philosophy/how-i-invest.md` with their words verbatim unde
 
 ## Core knowledge
 
-There is nothing to install. `apm.yml` declares no dependencies — the package that used to be
-there taught Python style, not research. If the owner asks about KaxaNuk's core knowledge, say it
-is not packaged yet, and that the library is built the ordinary way: a source into `Sources/`, then
-`/compile`.
+Beyond `apm install --target <agent>`, which copies the researcher's own skills and commands into
+the agent's folders, there is nothing to install. `apm.yml` declares no dependencies — the package
+that used to be there taught Python style, not research. If the owner asks about KaxaNuk's core
+knowledge, say it is not packaged yet, and that the library is built the ordinary way: a source
+into `Sources/`, then `/compile`.
 
 ## Hand over
 

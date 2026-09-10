@@ -10,25 +10,26 @@ This is the researcher *skeleton*; a person's own library is their clone and is 
 
 **What to do differently:** if you already have a clone, rename three folders — `Library/` to
 `Knowledge/`, `Notes/` to `Philosophy/`, `Output/` to `Projects/` — and nothing else moves. The
-commands are skills now, so `/compile`, `/query` and the rest still work by the same names, but
-they are discoverable only in a **new** session after you pull.
+run `apm install --target <your agent>` in the folder after you pull: `/compile`, `/query` and the
+rest keep their names, and they are discoverable only in a **new** session.
 
 ### Changed
 
 * `Library/` is now `Knowledge/`, `Notes/` is now `Philosophy/`, and `Output/` is now `Projects/`.
   The directionality is unchanged: `Sources/ → Knowledge/ → Projects/`, with `Philosophy/` cited
   and never compiled from.
-* The eleven commands are eleven **skills**. Skills are the one primitive every assistant supports,
-  and on the ones with slash commands a skill still gives you `/name` — so nothing is lost on
-  Claude Code and six more assistants are gained. They live in two committed directories, because
-  no single one serves everybody: `.claude/skills/`, which is the only place Claude Code reads and
-  where you edit them, and `.agents/skills/`, mirrored for Copilot, Cursor, Codex, Gemini, OpenCode
-  and Windsurf. A clone needs nothing installed. `/audit` reports it if the two drift apart.
+* The eleven commands are APM primitives in `.apm/`, the only copy of each: three **skills** in
+  `.apm/skills/` — `query`, `compile`, `note`, capabilities the researcher reaches for on its own
+  when the work calls for them — and eight **commands** in `.apm/prompts/`, tasks you start by
+  name. `apm install --target <agent>` copies them into the folders that agent reads, which git
+  ignores, so nothing is committed twice and every assistant runs the same researcher. Codex has
+  no command primitive, so there a command is run by naming its prompt file. `/audit` reports an
+  installed copy that has gone stale.
 * `/query` and the `library-query` skill were the same procedure reached two ways, and are merged
   into one `query` skill that still answers a direct question and still fires on its own.
-* `apm.yml` no longer builds anything. It declares what publishes — `.claude/skills/` and nothing
-  else — so the skills can be installed into a project you already have, and so a person's
-  `Sources/` and `Philosophy/` are structurally incapable of being packed.
+* `apm.yml` no longer builds anything. It declares what publishes — `.apm/` and nothing else — so
+  the researcher can be installed into a project you already have, and so a person's `Sources/`
+  and `Philosophy/` are structurally incapable of being packed.
 * `Sources/` now has `Books/`, `Papers/` and `Notes/`, and the taxonomy is yours to extend.
   `Sources/Notes/` is raw material you collected; your own writing stays in `Philosophy/`.
 * Every skill now works from wherever the session is open. Each begins by finding the researcher's
@@ -66,9 +67,8 @@ they are discoverable only in a **new** session after you pull.
 * The `KaxaNuk/KaxaNuk-APM/common` dependency. It installed Python style rules — pep8,
   test-writing, bloom-code — into every assistant's context, and there is almost no code in this
   repository. It returns when there is a KaxaNuk package that teaches research rather than linting.
-* `requirements-dev.txt`. It pinned `apm-cli`, which nothing here needs: the skills are committed,
-  and the APM CLI matters only to install them into another project — the README says where it
-  comes from.
+* `requirements-dev.txt`. It pinned `apm-cli` for `pip`; the README now says where the APM CLI
+  comes from, and `apm install --target <agent>` is the one step a clone needs.
 
 ### Fixed
 

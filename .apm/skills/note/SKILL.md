@@ -1,6 +1,6 @@
 ---
 name: note
-description: Write a source note into a strategy's Bibliotheca/ in the KN Research Process convention, and its line in BIBLIOGRAPHY.md — plan first, the owner's go, then write. Only when the owner runs it by name, on a strategy they name or are working in.
+description: Use whenever a source note is to be written into a strategy's Bibliotheca/ — the owner asks for one, or a compile, objective or blueprint left a lead. Writes it in the KN Research Process convention with its line in BIBLIOGRAPHY.md — plan first, the owner's go, then write.
 argument-hint: "[path to the strategy repository, if not the one the session is in] <source: a file under the strategy's Bibliotheca/, a path under Sources/ at home, or a citation>"
 ---
 

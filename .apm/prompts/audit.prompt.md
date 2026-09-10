@@ -1,7 +1,7 @@
 ---
-name: audit
 description: Read-only review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, never fixes on its own
 argument-hint: "[deep]"
+disable-model-invocation: true
 ---
 
 # /audit
@@ -30,9 +30,10 @@ strategy, never the other. Fixes are a plan the owner approves separately.
 - Frontmatter with fields other than `source`, `read`, `tags`, `writer`, or missing one.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts an article leans on that no article defines.
-- `.agents/skills/` out of step with `.claude/skills/` at home — any skill present in one and not
-  the other, or differing between them. Report it as drift and give the copy command; the
-  researcher runs on both, and a difference means two different researchers.
+- An installed copy out of step with `.apm/` at home — a skill under `.claude/skills/` or
+  `.agents/skills/`, or a command under `.claude/commands/` or another agent's folder, that differs
+  from its original in `.apm/skills/` or `.apm/prompts/`, or is missing. Report it as a stale
+  install and give the fix: `apm install --target <agent>`, then a new session.
 
 ## In a strategy, also
 

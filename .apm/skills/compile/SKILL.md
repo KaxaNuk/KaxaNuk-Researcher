@@ -1,6 +1,6 @@
 ---
 name: compile
-description: File the sources into the library — Sources/ into Knowledge/ at home, a strategy's Bibliotheca/ into its own Knowledge/ — asks why each source is there, plans, waits for the owner's go, then writes; contradictions flagged, never overwritten
+description: Use whenever the owner asks to file, compile or add a source to the library — Sources/ into Knowledge/ at home, a strategy's Bibliotheca/ into its own Knowledge/. Asks why each source is there, plans, waits for the owner's go, then writes; contradictions flagged, never overwritten
 argument-hint: "[a path under the sources to compile only that] [why it is there, in a phrase]"
 ---
 

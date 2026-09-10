@@ -13,7 +13,8 @@ the session happened to open. There are two ways to work:
   path: `/blueprint D:\Research\Golden-Flow 1`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
   researcher's folder to the session — `claude --add-dir D:\Research\Luna`, or `/add-dir` once
-  inside. The skills load from there on their own; `RESEARCHER.md` and this file do not, unless
+  inside. The skills and commands load from there on their own, provided `apm install` has been
+  run there once on this machine; `RESEARCHER.md` and this file do not, unless
   `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is set, which is why every skill begins by
   reading them from home. The strategy's own `AGENTS.md` still governs that repository.
 
@@ -122,34 +123,39 @@ session is open in a strategy, or the owner names one by path from home.
 
 ## Plan first, then write
 
-Every skill that writes a file presents a plan in chat — what will be written, where, and what it
-supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing anything.
+Every skill or command that writes a file presents a plan in chat — what will be written, where,
+and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before
+writing anything.
 Never write on a rejected or unanswered plan. Never write a plan or a report as a file; the chat and
 the `LOG.md` entry are the record.
 
-## Where the skills live
+## Where the skills and the commands live
 
-The eleven skills live in two directories, because no single one serves every assistant:
-`.claude/skills/`, which is the only place Claude Code looks, and `.agents/skills/`, which Copilot,
-Cursor, Codex, Gemini, OpenCode and Windsurf read. Both are committed, so a clone works with
-nothing installed.
+`.apm/` holds the researcher, once: three **skills** in `.apm/skills/<name>/SKILL.md` — `query`,
+`compile`, `note`, capabilities the researcher reaches for on its own when the work calls for
+them — and eight **commands** in `.apm/prompts/<name>.prompt.md`, tasks the owner starts by name.
+Nothing else is committed twice.
 
-- **`.claude/skills/<name>/SKILL.md` is the original; `.agents/skills/` mirrors it.** Edit the
-  first, then copy it across — `cp -r .claude/skills/. .agents/skills/`, or in PowerShell
-  `Copy-Item .claude/skills/* .agents/skills/ -Recurse -Force`.
-- **The two must never drift.** A skill changed in one and not the other means Claude and Cursor
-  are running different researchers and nothing says so. `/audit` checks it.
-- **Nothing goes in `.apm/`.** `apm compile` renders that directory into the root context files and
-  overwrites them: it would replace this file and strip `@RESEARCHER.md` out of `CLAUDE.md`,
-  leaving the researcher with no name. `apm.yml` is here to publish the skills, nothing else.
-- **A skill is discoverable in a new session,** never in the one that wrote it.
+- **`apm install --target <agent>` deploys them per machine** — into `.claude/skills/` and
+  `.claude/commands/` for Claude Code; `.agents/skills/` for Codex and the rest, with their
+  commands in `.cursor/`, `.gemini/`, `.github/`, `.opencode/` or `.windsurf/`. Git ignores every
+  copy. A bare `apm install` does every target in `apm.yml`.
+- **Edit in `.apm/`, never in a deployed copy,** then install again and open a new session. A
+  copy that differs from its original is a stale install; `/audit` reports it.
+- **Codex has no command primitive.** There, a command is run by naming its file — *follow
+  `.apm/prompts/blueprint.prompt.md` for experiment 1* — and the skills work as everywhere.
+- **Nothing goes in `.apm/instructions/`.** `apm compile` would render it over this file, which is
+  written by hand. With only skills and prompts, `apm compile` leaves `AGENTS.md` and `CLAUDE.md`
+  alone and writes a `GEMINI.md` that imports them, which git ignores.
+- **A skill or a command is discoverable in a new session,** never in the one that installed it.
 
 ## Hard don'ts
 
 - Don't write into `Sources/`, or into `Philosophy/` outside `/refine`.
 - Don't write at home while working in a strategy, unless the owner asks for that write by name.
   Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
-- Don't edit `.agents/skills/` by hand; it mirrors `.claude/skills/`. Edit there, then copy across.
+- Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder. Edit `.apm/`,
+  then install again.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's
   libraries, and a number without an engine behind it is not quoted.

@@ -1,7 +1,7 @@
 ---
-name: refine
-description: A voice-preserving editor pass over one of the owner's notes — typos and slips fixed, ambiguities flagged, diff shown before anything is written. Only when the owner runs it by name, on a path they give.
+description: A voice-preserving editor pass over one of the owner's notes — typos and slips fixed, ambiguities flagged, diff shown before anything is written.
 argument-hint: "<path under Philosophy/>"
+disable-model-invocation: true
 ---
 
 # /refine

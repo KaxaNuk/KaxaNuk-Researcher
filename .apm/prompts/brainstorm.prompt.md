@@ -1,7 +1,7 @@
 ---
-name: brainstorm
-description: Draft a dated entry for a strategy's BRAINSTORMING_N.md — the next thing to try, considered against the library — and append it there on the owner's go. Only when the owner runs it by name, on a strategy they name or are working in.
+description: Draft a dated entry for a strategy's BRAINSTORMING_N.md — the next thing to try, considered against the library — and append it there on the owner's go.
 argument-hint: "[path to the strategy repository, if not the one the session is in] <N> [the idea, in a phrase]"
+disable-model-invocation: true
 ---
 
 # /brainstorm
