@@ -100,6 +100,18 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
   and in a strategy — paths and names, frontmatter, the chapter note, the paper note, the book's
   `INDEX.md` and its status vocabulary, what the indexes show, how a home note travels.
 
+### Fixed
+
+* **`read` on a strategy whose `Bibliotheca/` is still a `.gitkeep`.** The KN Research Process
+  template released 0.7.0 with `main` as the shape alone, every file below the six folders on its
+  public `example` branch, so a new strategy has no `BIBLIOGRAPHY.md` to add a row to. `read` says
+  so and hands over the one `git fetch` that brings step 1 across, then stops; it never scaffolds
+  that file by hand.
+* **`audit` called every command a stale install.** APM translates a command's `${input:name}` into
+  each harness's own placeholder on install, so comparing a deployed copy byte for byte against
+  `.apm/` always differed. It compares what APM does not rewrite. Found by running `audit deep`.
+* **`Knowledge/INDEX.md` ships describing the index it now builds** — Concepts before Sources.
+
 ### Removed
 
 * `note`, merged into `read`: the strategy note is what `read` writes there.
