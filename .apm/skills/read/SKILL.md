@@ -1,6 +1,6 @@
 ---
 name: read
-description: Read the sources into the library — Sources/ into Knowledge/ at home; in a strategy, into notes beside the PDFs in its Bibliotheca/, each with its row in BIBLIOGRAPHY.md. Extracts a PDF by chapter with a script, shows the owner the table of contents, asks which chapters serve which of their questions or claims, reads only those, and writes one note per chapter read; plans, waits for the owner's go, then writes; contradictions flagged, never overwritten
+description: Use whenever the owner asks to read, file or add a source to the library — Sources/ into Knowledge/ at home; in a strategy, into notes beside the PDFs in its Bibliotheca/, each with its row in BIBLIOGRAPHY.md. A script extracts a PDF by chapter; the owner sees the table of contents and picks the chapters that serve their questions or claims; one note per chapter read; plan first, the owner's go, then write; contradictions flagged, never overwritten
 argument-hint: "[path to the strategy repository, if not the one the session is in] [a path under the sources to read only that] [the question or claim it serves — its number, or a phrase] [outline only]"
 ---
 
@@ -14,10 +14,10 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 Turn sources into notes — a paper into one note, a book into one note per chapter that serves one
 of the owner's questions, and nothing for a chapter they did not choose. One convention serves both
 repositories, so a note has the same shape at home and in a strategy; it is in
-[`reference/note.md`](reference/note.md). **You must present a plan in chat and receive an explicit
-go before writing any file.** `$ARGUMENTS`, when given: the strategy's path, when the session is not
-open in it; a path under the sources, to read only that; the question or claim it serves; *outline
-only*, to stop after step 3.
+[`references/note.md`](references/note.md). **You must present a plan in chat and receive an
+explicit go before writing any file.** `$ARGUMENTS`, when given: the strategy's path, when the
+session is not open in it; a path under the sources, to read only that; the question or claim it
+serves; *outline only*, to stop after step 3.
 
 Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belongs to
 `scripts/extract.py`, never to reading the PDF page by page. **Choosing** what to read is the
@@ -42,11 +42,12 @@ clipping under `Notes/` with no note in `Papers/` — or only what `$ARGUMENTS` 
 also point at a file under `Sources/` at home for a strategy: it is read for the strategy, and its
 note and its extract are written there, nothing at home.
 
-For every PDF among them, run the script from the folder whose library this is — home, or the
-strategy — and read what it prints:
+For every PDF among them, run the script that lives beside this skill — `scripts/extract.py` in
+the skill's own folder, wherever the harness deployed it — from the folder whose library this is,
+home or the strategy, and read what it prints:
 
 ```bash
-uv run <home>/.claude/skills/read/scripts/extract.py "<pdf>" --outline
+uv run "<this skill's folder>/scripts/extract.py" "<pdf>" --outline
 ```
 
 Without `uv`: `pip install pypdf`, then `python` in place of `uv run`. The script's own `--help`
@@ -93,7 +94,7 @@ and nothing more.
 ## 4. Read what was chosen, and decide
 
 Read each chosen extract in full — the extract, not the PDF. Where the assistant can delegate, give
-each chapter to one delegate with the extract, the question and `reference/note.md`, and collect
+each chapter to one delegate with the extract, the question and `references/note.md`, and collect
 the drafts; otherwise read one chapter at a time. A skimmed chapter is read for one line: what it
 holds, and why it was passed over. For each note, decide:
 
@@ -128,7 +129,7 @@ on a rejection.**
 
 ## 6. Write, on approval only
 
-- The notes, in the shape `reference/note.md` gives and under its names: frontmatter with `source`,
+- The notes, in the shape `references/note.md` gives and under its names: frontmatter with `source`,
   `citation`, `local_copy`, `read`, and `tags` where the owner's policy asks; the provenance line;
   `## Why it is here` with the question or claim by number and the owner's reason in their words;
   the chapter's claims as headings with the implication as a blockquote under each; and

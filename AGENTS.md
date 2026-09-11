@@ -14,7 +14,8 @@ the session happened to open. There are two ways to work:
   path: `/blueprint D:\Research\Golden-Flow 1`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
   researcher's folder to the session — `claude --add-dir D:\Research\Luna`, or `/add-dir` once
-  inside. The skills load from there on their own; `RESEARCHER.md` and this file do not, unless
+  inside. The skills and commands load from there on their own, provided `apm install` has been
+  run there once on this machine; `RESEARCHER.md` and this file do not, unless
   `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is set, which is why every skill begins by
   reading them from home. The strategy's own `AGENTS.md` still governs that repository.
 
@@ -57,7 +58,7 @@ researcher writes from it.
   subfolder a domain has — with an `INDEX.md` for its chapters and one file per chapter read;
   nothing is written for a chapter the owner did not choose, and no other per-folder index exists.
   An idea that spans sources is a synthesis, written only when the owner asks for it, linking the
-  notes it rests on. The shape of every note is in `.claude/skills/read/reference/note.md`.
+  notes it rests on. The shape of every note is in `.apm/skills/read/references/note.md`.
 - **Frontmatter, the four fields the KN Research Process note carries, and one more:** `source`
   (where the work lives outside the repository — a DOI, a URL, a publisher; never invented),
   `citation` (the reference, with the date the link was last checked), `local_copy` (the file read,
@@ -137,7 +138,7 @@ linked, never written.
   by relative path inside that repository. A prediction with no note is written as a **lead**:
   *read X before predicting this.*
 - **A source without a note cannot be cited.** Write the note first (`/read`), in the one convention
-  both repositories share — its shape is in `.claude/skills/read/reference/note.md`: the source's
+  both repositories share — its shape is in `.apm/skills/read/references/note.md`: the source's
   claims as headings, in its authors' terms, and what each implies for *this* strategy as a
   blockquote, naming the claim by number.
 - **The strategy's rules govern there** — `AGENTS.md` in that repository, and the
@@ -146,34 +147,61 @@ linked, never written.
 
 ## Plan first, then write
 
-Every skill that writes a file presents a plan in chat — what will be written, where, and what it
-supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing anything.
-Never write on a rejected or unanswered plan. Never write a plan or a report as a file; the chat and
-the `LOG.md` entry are the record.
+Every skill or command that writes a file presents a plan in chat — what will be written, where,
+and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing
+anything. Never write on a rejected or unanswered plan. Never write a plan or a report as a file;
+the chat and the `LOG.md` entry are the record.
 
-## Where the skills live
+**The agent never writes at all**, and that follows from this rule rather than sitting beside it.
+A subagent reports back once and cannot ask for a go, so there is no way for it to write with the
+owner's consent. It answers, it cites, and it names the skill or command the owner should run.
 
-The ten skills live in two directories, because no single one serves every assistant:
-`.claude/skills/`, which is the only place Claude Code looks, and `.agents/skills/`, which Copilot,
-Cursor, Codex, Gemini, OpenCode and Windsurf read. Both are committed, so a clone works with
-nothing installed.
+## Where the skills, the commands and the agent live
 
-- **`.claude/skills/<name>/SKILL.md` is the original; `.agents/skills/` mirrors it.** Edit the
-  first, then copy it across — `cp -r .claude/skills/. .agents/skills/`, or in PowerShell
-  `Copy-Item .claude/skills/* .agents/skills/ -Recurse -Force`.
-- **The two must never drift.** A skill changed in one and not the other means Claude and Cursor
-  are running different researchers and nothing says so. `/audit` checks it.
-- **Nothing goes in `.apm/`.** `apm compile` renders that directory into the root context files and
-  overwrites them: it would replace this file and strip `@RESEARCHER.md` out of `CLAUDE.md`,
-  leaving the researcher with no name. `apm.yml` is here to publish the skills, nothing else.
-- **A skill is discoverable in a new session,** never in the one that wrote it.
+`.apm/` holds the researcher, once, as three APM primitives. Nothing is committed twice.
+
+| Primitive | Where | What it is |
+| --- | --- | --- |
+| **Skill** | `.apm/skills/<name>/SKILL.md` | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also run as `/name`. `read` carries its script in `scripts/` and the note's shape in `references/` |
+| **Command** | `.apm/prompts/<name>.prompt.md` | the other eight — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Agent** | `.apm/agents/<name>.agent.md` | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `/researcher-init` from `RESEARCHER.md`, so a fresh clone has none until the interview runs |
+
+- **`apm install --target <agent>` deploys them per machine** — into `.claude/skills/`,
+  `.claude/commands/` and `.claude/agents/` for Claude Code; `.agents/skills/` for Codex and the
+  rest, with their commands and agents in `.codex/`, `.cursor/`, `.gemini/`, `.github/`,
+  `.opencode/` or `.windsurf/`. Git ignores every copy. A bare `apm install` does every target in
+  `apm.yml`.
+- **Edit in `.apm/`, never in a deployed copy,** then install again and open a new session. A
+  copy that differs from its original is a stale install; `/audit` reports it.
+- **A skill folder follows the Agent Skills convention** — `SKILL.md` whose `name` matches the
+  folder, `scripts/` for code, `references/` for what the skill reads on demand — so `read`
+  carries `scripts/extract.py` and `references/note.md`, and a harness that copies the folder
+  whole gets both. A command is one `.prompt.md` file with `description` and `argument-hint`, no
+  `name`.
+- **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
+  says which on install, and a dropped key is a rule that is not enforced. Anything that must hold
+  everywhere is written in the body or the description, not only in a key. A description must also
+  survive YAML on every harness, so keep it to one line with no colon in it.
+- **Codex has no command primitive.** There, a command is run by naming its file — *follow
+  `.apm/prompts/blueprint.prompt.md` for experiment 1* — and the skills work as everywhere.
+- **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex takes the
+  agent and drops the tool list; Gemini and Windsurf have no agent primitive at all. That is why
+  the read-only rule is written into the agent's own body as well as its frontmatter: a harness
+  that drops the boundary still reads the instruction.
+- **Nothing goes in `.apm/instructions/`.** `apm compile` would render it over this file, which is
+  written by hand. With only skills and prompts, `apm compile` leaves `AGENTS.md` and `CLAUDE.md`
+  alone and writes a `GEMINI.md` that imports them, which git ignores.
+- **A skill or a command is discoverable in a new session,** never in the one that installed it.
 
 ## Hard don'ts
 
 - Don't write into `Sources/`, or into `Philosophy/` outside `/refine`.
 - Don't write at home while working in a strategy, unless the owner asks for that write by name.
   Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
-- Don't edit `.agents/skills/` by hand; it mirrors `.claude/skills/`. Edit there, then copy across.
+- Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder. Edit `.apm/`,
+  then install again.
+- Don't write anything while running as the agent, and don't copy `RESEARCHER.md` into its file.
+  The agent reads the real one at the start of every run.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
   regenerated.

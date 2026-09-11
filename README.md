@@ -11,43 +11,56 @@ researcher works in each strategy's `Bibliotheca/` — reading its sources into 
 it learns in a strategy stays there: it writes nothing back home unless you ask, so one experiment
 never leaks into the researcher every strategy shares.
 
-**There is almost no code here.** The researcher is a folder architecture, a set of skills, an
-interview, and one script that turns a PDF into its chapters as text — extraction is deterministic,
-so a script does it. The rest of the deterministic work — downloading data, computing signals,
-pricing a book, attributing a return — is done by the Lab's libraries, which the researcher calls
-and never imitates.
+**There is almost no code here.** The researcher is a folder architecture, a set of skills and
+commands, an agent, an interview, and one script that turns a PDF into its chapters as text —
+extraction is deterministic, so a script does it. The rest of the deterministic work — downloading
+data, computing signals, pricing a book, attributing a return — is done by the Lab's libraries,
+which the researcher calls and never imitates.
 
-It is not tied to one assistant. The skills are authored once and built for Claude Code, Copilot,
-Cursor, Codex, Gemini, OpenCode and Windsurf.
+It is not tied to one assistant. Two skills, eight commands and one agent are authored once, in
+`.apm/`, and `apm install` deploys them to Claude Code, Copilot, Cursor, Codex, Gemini, OpenCode or
+Windsurf.
 
 ---
 
 ## Start
 
-1. **Clone this repository under the name you give your researcher**, and open that folder in your
-   agent:
+1. **Clone this repository under the name you give your researcher:**
 
    ```bash
    git clone https://github.com/KaxaNuk/KaxaNuk-Researcher.git Luna
    ```
 
-   The skills are committed, so this works with nothing else installed.
+2. **Install the skills and commands for your agent**, from inside that folder. The
+   [APM](https://github.com/microsoft/apm) CLI is the one thing you need — `pip install apm-cli`,
+   or an installer from its page:
 
-2. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
+   ```bash
+   apm install --target claude
+   ```
+
+   `--target codex`, `cursor`, `copilot`, `gemini`, `opencode` or `windsurf` for the others; a
+   bare `apm install` does all seven. It copies `.apm/` into your agent's own folders, which git
+   ignores. Then open the folder in your agent — a skill is discoverable in a **new** session,
+   never the one that installed it. Reading a PDF also needs [`uv`](https://docs.astral.sh/uv/),
+   or `pip install pypdf`.
+
+3. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
    be spoken to, what is never allowed, what you are reading for right now — writes
-   `RESEARCHER.md`, the researcher's personality, and scaffolds any folder that is missing.
-   
+   `RESEARCHER.md`, the researcher's personality, scaffolds any folder that is missing, and writes
+   the agent file that makes your researcher callable by name. Run `apm install --target claude`
+   once more afterwards to deploy it.
+
    ```bash
    /researcher-init
    ```
 
-3. **Drop a paper or a book into `Sources/` and run `/read`.** For a book the researcher shows you
+4. **Drop a paper or a book into `Sources/` and run `/read`.** For a book the researcher shows you
    its table of contents and asks which chapters serve which of your questions; it reads only
    those, proposes how to file them, waits for your go, and writes one note per chapter read into
-   `Knowledge/`, linked to everything it relates to. The extraction is a script run with
-   [`uv`](https://docs.astral.sh/uv/) — or `pip install pypdf` and plain `python`.
+   `Knowledge/`, linked to everything it relates to.
 
-4. **Invite it to a strategy.** Point at it from here — `/blueprint D:\Research\Golden-Flow 1` —
+5. **Invite it to a strategy.** Point at it from here — `/blueprint D:\Research\Golden-Flow 1` —
    or open your assistant in the strategy's folder and add this one to the session, with
    `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. There, the
    strategy's `Bibliotheca/` is its library: `/read` writes the notes beside the strategy's PDFs,
@@ -55,22 +68,19 @@ Cursor, Codex, Gemini, OpenCode and Windsurf.
    `BLUEPRINT_N.md` with every prediction citing its note — each after a plan and your go. You
    review the diff and commit it, before the rule. Nothing is written here at home.
 
-A skill is discoverable in a **new** session, never the one that installed it.
-
 ### Or add the researcher to a project you already have
 
-The ten skills are an [APM](https://github.com/microsoft/apm) package, so with the `apm` CLI
-installed — `pip install apm-cli`, or an installer from its page — they can be added beside
-whatever else you are running:
+`.apm/` is an [APM](https://github.com/microsoft/apm) package, so the same skills and commands can
+be installed beside whatever else you are running:
 
 ```bash
-apm install KaxaNuk/KaxaNuk-Researcher
+apm install KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 Then run `/researcher-init`, which scaffolds `Sources/`, `Knowledge/`, `Philosophy/` and
 `Projects/` wherever you ran it. If you would rather not use APM at all, `apm pack` turns this
-repository into a plain plugin bundle — a `plugin.json` and the skills — that your agent can load
-directly.
+repository into a plain plugin bundle — a `plugin.json`, the skills and the commands — that your
+agent can load directly.
 
 ---
 
@@ -82,8 +92,8 @@ RESEARCHER.md         who the researcher is — name, owner, domains, voice, non
 AGENTS.md             the library's rules: what each folder is, who may write where, the skills
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
 CHANGELOG.md          every version of this repository, newest first
-apm.yml               what this repository publishes, so the skills can be installed into a
-                      project you already have. Nothing needs it to clone and run
+apm.yml               what apm install reads here, and what this repository publishes so the
+                      researcher can be installed into a project you already have
 
 Sources/              what you read: PDFs, papers, clippings. The researcher reads, never writes
   Books/                file by kind, and add your own kinds — the taxonomy is yours
@@ -99,11 +109,12 @@ Philosophy/           your voice: how you invest, what you believe. Read and cit
 Projects/             what you asked for at home: lessons, anything in chat. Strategy work lives
                       in the strategy
 
-.claude/skills/       the ten skills below. Edit them here — Claude Code reads only this
-  read/scripts/         extract.py, the one script: a PDF's table of contents, and its
-                        chapters as text
-.agents/skills/       the same ten, mirrored: Copilot, Cursor, Codex, Gemini, OpenCode and
-                      Windsurf read this one instead
+.apm/                 the researcher itself, the only copy of each part. apm install copies them
+                      into your agent's folders, which git ignores
+  skills/               the two the researcher reaches for on its own — read, with its script and
+                        the note's shape beside it, and query
+  prompts/              the eight you start by name
+  agents/               your researcher as a callable agent, written by /researcher-init
 ```
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
@@ -114,34 +125,58 @@ does not go in the repository at all.
 
 ---
 
-## The skills
+## The skills, the commands and the agent
 
-Each one is a skill, so it works the same way on every harness in `apm.yml`. On those that support
-slash commands — Claude Code, Cursor, Gemini, OpenCode, Windsurf — you also get it as `/name`.
+Two are **skills** — capabilities the researcher reaches for on its own when the work calls for
+them, and that you can also run as `/name`. Eight are **commands** — tasks you start by name, with
+arguments, each producing one thing. Both are authored once in `.apm/` and deployed by
+`apm install`: skills to every harness in `apm.yml`, commands to every one but Codex, which has no
+command primitive. On Codex, ask for a command by its file — *follow
+`.apm/prompts/blueprint.prompt.md` for experiment 1*.
 
 | Skill | What it does |
 | --- | --- |
-| `/researcher-init` | the interview; writes `RESEARCHER.md` and scaffolds the folders |
-| `/read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten |
-| `/query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named |
+| `/read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten. Fires on its own when you ask to file or read a source |
+| `/query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named. Fires on its own when you ask what your library says |
+
+| Command | What it does |
+| --- | --- |
+| `/researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders and writes the agent file |
 | `/objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — from its notes and your library |
 | `/blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place — thesis, rules, predictions — with every prediction citing a note or a measurement |
 | `/brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
 | `/teach <topic>` | a multi-session tutor grounded in your library |
-| `/audit` | reviews the library at hand — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions — and reports; one line in the log, never a fix on its own |
+| `/audit` | reviews the library at hand — broken links, duplicates, stale index, orphans, frontmatter, stale installs; `deep` adds contradictions — and reports; one line in the log, never a fix on its own |
 | `/refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files, diff first |
-| `/refresh-index` | rebuilds the library's `INDEX.md` from what is on disk |
+| `/refresh-index` | rebuilds `Knowledge/INDEX.md` at home from what is on disk; a strategy's `BIBLIOGRAPHY.md` is curated by hand |
 
-Questions about what your library says fire `query` on their own; the rest run when you name them.
 Every one that writes shows its plan first and waits for your go.
 
-In a strategy, the library skills work on that strategy's `Bibliotheca/` and the three strategy
-skills write into its own files; the strategy's path can be left out when the session is open in
-it. None of them writes here at home from there unless you ask for it by name.
+In a strategy, the library skills work on that strategy's `Bibliotheca/`, and `/objective`,
+`/blueprint` and `/brainstorm` write into its own files; the strategy's path can be left out when
+the session is open in it. None of them writes here at home from there unless you ask for it by
+name.
 
-They are yours to change. Edit a skill in `.claude/skills/`, then mirror it with
-`cp -r .claude/skills/. .agents/skills/` so the other assistants get the same one. `/audit` tells
-you if the two have drifted.
+### And the agent
+
+`/researcher-init` also writes `.apm/agents/<your researcher>.agent.md`, so the researcher is an
+agent the harness can call by name rather than a way of configuring a session:
+
+> ask Luna what we have read about momentum crashes
+
+It carries its own tool boundary — read, search and the skills, and nothing that writes — and its
+own short prompt, which points at `RESEARCHER.md` and `AGENTS.md` rather than copying them, so
+there stays one source of truth. **It never writes**, and that is structural rather than a
+preference: every skill or command that writes waits for your go, and an agent reporting back
+cannot ask for one. When an answer needs a write it names the skill or command for you to run.
+
+Claude Code, Copilot and Cursor enforce the tool list. Codex takes the agent but drops it, which is
+why the rule is written into the prompt as well. Gemini and Windsurf have no agent primitive, so
+there the researcher is its skills and commands, exactly as before.
+
+They are yours to change. Edit a skill in `.apm/skills/`, a command in `.apm/prompts/` or the agent
+in `.apm/agents/`, run `apm install --target <your agent>` again, and open a new session. `/audit`
+tells you if an installed copy has gone stale.
 
 ---
 

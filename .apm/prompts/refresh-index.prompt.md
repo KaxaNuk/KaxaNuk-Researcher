@@ -1,5 +1,4 @@
 ---
-name: refresh-index
 description: Rebuild Knowledge/INDEX.md at home from what is on disk — one line per note under its domain, a book's chapters beneath it — diff shown before writing. Home only; a strategy's BIBLIOGRAPHY.md is curated by hand
 ---
 

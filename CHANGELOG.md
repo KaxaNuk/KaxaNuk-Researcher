@@ -6,7 +6,8 @@ This is the researcher *skeleton*; a person's own library is their clone and is 
 
 ## Unreleased
 
-**What to do differently:** run `/read` where you ran `/compile` or `/note`. Reading a PDF needs
+**What to do differently:** pull, run `apm install --target <your agent>` and open a new session,
+as 0.2.0 already asks; then run `/read` where you ran `/compile` or `/note`. Reading a PDF needs
 [`uv`](https://docs.astral.sh/uv/) on the machine, or `pip install pypdf`. If your `RESEARCHER.md`
 is already filled, add the section *What you are reading for* by hand — the shape is in the
 template — or leave it out and `/read` asks for it the next time a source arrives. A strategy needs
@@ -16,6 +17,13 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 ### Changed
 
+* **`.apm/` stays the only copy, and `read` is a skill in it.** Two skills in `.apm/skills/` —
+  `read` and `query` — and the eight commands in `.apm/prompts/`, as 0.2.0 laid them out; `compile`
+  and `note` are gone. A skill folder follows the Agent Skills convention, `SKILL.md` with
+  `scripts/` and `references/` beside it, so `read` carries `extract.py` and the note's shape and
+  travels whole. Every description is one line with no colon in it, so it survives every harness's
+  YAML. The agent that `/researcher-init` writes names `/read` where it named `/compile` and
+  `/note`, and `/audit` checks the agent file as well as the installed copies.
 * **One note, one convention, both repositories.** A note has the same shape at home and in a
   strategy: the KN Research Process note's frontmatter — `source`, `citation`, `local_copy`, `read`
   — plus `tags` for the owner's tag policy; the name `Author_Year_Title`; the source's claims as
@@ -57,7 +65,7 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
   `## What it changes` is measured against. When the section is empty at home, `/read` asks for the
   questions first and offers to write them, on the owner's go; in a strategy the numbered claims in
   `OBJECTIVE.md` play that role, and nothing is written at home.
-* `.claude/skills/read/scripts/extract.py`, the first code in this repository, because extraction
+* `.apm/skills/read/scripts/extract.py`, the first code in this repository, because extraction
   is deterministic and the researcher was doing it by hand, twenty pages at a time. It reads the
   PDF's outline, prints the chapters with their pages, and writes one markdown file per chapter
   asked for, a marker before every page — `pdftotext` when it is on the machine, `pypdf` otherwise,
@@ -65,7 +73,7 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
   hand when a PDF has no outline, and runs with `uv run`, its one dependency declared inline, so it
   travels with the skill. Its output lives in `Extracts/` at home and `Bibliotheca/Extracts/` in a
   strategy: a cache, gitignored, regenerable, never cited.
-* `.claude/skills/read/reference/note.md`, the shape of every note the researcher writes, at home
+* `.apm/skills/read/references/note.md`, the shape of every note the researcher writes, at home
   and in a strategy — paths and names, frontmatter, the chapter note, the paper note, the book's
   `INDEX.md` and its status vocabulary, what the indexes show, how a home note travels.
 
@@ -73,8 +81,9 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 * `/note`, merged into `/read`: the strategy note is what `/read` writes there.
 * The `writer` frontmatter field.
-* The per-skill whitelist in `.gitignore`. Both skill directories are versioned whole, so a new
-  skill needs no line there. `Extracts/`, `__pycache__/` and `.venv/` are ignored instead.
+* The per-skill whitelist in `.gitignore`. Deployed copies under `.claude/`, `.agents/` and the
+  other agents' folders are not versioned at all; `.apm/` is. `Extracts/`, `__pycache__/` and
+  `.venv/` are ignored too.
 
 ## 0.2.0 (2026-09-09)
 
@@ -82,25 +91,26 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 **What to do differently:** if you already have a clone, rename three folders — `Library/` to
 `Knowledge/`, `Notes/` to `Philosophy/`, `Output/` to `Projects/` — and nothing else moves. The
-commands are skills now, so `/compile`, `/query` and the rest still work by the same names, but
-they are discoverable only in a **new** session after you pull.
+run `apm install --target <your agent>` in the folder after you pull: `/compile`, `/query` and the
+rest keep their names, and they are discoverable only in a **new** session.
 
 ### Changed
 
 * `Library/` is now `Knowledge/`, `Notes/` is now `Philosophy/`, and `Output/` is now `Projects/`.
   The directionality is unchanged: `Sources/ → Knowledge/ → Projects/`, with `Philosophy/` cited
   and never compiled from.
-* The eleven commands are eleven **skills**. Skills are the one primitive every assistant supports,
-  and on the ones with slash commands a skill still gives you `/name` — so nothing is lost on
-  Claude Code and six more assistants are gained. They live in two committed directories, because
-  no single one serves everybody: `.claude/skills/`, which is the only place Claude Code reads and
-  where you edit them, and `.agents/skills/`, mirrored for Copilot, Cursor, Codex, Gemini, OpenCode
-  and Windsurf. A clone needs nothing installed. `/audit` reports it if the two drift apart.
+* The eleven commands are APM primitives in `.apm/`, the only copy of each: three **skills** in
+  `.apm/skills/` — `query`, `compile`, `note`, capabilities the researcher reaches for on its own
+  when the work calls for them — and eight **commands** in `.apm/prompts/`, tasks you start by
+  name. `apm install --target <agent>` copies them into the folders that agent reads, which git
+  ignores, so nothing is committed twice and every assistant runs the same researcher. Codex has
+  no command primitive, so there a command is run by naming its prompt file. `/audit` reports an
+  installed copy that has gone stale.
 * `/query` and the `library-query` skill were the same procedure reached two ways, and are merged
   into one `query` skill that still answers a direct question and still fires on its own.
-* `apm.yml` no longer builds anything. It declares what publishes — `.claude/skills/` and nothing
-  else — so the skills can be installed into a project you already have, and so a person's
-  `Sources/` and `Philosophy/` are structurally incapable of being packed.
+* `apm.yml` no longer builds anything. It declares what publishes — `.apm/` and nothing else — so
+  the researcher can be installed into a project you already have, and so a person's `Sources/`
+  and `Philosophy/` are structurally incapable of being packed.
 * `Sources/` now has `Books/`, `Papers/` and `Notes/`, and the taxonomy is yours to extend.
   `Sources/Notes/` is raw material you collected; your own writing stays in `Philosophy/`.
 * Every skill now works from wherever the session is open. Each begins by finding the researcher's
@@ -127,8 +137,20 @@ they are discoverable only in a **new** session after you pull.
 
 * The researcher can be invited into a strategy: open your assistant in the strategy's folder, add
   the researcher's folder to the session, and the skills come along.
-* Two more ways to install: `apm install KaxaNuk/KaxaNuk-Researcher` adds the skills to a project
-  you already have, and `apm pack` builds a plain plugin bundle for agents that do not use APM.
+* **The researcher is an agent, not only a way of configuring a session.** `/researcher-init` now
+  writes `.apm/agents/<your researcher>.agent.md` as well, so the harness can call it by name —
+  *ask Luna what we have read about momentum crashes* — with its own tool boundary: read, search
+  and the skills, and nothing that writes. Its prompt points at `RESEARCHER.md` and `AGENTS.md`
+  instead of copying them, so there is still one source of truth. **It never writes**, structurally
+  rather than by preference: every skill that writes waits for your go, and an agent reporting back
+  cannot ask for one, so it names the skill for you to run instead. Claude Code, Copilot and Cursor
+  enforce the tool list; Codex drops it, which is why the rule is in the prompt too; Gemini and
+  Windsurf have no agent primitive. An existing researcher gets one by running `/researcher-init`
+  again — it skips the interview when `RESEARCHER.md` is already filled in and only writes the
+  agent.
+* Two more ways to install: `apm install KaxaNuk/KaxaNuk-Researcher --target claude` adds the
+  researcher to a project you already have, and `apm pack` builds a plain plugin bundle for agents
+  that do not use APM.
 * `.gitattributes`, so prose checks out with the bytes it was committed with on every platform.
 
 ### Removed
@@ -138,9 +160,8 @@ they are discoverable only in a **new** session after you pull.
 * The `KaxaNuk/KaxaNuk-APM/common` dependency. It installed Python style rules — pep8,
   test-writing, bloom-code — into every assistant's context, and there is almost no code in this
   repository. It returns when there is a KaxaNuk package that teaches research rather than linting.
-* `requirements-dev.txt`. It pinned `apm-cli`, which nothing here needs: the skills are committed,
-  and the APM CLI matters only to install them into another project — the README says where it
-  comes from.
+* `requirements-dev.txt`. It pinned `apm-cli` for `pip`; the README now says where the APM CLI
+  comes from, and `apm install --target <agent>` is the one step a clone needs.
 
 ### Fixed
 

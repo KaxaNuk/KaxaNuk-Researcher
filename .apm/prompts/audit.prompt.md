@@ -1,5 +1,4 @@
 ---
-name: audit
 description: A review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, and appends one line to the log; never fixes on its own
 argument-hint: "[deep]"
 ---
@@ -29,9 +28,13 @@ the other. Fixes are a plan the owner approves separately.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts a note leans on that no note defines.
 - A note that cites an extract or links into `Extracts/`. Notes cite the source and its pages.
-- `.agents/skills/` out of step with `.claude/skills/` at home — any skill present in one and not
-  the other, or differing between them. Report it as drift and give the copy command; the
-  researcher runs on both, and a difference means two different researchers.
+- An installed copy out of step with `.apm/` at home — a skill under `.claude/skills/` or
+  `.agents/skills/`, a command under `.claude/commands/` or another agent's folder, or the agent
+  under `.claude/agents/` — that differs from its original in `.apm/`, or is missing. Report it as
+  a stale install and give the fix: `apm install --target <agent>`, then a new session.
+- The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
+  a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
+  rather than reading it. The fix for the first is `/researcher-init`, which writes it.
 
 ## In a strategy, also
 

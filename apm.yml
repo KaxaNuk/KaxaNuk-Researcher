@@ -4,11 +4,17 @@ description: A KaxaNuk researcher — a companion you name and teach, with the K
 author: KaxaNuk
 license: MIT
 
-# The skills are authored in `.claude/skills/`, the only directory Claude Code reads, and mirrored
-# to `.agents/skills/`, which the other assistants read. Both are committed, so a clone works with
-# nothing installed. This file exists so the same skills can also be installed into a project
-# somebody already has — `apm install KaxaNuk/KaxaNuk-Researcher` — and packed as a plain plugin
-# bundle with `apm pack`.
+# `.apm/` is the researcher, once: two skills in `.apm/skills/`, eight commands in
+# `.apm/prompts/`, and — after `/researcher-init` has run — one agent in `.apm/agents/`.
+# `apm install --target <agent>` in this folder copies them into the folders that agent reads —
+# `.claude/skills/`, `.claude/commands/` and `.claude/agents/` for Claude Code, `.agents/skills/`
+# for Codex and the rest — and git ignores those copies. The same file lets the researcher install
+# into a project somebody already has, `apm install KaxaNuk/KaxaNuk-Researcher --target claude`,
+# and pack as a plain plugin bundle with `apm pack`.
+#
+# Nothing goes in `.apm/instructions/`: `apm compile` would render it over `AGENTS.md`, which is
+# written by hand here. With only skills and prompts, `apm compile` leaves `AGENTS.md` and
+# `CLAUDE.md` alone and writes a `GEMINI.md` that imports them, which git ignores.
 
 # No dependencies. `KaxaNuk/KaxaNuk-APM/common` was here, but it installs Python style rules —
 # pep8, test-writing, bloom-code — into every assistant's context, and there is almost no code in
@@ -19,6 +25,7 @@ dependencies:
   apm: []
   mcp: []
 
+# A bare `apm install` deploys to every target below; `--target <one>` deploys to just yours.
 targets:
   - claude
   - copilot
@@ -28,7 +35,6 @@ targets:
   - opencode
   - windsurf
 
-# What publishes. Named explicitly rather than inferred: a wrong inference here would ship
-# somebody's private reading list.
-includes:
-  - .claude/skills/
+# What publishes: `.apm/` and nothing else — checked with `apm pack`, so a private reading list
+# under `Sources/` or `Knowledge/` cannot ship.
+includes: auto

@@ -1,12 +1,6 @@
 ---
 name: query
-description: >
-  Use this whenever the owner asks what their library says, what they have read about a topic, how
-  two sources relate, or what evidence there is for a claim — any factual or comparative question
-  that should be answered from the library, Philosophy/ and the sources rather than from general
-  knowledge: Knowledge/ at home, a strategy's Bibliotheca/ when invited there. It walks the
-  library's INDEX.md and the links between notes before reading anything, and cites every
-  claim. Do NOT use it for writing code or for questions about files outside the library.
+description: Use this whenever the owner asks what their library says, what they have read about a topic, how two sources relate, or what evidence there is for a claim — any factual or comparative question that should be answered from the library, Philosophy/ and the sources rather than from general knowledge, from Knowledge/ at home and from a strategy's Bibliotheca/ when invited there. It walks the index and the links between notes before reading anything, and cites every claim. Do NOT use it for writing code or for questions about files outside the library.
 argument-hint: "<the question>"
 ---
 

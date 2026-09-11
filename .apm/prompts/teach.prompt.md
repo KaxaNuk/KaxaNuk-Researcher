@@ -1,5 +1,4 @@
 ---
-name: teach
 description: A multi-session tutor grounded in Knowledge/ — interview first, then one lesson per session with a retrieval quiz; state in Projects/Teach/<topic>/. Only when the owner runs it by name, on a topic they give.
 argument-hint: "<topic>"
 ---
