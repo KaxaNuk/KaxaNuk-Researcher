@@ -48,8 +48,10 @@ Windsurf.
 3. **Run `researcher-init`.** A short interview — who you are, what you invest in, how you want to
    be spoken to, what is never allowed, what you are reading for right now — writes
    `RESEARCHER.md`, the researcher's personality, scaffolds any folder that is missing, and writes
-   the agent file that makes your researcher callable by name. Run `apm install --target claude`
-   once more afterwards to deploy it.
+   the agent file that makes your researcher callable by name. Every question with options is a
+   multiple choice, and when you have nothing to answer yet it proposes — the questions you might be
+   reading for, drawn from what is already in `Sources/` — for you to pick or refuse. Run
+   `apm install --target claude` once more afterwards to deploy the agent.
 
    ```bash
    researcher-init
@@ -179,6 +181,20 @@ there the researcher is its skills and commands, exactly as before.
 They are yours to change. Edit a skill in `.apm/skills/`, a command in `.apm/prompts/` or the agent
 in `.apm/agents/`, run `apm install --target <your agent>` again, and open a new session. `audit`
 tells you if an installed copy has gone stale.
+
+**Working on the skeleton itself.** This repository is the skeleton; your researcher is a clone of
+it under its own name, and that clone versions everything — `RESEARCHER.md`, the agent,
+`Knowledge/`. If you develop the skeleton in the same folder you use as your researcher, keep your
+own files out of its commits with git's local, unshared ignores rather than `.gitignore`, which
+every clone inherits: add `.apm/agents/`, `Knowledge/*/`, `Philosophy/*`, `Projects/*` and
+`Sources/*/*` to `.git/info/exclude`, and mark the three templates the interview and the reads fill
+in, so their local changes stay out of the index:
+
+```bash
+git update-index --skip-worktree RESEARCHER.md Knowledge/INDEX.md Knowledge/LOG.md
+```
+
+Undo it with `--no-skip-worktree` when a template itself has to change.
 
 ---
 

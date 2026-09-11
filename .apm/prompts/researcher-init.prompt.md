@@ -3,7 +3,7 @@ description: Interview the owner and write RESEARCHER.md — the researcher's na
 input:
   - mode: "Optional: force, to start over when RESEARCHER.md is already filled"
 metadata:
-  version: 0.1
+  version: 0.2
 ---
 
 # Initialize the researcher
@@ -45,9 +45,12 @@ the options listed, free text welcome.
    Macro, AI, Business as the options, *Other* for Science and their own. At least one.
 4. **How should I speak?** — *tool, one call, three questions*. Terse / standard / thorough; which
    language; challenge or defer.
-5. **What do you believe about markets?** — *chat*. Two or three sentences. Offer to save the long
-   version as `Philosophy/how-i-invest.md` in their exact words — never paraphrased — if they say
-   more.
+5. **What do you believe about markets?** — *tool, then chat*. Four ways of investing as the
+   options — systematic, on factors and rules; discretionary, on fundamentals; macro and regimes;
+   a mix of these — and *Other* for their own words. From the pick, draft two or three sentences
+   and show them; the owner keeps, edits or rewrites them, and the version they confirm is the one
+   written, never the draft alone. Offer to save the long version as `Philosophy/how-i-invest.md`
+   in their exact words — never paraphrased — if they say more.
 6. **Non-negotiables** — *tool*. State KaxaNuk's three defaults in the question (numbers only from
    the Lab's libraries; the hypothesis before the test with every prediction cited; nothing trades
    from here); the options: keep all three, change one, add one — the change or the addition then
@@ -56,15 +59,20 @@ the options listed, free text welcome.
    read, pruned at audit.
 8. **Strategies** — *tool*. None, or *I will give the paths*, then the paths and where each stands
    in chat: strategy repositories on this machine built from the KN Research Process template.
-9. **What are you reading for?** — *chat*. The open questions the reading should answer right now
-   — three to seven, numbered — and for each, what it feeds and what would change their mind; then
-   what is out of scope for now. *None yet* is a fine answer: the section then says so, in place of
-   the slots, and `read` asks for the questions when the first source arrives.
+9. **What are you reading for?** — *tool, multi-select, from a proposal*. Draft three to five
+   candidate questions from what is already there — the PDFs under `Sources/` and their tables of
+   contents, the role from question 1, the beliefs from question 5 — one option each, and *Other*
+   for their own. The owner picks the ones that are theirs and edits the wording in chat if they
+   want; the picked ones go into the section, numbered, and what each feeds and what would change
+   their mind is asked in one follow-up. *None* stays possible, and the section then says so, but
+   the proposal comes first: an empty section costs every note its `## Why it is here`.
 
 ## Step 3: Write
 
 Show the filled `RESEARCHER.md` in chat, section by section, following the file's existing headings
-exactly. Wait for the owner's go. Then write it, and remove the instruction blockquote at the top.
+exactly. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and
+write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go. Then write it, and remove the
+instruction blockquote at the top.
 If they asked, write `Philosophy/how-i-invest.md` with their words verbatim under a single heading.
 
 ## Step 4: The agent

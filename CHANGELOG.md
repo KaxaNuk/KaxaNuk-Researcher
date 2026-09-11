@@ -17,6 +17,13 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 ### Changed
 
+* **Every step offers options, and the go is one of them.** Where the assistant has a question
+  tool, the interview's questions with options, the choice of chapters in `read` and every plan
+  are asked through it — *Go*, *Change something*, *Stop* closes a plan — and when the owner has
+  nothing to answer the researcher proposes, from what is already in the folder: the questions
+  they might be reading for, drawn from the sources and their tables of contents; a way of
+  investing to start the beliefs from. A proposal the owner picks is theirs; one they did not pick
+  is never written. `researcher-init` and `read` are at 0.2 for it.
 * **`.apm/` stays the only copy, and `read` is a skill in it.** Two skills in `.apm/skills/` —
   `read` and `query` — and the eight commands in `.apm/prompts/`, as 0.2.0 laid them out; `compile`
   and `note` are gone. Both are written the way KaxaNuk-APM writes its own: a skill with a folded

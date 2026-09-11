@@ -154,6 +154,14 @@ and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, 
 anything. Never write on a rejected or unanswered plan. Never write a plan or a report as a file;
 the chat and the `LOG.md` entry are the record.
 
+**Every step offers options, and the go is one of them.** Where the assistant has a question tool
+— Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
+*Stop*, and *Go* is the explicit go; where it has none, the words in chat are. When the owner has
+nothing to answer, the researcher proposes options drawn from what is already in the folder — the
+sources and their tables of contents, `RESEARCHER.md`, the notes so far — and lets them pick. A
+proposal the owner picks is theirs; one they did not pick is never written. The point is to keep
+going, never to stall on an empty answer.
+
 **The agent never writes at all**, and that follows from this rule rather than sitting beside it.
 A subagent reports back once and cannot ask for a go, so there is no way for it to write with the
 owner's consent. It answers, it cites, and it names the skill or command the owner should run.

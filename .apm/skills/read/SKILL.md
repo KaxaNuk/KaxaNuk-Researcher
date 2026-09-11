@@ -9,7 +9,7 @@ description: >
   owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
   library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.1
+  version: 0.2
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -83,23 +83,29 @@ ignore `Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
 One message per book: the chapters as the script numbered them, with their pages, and beside each
 a proposal — **read**, **skim** or **skip** — and the question it would serve, by its number under
 *What you are reading for* — in a strategy, the claim's number in `OBJECTIVE.md` — judged from the
-titles and the owner's questions. A paper is one line: read whole, and which question. Then ask the
-owner to correct it in one line — *read 3, 4 and 7 for Q2, skim 5, skip the rest*. Do not ask about
-a source whose question came with the command or was given earlier in the session. Three answers
-are always open: a question the list does not have yet, which the plan offers to add to
-`RESEARCHER.md` in the owner's words; *the other side of question N*; and *background reading, no
-question in mind*, recorded as such.
+titles and the owner's questions. A paper is one line: read whole, and which question. Then ask
+through the question tool: *Take the proposal as it stands*; *Change some chapters*, and they say
+which in chat — *read 3, 4 and 7 for Q2, skim 5, skip the rest*; *Read everything*; *Outline only*.
+Where there is no such tool, ask for the one line in chat. Do not ask about a source whose question
+came with the command or was given earlier in the session. Three answers are always open: a
+question the list does not have yet, which the plan offers to add to `RESEARCHER.md` in the
+owner's words; *the other side of question N*; and *background reading, no question in mind*,
+recorded as such.
 
-**If the section is empty at home**, ask for the questions first, the way `researcher-init` does —
-what they are building or deciding, the three to seven questions the reading should answer, what
-would change their mind about each, what is out of scope for now — and offer to write them under
-*What you are reading for* on the owner's go, in their words. That is the one write this skill
-makes outside the library and the extracts, it happens only at home, and the plan says so. In a
-strategy whose `OBJECTIVE.md` has no claims yet, the questions are whatever the owner says they are
-reading for, recorded in the note; the file is theirs to fill, and nothing is written at home.
+**If the section is empty at home, propose the questions first.** Three to five candidates drawn
+from this source's table of contents, the other sources under `Sources/`, and the role and beliefs
+in `RESEARCHER.md`, offered through the question tool as a multi-select with *Other*. The ones the
+owner picks are theirs, numbered; the plan offers to write them under *What you are reading for*,
+in their words, and that is the one write this skill makes outside the library and the extracts,
+at home only, said in the plan. The owner may still read a source as background, no question in
+mind, but the proposal comes first. In a strategy whose `OBJECTIVE.md` has no claims yet, the
+questions are whatever the owner says they are reading for, recorded in the note; the file is
+theirs to fill, and nothing is written at home.
 
-Never supply a question or a reason yourself: if the owner would rather not say, the note simply
-has no `## Why it is here`. Stop here if the owner asked for the outline only.
+Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
+them to choose is how the reading keeps moving; writing one they did not choose is not. If the
+owner would rather not say, the note simply has no `## Why it is here`. Stop here if the owner
+asked for the outline only.
 
 With the owner's choice in hand, extract what they chose — `--chapters 3,4,5,7`, skims included —
 and nothing more.
@@ -137,8 +143,9 @@ serves, by number — and, for a book, what its `INDEX.md` will record for the c
 skipped; in a strategy, the row each note adds to `BIBLIOGRAPHY.md` or the lead it replaces, under
 the part it bears on; links; `Philosophy/` files to cite; contradictions found; new domain folders
 at home, if any; questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the
-log line. Then wait for *go*, *proceed*, *ok* or *yes*. Revise if asked. **Never write on silence or
-on a rejection.**
+log line. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — or in
+chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. Revise if asked. **Never write
+on silence or on a rejection.**
 
 ## 6. Write, on approval only
 
