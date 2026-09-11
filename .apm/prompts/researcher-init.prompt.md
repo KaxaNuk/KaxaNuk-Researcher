@@ -21,6 +21,12 @@ chat text. The interview opens with a tool call: question 1 is one. The question
 want a paragraph and are asked in chat. An assistant without such a tool asks everything in chat,
 the options listed, free text welcome.
 
+**When the owner has nothing to say, propose.** Draw candidates from what is already in the
+folder — the PDFs under `Sources/` and their tables of contents, read with
+`scripts/extract.py --outline`; the role and the beliefs already given — and offer them as options
+to pick, edit or refuse. The point is to keep going. A proposal the owner picks is theirs; one they
+did not pick is never written.
+
 ## Step 1: Pre-flight
 
 1. If `RESEARCHER.md` has no angle-bracketed slots left and `${input:mode}` is not `force`:
