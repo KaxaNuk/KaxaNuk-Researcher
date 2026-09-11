@@ -1,9 +1,14 @@
 ---
 description: Draft a dated entry for a strategy's BRAINSTORMING_N.md — the next thing to try, considered against the library — and append it there on the owner's go. Only when the owner runs it by name, on a strategy they name or are working in.
-argument-hint: "[path to the strategy repository, if not the one the session is in] <N> [the idea, in a phrase]"
+input:
+  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
+  - experiment: "The experiment number N"
+  - idea: "Optional: the idea to think about, in a phrase"
+metadata:
+  version: 0.1
 ---
 
-# /brainstorm
+# Draft a brainstorming entry
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
@@ -11,8 +16,9 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 `AGENTS.md` says where each of these paths lands.
 
 Brainstorming is forward-looking planning, done before the work, and never mistaken for the record
-of what happened. `$ARGUMENTS` is the experiment number `N` and optionally the idea to think about,
-preceded by the strategy's path when the session is not already open in it.
+of what happened. `${input:experiment}` is the experiment number `N`, `${input:idea}` the idea to
+think about when the owner gave one, and `${input:strategy}` the strategy's path when the session is
+not already open in it.
 
 1. **Read the experiment's state.** `BLUEPRINT_N.md`, `BRAINSTORMING_N.md` (the entries so far),
    `FINDINGS_N.md` if it reports, and `RESULTS.md` — what is closed, what is open, what stands. Do

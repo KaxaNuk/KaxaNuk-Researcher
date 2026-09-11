@@ -1,10 +1,23 @@
 ---
 name: query
-description: Use this whenever the owner asks what their library says, what they have read about a topic, how two sources relate, or what evidence there is for a claim — any factual or comparative question that should be answered from the library, Philosophy/ and the sources rather than from general knowledge, from Knowledge/ at home and from a strategy's Bibliotheca/ when invited there. It walks the index and the links between notes before reading anything, and cites every claim. Do NOT use it for writing code or for questions about files outside the library.
-argument-hint: "<the question>"
+description: >
+  Load this skill whenever the owner asks what their library says, what they have read about a
+  topic, how two sources relate, or what evidence there is for a claim — any factual or
+  comparative question that should be answered from the library, Philosophy/ and the sources
+  rather than from general knowledge: Knowledge/ at home, a strategy's Bibliotheca/ when invited
+  there. It walks the index and the links between notes before reading anything, and cites every
+  claim. It does NOT write code and does NOT answer questions about files outside the library.
+metadata:
+  version: 0.1
 ---
 
 # Query — answer from what was read, and say where it came from
+
+The owner asks what their library says, what they have read about a topic, how two sources relate,
+or what evidence there is for a claim — any factual or comparative question that the library,
+`Philosophy/` and the sources should answer rather than general knowledge. The question is what the
+owner asked, in their words. It is not for writing code, nor for questions about files outside the
+library.
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
@@ -15,9 +28,6 @@ The owner built this library so that answers rest on sources they chose. Answeri
 knowledge defeats the point; answering from one note in isolation misses the connections that
 are the library's value.
 
-When it is invoked by name, `$ARGUMENTS` is the question.
-
-## Procedure
 
 1. **Index first.** Read the library's index end to end — `Knowledge/INDEX.md` at home,
    `Bibliotheca/BIBLIOGRAPHY.md` in a strategy, where a row without a note is a lead and not a
@@ -43,7 +53,7 @@ When it is invoked by name, `$ARGUMENTS` is the question.
    suggest the kind of source that would close it. Do not fill a gap from memory without saying you
    did, and never write it into the library during a query.
 
-## Never
+## What this skill will not let you do
 
 - Invent a source, a page or a URL. If it is not in the library, `Philosophy/` or the sources, the
   honest answer is that the library does not know, followed by what the researcher would read to

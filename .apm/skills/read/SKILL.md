@@ -1,10 +1,26 @@
 ---
 name: read
-description: Use whenever the owner asks to read, file or add a source to the library — Sources/ into Knowledge/ at home; in a strategy, into notes beside the PDFs in its Bibliotheca/, each with its row in BIBLIOGRAPHY.md. A script extracts a PDF by chapter; the owner sees the table of contents and picks the chapters that serve their questions or claims; one note per chapter read; plan first, the owner's go, then write; contradictions flagged, never overwritten
-argument-hint: "[path to the strategy repository, if not the one the session is in] [a path under the sources to read only that] [the question or claim it serves — its number, or a phrase] [outline only]"
+description: >
+  Load this skill whenever the owner asks to read, file, compile or add a source to the library — a
+  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, and in a strategy into a note
+  beside the PDF in its Bibliotheca/ with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter
+  with a script, shows the owner the table of contents, asks which chapters serve which of their
+  questions or claims, reads only those, and writes one note per chapter read, after a plan and the
+  owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
+  library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
+metadata:
+  version: 0.1
 ---
 
-# /read
+# Read — a source into the library, a chapter at a time
+
+The owner drops a PDF or a clipping into the sources and asks to read it, file it, compile it or add
+it to the library; names a source and the question or claim it should serve; or asks for a book's
+table of contents before deciding what to read. What they said carries the arguments: the
+strategy's path when the session is not open in it, a path under the sources to read only that,
+the question or claim by number, and *outline only* to stop after the table of contents. It is not
+for answering questions from the library — that is `query` — nor for rebuilding the index, which
+is the `refresh-index` command.
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
@@ -14,15 +30,13 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 Turn sources into notes — a paper into one note, a book into one note per chapter that serves one
 of the owner's questions, and nothing for a chapter they did not choose. One convention serves both
 repositories, so a note has the same shape at home and in a strategy; it is in
-[`references/note.md`](references/note.md). **You must present a plan in chat and receive an
-explicit go before writing any file.** `$ARGUMENTS`, when given: the strategy's path, when the
-session is not open in it; a path under the sources, to read only that; the question or claim it
-serves; *outline only*, to stop after step 3.
+[`references/note.md`](../../../references/note.md) at the root of the researcher's home. **You
+must present a plan in chat and receive an explicit go before writing any file.**
 
 Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belongs to
-`scripts/extract.py`, never to reading the PDF page by page. **Choosing** what to read is the
-owner's, with the table of contents in front of them. **Reading** the chosen text and writing the
-note is the researcher's.
+`scripts/extract.py` in the researcher's home, never to reading the PDF page by page.
+**Choosing** what to read is the owner's, with the table of contents in front of them.
+**Reading** the chosen text and writing the note is the researcher's.
 
 ## 1. Know what happened recently
 
@@ -38,16 +52,15 @@ run continues from there.
 
 List what is in the sources that has no note yet — at home, every subfolder of `Sources/`; in a
 strategy, every PDF under `Bibliotheca/Papers/` and `Books/` with no note beside it, and every
-clipping under `Notes/` with no note in `Papers/` — or only what `$ARGUMENTS` names. The owner may
+clipping under `Notes/` with no note in `Papers/` — or only what the owner named. The owner may
 also point at a file under `Sources/` at home for a strategy: it is read for the strategy, and its
 note and its extract are written there, nothing at home.
 
-For every PDF among them, run the script that lives beside this skill — `scripts/extract.py` in
-the skill's own folder, wherever the harness deployed it — from the folder whose library this is,
-home or the strategy, and read what it prints:
+For every PDF among them, run the script — `scripts/extract.py` at the root of the researcher's
+home — from the folder whose library this is, home or the strategy, and read what it prints:
 
 ```bash
-uv run "<this skill's folder>/scripts/extract.py" "<pdf>" --outline
+uv run "<home>/scripts/extract.py" "<pdf>" --outline
 ```
 
 Without `uv`: `pip install pypdf`, then `python` in place of `uv run`. The script's own `--help`
@@ -58,8 +71,8 @@ ignore `Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
 
 - **A PDF with no outline.** The script says so and gives the page count. Read the pages that carry
   the table of contents — the first ten to fifteen, through the assistant's PDF reader — and
-  propose a split by page ranges for the owner to confirm in step 3; then run the script with
-  `--split`. A paper is one chapter: `--all`.
+  propose a split by page ranges for the owner to confirm when the table of contents is shown;
+  then run the script with `--split`. A paper is one chapter: `--all`.
 - **A PDF whose depth 1 is parts.** The script says so; run `--outline --depth 2`.
 - **A PDF with no text layer.** The script refuses to write and says why. Report the source as
   unreadable, leave it out of the plan, and do not fill it in from memory.
@@ -77,7 +90,7 @@ are always open: a question the list does not have yet, which the plan offers to
 `RESEARCHER.md` in the owner's words; *the other side of question N*; and *background reading, no
 question in mind*, recorded as such.
 
-**If the section is empty at home**, ask for the questions first, the way `/researcher-init` does —
+**If the section is empty at home**, ask for the questions first, the way `researcher-init` does —
 what they are building or deciding, the three to seven questions the reading should answer, what
 would change their mind about each, what is out of scope for now — and offer to write them under
 *What you are reading for* on the owner's go, in their words. That is the one write this skill
@@ -153,9 +166,9 @@ on a rejection.**
 
 In chat: what was written, updated and flagged; any gap the source exposed — a concept the library
 leans on with no source behind it — as a suggestion for the sources; and, at home, the strategy a
-note could serve, with the `/read <strategy> <source>` that would carry it there.
+note could serve, with the `read <strategy> <source>` that would carry it there.
 
-## Never
+## What this skill will not let you do
 
 - Read a PDF page by page when the script can extract it. The table-of-contents pages of a PDF with
   no outline are the one exception.
@@ -163,7 +176,7 @@ note could serve, with the `/read <strategy> <source>` that would carry it there
   the library this skill writes, and only the script writes there.
 - Write at home while reading in a strategy — no note, no index line, no log entry, no question in
   `RESEARCHER.md`, no extract. A strategy's source enters the home library only when the owner puts
-  it in `Sources/` at home and runs `/read` there.
+  it in `Sources/` at home and runs `read` there.
 - Write into a strategy's `Bibliotheca/Knowledge/`. Its notes live beside its sources, and
   `BIBLIOGRAPHY.md` is its index.
 - Rewrite `BIBLIOGRAPHY.md` beyond the row a note adds or replaces.
@@ -174,3 +187,11 @@ note could serve, with the `/read <strategy> <source>` that would carry it there
 - Read a source you could not open, or fill one in from memory or from a summary.
 - Write a plan or a report as a file. The chat and the log entry are the record.
 - Rewrite an existing note in a different voice. Match what is there.
+
+## References
+
+- `scripts/extract.py`, at the root of the researcher's home: the PDF's table of contents, and its
+  chapters as text, one file per chapter. `--help` has every option.
+- `references/note.md`, at the root of the researcher's home: the shape of every note — paths and
+  names, frontmatter, the chapter note, the paper note, the book's `INDEX.md`, what the indexes
+  show, how a home note travels into a strategy.

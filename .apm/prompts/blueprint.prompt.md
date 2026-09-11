@@ -1,9 +1,13 @@
 ---
 description: Draft BLUEPRINT_N.md in place for a strategy — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
-argument-hint: "[path to the strategy repository, if not the one the session is in] <N>"
+input:
+  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
+  - experiment: "The experiment number N"
+metadata:
+  version: 0.1
 ---
 
-# /blueprint
+# Draft a blueprint
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
@@ -11,17 +15,17 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 `AGENTS.md` says where each of these paths lands.
 
 The blueprint is the hypothesis, fixed once written, recorded before the notebook's rule cell
-exists. This skill drafts it so that every prediction can be traced to something read or measured,
-and writes it where the template keeps it. `$ARGUMENTS` is the experiment number `N`, preceded by
-the strategy's path when the session is not already open in it.
+exists. This command drafts it so that every prediction can be traced to something read or
+measured, and writes it where the template keeps it. `${input:experiment}` is the experiment number
+`N`; `${input:strategy}` is the strategy's path, given when the session is not already open in it.
 
-## 1. Refuse if the order is wrong
+## Step 1: Refuse if the order is wrong
 
 If `Experiments/Experiment_N/experiment_N.ipynb` already holds a rule in its section 2, stop and say
 so: a hypothesis written after its test is not a hypothesis. If `BLUEPRINT_N.md` already has its
 slots filled, stop too — it does not change once written; a new idea is Experiment N+1.
 
-## 2. Read, in this order
+## Step 2: Read, in this order
 
 1. `OBJECTIVE.md` — the claims this experiment tests, by number.
 2. The strategy's `Bibliotheca/` notes, through `BIBLIOGRAPHY.md`, and which sources are still
@@ -34,7 +38,7 @@ slots filled, stop too — it does not change once written; a new idea is Experi
 5. The home library, for the domains the thesis touches, and the owner's `Philosophy/` — as
    contrast and warning, never as a citation.
 
-## 3. Draft, in the file's own shape
+## Step 3: Draft, in the file's own shape
 
 - **Thesis** — one paragraph, modest on purpose, naming the economic mechanism.
 - **Rules** — selection, sizing, cash, timing, lag, screens deliberately absent — each naming the
@@ -48,7 +52,7 @@ slots filled, stop too — it does not change once written; a new idea is Experi
 - Fill the recorded date with today's, and say in the header that it was written before the rule.
   Leave the template's blockquote at the top: the owner deletes it when they commit.
 
-## 4. Show, wait, then write
+## Step 4: Show, wait, then write
 
 Show the draft in chat and list: the leads (notes to write first), the predictions the owner should
 be willing to be wrong about, and the analyzer sections still to run. Wait for the go. Then write

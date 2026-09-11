@@ -1,9 +1,12 @@
 ---
 description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs, non-negotiables and what they are reading for — scaffold the folders, and write the agent file that makes the researcher callable by name. Only when the owner runs it by name; never on its own.
-argument-hint: "[force]"
+input:
+  - mode: "Optional: force, to start over when RESEARCHER.md is already filled"
+metadata:
+  version: 0.1
 ---
 
-# /researcher-init
+# Initialize the researcher
 
 This runs in the folder that becomes the researcher's home — the one that will hold
 `RESEARCHER.md` — and every path below is relative to it.
@@ -18,11 +21,11 @@ chat text. The interview opens with a tool call: question 1 is one. The question
 want a paragraph and are asked in chat. An assistant without such a tool asks everything in chat,
 the options listed, free text welcome.
 
-## Pre-flight
+## Step 1: Pre-flight
 
-1. If `RESEARCHER.md` has no angle-bracketed slots left and `$ARGUMENTS` is not `force`:
+1. If `RESEARCHER.md` has no angle-bracketed slots left and `${input:mode}` is not `force`:
    - **If `.apm/agents/` holds no agent file**, this researcher predates it. Say so, skip the
-     interview, and go straight to *The agent* below, taking every answer from `RESEARCHER.md`
+     interview, and go straight to *Step 4* below, taking every answer from `RESEARCHER.md`
      as it already stands.
    - **Otherwise stop:** the researcher is already initialised. Say so, and suggest editing
      `RESEARCHER.md` by hand.
@@ -30,7 +33,7 @@ the options listed, free text welcome.
    `Philosophy/`, `Projects/`, and `Knowledge/INDEX.md` and `Knowledge/LOG.md`. Create any that are
    missing; never overwrite an existing `INDEX.md` or `LOG.md`.
 
-## The interview
+## Step 2: The interview
 
 1. **What you do, and your name** — *tool, one call, two questions*. What you do: *I invest my own
    money*, *analyst or portfolio manager at a firm*, *I run a mandate*, or *Other*. Your name: the
@@ -56,15 +59,15 @@ the options listed, free text welcome.
 9. **What are you reading for?** — *chat*. The open questions the reading should answer right now
    — three to seven, numbered — and for each, what it feeds and what would change their mind; then
    what is out of scope for now. *None yet* is a fine answer: the section then says so, in place of
-   the slots, and `/read` asks for the questions when the first source arrives.
+   the slots, and `read` asks for the questions when the first source arrives.
 
-## Write
+## Step 3: Write
 
 Show the filled `RESEARCHER.md` in chat, section by section, following the file's existing headings
 exactly. Wait for the owner's go. Then write it, and remove the instruction blockquote at the top.
 If they asked, write `Philosophy/how-i-invest.md` with their words verbatim under a single heading.
 
-## The agent
+## Step 4: The agent
 
 `RESEARCHER.md` says who the researcher is. This file makes it something the harness can call by
 name — *ask Luna what we have read about momentum crashes* — with its own tool boundary. Write
@@ -95,8 +98,8 @@ fall back on general knowledge, say that is what you did.
 **You never write.** Not in `Knowledge/`, not in `Philosophy/`, not in `Projects/`, not in a
 strategy — not even when asked directly. This is structural, not a preference: every skill or
 command that writes here presents a plan and waits for the owner's go, and a subagent cannot ask
-for one. When an answer needs a write, name what the owner should run — `/read` to read a source
-into the library, `/refresh-index` to rebuild the index — and stop there.
+for one. When an answer needs a write, name what the owner should run — `read` to read a source
+into the library, `refresh-index` to rebuild the index — and stop there.
 
 **Never invent** a citation, a URL or a page number, and never quote a performance number that did
 not come from the Lab's engines.
@@ -111,7 +114,7 @@ one source of truth and no second copy to rot — the agent reads it at the star
 And **it takes no web tools**, because the point of the library is that answers rest on sources
 the owner chose.
 
-## Install it
+## Step 5: Install it
 
 The agent is a file until APM deploys it. Tell the owner to run, in this folder:
 
@@ -124,18 +127,18 @@ holds. Claude Code, Copilot and Cursor enforce the tool list. Codex takes the ag
 list, which is why the read-only rule is written into the body as well. Gemini and Windsurf have no
 agent primitive at all, so there the researcher is its skills and commands, exactly as before.
 
-## Core knowledge
+## Step 6: Core knowledge
 
 Beyond `apm install --target <agent>`, which copies the researcher's own skills, commands and agent
 into the agent's folders, there is nothing to install. `apm.yml` declares no dependencies — the
 package that used to be there taught Python style, not research. If the owner asks about KaxaNuk's
 core knowledge, say it is not packaged yet, and that the library is built the ordinary way: a
-source into `Sources/`, then `/read`.
+source into `Sources/`, then `read`.
 
-## Hand over
+## Step 7: Hand over
 
 Five sentences, in the voice the owner chose: who the researcher is now; what to do first (drop a
-source into `Sources/` and run `/read`); how to reach it as an agent (*ask <name> what we know
+source into `Sources/` and run `read`); how to reach it as an agent (*ask <name> what we know
 about X*, once installed and in a new session); how to invite it into a strategy (open the
 assistant in the strategy's folder and add this one to the session); and where the rules live
 (`AGENTS.md`).

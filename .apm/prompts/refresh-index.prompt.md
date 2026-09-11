@@ -1,16 +1,18 @@
 ---
 description: Rebuild Knowledge/INDEX.md at home from what is on disk — one line per note under its domain, a book's chapters beneath it — diff shown before writing. Home only; a strategy's BIBLIOGRAPHY.md is curated by hand
+metadata:
+  version: 0.1
 ---
 
-# /refresh-index
+# Refresh the index
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`.
 
 **Home only.** `Knowledge/INDEX.md` is derived from the notes and can be rebuilt. A strategy's index
 is `Bibliotheca/BIBLIOGRAPHY.md`, curated by hand — its parts, its leads and its prose are the
-owner's — so it is never rebuilt: `/read` writes each note's row when it writes the note, and
-`/audit` reports a note without a row or a row without a note. In a strategy, say so and stop.
+owner's — so it is never rebuilt: `read` writes each note's row when it writes the note, and
+`audit` reports a note without a row or a row without a note. In a strategy, say so and stop.
 
 The library's `INDEX.md` is its one index, and the first thing every query reads. Rebuild it from
 the files.

@@ -1,4 +1,4 @@
-# The note — what `/read` writes, at home and in a strategy
+# The note — what `read` writes, at home and in a strategy
 
 One convention for both repositories, so a note written at home can travel into a strategy and a
 strategy's notes read like the researcher's own. It is the KN Research Process note — the convention
@@ -13,10 +13,15 @@ a chapter the owner did not choose.
 ## Paths and names
 
 ```
-at home                                                    in a strategy
-Knowledge/<Domain>/Author_Year_Title.md                    Bibliotheca/Papers/Author_Year_Title.md
-Knowledge/<Domain>/Author_Year_Title/INDEX.md              Bibliotheca/Books/Author_Year_Title/INDEX.md
-Knowledge/<Domain>/Author_Year_Title/NN_Chapter_Title.md   Bibliotheca/Books/Author_Year_Title/NN_Chapter_Title.md
+at home
+  Knowledge/<Domain>/Author_Year_Title.md                    a paper
+  Knowledge/<Domain>/Author_Year_Title/INDEX.md              a book's index
+  Knowledge/<Domain>/Author_Year_Title/NN_Chapter_Title.md   one chapter read
+
+in a strategy
+  Bibliotheca/Papers/Author_Year_Title.md                    a paper
+  Bibliotheca/Books/Author_Year_Title/INDEX.md               a book's index
+  Bibliotheca/Books/Author_Year_Title/NN_Chapter_Title.md    one chapter read
 ```
 
 `Author_Year_Title` is the template's name: the first author's surname — two or three surnames when
@@ -183,6 +188,6 @@ strategy's claims: `## Why it is here`, every blockquote, `## What it changes`. 
 ## Syntheses
 
 An idea that spans chapters or sources is not a note; it is a synthesis. At home it is written under
-the domain folder only when the owner asks for one — in chat, or through `/query` — and it links
+the domain folder only when the owner asks for one — in chat, or through `query` — and it links
 every note it rests on. In a strategy the synthesis is `OBJECTIVE.md` itself, its claims citing the
 notes. A synthesis cites notes; notes cite sources.

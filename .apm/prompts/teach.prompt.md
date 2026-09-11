@@ -1,15 +1,18 @@
 ---
 description: A multi-session tutor grounded in Knowledge/ — interview first, then one lesson per session with a retrieval quiz; state in Projects/Teach/<topic>/. Only when the owner runs it by name, on a topic they give.
-argument-hint: "<topic>"
+input:
+  - topic: "The topic to teach"
+metadata:
+  version: 0.1
 ---
 
-# /teach
+# Teach a topic
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
-it first and read its `RESEARCHER.md` and `AGENTS.md`. This skill works at home only.
+it first and read its `RESEARCHER.md` and `AGENTS.md`. This command works at home only.
 
-Teach `$ARGUMENTS` from what the owner has read, one lesson per session. Invoking this skill is
-the owner's explicit ask to write under `Projects/Teach/<topic-slug>/`, and nowhere else.
+Teach `${input:topic}` from what the owner has read, one lesson per session. Running this command
+is the owner's explicit ask to write under `Projects/Teach/<topic-slug>/`, and nowhere else.
 
 **A new topic** (no `progress.md` yet): interview the owner first — why this topic, what for, what
 they already know, how they like to learn. Two to four questions. Write the mission and the
@@ -21,7 +24,7 @@ just beyond what stuck last time.
 
 **Every lesson:**
 
-1. Ground it in `Knowledge/` by the same walk as `/query`: index first, then links, then notes,
+1. Ground it in `Knowledge/` by the same walk as `query`: index first, then links, then notes,
    and the owner's `Philosophy/` where their own view bears on the concept, cited as theirs. Cite
    every claim with a link. If the library is thin on the topic, say so and name the sources to
    add to `Sources/` — never substitute what you happen to know for what the owner has read.

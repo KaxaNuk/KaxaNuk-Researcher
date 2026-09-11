@@ -45,26 +45,26 @@ Windsurf.
    never the one that installed it. Reading a PDF also needs [`uv`](https://docs.astral.sh/uv/),
    or `pip install pypdf`.
 
-3. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
+3. **Run `researcher-init`.** A short interview — who you are, what you invest in, how you want to
    be spoken to, what is never allowed, what you are reading for right now — writes
    `RESEARCHER.md`, the researcher's personality, scaffolds any folder that is missing, and writes
    the agent file that makes your researcher callable by name. Run `apm install --target claude`
    once more afterwards to deploy it.
 
    ```bash
-   /researcher-init
+   researcher-init
    ```
 
-4. **Drop a paper or a book into `Sources/` and run `/read`.** For a book the researcher shows you
+4. **Drop a paper or a book into `Sources/` and run `read`.** For a book the researcher shows you
    its table of contents and asks which chapters serve which of your questions; it reads only
    those, proposes how to file them, waits for your go, and writes one note per chapter read into
    `Knowledge/`, linked to everything it relates to.
 
-5. **Invite it to a strategy.** Point at it from here — `/blueprint D:\Research\Golden-Flow 1` —
+5. **Invite it to a strategy.** Point at it from here — `blueprint D:\Research\Golden-Flow 1` —
    or open your assistant in the strategy's folder and add this one to the session, with
    `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. There, the
-   strategy's `Bibliotheca/` is its library: `/read` writes the notes beside the strategy's PDFs,
-   each with its row in `BIBLIOGRAPHY.md`, and `/blueprint` drafts the hypothesis into
+   strategy's `Bibliotheca/` is its library: `read` writes the notes beside the strategy's PDFs,
+   each with its row in `BIBLIOGRAPHY.md`, and `blueprint` drafts the hypothesis into
    `BLUEPRINT_N.md` with every prediction citing its note — each after a plan and your go. You
    review the diff and commit it, before the rule. Nothing is written here at home.
 
@@ -77,7 +77,7 @@ be installed beside whatever else you are running:
 apm install KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
-Then run `/researcher-init`, which scaffolds `Sources/`, `Knowledge/`, `Philosophy/` and
+Then run `researcher-init`, which scaffolds `Sources/`, `Knowledge/`, `Philosophy/` and
 `Projects/` wherever you ran it. If you would rather not use APM at all, `apm pack` turns this
 repository into a plain plugin bundle — a `plugin.json`, the skills and the commands — that your
 agent can load directly.
@@ -88,7 +88,7 @@ agent can load directly.
 
 ```
 RESEARCHER.md         who the researcher is — name, owner, domains, voice, non-negotiables — and
-                      what you are reading for; written by /researcher-init
+                      what you are reading for; written by researcher-init
 AGENTS.md             the library's rules: what each folder is, who may write where, the skills
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
 CHANGELOG.md          every version of this repository, newest first
@@ -108,13 +108,15 @@ Knowledge/            what the researcher read: one note per paper, one folder p
 Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
 Projects/             what you asked for at home: lessons, anything in chat. Strategy work lives
                       in the strategy
+scripts/              extract.py, the one script: a PDF's table of contents, and its chapters as
+                      text, one file per chapter
+references/           note.md, the shape of every note the researcher writes
 
 .apm/                 the researcher itself, the only copy of each part. apm install copies them
                       into your agent's folders, which git ignores
-  skills/               the two the researcher reaches for on its own — read, with its script and
-                        the note's shape beside it, and query
+  skills/               the two the researcher reaches for on its own: read and query
   prompts/              the eight you start by name
-  agents/               your researcher as a callable agent, written by /researcher-init
+  agents/               your researcher as a callable agent, written by researcher-init
 ```
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
@@ -128,7 +130,7 @@ does not go in the repository at all.
 ## The skills, the commands and the agent
 
 Two are **skills** — capabilities the researcher reaches for on its own when the work calls for
-them, and that you can also run as `/name`. Eight are **commands** — tasks you start by name, with
+them, and that you can also invoke by name. Eight are **commands** — tasks you start by name, with
 arguments, each producing one thing. Both are authored once in `.apm/` and deployed by
 `apm install`: skills to every harness in `apm.yml`, commands to every one but Codex, which has no
 command primitive. On Codex, ask for a command by its file — *follow
@@ -136,30 +138,30 @@ command primitive. On Codex, ask for a command by its file — *follow
 
 | Skill | What it does |
 | --- | --- |
-| `/read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten. Fires on its own when you ask to file or read a source |
-| `/query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named. Fires on its own when you ask what your library says |
+| `read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten. Fires on its own when you ask to file or read a source |
+| `query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named. Fires on its own when you ask what your library says |
 
 | Command | What it does |
 | --- | --- |
-| `/researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders and writes the agent file |
-| `/objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — from its notes and your library |
-| `/blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place — thesis, rules, predictions — with every prediction citing a note or a measurement |
-| `/brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
-| `/teach <topic>` | a multi-session tutor grounded in your library |
-| `/audit` | reviews the library at hand — broken links, duplicates, stale index, orphans, frontmatter, stale installs; `deep` adds contradictions — and reports; one line in the log, never a fix on its own |
-| `/refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files, diff first |
-| `/refresh-index` | rebuilds `Knowledge/INDEX.md` at home from what is on disk; a strategy's `BIBLIOGRAPHY.md` is curated by hand |
+| `researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders and writes the agent file |
+| `objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — from its notes and your library |
+| `blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place — thesis, rules, predictions — with every prediction citing a note or a measurement |
+| `brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
+| `teach <topic>` | a multi-session tutor grounded in your library |
+| `audit` | reviews the library at hand — broken links, duplicates, stale index, orphans, frontmatter, stale installs; `deep` adds contradictions — and reports; one line in the log, never a fix on its own |
+| `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files, diff first |
+| `refresh-index` | rebuilds `Knowledge/INDEX.md` at home from what is on disk; a strategy's `BIBLIOGRAPHY.md` is curated by hand |
 
 Every one that writes shows its plan first and waits for your go.
 
-In a strategy, the library skills work on that strategy's `Bibliotheca/`, and `/objective`,
-`/blueprint` and `/brainstorm` write into its own files; the strategy's path can be left out when
+In a strategy, the library skills work on that strategy's `Bibliotheca/`, and `objective`,
+`blueprint` and `brainstorm` write into its own files; the strategy's path can be left out when
 the session is open in it. None of them writes here at home from there unless you ask for it by
 name.
 
 ### And the agent
 
-`/researcher-init` also writes `.apm/agents/<your researcher>.agent.md`, so the researcher is an
+`researcher-init` also writes `.apm/agents/<your researcher>.agent.md`, so the researcher is an
 agent the harness can call by name rather than a way of configuring a session:
 
 > ask Luna what we have read about momentum crashes
@@ -175,7 +177,7 @@ why the rule is written into the prompt as well. Gemini and Windsurf have no age
 there the researcher is its skills and commands, exactly as before.
 
 They are yours to change. Edit a skill in `.apm/skills/`, a command in `.apm/prompts/` or the agent
-in `.apm/agents/`, run `apm install --target <your agent>` again, and open a new session. `/audit`
+in `.apm/agents/`, run `apm install --target <your agent>` again, and open a new session. `audit`
 tells you if an installed copy has gone stale.
 
 ---

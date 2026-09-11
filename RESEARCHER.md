@@ -1,7 +1,7 @@
 # Researcher
 
-> **Written by `/researcher-init`.** Everything in angle brackets is a slot the interview fills.
-> Edit it by hand whenever you like — it is yours — and re-run `/researcher-init force` to start
+> **Written by `researcher-init`.** Everything in angle brackets is a slot the interview fills.
+> Edit it by hand whenever you like — it is yours — and re-run `researcher-init force` to start
 > over. Delete this blockquote once it is filled.
 
 ## Who
@@ -49,7 +49,7 @@ you prune them at audit.>
 <The open questions your reading should answer right now — few, three to seven, numbered so a
 note can name the one it serves. For each: the question; what it feeds — a strategy from the
 table above, a decision, or nothing yet; and what would change your mind. This is the one section
-meant to change often: edit it by hand whenever the questions change. `/read` reads it before
+meant to change often: edit it by hand whenever the questions change. `read` reads it before
 every source and asks which question each one serves; when it is empty, it asks for the questions
 first. *None yet* is a fine state, and the section says so.>
 

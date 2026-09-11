@@ -11,7 +11,7 @@ The home is the folder that holds `RESEARCHER.md`. Every path in this file and i
 the session happened to open. There are two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
-  path: `/blueprint D:\Research\Golden-Flow 1`.
+  path: `blueprint D:\Research\Golden-Flow 1`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
   researcher's folder to the session — `claude --add-dir D:\Research\Luna`, or `/add-dir` once
   inside. The skills and commands load from there on their own, provided `apm install` has been
@@ -29,14 +29,16 @@ learns in one experiment must not leak into the next through its own library.
 | --- | --- | --- |
 | `Sources/` | what the owner reads — PDFs, papers, decks, clippings, transcripts | **read only.** Never move, rename or delete a source |
 | `Extracts/` | the text the read skill's script pulls out of the PDFs in `Sources/` — one file per chapter, a marker before every page | **write, through `scripts/extract.py` only.** A cache: regenerable, gitignored, never cited, never edited by hand |
+| `scripts/` | the code the skills run — `extract.py`, which pulls a PDF's table of contents and chapters into `Extracts/` | **run.** Edited only when the owner asks |
+| `references/` | what the skills read on demand — `note.md`, the shape of every note | **read.** Edited only when the owner asks |
 | `Knowledge/` | what the researcher read: one note per paper, one folder per book with a note per chapter read, grouped by domain folder | **read and write** — this is the researcher's own work |
-| `Knowledge/INDEX.md` | the single index of every note | rewrite, only through `/read` and `/refresh-index` |
+| `Knowledge/INDEX.md` | the single index of every note | rewrite, only through `read` and `refresh-index` |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
-| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `/refine`, diff first |
-| `Projects/` | what the owner asked for at home: lessons from `/teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
+| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first |
+| `Projects/` | what the owner asked for at home: lessons from `teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
 
-`RESEARCHER.md` is not a folder, but it is the owner's too. `/researcher-init` writes it once, from
-the interview; `/read`, at home, may add a question under *What you are reading for* — in the
+`RESEARCHER.md` is not a folder, but it is the owner's too. `researcher-init` writes it once, from
+the interview; `read`, at home, may add a question under *What you are reading for* — in the
 owner's words, after their go — and nothing else writes it. The owner edits it by hand whenever they
 like.
 
@@ -58,7 +60,7 @@ researcher writes from it.
   subfolder a domain has — with an `INDEX.md` for its chapters and one file per chapter read;
   nothing is written for a chapter the owner did not choose, and no other per-folder index exists.
   An idea that spans sources is a synthesis, written only when the owner asks for it, linking the
-  notes it rests on. The shape of every note is in `.apm/skills/read/references/note.md`.
+  notes it rests on. The shape of every note is in `references/note.md`.
 - **Frontmatter, the four fields the KN Research Process note carries, and one more:** `source`
   (where the work lives outside the repository — a DOI, a URL, a publisher; never invented),
   `citation` (the reference, with the date the link was last checked), `local_copy` (the file read,
@@ -70,7 +72,7 @@ researcher writes from it.
   so GitHub renders them and the Investment Lab can index them. Never wikilinks.
 - **Dense over decorative.** Bullets, tables, the source's own terms. The first line is the
   provenance — the chapter and pages read. The first section is `## Why it is here` — the question
-  in `RESEARCHER.md` the source serves, by number, and the owner's reason in their words, as `/read`
+  in `RESEARCHER.md` the source serves, by number, and the owner's reason in their words, as `read`
   asked it; absent if they gave none, never invented. The body is the source's claims as headings,
   each with the implication for that question as a blockquote — the only part that is the
   researcher's. The last is `## What it changes` — three to seven bullets on what this source
@@ -85,7 +87,7 @@ researcher writes from it.
 ## The log
 
 `Knowledge/LOG.md` is the library's memory of what was done. One entry at the end of every completed
-`/read`, `/audit` and `/refresh-index`:
+`read`, `audit` and `refresh-index`:
 
 ```
 ## [YYYY-MM-DD] read | one line on what came in
@@ -128,7 +130,7 @@ linked, never written.
 - **Nothing flows back.** While it works on a strategy the researcher writes nothing at home — no
   note, no index line, no log entry, no extract — unless the owner asks for that write by name in
   chat. A strategy's source enters the home library only when the owner puts it in `Sources/` at
-  home and runs `/read` there. A skill that writes at home, run while invited, says so in its
+  home and runs `read` there. A skill that writes at home, run while invited, says so in its
   plan: *this writes to the researcher's home, not to this strategy.*
 - **Links stay inside the strategy.** A path into the researcher's home means nothing to the next
   person who clones the strategy. Where a home note bears on a claim, say so in prose and offer
@@ -137,8 +139,8 @@ linked, never written.
 - **Every claim and every prediction cites its source** — a note in the strategy's `Bibliotheca/`,
   by relative path inside that repository. A prediction with no note is written as a **lead**:
   *read X before predicting this.*
-- **A source without a note cannot be cited.** Write the note first (`/read`), in the one convention
-  both repositories share — its shape is in `.apm/skills/read/references/note.md`: the source's
+- **A source without a note cannot be cited.** Write the note first (`read`), in the one convention
+  both repositories share — its shape is in `references/note.md`: the source's
   claims as headings, in its authors' terms, and what each implies for *this* strategy as a
   blockquote, naming the claim by number.
 - **The strategy's rules govern there** — `AGENTS.md` in that repository, and the
@@ -162,9 +164,9 @@ owner's consent. It answers, it cites, and it names the skill or command the own
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/SKILL.md` | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also run as `/name`. `read` carries its script in `scripts/` and the note's shape in `references/` |
+| **Skill** | `.apm/skills/<name>/SKILL.md` | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name. A skill folder holds its `SKILL.md` and nothing else |
 | **Command** | `.apm/prompts/<name>.prompt.md` | the other eight — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
-| **Agent** | `.apm/agents/<name>.agent.md` | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `/researcher-init` from `RESEARCHER.md`, so a fresh clone has none until the interview runs |
+| **Agent** | `.apm/agents/<name>.agent.md` | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `researcher-init` from `RESEARCHER.md`, so a fresh clone has none until the interview runs |
 
 - **`apm install --target <agent>` deploys them per machine** — into `.claude/skills/`,
   `.claude/commands/` and `.claude/agents/` for Claude Code; `.agents/skills/` for Codex and the
@@ -172,16 +174,19 @@ owner's consent. It answers, it cites, and it names the skill or command the own
   `.opencode/` or `.windsurf/`. Git ignores every copy. A bare `apm install` does every target in
   `apm.yml`.
 - **Edit in `.apm/`, never in a deployed copy,** then install again and open a new session. A
-  copy that differs from its original is a stale install; `/audit` reports it.
-- **A skill folder follows the Agent Skills convention** — `SKILL.md` whose `name` matches the
-  folder, `scripts/` for code, `references/` for what the skill reads on demand — so `read`
-  carries `scripts/extract.py` and `references/note.md`, and a harness that copies the folder
-  whole gets both. A command is one `.prompt.md` file with `description` and `argument-hint`, no
-  `name`.
+  copy that differs from its original is a stale install; `audit` reports it.
+- **A skill is written the way KaxaNuk's own APM packages write theirs** — frontmatter `name`,
+  matching the folder, a folded `description` that says when to use it and what it does not
+  cover, and `metadata.version`; a body with *When to Use* and *Steps*. A skill folder holds its
+  `SKILL.md` and nothing else: what a skill runs lives in `scripts/` at the root of the home, what
+  it reads on demand in `references/`, so `.apm/` carries prose only. A command is one
+  `.prompt.md` with `description`, its `input` list and `metadata.version`, no `name`; the body
+  reads its inputs as `${input:name}`, and APM turns them into the arguments each harness takes.
 - **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
   says which on install, and a dropped key is a rule that is not enforced. Anything that must hold
-  everywhere is written in the body or the description, not only in a key. A description must also
-  survive YAML on every harness, so keep it to one line with no colon in it.
+  everywhere is written in the body or the description, not only in a key. A folded
+  `description: >` keeps a colon from breaking the YAML; the agent's frontmatter, which APM does
+  not rewrite, stays one line with no colon in it.
 - **Codex has no command primitive.** There, a command is run by naming its file — *follow
   `.apm/prompts/blueprint.prompt.md` for experiment 1* — and the skills work as everywhere.
 - **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex takes the
@@ -195,7 +200,7 @@ owner's consent. It answers, it cites, and it names the skill or command the own
 
 ## Hard don'ts
 
-- Don't write into `Sources/`, or into `Philosophy/` outside `/refine`.
+- Don't write into `Sources/`, or into `Philosophy/` outside `refine`.
 - Don't write at home while working in a strategy, unless the owner asks for that write by name.
   Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
 - Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder. Edit `.apm/`,

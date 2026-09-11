@@ -7,10 +7,10 @@ This is the researcher *skeleton*; a person's own library is their clone and is 
 ## Unreleased
 
 **What to do differently:** pull, run `apm install --target <your agent>` and open a new session,
-as 0.2.0 already asks; then run `/read` where you ran `/compile` or `/note`. Reading a PDF needs
+as 0.2.0 already asks; then run `read` where you ran `compile` or `note`. Reading a PDF needs
 [`uv`](https://docs.astral.sh/uv/) on the machine, or `pip install pypdf`. If your `RESEARCHER.md`
 is already filled, add the section *What you are reading for* by hand — the shape is in the
-template — or leave it out and `/read` asks for it the next time a source arrives. A strategy needs
+template — or leave it out and `read` asks for it the next time a source arrives. A strategy needs
 the matching KN Research Process template — the branch `researcher-unified-note` until it is
 released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and ignores
 `Bibliotheca/Extracts/`. In an existing clone, rename `Sources/Notes/` to `Sources/Clippings/`.
@@ -19,24 +19,26 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 * **`.apm/` stays the only copy, and `read` is a skill in it.** Two skills in `.apm/skills/` —
   `read` and `query` — and the eight commands in `.apm/prompts/`, as 0.2.0 laid them out; `compile`
-  and `note` are gone. A skill folder follows the Agent Skills convention, `SKILL.md` with
-  `scripts/` and `references/` beside it, so `read` carries `extract.py` and the note's shape and
-  travels whole. Every description is one line with no colon in it, so it survives every harness's
-  YAML. The agent that `/researcher-init` writes names `/read` where it named `/compile` and
-  `/note`, and `/audit` checks the agent file as well as the installed copies.
+  and `note` are gone. Both are written the way KaxaNuk-APM writes its own: a skill with a folded
+  description, `metadata.version`, *When to Use* and *Steps*, its folder holding `SKILL.md` and
+  nothing else — what `read` runs and reads, `scripts/extract.py` and `references/note.md`, lives
+  at the root of the home, so `.apm/` carries prose only; a command with an `input` list that APM
+  turns into each harness's arguments, in place of `argument-hint` and `$ARGUMENTS`. The agent that
+  `researcher-init` writes names `read` where it named `compile` and `note`, and `audit` checks
+  the agent file as well as the installed copies.
 * **One note, one convention, both repositories.** A note has the same shape at home and in a
   strategy: the KN Research Process note's frontmatter — `source`, `citation`, `local_copy`, `read`
   — plus `tags` for the owner's tag policy; the name `Author_Year_Title`; the source's claims as
   headings, in its authors' terms, and what each implies for the owner's question — or the
   strategy's claim, by number — as a blockquote; `## Why it is here` first and `## What it changes`
-  last. In a strategy `/read` writes the note beside the PDF in `Bibliotheca/Papers/` or `Books/`,
+  last. In a strategy `read` writes the note beside the PDF in `Bibliotheca/Papers/` or `Books/`,
   its row in `BIBLIOGRAPHY.md`, and a line in `Bibliotheca/LOG.md`; `Bibliotheca/Knowledge/` is no
   longer written. A note the home library already holds travels into a strategy without re-reading
   the PDF: the source's part is carried, and the implications are written anew for the strategy's
   claims. The `writer` field is gone — git records who wrote — and the word *article* with it: every
-  skill says *note*. `/refresh-index` is home only, because a strategy's `BIBLIOGRAPHY.md` is
-  curated by hand; `/read` writes each note's row and `/audit` reports the gaps.
-* `/compile` is `/read`, rebuilt around the owner's choice. A script pulls a PDF's table of contents
+  skill says *note*. `refresh-index` is home only, because a strategy's `BIBLIOGRAPHY.md` is
+  curated by hand; `read` writes each note's row and `audit` reports the gaps.
+* `compile` is `read`, rebuilt around the owner's choice. A script pulls a PDF's table of contents
   and its chapters into text; the researcher shows the table of contents, proposes *read*, *skim* or
   *skip* for each chapter against the owner's questions, reads only what they choose, and writes
   one note per chapter read. A book is a folder, with an `INDEX.md` that records what became of
@@ -51,7 +53,7 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
   in a strategy take the paths from *Working in a strategy* — and that table in `AGENTS.md` is now
   the one place that says where a path lands there, the owner's questions included. The *Which
   library* paragraph that `read`, `query` and `audit` each carried is gone.
-* `/refine` says what it edits — a file in `Philosophy/`, the owner's own writing — and `/audit`
+* `refine` says what it edits — a file in `Philosophy/`, the owner's own writing — and `audit`
   says what it does: reports, appends one line to the log, never fixes on its own. Neither was
   described that way before.
 
@@ -59,27 +61,27 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 * `RESEARCHER.md` gains *What you are reading for*: the owner's open questions, numbered, each with
   what it feeds and what would change their mind, and what is out of scope for now. It is the one
-  section meant to change often, and the owner edits it by hand. `/researcher-init` asks for it as
-  its last question. `/read` reads it before every source and asks which question each one serves,
+  section meant to change often, and the owner edits it by hand. `researcher-init` asks for it as
+  its last question. `read` reads it before every source and asks which question each one serves,
   by number, instead of a free reason — that is what `## Why it is here` now records and what
-  `## What it changes` is measured against. When the section is empty at home, `/read` asks for the
+  `## What it changes` is measured against. When the section is empty at home, `read` asks for the
   questions first and offers to write them, on the owner's go; in a strategy the numbered claims in
   `OBJECTIVE.md` play that role, and nothing is written at home.
-* `.apm/skills/read/scripts/extract.py`, the first code in this repository, because extraction
+* `scripts/extract.py`, the first code in this repository, because extraction
   is deterministic and the researcher was doing it by hand, twenty pages at a time. It reads the
   PDF's outline, prints the chapters with their pages, and writes one markdown file per chapter
   asked for, a marker before every page — `pdftotext` when it is on the machine, `pypdf` otherwise,
   and it says which. It refuses a PDF with no text layer instead of guessing, takes page ranges by
   hand when a PDF has no outline, and runs with `uv run`, its one dependency declared inline, so it
-  travels with the skill. Its output lives in `Extracts/` at home and `Bibliotheca/Extracts/` in a
+  needs no install step. Its output lives in `Extracts/` at home and `Bibliotheca/Extracts/` in a
   strategy: a cache, gitignored, regenerable, never cited.
-* `.apm/skills/read/references/note.md`, the shape of every note the researcher writes, at home
+* `references/note.md`, the shape of every note the researcher writes, at home
   and in a strategy — paths and names, frontmatter, the chapter note, the paper note, the book's
   `INDEX.md` and its status vocabulary, what the indexes show, how a home note travels.
 
 ### Removed
 
-* `/note`, merged into `/read`: the strategy note is what `/read` writes there.
+* `note`, merged into `read`: the strategy note is what `read` writes there.
 * The `writer` frontmatter field.
 * The per-skill whitelist in `.gitignore`. Deployed copies under `.claude/`, `.agents/` and the
   other agents' folders are not versioned at all; `.apm/` is. `Extracts/`, `__pycache__/` and

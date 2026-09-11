@@ -1,15 +1,18 @@
 ---
 description: A voice-preserving editor pass over a file in Philosophy/ — the owner's own writing — typos and slips fixed, ambiguities flagged, diff shown before anything is written. Only when the owner runs it by name, on a path they give.
-argument-hint: "<path under Philosophy/>"
+input:
+  - path: "The file under Philosophy/ to edit"
+metadata:
+  version: 0.1
 ---
 
-# /refine
+# Refine a Philosophy file
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
-it first and read its `RESEARCHER.md` and `AGENTS.md`. This skill works at home only.
+it first and read its `RESEARCHER.md` and `AGENTS.md`. This command works at home only.
 
-`Philosophy/` is the owner's voice. This is the only skill that may touch it, and only as an
-editor. `$ARGUMENTS` is one file under `Philosophy/`.
+`Philosophy/` is the owner's voice. This is the only command that may touch it, and only as an
+editor. `${input:path}` is one file under `Philosophy/`.
 
 1. Confirm the path is under `Philosophy/`.
 2. Read the file. Find **only** typos, doubled words, broken links and obvious slips. Preserve the
