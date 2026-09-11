@@ -56,8 +56,20 @@ rest keep their names, and they are discoverable only in a **new** session.
 
 * The researcher can be invited into a strategy: open your assistant in the strategy's folder, add
   the researcher's folder to the session, and the skills come along.
-* Two more ways to install: `apm install KaxaNuk/KaxaNuk-Researcher` adds the skills to a project
-  you already have, and `apm pack` builds a plain plugin bundle for agents that do not use APM.
+* **The researcher is an agent, not only a way of configuring a session.** `/researcher-init` now
+  writes `.apm/agents/<your researcher>.agent.md` as well, so the harness can call it by name —
+  *ask Luna what we have read about momentum crashes* — with its own tool boundary: read, search
+  and the skills, and nothing that writes. Its prompt points at `RESEARCHER.md` and `AGENTS.md`
+  instead of copying them, so there is still one source of truth. **It never writes**, structurally
+  rather than by preference: every skill that writes waits for your go, and an agent reporting back
+  cannot ask for one, so it names the skill for you to run instead. Claude Code, Copilot and Cursor
+  enforce the tool list; Codex drops it, which is why the rule is in the prompt too; Gemini and
+  Windsurf have no agent primitive. An existing researcher gets one by running `/researcher-init`
+  again — it skips the interview when `RESEARCHER.md` is already filled in and only writes the
+  agent.
+* Two more ways to install: `apm install KaxaNuk/KaxaNuk-Researcher --target claude` adds the
+  researcher to a project you already have, and `apm pack` builds a plain plugin bundle for agents
+  that do not use APM.
 * `.gitattributes`, so prose checks out with the bytes it was committed with on every platform.
 
 ### Removed

@@ -124,26 +124,41 @@ session is open in a strategy, or the owner names one by path from home.
 ## Plan first, then write
 
 Every skill or command that writes a file presents a plan in chat — what will be written, where,
-and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before
-writing anything.
-Never write on a rejected or unanswered plan. Never write a plan or a report as a file; the chat and
-the `LOG.md` entry are the record.
+and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing
+anything. Never write on a rejected or unanswered plan. Never write a plan or a report as a file;
+the chat and the `LOG.md` entry are the record.
 
-## Where the skills and the commands live
+**The agent never writes at all**, and that follows from this rule rather than sitting beside it.
+A subagent reports back once and cannot ask for a go, so there is no way for it to write with the
+owner's consent. It answers, it cites, and it names the skill the owner should run.
 
-`.apm/` holds the researcher, once: three **skills** in `.apm/skills/<name>/SKILL.md` — `query`,
-`compile`, `note`, capabilities the researcher reaches for on its own when the work calls for
-them — and eight **commands** in `.apm/prompts/<name>.prompt.md`, tasks the owner starts by name.
-Nothing else is committed twice.
+## Where the skills, the commands and the agent live
 
-- **`apm install --target <agent>` deploys them per machine** — into `.claude/skills/` and
-  `.claude/commands/` for Claude Code; `.agents/skills/` for Codex and the rest, with their
-  commands in `.cursor/`, `.gemini/`, `.github/`, `.opencode/` or `.windsurf/`. Git ignores every
-  copy. A bare `apm install` does every target in `apm.yml`.
+`.apm/` holds the researcher, once, as three APM primitives. Nothing is committed twice.
+
+| Primitive | Where | What it is |
+| --- | --- | --- |
+| **Skill** | `.apm/skills/<name>/SKILL.md` | `query`, `compile`, `note` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also run as `/name` |
+| **Command** | `.apm/prompts/<name>.prompt.md` | the other eight — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Agent** | `.apm/agents/<name>.agent.md` | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `/researcher-init` from `RESEARCHER.md`, so a fresh clone has none until the interview runs |
+
+- **`apm install --target <agent>` deploys them per machine** — into `.claude/skills/`,
+  `.claude/commands/` and `.claude/agents/` for Claude Code; `.agents/skills/` for Codex and the
+  rest, with their commands and agents in `.codex/`, `.cursor/`, `.gemini/`, `.github/`,
+  `.opencode/` or `.windsurf/`. Git ignores every copy. A bare `apm install` does every target in
+  `apm.yml`.
 - **Edit in `.apm/`, never in a deployed copy,** then install again and open a new session. A
   copy that differs from its original is a stale install; `/audit` reports it.
+- **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
+  says which on install, and a dropped key is a rule that is not enforced. Anything that must hold
+  everywhere is written in the body or the description, not only in a key. A description must also
+  survive YAML on every harness, so keep it to one line with no colon in it.
 - **Codex has no command primitive.** There, a command is run by naming its file — *follow
   `.apm/prompts/blueprint.prompt.md` for experiment 1* — and the skills work as everywhere.
+- **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex takes the
+  agent and drops the tool list; Gemini and Windsurf have no agent primitive at all. That is why
+  the read-only rule is written into the agent's own body as well as its frontmatter: a harness
+  that drops the boundary still reads the instruction.
 - **Nothing goes in `.apm/instructions/`.** `apm compile` would render it over this file, which is
   written by hand. With only skills and prompts, `apm compile` leaves `AGENTS.md` and `CLAUDE.md`
   alone and writes a `GEMINI.md` that imports them, which git ignores.
@@ -156,6 +171,8 @@ Nothing else is committed twice.
   Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
 - Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder. Edit `.apm/`,
   then install again.
+- Don't write anything while running as the agent, and don't copy `RESEARCHER.md` into its file.
+  The agent reads the real one at the start of every run.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's
   libraries, and a number without an engine behind it is not quoted.

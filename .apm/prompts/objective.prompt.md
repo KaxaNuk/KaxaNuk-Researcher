@@ -1,7 +1,6 @@
 ---
-description: Draft a strategy's OBJECTIVE.md in place — the main idea and its claims — from the strategy's Bibliotheca notes and the library, every claim citing a note; plan first, the owner's go, then write.
+description: Draft a strategy's OBJECTIVE.md in place — the main idea and its claims — from the strategy's Bibliotheca notes and the library, every claim citing a note; plan first, the owner's go, then write. Only when the owner runs it by name, on a strategy they name or are working in.
 argument-hint: "[path to the strategy repository, if not the one the session is in]"
-disable-model-invocation: true
 ---
 
 # /objective

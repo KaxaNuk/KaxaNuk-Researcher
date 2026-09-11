@@ -11,12 +11,13 @@ drafting its `OBJECTIVE.md` claims and its `BLUEPRINT_N.md` hypotheses — with 
 contrast. What it learns in a strategy stays there: it writes nothing back home unless you ask, so
 one experiment never leaks into the researcher every strategy shares.
 
-**There is almost no code here.** The researcher is a folder architecture, a set of skills and an
-interview. The deterministic work — downloading data, computing signals, pricing a book, attributing
-a return — is done by the Lab's libraries, which the researcher calls and never imitates.
+**There is almost no code here.** The researcher is a folder architecture, a set of skills, an
+agent and an interview. The deterministic work — downloading data, computing signals, pricing a
+book, attributing a return — is done by the Lab's libraries, which the researcher calls and never
+imitates.
 
-It is not tied to one assistant. Three skills and eight commands are authored once, in `.apm/`,
-and `apm install` deploys them to Claude Code, Copilot, Cursor, Codex, Gemini, OpenCode or
+It is not tied to one assistant. Three skills, eight commands and one agent are authored once, in
+`.apm/`, and `apm install` deploys them to Claude Code, Copilot, Cursor, Codex, Gemini, OpenCode or
 Windsurf.
 
 ---
@@ -43,8 +44,9 @@ Windsurf.
    never the one that installed it.
 
 3. **Run `/researcher-init`.** A short interview — who you are, what you invest in, how you want to
-   be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality, and
-   scaffolds any folder that is missing.
+   be spoken to, what is never allowed — writes `RESEARCHER.md`, the researcher's personality,
+   scaffolds any folder that is missing, and writes the agent file that makes your researcher
+   callable by name. Run `apm install --target claude` once more afterwards to deploy it.
    
    ```bash
    /researcher-init
@@ -100,8 +102,11 @@ Philosophy/           your voice: how you invest, what you believe. Read and cit
 Projects/             what you asked for at home: lessons, anything in chat. Strategy work lives
                       in the strategy
 
-.apm/                 the researcher's three skills and eight commands, the only copy of each.
-                      apm install copies them into your agent's folders, which git ignores
+.apm/                 the researcher itself, the only copy of each part. apm install copies them
+                      into your agent's folders, which git ignores
+  skills/               the three the researcher reaches for on its own
+  prompts/              the eight you start by name
+  agents/               your researcher as a callable agent, written by /researcher-init
 ```
 
 **Directionality:** `Sources/ → Knowledge/ → Projects/`. `Philosophy/` is a side channel the
@@ -112,7 +117,7 @@ does not go in the repository at all.
 
 ---
 
-## The skills and the commands
+## The skills, the commands and the agent
 
 Three are **skills** — capabilities the researcher reaches for on its own when the work calls for
 them, and that you can also run as `/name`. Eight are **commands** — tasks you start by name, with
@@ -145,9 +150,26 @@ In a strategy, the library skills work on that strategy's `Bibliotheca/`, and `/
 left out when the session is open in it. None of them writes here at home from there unless you
 ask for it by name.
 
-They are yours to change. Edit a skill in `.apm/skills/` or a command in `.apm/prompts/`, run
-`apm install --target <your agent>` again, and open a new session. `/audit` tells you if an
-installed copy has gone stale.
+### And the agent
+
+`/researcher-init` also writes `.apm/agents/<your researcher>.agent.md`, so the researcher is an
+agent the harness can call by name rather than a way of configuring a session:
+
+> ask Luna what we have read about momentum crashes
+
+It carries its own tool boundary — read, search and the skills, and nothing that writes — and its
+own short prompt, which points at `RESEARCHER.md` and `AGENTS.md` rather than copying them, so
+there stays one source of truth. **It never writes**, and that is structural rather than a
+preference: every skill that writes waits for your go, and an agent reporting back cannot ask for
+one. When an answer needs a write it names the skill for you to run.
+
+Claude Code, Copilot and Cursor enforce the tool list. Codex takes the agent but drops it, which is
+why the rule is written into the prompt as well. Gemini and Windsurf have no agent primitive, so
+there the researcher is its skills and commands, exactly as before.
+
+They are yours to change. Edit a skill in `.apm/skills/`, a command in `.apm/prompts/` or the agent
+in `.apm/agents/`, run `apm install --target <your agent>` again, and open a new session. `/audit`
+tells you if an installed copy has gone stale.
 
 ---
 

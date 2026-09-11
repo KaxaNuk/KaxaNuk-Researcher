@@ -1,7 +1,6 @@
 ---
 description: Read-only review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, never fixes on its own
 argument-hint: "[deep]"
-disable-model-invocation: true
 ---
 
 # /audit
@@ -31,9 +30,12 @@ strategy, never the other. Fixes are a plan the owner approves separately.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts an article leans on that no article defines.
 - An installed copy out of step with `.apm/` at home — a skill under `.claude/skills/` or
-  `.agents/skills/`, or a command under `.claude/commands/` or another agent's folder, that differs
-  from its original in `.apm/skills/` or `.apm/prompts/`, or is missing. Report it as a stale
-  install and give the fix: `apm install --target <agent>`, then a new session.
+  `.agents/skills/`, a command under `.claude/commands/` or another agent's folder, or the agent
+  under `.claude/agents/` — that differs from its original in `.apm/`, or is missing. Report it as
+  a stale install and give the fix: `apm install --target <agent>`, then a new session.
+- The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
+  a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
+  rather than reading it. The fix for the first is `/researcher-init`, which writes it.
 
 ## In a strategy, also
 

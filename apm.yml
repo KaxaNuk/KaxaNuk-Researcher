@@ -4,12 +4,13 @@ description: A KaxaNuk researcher — a companion you name and teach, with the K
 author: KaxaNuk
 license: MIT
 
-# `.apm/` is the researcher, once: three skills in `.apm/skills/` and eight commands in
-# `.apm/prompts/`. `apm install --target <agent>` in this folder copies them into the folders that
-# agent reads — `.claude/skills/` and `.claude/commands/` for Claude Code, `.agents/skills/` for
-# Codex and the rest — and git ignores those copies. The same file lets the researcher install into
-# a project somebody already has, `apm install KaxaNuk/KaxaNuk-Researcher --target claude`, and
-# pack as a plain plugin bundle with `apm pack`.
+# `.apm/` is the researcher, once: three skills in `.apm/skills/`, eight commands in
+# `.apm/prompts/`, and — after `/researcher-init` has run — one agent in `.apm/agents/`.
+# `apm install --target <agent>` in this folder copies them into the folders that agent reads —
+# `.claude/skills/`, `.claude/commands/` and `.claude/agents/` for Claude Code, `.agents/skills/`
+# for Codex and the rest — and git ignores those copies. The same file lets the researcher install
+# into a project somebody already has, `apm install KaxaNuk/KaxaNuk-Researcher --target claude`,
+# and pack as a plain plugin bundle with `apm pack`.
 #
 # Nothing goes in `.apm/instructions/`: `apm compile` would render it over `AGENTS.md`, which is
 # written by hand here. With only skills and prompts, `apm compile` leaves `AGENTS.md` and

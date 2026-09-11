@@ -1,6 +1,5 @@
 ---
 description: Rebuild the library's INDEX.md from what is on disk — Knowledge/ at home, Bibliotheca/Knowledge/ in a strategy — one line per article under its domain, diff shown before writing
-disable-model-invocation: true
 ---
 
 # /refresh-index
