@@ -3,7 +3,7 @@ description: A review of the library at hand — Knowledge/ at home, a strategy'
 input:
   - mode: "Optional: deep, the expensive pass that adds contradictions and gaps"
 metadata:
-  version: 0.2
+  version: 0.2.1
 ---
 
 # Audit the library
@@ -36,10 +36,13 @@ the owner approves separately.
   extract; a page missing `type`, `updated` or `sources`; two pages that contradict each other with
   no `> [!WARNING]` callout; a chapter note none of whose claims reached any concept page; and an
   idea a page names that no page defines.
-- An installed copy out of step with `.apm/` at home — a skill under `.claude/skills/` or
-  `.agents/skills/`, a command under `.claude/commands/` or another agent's folder, or the agent
-  under `.claude/agents/` — that differs from its original in `.apm/`, or is missing. Report it as
-  a stale install and give the fix: `apm install --target <agent>`, then a new session.
+- An installed copy missing or out of step with `.apm/` at home — a skill under `.claude/skills/`
+  or `.agents/skills/`, a command under `.claude/commands/` or another agent's folder, the agent
+  under `.claude/agents/`. **Compare what APM does not rewrite**: the body below the frontmatter,
+  and in it the section headings and the prose. APM translates a command's `${input:name}` into the
+  placeholder each harness takes — `$name` for Claude Code — and rewrites the frontmatter keys it
+  knows, so those differences are the install working, not a stale copy. Report a stale install
+  and give the fix: `apm install --target <agent>`, then a new session.
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
   rather than reading it. The fix for the first is `researcher-init`, which writes it.
