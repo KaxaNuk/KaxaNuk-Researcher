@@ -168,6 +168,12 @@ sources and their tables of contents, `RESEARCHER.md`, the notes so far — and 
 proposal the owner picks is theirs; one they did not pick is never written. The point is to keep
 going, never to stall on an empty answer.
 
+**An answer that asks for a change is answered with options too.** *Change something* is not a
+prompt for free text: the next question offers the changes the plan actually admits — fewer files,
+different names, a smaller scope, a different domain — each one a concrete alternative drawn from
+the plan just shown, with the free-text escape the tool already provides. A question with no
+options in it is a stall.
+
 **The agent never writes at all**, and that follows from this rule rather than sitting beside it.
 A subagent reports back once and cannot ask for a go, so there is no way for it to write with the
 owner's consent. It answers, it cites, and it names the skill or command the owner should run.

@@ -9,7 +9,7 @@ description: >
   owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
   library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.3.1
+  version: 0.3.2
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -166,8 +166,10 @@ the part it bears on; at home, the concept pages it creates and the ones it upda
 links; `Philosophy/` files to cite; contradictions found; new domain folders at home, if any;
 questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log
 line. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — or in
-chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. Revise if asked. **Never write
-on silence or on a rejection.**
+chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. **On *Change something*, ask
+again with options, never with an open question**: the changes this plan admits, as concrete
+alternatives — fewer notes or pages, different names, only the notes this run, a different domain
+— and ask for the go again on the revised plan. **Never write on silence or on a rejection.**
 
 ## 6. Write, on approval only
 
