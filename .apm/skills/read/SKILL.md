@@ -9,7 +9,7 @@ description: >
   owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
   library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.3
+  version: 0.3.1
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -45,10 +45,24 @@ Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belo
 Read the last five entries of the library's log, its index end to end, and in `RESEARCHER.md` the
 domains, the tag policy and the owner's open questions under *What you are reading for*. In a
 strategy the index is `BIBLIOGRAPHY.md` — a row without a note is a lead, not a source — and the
-questions are the claims in `OBJECTIVE.md`, by number. A source already read is not read again
-unless the owner says so. A book begun in an earlier run is found by its path in the log and by its
-`INDEX.md` — the status column says which chapters are read, skimmed, skipped or to come — and this
-run continues from there.
+questions are the claims in `OBJECTIVE.md`, by number.
+
+**A strategy whose `Bibliotheca/` is empty** — the KN Research Process template ships `main` as the
+shape alone, so a new strategy has `Bibliotheca/.gitkeep` and nothing else — cannot take a note
+yet: there is no `BIBLIOGRAPHY.md` to add a row to and no convention in it to follow. Say so, and
+give the one command that brings step 1 across from the template's public `example` branch, run in
+the strategy's root:
+
+```bash
+git fetch https://github.com/KaxaNuk/KaxaNuk-Research-Process example && git checkout FETCH_HEAD -- Bibliotheca
+```
+
+Then stop; the owner runs it, and the read continues from there. Never scaffold `BIBLIOGRAPHY.md`
+by hand: it is the template's file, with its parts and its prose.
+
+A source already read is not read again unless the owner says so. A book begun in an earlier run is
+found by its path in the log and by its `INDEX.md` — the status column says which chapters are
+read, skimmed, skipped or to come — and this run continues from there.
 
 ## 2. List the sources, and extract
 

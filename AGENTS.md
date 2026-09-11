@@ -122,7 +122,7 @@ linked, never written.
 | At home | In the strategy |
 | --- | --- |
 | `Sources/Books/`, `Sources/Papers/`, `Sources/Clippings/` | `Bibliotheca/Books/`, `Bibliotheca/Papers/`, `Bibliotheca/Notes/` — the template's name for the clippings — the PDFs beside the notes, and the clippings; `BIBLIOGRAPHY.md` indexes them and the leads |
-| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis |
+| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. A strategy created from the template's `main` has none of these — `Bibliotheca/` is a `.gitkeep` until the owner brings step 1 across from the template's `example` branch, and `read` gives that command rather than scaffolding the files |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; gitignored there once the template carries the line |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
 | `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `BRAINSTORMING_N.md`, the notes, `BIBLIOGRAPHY.md` |
