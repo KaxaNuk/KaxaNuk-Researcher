@@ -8,7 +8,7 @@ description: >
   there. It walks the index and the links between notes before reading anything, and cites every
   claim. It does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.1
+  version: 0.2
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -32,7 +32,9 @@ are the library's value.
 1. **Index first.** Read the library's index end to end — `Knowledge/INDEX.md` at home,
    `Bibliotheca/BIBLIOGRAPHY.md` in a strategy, where a row without a note is a lead and not a
    source. Note every note whose line bears on the question, in any domain or part, and for a book
-   the chapters read. Never answer from one note in isolation.
+   the chapters read. At home, start with the concept pages under *Concepts* — a question usually
+   lands on one — and follow them to the source notes they cite. Never answer from one note in
+   isolation.
 2. **Follow the links.** Open those notes and follow the standard markdown links between them
    until the map of what the library holds on this question is complete. Two notes that link to
    each other are one argument; read both. Quote the source's terms where they matter.
@@ -47,9 +49,12 @@ are the library's value.
    library has no note for it yet.
 6. **Answer in chat**, with a standard markdown link to every note behind every claim. Where
    sources disagree, say so and show both; a `> [!WARNING]` callout in a note means a
-   claim has been superseded — report the newer one. Write a file only if the owner asks for one:
-   under `Projects/` at home, inside the strategy when there.
-7. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
+   claim has been superseded — report the newer one.
+7. **Offer to keep the answer.** At home, when the answer drew on three or more notes, ask through
+   the question tool whether to keep it as a synthesis page — the shape is in `references/note.md`:
+   under the domain, indexed under *Concepts*, one log line — and write it on *Go* only. In a
+   strategy, never: `OBJECTIVE.md` is where a synthesis belongs, and the owner writes it.
+8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
    suggest the kind of source that would close it. Do not fill a gap from memory without saying you
    did, and never write it into the library during a query.
 

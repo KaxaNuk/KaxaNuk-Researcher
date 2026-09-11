@@ -31,8 +31,8 @@ learns in one experiment must not leak into the next through its own library.
 | `Extracts/` | the text the read skill's script pulls out of the PDFs in `Sources/` — one file per chapter, a marker before every page | **write, through `scripts/extract.py` only.** A cache: regenerable, gitignored, never cited, never edited by hand |
 | `scripts/` | the code the skills run — `extract.py`, which pulls a PDF's table of contents and chapters into `Extracts/` | **run.** Edited only when the owner asks |
 | `references/` | what the skills read on demand — `note.md`, the shape of every note | **read.** Edited only when the owner asks |
-| `Knowledge/` | what the researcher read: one note per paper, one folder per book with a note per chapter read, grouped by domain folder | **read and write** — this is the researcher's own work |
-| `Knowledge/INDEX.md` | the single index of every note | rewrite, only through `read` and `refresh-index` |
+| `Knowledge/` | what the researcher read — one note per paper, one folder per book with a note per chapter read — and its wiki: one concept page per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
+| `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index` |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first |
 | `Projects/` | what the owner asked for at home: lessons from `teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
@@ -59,15 +59,21 @@ researcher writes from it.
   domains `RESEARCHER.md` lists). A paper is one file. A book is a folder — the only kind of
   subfolder a domain has — with an `INDEX.md` for its chapters and one file per chapter read;
   nothing is written for a chapter the owner did not choose, and no other per-folder index exists.
-  An idea that spans sources is a synthesis, written only when the owner asks for it, linking the
-  notes it rests on. The shape of every note is in `references/note.md`.
+  Beside the notes, the **wiki**: one **concept page** per idea the library holds, small and
+  specific, created and updated by `read` as chapters come in — never for a passing mention, never
+  from memory — every claim on it citing a note and its page; and **synthesis pages**, a `query`
+  answer the owner chose to keep. Pages cite notes; a note never cites a page. A strategy has no
+  pages: `OBJECTIVE.md` is its synthesis. The shape of every note and page is in
+  `references/note.md`.
 - **Frontmatter, the four fields the KN Research Process note carries, and one more:** `source`
   (where the work lives outside the repository — a DOI, a URL, a publisher; never invented),
   `citation` (the reference, with the date the link was last checked), `local_copy` (the file read,
   by path in this repository — under `Sources/` at home — or `none`), `read` (the date, and what was
   read — the whole paper, or the chapters), and `tags` (from the owner's tag policy in
   `RESEARCHER.md`; optional in a strategy). Nothing else. A note is named `Author_Year_Title.md`, a
-  book folder `Author_Year_Title/`, a chapter file `NN_Chapter_Title.md`.
+  book folder `Author_Year_Title/`, a chapter file `NN_Chapter_Title.md`. A concept or synthesis
+  page carries `type`, `updated`, `sources` and `tags` instead, and is named by its idea,
+  `Position_Sizing_Rules.md`.
 - **Links are standard markdown links** between notes — `[the aim portfolio](aim-portfolio.md)` —
   so GitHub renders them and the Investment Lab can index them. Never wikilinks.
 - **Dense over decorative.** Bullets, tables, the source's own terms. The first line is the
@@ -116,7 +122,7 @@ linked, never written.
 | At home | In the strategy |
 | --- | --- |
 | `Sources/Books/`, `Sources/Papers/`, `Sources/Clippings/` | `Bibliotheca/Books/`, `Bibliotheca/Papers/`, `Bibliotheca/Notes/` — the template's name for the clippings — the PDFs beside the notes, and the clippings; `BIBLIOGRAPHY.md` indexes them and the leads |
-| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log |
+| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; gitignored there once the template carries the line |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
 | `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `BRAINSTORMING_N.md`, the notes, `BIBLIOGRAPHY.md` |
@@ -217,7 +223,7 @@ owner's consent. It answers, it cites, and it names the skill or command the own
   The agent reads the real one at the start of every run.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
-  regenerated.
+  regenerated. A concept page cites notes, never a PDF, and is never built from memory.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's
   libraries, and a number without an engine behind it is not quoted.
 - Don't rewrite a note in generic voice; match the library's existing notes.

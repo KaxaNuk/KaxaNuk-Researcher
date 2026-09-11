@@ -8,7 +8,9 @@ each as a blockquote, and what it changes at the end.
 
 One note per unit read. A paper is one file. A book is a folder: an `INDEX.md` that holds its table
 of contents and what became of each chapter, and one file per chapter read. Nothing is written for
-a chapter the owner did not choose.
+a chapter the owner did not choose. Beside the notes, at home, the library keeps its **wiki**: one
+concept page per idea, small and specific, updated as chapters come in, and the synthesis pages the
+owner chose to keep from a `query`. Both are described at the end of this file.
 
 ## Paths and names
 
@@ -155,11 +157,22 @@ in the frontmatter names the latest run that touched the book.
 
 ## What the indexes show
 
-At home, `Knowledge/INDEX.md`: one line per paper; one line per book, linking its `INDEX.md` and
-saying which chapters were read of how many; beneath it, one indented line per chapter read.
+At home, `Knowledge/INDEX.md`, under each domain: *Concepts* first — one line per concept or
+synthesis page, its title and one-line definition — then *Sources*: one line per paper; one line
+per book, linking its `INDEX.md` and saying which chapters were read of how many; beneath it, one
+indented line per chapter read.
 
 ```markdown
 ## Finance
+
+### Concepts
+
+- [Position sizing rules](Finance/Position_Sizing_Rules.md) — how a signal becomes a weight, and
+  which rules keep the signal's Sharpe ratio
+- [Sharpe ratio estimation error](Finance/Sharpe_Ratio_Estimation_Error.md) — how wide the band on
+  a measured Sharpe ratio is, and what that does to judging a rule
+
+### Sources
 
 - [Ilmanen (2011) — Expected Returns](Finance/Ilmanen_2011_Expected_Returns/INDEX.md) — read for
   Q2 and Q3: chapters 3 and 4 of 12
@@ -185,9 +198,59 @@ twice. The source's part travels — the claim headings and their bullets, `sour
 says *from the researcher's library*. Everything that is the owner's is written anew, for this
 strategy's claims: `## Why it is here`, every blockquote, `## What it changes`. No link points home.
 
-## Syntheses
+## The concept page — the wiki
 
-An idea that spans chapters or sources is not a note; it is a synthesis. At home it is written under
-the domain folder only when the owner asks for one — in chat, or through `query` — and it links
-every note it rests on. In a strategy the synthesis is `OBJECTIVE.md` itself, its claims citing the
-notes. A synthesis cites notes; notes cite sources.
+A source note records what one source said. A concept page records what the library knows about
+one idea, across sources — the small, specific page a question lands on. It lives in the domain
+folder beside the source notes, named by the idea in the same style — `Position_Sizing_Rules.md`,
+`Sharpe_Ratio_Estimation_Error.md` — and `read` creates and updates it as chapters come in. Never
+from memory, never by hand, never for a passing mention: a page exists when a chapter argues the
+idea in the service of one of the owner's questions, or when a note already touches it. Three to
+eight pages touched per chapter is usual. In a strategy there are none: `OBJECTIVE.md` is the
+strategy's synthesis.
+
+```yaml
+---
+type: concept
+updated: 2026-09-11
+sources:
+  - Paleologo_2021_Advanced_Portfolio_Management/06_Use_Effective_Heuristics_for_Alpha_Sizing.md
+tags: [position-sizing]
+---
+```
+
+```markdown
+# Position sizing rules
+
+One paragraph: what the idea is, in the sources' own terms, as the library holds it today.
+
+## What the sources say
+
+- One claim in one or two lines, then where it comes from — the chapter note and the page
+  ([Paleologo 2021, ch. 6, p. 93](Paleologo_2021_Advanced_Portfolio_Management/06_Use_Effective_Heuristics_for_Alpha_Sizing.md)).
+- The next claim, from the same source or another, the same way.
+
+> [!WARNING]
+> Where two sources disagree, both claims stay, and this callout names the two notes.
+
+## For the owner's questions
+
+> **Question 1:** what the idea, as the library holds it today, says to the question — and what
+> would settle it.
+
+## Open
+
+- What the library does not yet hold on this idea, one line per gap, each a lead for `Sources/`.
+```
+
+Every claim on a concept page cites a source note and its page; a concept page never cites a PDF
+or an extract. When a new chapter contradicts a page, the old claim stays under the callout. `read`
+writes concept pages; `audit` lints them; `query` reads them first.
+
+## The synthesis page
+
+A `query` whose answer drew on three or more notes may be kept, on the owner's go, as a synthesis
+page in the domain folder: `type: synthesis`, `updated`, `sources` and `tags` in the frontmatter;
+the question as its title; the answer as its body, every claim linked to the note or the concept
+page it rests on; `## Open` at the end. A synthesis cites notes and concept pages; a note never
+cites a synthesis. In a strategy the synthesis is `OBJECTIVE.md`, and the owner writes it.

@@ -4,7 +4,11 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
-## Unreleased
+## 0.3.0 (2026-09-11)
+
+**MINOR** — the researcher reads a book a chapter at a time, in one note convention shared with the
+KN Research Process template, keeps a wiki of concept pages, and lives in `.apm/` as two skills,
+eight commands and an agent, in KaxaNuk's own format.
 
 **What to do differently:** pull, run `apm install --target <your agent>` and open a new session,
 as 0.2.0 already asks; then run `read` where you ran `compile` or `note`. Reading a PDF needs
@@ -66,6 +70,16 @@ released — which drops `Bibliotheca/Knowledge/`, adds `Bibliotheca/LOG.md` and
 
 ### Added
 
+* **The wiki: concept pages.** Beside the source notes, `Knowledge/` now holds one small page per
+  idea the library knows about, created and updated by `read` as chapters come in — every claim on
+  it citing the chapter note and its page, contradictions kept under a callout, an `## Open` list
+  of what the library does not yet hold. `query` lands on those pages first and follows them to
+  the notes, and offers to keep an answer that spans several notes as a synthesis page, on your
+  go. `audit` lints them: a claim with no note behind it, a page that cites a PDF, a chapter whose
+  ideas reached no page. `INDEX.md` lists *Concepts* before *Sources* under each domain. A strategy
+  has no pages — `OBJECTIVE.md` is its synthesis. This is the LLM-wiki pattern the library was
+  built on, kept: the chapter is the unit of choice and provenance, the idea is the unit of
+  knowledge. `read` is at 0.3; `query`, `audit` and `refresh-index` at 0.2.
 * `RESEARCHER.md` gains *What you are reading for*: the owner's open questions, numbered, each with
   what it feeds and what would change their mind, and what is out of scope for now. It is the one
   section meant to change often, and the owner edits it by hand. `researcher-init` asks for it as

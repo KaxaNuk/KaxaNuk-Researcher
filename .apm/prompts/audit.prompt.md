@@ -3,7 +3,7 @@ description: A review of the library at hand — Knowledge/ at home, a strategy'
 input:
   - mode: "Optional: deep, the expensive pass that adds contradictions and gaps"
 metadata:
-  version: 0.1
+  version: 0.2
 ---
 
 # Audit the library
@@ -32,6 +32,10 @@ the owner approves separately.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts a note leans on that no note defines.
 - A note that cites an extract or links into `Extracts/`. Notes cite the source and its pages.
+- Concept pages, at home: a claim with no source note behind it, or one that cites a PDF or an
+  extract; a page missing `type`, `updated` or `sources`; two pages that contradict each other with
+  no `> [!WARNING]` callout; a chapter note none of whose claims reached any concept page; and an
+  idea a page names that no page defines.
 - An installed copy out of step with `.apm/` at home — a skill under `.claude/skills/` or
   `.agents/skills/`, a command under `.claude/commands/` or another agent's folder, or the agent
   under `.claude/agents/` — that differs from its original in `.apm/`, or is missing. Report it as

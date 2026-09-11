@@ -9,7 +9,7 @@ description: >
   owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
   library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.2
+  version: 0.3
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -28,10 +28,12 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 `AGENTS.md` says where each of these paths lands.
 
 Turn sources into notes — a paper into one note, a book into one note per chapter that serves one
-of the owner's questions, and nothing for a chapter they did not choose. One convention serves both
-repositories, so a note has the same shape at home and in a strategy; it is in
-[`references/note.md`](../../../references/note.md) at the root of the researcher's home. **You
-must present a plan in chat and receive an explicit go before writing any file.**
+of the owner's questions, and nothing for a chapter they did not choose — and, at home, into the
+wiki: the concept pages those chapters touch, one small page per idea, created and updated as the
+sources come in. One convention serves both repositories, so a note has the same shape at home and
+in a strategy; it and the concept page are in [`references/note.md`](../../../references/note.md)
+at the root of the researcher's home. **You must present a plan in chat and receive an explicit go
+before writing any file.**
 
 Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belongs to
 `scripts/extract.py` in the researcher's home, never to reading the PDF page by page.
@@ -128,6 +130,11 @@ holds, and why it was passed over. For each note, decide:
   claim, every implication blockquote, `## What it changes`. Say so in the plan. Nothing links back
   home, and the PDF is not read twice.
 - **What it links to.** The existing notes it relates to, by relative path, in the same repository.
+- **Which concept pages it touches.** At home only: the ideas the chapter argues in the service of
+  one of the owner's questions, or that a page already covers — an existing page to update, a new
+  one to create, never a page for a passing mention. Three to eight per chapter is usual. Each
+  claim a page takes from the chapter cites the chapter note and its page; a claim that contradicts
+  what a page holds is kept beside the old one under a `> [!WARNING]` callout naming both notes.
 - **What it contradicts or supersedes.** Any claim in an existing note that the chapter conflicts
   with, quoted.
 - **What the owner believes about it.** Any file in `Philosophy/` on the same subject — at home,
@@ -141,9 +148,10 @@ from a summary.
 In chat: for each source, the notes it becomes — target paths, each with the question or claim it
 serves, by number — and, for a book, what its `INDEX.md` will record for the chapters skimmed and
 skipped; in a strategy, the row each note adds to `BIBLIOGRAPHY.md` or the lead it replaces, under
-the part it bears on; links; `Philosophy/` files to cite; contradictions found; new domain folders
-at home, if any; questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the
-log line. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — or in
+the part it bears on; at home, the concept pages it creates and the ones it updates, one line each;
+links; `Philosophy/` files to cite; contradictions found; new domain folders at home, if any;
+questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log
+line. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — or in
 chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. Revise if asked. **Never write
 on silence or on a rejection.**
 
@@ -155,19 +163,27 @@ on silence or on a rejection.**
   the chapter's claims as headings with the implication as a blockquote under each; and
   `## What it changes` at the end, measured against the question. For a book, its `INDEX.md` with
   every chapter's status.
+- At home, the concept pages, in the shape `references/note.md` gives: `type`, `updated`, `sources`
+  and `tags` in the frontmatter; every claim linked to the chapter note and its page; a
+  contradiction kept under a `> [!WARNING]` callout naming both notes; the page's `## For the
+  owner's questions` and `## Open` brought up to date. In a strategy, none: `OBJECTIVE.md` is its
+  synthesis.
 - For every contradiction the owner confirmed: keep the original claim in the older note and place
   a `> [!WARNING]` callout above it naming the newer note by link. Never delete the claim.
 - At home, when the plan added questions: write them under *What you are reading for* in
   `RESEARCHER.md`, in the owner's words, numbered after the ones already there. Nothing else in
   that file changes.
-- The index. At home, `Knowledge/INDEX.md`: one line per paper; one line per book linking its
-  `INDEX.md`, saying which chapters were read of how many, with one indented line per chapter read.
+- The index. At home, `Knowledge/INDEX.md`, under the domain: *Concepts* first — one line per
+  concept page, title and one-line definition — then *Sources*: one line per paper; one line per
+  book linking its `INDEX.md`, saying which chapters were read of how many, with one indented line
+  per chapter read.
   In a strategy, `BIBLIOGRAPHY.md`: the note's row under the part it bears on — replacing the
   *No note yet* of a lead, or added where the source was not listed — and nothing else in that
   file: its parts and its prose are the owner's.
 - One entry appended to the library's log — `Knowledge/LOG.md` at home, `Bibliotheca/LOG.md` in a
-  strategy — in the format `AGENTS.md` gives: `read`, the notes written and updated, the flags, and
-  for a book a `read:` line naming the chapters read, skimmed, skipped and to come.
+  strategy — in the format `AGENTS.md` gives: `read`, the notes and concept pages written and
+  updated, the flags, and for a book a `read:` line naming the chapters read, skimmed, skipped and
+  to come.
 
 ## 7. Report
 
@@ -191,6 +207,10 @@ note could serve, with the `read <strategy> <source>` that would carry it there.
   written for the strategy's claims.
 - Write a note for a chapter the owner did not choose, or a question or a reason they did not give.
 - Cite an extract. Notes cite the source and its pages; extracts are regenerated.
+- Cite a PDF or an extract from a concept page, or build one from memory. A concept page cites
+  notes and their pages; notes cite sources.
+- Create a concept page for a passing mention, or one in a strategy — `OBJECTIVE.md` is the
+  strategy's synthesis.
 - Read a source you could not open, or fill one in from memory or from a summary.
 - Write a plan or a report as a file. The chat and the log entry are the record.
 - Rewrite an existing note in a different voice. Match what is there.
@@ -201,4 +221,4 @@ note could serve, with the `read <strategy> <source>` that would carry it there.
   chapters as text, one file per chapter. `--help` has every option.
 - `references/note.md`, at the root of the researcher's home: the shape of every note — paths and
   names, frontmatter, the chapter note, the paper note, the book's `INDEX.md`, what the indexes
-  show, how a home note travels into a strategy.
+  show, how a home note travels into a strategy — and of the concept page and the synthesis page.

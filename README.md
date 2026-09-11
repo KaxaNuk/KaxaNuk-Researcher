@@ -60,7 +60,9 @@ Windsurf.
 4. **Drop a paper or a book into `Sources/` and run `read`.** For a book the researcher shows you
    its table of contents and asks which chapters serve which of your questions; it reads only
    those, proposes how to file them, waits for your go, and writes one note per chapter read into
-   `Knowledge/`, linked to everything it relates to.
+   `Knowledge/`, linked to everything it relates to — and, for the ideas those chapters argue, the
+   wiki: one small concept page per idea, created or updated, every claim citing the note it came
+   from. Ask a question later and `query` lands on the page, not on a search.
 
 5. **Invite it to a strategy.** Point at it from here — `blueprint D:\Research\Golden-Flow 1` —
    or open your assistant in the strategy's folder and add this one to the session, with
@@ -103,8 +105,8 @@ Sources/              what you read: PDFs, papers, clippings. The researcher rea
   Clippings/            articles, transcripts and threads you collected, never your own writing
 Extracts/             the text the script pulled out of your PDFs, one file per chapter;
                       regenerable, gitignored, never cited
-Knowledge/            what the researcher read: one note per paper, one folder per book with a note
-                      per chapter read, grouped by domain
+Knowledge/            what the researcher read — one note per paper, one folder per book with a
+                      note per chapter read — and its wiki, one concept page per idea, by domain
   INDEX.md              the one index of the library — read first, always
   LOG.md                append-only record of every read, audit and refresh
 Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
@@ -141,7 +143,7 @@ command primitive. On Codex, ask for a command by its file — *follow
 | Skill | What it does |
 | --- | --- |
 | `read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten. Fires on its own when you ask to file or read a source |
-| `query <question>` | answers from the library first, then `Philosophy/`, then the sources; every claim cited; gaps named. Fires on its own when you ask what your library says |
+| `query <question>` | answers from the library first — the concept pages, then the notes they cite — then `Philosophy/`, then the sources; every claim cited; gaps named; offers to keep an answer that spans several notes as a synthesis page. Fires on its own when you ask what your library says |
 
 | Command | What it does |
 | --- | --- |

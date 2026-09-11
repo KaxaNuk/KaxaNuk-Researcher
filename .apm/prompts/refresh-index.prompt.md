@@ -1,7 +1,7 @@
 ---
 description: Rebuild Knowledge/INDEX.md at home from what is on disk — one line per note under its domain, a book's chapters beneath it — diff shown before writing. Home only; a strategy's BIBLIOGRAPHY.md is curated by hand
 metadata:
-  version: 0.1
+  version: 0.2
 ---
 
 # Refresh the index
@@ -21,10 +21,14 @@ the files.
    folder. A book folder is one entry: its `INDEX.md`, and beneath it its chapter files.
 2. For each note take its title from the first heading and its one-line description from
    `## What it changes`, or from the opening paragraph if the note predates that convention. For a
-   book, the description says which chapters were read of how many, from its `INDEX.md` table.
-3. Render one line per paper and one per book, with one indented line per chapter read: a standard
-   markdown link and the description. Domains in alphabetical order; notes alphabetical inside a
-   domain; chapters in book order. No per-folder indexes beyond a book's own.
+   book, the description says which chapters were read of how many, from its `INDEX.md` table. For
+   a concept or synthesis page — `type` in the frontmatter says so — the first paragraph is the
+   description.
+3. Render, under each domain, *Concepts* first — one line per concept or synthesis page — then
+   *Sources*: one line per paper and one per book, with one indented line per chapter read; a
+   standard markdown link and the description on every line. Domains in alphabetical order; pages
+   and notes alphabetical inside a domain; chapters in book order. No per-folder indexes beyond a
+   book's own.
 4. Show the diff against the current `INDEX.md` in chat and wait for a go. **Never write on a
    rejected or unanswered plan.**
 5. Write `INDEX.md`, and append to the library's `LOG.md`: `## [YYYY-MM-DD] refresh-index | <N>
