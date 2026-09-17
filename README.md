@@ -64,13 +64,26 @@ Windsurf.
    wiki: one small concept page per idea, created or updated, every claim citing the note it came
    from. Ask a question later and `query` lands on the page, not on a search.
 
-5. **Invite it to a strategy.** Point at it from here — `blueprint D:\Research\Golden-Flow 1` —
-   or open your assistant in the strategy's folder and add this one to the session, with
-   `claude --add-dir <this folder>` or `/add-dir` once inside; the skills come along. There, the
-   strategy's `Bibliotheca/` is its library: `read` writes the notes beside the strategy's PDFs,
-   each with its row in `BIBLIOGRAPHY.md`, and `blueprint` drafts the hypothesis into
-   `BLUEPRINT_N.md` with every prediction citing its note — each after a plan and your go. You
-   review the diff and commit it, before the rule. Nothing is written here at home.
+5. **Invite it to a strategy, or to any project.** Point at it from here —
+   `blueprint D:\Research\Golden-Flow 1` — or open your assistant in the strategy's folder and add
+   this one to the session, with `claude --add-dir <this folder>`, `/add-dir` once inside, or the
+   desktop app's add-folder button; the skills, the commands and the agent come along. For
+   `CLAUDE.md`, `AGENTS.md` and `RESEARCHER.md` to come too, set this once per machine — an
+   `export` in your shell profile outside Windows — then quit and reopen your assistant:
+
+   ```bash
+   setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
+   ```
+
+   *Checking an invitation* in `AGENTS.md` says how to confirm they loaded, and the fallback when
+   they did not. In a strategy the work follows *The order of work* in `AGENTS.md`: the objective
+   before any paper, then reading for each of its claims, the universe and the data, and only then
+   the blueprint. The strategy's `Bibliotheca/` is its library: `objective` drafts the claims from
+   your words, `read` writes the notes beside the strategy's PDFs, each with its row in
+   `BIBLIOGRAPHY.md`, and `blueprint` drafts the hypothesis into `BLUEPRINT_N.md` with every
+   prediction citing its note — each after a plan and your go. You review the diff and commit it,
+   before the rule. In any other project the researcher challenges on evidence and follows that
+   project's rules. Nothing is written here at home unless you ask.
 
 ### Or add the researcher to a project you already have
 
@@ -142,14 +155,14 @@ command primitive. On Codex, ask for a command by its file — *follow
 
 | Skill | What it does |
 | --- | --- |
-| `read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten. Fires on its own when you ask to file or read a source |
+| `read` | reads the sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`, each with its row in `BIBLIOGRAPHY.md`. A script extracts a PDF by chapter; the researcher shows you the table of contents, asks which chapters serve which of your questions, reads only those and writes one note per chapter read; plan, your go, then writes; contradictions flagged, never overwritten. Fires on its own when you ask to file or read a source |
 | `query <question>` | answers from the library first — the concept pages, then the notes they cite — then `Philosophy/`, then the sources; every claim cited; gaps named; offers to keep an answer that spans several notes as a synthesis page. Fires on its own when you ask what your library says |
 
 | Command | What it does |
 | --- | --- |
 | `researcher-init` | the interview; writes `RESEARCHER.md`, scaffolds the folders and writes the agent file |
-| `objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — from its notes and your library |
-| `blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place — thesis, rules, predictions — with every prediction citing a note or a measurement |
+| `objective [strategy]` | drafts the strategy's `OBJECTIVE.md` in place — the main idea and its claims — first from your words, before any paper, then fine-tuned from its notes |
+| `blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` in place, once the claims and the investable universe exist — thesis, rules, predictions — with every prediction citing a note or a measurement |
 | `brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
 | `teach <topic>` | a multi-session tutor grounded in your library |
 | `audit` | reviews the library at hand — broken links, duplicates, stale index, orphans, frontmatter, stale installs; `deep` adds contradictions — and reports; one line in the log, never a fix on its own |
@@ -180,9 +193,11 @@ Claude Code, Copilot and Cursor enforce the tool list. Codex takes the agent but
 why the rule is written into the prompt as well. Gemini and Windsurf have no agent primitive, so
 there the researcher is its skills and commands, exactly as before.
 
-They are yours to change. Edit a skill in `.apm/skills/`, a command in `.apm/prompts/` or the agent
-in `.apm/agents/`, run `apm install --target <your agent>` again, and open a new session. `audit`
-tells you if an installed copy has gone stale.
+**This is a base, and it is yours to grow.** Edit a skill in `.apm/skills/`, a command in
+`.apm/prompts/` or the agent in `.apm/agents/`; add skills and commands of your own, teach it any
+subject, or give it a stack of tools, libraries and modules as dependencies in `apm.yml`. Then run
+`apm install --target <your agent>` again and open a new session. `audit` tells you if an installed
+copy has gone stale.
 
 **Working on the skeleton itself.** This repository is the skeleton; your researcher is a clone of
 it under its own name, and that clone versions everything — `RESEARCHER.md`, the agent,

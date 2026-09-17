@@ -1,10 +1,10 @@
 ---
-description: Draft BLUEPRINT_N.md in place for a strategy — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
+description: Draft BLUEPRINT_N.md in place for a strategy, once its objective has claims and its investable universe exists — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
   - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
 metadata:
-  version: 0.1
+  version: 0.2
 ---
 
 # Draft a blueprint
@@ -21,9 +21,17 @@ measured, and writes it where the template keeps it. `${input:experiment}` is th
 
 ## Step 1: Refuse if the order is wrong
 
-If `Experiments/Experiment_N/experiment_N.ipynb` already holds a rule in its section 2, stop and say
-so: a hypothesis written after its test is not a hypothesis. If `BLUEPRINT_N.md` already has its
-slots filled, stop too — it does not change once written; a new idea is Experiment N+1.
+The blueprint is step 5 of *The order of work* in `AGENTS.md`. Stop, and name the step that comes
+first, when:
+
+- **`OBJECTIVE.md` has no claims** — the objective comes first, and its claims fine-tuned by reading
+  for them: `objective`, then `read`.
+- **`Universe/Investable_Universe.csv` has no identifier under its header** — the investable
+  universe comes before the hypothesis about it.
+- **`Experiments/Experiment_N/experiment_N.ipynb` already holds a rule in its section 2** — a
+  hypothesis written after its test is not a hypothesis.
+- **`BLUEPRINT_N.md` already has its slots filled** — it does not change once written; a new idea is
+  Experiment N+1.
 
 ## Step 2: Read, in this order
 
@@ -31,7 +39,11 @@ slots filled, stop too — it does not change once written; a new idea is Experi
 2. The strategy's `Bibliotheca/` notes, through `BIBLIOGRAPHY.md`, and which sources are still
    leads.
 3. `RESULTS.md`, section *Before any experiment*, and anything in `Data/Analyzer/` — the
-   measurements the analyzer has already made about the signal. For Experiment 1 there may be none.
+   measurements the analyzer has already made about the signal. The data comes before the blueprint
+   in the order of work, so if that section is still the template's prose, say so in the plan and
+   write every prediction that needed a measurement as a lead — *run analyzer section Y before
+   predicting this*. Probe `RESULTS.md` first, not the folder: `Data/Analyzer/` is ignored by git,
+   so a fresh clone has it empty even after step 4 was done.
 4. `Experiments/Experiment_N/BLUEPRINT_N.md` as shipped — the headings to fill — and for N > 1,
    `FINDINGS_1.md` (the benchmark is shared context) but **no other experiment's files** unless the
    owner has written the request and reason into `JOURNAL_N.md` first. Say so if they have not.
@@ -58,7 +70,9 @@ Show the draft in chat and list: the leads (notes to write first), the predictio
 be willing to be wrong about, and the analyzer sections still to run. Wait for the go. Then write
 it into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy, under the template's headings.
 The owner edits and commits it **before writing the rule** — the branch's first commit, so the diff
-shows the order.
+shows the order. Then say what comes next in the order of work: the broad reading, for what the
+blueprint left as leads; `brainstorm`, for what to try next; and the cycle — portfolio
+construction, backtest, attribution — until it is finished.
 
 Never write into the researcher's home from here. Never state a performance number as a prediction
 unless an analyzer measurement licenses it; the engine has not run, and the blueprint must not

@@ -13,15 +13,32 @@ the session happened to open. There are two ways to work:
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
   path: `blueprint D:\Research\Golden-Flow 1`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
-  researcher's folder to the session — `claude --add-dir D:\Research\Luna`, or `/add-dir` once
-  inside. The skills and commands load from there on their own, provided `apm install` has been
-  run there once on this machine; `RESEARCHER.md` and this file do not, unless
-  `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is set, which is why every skill begins by
-  reading them from home. The strategy's own `AGENTS.md` still governs that repository.
+  researcher's folder to the session — `claude --add-dir D:\Research\Luna`, `/add-dir` once
+  inside, or the desktop app's add-folder button. The skills, the commands and the agent load from
+  there on their own, provided `apm install` has been run there once on this machine.
+  **`CLAUDE.md` does not**, unless `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is in the
+  environment before the assistant starts — and it imports this file and `RESEARCHER.md`, so that
+  one variable is what makes the researcher arrive whole. Set it once per machine as a user
+  environment variable — `setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1` on Windows, an
+  `export` in the shell profile elsewhere — then quit and reopen the assistant; an `env` entry in
+  `settings.json` is applied too late for it. The strategy's own `AGENTS.md` still governs that
+  repository.
 
 Either way, work on a strategy lands in the strategy — see *Working in a strategy* below — and
 nothing lands at home. The researcher is one per person and shared by every strategy; what it
 learns in one experiment must not leak into the next through its own library.
+
+**Checking an invitation.** In the first session after inviting the researcher, confirm that
+`CLAUDE.md`, `AGENTS.md` and `RESEARCHER.md` from home are in context — `/context` lists them under
+*Memory files*, and the researcher can say which instruction files it was started with, by path. If
+they are missing, the variable is not set or the assistant does not honour it; the desktop app does
+not document it. The fallback is a `CLAUDE.local.md` at the strategy's root holding one line, the
+researcher's `CLAUDE.md` by absolute path — `@D:/Research/Luna/CLAUDE.md` — which then loads with
+the strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md` to the
+strategy's `.gitignore`, and approve the external import the first time the assistant asks, because
+declined it stays off. Whatever loads, every skill and command still begins by reading
+`RESEARCHER.md` and this file from home, so a missing load costs the conversation its context, never
+a skill its rules.
 
 ## What each folder is, and who may write in it
 
@@ -74,7 +91,8 @@ researcher writes from it.
   book folder `Author_Year_Title/`, a chapter file `NN_Chapter_Title.md`. A concept or synthesis
   page carries `type`, `updated`, `sources` and `tags` instead, and is named by its idea,
   `Position_Sizing_Rules.md`.
-- **Links are standard markdown links** between notes — `[the aim portfolio](aim-portfolio.md)` —
+- **Links are standard markdown links** between notes —
+  `[Ilmanen (2011), chapter 3](Ilmanen_2011_Expected_Returns/03_The_Equity_Premium.md)` —
   so GitHub renders them and the Investment Lab can index them. Never wikilinks.
 - **Dense over decorative.** Bullets, tables, the source's own terms. The first line is the
   provenance — the chapter and pages read. The first section is `## Why it is here` — the question
@@ -112,7 +130,8 @@ know what happened recently.
 A strategy is a separate repository copied from the KN Research Process template. Its
 `Bibliotheca/` is step 1 of that process — the sources, and the notes beside them — and
 the researcher's job there is **the hypothesis**: turning the strategy's own reading into notes,
-claims and predictions, with the home library as the contrast.
+claims and predictions, with the home library as the contrast — and after it, a second pair of
+eyes through the rest of the construction, in the order *The order of work* below gives.
 
 **Where things are, in a strategy.** The skills read their paths through this table whenever the
 session is open in a strategy — a repository with a `Bibliotheca/` — or the owner names one by path
@@ -122,7 +141,7 @@ linked, never written.
 | At home | In the strategy |
 | --- | --- |
 | `Sources/Books/`, `Sources/Papers/`, `Sources/Clippings/` | `Bibliotheca/Books/`, `Bibliotheca/Papers/`, `Bibliotheca/Notes/` — the template's name for the clippings — the PDFs beside the notes, and the clippings; `BIBLIOGRAPHY.md` indexes them and the leads |
-| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. A strategy created from the template's `main` has none of these — `Bibliotheca/` is a `.gitkeep` until the owner brings step 1 across from the template's `example` branch, and `read` gives that command rather than scaffolding the files |
+| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. A strategy created from the template's `main` has none of these — `Bibliotheca/` is a `.gitkeep` until the owner brings `BIBLIOGRAPHY.md` and `LOG.md` across from the template's `example` branch, a worked strategy, and strips what is that strategy's: everything between the example markers in `BIBLIOGRAPHY.md`, every entry below the rule in `LOG.md`. `read` gives that command and says what to delete rather than scaffolding the files |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; gitignored there once the template carries the line |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
 | `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `BRAINSTORMING_N.md`, the notes, `BIBLIOGRAPHY.md` |
@@ -149,9 +168,60 @@ linked, never written.
   both repositories share — its shape is in `references/note.md`: the source's
   claims as headings, in its authors' terms, and what each implies for *this* strategy as a
   blockquote, naming the claim by number.
-- **The strategy's rules govern there** — `AGENTS.md` in that repository, and the
+- **The strategy's rules govern there** — its `AGENTS.md`, the *Starting your own strategy* section
+  of the template's README, which the strategy's own `README.md` links to, and the
   `experiment-lifecycle` skill if it is installed. The researcher follows them: one experiment at a
-  time, who writes each document, the blueprint before the rule.
+  time, who writes each document, the objective before any paper and the blueprint before the rule.
+  Where the skill lists the steps in a different order — its 0.4.x text still puts the universe
+  before the objective — the template's README holds.
+
+### The order of work
+
+A strategy is built in this order, and the researcher helps at every step. **The objective comes
+before any paper**: reading with no claim to read for has no stopping condition, and a claim written
+after the reading is an observation wearing a hypothesis's clothes. The reading then comes in two
+waves — narrow, per claim, to fine-tune the objective, so the blueprint has notes to cite; broad,
+after the blueprint, for what it left open and what to try next.
+
+| # | Step | Where it lands | The researcher's part |
+| --- | --- | --- | --- |
+| 1 | **The objective** — the idea in one sentence and the claims inside it, before any paper is read | `OBJECTIVE.md` | `objective`, first pass: the claims from the owner's words, each *untested*, its evidence the question that would settle it, marked as a lead |
+| 2 | **Fine-tune the objective** — read for each claim's question, the sources that argue against it included | `Bibliotheca/`, then `OBJECTIVE.md` | `read`, one note per paper or chapter naming the claim it serves; then `objective` again, the evidence rewritten from the notes |
+| 3 | **Choose the investable universe** — the claims decide what it has to contain, delisted names included | `Universe/Investable_Universe.csv` | contrast from the library — survivorship, point-in-time membership — never a number |
+| 4 | **Build the data** — curator, universe notebook, refinery, analyzer, in that order | `Data/` — the analyzer's measurements go straight into `RESULTS.md`, *Before any experiment* | contrast from the library — what the data can do to a signal — never a number |
+| 5 | **The benchmark, then the blueprint hypothesis**, before the rule | `Experiments/Experiment_N/BLUEPRINT_N.md` | `blueprint`: every prediction cites a note from step 2 or an analyzer measurement, or is a lead, counted |
+| 6 | **Search for papers and brainstorm** — the broad wave | `Bibliotheca/`, `BRAINSTORMING_N.md` | `read` for what the blueprint left open; `brainstorm` for what to try next |
+| 7 | **The cycle** — portfolio construction, backtest, attribution — until it is finished | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | challenges each run against the blueprint's predictions and the notes; every number comes from the Lab's engines |
+| 8 | **Results** — every finished cycle, kept or rejected | `RESULTS.md`, compiled from `FINDINGS_N.md` | a rejected cycle is reported as loudly as a kept one: *What is closed* is what stops the next person repeating it |
+
+The numbering is the template's — the *Starting your own strategy* section of its README counts
+the same eight — so a step has one number in the two files a user has open.
+
+**A command asked for out of order names the step that comes first, and stops.** `read` in a
+strategy whose `OBJECTIVE.md` has no claims points at `objective`; `blueprint` with no claims, or
+with no investable universe, points at the step that is missing. Going back is how steps 1 to 4 are
+meant to work — a claim sharpened by a paper, a universe widened — until the blueprint is written;
+after it, a change to the claims or the rules is a new experiment, not an edit. One step may come
+early: the first entry of `BRAINSTORMING_1.md`, choosing the benchmark, is thinking done before
+Experiment 1's blueprint — the template's `BRAINSTORMING_1.md` says that entry is usually the
+benchmark choice, and Experiment 1 *is* the benchmark, so the choice cannot wait for the blueprint
+that depends on it.
+
+## Joining other projects
+
+The owner invites the researcher by hand — into a strategy, or into any other project: a Lab
+library, a data pipeline, a pitch, a workshop. Outside a strategy there is no order of work to
+follow, and the rules are the ones that keep the library honest:
+
+- **The researcher challenges on evidence.** It reads the home library and `Philosophy/`, names the
+  note behind every objection, and says so when the library has nothing on the point.
+- **The project's own rules govern there** — its `AGENTS.md`, `CLAUDE.md` or `README.md`. The
+  researcher writes in the project only after a plan and the owner's go, and never links into its
+  home from it.
+- **Nothing flows back unless the owner asks.** When they want the researcher to learn from a
+  project, what is to be learned enters as a source — a paper, a document or a clipping put in
+  `Sources/` at home — and `read` files it into `Knowledge/` with its provenance. Never a note
+  written from memory of the project.
 
 ## Plan first, then write
 
@@ -173,6 +243,19 @@ prompt for free text: the next question offers the changes the plan actually adm
 different names, a smaller scope, a different domain — each one a concrete alternative drawn from
 the plan just shown, with the free-text escape the tool already provides. A question with no
 options in it is a stall.
+
+**Working lean.** Tokens and context are spent on purpose — the default, which the owner may change:
+
+1. **One short planning round.** An idea comes back as the files it touches and a few options;
+   the owner picks once, then the work is done in one pass — edit, install, verify.
+2. **Batch small changes.** Wording, rules and skill tweaks are gathered in chat and applied
+   together: one install, one check.
+3. **One task per session.** Done and committed, a new session starts; what matters is in the
+   files, not in the conversation.
+4. **Search before reading.** Grep for the lines, read only those; a wide sweep goes to a subagent
+   that returns the conclusion, not the files.
+5. **Short replies.** A diff summarised when it is large, no recap of what the owner has already
+   seen, depth when they ask for it.
 
 **The agent never writes at all**, and that follows from this rule rather than sitting beside it.
 A subagent reports back once and cannot ask for a go, so there is no way for it to write with the

@@ -1,26 +1,11 @@
 name: kaxanuk-researcher
-version: 0.3.0
+version: 0.4.0
 description: A KaxaNuk researcher — a companion you name and teach, with the KN Research Process built in, that keeps a library of what you read and drafts the hypothesis of every strategy you build
 author: KaxaNuk
 license: MIT
 
-# `.apm/` is the researcher, once: two skills in `.apm/skills/`, eight commands in
-# `.apm/prompts/`, and — after `/researcher-init` has run — one agent in `.apm/agents/`.
-# `apm install --target <agent>` in this folder copies them into the folders that agent reads —
-# `.claude/skills/`, `.claude/commands/` and `.claude/agents/` for Claude Code, `.agents/skills/`
-# for Codex and the rest — and git ignores those copies. The same file lets the researcher install
-# into a project somebody already has, `apm install KaxaNuk/KaxaNuk-Researcher --target claude`,
-# and pack as a plain plugin bundle with `apm pack`.
-#
-# Nothing goes in `.apm/instructions/`: `apm compile` would render it over `AGENTS.md`, which is
-# written by hand here. With only skills and prompts, `apm compile` leaves `AGENTS.md` and
-# `CLAUDE.md` alone and writes a `GEMINI.md` that imports them, which git ignores.
-
-# No dependencies. `KaxaNuk/KaxaNuk-APM/common` was here, but it installs Python style rules —
-# pep8, test-writing, bloom-code — into every assistant's context, and there is almost no code in
-# this repository. It comes back when there is a KaxaNuk package that teaches research rather than
-# linting. `data-curator` and `investment-lab` are on the KN roadmap but do not exist in that
-# repository yet.
+# `.apm/` is the researcher: `apm install --target <agent>` copies its skills, commands and agent
+# into that agent's folders, which git ignores. Add the packages your own work needs below.
 dependencies:
   apm: []
   mcp: []

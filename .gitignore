@@ -1,7 +1,4 @@
-# --- Your library is yours ------------------------------------------------------------------------
-# Sources are usually copyrighted files you may hold but not redistribute, so they stay out of
-# any push by default. Plain-text clippings you wrote yourself may be tracked; remove a pattern
-# below if you want a kind of source in your own private clone.
+# Sources: copyrighted files stay out of git
 Sources/**/*.pdf
 Sources/**/*.epub
 Sources/**/*.docx
@@ -12,11 +9,7 @@ Sources/**/*.png
 Sources/**/*.jpg
 Sources/**/*.jpeg
 
-# --- Agent tooling ---------------------------------------------------------------------------------
-# `.apm/` and `apm.yml` ARE committed: the two skills and eight commands, and what this repository
-# publishes. Everything `apm install` then writes is per machine — copies of `.apm/` in the folders
-# each agent reads — and stays out of git, the way a virtualenv does. `apm pack` output likewise,
-# and the `GEMINI.md` that `apm compile` generates.
+# Agent tooling: per-machine copies written by apm install
 .claude/
 .agents/
 .codex/
@@ -35,15 +28,14 @@ GEMINI.md
 build/
 .claude-plugin/
 
-# --- Derived from the sources and the code: regenerable, never versioned --------------------------
-# Extracts are the text the read skill's script pulls out of the PDFs, one file per chapter. They
-# are the PDF's words, under the PDF's copyright, and they come back with one command.
+# Regenerable: extracts and Python caches
 Extracts/
 __pycache__/
 .venv/
 
-# --- IDE and OS --------------------------------------------------------------------------------------
+# IDE and OS
 .idea/
 .vscode/
+.obsidian/
 .DS_Store
 Thumbs.db

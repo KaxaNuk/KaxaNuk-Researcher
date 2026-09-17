@@ -2,14 +2,15 @@
 name: read
 description: >
   Load this skill whenever the owner asks to read, file, compile or add a source to the library — a
-  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, and in a strategy into a note
-  beside the PDF in its Bibliotheca/ with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter
-  with a script, shows the owner the table of contents, asks which chapters serve which of their
-  questions or claims, reads only those, and writes one note per chapter read, after a plan and the
-  owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
-  library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
+  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, and in a strategy, once its
+  OBJECTIVE.md has claims because the objective comes before any paper, into a note beside the PDF
+  in its Bibliotheca/ with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter with a script,
+  shows the owner the table of contents, asks which chapters serve which of their questions or
+  claims, reads only those, and writes one note per chapter read, after a plan and the owner's go;
+  contradictions are flagged, never overwritten. It does NOT answer questions from the library
+  (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.3.2
+  version: 0.4.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -47,18 +48,29 @@ domains, the tag policy and the owner's open questions under *What you are readi
 strategy the index is `BIBLIOGRAPHY.md` — a row without a note is a lead, not a source — and the
 questions are the claims in `OBJECTIVE.md`, by number.
 
+**A strategy whose `OBJECTIVE.md` has no claims yet** cannot take a note. The objective comes
+before any paper — *The order of work* in `AGENTS.md` — because a note is read for a claim, and a
+claim written after the reading is shaped by it. Say so, offer `objective`, whose first pass drafts
+the claims from the owner's words, and stop. The reading that follows comes in two waves: narrow,
+per claim, to fine-tune the objective before the blueprint; broad, after the blueprint.
+
 **A strategy whose `Bibliotheca/` is empty** — the KN Research Process template ships `main` as the
 shape alone, so a new strategy has `Bibliotheca/.gitkeep` and nothing else — cannot take a note
-yet: there is no `BIBLIOGRAPHY.md` to add a row to and no convention in it to follow. Say so, and
-give the one command that brings step 1 across from the template's public `example` branch, run in
-the strategy's root:
+either: there is no `BIBLIOGRAPHY.md` to add a row to and no convention in it to follow. Say so, and
+give the one command that brings the two convention files across from the template's public
+`example` branch — a worked strategy, so only those two come and not its notes — run in the
+strategy's root:
 
 ```bash
-git fetch https://github.com/KaxaNuk/KaxaNuk-Research-Process example && git checkout FETCH_HEAD -- Bibliotheca
+git fetch https://github.com/KaxaNuk/KaxaNuk-Research-Process example
+git checkout FETCH_HEAD -- Bibliotheca/BIBLIOGRAPHY.md Bibliotheca/LOG.md
 ```
 
-Then stop; the owner runs it, and the read continues from there. Never scaffold `BIBLIOGRAPHY.md`
-by hand: it is the template's file, with its parts and its prose.
+Then say what is the example's and not theirs: everything between `<!-- example: begin -->` and
+`<!-- example: end -->` in `BIBLIOGRAPHY.md`, and every entry below the rule in `LOG.md`, are the
+worked strategy's and go before the first note. Then stop; the owner runs it, and the read continues
+from there. Never scaffold `BIBLIOGRAPHY.md` by hand: it is the template's file, with its parts and
+its prose.
 
 A source already read is not read again unless the owner says so. A book begun in an earlier run is
 found by its path in the log and by its `INDEX.md` — the status column says which chapters are
@@ -114,9 +126,10 @@ in `RESEARCHER.md`, offered through the question tool as a multi-select with *Ot
 owner picks are theirs, numbered; the plan offers to write them under *What you are reading for*,
 in their words, and that is the one write this skill makes outside the library and the extracts,
 at home only, said in the plan. The owner may still read a source as background, no question in
-mind, but the proposal comes first. In a strategy whose `OBJECTIVE.md` has no claims yet, the
-questions are whatever the owner says they are reading for, recorded in the note; the file is
-theirs to fill, and nothing is written at home.
+mind, but the proposal comes first. In a strategy the questions are the claims in `OBJECTIVE.md`,
+by number — a strategy with none stopped at step 1. A question the claims do not cover is a claim to
+add with `objective` before the reading, and *background reading* is a home answer: in a strategy
+every note serves a claim. Nothing is written at home.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the

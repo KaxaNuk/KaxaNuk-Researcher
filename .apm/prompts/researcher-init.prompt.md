@@ -146,8 +146,10 @@ agent primitive at all, so there the researcher is its skills and commands, exac
 Beyond `apm install --target <agent>`, which copies the researcher's own skills, commands and agent
 into the agent's folders, there is nothing to install. `apm.yml` declares no dependencies — the
 package that used to be there taught Python style, not research. If the owner asks about KaxaNuk's
-core knowledge, say it is not packaged yet, and that the library is built the ordinary way: a
-source into `Sources/`, then `read`.
+core knowledge, say where it lives: `KaxaNuk/KaxaNuk-APM`, whose `investment-lab` package carries
+the process as the `experiment-lifecycle` skill and whose library packages carry the Lab modules; a
+strategy's own `apm.yml` installs them there, and the researcher meets them when it is invited. The
+library at home is built the ordinary way: a source into `Sources/`, then `read`.
 
 ## Step 7: Hand over
 

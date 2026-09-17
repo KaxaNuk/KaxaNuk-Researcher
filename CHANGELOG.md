@@ -4,6 +4,74 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.4.0 (2026-09-17)
+
+**MINOR** — the researcher knows the order a strategy is built in, and arrives in a strategy whole:
+the objective before any paper, and its own `CLAUDE.md`, `AGENTS.md` and `RESEARCHER.md` loaded
+beside its skills when it is invited. Carried back from a researcher in use.
+
+**What to do differently:** set `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` once on each
+machine — `setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1` on Windows — quit and reopen your
+assistant, run `apm install --target <your agent>`, and open a new session. In a strategy, run
+`objective` before the first `read`: a strategy whose `OBJECTIVE.md` has no claims no longer takes a
+note.
+
+### Added
+
+* **The order of work, in `AGENTS.md`.** Eight steps, the template's numbering, each with where it
+  lands and the researcher's part: the objective, before any paper; the objective fine-tuned by
+  reading for each claim; the investable universe, delisted names included; the data; the
+  benchmark, then the blueprint, before the rule; the broad reading and the brainstorming; the
+  cycle — portfolio construction, backtest, attribution — until it is finished; and every finished
+  cycle into `RESULTS.md`, kept or rejected. Reading comes in two waves: narrow and per claim before
+  the blueprint, so its predictions have notes to cite, and broad after it. A command asked for out
+  of order names the step that comes first, and stops.
+* **Checking an invitation.** `AGENTS.md` and step 5 of the README say what loads from an added
+  folder: the skills, the commands and the agent on their own, and `CLAUDE.md` — with its imports,
+  `AGENTS.md` and `RESEARCHER.md` — only when the variable is in the environment before launch,
+  because an `env` entry in `settings.json` is applied too late for it. They say how to check it
+  with `/context`, and give the fallback when the assistant does not honour the variable: a
+  gitignored `CLAUDE.local.md` at the strategy's root that imports the researcher's `CLAUDE.md` by
+  absolute path.
+* **Joining other projects, in `AGENTS.md`.** Outside a strategy the researcher challenges on
+  evidence, follows the project's own rules, writes there only after a plan and the go, and brings
+  nothing home unless the owner asks — and then as a source in `Sources/` that `read` files.
+* **Working lean, in `AGENTS.md`**, a default the owner may change. One short planning round,
+  small changes batched into one install, one task per session, search before reading, short
+  replies.
+* **`.obsidian/` is gitignored**, for owners who open their library as a vault.
+
+### Changed
+
+* **`objective` works before the reading** (0.2). The first pass drafts the claims from the owner's
+  words, each claim's evidence the question that would settle it, marked as a lead; fine-tuning
+  passes rewrite the evidence from the notes, and a claim the reading sharpened is proposed, never
+  changed silently.
+* **`read` refuses a strategy with no claims** (0.4.0). The objective comes first; in a strategy a
+  question the claims do not cover is a claim to add with `objective`, and every note serves a
+  claim.
+* **`blueprint` refuses without claims or without an investable universe** (0.2), naming the step
+  that comes first, and closes by pointing at the broad reading, `brainstorm` and the cycle. When
+  `RESULTS.md` has no analyzer measurement yet, it says so in the plan and writes the predictions
+  that needed one as leads, rather than treating the empty section as normal for Experiment 1.
+* **Where the `experiment-lifecycle` skill and the template's README disagree on the order, the
+  README holds.** Since the KN Research Process 0.7.4 a strategy's own `README.md` links to
+  *Starting your own strategy* rather than carrying it; the published skill still lists the
+  universe before the objective, and `AGENTS.md` says so.
+
+### Fixed
+
+* **`read` no longer fetches a whole `Bibliotheca/` from the template's `example` branch.** That
+  branch is a worked strategy, so the command brought another strategy's notes into a new one. It
+  fetches `BIBLIOGRAPHY.md` and `LOG.md` only, says what in them is the example's to delete, and
+  checks for the claims before it checks for the folder. The *Working in a strategy* table says the
+  same. The fetch is two commands, because `&&` does not parse in Windows PowerShell 5.1.
+* **KaxaNuk's `investment-lab` and `data-curator` packages exist**, and `investment-lab` carries
+  `experiment-lifecycle`, the process as a skill. `apm.yml` and `researcher-init` said they did not
+  exist or were not packaged — 0.2.0's Fixed entry recorded that; it was true when written and is
+  not now. A strategy installs them through its own `apm.yml`; a home starts with none, and
+  its owner adds whatever stack their own work needs.
+
 ## 0.3.0 (2026-09-11)
 
 **MINOR** — the researcher reads a book a chapter at a time, in one note convention shared with the

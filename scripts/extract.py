@@ -40,13 +40,13 @@ from pathlib import Path
 
 try:
     from pypdf import PdfReader
-except ImportError:  # pragma: no cover
+except ImportError:
     sys.exit("pypdf is not installed: run this with `uv run`, or `pip install pypdf`.")
 
 for stream in (sys.stdout, sys.stderr):  # page ranges carry an en dash; Windows consoles may not
     try:
         stream.reconfigure(encoding="utf-8")
-    except Exception:  # pragma: no cover
+    except Exception:
         pass
 
 
@@ -322,7 +322,7 @@ def main(argv: list[str] | None = None) -> int:
         from importlib.metadata import version as _v
 
         engine = label if use_pdftotext else f"pypdf {_v('pypdf')}"
-    except Exception:  # pragma: no cover
+    except Exception:
         engine = label or "pypdf"
 
     out_dir = Path(a.out) / slugify(pdf.stem, 80)
