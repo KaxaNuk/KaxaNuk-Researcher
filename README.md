@@ -220,7 +220,7 @@ Undo it with `--no-skip-worktree` when a template itself has to change.
 | | |
 | --- | --- |
 | [KaxaNuk-Research-Process](https://github.com/KaxaNuk/KaxaNuk-Research-Process) | the template every strategy is copied from — eight steps as folders, no code on `main`. Its `Bibliotheca/` is where the researcher works when invited |
-| [KaxaNuk-APM](https://github.com/KaxaNuk/KaxaNuk-APM) | where KaxaNuk's packages will come from — the Data Curator's calculations, one skill per Lab module — once they teach research rather than linting. None is installed today |
+| [KaxaNuk-APM](https://github.com/KaxaNuk/KaxaNuk-APM) | KaxaNuk's agent packages: the process — `experiment-lifecycle` and `alpha-decomposition`, in `investment-lab` — and a skill package for each Lab library that has one. A strategy installs them through its own `apm.yml`; a researcher's home installs none unless its owner adds them |
 | the Investment Lab | the platform that runs the deterministic parts, and — later — reads a strategy's `Bibliotheca/` to show what cites what |
 
 ---

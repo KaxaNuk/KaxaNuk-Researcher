@@ -4,6 +4,24 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.4.1 (2026-09-17)
+
+**PATCH** — three sentences that were true when written stop contradicting the KN Research Process
+template and KaxaNuk-APM. Nothing to do differently.
+
+### Fixed
+
+* **The README's KaxaNuk-APM row** said no KaxaNuk package was installed and that the packages would
+  come once they taught research. `investment-lab` carries the process, the Lab libraries each have
+  their own package, and a strategy installs them through its own `apm.yml` — as 0.4.0's Fixed entry
+  already said.
+* **`Bibliotheca/Extracts/` is ignored by the template's `.gitignore`**, and has been since the
+  template's 0.7.1; `AGENTS.md` still said it would be once the template carried the line. `read`
+  keeps saying so in its plan for a strategy whose `.gitignore` lacks it.
+* **`AGENTS.md` no longer names a version of `experiment-lifecycle`** that lists the universe before
+  the objective. KaxaNuk-APM's `investment-lab` 0.7.0 follows the template's order of work; the rule
+  that stays is general: where the skill and the template's README disagree, the README holds.
+
 ## 0.4.0 (2026-09-17)
 
 **MINOR** — the researcher knows the order a strategy is built in, and arrives in a strategy whole:

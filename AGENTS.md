@@ -142,7 +142,7 @@ linked, never written.
 | --- | --- |
 | `Sources/Books/`, `Sources/Papers/`, `Sources/Clippings/` | `Bibliotheca/Books/`, `Bibliotheca/Papers/`, `Bibliotheca/Notes/` — the template's name for the clippings — the PDFs beside the notes, and the clippings; `BIBLIOGRAPHY.md` indexes them and the leads |
 | `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. A strategy created from the template's `main` has none of these — `Bibliotheca/` is a `.gitkeep` until the owner brings `BIBLIOGRAPHY.md` and `LOG.md` across from the template's `example` branch, a worked strategy, and strips what is that strategy's: everything between the example markers in `BIBLIOGRAPHY.md`, every entry below the rule in `LOG.md`. `read` gives that command and says what to delete rather than scaffolding the files |
-| `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; gitignored there once the template carries the line |
+| `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
 | `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `BRAINSTORMING_N.md`, the notes, `BIBLIOGRAPHY.md` |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, whatever the owner says they are reading for, and the file is theirs to fill |
@@ -172,8 +172,7 @@ linked, never written.
   of the template's README, which the strategy's own `README.md` links to, and the
   `experiment-lifecycle` skill if it is installed. The researcher follows them: one experiment at a
   time, who writes each document, the objective before any paper and the blueprint before the rule.
-  Where the skill lists the steps in a different order — its 0.4.x text still puts the universe
-  before the objective — the template's README holds.
+  Where the skill and the template's README disagree, the README holds.
 
 ### The order of work
 
