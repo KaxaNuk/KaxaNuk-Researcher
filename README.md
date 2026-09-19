@@ -21,32 +21,28 @@ It is not tied to one assistant. Two skills, eight commands and one agent are au
 `.apm/`, and `apm install` deploys them to Claude Code, Copilot, Cursor, Codex, Gemini, OpenCode or
 Windsurf.
 
+**To install, paste this into Claude or Codex:**
+
+```text
+Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
+```
+
+It asks you for your researcher's name and where to put it, clones the repository into one folder
+under that name, and installs the researcher into your assistant. [`SETUP.md`](SETUP.md) is what it
+follows, and it is written so a person can read it in two minutes too — nothing here repeats it.
+
 ---
 
 ## Start
 
-1. **Clone this repository under the name you give your researcher:**
+1. **Install it** — the prompt above, or [`SETUP.md`](SETUP.md) by hand. Then open the new folder in
+   a **new** session of your assistant: a skill is discoverable there, never in the session that
+   installed it.
 
-   ```bash
-   git clone https://github.com/KaxaNuk/KaxaNuk-Researcher.git Luna
-   ```
-
-2. **Install the skills and commands for your agent**, from inside that folder. The
-   [APM](https://github.com/microsoft/apm) CLI is the one thing you need — `pip install apm-cli`,
-   or an installer from its page:
-
-   ```bash
-   apm install --target claude
-   ```
-
-   `--target codex`, `cursor`, `copilot`, `gemini`, `opencode` or `windsurf` for the others; a
-   bare `apm install` does all seven. It copies `.apm/` into your agent's own folders, which git
-   ignores. Then open the folder in your agent — a skill is discoverable in a **new** session,
-   never the one that installed it. Reading a PDF also needs [`uv`](https://docs.astral.sh/uv/),
-   or `pip install pypdf`.
-
-3. **Run `researcher-init`.** A short interview — who you are, what you invest in, how you want to
-   be spoken to, what is never allowed, what you are reading for right now — writes
+2. **Run `researcher-init`** — type it, or ask your assistant to run it; on Codex, which has no
+   commands, ask it to *follow `.apm/prompts/researcher-init.prompt.md`*. A short interview — who
+   you are, what you invest in, how you want to be spoken to, what is never allowed, what you are
+   reading for right now — writes
    `RESEARCHER.md`, the researcher's personality, scaffolds any folder that is missing, and writes
    the agent file that makes your researcher callable by name. Every question with options is a
    multiple choice, and when you have nothing to answer yet it proposes — the questions you might be
@@ -57,14 +53,14 @@ Windsurf.
    researcher-init
    ```
 
-4. **Drop a paper or a book into `Sources/` and run `read`.** For a book the researcher shows you
+3. **Drop a paper or a book into `Sources/` and run `read`.** For a book the researcher shows you
    its table of contents and asks which chapters serve which of your questions; it reads only
    those, proposes how to file them, waits for your go, and writes one note per chapter read into
    `Knowledge/`, linked to everything it relates to — and, for the ideas those chapters argue, the
    wiki: one small concept page per idea, created or updated, every claim citing the note it came
    from. Ask a question later and `query` lands on the page, not on a search.
 
-5. **Invite it to a strategy, or to any project.** Point at it from here —
+4. **Invite it to a strategy, or to any project.** Point at it from here —
    `blueprint D:\Research\Golden-Flow 1` — or open your assistant in the strategy's folder and add
    this one to the session, with `claude --add-dir <this folder>`, `/add-dir` once inside, or the
    desktop app's add-folder button; the skills, the commands and the agent come along. For
@@ -108,6 +104,7 @@ RESEARCHER.md         who the researcher is — name, owner, domains, voice, non
                       what you are reading for; written by researcher-init
 AGENTS.md             the library's rules: what each folder is, who may write where, the skills
 CLAUDE.md             two lines: @AGENTS.md and @RESEARCHER.md
+SETUP.md              how to install it — what an assistant follows when you paste the URL
 CHANGELOG.md          every version of this repository, newest first
 apm.yml               what apm install reads here, and what this repository publishes so the
                       researcher can be installed into a project you already have

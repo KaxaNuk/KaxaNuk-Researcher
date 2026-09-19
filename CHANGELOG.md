@@ -4,6 +4,27 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 `### Added / Changed / Removed`, and [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.4.2 (2026-09-19)
+
+**PATCH** — the researcher installs the way the KN Research Process template does: paste one line
+into Claude or Codex. Nothing to do differently in a researcher that is already installed.
+
+### Added
+
+* **`SETUP.md`**, written for an agent that was given only the URL and readable by a person in two
+  minutes: the two tools, git and `uv`; the researcher's name, which is the folder's; one folder as
+  the whole researcher, and the wrapper folder to avoid; a short path on Windows; the template kept
+  as `upstream` so its updates can still be pulled; APM through `uv tool install apm-cli`, and the
+  skills installed without asking, for the assistant doing the install; a check that a PDF can be
+  read; the invitation variable, asked for rather than set; and the hand-over to
+  `researcher-init` in a new session.
+
+### Changed
+
+* **The README opens with the prompt to paste**, and its *Start* no longer carries the clone and
+  install commands — `SETUP.md` does, and the README does not repeat it. `researcher-init` can be
+  typed or asked for, and on Codex is run by naming its file.
+
 ## 0.4.1 (2026-09-17)
 
 **PATCH** — three sentences that were true when written stop contradicting the KN Research Process
