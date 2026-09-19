@@ -22,7 +22,7 @@ paragraph, in your words.>
 
 <Two or three sentences on how you invest and what you think is true about markets. The long form
 lives in `Philosophy/`; this is the summary the researcher reads first.> The full account is in
-`Philosophy/<file>.md`.
+[`Philosophy/HOW-I-INVEST.md`](Philosophy/HOW-I-INVEST.md).
 
 ## Non-negotiables
 

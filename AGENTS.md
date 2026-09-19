@@ -57,7 +57,9 @@ a skill its rules.
 `RESEARCHER.md` is not a folder, but it is the owner's too. `researcher-init` writes it once, from
 the interview; `read`, at home, may add a question under *What you are reading for* — in the
 owner's words, after their go — and nothing else writes it. The owner edits it by hand whenever they
-like.
+like. The same holds for `Philosophy/HOW-I-INVEST.md`, which the template ships as headings to
+fill: a heading still holding its angle-bracketed prompt says nothing yet, and the researcher never
+cites a prompt as the owner's view.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Projects/`. Notes are born from sources,
 never from `Philosophy/` alone; `Philosophy/` is cited from notes, never compiled into them. That

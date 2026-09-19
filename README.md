@@ -120,6 +120,8 @@ Knowledge/            what the researcher read — one note per paper, one folde
   INDEX.md              the one index of the library — read first, always
   LOG.md                append-only record of every read, audit and refresh
 Philosophy/           your voice: how you invest, what you believe. Read and cited, never edited
+  HOW-I-INVEST.md       the page to write it in: beliefs, lessons, how you decide, what would
+                        change your mind
 Projects/             what you asked for at home: lessons, anything in chat. Strategy work lives
                       in the strategy
 scripts/              extract.py, the one script: a PDF's table of contents, and its chapters as
@@ -201,11 +203,11 @@ it under its own name, and that clone versions everything — `RESEARCHER.md`, t
 `Knowledge/`. If you develop the skeleton in the same folder you use as your researcher, keep your
 own files out of its commits with git's local, unshared ignores rather than `.gitignore`, which
 every clone inherits: add `.apm/agents/`, `Knowledge/*/`, `Philosophy/*`, `Projects/*` and
-`Sources/*/*` to `.git/info/exclude`, and mark the three templates the interview and the reads fill
+`Sources/*/*` to `.git/info/exclude`, and mark the four templates the interview and the reads fill
 in, so their local changes stay out of the index:
 
 ```bash
-git update-index --skip-worktree RESEARCHER.md Knowledge/INDEX.md Knowledge/LOG.md
+git update-index --skip-worktree RESEARCHER.md Philosophy/HOW-I-INVEST.md Knowledge/INDEX.md Knowledge/LOG.md
 ```
 
 Undo it with `--no-skip-worktree` when a template itself has to change.

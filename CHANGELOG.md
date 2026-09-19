@@ -18,6 +18,12 @@ into Claude or Codex. Nothing to do differently in a researcher that is already 
   skills installed without asking, for the assistant doing the install; a check that a PDF can be
   read; the invitation variable, asked for rather than set; and the hand-over to
   `researcher-init` in a new session.
+* **`Philosophy/HOW-I-INVEST.md`**, the page where the owner writes how they invest: four headings
+  — what I believe about markets, what I have learned, how I decide, what would change my mind —
+  each with a one-line prompt, and a blockquote saying the file is theirs and in their own words.
+  It replaces `Philosophy/.gitkeep`. `researcher-init` fills it verbatim, heading by heading, where
+  it used to create `how-i-invest.md`; `RESEARCHER.md` links it by name; and `AGENTS.md` says a
+  prompt still in place is never cited as the owner's view.
 
 ### Changed
 

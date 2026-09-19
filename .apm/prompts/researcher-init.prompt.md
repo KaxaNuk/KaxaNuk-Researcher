@@ -55,7 +55,7 @@ did not pick is never written.
    options — systematic, on factors and rules; discretionary, on fundamentals; macro and regimes;
    a mix of these — and *Other* for their own words. From the pick, draft two or three sentences
    and show them; the owner keeps, edits or rewrites them, and the version they confirm is the one
-   written, never the draft alone. Offer to save the long version as `Philosophy/how-i-invest.md`
+   written, never the draft alone. Offer to write the long version into `Philosophy/HOW-I-INVEST.md`
    in their exact words — never paraphrased — if they say more.
 6. **Non-negotiables** — *tool*. State KaxaNuk's three defaults in the question (numbers only from
    the Lab's libraries; the hypothesis before the test with every prediction cited; nothing trades
@@ -79,7 +79,8 @@ Show the filled `RESEARCHER.md` in chat, section by section, following the file'
 exactly. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and
 write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go. Then write it, and remove the
 instruction blockquote at the top.
-If they asked, write `Philosophy/how-i-invest.md` with their words verbatim under a single heading.
+If they asked, write their words verbatim into `Philosophy/HOW-I-INVEST.md`, each under the heading
+it answers, leave a heading they said nothing for as it is, and remove its instruction blockquote.
 
 ## Step 4: The agent
 
