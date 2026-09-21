@@ -2,7 +2,7 @@
 
 Everything needed to go from nothing to a researcher you can talk to and a first strategy. It is
 written so an agent — Claude, Codex, Cursor — can follow it end to end when all it was told is
-*please help me install `https://github.com/KaxaNuk/KaxaNuk-Researcher`*, and so a person can read
+*please help me install this repo: `https://github.com/KaxaNuk/KaxaNuk-Researcher`*, and so a person can read
 it in two minutes.
 
 **Nothing is cloned.** This repository is a package: it is installed once for your user, and its
