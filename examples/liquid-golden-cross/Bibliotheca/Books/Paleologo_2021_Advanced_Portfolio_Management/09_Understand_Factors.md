@@ -109,7 +109,7 @@ objective as the source on why a trend rule is not a momentum rule.
   frozen.
 - It does not settle claim 1: the chapter tests no trend rule. Whether a moving-average filter earns
   anything, and whether that survives the search that found it, is for
-  [Sullivan, Timmermann & White (1999)](../../Papers/Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.md)
+  [Sullivan, Timmermann & White (1999)](../../Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md)
   and [LeBaron (1999)](../../Papers/LeBaron_1999_The_Stability_Of_Moving_Average_Rules.md), both now
   read: robust in sample, and gone in the decade after. Brock, Lakonishok & LeBaron (1992) itself
   stays unread — both copies found are image scans with no text layer.

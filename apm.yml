@@ -6,8 +6,13 @@
 #     apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 #
 # and `apm update -g` brings every new version of both repositories to every folder.
+#
+# `kaxanuk` is unpinned on purpose, so `apm update -g` brings the Lab's newest skills; APM warns
+# about it on every install. A semver `ref:` does not resolve against KaxaNuk-Agent-Skills' tags
+# today (`kaxanuk-agent-skills--vX.Y.Z`, which APM 0.29 does not match to a range), and a literal
+# tag would freeze the Lab's skills.
 name: kaxanuk-researcher
-version: 0.6.1
+version: 0.6.2
 description: The KaxaNuk Researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read and drafts the hypothesis of every strategy you build; with init-researcher, init-strategy and init-example, and the template, worked example and home they copy.
 author: Arturo Aguilar
 license: MIT
