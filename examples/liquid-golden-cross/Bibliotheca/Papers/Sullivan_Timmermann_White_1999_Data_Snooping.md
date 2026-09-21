@@ -1,7 +1,7 @@
 ---
 source: The Journal of Finance, Vol. LIV, No. 5, October 1999, pages 1647–1691
 citation: "Sullivan, R., Timmermann, A., & White, H. (1999). Data-Snooping, Technical Trading Rule Performance, and the Bootstrap. The Journal of Finance, LIV(5), 1647–1691."
-local_copy: Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.pdf
+local_copy: Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping.pdf
 read: 2026-09-19, the whole paper
 ---
 

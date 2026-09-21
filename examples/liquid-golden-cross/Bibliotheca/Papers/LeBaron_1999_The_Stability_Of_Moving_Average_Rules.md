@@ -19,7 +19,7 @@ LeBaron of Brock, Lakonishok & LeBaron (1992), the study the objective names as 
 claim, and this paper is his own re-examination of those rules on the ten years after their sample
 ended. That 1992 paper is a scan with no text layer and cannot be read here, so this is the closest
 the strategy has to evidence on moving-average rules, beside
-[Sullivan, Timmermann & White (1999)](Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.md).
+[Sullivan, Timmermann & White (1999)](Sullivan_Timmermann_White_1999_Data_Snooping.md).
 
 ## The paper re-examines Brock, Lakonishok & LeBaron's rules on ten more years of the Dow
 

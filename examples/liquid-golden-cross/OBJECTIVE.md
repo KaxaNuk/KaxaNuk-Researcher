@@ -67,7 +67,7 @@ benchmarks through the engine) · **confirmed as a factor** (attribution assigns
 ### 1. The signal — the 50-day average above the 200-day
 
 **The evidence read for it argues against it.** [Sullivan, Timmermann & White
-(1999)](Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.md)
+(1999)](Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md)
 test 7,846 rules on the Dow with a bootstrap that judges the best rule against the whole universe it
 came from: moving-average rules clear that bar over 1897–1986, and the best of them over 1987–1996 —
 a 200-day average, one leg of ours — comes back at a p-value of 0.154 against a nominal 0.055.
@@ -145,7 +145,7 @@ after costs.
 - **Not that the parameters are right, and not that they are untouched by search.** The 50 and 200
   days are the pair the idea was stated with; 30 names, the 10% band and the quarter-long volume
   window are round numbers. None was searched on our data — but [Sullivan, Timmermann & White
-  (1999)](Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.md)
+  (1999)](Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md)
   show the search that matters was run by the investment community over a century, which kept the
   windows that worked, and that the 50-, 150- and 200-day averages are precisely the ones it kept.
   The trial count behind this pair does not start at one. Each parameter is still a curve a later
