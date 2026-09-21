@@ -41,6 +41,20 @@ for somebody who was not in the room:
 
 ---
 
+## 0.8.1 (2026-09-21)
+
+**PATCH** — one note's file name is shorter, so the example installs on Windows from a deep home
+folder. No result changes.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`Bibliotheca/Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md`** was the paper's full
+  title, a 130-character path that took the installed copy past Windows' 260-character limit on a
+  home folder more than about 60 characters deep: `apm install -g` failed with *checkout failed*.
+  The note is unchanged; every link to it, and the log line that wrote it, name the new file.
+
 ## 0.8.0 (2026-09-21)
 
 **MINOR** — the template and the worked example now ship inside the KaxaNuk Researcher,

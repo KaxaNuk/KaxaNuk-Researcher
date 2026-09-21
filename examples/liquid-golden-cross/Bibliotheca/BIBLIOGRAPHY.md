@@ -126,7 +126,7 @@ until your strategy has a question of its own.
 | Source | What it bears on |
 | --- | --- |
 | Paleologo (2021) — *Advanced Portfolio Management* | why a trend rule is not a momentum rule, claim 1. Chapter 5 read, from Luna's library: [note](Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md) |
-| Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | **the argument against claim 1.** Moving-average rules survive the data-snooping adjustment in 1897–1986 and not in 1987–1996; a one-day implementation lag removes most of the return. Read whole: [note](Papers/Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.md) |
+| Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | **the argument against claim 1.** Moving-average rules survive the data-snooping adjustment in 1897–1986 and not in 1987–1996; a one-day implementation lag removes most of the return. Read whole: [note](Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md) |
 | LeBaron (1999) — *The Stability of Moving Average Technical Trading Rules on the Dow Jones Index* | claim 1, from one of the authors of the 1992 study: the buy-sell difference reverses after 1986 while the volatility difference holds. Read whole: [note](Papers/LeBaron_1999_The_Stability_Of_Moving_Average_Rules.md) |
 
 <!-- example: end -->
@@ -176,7 +176,7 @@ it does not.
 | --- | --- |
 | Brown, Goetzmann, Ibbotson & Ross (1992) | the point-in-time universe retains delisted names. *No note yet.* |
 | Shumway (1997) | **a gap, not a control.** The final day of a delisted name is unaudited. *No note yet.* |
-| Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | any rule that was searched for rather than stated first — and the finding that the search is run by the whole investment community, not by one researcher: [note](Papers/Sullivan_Timmermann_White_1999_Data_Snooping_Technical_Trading_Rule_Performance.md) |
+| Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | any rule that was searched for rather than stated first — and the finding that the search is run by the whole investment community, not by one researcher: [note](Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md) |
 | Harvey, Liu & Zhu (2016) — *… and the Cross-Section of Expected Returns* | the information-coefficient table screens, it does not prove; publish the trial count. *No note yet.* |
 | Bailey & López de Prado (2014) — *The Deflated Sharpe Ratio* | the best of N variants is the maximum of N draws. *No note yet.* |
 | Bailey, Borwein, López de Prado & Zhu (2014) — *Pseudo-Mathematics and Financial Charlatanism* | the argument for step 7 existing at all, and for freezing parameters at graduation. *No note yet.* |

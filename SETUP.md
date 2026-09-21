@@ -39,6 +39,13 @@ apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 That installs the researcher's skills and commands and, with them, every KaxaNuk Investment Lab
 skill, for your user: every folder you open has them, and no folder installs anything of its own.
 
+**On Windows, if the install fails with *checkout failed* or `WinError 3`,** a path went past
+Windows' 260-character limit. Let git use long paths, once, then install again:
+
+```bash
+git config --global core.longpaths true
+```
+
 > **For the agent.** Run both without asking: installing is what you were asked to do. The target
 > is the assistant you are. It may be run from any folder — `-g` writes to the user's home, never to
 > the folder you are in. Then say the one thing that matters: **the skills appear in a new session,
