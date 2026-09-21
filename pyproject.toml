@@ -2,13 +2,14 @@
 # worked example in `examples/` carries its own `pyproject.toml`, which governs it alone.
 [project]
 name = "kaxanuk-researcher"
-version = "0.6.3"
+version = "0.6.4"
 requires-python = ">=3.12"
 dependencies = []
 
 [dependency-groups]
 dev = [
     "apm-cli",
+    "pypdf",
     "pytest",
 ]
 

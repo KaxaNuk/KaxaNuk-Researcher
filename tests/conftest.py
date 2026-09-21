@@ -8,6 +8,7 @@ CONFTEST_PATH = pathlib.Path(__file__)
 REPOSITORY_ROOT = CONFTEST_PATH.resolve().parent.parent
 SKILL_SCRIPT_DIRECTORIES = [
     REPOSITORY_ROOT / '.apm' / 'skills' / 'init-strategy' / 'scripts',
+    REPOSITORY_ROOT / '.apm' / 'skills' / 'read' / 'scripts',
     REPOSITORY_ROOT / 'tools',
 ]
 

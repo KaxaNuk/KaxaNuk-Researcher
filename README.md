@@ -104,7 +104,7 @@ templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folde
 templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
-tests/                the tests of scaffold.py, the script the init commands run, and of the checks
+tests/                the tests of scaffold.py, extract.py and the checks
 tools/check_repo.py   the repository's own checks, run by CI
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads, and its one dependency, kaxanuk
