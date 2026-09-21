@@ -1,0 +1,28 @@
+name: kaxanuk-researcher
+version: 0.6.0
+description: A KaxaNuk researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read and drafts the hypothesis of every strategy you build
+author: KaxaNuk
+license: MIT
+
+# The researcher's skills and commands are installed once for the user, not here:
+# `apm install -g KaxaNuk/KaxaNuk-Researcher`, which brings every Investment Lab package with it,
+# and `apm update -g` brings new versions. Every folder — this home, and every strategy —
+# then has them, and a strategy installs nothing. `apm install` here deploys only this home's own
+# agent, from `.apm/agents/`, which `researcher-init` writes.
+dependencies:
+  apm: []
+  mcp: []
+
+# A bare `apm install` deploys to every target below; `--target <one>` deploys to just yours.
+targets:
+  - claude
+  - copilot
+  - cursor
+  - codex
+  - gemini
+  - opencode
+  - windsurf
+
+# What publishes: `.apm/` and nothing else, so a private reading list under `Sources/` or
+# `Knowledge/` cannot ship.
+includes: auto

@@ -1,0 +1,3 @@
+# This repository is prose. Normalise line endings so a clone on Windows, macOS or Linux —
+# and any tool that reads these files byte-for-byte — sees exactly what was committed.
+* text=auto eol=lf
