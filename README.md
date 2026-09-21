@@ -11,6 +11,19 @@ together, so one pull request can change a skill, the template it describes and 
 shows it. The skills for each Investment Lab library live in
 [KaxaNuk-Agent-Skills](https://github.com/KaxaNuk/KaxaNuk-Agent-Skills), and come with this package.
 
+**To install, paste this into Claude or Codex:**
+
+```text
+Please help me install https://github.com/KaxaNuk/KaxaNuk-Researcher
+```
+
+It follows [`SETUP.md`](SETUP.md). Your first ten minutes, in four commands:
+
+1. **Install once:** `apm install -g KaxaNuk/KaxaNuk-Researcher` — then open a new session.
+2. **`init-researcher Luna`** — your researcher's home, with the name you choose.
+3. **`researcher-init`**, in that home — a short interview that makes the researcher yours.
+4. **`init-strategy fcf-yield-quality`** — your first strategy, one repository of its own.
+
 ---
 
 ## Install once, for your user
@@ -90,6 +103,7 @@ templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
 tests/                the tests of scaffold.py, the script the init commands run
+SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads, and its one dependency, kaxanuk
 ```
 
