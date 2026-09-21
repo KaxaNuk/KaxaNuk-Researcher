@@ -16,7 +16,7 @@ shows it. The skills for each Investment Lab library live in
 **To install, paste this into Claude or Codex:**
 
 ```text
-Please help me install https://github.com/KaxaNuk/KaxaNuk-Researcher
+Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
 ```
 
 It follows [`SETUP.md`](SETUP.md). Your first ten minutes, in four commands:
@@ -30,7 +30,19 @@ It follows [`SETUP.md`](SETUP.md). Your first ten minutes, in four commands:
 
 ## Install once, for your user
 
-You need [`uv`](https://docs.astral.sh/uv/) and git. Then, once per machine:
+**The easy way — paste this into Claude or Codex:**
+
+```text
+Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
+```
+
+It checks that git and `uv` are there, installs the package for your user, and tells you to open a
+new session, where `init-researcher` and `init-strategy` make your first folders.
+[`SETUP.md`](SETUP.md) is what it follows, and it is written so a person can read it in two minutes
+too. Issues and pull requests are welcome: the researcher improves in public, the way KaxaNuk's
+open-source Data Curator did.
+
+**By hand.** You need [`uv`](https://docs.astral.sh/uv/) and git. Then, once per machine:
 
 ```bash
 uv tool install apm-cli
