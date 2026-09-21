@@ -139,7 +139,8 @@ the owner chose.
 
 ## Step 5: Install it
 
-The agent is a file until APM deploys it. Tell the owner to run, in this folder:
+The agent is a file until APM deploys it. Tell the owner to run, in this folder — the target being
+the assistant they use; the skills themselves are already installed for the user:
 
 ```bash
 apm install --target claude
