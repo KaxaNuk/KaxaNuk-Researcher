@@ -2,7 +2,8 @@
 # requires-python = ">=3.10"
 # dependencies = ["pypdf>=4.0"]
 # ///
-"""The deterministic half of /read: a PDF's table of contents, and one markdown file per chapter.
+"""
+The deterministic half of /read: a PDF's table of contents, and one markdown file per chapter.
 
 It reads the outline — the bookmarks — a PDF carries, turns it into page ranges, and writes the
 text of the chapters asked for into an extracts folder, a marker before every page. It has no
@@ -26,333 +27,1132 @@ Options
 Exit codes: 0 done · 1 usage · 2 no text layer, nothing written · 3 no outline for --chapters
 Without uv: pip install pypdf, then python extract.py ...
 """
-from __future__ import annotations
-
 import argparse
+import dataclasses
+import importlib.metadata
 import json
+import pathlib
 import re
 import shutil
 import subprocess
 import sys
 import unicodedata
-from dataclasses import dataclass
-from pathlib import Path
 
 try:
-    from pypdf import PdfReader
+    import pypdf
 except ImportError:
-    sys.exit("pypdf is not installed: run this with `uv run`, or `pip install pypdf`.")
+    sys.exit('pypdf is not installed: run this with `uv run`, or `pip install pypdf`.')
 
-for stream in (sys.stdout, sys.stderr):  # page ranges carry an en dash; Windows consoles may not
+# Page ranges carry an en dash, which a Windows console may not encode.
+for console_stream in (sys.stdout, sys.stderr):
     try:
-        stream.reconfigure(encoding="utf-8")
+        console_stream.reconfigure(encoding='utf-8')
     except Exception:
         pass
 
+# Fewer characters per page than this, on average, and a written chapter is flagged as thin: a preface,
+# a plates section, a page of figures.
+THIN_PAGE_CHARACTERS = 200
+FRONT_MATTER_TITLE = 'Front matter'
+NO_OUTLINE_MESSAGE = ' '.join([
+    'no outline in this PDF: run --outline, read the table-of-contents pages,',
+    'and pass --split "Title=first-last; ..."',
+])
+NOTHING_WRITTEN_MESSAGE = ' '.join([
+    'nothing written: no text layer in what was asked for — a scanned PDF.',
+    'Report it as unreadable.',
+])
+PAGE_RANGE = re.compile(r'\s*(\d+)\s*(?:-\s*(\d+))?\s*')
+CHAPTER_NUMBERS = re.compile(r'(\d+)(?:-(\d+))?')
 
-@dataclass
-class Entry:
-    depth: int
-    title: str
-    page: int  # 0-based
 
-
-@dataclass
+@dataclasses.dataclass(frozen=True)
 class Chapter:
+    """
+    A chapter: its number in the outline, its title, and its pages, 0-based and inclusive.
+    """
     number: int
     title: str
-    start: int  # 0-based, inclusive
-    end: int  # 0-based, inclusive
+    start: int
+    end: int
 
     @property
     def pages(self) -> str:
-        return f"{self.start + 1}–{self.end + 1}" if self.end > self.start else f"{self.start + 1}"
+        """
+        The pages as a reader writes them: 1-based, a range with an en dash, or one page.
+        """
+        first_page = self.start + 1
+        last_page = self.end + 1
+        label = f'{first_page}–{last_page}' if self.end > self.start else f'{first_page}'
+
+        return label
 
 
-# ------------------------------------------------------------------------------- the outline
-def flatten_outline(reader: PdfReader) -> list[Entry]:
-    """The bookmarks as a flat list with depths. pypdf nests children as a list after their parent."""
-    entries: list[Entry] = []
+@dataclasses.dataclass(frozen=True)
+class ChapterPlan:
+    """
+    The chapters a run knows of, and how it came to know them — the line `OUTLINE.md` states.
+    """
+    chapters: list[Chapter]
+    how: str
 
-    def walk(items, depth: int) -> None:
-        for item in items:
-            if isinstance(item, list):
-                walk(item, depth + 1)
-                continue
-            try:
-                page = reader.get_destination_page_number(item)
-            except Exception:
-                page = None
-            title = str(getattr(item, "title", "")).strip() or "(untitled)"
-            if page is None:
-                print(f"  outline entry without a page, skipped: {title!r}", file=sys.stderr)
-                continue
-            entries.append(Entry(depth, title, int(page)))
 
+@dataclasses.dataclass(frozen=True)
+class Entry:
+    """
+    One outline entry: its depth, its title, and the 0-based page it points to.
+    """
+    depth: int
+    title: str
+    page: int
+
+
+@dataclasses.dataclass(frozen=True)
+class Extraction:
+    """
+    What one extraction run did: the files written, and the chapters thin or empty with their averages.
+    """
+    written: list[pathlib.Path]
+    thin: list[tuple[Chapter, float]]
+    empty: list[tuple[Chapter, float]]
+
+
+def chapters_from_outline(
+    entries: list[Entry],
+    depth: int,
+    page_count: int,
+) -> list[Chapter]:
+    """
+    The chapters: entries at `depth`, each running to the page before the next entry at that depth
+    or shallower; the last to the end. Pages before the first chapter are chapter 0, front matter.
+    """
+    boundaries = sorted(
+        (
+            entry
+            for entry
+            in entries
+            if entry.depth <= depth
+        ),
+        key=_entry_page,
+    )
+    first_page = next(
+        (
+            entry.page
+            for entry
+            in boundaries
+            if entry.depth == depth
+        ),
+        None,
+    )
+
+    if first_page is None:
+
+        return []
+
+    front_matter = (
+        [
+            Chapter(
+                0,
+                FRONT_MATTER_TITLE,
+                0,
+                first_page - 1,
+            ),
+        ]
+        if first_page > 0
+        else []
+    )
+    chapter_positions = [
+        position
+        for position, entry
+        in enumerate(boundaries)
+        if entry.depth == depth
+    ]
+    chapters = [
+        Chapter(
+            number,
+            boundaries[position].title,
+            boundaries[position].page,
+            _chapter_end(
+                boundaries,
+                position,
+                page_count,
+            ),
+        )
+        for number, position
+        in enumerate(chapter_positions, start=1)
+    ]
+    all_chapters = [
+        *front_matter,
+        *chapters,
+    ]
+
+    return all_chapters
+
+
+def clean(
+    text: str,
+) -> str:
+    """
+    A page's text with line endings made LF, trailing spaces dropped and blank runs collapsed.
+    """
+    unified = text.replace('\r\n', '\n').replace('\r', '\n')
+    trimmed = re.sub(
+        r'[ \t]+\n',
+        '\n',
+        unified,
+    )
+    collapsed = re.sub(
+        r'\n{3,}',
+        '\n\n',
+        trimmed,
+    )
+    cleaned = collapsed.strip()
+
+    return cleaned
+
+
+def extract_chapters(
+    arguments: argparse.Namespace,
+    reader: pypdf.PdfReader,
+    chapters: list[Chapter],
+    engine: str,
+    output_directory: pathlib.Path,
+    source: str,
+) -> Extraction:
+    """
+    Write every chapter with a text layer, and sort the rest into thin and empty.
+    """
+    pdf_path = pathlib.Path(arguments.pdf)
+    use_pdftotext = not engine.startswith('pypdf')
+    page_texts = {
+        chapter.number: (
+            pages_pdftotext(
+                pdf_path,
+                chapter.start,
+                chapter.end,
+            )
+            if use_pdftotext
+            else pages_pypdf(
+                reader,
+                chapter.start,
+                chapter.end,
+            )
+        )
+        for chapter
+        in chapters
+    }
+    averages = {
+        chapter.number: _average_characters(page_texts[chapter.number])
+        for chapter
+        in chapters
+    }
+    kept = [
+        chapter
+        for chapter
+        in chapters
+        if averages[chapter.number] >= arguments.min_chars
+    ]
+    written = [
+        write_chapter(
+            output_directory,
+            source,
+            chapter,
+            page_texts[chapter.number],
+            engine,
+        )
+        for chapter
+        in kept
+    ]
+    thin = [
+        (chapter, averages[chapter.number])
+        for chapter
+        in kept
+        if averages[chapter.number] < THIN_PAGE_CHARACTERS
+    ]
+    empty = [
+        (chapter, averages[chapter.number])
+        for chapter
+        in chapters
+        if averages[chapter.number] < arguments.min_chars
+    ]
+    extraction = Extraction(
+        written=written,
+        thin=thin,
+        empty=empty,
+    )
+
+    return extraction
+
+
+def flatten_outline(
+    reader: pypdf.PdfReader,
+) -> list[Entry]:
+    """
+    The bookmarks as a flat list with depths; pypdf nests children as a list after their parent.
+    """
     try:
         outline = reader.outline
-    except Exception as exc:
-        print(f"  outline unreadable: {exc}", file=sys.stderr)
+    except Exception as exception:
+        print(f'  outline unreadable: {exception}', file=sys.stderr)
+
         return []
-    walk(outline or [], 1)
+
+    entries = _walk_outline(
+        reader,
+        outline or [],
+        1,
+    )
+
     return entries
 
 
-def chapters_from_outline(entries: list[Entry], depth: int, n_pages: int) -> list[Chapter]:
-    """Entries at `depth` are the chapters. A chapter runs to the page before the next entry at
-    that depth or shallower begins; the last runs to the end. Pages before the first chapter are
-    chapter 0, front matter."""
-    boundaries = sorted((e for e in entries if e.depth <= depth), key=lambda e: e.page)
-    first = next((e.page for e in boundaries if e.depth == depth), None)
-    if first is None:
-        return []
-    chapters: list[Chapter] = []
-    if first > 0:
-        chapters.append(Chapter(0, "Front matter", 0, first - 1))
-    number = 0
-    for i, e in enumerate(boundaries):
-        if e.depth != depth:
-            continue
-        nxt = next((b.page for b in boundaries[i + 1 :] if b.page > e.page), n_pages)
-        number += 1
-        chapters.append(Chapter(number, e.title, e.page, min(nxt, n_pages) - 1))
-    return chapters
+def main(
+    argv: list[str] | None = None,
+) -> int:
+    """
+    Parse the command line, read the PDF, and print its outline or write the chapters asked for.
+    """
+    arguments = _build_parser().parse_args(argv)
+    pdf_path = pathlib.Path(arguments.pdf)
 
+    if not pdf_path.is_file():
+        print(f'not a file: {pdf_path}', file=sys.stderr)
 
-def parse_split(spec: str, n_pages: int) -> list[Chapter]:
-    """`Title=first-last; Title=first-last` — pages 1-based, inclusive."""
-    chapters: list[Chapter] = []
-    for k, part in enumerate(p.strip() for p in spec.split(";") if p.strip()):
-        if "=" not in part:
-            sys.exit(f"--split: each item is Title=first-last, got {part!r}")
-        title, rng = part.rsplit("=", 1)
-        m = re.fullmatch(r"\s*(\d+)\s*(?:-\s*(\d+))?\s*", rng)
-        if not m:
-            sys.exit(f"--split: bad page range {rng!r} in {part!r}")
-        a, b = int(m.group(1)), int(m.group(2) or m.group(1))
-        if not 1 <= a <= b <= n_pages:
-            sys.exit(f"--split: pages {a}-{b} outside 1-{n_pages} in {part!r}")
-        chapters.append(Chapter(k + 1, title.strip() or f"Part {k + 1}", a - 1, b - 1))
-    return chapters
-
-
-def parse_numbers(spec: str, available: list[int]) -> list[int]:
-    wanted: list[int] = []
-    for tok in (t.strip() for t in spec.split(",") if t.strip()):
-        m = re.fullmatch(r"(\d+)(?:-(\d+))?", tok)
-        if not m:
-            sys.exit(f"--chapters: numbers and ranges only, got {tok!r}")
-        a, b = int(m.group(1)), int(m.group(2) or m.group(1))
-        wanted.extend(range(a, b + 1))
-    missing = sorted(set(wanted) - set(available))
-    if missing:
-        sys.exit(f"--chapters: no chapter {missing} at this depth; run --outline to see the numbers")
-    return sorted(set(wanted))
-
-
-# ------------------------------------------------------------------------------- the text
-def pdftotext_label() -> str | None:
-    exe = shutil.which("pdftotext")
-    if not exe:
-        return None
-    try:
-        out = subprocess.run([exe, "-v"], capture_output=True, text=True)
-        first = ((out.stderr or out.stdout).strip().splitlines() or ["pdftotext"])[0]
-        return first.strip()
-    except Exception:
-        return "pdftotext"
-
-
-def pages_pdftotext(pdf: Path, start: int, end: int) -> list[str]:
-    cmd = ["pdftotext", "-f", str(start + 1), "-l", str(end + 1), "-enc", "UTF-8", str(pdf), "-"]
-    out = subprocess.run(cmd, capture_output=True)
-    if out.returncode != 0:
-        raise RuntimeError(out.stderr.decode("utf-8", "replace").strip() or "pdftotext failed")
-    pages = out.stdout.decode("utf-8", "replace").split("\f")
-    if pages and pages[-1].strip() == "":
-        pages.pop()
-    want = end - start + 1
-    return (pages + [""] * want)[:want]
-
-
-def pages_pypdf(reader: PdfReader, start: int, end: int) -> list[str]:
-    return [(reader.pages[i].extract_text() or "") for i in range(start, end + 1)]
-
-
-def clean(text: str) -> str:
-    text = text.replace("\r\n", "\n").replace("\r", "\n")
-    text = re.sub(r"[ \t]+\n", "\n", text)
-    text = re.sub(r"\n{3,}", "\n\n", text)
-    return text.strip()
-
-
-def slugify(title: str, limit: int = 60) -> str:
-    """`Author_Year_Title` style, the way the notes are named: ascii words joined by underscores,
-    the source's own capitals kept."""
-    s = unicodedata.normalize("NFKD", title).encode("ascii", "ignore").decode()
-    s = re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_")
-    return s[:limit].rstrip("_") or "Untitled"
-
-
-def yaml_str(value: str) -> str:
-    return json.dumps(value, ensure_ascii=False)
-
-
-# ------------------------------------------------------------------------------- writing
-def write_outline(out_dir: Path, source: str, n_pages: int, chapters: list[Chapter], how: str) -> Path:
-    lines = [
-        f"# {out_dir.name} — table of contents",
-        "",
-        f"Source: `{source}` — {n_pages} pages — chapters from {how}.",
-        "Extracted chapters sit beside this file, one per chapter, numbered as below.",
-        "Regenerable and gitignored: cite the source, never this.",
-        "",
-        "| # | Chapter | Pages |",
-        "| --- | --- | --- |",
-    ]
-    lines += [f"| {c.number} | {c.title} | {c.pages} |" for c in chapters]
-    path = out_dir / "OUTLINE.md"
-    path.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
-    return path
-
-
-def write_chapter(out_dir: Path, source: str, ch: Chapter, pages: list[str], engine: str) -> Path:
-    body = "\n".join(f"<!-- p.{ch.start + i + 1} -->\n{clean(text)}\n" for i, text in enumerate(pages))
-    content = (
-        "---\n"
-        f"source: {yaml_str(source)}\n"
-        f"chapter: {ch.number}\n"
-        f"title: {yaml_str(ch.title)}\n"
-        f"pages: {yaml_str(ch.pages)}\n"
-        f"engine: {yaml_str(engine)}\n"
-        "---\n\n"
-        f"# {ch.number}. {ch.title}\n\n"
-        f"{body}"
-    )
-    path = out_dir / f"{ch.number:02d}_{slugify(ch.title)}.md"
-    path.write_text(content, encoding="utf-8", newline="\n")
-    return path
-
-
-def print_outline(pdf: Path, n_pages: int, entries: list[Entry], depth: int) -> None:
-    print(f"{pdf.name}: {n_pages} pages")
-    if not entries:
-        print("  no outline (no bookmarks). Read the table-of-contents pages and pass")
-        print('  --split "Title=first-last; Title=first-last", or --all for the whole PDF as one file.')
-        return
-    counts = {d: sum(1 for e in entries if e.depth == d) for d in sorted({e.depth for e in entries})}
-    print("  outline entries: " + ", ".join(f"depth {d}: {c}" for d, c in counts.items()))
-    chapters = chapters_from_outline(entries, depth, n_pages)
-    print(f"  chapters at --depth {depth} (the numbers --chapters takes):")
-    width = max(len(c.title) for c in chapters) if chapters else 10
-    for c in chapters:
-        print(f"  {c.number:>3}. {c.title:<{min(width, 70)}}  p. {c.pages}")
-        if depth == 1:
-            for e in entries:
-                if e.depth == 2 and c.start <= e.page <= c.end:
-                    print(f"         · {e.title}  (p. {e.page + 1})")
-    if counts.get(depth, 0) <= 3 and counts.get(depth + 1, 0) >= 4:
-        print(f"  depth {depth} looks like parts; consider --depth {depth + 1}")
-
-
-# ------------------------------------------------------------------------------- main
-def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(
-        prog="extract.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
-    )
-    ap.add_argument("pdf")
-    mode = ap.add_mutually_exclusive_group(required=True)
-    mode.add_argument("--outline", action="store_true", help="print the outline; write nothing")
-    mode.add_argument("--chapters", metavar="N,N-M", help="extract these chapters, by outline number")
-    mode.add_argument("--all", action="store_true", help="extract every chapter")
-    mode.add_argument("--split", metavar="SPEC", help='"Title=first-last; ..." when there is no outline')
-    ap.add_argument("--out", default="Extracts", help="extracts root (default ./Extracts)")
-    ap.add_argument("--depth", type=int, default=1, help="outline depth that counts as a chapter")
-    ap.add_argument("--engine", choices=["auto", "pdftotext", "pypdf"], default="auto")
-    ap.add_argument("--min-chars", type=int, default=40, help="avg chars/page below which there is no text layer")
-    a = ap.parse_args(argv)
-
-    pdf = Path(a.pdf)
-    if not pdf.is_file():
-        print(f"not a file: {pdf}", file=sys.stderr)
         return 1
-    reader = PdfReader(str(pdf))
-    if reader.is_encrypted:
-        try:
-            reader.decrypt("")
-        except Exception:
-            print("encrypted PDF: cannot read it", file=sys.stderr)
-            return 2
-    n_pages = len(reader.pages)  # loads the page tree; outline destinations resolve only after this
-    source = pdf.as_posix()
+
+    reader = pypdf.PdfReader(str(pdf_path))
+
+    if reader.is_encrypted and not _decrypted(reader):
+        print('encrypted PDF: cannot read it', file=sys.stderr)
+
+        return 2
+
+    # Loads the page tree; outline destinations resolve only after this.
+    page_count = len(reader.pages)
     entries = flatten_outline(reader)
 
-    if a.outline:
-        print_outline(pdf, n_pages, entries, a.depth)
+    if arguments.outline:
+        print_outline(
+            pdf_path,
+            page_count,
+            entries,
+            arguments.depth,
+        )
+
         return 0
 
-    if a.split:
-        chapters = parse_split(a.split, n_pages)
-        how = "--split, page ranges given by hand"
-    else:
-        chapters = chapters_from_outline(entries, a.depth, n_pages)
-        how = f"the PDF outline at depth {a.depth}"
-        if not chapters:
-            if a.all:
-                chapters = [Chapter(1, pdf.stem, 0, n_pages - 1)]
-                how = "no outline: the whole PDF as one chapter"
-            else:
-                print(
-                    "no outline in this PDF: run --outline, read the table-of-contents pages,"
-                    ' and pass --split "Title=first-last; ..."',
-                    file=sys.stderr,
-                )
-                return 3
-    full_list = chapters
-    if a.chapters:
-        wanted = parse_numbers(a.chapters, [c.number for c in chapters])
-        chapters = [c for c in chapters if c.number in wanted]
+    plan = _plan_chapters(
+        arguments,
+        pdf_path,
+        entries,
+        page_count,
+    )
 
-    label = pdftotext_label() if a.engine in ("auto", "pdftotext") else None
-    if a.engine == "pdftotext" and not label:
-        print("pdftotext is not on PATH; use --engine pypdf", file=sys.stderr)
-        return 1
-    use_pdftotext = bool(label)
+    if plan is None:
+        print(NO_OUTLINE_MESSAGE, file=sys.stderr)
+
+        return 3
+
+    exit_code = _extract_plan(
+        arguments,
+        reader,
+        pdf_path,
+        page_count,
+        plan,
+    )
+
+    return exit_code
+
+
+def pages_pdftotext(
+    pdf_path: pathlib.Path,
+    start: int,
+    end: int,
+) -> list[str]:
+    """
+    The text of each page from `start` to `end`, 0-based and inclusive, by pdftotext.
+    """
+    command = [
+        'pdftotext',
+        '-f',
+        str(start + 1),
+        '-l',
+        str(end + 1),
+        '-enc',
+        'UTF-8',
+        str(pdf_path),
+        '-',
+    ]
+    completed = subprocess.run(
+        command,
+        capture_output=True,
+    )
+
+    if completed.returncode != 0:
+        error_text = completed.stderr.decode('utf-8', 'replace').strip()
+        message = error_text or 'pdftotext failed'
+
+        raise RuntimeError(message)
+
+    pages = completed.stdout.decode('utf-8', 'replace').split('\f')
+    trimmed = pages[:-1] if pages and pages[-1].strip() == '' else pages
+    wanted = end - start + 1
+    padded = (trimmed + [''] * wanted)[:wanted]
+
+    return padded
+
+
+def pages_pypdf(
+    reader: pypdf.PdfReader,
+    start: int,
+    end: int,
+) -> list[str]:
+    """
+    The text of each page from `start` to `end`, 0-based and inclusive, by pypdf.
+    """
+    pages = [
+        reader.pages[index].extract_text() or ''
+        for index
+        in range(start, end + 1)
+    ]
+
+    return pages
+
+
+def parse_numbers(
+    specification: str,
+    available: list[int],
+) -> list[int]:
+    """
+    The chapter numbers `--chapters` names, as a sorted list; numbers and ranges only.
+    """
+    tokens = [
+        token.strip()
+        for token
+        in specification.split(',')
+        if token.strip()
+    ]
+    matches = {
+        token: CHAPTER_NUMBERS.fullmatch(token)
+        for token
+        in tokens
+    }
+    unreadable = [
+        token
+        for token, match
+        in matches.items()
+        if match is None
+    ]
+
+    if unreadable:
+        sys.exit(f'--chapters: numbers and ranges only, got {unreadable[0]!r}')
+
+    wanted = {
+        number
+        for match
+        in matches.values()
+        for number
+        in _number_range(match)
+    }
+    missing = sorted(wanted - set(available))
+
+    if missing:
+        sys.exit(f'--chapters: no chapter {missing} at this depth; run --outline to see the numbers')
+
+    numbers = sorted(wanted)
+
+    return numbers
+
+
+def parse_split(
+    specification: str,
+    page_count: int,
+) -> list[Chapter]:
+    """
+    The chapters `--split` names: `Title=first-last; Title=first-last`, pages 1-based and inclusive.
+    """
+    parts = [
+        part.strip()
+        for part
+        in specification.split(';')
+        if part.strip()
+    ]
+    chapters = [
+        _split_chapter(
+            number,
+            part,
+            page_count,
+        )
+        for number, part
+        in enumerate(parts, start=1)
+    ]
+
+    return chapters
+
+
+def pdftotext_label() -> str | None:
+    """
+    pdftotext's own version line, when it is on PATH; None when it is not.
+    """
+    executable = shutil.which('pdftotext')
+
+    if not executable:
+
+        return None
+
     try:
-        from importlib.metadata import version as _v
-
-        engine = label if use_pdftotext else f"pypdf {_v('pypdf')}"
+        completed = subprocess.run(
+            [
+                executable,
+                '-v',
+            ],
+            capture_output=True,
+            text=True,
+        )
     except Exception:
-        engine = label or "pypdf"
 
-    out_dir = Path(a.out) / slugify(pdf.stem, 80)
-    out_dir.mkdir(parents=True, exist_ok=True)
-    write_outline(out_dir, source, n_pages, full_list, how)
+        return 'pdftotext'
 
-    THIN = 200  # chars per page: written, but flagged — a preface, a plates section, a page of figures
-    written, empty, thin = [], [], []
-    for ch in chapters:
-        pages = pages_pdftotext(pdf, ch.start, ch.end) if use_pdftotext else pages_pypdf(reader, ch.start, ch.end)
-        avg = sum(len(p.strip()) for p in pages) / max(1, len(pages))
-        if avg < a.min_chars:
-            empty.append((ch, avg))
-            continue
-        if avg < THIN:
-            thin.append((ch, avg))
-        written.append(write_chapter(out_dir, source, ch, pages, engine))
+    version_text = (completed.stderr or completed.stdout).strip()
+    first_line = (version_text.splitlines() or ['pdftotext'])[0]
+    label = first_line.strip()
 
-    print(f"{pdf.name}: {n_pages} pages, {engine}, extracts in {out_dir.as_posix()}/")
-    for path in written:
-        print(f"  wrote {path.name}")
-    for ch, avg in thin:
-        print(f"  thin: {ch.number}. {ch.title} (p. {ch.pages}) — {avg:.0f} chars/page; written, check it is prose", file=sys.stderr)
-    for ch, avg in empty:
-        print(f"  not written: {ch.number}. {ch.title} (p. {ch.pages}) — {avg:.0f} chars/page, no text layer", file=sys.stderr)
-    if not written:
-        print("nothing written: no text layer in what was asked for — a scanned PDF. Report it as unreadable.", file=sys.stderr)
+    return label
+
+
+def print_outline(
+    pdf_path: pathlib.Path,
+    page_count: int,
+    entries: list[Entry],
+    depth: int,
+) -> None:
+    """
+    Print the outline: entries per depth, and the chapters `--chapters` numbers, with their sections.
+    """
+    print(f'{pdf_path.name}: {page_count} pages')
+
+    if not entries:
+        print('  no outline (no bookmarks). Read the table-of-contents pages and pass')
+        print('  --split "Title=first-last; Title=first-last", or --all for the whole PDF as one file.')
+
+        return
+
+    depths = sorted({
+        entry.depth
+        for entry
+        in entries
+    })
+    counts = {
+        level: sum(
+            1
+            for entry
+            in entries
+            if entry.depth == level
+        )
+        for level
+        in depths
+    }
+    count_text = ', '.join(
+        f'depth {level}: {count}'
+        for level, count
+        in counts.items()
+    )
+    print(f'  outline entries: {count_text}')
+    chapters = chapters_from_outline(
+        entries,
+        depth,
+        page_count,
+    )
+    print(f'  chapters at --depth {depth} (the numbers --chapters takes):')
+    title_lengths = [
+        len(chapter.title)
+        for chapter
+        in chapters
+    ]
+    title_width = max(title_lengths) if title_lengths else 10
+    column_width = min(title_width, 70)
+
+    for chapter in chapters:
+        print(f'  {chapter.number:>3}. {chapter.title:<{column_width}}  p. {chapter.pages}')
+        _print_sections(
+            chapter,
+            entries,
+            depth,
+        )
+
+    if counts.get(depth, 0) <= 3 and counts.get(depth + 1, 0) >= 4:
+        print(f'  depth {depth} looks like parts; consider --depth {depth + 1}')
+
+
+def slugify(
+    title: str,
+    limit: int = 60,
+) -> str:
+    """
+    `Author_Year_Title` style, the way the notes are named: ascii words joined by underscores,
+    the source's own capitals kept.
+    """
+    normalized = unicodedata.normalize('NFKD', title)
+    ascii_title = normalized.encode('ascii', 'ignore').decode()
+    replaced = re.sub(
+        r'[^A-Za-z0-9]+',
+        '_',
+        ascii_title,
+    )
+    joined = replaced.strip('_')
+    slug = joined[:limit].rstrip('_') or 'Untitled'
+
+    return slug
+
+
+def write_chapter(
+    output_directory: pathlib.Path,
+    source: str,
+    chapter: Chapter,
+    pages: list[str],
+    engine: str,
+) -> pathlib.Path:
+    """
+    One chapter's extract: frontmatter, its heading, and each page's text after a page marker.
+    """
+    body = '\n'.join(
+        f'<!-- p.{chapter.start + index + 1} -->\n{clean(text)}\n'
+        for index, text
+        in enumerate(pages)
+    )
+    content = ''.join([
+        '---\n',
+        f'source: {yaml_string(source)}\n',
+        f'chapter: {chapter.number}\n',
+        f'title: {yaml_string(chapter.title)}\n',
+        f'pages: {yaml_string(chapter.pages)}\n',
+        f'engine: {yaml_string(engine)}\n',
+        '---\n\n',
+        f'# {chapter.number}. {chapter.title}\n\n',
+        body,
+    ])
+    file_name = f'{chapter.number:02d}_{slugify(chapter.title)}.md'
+    path = output_directory / file_name
+    path.write_text(
+        content,
+        encoding='utf-8',
+        newline='\n',
+    )
+
+    return path
+
+
+def write_outline(
+    output_directory: pathlib.Path,
+    source: str,
+    page_count: int,
+    chapters: list[Chapter],
+    how: str,
+) -> pathlib.Path:
+    """
+    `OUTLINE.md`: every chapter the run knows of, whether or not it was written.
+    """
+    header = [
+        f'# {output_directory.name} — table of contents',
+        '',
+        f'Source: `{source}` — {page_count} pages — chapters from {how}.',
+        'Extracted chapters sit beside this file, one per chapter, numbered as below.',
+        'Regenerable and gitignored: cite the source, never this.',
+        '',
+        '| # | Chapter | Pages |',
+        '| --- | --- | --- |',
+    ]
+    rows = [
+        f'| {chapter.number} | {chapter.title} | {chapter.pages} |'
+        for chapter
+        in chapters
+    ]
+    lines = [
+        *header,
+        *rows,
+    ]
+    path = output_directory / 'OUTLINE.md'
+    path.write_text(
+        '\n'.join(lines) + '\n',
+        encoding='utf-8',
+        newline='\n',
+    )
+
+    return path
+
+
+def yaml_string(
+    value: str,
+) -> str:
+    """
+    A value quoted for YAML frontmatter, the way JSON quotes it.
+    """
+    quoted = json.dumps(
+        value,
+        ensure_ascii=False,
+    )
+
+    return quoted
+
+
+def _average_characters(
+    pages: list[str],
+) -> float:
+    """
+    The characters per page, on average, once each page is stripped.
+    """
+    total = sum(
+        len(page.strip())
+        for page
+        in pages
+    )
+    average = total / max(1, len(pages))
+
+    return average
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    """
+    The command line: the PDF, one of four modes, and the options.
+    """
+    parser = argparse.ArgumentParser(
+        prog='extract.py',
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument('pdf')
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(
+        '--outline',
+        action='store_true',
+        help='print the outline; write nothing',
+    )
+    mode.add_argument(
+        '--chapters',
+        metavar='N,N-M',
+        help='extract these chapters, by outline number',
+    )
+    mode.add_argument(
+        '--all',
+        action='store_true',
+        help='extract every chapter',
+    )
+    mode.add_argument(
+        '--split',
+        metavar='SPEC',
+        help='"Title=first-last; ..." when there is no outline',
+    )
+    parser.add_argument(
+        '--out',
+        default='Extracts',
+        help='extracts root (default ./Extracts)',
+    )
+    parser.add_argument(
+        '--depth',
+        type=int,
+        default=1,
+        help='outline depth that counts as a chapter',
+    )
+    parser.add_argument(
+        '--engine',
+        choices=[
+            'auto',
+            'pdftotext',
+            'pypdf',
+        ],
+        default='auto',
+    )
+    parser.add_argument(
+        '--min-chars',
+        type=int,
+        default=40,
+        help='avg chars/page below which there is no text layer',
+    )
+
+    return parser
+
+
+def _chapter_end(
+    boundaries: list[Entry],
+    position: int,
+    page_count: int,
+) -> int:
+    """
+    The last page of the chapter at `position`: the page before the next boundary that starts later.
+    """
+    this_page = boundaries[position].page
+    next_page = next(
+        (
+            boundary.page
+            for boundary
+            in boundaries[position + 1:]
+            if boundary.page > this_page
+        ),
+        page_count,
+    )
+    end = min(next_page, page_count) - 1
+
+    return end
+
+
+def _chosen_chapters(
+    specification: str,
+    chapters: list[Chapter],
+) -> list[Chapter]:
+    """
+    The chapters `--chapters` names, in outline order.
+    """
+    numbers = [
+        chapter.number
+        for chapter
+        in chapters
+    ]
+    wanted = parse_numbers(
+        specification,
+        numbers,
+    )
+    chosen = [
+        chapter
+        for chapter
+        in chapters
+        if chapter.number in wanted
+    ]
+
+    return chosen
+
+
+def _decrypted(
+    reader: pypdf.PdfReader,
+) -> bool:
+    """
+    Whether an encrypted PDF opens with the empty password.
+    """
+    try:
+        reader.decrypt('')
+    except Exception:
+
+        return False
+
+    return True
+
+
+def _engine_label(
+    engine_choice: str,
+) -> str | None:
+    """
+    The engine a run uses, as its extracts name it; None when pdftotext was asked for and is missing.
+    """
+    label = pdftotext_label() if engine_choice in ('auto', 'pdftotext') else None
+
+    if engine_choice == 'pdftotext' and not label:
+
+        return None
+
+    if label:
+
+        return label
+
+    try:
+        pypdf_version = importlib.metadata.version('pypdf')
+    except Exception:
+
+        return 'pypdf'
+
+    return f'pypdf {pypdf_version}'
+
+
+def _entry_page(
+    entry: Entry,
+) -> int:
+    """
+    The page an entry points to, the key the outline is sorted by.
+    """
+    page = entry.page
+
+    return page
+
+
+def _extract_plan(
+    arguments: argparse.Namespace,
+    reader: pypdf.PdfReader,
+    pdf_path: pathlib.Path,
+    page_count: int,
+    plan: ChapterPlan,
+) -> int:
+    """
+    Write `OUTLINE.md` and the chapters asked for, report, and give the exit code.
+    """
+    chosen = (
+        _chosen_chapters(
+            arguments.chapters,
+            plan.chapters,
+        )
+        if arguments.chapters
+        else plan.chapters
+    )
+    engine = _engine_label(arguments.engine)
+
+    if engine is None:
+        print('pdftotext is not on PATH; use --engine pypdf', file=sys.stderr)
+
+        return 1
+
+    source = pdf_path.as_posix()
+    output_directory = pathlib.Path(arguments.out) / slugify(pdf_path.stem, 80)
+    output_directory.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    write_outline(
+        output_directory,
+        source,
+        page_count,
+        plan.chapters,
+        plan.how,
+    )
+    extraction = extract_chapters(
+        arguments,
+        reader,
+        chosen,
+        engine,
+        output_directory,
+        source,
+    )
+    _report(
+        pdf_path,
+        page_count,
+        engine,
+        output_directory,
+        extraction,
+    )
+
+    if not extraction.written:
+        print(NOTHING_WRITTEN_MESSAGE, file=sys.stderr)
+
         return 2
+
     return 0
 
 
-if __name__ == "__main__":
+def _number_range(
+    match: re.Match[str],
+) -> range:
+    """
+    The chapter numbers one `--chapters` token names: one number, or a range, inclusive.
+    """
+    first_number = int(match.group(1))
+    last_text = match.group(2) or match.group(1)
+    last_number = int(last_text)
+    numbers = range(first_number, last_number + 1)
+
+    return numbers
+
+
+def _outline_entry(
+    reader: pypdf.PdfReader,
+    item: object,
+    depth: int,
+) -> Entry | None:
+    """
+    One bookmark as an entry, or None — with a note — when it points to no page.
+    """
+    raw_title = getattr(
+        item,
+        'title',
+        '',
+    )
+    title = str(raw_title).strip() or '(untitled)'
+
+    try:
+        page = reader.get_destination_page_number(item)
+    except Exception:
+        page = None
+
+    if page is None:
+        print(f'  outline entry without a page, skipped: {title!r}', file=sys.stderr)
+
+        return None
+
+    entry = Entry(
+        depth,
+        title,
+        int(page),
+    )
+
+    return entry
+
+
+def _plan_chapters(
+    arguments: argparse.Namespace,
+    pdf_path: pathlib.Path,
+    entries: list[Entry],
+    page_count: int,
+) -> ChapterPlan | None:
+    """
+    The chapters a run works from: `--split`, the outline, or the whole PDF under `--all`; None when
+    there is no outline and nothing else was asked for.
+    """
+    if arguments.split:
+        split_plan = ChapterPlan(
+            chapters=parse_split(
+                arguments.split,
+                page_count,
+            ),
+            how='--split, page ranges given by hand',
+        )
+
+        return split_plan
+
+    outline_chapters = chapters_from_outline(
+        entries,
+        arguments.depth,
+        page_count,
+    )
+
+    if outline_chapters:
+        outline_plan = ChapterPlan(
+            chapters=outline_chapters,
+            how=f'the PDF outline at depth {arguments.depth}',
+        )
+
+        return outline_plan
+
+    if arguments.all:
+        whole_plan = ChapterPlan(
+            chapters=[
+                Chapter(
+                    1,
+                    pdf_path.stem,
+                    0,
+                    page_count - 1,
+                ),
+            ],
+            how='no outline: the whole PDF as one chapter',
+        )
+
+        return whole_plan
+
+    return None
+
+
+def _print_sections(
+    chapter: Chapter,
+    entries: list[Entry],
+    depth: int,
+) -> None:
+    """
+    Under a depth-1 chapter, its depth-2 entries with their pages.
+    """
+    if depth != 1:
+
+        return
+
+    sections = [
+        entry
+        for entry
+        in entries
+        if entry.depth == 2 and chapter.start <= entry.page <= chapter.end
+    ]
+
+    for section in sections:
+        print(f'         · {section.title}  (p. {section.page + 1})')
+
+
+def _report(
+    pdf_path: pathlib.Path,
+    page_count: int,
+    engine: str,
+    output_directory: pathlib.Path,
+    extraction: Extraction,
+) -> None:
+    """
+    Print what was written, and what was thin or had no text layer.
+    """
+    print(f'{pdf_path.name}: {page_count} pages, {engine}, extracts in {output_directory.as_posix()}/')
+
+    for path in extraction.written:
+        print(f'  wrote {path.name}')
+
+    for chapter, average in extraction.thin:
+        thin_warning = ' '.join([
+            f'  thin: {chapter.number}. {chapter.title} (p. {chapter.pages}) — {average:.0f} chars/page;',
+            'written, check it is prose',
+        ])
+        print(thin_warning, file=sys.stderr)
+
+    for chapter, average in extraction.empty:
+        empty_warning = ' '.join([
+            f'  not written: {chapter.number}. {chapter.title} (p. {chapter.pages}) —',
+            f'{average:.0f} chars/page, no text layer',
+        ])
+        print(empty_warning, file=sys.stderr)
+
+
+def _split_chapter(
+    number: int,
+    part: str,
+    page_count: int,
+) -> Chapter:
+    """
+    One `Title=first-last` item of `--split` as a chapter; exits on an item it cannot read.
+    """
+    if '=' not in part:
+        sys.exit(f'--split: each item is Title=first-last, got {part!r}')
+
+    title, page_range = part.rsplit('=', 1)
+    match = PAGE_RANGE.fullmatch(page_range)
+
+    if not match:
+        sys.exit(f'--split: bad page range {page_range!r} in {part!r}')
+
+    first_page = int(match.group(1))
+    last_text = match.group(2) or match.group(1)
+    last_page = int(last_text)
+
+    if not 1 <= first_page <= last_page <= page_count:
+        sys.exit(f'--split: pages {first_page}-{last_page} outside 1-{page_count} in {part!r}')
+
+    chapter = Chapter(
+        number,
+        title.strip() or f'Part {number}',
+        first_page - 1,
+        last_page - 1,
+    )
+
+    return chapter
+
+
+def _walk_outline(
+    reader: pypdf.PdfReader,
+    items: list,
+    depth: int,
+) -> list[Entry]:
+    """
+    The entries of one outline level and, depth first, of the lists nested in it.
+    """
+    entries = []
+
+    for item in items:
+        if isinstance(item, list):
+            entries.extend(_walk_outline(
+                reader,
+                item,
+                depth + 1,
+            ))
+
+            continue
+
+        entry = _outline_entry(
+            reader,
+            item,
+            depth,
+        )
+
+        if entry is not None:
+            entries.append(entry)
+
+    return entries
+
+
+if __name__ == '__main__':
     sys.exit(main())
