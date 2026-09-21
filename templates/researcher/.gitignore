@@ -1,0 +1,36 @@
+# Sources: copyrighted files stay out of git
+Sources/**/*.pdf
+Sources/**/*.epub
+Sources/**/*.docx
+Sources/**/*.pptx
+Sources/**/*.xlsx
+Sources/**/*.zip
+Sources/**/*.png
+Sources/**/*.jpg
+Sources/**/*.jpeg
+
+# Agent tooling: per-machine copies written by apm install
+.claude/
+.agents/
+.codex/
+.cursor/
+.github/
+.gemini/
+.opencode/
+.windsurf/
+apm_modules/
+apm.lock.yaml
+.mcp.json
+GEMINI.md
+
+# Regenerable: extracts and Python caches
+Extracts/
+__pycache__/
+.venv/
+
+# IDE and OS
+.idea/
+.vscode/
+.obsidian/
+.DS_Store
+Thumbs.db

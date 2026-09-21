@@ -1,0 +1,29 @@
+# The development environment for this repository's one script, `scaffold.py`, and its tests. The
+# worked example in `examples/` carries its own `pyproject.toml`, which governs it alone.
+[project]
+name = "kaxanuk-researcher"
+version = "0.6.0"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "apm-cli",
+    "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["examples", "templates"]
+
+[tool.ruff.lint]
+select = [
+    "E4",
+    "E7",
+    "E9",
+    "F",
+]

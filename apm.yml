@@ -1,0 +1,19 @@
+# The KaxaNuk Researcher: this repository is one APM package. Its skills and commands are in `.apm/`;
+# `templates/` and `examples/` are what `init-researcher`, `init-strategy` and `init-example` copy.
+# It depends on `kaxanuk`, every Investment Lab package in KaxaNuk-Agent-Skills, so one install
+# brings everything, once for the user:
+#
+#     apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+#
+# and `apm update -g` brings every new version of both repositories to every folder.
+name: kaxanuk-researcher
+version: 0.6.0
+description: The KaxaNuk Researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read and drafts the hypothesis of every strategy you build; with init-researcher, init-strategy and init-example, and the template, worked example and home they copy.
+author: Arturo Aguilar
+license: MIT
+dependencies:
+  apm:
+    - KaxaNuk/KaxaNuk-Agent-Skills/kaxanuk
+  mcp: []
+includes: auto
+scripts: {}

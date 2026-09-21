@@ -1,0 +1,24 @@
+# APM: what `apm install` writes, per machine
+.agents/
+.claude/
+.codex/
+.cursor/
+.gemini/
+.opencode/
+.windsurf/
+apm_modules/
+apm.lock.yaml
+.mcp.json
+GEMINI.md
+
+# Python
+__pycache__/
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# IDE and OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
