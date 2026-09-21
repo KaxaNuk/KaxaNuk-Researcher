@@ -30,6 +30,8 @@ between `<!-- example: begin -->` and `<!-- example: end -->` — `# --- example
   KaxaNuk-Agent-Skills says.
 - **The Lab's skills are not edited here.** `experiment-lifecycle`, `alpha-decomposition` and each
   library's skill live in KaxaNuk-Agent-Skills; this package depends on them through `kaxanuk`.
+- **`python tools/check_repo.py` passes before any commit,** with the tests and ruff; CI runs all
+  three.
 - **Markdown is wrapped at 100 columns.** Never use the section symbol; write "section".
 - **No secrets, no binaries, no in-house strategy.** The worked example is the only strategy this
   repository names.
