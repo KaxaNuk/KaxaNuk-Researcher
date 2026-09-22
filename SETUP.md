@@ -20,6 +20,14 @@ Two tools. Python is **not** one of them — `uv` fetches what it needs itself.
 Open a **new** terminal after installing either, so it is on the path. `git --version` and
 `uv --version` both answering is the whole check.
 
+Then tell git who you are, once, if you never have: every folder the commands make starts as a git
+repository with a first commit, and the commit stops until git has a name and an email.
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
 ---
 
 ## Step 1 — Install the package, once per machine

@@ -37,7 +37,8 @@ so **a strategy installs nothing of its own**; `apm update -g` brings every new 
 new session:
 
 1. **`init-researcher Luna`** — your researcher's home, with the name you choose.
-2. **`researcher-init`**, in that home — a short interview that makes the researcher yours.
+2. **`researcher-init`**, in that home — a short interview that makes the researcher yours. Then
+   `apm install --target claude` there, once, deploys it as an agent you call by name.
 3. **`init-strategy fcf-yield-quality`** — your first strategy, one repository of its own.
 
 **What a strategy needs from outside this package.** The researcher needs nothing more. A strategy
