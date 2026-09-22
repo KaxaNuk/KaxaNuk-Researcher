@@ -41,6 +41,23 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.1 (2026-09-22)
+
+**PATCH** — three generated files no longer carry the worked example's own state. No
+result changes.
+
+**What to do differently:** nothing.
+
+### Fixed
+
+- **`Experiments/Experiment_1/experiment_1.ipynb`**: section 6 no longer says "each
+  counterfactual below", pointing at cells this template does not have, and the first open item
+  states its condition — no result without the licensed engines — rather than the example's
+  "the book is real".
+- **`Experiments/Experiment_1/BLUEPRINT_1.md`**: the open questions get a placeholder table to
+  fill in, as the predictions already had.
+- **`Paper_Trading/BITACORA.md`**: one line is re-wrapped at 100 columns.
+
 ## 0.10.0 (2026-09-22)
 
 **MINOR** — the template ships every file its README's *What is in here* table names, each as a
