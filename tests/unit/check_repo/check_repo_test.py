@@ -167,6 +167,18 @@ class TestCheckMarkers:
 
         assert messages == [f'{path} cell 1: line 1 opens a block that never closes']
 
+    def test_deleted_notebook_is_not_read(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        path = f'{check_repo.EXAMPLE_FOLDER}/deleted.ipynb'
+        findings = check_repo.check_markers(
+            tmp_path,
+            [path],
+        )
+
+        assert findings == []
+
     def test_python_block_left_open_is_reported(
         self,
         tmp_path: pathlib.Path,
