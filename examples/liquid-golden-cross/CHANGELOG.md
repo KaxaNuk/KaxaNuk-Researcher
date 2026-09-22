@@ -41,6 +41,55 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.0 (2026-09-22)
+
+**MINOR** — every claim in `OBJECTIVE.md` now has a note behind it, the objective's evidence for
+claims 2 to 4 is rewritten from those notes with no claim's wording changed, and Experiment 1 meets
+its last success criterion: re-run from a wiped working copy on a fresh download, every conclusion
+holding. No published figure changes.
+
+**What to do differently:** read the objective's sections on claims 2, 3 and 4 before proposing
+the sizing or the band experiment: each now names the arms, the predictions and the measurement
+its notes ask for. Read the figures in `FINDINGS_1.md` with the error bar its re-run table gives:
+a fresh download moves them at the second decimal. A copy made before this version can take the
+new notes with `init-example Bibliotheca`.
+
+### Added
+
+- **Six notes for claims 2 and 4, carried from a researcher's library without re-reading the
+  PDFs.** Grinold and Kahn's chapters 13, 14 and 16 — the band's own source, and the case against
+  it — with the book's index, and Paleologo's chapters 6 and 8, on when a signal's strength should
+  set the size and how to measure whether it does. Claim 4 had no note; claim 2 had two marked *to
+  come*.
+- **Two papers read whole.** Baltussen, Dom, Van Vliet and Vidojevic (2025), the momentum review,
+  for claim 1 and the objective's *not that this is momentum* line: what the book's +12.75
+  momentum points are, and are not. Sarkar, Du and Vafai (2019) for claim 3: what a book of the
+  largest companies loads on once sectors are in the model, and why open lead 3 — the eleven
+  sector factors reading zero — is more than a cosmetic defect.
+- **A contradiction recorded.** The momentum review finds downside risk cannot explain the
+  momentum premium, where Paleologo's chapter 5 carried two studies saying it makes momentum
+  redundant; the older claim stays, under a callout naming the newer note.
+- **`SETUP.md` names the hand-supplied files exactly** — the two benchmark files, their headers and
+  date order, and the lower-case factor files with the four reserved `f_` names — because a file
+  named otherwise is not found, or is counted as one more factor.
+- **A re-run table in `FINDINGS_1.md`**, the published figures beside the ones a wiped copy on a
+  fresh download returned on 2026-09-22, and a tenth caveat naming the drift.
+
+### Changed
+
+- **`OBJECTIVE.md`, claims 2 to 4, fine-tuned from the notes.** Claim 2 is stated as the 1/N rule
+  on a signal with no conviction, with the arm that tests it and its predictions fixed. Claim 3
+  records what the paper says a large-cap book loads on — not size — and that the 28 points
+  assigned to the ranking are provisional until a sector block or a rate term is in the model.
+  Claim 4 records the three conditions its rule of thumb came with, and the band sweep as a
+  frontier with the delay test run first. The status column and every claim's wording are as they
+  were.
+- **Success criterion 1 of Experiment 1 is met, to the data.** The pipeline ran end to end from a
+  wiped working copy with no manual step beyond the hand-supplied files; the filter-off control and
+  the index came back to every published decimal, the rule within hundredths and one rebalance.
+  `JOURNAL_1.md` has the run, `RESULTS.md`'s *Does it reproduce?* the answer, and the status
+  banners say so.
+
 ## 0.9.0 (2026-09-22)
 
 **MINOR** — the example runs as far as it can without the licensed engines and the hand-supplied

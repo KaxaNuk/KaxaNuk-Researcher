@@ -6,7 +6,8 @@ Invest in the most traded US stocks in an uptrend, meaning the 50-day simple mov
 average is above the 200-day, hold the top 30, and rebalance only when that top 30 differs from the
 current portfolio by 10%, to avoid rebalancing too often.
 
-> **Status: steps 1 to 6 run end to end, and step 7's gate evaluated against the result.** The rule
+> **Status: steps 1 to 6 run end to end, reproduced from a wiped working copy on 2026-09-22, and
+> step 7's gate evaluated against the result.** The rule
 > beats the index by 3.1 points a year and loses to its own control by 1.1; of its 45.5
 > idiosyncratic points, about 5 belong to the signal it is named after. It is **not a defensive
 > book** — beta 1.028, and more volatile than the index — and what it buys is a drawdown 9.3 points

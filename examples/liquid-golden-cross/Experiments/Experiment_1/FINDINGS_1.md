@@ -15,7 +15,7 @@ against.
 
 <!-- example: begin -->
 
-**Adopted as the benchmark, 2026-09-20, with one success criterion outstanding.** It is a tradeable
+**Adopted as the benchmark, 2026-09-20; its last criterion answered 2026-09-22.** It is a tradeable
 and stable yardstick, and that is the whole of its job. The benchmark is not a graduation
 candidate, and it would not be one on these numbers: **the filter costs 1.12 points a year against
 the control that differs from it in exactly one thing**, and what it buys is a shallower drawdown
@@ -25,13 +25,13 @@ rather than a higher return.
 
 | # | Criterion | State |
 | --- | --- | --- |
-| 1 | Reproducible from a clean clone, through the pipeline, with no manual step | **Outstanding.** The notebook re-ran end to end on 2026-09-20 inside the same working copy and every figure came back identical — 17.85%, 0.8612, −30.54%, 45.52 — but it has never run from a wiped copy, which is the test that also catches a stale intermediate file |
+| 1 | Reproducible from a clean clone, through the pipeline, with no manual step | **Met, to the data.** Re-run on 2026-09-22 from a wiped working copy on a fresh download, every stage headless and no manual step beyond the hand-supplied index and factor files: every conclusion held, the filter-off control and the index came back to every published decimal, and the rule moved within what a re-pull moves — 17.89% against 17.85%, Sharpe 0.863 against 0.861, 86 rebalances against 87 — on a panel ten rows different. *Re-run from a wiped working copy* below has every figure; the published ones stand as the record of the 2026-09-20 run |
 | 2 | A tradeable trigger frequency — not a rule that fires every day | **Met.** 87 rebalances in 9.4 years, 9.2 a year, at 17.8% one-way turnover each |
 | 3 | Net-of-cost results reported against every benchmark it declares | **Met.** Every row of *The book, priced by the engine* is net, against the index, the filter-off control and the equalised control |
 | 4 | Every prediction evaluated explicitly, including the ones that turn out wrong | **Met.** Six rows: three confirmed, two falsified, one split |
 
-Adoption stands on criteria 2, 3 and 4; criterion 1 is the one piece of work between this book and
-a yardstick nobody has to take on trust.
+Adoption stands on all four. What the re-run adds is the size of the drift a fresh download
+produces, which is the honest error bar on every figure below.
 
 <!-- example: end -->
 
@@ -89,6 +89,31 @@ of slippage and a 2% cash reserve. Results are net.
 **The long window is the sobering one.** Over 23.8 years the same rule compounds at 10.29% with a
 60.7% drawdown and a negative alpha. Whatever the filter does in a nine-year sample dominated by
 one direction, it does not survive a 2008 as a drawdown shield.
+
+### Re-run from a wiped working copy, 2026-09-22
+
+The same pipeline, from `init-example` into an empty folder, on a fresh download the same day, with
+the same engine version and the same frozen costs. **No published figure above is changed by it**:
+the numbers moved for a known reason — a fresh pull rebases every adjusted column, limitation 5 of
+`RESULTS.md`, and this panel is ten rows short of the published one — and a committed result is not
+edited to agree with a new run. What moved, and by how much, is the error bar on the table above.
+
+| Book | Published | Re-run | Moved |
+| --- | --- | --- | --- |
+| The rule: CAGR, Sharpe, max drawdown, rebalances | 17.85%, 0.861, −30.54%, 87 | 17.89%, 0.863, −30.55%, 86 | one rebalance, and hundredths |
+| The rule, realistic costs | 18.34%, 0.885, −30.40% | 18.38%, 0.887, −30.42% | hundredths |
+| Filter off, the control | 18.62%, 0.813, −39.79%, 11 | 18.62%, 0.813, −39.79%, 11 | nothing |
+| The KN600 index | 14.71%, 0.774, −33.75% | 14.71%, 0.774, −33.75% | nothing |
+| The rule, long window | 10.29%, 0.514, −60.74%, 307 | 10.28%, 0.514, −60.74%, 307 | 0.01 of a point |
+| The equalised control | 18.97%, 0.831 | 18.96%, 0.831 | 0.01 of a point |
+| The filter's cost a year: plain, equalised | −0.77, −1.12 | −0.73, −1.07 | 0.04 and 0.05 |
+| Factor model: market, momentum, idiosyncratic | 83.33, 12.75, 45.52 | 83.42, 12.69, 45.44 | hundredths; the sectors 0.00 again |
+| Random books, five seeds: idiosyncratic | −17.63 to 25.17, mean 12.5 | −13.98 to 29.45, mean 11.1 | the most, as draws from a shifted pool would |
+
+Every conclusion in this file survives the re-run: the filter costs return and buys drawdown, the
+book is a full-beta position with a momentum loading it never traded, the sector factors read zero,
+and the rule's idiosyncratic return sits above the random range's top. The one thing the re-run
+does not let a reader keep is the third decimal.
 
 <!-- example: end -->
 
@@ -281,5 +306,6 @@ The single highest-value run outstanding, and what it would settle.
 | 7 | **The attribution runs on the invested 98% of the book.** The engine's daily weights carry a `CASH_RESERVE` column with no price series, and the library prices only what it can name | Found on 2026-09-20 while building the counterfactuals. It applies identically to every arm, so the comparisons stand, and it reproduces the published 45.52 exactly — but the cash reserve is dropped rather than carried at a zero return, and that was never stated |
 | 8 | **The idiosyncratic points are measured against a baseline of about 12.5, not against zero** | A random thirty-name book earns residual in this window too. Any figure in this file that calls a raw idiosyncratic number "alpha" should be read net of that baseline |
 | 9 | **The long window starts 2002-07-30, where `BLUEPRINT_1.md` declared 2002-01-02** | `SHY`, the cash proxy, launched on 2002-07-30, and a book whose cash has no price is a book the engine cannot value, so the notebook clips the start to the earliest priceable date. Seven months of the declared window are in no long-window figure. The clip is deliberate and in the code; it was simply never written down, and the challenge of 2026-09-20 found it by reading the blueprint's window against this table's |
+| 10 | **A fresh download moves the figures at the second decimal.** The re-run of 2026-09-22 from a wiped copy ran on a panel ten rows short of the published one and fired one rebalance fewer | Every figure in this file carries roughly that error bar: hundredths of a point of CAGR and Sharpe, a few points on the random arms, nothing on the filter-off control or the index. The published figures are the 2026-09-20 run's and are not edited to match |
 
 <!-- example: end -->

@@ -13,7 +13,15 @@ strategy runs in, and so a person can read it in two minutes.
 > **Its benchmark cannot be downloaded.** The KN600 is KaxaNuk's own index: its daily holdings and
 > returns, `KN_US_Equity_Benchmark.csv` and `KN_US_Equity_Returns.csv` in
 > `Data/Curator/Benchmarks/`, and the factor returns in `Data/Curator/Factors/`, are supplied by
-> hand, and no provider sells them. Without them `Data/curator.py` downloads every price and says
+> hand, and no provider sells them. **Their names and headers are fixed by the code that reads
+> them.** The holdings file is `KN_US_Equity_Benchmark.csv`, `date_column` first and one column
+> per security; the returns file is `KN_US_Equity_Returns.csv`, `date_column` then one return
+> column; both carry day-first dates. Each factor is one CSV in `Factors/` named for it in lower
+> case — `momentum.csv`, `size.csv`, the eleven sectors — with the four reserved series as
+> `f_market.csv`, `f_total_factor_returns.csv`, `f_total_excess_returns.csv` and
+> `f_idyo_returns.csv`, an unnamed date column first and one column per security after it. A
+> file named otherwise is not found, or is counted as one more factor. Without them
+> `Data/curator.py` downloads every price and says
 > the index was not staged; `Universe/universe.ipynb` writes `Security_Master.csv` and
 > `Data_Issues.csv`, then stops at the cell that reads the index's holdings; and
 > `Experiments/Experiment_1/experiment_1.ipynb` stops in its first cell. Every number the example
