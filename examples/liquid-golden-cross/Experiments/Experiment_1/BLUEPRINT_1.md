@@ -176,6 +176,10 @@ Specifically, here:
 
 Each is a later experiment, and each has to beat this one.
 
+| # | Question | Why it is not answered here |
+| --- | --- | --- |
+| 1 | the question | why this experiment leaves it open |
+
 <!-- example: begin -->
 
 | # | Question | Why it is not answered here |
