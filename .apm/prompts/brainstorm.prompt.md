@@ -4,8 +4,6 @@ input:
   - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
   - idea: "Optional: the idea to think about, in a phrase"
-metadata:
-  version: 0.3
 ---
 
 # Draft a brainstorming entry
@@ -20,11 +18,15 @@ of what happened. `${input:experiment}` is the experiment number `N`, `${input:i
 think about when the owner gave one, and `${input:strategy}` the strategy's path when the session is
 not already open in it.
 
-1. **Read the experiment's state.** A strategy created from the template's `main` has no
-   `BRAINSTORMING_N.md`: the template ships `Experiments/.gitkeep`, and the file is in the worked
-   example. Give the command that brings it across — `init-example
+1. **Read the experiment's state.** A strategy made by `init-strategy` has no
+   `BRAINSTORMING_N.md`: the template ships no experiment documents, and the file is in the worked
+   example. For Experiment 1, give the command that brings it across — `init-example
    Experiments/Experiment_1/BRAINSTORMING_1.md`, run in the strategy's session — say that
-   everything between the example markers is the worked strategy's, and stop.
+   everything between the example markers is the worked strategy's, and stop. For N > 1 that
+   command is refused, since `BRAINSTORMING_1.md` is already the owner's: the blank is the
+   `experiment-lifecycle` skill's `references/brainstorming-template.md`, copied to
+   `Experiments/Experiment_N/BRAINSTORMING_N.md` with `N` replaced, as that skill's section 6
+   says. Offer the copy, make it on the owner's go, and continue.
 
    Otherwise read `BLUEPRINT_N.md`, `BRAINSTORMING_N.md` (the entries so far), `FINDINGS_N.md` if
    it reports, and `RESULTS.md` — what is closed, what is open, what stands. Do not open another

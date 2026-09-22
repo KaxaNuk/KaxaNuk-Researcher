@@ -2,8 +2,6 @@
 description: Draft a strategy's OBJECTIVE.md in place — the main idea and its claims — first from the owner's words before any paper is read, then fine-tuned from the strategy's Bibliotheca notes as reading for each claim comes in; every claim cites a note or names the question that would settle it; plan first, the owner's go, then write. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
   - strategy: "Optional: path to the strategy repository, if not the one the session is in"
-metadata:
-  version: 0.3
 ---
 
 # Draft the objective

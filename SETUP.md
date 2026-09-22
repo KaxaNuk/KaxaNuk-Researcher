@@ -2,8 +2,8 @@
 
 Everything needed to go from nothing to a researcher you can talk to and a first strategy. It is
 written so an agent — Claude, Codex, Cursor — can follow it end to end when all it was told is
-*please help me install this repo: `https://github.com/KaxaNuk/KaxaNuk-Researcher`*, and so a person can read
-it in two minutes.
+*please help me install this repo: `https://github.com/KaxaNuk/KaxaNuk-Researcher`*, and so a
+person can read it in two minutes.
 
 **Nothing is cloned.** This repository is a package: it is installed once for your user, and its
 commands then make every folder you need.
@@ -39,6 +39,14 @@ apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 That installs the researcher's skills and commands and, with them, every KaxaNuk Investment Lab
 skill, for your user: every folder you open has them, and no folder installs anything of its own.
 
+**Claude Code receives all of it:** the skills, the commands and the four instructions — Bloom
+Code, PEP 8, test writing and filesystem boundaries. Copilot receives the same, its instructions
+merged into `~/.copilot/copilot-instructions.md`. Cursor, Gemini, OpenCode and Windsurf get the
+skills and the commands but not the instructions. Codex gets the skills only: no instructions and
+no commands, so there a command is run by naming its file in the package. For `researcher-init`
+in step 2, ask Codex to *follow
+`~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/researcher-init.prompt.md`*.
+
 **On Windows, if the install fails with *checkout failed* or `WinError 3`,** a path went past
 Windows' 260-character limit. Let git use long paths, once, then install again:
 
@@ -73,8 +81,9 @@ researcher's home — as a git repository. Open **that folder** in a new session
 researcher-init
 ```
 
-a short interview that writes `RESEARCHER.md` and the agent that makes your researcher callable by
-name. Then `apm install` in that folder, once, deploys the agent.
+a short interview — seven questions, in your language — that writes `RESEARCHER.md` and the agent
+that makes your researcher callable by name. Then `apm install --target claude` in that folder,
+once, with your assistant in place of `claude` as in step 1, deploys the agent.
 
 > **For the agent.** If a commit fails for want of a git identity, ask the user for the name and
 > email — never invent them — and set them in that repository only. One researcher per person: if a
@@ -92,8 +101,8 @@ init-strategy fcf-yield-quality
 
 It makes `fcf-yield-quality/` from the KaxaNuk Strategy Template, as a git repository with its first
 commit. Open that folder in a new session; its own `SETUP.md` builds the environment and the keys,
-and its `README.md` says what to fill in, in order — `OBJECTIVE.md` first. To bring your researcher's
-library along, add its home to the session: `claude --add-dir <the home>`.
+and its `README.md` says what to fill in, in order — `OBJECTIVE.md` first. To bring your
+researcher's library along, add its home to the session: `claude --add-dir <the home>`.
 
 To see a finished strategy first:
 
@@ -111,3 +120,5 @@ apm update -g
 
 brings every new version — of the researcher and of the Lab's skills — to every folder at once.
 Then open a new session.
+
+APM's own reference, for any error it prints: <https://microsoft.github.io/apm/llms.txt>.

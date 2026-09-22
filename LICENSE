@@ -22,8 +22,8 @@ SOFTWARE.
 
 ---
 
-The library architecture and the compile / query / audit / refine / refresh-index / teach commands
-adapt the obsidian-vault-kit (https://github.com/alanvaa06/Knowledge-Management-System):
+The library architecture, the read / query skills and the audit / refine / refresh-index / teach
+commands adapt the obsidian-vault-kit (https://github.com/alanvaa06/Knowledge-Management-System):
 
 Copyright (c) 2026 obsidian-vault-kit contributors
 

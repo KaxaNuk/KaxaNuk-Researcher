@@ -13,7 +13,7 @@ description: >
   running the engines (`backtest-engine-runs`, `attribution-analysis-runs`), reading attribution
   (`alpha-decomposition`), or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.7.2
+  version: 0.7.3
 ---
 
 # The research process — how a strategy repository is worked in
@@ -117,8 +117,8 @@ depends on it.
 ## 4. The notebook — one section contract, one cell that is the strategy
 
 `experiment_N.ipynb` follows the same sections every time. `references/experiment-notebook.ipynb` is
-the template's Experiment 1 notebook — markdown only, one cell per section saying what that section
-computes — and is the file to copy.
+the worked example's Experiment 1 notebook with its own cells stripped — markdown only, one cell per
+section saying what that section computes — and is the file to copy.
 
 | Section | Contains |
 | --- | --- |
@@ -129,7 +129,8 @@ computes — and is the file to copy.
 | 3 · Construction | the book's shape — invested share, trigger frequency, turnover, concentration, group drift; 3.1 writes the deliverables, `portfolio_weights.csv` with cash as a real priced position |
 | 4 · Backtest | the KaxaNuk Backtest Engine, the only backtest anywhere; guarded import, reports and skips without a licence |
 | 5 · Attribution | Brinson-Fachler, the factor model, and Brinson-Fachler again on the residual; guarded the same way |
-| 6 · Verdict | what it concluded, in words |
+| 6 · Counterfactuals | the arms that price who earned the idiosyncratic share: the same book with one choice removed, priced by the same engine |
+| 7 · Verdict | what it concluded, in words |
 | Handoff · Open items | what the next stage consumes; what this one left open |
 
 **Two look-aheads are stated plainly and nowhere else:** the signal used on rebalance date *t* is the
@@ -167,10 +168,10 @@ nothing to tune — stay in the Curator.
 ## 6. Scaffolding
 
 **A new strategy.** Follow the template's `SETUP.md` — the repository, `uv sync`, the credential
-file, and the agent skills if wanted — then work in this order. **It is an index of *Starting your
-own strategy* in the template's README on `main`**, which is the source and says why each item comes
-where it does; the eight items are not the eight steps. What this skill adds is the last column —
-which tool each item loads.
+file; the skills are installed once for the user, not here — then work in this order. **It is an
+index of *Starting your own strategy* in the template's README**, which is the source and says why
+each item comes where it does; the eight items are not the eight steps. What this skill adds is the
+last column — which tool each item loads.
 
 | # | Item | Lands in | Load |
 | --- | --- | --- | --- |
@@ -183,10 +184,12 @@ which tool each item loads.
 | 7 | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
 | 8 | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
 
-Every file those items name beyond `OBJECTIVE.md`, `RESULTS.md` and the empty
-`Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md` the template ships is in the worked example. Bring one
-across with `init-example <path>` — it copies from the example inside the KaxaNuk Researcher and
-never overwrites — and delete what is the example's: everything between the markers, and the seed.
+Every file those items name beyond what the template ships — `OBJECTIVE.md`, `RESULTS.md`, the
+empty `Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, and the seed `Universe/Investable_Universe.csv`
+with only its header — is in the worked example. Bring one across with `init-example <path>` — it
+copies from the example inside the KaxaNuk Researcher and never overwrites, so bring
+`Universe/universe.ipynb` by its path — and delete what is the example's: everything between the
+markers.
 
 **A new experiment `N` inside an existing strategy:**
 
@@ -195,8 +198,10 @@ never overwrites — and delete what is the example's: everything between the ma
 2. Copy the four templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
    code**, stating the economic mechanism and citing every prediction's source. The blueprint
    template is the benchmark's; delete the sentences that only apply to Experiment 1.
-3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`; declare the experiment's
-   columns in section 0; import the panel loader in section 1; write the rule in section 2.
+3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`. It too is the benchmark's:
+   retitle it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that
+   only apply to Experiment 1. Then declare the experiment's columns in section 0; import the
+   panel loader in section 1; write the rule in section 2.
 4. Add a row to `RESULTS.md` when `FINDINGS_N.md` first reports, citing it. A new experiment is a
    MINOR bump in `CHANGELOG.md`, and the entry is part of the change-set.
 
@@ -220,10 +225,10 @@ is two rules, and the copies drift. Read them where they are.
 
 - `references/structure.md` — the template's tree, what is committed, and the steps to fill it in.
 - `references/blueprint-template.md`, `brainstorming-template.md`, `journal-template.md`,
-  `findings-template.md` — the four files of an experiment, as the template ships them.
-- `references/experiment-notebook.ipynb` — the template's Experiment 1 notebook, markdown only.
+  `findings-template.md` — the four documents of an experiment; the template ships none.
+- `references/experiment-notebook.ipynb` — Experiment 1's notebook, markdown only.
 
 The four documents and the notebook are copies of Experiment 1's files in the worked example,
 `examples/liquid-golden-cross/` in KaxaNuk-Researcher, with the example's own lines stripped.
-`python tools/sync_investment_lab_references.py` there regenerates them, and `tools/check_repo.py`
-fails when they differ; `references/structure.md` is kept by hand.
+`uv run --no-project python tools/sync_investment_lab_references.py` there regenerates them, and
+`tools/check_repo.py` fails when they differ; `references/structure.md` is kept by hand.

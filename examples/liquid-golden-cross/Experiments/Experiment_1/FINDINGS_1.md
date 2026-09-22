@@ -51,7 +51,7 @@ and it cost one run to find out.
 
 | # | Prediction | Outcome | What it changed |
 | --- | --- | --- | --- |
-| 1 | Volatility below the index's | **Falsified against the index, confirmed against the control.** 20.73% against the index's 19.01%; against the filter-off book's 22.91% | The prediction was written from a per-security measurement and tested against a 600-name index. Thirty names are more volatile than six hundred whatever the filter does. Compared with the book it is actually a variant of, the filter removes 2.2 points of volatility, which is what the analyzer said it would |
+| 1 | Volatility below the index's | **Falsified.** 20.73% against the index's 19.01% | The prediction was written from a per-security measurement and tested against a 600-name index. Thirty names are more volatile than six hundred whatever the filter does. Against the book it is actually a variant of, the filter-off control at 22.91%, the filter removes 2.2 points of volatility, which is what the analyzer said it would: a new observation, not this prediction's verdict |
 | 2 | Does not beat the filter-off book by more than 1 point a year | **Confirmed, and then confirmed harder.** −0.77 points a year against the plain control; **−1.12** against the equalised one | An information coefficient of 0.0112 produced exactly what it should: no return edge. The equalised control, added 2026-09-20, is the comparison that differs in one thing only, and the filter looks worse against it |
 | 3 | Drawdown shallower than the index's | **Confirmed.** −30.5% against −33.8%, and −39.8% for the control | The filter's value is drawdown, not return: 9.3 points shallower than the same thirty names unfiltered |
 | 4 | The worst relative stretch is a rebound, not a decline | **Confirmed.** Worst 63-day stretch −12.5 points, ending 2023-02-06, while the index rose 11.1% | LeBaron's failure mode reproduced on a different market and a different rule. A late-turning average sells into the bottom and buys back above it |
@@ -86,7 +86,7 @@ of slippage and a 2% cash reserve. Results are net.
 | The KN600 index | same | 14.71% | 19.01% | 0.774 | −33.75% | — | — | — |
 | The rule, long window | 2002-07-30 → 2026-06-01 | 10.29% | 20.00% | 0.514 | **−60.74%** | −0.70% | 307 | $624,000 |
 
-**The long window is the sobering one.** Over 24.7 years the same rule compounds at 10.29% with a
+**The long window is the sobering one.** Over 23.8 years the same rule compounds at 10.29% with a
 60.7% drawdown and a negative alpha. Whatever the filter does in a nine-year sample dominated by
 one direction, it does not survive a 2008 as a drawdown shield.
 

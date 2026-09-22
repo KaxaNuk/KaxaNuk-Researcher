@@ -6,10 +6,11 @@ says what this process **is** and where each kind of logic goes; read it first. 
 **how work is done**: who writes each document, the restrictions, and the bar a result has to
 survive before anyone believes it.
 
-> **Status: the template.** No strategy, no data, no result and no code: every folder but `Config/`
-> holds only a `.gitkeep`, and the files the process expects in them are in the example, which
-> `init-example <path>` copies from. Replace this banner with your own status when you take the
-> repository over; it is the same line as your `README.md`'s.
+> **Status: the template.** No strategy, no data, no result and no code: beyond
+> `Config/.env.template`, the header-only seed in `Universe/` and the `Bibliotheca/` index and log,
+> the folders hold only `.gitkeep` files, and the files the process expects in them are in the
+> example, which `init-example <path>` copies from. Replace this banner with your own status when
+> you take the repository over; it is the same line as your `README.md`'s.
 
 ## First run — for the agent, before anything else
 
@@ -17,7 +18,7 @@ survive before anyone believes it.
 [`SETUP.md`](SETUP.md): the commands in it, every one of them run in the repository root, never a
 level above it. A missing `apm_modules/` is expected: the skills are installed once for the user,
 and nothing is installed here. Do not start research work in a folder that has not been set up, and
-never create a folder around this one — `SETUP.md` says what that failure looks like.
+never create a folder around this one: one folder is the whole project, as `SETUP.md` says.
 
 Three rules from `SETUP.md` apply from the first command:
 
@@ -32,7 +33,7 @@ Three rules from `SETUP.md` apply from the first command:
 
 | Branch | What it is | Cut from | Merges into |
 | --- | --- | --- | --- |
-| `main` | the accepted work: on the template, the process with no strategy in it; in a strategy repository, that strategy's finished work | — | — |
+| `main` | the accepted work: the strategy's finished work | — | — |
 | `issues/<number>` | one per issue on your repository's GitHub Project. Where all work happens | `main` | `main` |
 
 Use `issues/27-B` and `issues/27-C` when one issue needs a second attempt or splits into parallel
@@ -49,9 +50,10 @@ README links to. Issues and pull requests from anyone land there — the process
 A strategy of your own stays in your own repository.
 
 **`init-strategy` copies the template only**, on purpose. `Bibliotheca/BIBLIOGRAPHY.md` and
-`LOG.md` come with it, empty. A strategy takes the other files it needs from the example with
-`init-example <path>`, one path at a time, and deletes what is the worked strategy's — everything
-between the example markers, and the seed — or lets the `experiment-lifecycle` skill scaffold them.
+`LOG.md` come with it, empty, and so does the seed, `Universe/Investable_Universe.csv`, with only
+its header. A strategy takes the other files it needs from the example with `init-example <path>`,
+one path at a time, and deletes what is the worked strategy's — everything between the example
+markers — or lets the `experiment-lifecycle` skill scaffold them.
 **The issue branches below are a recommendation**, there to keep project management simple, not a
 gate.
 
@@ -242,16 +244,20 @@ than committed here. One-line summary: *optimise for the reader who has never se
 
 - **No import aliases**, and **no abbreviations** — no variable name under three characters.
 - **No nested functions, ever.**
-- **One item per line** in any comma-separated construct holding two or more items.
+- **One item per line** in any comma-separated construct holding three or more items, or two on
+  a line over the length limit.
 - **Type hints everywhere**; quoted annotations rather than a `__future__` import.
-- **Assign the error message to `msg` before raising it**, and leave blank lines around
-  `return` / `raise` / `yield`.
+- **Assign the error message to a named variable (`message`) before raising it**, and leave blank
+  lines around `return` / `raise` / `yield`.
 - **Docstrings are prose, not sections**, and never repeat what the type hints already say. Say
   *why*.
 
 What is committed is the style check, and the whole repository passes it. Nothing checks the process
-itself; the rules above rest on review.
+itself; its rules rest on review.
 
 ```bash
 uvx ruff check .
 ```
+
+The house layer above is checked by the `bloom-code-lint` skill, installed with the rest; run it,
+with `--max-line-length 100`, on the Python files you touched.

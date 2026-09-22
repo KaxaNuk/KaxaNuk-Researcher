@@ -11,7 +11,7 @@ description: >
   which books to price and how to read the numbers that come back. Shaping the attribution library's
   inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
 metadata:
-  version: 0.3.3
+  version: 0.3.4
 ---
 
 # Alpha decomposition — is the signal doing anything?
@@ -101,8 +101,11 @@ counterfactuals, or the comparison is dominated by residual slivers nobody was b
 Each counterfactual keeps everything about the real book except one thing. The Sharpe difference
 between the real book and the counterfactual, over the same engine window, is that one thing's
 contribution. All three read the objects the experiment notebook already has — `selected_matrix`,
-`REBALANCE_DATES`, `target_weights`, and the eligibility matrix the rule built them from — and hand a
-new `target_weights` to `backtest_engine.to_engine_frame` and `backtest_engine.run_variant`.
+`REBALANCE_DATES`, `target_weights`, and the eligibility matrix the rule built them from, lagged as
+the rule lagged it and called `eligible_matrix` below — and price each new `target_weights` the way
+the worked example's counterfactual cell does: `securities_panel.expand_to_identifiers`, then
+`backtest_engine.write_weight_file` under a name of its own, `backtest_engine.build_configuration`
+with the real book's window and costs, and `backtest_engine.run_backtest`.
 
 ### 3a. Sizing skill — equalise positions within each date
 
@@ -172,7 +175,9 @@ The direct test of whether a threshold signal earns its keep, and the fallback w
 applies: **the same book with the signal switched off.**
 
 ```python
-eligible_without_signal = tradable_matrix & ~last_tradable_day          # signal removed
+# the rule's eligibility with only the signal's condition dropped; in the worked example
+# `(signal > 0) & tradable` becomes `tradable`, which is `build_book(..., use_filter=False)`
+eligible_without_signal = tradable_matrix                               # signal removed
 # then re-run the experiment's own selection and weighting on this eligibility matrix
 ```
 
@@ -233,6 +238,6 @@ Each row is a lesson for this skill:
 - **Tune on the counterfactuals.** They measure the rule you stated in `BLUEPRINT_N.md`. A rule
   changed to look better against its own counterfactual is a new experiment with a new blueprint.
 - **Quote a number that did not come from the engine.** Every counterfactual is priced by
-  `backtest_engine.run_variant` over the shared window, never approximated.
+  `backtest_engine.run_backtest` over the shared window, never approximated.
 - **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come
   from the worked example, `liquid-golden-cross`, only.

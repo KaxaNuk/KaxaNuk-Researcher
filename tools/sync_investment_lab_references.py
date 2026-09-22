@@ -9,8 +9,11 @@ already, so the copies are regenerated from the example rather than edited by ha
 
 Run from the repository root after changing the example's experiment documents:
 
-    python tools/sync_investment_lab_references.py
-    python tools/sync_investment_lab_references.py --check
+    uv run --no-project python tools/sync_investment_lab_references.py
+    uv run --no-project python tools/sync_investment_lab_references.py --check
+
+Only the references that differ are written, so a run on an unchanged example leaves no change.
+A missing example document stops the run with its name, before anything is written.
 
 The example works one strategy through the process, and keeps that strategy's own lines between
 whole-line markers -- `<!-- example: begin -->` and `<!-- example: end -->` in Markdown, and
@@ -75,7 +78,7 @@ def expected_references(
     documents = {
         reference_name: rename_experiment(
             strip_example_content(
-                read_text(experiment_directory / example_name),
+                read_example_text(experiment_directory / example_name),
             ),
         )
         for example_name, reference_name
@@ -83,7 +86,7 @@ def expected_references(
     }
     notebooks = {
         reference_name: strip_example_cells(
-            read_text(experiment_directory / example_name),
+            read_example_text(experiment_directory / example_name),
         )
         for example_name, reference_name
         in NOTEBOOK.items()
@@ -107,23 +110,29 @@ def main() -> int:
         help="write nothing; exit 1 when a reference differs from what the example says",
     )
     arguments = parser.parse_args()
+    stale = stale_references(REPOSITORY_ROOT)
 
     if arguments.check:
-        stale = stale_references(REPOSITORY_ROOT)
         for reference_name in stale:
             print(f"  stale  {reference_name}")
         exit_code = 1 if stale else 0
 
         return exit_code
 
+    if not stale:
+        print("references already match the example")
+
+        return 0
+
     references_directory = REPOSITORY_ROOT / REFERENCES_DIRECTORY
     references_directory.mkdir(
         parents=True,
         exist_ok=True,
     )
-    for reference_name, text in expected_references(REPOSITORY_ROOT).items():
+    references = expected_references(REPOSITORY_ROOT)
+    for reference_name in stale:
         (references_directory / reference_name).write_text(
-            text,
+            references[reference_name],
             encoding="utf-8",
             newline="\n",
         )
@@ -144,6 +153,20 @@ def read_cell_source(
         return "".join(source)
 
     return source
+
+
+def read_example_text(
+    path: pathlib.Path,
+) -> str:
+    """A worked-example file's text with line endings made LF; a missing one stops the sync."""
+    if not path.is_file():
+        message = f"{path} is missing; the worked example is the source of the references"
+
+        raise FileNotFoundError(message)
+
+    text = read_text(path)
+
+    return text
 
 
 def read_text(
@@ -217,12 +240,16 @@ def strip_example_cells(
         return text
 
     notebook["cells"] = kept_cells
-
-    return json.dumps(
+    # nbformat's own form -- keys sorted, one space of indent, a final newline -- so stripping the
+    # outputs of a notebook copied from the reference changes nothing.
+    serialized = json.dumps(
         notebook,
         indent=1,
+        sort_keys=True,
         ensure_ascii=False,
     )
+
+    return f"{serialized}\n"
 
 
 def strip_example_content(

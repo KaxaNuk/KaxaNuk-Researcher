@@ -1,5 +1,6 @@
-# Every push and pull request: the tests, ruff, the repository's own checks, and the Bloom Code
-# style of the scripts, checked by the repository's own `bloom-code-lint`.
+# Every push and pull request: the tests, ruff (the worked example with its own settings), the
+# repository's own checks, and the Bloom Code style of the scripts, the tests, the tools and the
+# worked example, checked by the repository's own `bloom-code-lint`.
 name: CI
 
 on:
@@ -17,12 +18,14 @@ jobs:
         run: uv run --no-project --with pytest --with pypdf pytest -q
       - name: Ruff
         run: uvx ruff check .
+      - name: Ruff, the worked example
+        working-directory: examples/liquid-golden-cross
+        run: uvx ruff check .
       - name: Repository checks
         run: uv run --no-project python tools/check_repo.py
+      # --local-package names only the modules the tests import with `from x import y`.
       - name: Bloom Code
         run: |
           uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py \
-            .apm/skills/*/scripts tests tools \
-            --local-package scaffold --local-package check_repo --local-package extract \
-            --local-package bloom_code_check --local-package propagate_mcp_env_vars \
-            --local-package sync_investment_lab_references
+            .apm/skills/*/scripts tests tools examples/liquid-golden-cross \
+            --local-package bloom_code_check

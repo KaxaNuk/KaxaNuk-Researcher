@@ -5,6 +5,48 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.7.0 (2026-09-22)
+
+**MINOR** — `RESEARCHER.md` says where your view sits in the evolution of investment research and
+which works to find first, from the reading map in the `read` skill.
+
+**What to do differently:** run `apm update -g`, open a new session, and run `update` in your home;
+re-run `researcher-init force` to fill the new lines, which keeps what you wrote. Deploy the agent
+with `apm install --target <your agent>` (for example `--target claude`), never a bare
+`apm install`, which deploys to all seven targets in `apm.yml`.
+
+### Added
+
+* **`RESEARCHER.md` has a *Where it sits* line** under *What you believe*: the act, the work that
+  holds your view, who tested it and its other side, from the reading map — a lead, never a
+  citation.
+* **`RESEARCHER.md` has *Find first***: a line under each reading question with the works to find
+  for it, and a closing line for a work that serves no question. A question may say its
+  mind-changer is *not yet known*.
+* **`AGENTS.md`**: a work to read may be proposed from the reading map, and the primitives table
+  lists `reading-map.md`.
+
+### Changed
+
+* **`AGENTS.md` names one package throughout**, says `read` gives the `scaffold.py` command that
+  copies `BIBLIOGRAPHY.md` and `LOG.md` from the template inside the package, gives
+  `apm install --target <agent>` for the agent, notes that OpenCode rejects the agent's tool list,
+  and says a command carries no `metadata`.
+* **`RESEARCHER.md`'s strategies table ships a *none listed* row** and the note that the researcher
+  joins a strategy when invited, as the interview leaves it, not a slot row it no longer fills.
+* **`apm.yml`'s comment** says the package carries every Investment Lab skill itself.
+
+### Fixed
+
+* **`README.md` deploys the agent with `apm install --target claude`**, your assistant in place of
+  `claude`, not a bare `apm install`.
+* **`LICENSE` names the `read` and `query` skills and the `audit`, `refine`, `refresh-index` and
+  `teach` commands**, not a `compile` command that does not exist.
+* **`README.md` says `update` adds a *Brought to template* entry to `CHANGELOG.md`**, so the file
+  names the template version the home is at, not only the one it was made from.
+* **`AGENTS.md` names the worked example's `BRAINSTORMING_1.md`** where it said the template's;
+  the strategy template ships none.
+
 ## 0.6.1 (2026-09-21)
 
 **PATCH** — the researcher's package carries every Investment Lab skill itself.

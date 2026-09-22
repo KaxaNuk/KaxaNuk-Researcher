@@ -9,7 +9,7 @@ Usage:
 
 Two rules are read with a threshold by default: BLOOM010 (one item per line) fires from three
 comma-separated items, or from two when the line is longer than --max-line-length; BLOOM012 (one call
-per line) allows a single nested call. --strict restores the literal reading of both.
+per line) allows a second call on the line, nested or not. --strict restores the literal reading of both.
 
 Exit code 0 when every file is clean, 1 when any violation was found.
 """
@@ -89,8 +89,8 @@ RULE_MESSAGES = {
     'BLOOM009': 'declaration out of order; blocks are public then internal (methods: abstract, __init__, properties public/protected/private, methods public/protected/private), alphabetical within each block',
     'BLOOM010': 'comma-separated items sharing a line (3+ items, or 2 on a line over the length limit); put each item on its own line',
     'BLOOM011': 'missing type hint on a parameter or on the return value',
-    'BLOOM012': 'more than one nested call on a line; put each nested call on its own line',
-    'BLOOM013': 'raise with an inline message; assign the message to a variable (for example msg) first',
+    'BLOOM012': 'calls sharing a line (3+, nested or side by side; 2+ under --strict); put each call on its own line',
+    'BLOOM013': 'raise with an inline message; assign the message to a named variable (for example message) first',
     'BLOOM014': 'tuple without parentheses; always parenthesize tuples',
     'BLOOM015': 'return/yield/raise, or a block containing one, without the required blank line before or after it',
     'BLOOM016': 'comprehension on one line; put the output expression, each for clause and the if clause on separate lines',
@@ -413,10 +413,10 @@ def check_import_aliases(context: SourceContext) -> list[Violation]:
 
 def check_multiple_calls_per_line(context: SourceContext) -> list[Violation]:
     """
-    BLOOM012: at most one call per line.
+    BLOOM012: at most two calls per line, nested or not (one under --strict).
     """
     call_lines = [
-        node.lineno
+        _call_line(node)
         for node
         in ast.walk(context.tree)
         if _is_call(node)
@@ -903,7 +903,7 @@ def _build_argument_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         '--strict',
         action='store_true',
-        help='Literal reading of the guide: BLOOM010 from 2 items, BLOOM012 with no nested call allowed.',
+        help='Literal reading of the guide: BLOOM010 from 2 items, BLOOM012 from 2 calls on a line.',
     )
 
     return parser
@@ -922,6 +922,13 @@ def _build_parent_map(tree: ast.Module) -> dict[int, ast.AST]:
     }
 
     return parents
+
+
+def _call_line(call: ast.Call) -> int:
+    """
+    Line on which a call's own name ends: the method's line in a chain split across lines.
+    """
+    return call.func.end_lineno
 
 
 def _class_order_violations(class_node: ast.ClassDef) -> list[Violation]:

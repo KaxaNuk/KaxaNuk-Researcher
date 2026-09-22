@@ -41,6 +41,59 @@ for somebody who was not in the room:
 
 ---
 
+## 0.9.0 (2026-09-22)
+
+**MINOR** — a new strategy takes its own name and version at setup, `SETUP.md` no longer describes
+an install a strategy never runs, and the Data Curator floor is 0.50.0. No result changes.
+
+**What to do differently:** in a strategy you made from this template, give `pyproject.toml` its
+own name and version as step 5 of `SETUP.md` now says, and once a licensed engine is installed by
+hand, use `uv sync --inexact` and `uv run`, never a bare `uv sync`.
+
+### Added
+
+- **Step 2 of `SETUP.md` warns that `uv sync` is exact.** It removes every package `uv.lock` does
+  not name, so a bare `uv sync` uninstalls the Backtest Engine, Attribution Analysis or Portfolio
+  Construction once any of them is installed by hand; `uv sync --inexact` and `uv run` keep them.
+
+### Changed
+
+- **Step 5 of `SETUP.md` gives a new strategy its own identity**: `pyproject.toml`'s name, both
+  versions set to `0.1.0`, the template's changelog entries replaced by the strategy's first, and
+  `uv lock` run before the commit.
+- **`SETUP.md`'s Windows short-path advice gives the real reason**: deep paths inside the folder,
+  such as `.venv/`, can pass Windows' path limit and fail with misleading errors. The old reason
+  was an APM install a strategy no longer runs.
+- **The code-style summary in `AGENTS.md` matches the Bloom Code instruction**: one item per line
+  from three items, or from two on a line over the length limit, and the error message goes in
+  `message`, not `msg`. It names `bloom-code-lint`, with `--max-line-length 100`, as the check.
+- **`apm.yml`'s comment names one package** for every KaxaNuk skill, installed once for the user
+  with `apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`.
+- **`SETUP.md` step 4 gives the install command with `--target claude`**, your assistant in place
+  of `claude`, as `apm.yml` and the researcher package's `SETUP.md` do; it gave it bare, and so
+  did the README.
+- **`pyproject.toml` asks for `kaxanuk-data-curator>=0.50.0`**, the first version whose `main()`
+  takes `data_block_providers`, which the `data-curator-custom-calculations` skill now uses.
+
+### Fixed
+
+- **`AGENTS.md` and the README no longer say to delete the seed after `init-example`.** The
+  template ships it header-only, so `init-example Universe` and `init-example Bibliotheca` are
+  refused; bring `Universe/universe.ipynb` by its path. The `main` row of the branch table is now
+  simply the strategy's finished work.
+- **Template only: the `AGENTS.md` status banner says what the template ships**:
+  `Config/.env.template`, the header-only seed, and the `Bibliotheca/` index and log. It said every
+  folder but `Config/` held only a `.gitkeep`.
+- **Template only: the README no longer says the example has no `Bibliotheca/Books/`.** The
+  example ships Paleologo (2021)'s `INDEX.md` and its chapter note; only `Bibliotheca/Notes/`
+  appears with its first note.
+
+### Removed
+
+- **`SETUP.md`'s wrapper-folder check and its paragraph**, since a strategy installs nothing. It
+  lists only `.venv/`, `Config/.env` and per-machine assistant files as ignored, and `AGENTS.md` no
+  longer points at the removed text.
+
 ## 0.8.1 (2026-09-21)
 
 **PATCH** — the KaxaNuk skills are one package. No result changes.

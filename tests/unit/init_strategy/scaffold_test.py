@@ -1,11 +1,17 @@
 """
 Unit tests for the init-strategy skill's scaffold script.
 """
+import os
 import pathlib
+import subprocess
 
 import pytest
 
 import scaffold
+
+# The checkout these tests run in: init_strategy/ -> unit/ -> tests/ -> the root.
+TEST_PATH = pathlib.Path(__file__)
+REPOSITORY_ROOT = TEST_PATH.resolve().parents[3]
 
 
 @pytest.fixture
@@ -33,6 +39,18 @@ def package(
 
 
 class TestFindPackage:
+    def test_checkout_is_found_before_any_install(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        result = scaffold.find_package(
+            None,
+            tmp_path,
+        )
+        expected = REPOSITORY_ROOT
+
+        assert result == expected
+
     def test_explicit_folder_without_starting_points_is_rejected(
         self,
         tmp_path: pathlib.Path,
@@ -82,6 +100,47 @@ class TestFindPackage:
 
 
 class TestMain:
+    def test_failed_commit_prints_the_command_that_finishes_it(
+        self,
+        package: pathlib.Path,
+        tmp_path: pathlib.Path,
+        monkeypatch: pytest.MonkeyPatch,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        global_config = tmp_path / 'gitconfig'
+        global_config.write_text(
+            '[user]\n\tuseConfigOnly = true\n',
+            encoding='utf-8',
+        )
+        monkeypatch.setenv('GIT_CONFIG_GLOBAL', str(global_config))
+        monkeypatch.setenv('GIT_CONFIG_NOSYSTEM', '1')
+        identity_variables = [
+            'GIT_AUTHOR_NAME',
+            'GIT_AUTHOR_EMAIL',
+            'GIT_COMMITTER_NAME',
+            'GIT_COMMITTER_EMAIL',
+            'EMAIL',
+        ]
+
+        for variable in identity_variables:
+            monkeypatch.delenv(
+                variable,
+                raising=False,
+            )
+
+        destination = tmp_path / 'no-identity'
+        exit_code = scaffold.main([
+            'researcher',
+            str(destination),
+            '--package',
+            str(package),
+        ])
+        printed = capsys.readouterr().out
+        expected = 'git commit -m "Start from the KaxaNuk Researcher template"'
+
+        assert exit_code == 0
+        assert expected in printed
+
     def test_git_repository_has_a_first_commit(
         self,
         package: pathlib.Path,
@@ -92,6 +151,7 @@ class TestMain:
         monkeypatch.setenv('GIT_AUTHOR_EMAIL', 'test@example.com')
         monkeypatch.setenv('GIT_COMMITTER_NAME', 'Test')
         monkeypatch.setenv('GIT_COMMITTER_EMAIL', 'test@example.com')
+        monkeypatch.setenv('GIT_CONFIG_GLOBAL', os.devnull)
         destination = tmp_path / 'with-git'
         exit_code = scaffold.main([
             'researcher',
@@ -99,10 +159,53 @@ class TestMain:
             '--package',
             str(package),
         ])
-        has_repository = (destination / '.git').is_dir()
+        head = subprocess.run(
+            [
+                'git',
+                'rev-parse',
+                '--verify',
+                'HEAD',
+            ],
+            cwd=destination,
+            capture_output=True,
+            check=False,
+        )
 
         assert exit_code == 0
-        assert has_repository
+        assert head.returncode == 0
+
+    def test_git_repository_starts_on_main(
+        self,
+        package: pathlib.Path,
+        tmp_path: pathlib.Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        monkeypatch.setenv('GIT_AUTHOR_NAME', 'Test')
+        monkeypatch.setenv('GIT_AUTHOR_EMAIL', 'test@example.com')
+        monkeypatch.setenv('GIT_COMMITTER_NAME', 'Test')
+        monkeypatch.setenv('GIT_COMMITTER_EMAIL', 'test@example.com')
+        monkeypatch.setenv('GIT_CONFIG_GLOBAL', os.devnull)
+        destination = tmp_path / 'on-main'
+        scaffold.main([
+            'strategy',
+            str(destination),
+            '--package',
+            str(package),
+        ])
+        completed = subprocess.run(
+            [
+                'git',
+                'branch',
+                '--show-current',
+            ],
+            cwd=destination,
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+        branch = completed.stdout.strip()
+
+        assert branch == 'main'
 
     def test_new_folder_receives_the_starting_point(
         self,

@@ -2,7 +2,7 @@
 
 # Liquid Golden-Cross
 
-Invest in the most traded US stocks with positive momentum, meaning the 50-day simple moving
+Invest in the most traded US stocks in an uptrend, meaning the 50-day simple moving
 average is above the 200-day, hold the top 30, and rebalance only when that top 30 differs from the
 current portfolio by 10%, to avoid rebalancing too often.
 

@@ -12,10 +12,11 @@ researcher is and how to install it. Replace this paragraph with one about your 
 
 **First, once.** Open your assistant in this folder, in a new session, and run `researcher-init`: a
 short interview that writes `RESEARCHER.md` and the agent file that makes your researcher callable
-by name. Then deploy the agent, and open a new session:
+by name. Then deploy the agent for the assistant you use — `codex`, `cursor` or `copilot` in place
+of `claude` — and open a new session:
 
 ```bash
-apm install
+apm install --target claude
 ```
 
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
@@ -47,7 +48,7 @@ ask.
 RESEARCHER.md    who the researcher is, and what you are reading for — written by researcher-init
 AGENTS.md        the library's rules: folders, conventions, strategies and projects, plan first
 CLAUDE.md        imports AGENTS.md and RESEARCHER.md
-CHANGELOG.md     the version of the template this home was made from, and what changed since
+CHANGELOG.md     the template's changelog, then this home's; update adds the version it brings
 apm.yml          what apm install deploys here: the agent, from .apm/agents/
 
 Sources/         what you read — Books/, Papers/, Clippings/. The researcher reads, never writes
