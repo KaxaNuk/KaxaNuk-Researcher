@@ -186,29 +186,33 @@ to keep current:
 | `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `daily_update.py`. `Paper_Trading_N/paper_trading_N.py`, the frozen rule of anything that passed | everything |
 | `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key and the two engine licences | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
 
-**Every one of those files ships with the template**, except `Bibliotheca/Papers/`, `Books/` and
-`Notes/`, which appear with their first note. Each is a description of what is expected in it, to
-be filled in: a `.py` file its module docstring, a notebook its markdown cells, a document its
-prose. The
+**Every committed file in that table ships with the template**, except the notes in
+`Bibliotheca/Papers/`, `Books/` and `Notes/`, which appear with the first note, and the folders of
+later experiments and graduated rules. Beyond `Config/.env.template`, the header-only seed and the
+`Bibliotheca/` index and log, each is a description of what is expected in it, to be filled in: a
+`.py` file its module docstring, a notebook its markdown cells, a document its prose. The
 [example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross)
 holds the same files filled in as far as its work has reached, the worked strategy's own lines
 between the example markers `AGENTS.md` names: `<!-- example: begin -->` and
 `<!-- example: end -->` in Markdown, `# --- example: begin ---` in Python, `# EXAMPLE-ONLY CELL` on
 a notebook cell. The template's copy of each is the example's with those lines removed.
 
-A strategy made from a template before 0.11.0 has none of these files, only `.gitkeep` files where
-they go. It restores one from the template, never from the example, with the `init-strategy`
-skill's script, run in the strategy's root:
+A file missing from a strategy — deleted, or never there because the strategy was made from a
+template before 0.11.0, which shipped `.gitkeep` files where the generated files now go — comes
+back from the template, never from the example, with the `init-strategy` skill's script, run in the
+strategy's root:
 
 ```bash
 uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
   strategy . --only Experiments/Experiment_1
 ```
 
-It copies the template's description and never overwrites a file already there, so there is
-nothing of the example's to delete, and a folder holding a file the owner has changed is refused:
-`Universe/` once the seed has rows. Bring `Universe/universe.ipynb` by its own path. Or let the
-`experiment-lifecycle` skill — which the install above brings in — scaffold a new experiment.
+It copies the template's description, so there is nothing of the example's to delete. It never
+overwrites: a file already there with the same content is skipped, and a folder holding any file
+with other content is refused whole — `Universe/` once the seed has rows, or a folder where a file
+was brought from the example and filled in. Restore that folder's missing files one path at a time,
+`Universe/universe.ipynb` among them. Or let the `experiment-lifecycle` skill — which the install
+above brings in — scaffold a new experiment.
 
 ---
 
@@ -286,8 +290,8 @@ Two rules follow, and one exception worth knowing:
 
 Everything specific to a strategy lives in its notebook, where a reader can see it. Four Python
 modules in `Experiments/` are shared between experiments for one reason: **if they differed between
-experiments, comparing experiments would be meaningless.** In the example, each sits beside the
-notebook as a description of what it must do.
+experiments, comparing experiments would be meaningless.** Each sits beside the notebook as a
+description of what it must do, which the example fills in.
 
 | Module | Owns |
 | --- | --- |

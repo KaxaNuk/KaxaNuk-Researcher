@@ -62,9 +62,9 @@ folder, `uv sync` building `.venv/` among them, can pass Windows' 260-character 
 and fail with messages that do not say so, such as `WinError 3: The system cannot find the path
 specified`.
 
-The worked example, `liquid-golden-cross`, is not copied, on purpose: every file it fills in is
-already here, as a description of what belongs in it. `init-example` copies it whole into a folder
-of its own, to read or run. Never build on it.
+The worked example, `liquid-golden-cross`, is not copied, on purpose: every file the process
+expects is already here, as a description of what belongs in it. `init-example` copies it whole
+into a folder of its own, to read or run. Never build on it.
 
 > **For the agent.** If the first commit refuses for want of an identity, on a machine that has
 > never committed, ask the user for the name and email to use — never invent them — and set them

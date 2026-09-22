@@ -85,7 +85,7 @@ and fail with messages that do not say so, such as `WinError 3: The system canno
 specified`.
 
 A strategy of your own is not made from here: `init-strategy <strategy-name>` makes it from the
-template, which already holds every file this example fills in, each as a description of what
+template, which already holds every file the process expects, each as a description of what
 belongs in it. Never build on it.
 
 > **For the agent.** If the first commit refuses for want of an identity, on a machine that has

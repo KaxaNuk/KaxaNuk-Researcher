@@ -62,13 +62,12 @@ uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffo
   strategy . --only Data
 ```
 
-Two kinds of column are not `c_*` columns, even when asked for as a
-"signal": one that compares securities on a date (a rank, a breadth reading), and one with a
-setting an experiment will sweep (a fitted model, or a window such as the 50- and 200-day averages
-the example builds as `r_trend_50_200`). Both are `r_*` columns in
-`Data/Refinery/custom_calculations.py`, which the worked example's `Data/refinery.py` computes
-and this skill does not cover; the template's `Data/` holds both files. Only their frozen
-arithmetic inputs are `c_*` columns.
+Two kinds of column are not `c_*` columns, even when asked for as a "signal": one that compares
+securities on a date (a rank, a breadth reading), and one with a setting an experiment will sweep
+(a fitted model, or a window such as the 50- and 200-day averages the example builds as
+`r_trend_50_200`). Both are `r_*` columns in `Data/Refinery/custom_calculations.py`, which the
+worked example's `Data/refinery.py` computes and this skill does not cover; the template's `Data/`
+holds both files. Only their frozen arithmetic inputs are `c_*` columns.
 
 Anywhere else, if a project has no surface yet, default to (a): create
 `Config/custom_calculations.py` and confirm the entry script imports it.

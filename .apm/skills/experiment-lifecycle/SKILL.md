@@ -18,16 +18,15 @@ metadata:
 
 # The research process — how a strategy repository is worked in
 
-Every KaxaNuk Investment Lab strategy lives in its own repository, copied from the **KaxaNuk Strategy
-Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/strategy/`. The template is
-the shape: six folders, the documents at the root, and inside the folders every file the process
-expects — each a description of what is expected in it, what the stage produces and prevents. The
-worked example beside it, `examples/liquid-golden-cross/`, works one strategy,
+Every KaxaNuk Investment Lab strategy lives in its own repository, copied from the **KaxaNuk
+Strategy Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/strategy/`. The
+template is the shape: six folders, the documents at the root, and inside the folders every file
+the process expects — each a description of what is expected in it, what the stage produces and
+prevents. The worked example beside it, `examples/liquid-golden-cross/`, works one strategy,
 `liquid-golden-cross`, through the same files, with the strategy's own lines between example
-markers. The
-fixed shape buys comparability and legibility: any
-experiment looks like any other, every experiment is measured against the same declared benchmark,
-and a CIO reads the whole state of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
+markers. The fixed shape buys comparability and legibility: any experiment looks like any other,
+every experiment is measured against the same declared benchmark, and a CIO reads the whole state
+of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
 Work in English: notebook narrative, documents, function names and comments.
 
@@ -187,11 +186,11 @@ last column — which tool each item loads.
 
 Every file those items name ships with the template — `OBJECTIVE.md`, `RESULTS.md`, the empty
 `Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, the seed `Universe/Investable_Universe.csv` with only
-its header, and every file inside the folders as a description of what belongs in it, to be filled
-in. A strategy made before template 0.11.0 lacks the files inside the folders, and restores each
-from the template, never from the example, with the `init-strategy` skill's script run in its root
-— it never overwrites, so bring `Universe/universe.ipynb` by its path, and there is nothing of the
-example's to delete:
+its header, and every other file inside the folders as a description of what belongs in it, to be
+filled in. A strategy made before template 0.11.0 lacks those other files, and restores each from
+the template, never from the example, with the `init-strategy` skill's script run in its root — it
+refuses a folder holding a file with other content, so bring `Universe/universe.ipynb` by its path,
+and there is nothing of the example's to delete:
 
 ```bash
 uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \

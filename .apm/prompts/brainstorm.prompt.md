@@ -18,10 +18,13 @@ of what happened. `${input:experiment}` is the experiment number `N`, `${input:i
 think about when the owner gave one, and `${input:strategy}` the strategy's path when the session is
 not already open in it.
 
-1. **Read the experiment's state.** A strategy made by `init-strategy` before template 0.11.0 has
-   no `BRAINSTORMING_N.md`: that template shipped no experiment documents; from 0.11.0 it ships
-   Experiment 1's. For Experiment 1, give the command that restores the file from the template,
-   run in the strategy's root — the script is in the `init-strategy` skill's folder:
+1. **Read the experiment's state.** When `BRAINSTORMING_N.md` is missing, never write it from
+   memory. For N > 1 the template never ships it: the blank is the `experiment-lifecycle` skill's
+   `references/brainstorming-template.md`, copied to `Experiments/Experiment_N/BRAINSTORMING_N.md`
+   with `N` replaced, as that skill's section 6 says; offer the copy, make it on the owner's go,
+   and continue. For Experiment 1 — a strategy made by `init-strategy` before template 0.11.0,
+   which shipped no experiment documents — give the command that restores the file from the
+   template, run in the strategy's root — the script is in the `init-strategy` skill's folder:
 
    ```bash
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
@@ -29,10 +32,7 @@ not already open in it.
    ```
 
    Say that it copies the template's description, with nothing of the example's to delete, and
-   stop. For N > 1 there is no file to restore, since the template ships Experiment 1's documents
-   only: the blank is the `experiment-lifecycle` skill's `references/brainstorming-template.md`,
-   copied to `Experiments/Experiment_N/BRAINSTORMING_N.md` with `N` replaced, as that skill's
-   section 6 says. Offer the copy, make it on the owner's go, and continue.
+   stop.
 
    Otherwise read `BLUEPRINT_N.md`, `BRAINSTORMING_N.md` (the entries so far), `FINDINGS_N.md` if
    it reports, and `RESULTS.md` — what is closed, what is open, what stands. Do not open another
