@@ -1,0 +1,11 @@
+# Requests that should fire each skill, and near-misses that must not. A near-miss belongs to the
+# skill in its comment. tools/eval_run.py turns each line into a case.
+
+[query]
+fires = [
+    "What does my library say about time-series momentum?",
+    "Which of my sources disagree about momentum crashes?",
+]
+near_miss = [
+    "Read the new PDF I put in Sources/Books into my library.",  # read
+]
