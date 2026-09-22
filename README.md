@@ -13,51 +13,31 @@ together, so one pull request can change a skill, the template it describes and 
 shows it. The skills for each Investment Lab library live in
 [KaxaNuk-Agent-Skills](https://github.com/KaxaNuk/KaxaNuk-Agent-Skills), and come with this package.
 
-**To install, paste this into Claude or Codex:**
-
-```text
-Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
-```
-
-It follows [`SETUP.md`](SETUP.md). Your first ten minutes, in four commands:
-
-1. **Install once:** `apm install -g KaxaNuk/KaxaNuk-Researcher` — then open a new session.
-2. **`init-researcher Luna`** — your researcher's home, with the name you choose.
-3. **`researcher-init`**, in that home — a short interview that makes the researcher yours.
-4. **`init-strategy fcf-yield-quality`** — your first strategy, one repository of its own.
-
 ---
 
-## Install once, for your user
+## Install
 
-**The easy way — paste this into Claude or Codex:**
+Paste this into Claude or Codex:
 
 ```text
 Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
 ```
 
-It checks that git and `uv` are there, installs the package for your user, and tells you to open a
-new session, where `init-researcher` and `init-strategy` make your first folders.
-[`SETUP.md`](SETUP.md) is what it follows, and it is written so a person can read it in two minutes
-too. Issues and pull requests are welcome: the researcher improves in public, the way KaxaNuk's
-open-source Data Curator did.
-
-**By hand.** You need [`uv`](https://docs.astral.sh/uv/) and git. Then, once per machine:
+It follows [`SETUP.md`](SETUP.md): it checks that git and [`uv`](https://docs.astral.sh/uv/) are
+there, and installs the package once, for your user. By hand, it is:
 
 ```bash
 uv tool install apm-cli
 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
-`--target codex`, `cursor` or another agent in place of `claude`. The package brings `kaxanuk`, every
-Investment Lab package from KaxaNuk-Agent-Skills, with it. The skills are now in every folder you
-open — your researcher's home and every strategy — so **a strategy installs nothing of its own**.
-When either repository changes, one command brings every change to every folder, then a new
-session:
+`--target codex`, `cursor` or another agent in place of `claude`. The skills are then in every
+folder you open, so **a strategy installs nothing of its own**; `apm update -g` brings every new
+version. Then, in a new session:
 
-```bash
-apm update -g
-```
+1. **`init-researcher Luna`** — your researcher's home, with the name you choose.
+2. **`researcher-init`**, in that home — a short interview that makes the researcher yours.
+3. **`init-strategy fcf-yield-quality`** — your first strategy, one repository of its own.
 
 ---
 
