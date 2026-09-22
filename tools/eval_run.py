@@ -1,9 +1,10 @@
 """
 Run the KaxaNuk Researcher's evals against what a user actually installs.
 
-It builds the real `apm install -g <this repository> --target claude` into a throwaway home in the
-system's temporary folder, outside the repository (apm copies the whole repository into the
-install, so a home inside it would copy itself), and assembles `evals/.run/` from it:
+It exports the repository's working tree without its ignored files (what `git ls-files --cached
+--others --exclude-standard` lists, so uncommitted edits count and `evals/results/` does not) into a
+temporary folder, builds the real `apm install -g <that export> --target claude` into a throwaway
+home beside it, outside the repository, and assembles `evals/.run/` from the install:
 
     evals/.run/plugin/             the plugin the harness runs: skills/, commands/, a minimal
                                    .claude-plugin/plugin.json, and the cases in evals/
@@ -56,11 +57,13 @@ PLUGIN_DIRECTORY = RUN_DIRECTORY / 'plugin'
 FIXTURES_DIRECTORY = RUN_DIRECTORY / 'fixtures'
 RESULTS_DIRECTORY = EVALS_DIRECTORY / 'results'
 TRIGGERING_TABLE = EVALS_DIRECTORY / 'triggering' / 'requests.toml'
-# The throwaway home lives outside the repository: apm copies the whole repository into the
-# install, so a home inside it would be copied into itself.
+# The export and the throwaway home live outside the repository: apm copies the whole folder it
+# installs, ignored files included, so a home inside it would be copied into itself.
 INSTALL_PREFIX = 'kaxanuk-eval-install-'
+# The export's folder name, which apm uses as the package's name below `_local/`.
+PACKAGE_NAME = 'KaxaNuk-Researcher'
 # Where `apm install -g <a local path>` puts the package, below the home it installs into.
-INSTALLED_PACKAGE = pathlib.Path('.apm') / 'apm_modules' / '_local' / 'KaxaNuk-Researcher'
+INSTALLED_PACKAGE = pathlib.Path('.apm') / 'apm_modules' / '_local' / PACKAGE_NAME
 # The starting points `scaffold.py` copies from, relative to the package root.
 STARTING_POINTS = (
     'templates/researcher',
@@ -180,10 +183,12 @@ def build_install(
         ignore_errors=True,
     )
     home.mkdir(parents=True)
+    # uv finds its cache through HOME; keep the real one, so apm-cli is not downloaded again.
     environment = {
         **os.environ,
         'HOME': str(home),
         'USERPROFILE': str(home),
+        'UV_CACHE_DIR': _uv_cache_directory(),
     }
     subprocess.run(
         [
@@ -304,6 +309,55 @@ def eval_command(
     return command
 
 
+def export_package(
+    repository: pathlib.Path,
+    destination: pathlib.Path,
+) -> None:
+    """
+    Copy the repository's working tree into `destination`, leaving out every file git ignores.
+
+    The files are those `git ls-files --cached --others --exclude-standard` lists, with their
+    content as it is on disk: uncommitted edits and new files count, ignored ones do not.
+    """
+    listed = subprocess.run(
+        [
+            'git',
+            '-C',
+            str(repository),
+            'ls-files',
+            '--cached',
+            '--others',
+            '--exclude-standard',
+            '-z',
+        ],
+        check=True,
+        capture_output=True,
+    )
+    relative_paths = [
+        entry.decode('utf-8')
+        for entry
+        in listed.stdout.split(b'\0')
+        if entry
+    ]
+
+    for relative_path in relative_paths:
+        source = repository / relative_path
+
+        if not source.is_file():
+
+            continue
+
+        target = destination / relative_path
+        target.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        shutil.copy2(
+            source,
+            target,
+        )
+
+
 def main(
     arguments: list[str] | None = None,
 ) -> int:
@@ -318,8 +372,8 @@ def main(
         ignore_errors=True,
     )
 
-    with tempfile.TemporaryDirectory(prefix=INSTALL_PREFIX) as install_home:
-        installed = _install_into_run(pathlib.Path(install_home))
+    with tempfile.TemporaryDirectory(prefix=INSTALL_PREFIX) as install_folder:
+        installed = _install_into_run(pathlib.Path(install_folder))
 
     if not installed:
 
@@ -616,18 +670,25 @@ def _grants_shell(
 
 
 def _install_into_run(
-    home: pathlib.Path,
+    install_folder: pathlib.Path,
 ) -> bool:
     """
-    Install into a throwaway home, and copy the plugin and the starting points into the run folder.
+    Export and install into a temporary folder, then copy the plugin and starting points into the run.
     """
+    export = install_folder / PACKAGE_NAME
+    home = install_folder / 'home'
+
     try:
-        claude_directory = build_install(
+        export_package(
             REPOSITORY_ROOT,
+            export,
+        )
+        claude_directory = build_install(
+            export,
             home,
         )
     except subprocess.CalledProcessError as error:
-        print(f'The install could not be built: apm exited with {error.returncode}')
+        print(f'The install could not be built: {error.cmd[0]} exited with {error.returncode}')
 
         return False
 
@@ -691,6 +752,31 @@ def _read_table(
         table = tomllib.load(handle)
 
     return table
+
+
+def _uv_cache_directory() -> str:
+    """
+    The uv cache of the environment this runs in: UV_CACHE_DIR when set, else what `uv cache dir` says.
+    """
+    given = os.environ.get('UV_CACHE_DIR')
+
+    if given:
+
+        return given
+
+    answered = subprocess.run(
+        [
+            'uv',
+            'cache',
+            'dir',
+        ],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    cache = answered.stdout.strip()
+
+    return cache
 
 
 def _write_cases(
