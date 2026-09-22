@@ -29,7 +29,8 @@ The strategy template ships every file its README names, generated from the work
   restores a missing file from the template with `scaffold.py strategy . --only <path>`, never
   from the example: `init-example` 0.2.0, `init-strategy` 0.1.2, `experiment-lifecycle` 0.7.4,
   `data-curator-custom-calculations` 0.3.1, `universe-point-in-time` 0.1.4, and the `blueprint`
-  and `brainstorm` commands. `init-example` copies the example whole, to read or run.
+  and `brainstorm` commands. `init-example` copies the example whole, to read or run, or one
+  piece of it, to read.
 
 ## [0.9.2] - 2026-09-22
 No CI: the checks run on the maintainer's machine, as `AGENTS.md` always asked.

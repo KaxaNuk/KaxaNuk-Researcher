@@ -58,7 +58,7 @@ in the strategy's `Config/.env`, which only you fill in and nobody commits; the 
 | --- | --- | --- |
 | `init-researcher <name>` | once per person | the researcher's home: `RESEARCHER.md`, `Sources/`, `Knowledge/`, `Philosophy/`, `Projects/`. Then `researcher-init` there interviews you and names it |
 | `init-strategy <name>` | once per strategy | a new strategy repository from the KaxaNuk Strategy Template, with its first commit. You publish it to GitHub yourself |
-| `init-example` | when you want it | the worked example, `liquid-golden-cross`, in a folder of its own, to read or run. A strategy made from the template already holds every file it needs |
+| `init-example` | when you want it | the worked example, `liquid-golden-cross`, in a folder of its own, to read or run, or one piece of it, to read. A strategy made from the template already holds every file it needs |
 
 Each is a skill: in Claude Code, type it as `/init-strategy fcf-yield-quality`; elsewhere, ask for
 it by name. Each copies files with a script, byte for byte, after a plan and your go — never from

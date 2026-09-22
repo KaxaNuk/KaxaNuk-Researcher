@@ -50,7 +50,7 @@ example's, which reached 0.10.1 while the template stayed at 0.9.0.
 **What to do differently:** a new strategy brings nothing across from the example. Fill in the
 files that are already there — a `.py` file is its docstring, a notebook its markdown cells,
 a document its prose. A strategy made from an earlier template restores a missing file from
-the template, as `SETUP.md` and *What is in here* say, never from the example.
+the template, as the README's *What is in here* says, never from the example.
 
 ### Added
 
@@ -65,8 +65,8 @@ the template, as `SETUP.md` and *What is in here* say, never from the example.
 ### Changed
 
 - **`README.md`, `AGENTS.md` and `SETUP.md` no longer send a new strategy to `init-example`** for
-  a file: it is already here. They say which files are generated from the example, and how a
-  missing one comes back from the template.
+  a file: it is already here. They say which files are generated from the example; the README's
+  *What is in here* also says how a missing one comes back from the template.
 
 ### Removed
 
