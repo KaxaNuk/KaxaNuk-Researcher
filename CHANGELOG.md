@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.7.1] - 2026-09-21
+A shorter, more focused researcher interview.
+### Changed
+- **`researcher-init` is shorter.** The interview drops the strategy and tag-policy questions; tags
+  default to loose, and the strategies table starts empty — strategies are added when the researcher
+  is invited into one, not at setup. Language defaults to English. The remaining eight questions
+  focus on who you are, how you invest and what you're reading for.
+
 ## [0.7.0] - 2026-09-21
 Every KaxaNuk skill is in this package. One install and one `apm update -g` bring them all to every folder.
 ### Added
