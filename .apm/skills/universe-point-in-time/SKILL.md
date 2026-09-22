@@ -9,11 +9,11 @@ description: >
   prefixed `current_`, what belongs in `Data_Issues.csv`, or from which date a universe is usable.
   It covers the seed's contract, the two-layer master, the checks and the usable date. It does NOT
   cover downloading prices (use `data-curator-custom-calculations`), the refinery's cross-sectional
-  panel or screening a feature (the template's `Data/refinery.py` and `Data/analyzer.ipynb` describe
-  them), sizing a book (use `portfolio-construction-runs`), or the research process around the stage
-  (use `experiment-lifecycle`).
+  panel or screening a feature (the worked example's `Data/refinery.py` and `Data/analyzer.ipynb`
+  show them), sizing a book (use `portfolio-construction-runs`), or the research process around
+  the stage (use `experiment-lifecycle`).
 metadata:
-  version: 0.1.2
+  version: 0.1.3
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -39,6 +39,11 @@ Universe/Investable_Universe.csv   the seed, committed  ->  edit this to change 
                     |
                     +--> Data/refinery.py    joins the master onto the panel as current_*
 ```
+
+**The template ships the seed, header-only, and not the notebook.** When `Universe/universe.ipynb`
+is missing, ask the owner to run `init-example Universe/universe.ipynb` — by its own path, because
+`init-example Universe` is refused over the seed — and say that its code cells, each starting
+`# EXAMPLE-ONLY CELL`, are `liquid-golden-cross`'s. Never write the notebook from memory.
 
 ## 1. The seed is the whole decision
 
@@ -137,6 +142,7 @@ stage has a work list rather than a chart to interpret.
 | **Identity conflict** | the provider's identity differs from the seed's — a recycled identifier |
 | **Status disagreement** | the price history and the provider's listing status disagree: a series ending early on a name the provider calls active is a data gap, not a delisting, and the reverse is a reused symbol |
 | **Unusable values** | zero or negative prices, which break every return calculation downstream |
+| **Impossible daily move** | an adjusted price that multiplies several times over in one day — an unadjusted corporate action or a bad print, not a return. Set the threshold above real squeezes, so a flag means the series is wrong rather than merely wild |
 | **No usable signal** | a history shorter than the strategy's longest warm-up, so the name can never be selected |
 
 Give each row a severity, and **sort blocking first**. A register nobody can triage is a chart with

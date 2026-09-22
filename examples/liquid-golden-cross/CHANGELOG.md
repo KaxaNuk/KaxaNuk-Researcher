@@ -41,6 +41,115 @@ for somebody who was not in the room:
 
 ---
 
+## 0.9.0 (2026-09-22)
+
+**MINOR** — the example runs as far as it can without the licensed engines and the hand-supplied
+index, fetches profiles from FMP's current API, and sizes with every Portfolio Construction method
+whose configuration has no required field; `SETUP.md` no longer describes an install a strategy
+never runs, and the Data Curator floor is 0.50.0. No result changes.
+
+**What to do differently:** in a copy made before this version, delete
+`Universe/Provider_Cache/profiles.json` if the old cell filled it, so `universe.ipynb` fetches the
+profiles again. Once a licensed engine is installed by hand, use `uv sync --inexact` and `uv run`,
+never a bare `uv sync`.
+
+### Added
+
+- **Step 2 of `SETUP.md` warns that `uv sync` is exact.** It removes every package `uv.lock` does
+  not name, so a bare `uv sync` uninstalls the Backtest Engine, Attribution Analysis or Portfolio
+  Construction once any of them is installed by hand; `uv sync --inexact` and `uv run` keep them.
+- **`SETUP.md` says the benchmark cannot be downloaded.** The KN600's holdings and returns, and the
+  factor returns, are supplied by hand, and it says where each part of the example stops without
+  them: `Data/curator.py` downloads every price, `universe.ipynb` writes the master and the issues
+  file, and Experiment 1 stops in its first cell. Every number the example measured is in
+  `RESULTS.md`.
+- **`Experiments/Experiment_1/JOURNAL_1.md` records how the findings answered the challenge of
+  2026-09-20.** `FINDINGS_1.md` and `RESULTS.md` were corrected after it — prediction 5
+  falsified, the tally, caveat 9, the success criteria and the two closed predictions — and no
+  entry said so. No result changes.
+
+### Changed
+
+- **Step 5 of `SETUP.md` gives a new strategy its own identity**: `pyproject.toml`'s name, both
+  versions set to `0.1.0`, the template's changelog entries replaced by the strategy's first, and
+  `uv lock` run before the commit.
+- **`SETUP.md`'s Windows short-path advice gives the real reason**: deep paths inside the folder,
+  such as `.venv/`, can pass Windows' path limit and fail with misleading errors. The old reason
+  was an APM install a strategy no longer runs.
+- **The code-style summary in `AGENTS.md` matches the Bloom Code instruction**: one item per line
+  from three items, or from two on a line over the length limit, and the error message goes in
+  `message`, not `msg`. It names `bloom-code-lint`, with `--max-line-length 100`, as the check.
+- **`apm.yml`'s comment names one package** for every KaxaNuk skill, installed once for the user
+  with `apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`.
+- **`SETUP.md` step 4 gives the install command with `--target claude`**, your assistant in place
+  of `claude`, as `apm.yml` and the researcher package's `SETUP.md` do; it gave it bare.
+- **`pyproject.toml` asks for `kaxanuk-data-curator>=0.50.0`**, the first version whose `main()`
+  takes `data_block_providers`, which `Data/curator.py` passes. `uv.lock` already held 0.50.0; only
+  the project's version and that floor moved in it.
+- **`Universe/universe.ipynb` lists the eight checks it writes to `Data_Issues.csv`** instead of
+  saying four, and says why internal gaps and identity conflict are not written.
+- **`AGENTS.md`, `RESULTS.md` and `Paper_Trading/BITACORA.md` say "this example"** instead of the
+  retired `example` branch. The example is a folder of the researcher package, and a strategy of
+  your own starts with `init-strategy`.
+
+### Fixed
+
+- **Experiment 1 runs to the end without the licensed engines**: sections 4 to 6 report and skip,
+  as the section contract says, instead of raising `ModuleNotFoundError`. Step 6 no longer imports
+  the attribution library after printing that it was skipped, and the `as library` alias is gone.
+- **`Experiments/portfolio_construction.py`: every sizing method but `equal_weight` failed.**
+  `weigh()` now calls `kaxanuk.portfolio_construction.sizing.build_allocator(name=..., returns=...)`
+  on a pyarrow table, allocates a `UniverseSnapshot` and reads
+  `Weights.from_allocated(...).as_mapping()`. The rule cell hands `build_weights` the returns before
+  the window too, so a returns-based method has history on the first rebalance. It passes no
+  configuration and always a history, so the library still refuses the methods whose configuration
+  has a required field: `mean_variance`, `constrained_mean_variance`, `black_litterman`, and the
+  snapshot methods `feature_weighting` and `kn_index`.
+- **`Universe/universe.ipynb` fetches profiles from FMP's `/stable/profile`**, one identifier per
+  request, because the legacy `/api/v3/profile` refuses keys opened after 2025-08-31. The master's
+  `exchange` column reads the stable field `exchange`.
+- **`Data/curator.py` no longer ends in a `FileNotFoundError`** after every price has downloaded
+  when the hand-supplied KN600 returns are absent: it stages the index only when the file is there,
+  and says so when it is not. Its docstring no longer claims steps 1 to 5 run without the index.
+- **`AGENTS.md` no longer says to delete the seed after `init-example`.** The template ships it
+  header-only, so `init-example Universe` and `init-example Bibliotheca` are refused; bring
+  `Universe/universe.ipynb` by its path. The `main` row of the branch table is now simply the
+  strategy's finished work.
+- **Experiment 1's section 6 marks its own figures.** The 45.5 of 159.5 idiosyncratic points and
+  the book's four choices sit between example markers, so the notebook `experiment-lifecycle`
+  ships for a new experiment no longer opens section 6 with this strategy's results.
+- **`OBJECTIVE.md` no longer says to start a strategy of your own by deleting the example's lines**,
+  which would delete every heading with them; a strategy of your own starts with `init-strategy`.
+- **`Bibliotheca/BIBLIOGRAPHY.md` lists the leads `OBJECTIVE.md` names.** Brock, Lakonishok &
+  LeBaron (1992), Amihud (2002), Lee & Swaminathan (2000), Korajczyk & Sadka (2004), Grinold &
+  Kahn's chapters 13, 14 and 16, and Shu, Yu & Mulvey (2024) were named for claims 1, 3 and 4 and
+  for what is not claimed, yet had no row, though `AGENTS.md` says a person adds the leads there
+  and `read` and `blueprint` look for them there. Each is now in Part 1, with *No note yet*.
+- **`RESULTS.md` gives the point-in-time window as 9.4 years**, as `FINDINGS_1.md` does, where it
+  said 9.74; 2017-01-03 to 2026-06-01 is 3,436 days. No result changes.
+- **`FINDINGS_1.md` gives the long window as 23.8 years**, as `RESULTS.md` does: 2002-07-30 to
+  2026-06-01. It said 24.7. The journal entry of 2026-09-20 keeps its figure, and a new entry
+  records the correction.
+- **Prediction 1's verdict in `FINDINGS_1.md` reads *Falsified***, because its falsifier named the
+  index alone; the filter-off control's 22.91% moves to *What it changed* as a new observation, as
+  the challenge of 2026-09-20 asked. The tally and every number are unchanged.
+- **The README calls the signal an uptrend, not *positive momentum*.** `OBJECTIVE.md` rules
+  momentum out: the filter compares a stock with its own past, which is trend following, where
+  momentum is relative.
+- **"Less volatily", not a word, is gone** from claim 1's status in `OBJECTIVE.md` and from
+  *The uncomfortable one* in `RESULTS.md`: both now say "with less volatility". No number changes.
+- **The three notebooks are stored in nbformat's own form**: `universe.ipynb` and
+  `analyzer.ipynb` declared nbformat 4.5 without the cell ids it requires, and most cells kept
+  their source as one string, so the strip `experiment-lifecycle` prescribes rewrote all three
+  and warned that a missing id will become an error. Each cell now has an id and its source as a
+  list of lines, and stripping a notebook with no outputs changes nothing.
+
+### Removed
+
+- **`SETUP.md`'s wrapper-folder check and its paragraph**, since a strategy installs nothing. It
+  lists only `.venv/`, `Config/.env` and per-machine assistant files as ignored, and `AGENTS.md` no
+  longer points at the removed text.
+
 ## 0.8.1 (2026-09-21)
 
 **PATCH** — one note's file name is shorter, so the example installs on Windows from a deep home

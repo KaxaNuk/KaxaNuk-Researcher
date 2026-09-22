@@ -2,8 +2,10 @@
 Unit tests for tools/check_repo.py: each check finds the defect it exists for.
 """
 import pathlib
+import subprocess
 
 import check_repo
+import sync_investment_lab_references
 
 
 def write(
@@ -23,6 +25,109 @@ def write(
     )
 
 
+class TestCheckDescriptions:
+    def test_long_folded_description_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        long_text = 'a' * (check_repo.DESCRIPTION_LIMIT + 1)
+        write(tmp_path / '.apm/skills/long/SKILL.md', f'---\nname: long\ndescription: >\n  {long_text}\n---\n')
+        write(tmp_path / '.apm/skills/short/SKILL.md', '---\nname: short\ndescription: >\n  Short.\n---\n')
+        findings = check_repo.check_descriptions(
+            tmp_path,
+            [
+                '.apm/skills/long/SKILL.md',
+                '.apm/skills/short/SKILL.md',
+            ],
+        )
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == ['.apm/skills/long/SKILL.md: 1025 characters, over 1024']
+
+    def test_long_one_line_description_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        manifest = '.apm/skills/x/SKILL.md'
+        description = 'a' * (check_repo.DESCRIPTION_LIMIT + 1)
+        write(tmp_path / manifest, f'---\nname: x\ndescription: {description}\n---\n')
+        findings = check_repo.check_descriptions(
+            tmp_path,
+            [manifest],
+        )
+        checks = [
+            finding.check
+            for finding
+            in findings
+        ]
+
+        assert checks == ['description']
+
+    def test_unreadable_description_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        manifest = '.apm/skills/x/SKILL.md'
+        write(tmp_path / manifest, '---\nname: x\ndescription: |\n  Literal text.\n---\n')
+        findings = check_repo.check_descriptions(
+            tmp_path,
+            [manifest],
+        )
+        checks = [
+            finding.check
+            for finding
+            in findings
+        ]
+
+        assert checks == ['description']
+
+
+class TestCheckHeadings:
+    def test_readme_is_left_out_and_other_documents_are_checked(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        template = tmp_path / check_repo.TEMPLATE_FOLDER
+        example = tmp_path / check_repo.EXAMPLE_FOLDER
+        write(template / 'README.md', '# Title\n\n## Template only\n')
+        write(example / 'README.md', '# Liquid golden cross\n')
+        write(template / 'SETUP.md', '# Setup\n\n## Kept\n\n## Dropped\n')
+        write(example / 'SETUP.md', '# Setup\n\n## Kept\n')
+        findings = check_repo.check_headings(tmp_path)
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == [f'{check_repo.EXAMPLE_FOLDER}/SETUP.md lacks the template heading "## Dropped"']
+
+
+class TestCheckMarkers:
+    def test_python_block_left_open_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        begin, _ = check_repo.MARKERS['.py']
+        path = f'{check_repo.EXAMPLE_FOLDER}/Experiments/rule.py'
+        write(tmp_path / path, f'x = 1\n{begin}\ny = 2\n')
+        findings = check_repo.check_markers(
+            tmp_path,
+            [path],
+        )
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == [f'{path}: line 2 opens a block that never closes']
+
+
 class TestCheckPathLength:
     def test_long_path_is_reported(self) -> None:
         long_path = 'a' * (check_repo.PATH_LIMIT + 1)
@@ -39,12 +144,86 @@ class TestCheckPathLength:
         assert checks == ['path length']
 
 
+class TestCheckReferences:
+    def test_missing_example_file_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        findings = check_repo.check_references(tmp_path)
+        checks = [
+            finding.check
+            for finding
+            in findings
+        ]
+
+        assert checks == ['references']
+
+    def test_reference_edited_by_hand_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        experiment = tmp_path / sync_investment_lab_references.EXPERIMENT_DIRECTORY
+        references = tmp_path / sync_investment_lab_references.REFERENCES_DIRECTORY
+        documents = sync_investment_lab_references.DOCUMENTS.items()
+        for example_name, reference_name in documents:
+            write(experiment / example_name, '# Document\n')
+            write(references / reference_name, '# Document\n')
+        write(experiment / 'experiment_1.ipynb', '{"cells": []}')
+        write(references / 'experiment-notebook.ipynb', '{"cells": []}')
+        write(references / 'blueprint-template.md', '# Edited by hand\n')
+        findings = check_repo.check_references(tmp_path)
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == [
+            'blueprint-template.md: differs from the example; run tools/sync_investment_lab_references.py',
+        ]
+
+
+class TestCheckSectionSymbol:
+    def test_section_symbol_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write(tmp_path / 'clean.md', 'See section 2.\n')
+        write(tmp_path / 'marked.md', f'See {check_repo.SECTION_SYMBOL}2.\n')
+        findings = check_repo.check_section_symbol(
+            tmp_path,
+            [
+                'clean.md',
+                'marked.md',
+            ],
+        )
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == ['marked.md: uses the section symbol; write "section"']
+
+
 class TestFoldedDescription:
     def test_folded_lines_are_joined(self) -> None:
         text = 'name: x\ndescription: >\n  One line\n  and another.\nmetadata:\n'
         result = check_repo.folded_description(text)
 
         assert result == 'One line and another.'
+
+    def test_one_line_description_is_read(self) -> None:
+        text = 'name: x\ndescription: One line.\nmetadata:\n'
+        result = check_repo.folded_description(text)
+
+        assert result == 'One line.'
+
+    def test_other_forms_are_not_read(self) -> None:
+        text = 'name: x\ndescription: One line\n  continued.\nmetadata:\n'
+        result = check_repo.folded_description(text)
+
+        assert result == ''
 
 
 class TestMarkerProblems:
@@ -88,6 +267,36 @@ class TestMissingHeadings:
         assert result == ['## Dropped']
 
 
+class TestTrackedFiles:
+    def test_non_ascii_path_is_read_whole(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        note_name = 'Émile Borel.md'
+        write(tmp_path / note_name, 'A note.\n')
+        subprocess.run(
+            [
+                'git',
+                'init',
+                '--quiet',
+            ],
+            cwd=tmp_path,
+            check=True,
+        )
+        subprocess.run(
+            [
+                'git',
+                'add',
+                '.',
+            ],
+            cwd=tmp_path,
+            check=True,
+        )
+        result = check_repo.tracked_files(tmp_path)
+
+        assert result == [note_name]
+
+
 class TestVersionProblems:
     def test_agreeing_versions_pass(
         self,
@@ -120,3 +329,26 @@ class TestVersionProblems:
         ]
 
         assert messages == ['x: apm.yml declares 1.2.4; CHANGELOG.md says 1.2.3']
+
+    def test_uv_lock_behind_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write(tmp_path / 'apm.yml', 'name: x\nversion: 1.2.4\n')
+        write(tmp_path / 'CHANGELOG.md', '# Changelog\n\n## [1.2.4] - 2026-01-01\n')
+        write(tmp_path / 'pyproject.toml', '[project]\nversion = "1.2.4"\n')
+        write(
+            tmp_path / 'uv.lock',
+            'version = 1\n\n[[package]]\nname = "x"\nversion = "1.2.3"\nsource = { virtual = "." }\n',
+        )
+        result = check_repo.version_problems(
+            'x',
+            tmp_path,
+        )
+        messages = [
+            finding.message
+            for finding
+            in result
+        ]
+
+        assert messages == ['x: apm.yml declares 1.2.4; uv.lock says 1.2.3']

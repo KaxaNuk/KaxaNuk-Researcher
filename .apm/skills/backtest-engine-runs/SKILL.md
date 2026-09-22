@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`), reading attribution output (use `alpha-decomposition`), or authoring
   Data Curator `c_*` columns (use `data-curator-custom-calculations`).
 metadata:
-  version: 0.1.3
+  version: 0.1.4
 ---
 
 # Running the KaxaNuk Backtest Engine
@@ -28,16 +28,19 @@ second, lighter simulator: one that disagreed would only let a reader pick the n
 
 ## 1. Install it without leaking the key
 
-Install from the index URL in the licence welcome email:
+Install from the index URL in the licence welcome email, from the repository root and through `uv`,
+so it lands in the repository's `.venv` rather than wherever the first `pip` on the path points:
 
 ```bash
-pip install kaxanuk-backtest-engine --extra-index-url https://license:{YOUR_LICENSE_KEY}@{SERVER}/simple/
+uv pip install kaxanuk-backtest-engine --extra-index-url https://license:{YOUR_LICENSE_KEY}@{SERVER}/simple/
 ```
 
-Then lay down the project files, once:
+Inside a KaxaNuk Strategy Template repository that is all: the configuration is built in code, in
+`Experiments/backtest_engine.py` (section 7; the worked example's `build_configuration` shows how),
+and nothing is initialised at the root. Outside one, lay down the project files once:
 
 ```bash
-python -m kaxanuk.backtest_engine init excel
+uv run python -m kaxanuk.backtest_engine init excel
 ```
 
 Three rules, and the first is not negotiable:
@@ -47,11 +50,11 @@ Three rules, and the first is not negotiable:
   it back. An exposed key is rotated, not edited out.
 - **Never add the engine to a repository's dependency file.** It is installed by hand, per machine,
   by whoever holds the licence.
-- **Python 3.12 or 3.13**, per the documentation. That ceiling is the engine's, and it is why a KN
-  Research Process repository pins `requires-python = ">=3.12,<3.14"` and installs 3.13: the Data
-  Curator allows up to 3.14 and the engine does not, so 3.13 is the version that satisfies both. A
-  project pinned above the range needs a separate interpreter for the engine — report the mismatch
-  rather than quietly pinning around it.
+- **Python 3.12 or 3.13**, per the documentation. That ceiling is the engine's, and it is why a
+  KaxaNuk Strategy Template repository pins `requires-python = ">=3.12,<3.14"` and installs 3.13:
+  the Data Curator allows up to 3.14 and the engine does not, so 3.13 is the version that satisfies
+  both. A project pinned above the range needs a separate interpreter for the engine — report the
+  mismatch rather than quietly pinning around it.
 
 The licence key lives in `Config/.env` as **`KNBE_API_KEY_KAXANUK`**. That is the name KaxaNuk uses,
 and it is what a repository created from the KaxaNuk Strategy Template ships in
@@ -73,14 +76,16 @@ A clone without a licence must still run everything else. Any module or cell tha
 reports what is missing and skips, rather than raising:
 
 ```python
-try:
-    from kaxanuk.backtest_engine.backtest.pyarrow_backtester import PyArrowBacktester
-except ImportError:
-    PyArrowBacktester = None
+import importlib.util
+
+ENGINE_INSTALLED = importlib.util.find_spec("kaxanuk.backtest_engine") is not None
 ```
 
-Check for `None` at the call site and say plainly that step 5 was skipped for want of the licensed
-engine. **A pipeline that dies at an optional import is a pipeline nobody can read.**
+Check `ENGINE_INSTALLED` before the call, and import `kaxanuk.backtest_engine` only inside that
+branch, as the worked example's `Experiments/backtest_engine.py` does; where it is `False`, say
+plainly that step 5 was skipped for want of the licensed engine. A `try` around `from kaxanuk…
+import …` does the same job but fails Bloom Code (BLOOM003). **A pipeline that dies at an optional
+import is a pipeline nobody can read.**
 
 ## 3. The two inputs
 
@@ -111,16 +116,21 @@ Two consequences, and both are ways a backtest lies:
 mapping. The same configuration can be supplied programmatically as a dict or YAML, which is what a
 sweep should use — **a sweep that edits a workbook between runs is a sweep nobody will reproduce.**
 
+In code, `main()` and `PyArrowBacktester` take a `kaxanuk.backtest_engine.entities.Configuration`.
+The fields the worked example sets, the three price roles among them, and the two CSV input
+handlers it passes are listed in `references/api.md`.
+
 ## 5. Run it
 
-The CLI, from the project root:
+The CLI, from the project root, outside a KaxaNuk Strategy Template repository — inside one the
+engine is called in code (section 7):
 
 | Command | What it does |
 | --- | --- |
-| `python -m kaxanuk.backtest_engine autorun` | installs missing project files on the first run, then executes the entry script |
-| `python -m kaxanuk.backtest_engine init excel` | lays down the configuration format and an entry script |
-| `python -m kaxanuk.backtest_engine run [PATHS]` | executes the given entry scripts or directories |
-| `python -m kaxanuk.backtest_engine update excel` | refreshes a template after an engine upgrade (also `update entry_script`) |
+| `uv run python -m kaxanuk.backtest_engine autorun` | installs missing project files on the first run, then executes the entry script |
+| `uv run python -m kaxanuk.backtest_engine init excel` | lays down the configuration format and an entry script |
+| `uv run python -m kaxanuk.backtest_engine run [PATHS]` | executes the given entry scripts or directories |
+| `uv run python -m kaxanuk.backtest_engine update excel` | refreshes a template after an engine upgrade (also `update entry_script`) |
 
 Or in code — `PyArrowBacktester`, built one of two ways and run one of two ways:
 
@@ -180,12 +190,19 @@ line — `Cash error on <date> with $-340.92` — stops valuing there, and retur
 Both runs wrote an Excel report, and the shorter one annualised over its stub, so its CAGR is the
 higher of the two. **The check that catches it:** `data["end_date"]` and `data["years"]` describe the
 window the engine *valued*, not the one the configuration asked for — compare them with the
-configured dates before reading a single metric. A cash reserve of a percent or two, or a book that
-sums to less than one, avoids the cause.
+configured dates before reading a single metric. **The cure is `cash_reserve_percentage`**, a
+fraction: in a Strategy Template repository the weight file always sums to one (section 7), so the
+reserve is the only cash that pays commission. `liquid-golden-cross` needed `0.02`; its long window
+still truncated, in 2003 at 0.5% and in 2009 at 1%.
 
 Configuration guards worth knowing before a first run: `commission_cents` is rejected outside
 `[0.00, 0.10]`, and the engine checks on every rebalancing date that each position it touches has a
 price and that no position outlives its price series.
+
+**`commission_cents` is not cents per share, measured on 0.66.0.** The worked example froze `0.1`
+in its blueprint as "0.1 cents per share", and the engine charged about $0.083 a share for it,
+roughly twenty times a retail rate; its realistic variant uses `0.005`. Before a figure is frozen
+in a blueprint, run it once and compare `Total_commissions` with the shares traded in `orders_df`.
 
 ## 7. Inside a KaxaNuk Strategy Template repository
 
@@ -198,8 +215,10 @@ a strategy stays in that strategy's notebook.
   describes.
 - `Experiments/Experiment_N/Backtest/` — where results land, and **nothing in it is committed**: no
   workbooks, no charts. The numbers reach `FINDINGS_N.md`, and `RESULTS.md` is compiled from those.
-- Weights sum to **at most** one. A strategy that can go to cash cannot satisfy the stricter form,
-  and the engine parks the residual in a real, priced instrument.
+- Target weights, what the rule returns, sum to **at most** one; the weight file sums to
+  **exactly** one. It has no cash row, so `backtest_engine.py` writes the residual as a weight in
+  the cash proxy (`write_weight_file` and `CASH_IDENTIFIER` in the worked example): going to cash
+  buys a real, priced instrument and pays commission.
 
 ## Where the documentation is
 

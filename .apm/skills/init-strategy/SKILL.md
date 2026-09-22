@@ -8,7 +8,7 @@ description: >
   the worked example (use `init-example`), and does NOT create a researcher (use
   `init-researcher`).
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -25,26 +25,32 @@ every strategy made from the same package version starts identical.
 
 - The owner runs `init-strategy` by name — *init-strategy fcf-yield-quality*, *start a new strategy
   called …*.
-- Not on its own initiative, and not to repair an existing strategy: to bring one file of the
-  template or the example into a strategy that has it missing, use `init-example` with a path.
+- Not on its own initiative, and not to repair an existing strategy. A file of the example comes
+  across with `init-example <path>`. A file of the template that the strategy has lost comes back
+  from the template, never from the example, whose copy is filled in: run this skill's script from
+  the strategy's root; it never overwrites a file.
+
+  ```bash
+  uv run --no-project python "<this skill's directory>/scripts/scaffold.py" strategy . --only <path>
+  ```
 
 ## Steps
 
 1. **The name and the place.** Ask for whatever is missing through the question tool: the name,
    and the parent folder, defaulting to the parent of the folder the session is open in — so a
    strategy lands beside the others, `D:\Research\fcf-yield-quality`. On Windows, keep it short:
-   a deep synced path such as `C:\Users\<you>\OneDrive\...` makes later installs fail with
-   `WinError 3`. Say the full path you will create.
+   a deep synced path such as `C:\Users\<you>\OneDrive\...` breaks tools later with misleading
+   errors such as `WinError 3`. Say the full path you will create.
 
 2. **The plan.** In chat: the path, that it will hold the KaxaNuk Strategy Template at this
-   package's version, that it becomes a git repository with the first commit *Start from the
-   KaxaNuk Strategy Template*, and that nothing else on the machine changes. Ask for the go —
-   *Go*, *Change something*, *Stop* — and run on *Go* only.
+   package's version, that it becomes a git repository on branch `main` with the first commit
+   *Start from the KaxaNuk Strategy Template*, and that nothing else on the machine changes. Ask
+   for the go — *Go*, *Change something*, *Stop* — and run on *Go* only.
 
 3. **Copy.** The script is in this skill's folder:
 
    ```bash
-   python "<this skill's directory>/scripts/scaffold.py" strategy "<full path>"
+   uv run --no-project python "<this skill's directory>/scripts/scaffold.py" strategy "<full path>"
    ```
 
    It refuses a folder that exists and is not empty, and says why; go back to step 1 rather than
@@ -61,5 +67,5 @@ every strategy made from the same package version starts identical.
 ## References
 
 - `scripts/scaffold.py`, in this skill's folder — copies `templates/strategy/` from the
-  KaxaNuk Researcher package; `--help` has every option. `init-researcher` and `init-example` run the
-  same script.
+  KaxaNuk Researcher package; `--help` has every option. `init-researcher` and `init-example` run
+  the same script.

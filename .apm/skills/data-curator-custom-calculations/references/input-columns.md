@@ -73,8 +73,9 @@ factor field, as `<date_field>_<factor_field>`, and the factor lands on the row 
 - `s_` from date `split_date` and factors `numerator`, `denominator` — that is `s_split_date_numerator` and
   `s_split_date_denominator`.
 
-Rows without an event are null, so these columns are sparse by nature. Both blocks are fetched from the
-**fundamental** data provider, so a run without one leaves them entirely null.
+Rows without an event are null, so these columns are sparse by nature. Dividends and splits are
+each a data block of their own, so a run that assigns one no provider leaves its columns entirely
+null.
 
 ## Fundamental columns
 

@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.10"
-# dependencies = ["pypdf>=4.0"]
+# dependencies = ["pypdf[crypto]>=4.0"]
 # ///
 """
 The deterministic half of /read: a PDF's table of contents, and one markdown file per chapter.
@@ -13,8 +13,9 @@ and the note is the researcher's. Extracts are a cache — regenerable, gitignor
     uv run extract.py BOOK.pdf --outline                the outline and the page count; nothing written
     uv run extract.py BOOK.pdf --chapters 3,4,7         those chapters, by their number in the outline
     uv run extract.py BOOK.pdf --all                    every chapter; with no outline, the whole PDF as one file
-    uv run extract.py BOOK.pdf --split "Introduction=1-12; Chapter 1=13-40"
-                                                        no outline: chapters by page range, titles yours
+    uv run extract.py BOOK.pdf --split "Introduction=1-12; Chapter 1=13-40" --chapters 2
+                                                        no outline: the whole book by page range, titles
+                                                        yours, with --chapters or --all among them
 
 Options
     --out DIR       where extracts go (default ./Extracts); this PDF's land in DIR/<pdf stem>/
@@ -24,8 +25,8 @@ Options
                     which tables and verse prefer
     --min-chars N   fewer characters per page than this, on average, means no text layer (default 40)
 
-Exit codes: 0 done · 1 usage · 2 no text layer, nothing written · 3 no outline for --chapters
-Without uv: pip install pypdf, then python extract.py ...
+Exit codes: 0 done · 1 usage · 2 no text layer or a password needed, nothing written · 3 no outline for --chapters
+Without uv: pip install "pypdf[crypto]", then python extract.py ...
 """
 import argparse
 import dataclasses
@@ -41,7 +42,7 @@ import unicodedata
 try:
     import pypdf
 except ImportError:
-    sys.exit('pypdf is not installed: run this with `uv run`, or `pip install pypdf`.')
+    sys.exit('pypdf is not installed: run this with `uv run`, or `pip install "pypdf[crypto]"`.')
 
 # Page ranges carry an en dash, which a Windows console may not encode.
 for console_stream in (sys.stdout, sys.stderr):
@@ -56,7 +57,7 @@ THIN_PAGE_CHARACTERS = 200
 FRONT_MATTER_TITLE = 'Front matter'
 NO_OUTLINE_MESSAGE = ' '.join([
     'no outline in this PDF: run --outline, read the table-of-contents pages,',
-    'and pass --split "Title=first-last; ..."',
+    'and pass --split "Title=first-last; ..." for the whole book, with --chapters or --all',
 ])
 NOTHING_WRITTEN_MESSAGE = ' '.join([
     'nothing written: no text layer in what was asked for — a scanned PDF.',
@@ -313,6 +314,12 @@ def main(
     Parse the command line, read the PDF, and print its outline or write the chapters asked for.
     """
     arguments = _build_parser().parse_args(argv)
+
+    if arguments.outline and arguments.split:
+        print('--split goes with --chapters or --all, not --outline', file=sys.stderr)
+
+        return 1
+
     pdf_path = pathlib.Path(arguments.pdf)
 
     if not pdf_path.is_file():
@@ -320,10 +327,15 @@ def main(
 
         return 1
 
-    reader = pypdf.PdfReader(str(pdf_path))
+    try:
+        reader = pypdf.PdfReader(str(pdf_path))
+    except pypdf.errors.PdfReadError as exception:
+        print(f'cannot open {pdf_path.name} as a PDF: {exception}', file=sys.stderr)
+
+        return 1
 
     if reader.is_encrypted and not _decrypted(reader):
-        print('encrypted PDF: cannot read it', file=sys.stderr)
+        print('encrypted PDF: it needs a password; save an unprotected copy and run this on it', file=sys.stderr)
 
         return 2
 
@@ -533,7 +545,8 @@ def print_outline(
 
     if not entries:
         print('  no outline (no bookmarks). Read the table-of-contents pages and pass')
-        print('  --split "Title=first-last; Title=first-last", or --all for the whole PDF as one file.')
+        print('  --split "Title=first-last; Title=first-last" for the whole book, with --chapters or --all;')
+        print('  or --all alone for the whole PDF as one file.')
 
         return
 
@@ -713,7 +726,7 @@ def _average_characters(
 
 def _build_parser() -> argparse.ArgumentParser:
     """
-    The command line: the PDF, one of four modes, and the options.
+    The command line: the PDF, one of three modes, the split, and the options.
     """
     parser = argparse.ArgumentParser(
         prog='extract.py',
@@ -730,17 +743,17 @@ def _build_parser() -> argparse.ArgumentParser:
     mode.add_argument(
         '--chapters',
         metavar='N,N-M',
-        help='extract these chapters, by outline number',
+        help='extract these chapters, by their number in the outline or the split',
     )
     mode.add_argument(
         '--all',
         action='store_true',
         help='extract every chapter',
     )
-    mode.add_argument(
+    parser.add_argument(
         '--split',
         metavar='SPEC',
-        help='"Title=first-last; ..." when there is no outline',
+        help='"Title=first-last; ..." for the whole book when there is no outline; with --chapters or --all',
     )
     parser.add_argument(
         '--out',
@@ -828,12 +841,14 @@ def _decrypted(
     Whether an encrypted PDF opens with the empty password.
     """
     try:
-        reader.decrypt('')
+        password_type = reader.decrypt('')
     except Exception:
 
         return False
 
-    return True
+    opened = password_type != pypdf.PasswordType.NOT_DECRYPTED
+
+    return opened
 
 
 def _engine_label(

@@ -10,7 +10,7 @@ description: >
   It covers naming, valid input columns, the DataColumn API, composition, and how to wire the column into the
   output, for both configuration-file projects and programmatic or notebook runs of `main()`.
 metadata:
-  version: 0.2
+  version: 0.3
 ---
 
 # Data Curator Custom Calculations
@@ -48,8 +48,23 @@ Discovery does not care which of these it is: a column is resolved to a function
 object in `custom_calculation_modules`, first match wins, with no check on where the function was defined.
 Writing the function into a file is a project convention, not a library requirement.
 
-If a project has no surface yet, default to (a): create `Config/custom_calculations.py` and confirm the entry
-script imports it.
+**In a KaxaNuk Strategy Template repository the surface is (b), and the files are fixed.** The
+functions go in `Data/Curator/custom_calculations.py`. `Data/curator.py`, the step-3 driver, loads
+that file and passes the output columns to `main()` as `Configuration.columns`; in the worked
+example's driver they are the `OUTPUT_COLUMNS` tuple. Never create `Config/custom_calculations.py`
+there. The template ships neither file. When they are missing, ask the owner to run
+`init-example Data/curator.py` and `init-example Data/Curator/custom_calculations.py` (or
+`init-example Data` for the whole folder), and say that the lines between the example markers are
+`liquid-golden-cross`'s. Two kinds of column are not `c_*` columns, even when asked for as a
+"signal": one that compares securities on a date (a rank, a breadth reading), and one with a
+setting an experiment will sweep (a fitted model, or a window such as the 50- and 200-day averages
+the example builds as `r_trend_50_200`). Both are `r_*` columns in
+`Data/Refinery/custom_calculations.py`, which the worked example's `Data/refinery.py` computes
+and this skill does not cover; `init-example Data` brings both. Only their frozen arithmetic
+inputs are `c_*` columns.
+
+Anywhere else, if a project has no surface yet, default to (a): create
+`Config/custom_calculations.py` and confirm the entry script imports it.
 
 ## 2. Reuse before writing
 
@@ -97,6 +112,9 @@ are resolved as dependencies and need not be selected.
 - Surface (a): add the exact function name, `c_` prefix included, to the `Output_Columns` sheet of
   `Config/data_curator_parameters.xlsx`. If you cannot edit the workbook, tell the user the exact string to add.
 - Surfaces (b) and (c): add the name to the `columns` tuple of the `Configuration` passed to `main()`.
+- A KaxaNuk Strategy Template repository: add the name to the output columns `Data/curator.py`
+  requests (`OUTPUT_COLUMNS` in the example). Widening them changes every file's header, so the
+  next run of the driver refetches every identifier. Say so before adding the column.
 - Projects with their own configuration surface (a column picker, a settings service, an API): follow theirs.
 
 `m_date` is not added automatically — include it in the selection whenever the output needs a date, and always
@@ -123,8 +141,9 @@ Run every check, and fix until all pass:
 - [ ] The code parses: `python -m py_compile <file>` for a file, or a clean run of the cell for a notebook,
       and the linter the project uses passes.
 - [ ] If the calculation depends, directly or transitively, on any `f_*`, `fbs_*`, `fcf_*`, `fis_*`, `d_*` or
-      `s_*` column, the run needs a fundamental data provider, and for the fundamental blocks the result also
-      depends on the configured `period`.
+      `s_*` column, the run needs a provider for the fundamentals, dividends or splits block in
+      `data_block_providers`, and for the fundamental blocks the result also depends on the
+      configured `period`.
 
 ## 7. Report
 

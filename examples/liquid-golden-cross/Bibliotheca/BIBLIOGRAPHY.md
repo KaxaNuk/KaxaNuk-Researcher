@@ -128,6 +128,12 @@ until your strategy has a question of its own.
 | Paleologo (2021) — *Advanced Portfolio Management* | why a trend rule is not a momentum rule, claim 1. Chapter 5 read, from Luna's library: [note](Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md) |
 | Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | **the argument against claim 1.** Moving-average rules survive the data-snooping adjustment in 1897–1986 and not in 1987–1996; a one-day implementation lag removes most of the return. Read whole: [note](Papers/Sullivan_Timmermann_White_1999_Data_Snooping.md) |
 | LeBaron (1999) — *The Stability of Moving Average Technical Trading Rules on the Dow Jones Index* | claim 1, from one of the authors of the 1992 study: the buy-sell difference reverses after 1986 while the volatility difference holds. Read whole: [note](Papers/LeBaron_1999_The_Stability_Of_Moving_Average_Rules.md) |
+| Brock, Lakonishok & LeBaron (1992) — *Simple Technical Trading Rules and the Stochastic Properties of Stock Returns* | claim 1, the support: the study this idea inherits, which Sullivan, Timmermann & White and LeBaron both re-examine. Both copies found are image scans with no text layer, so nothing is claimed on it. *No note yet.* |
+| Amihud (2002) — *Illiquidity and Stock Returns: Cross-Section and Time-Series Effects* | **against claim 3**: less traded stocks earn more. *No note yet.* |
+| Lee & Swaminathan (2000) — *Price Momentum and Trading Volume* | **against claim 3**: heavily traded stocks earn less and their past winners reverse sooner — the closest source to this pairing of volume and trend. *No note yet.* |
+| Korajczyk & Sadka (2004) — *Are Momentum Profits Robust to Trading Costs?* | claim 3, for it on costs: liquidity-aware construction holding up after costs. *No note yet.* |
+| Grinold & Kahn (2000) — *Active Portfolio Management*, chapters 13, 14 and 16 | claim 4: a no-trade band as wide as the costs of buying and selling, keeping most of the value added at half the turnover (14 and 16); **against it**, a delayed trade loses a signal's value at the rate of its half-life, and a band is a delay (13). *No note yet.* |
+| Shu, Yu & Mulvey (2024) — *Downside Risk Reduction Using Regime-Switching Signals* | what is not claimed — that the filter protects in every fall: one slow index-or-cash rule that avoided 2020's fall and gave up its rebound. *No note yet.* |
 
 <!-- example: end -->
 

@@ -9,6 +9,15 @@ strategy runs in, and so a person can read it in two minutes.
 > **On the example.** This folder is for reading. To run it, `init-example` copies it into a folder
 > of its own — step 1 — and step 5 is skipped: this README is already the strategy's. How to copy a
 > file from here is in the template's README, *What is in here*.
+>
+> **Its benchmark cannot be downloaded.** The KN600 is KaxaNuk's own index: its daily holdings and
+> returns, `KN_US_Equity_Benchmark.csv` and `KN_US_Equity_Returns.csv` in
+> `Data/Curator/Benchmarks/`, and the factor returns in `Data/Curator/Factors/`, are supplied by
+> hand, and no provider sells them. Without them `Data/curator.py` downloads every price and says
+> the index was not staged; `Universe/universe.ipynb` writes `Security_Master.csv` and
+> `Data_Issues.csv`, then stops at the cell that reads the index's holdings; and
+> `Experiments/Experiment_1/experiment_1.ipynb` stops in its first cell. Every number the example
+> measured is in `RESULTS.md`.
 
 <!-- example: end -->
 
@@ -30,9 +39,6 @@ Open a **new** terminal after installing either, so it is on the path. `git --ve
 > **For the agent, before anything else.** Look at the folder you are in, and say what you found:
 >
 > - it holds `Bibliotheca/`, `Universe/` and `Experiments/` → the repository exists, go to step 2;
-> - it holds `apm.yml`, `apm_modules/`, `.claude/` or `requirements-dev.txt` **without** those
->   folders → **stop**: that is a wrapper somebody prepared by hand, and the section below says why
->   and what to delete;
 > - otherwise the repository does not exist yet → step 1. It needs **where to put it**, which
 >   defaults to `liquid-golden-cross` beside the folder you are in; ask if the user has not said.
 >
@@ -43,17 +49,10 @@ Open a **new** terminal after installing either, so it is on the path. `git --ve
 ## The rule: one folder is the whole project
 
 One folder is the repository: open that folder, and run every command in it — nothing installed
-a level above it, nothing nested a level below. What setup writes there — `.venv/`,
-`apm_modules/`, `apm.lock.yaml`, and `.claude/` or, for Codex, `.agents/` and `.codex/` — is
-ignored; `uv.lock`, which `uv sync` writes, is committed, and `apm.yml` comes committed with the
-template.
-
-**The failure to avoid is a wrapper folder**: APM set up in an empty folder with the repository put
-inside it. The wrapper has no `pyproject.toml`, so APM writes `requirements-dev.txt`, a second
-`apm.yml` and a second `.claude/` there, and an agent opened at the wrapper never sees the research
-tree. If you have that layout, delete the wrapper's `apm.yml`, `apm.lock.yaml`, `apm_modules/`,
-`.claude/`, `.agents/`, `.mcp.json` and `requirements-dev.txt`, then move the repository folder up
-and open it directly.
+a level above it, nothing nested a level below. What setup writes there, `.venv/` and
+`Config/.env`, is ignored, as is anything an assistant or APM writes per machine (`.claude/`,
+`.agents/`, `.codex/`, `apm_modules/`, `apm.lock.yaml`); `uv.lock`, which `uv sync` writes, is
+committed, and `apm.yml` comes committed with the template.
 
 ---
 
@@ -72,10 +71,10 @@ without making anything.
 already:** skip to step 2.
 
 **On Windows, keep the path short.** `D:\Research\...` is fine; a deep synced path such as
-`C:\Users\<you>\OneDrive\Documents\Projects\...` is not. APM stages its downloads in a
-directory several levels below the root, so a path that starts too deep fails part-way through
-with `WinError 3: The system cannot find the path specified` — a real failure with a misleading
-message. The same install run from a short path succeeds.
+`C:\Users\<you>\OneDrive\Documents\Projects\...` is not. Tools that write deep inside the
+folder, `uv sync` building `.venv/` among them, can pass Windows' 260-character path limit there
+and fail with messages that do not say so, such as `WinError 3: The system cannot find the path
+specified`.
 
 A strategy of your own is not made from here: `init-strategy <strategy-name>` makes it from the
 empty template, and `init-example <path>` brings one file or folder of this example into it — the
@@ -104,6 +103,12 @@ machine, `uv` downloads 3.13** — there is nothing to install by hand.
 performance figure in this process comes from that engine, so the ceiling is its, not ours. The Data
 Curator allows 3.12 to 3.14, which makes 3.13 the version that satisfies both.
 
+**Once the Backtest Engine, Attribution Analysis or Portfolio Construction is installed by hand,
+never run a bare `uv sync` here again:** it is exact, and removes every package `uv.lock` does not
+name, which those three deliberately are not. Use `uv sync --inexact` instead, and `uv run` for
+everything else; both keep them. The `backtest-engine-runs`, `attribution-analysis-runs` and
+`portfolio-construction-runs` skills have the installs.
+
 ---
 
 ## Step 3 — Put your keys in place
@@ -131,8 +136,12 @@ experiment is structured, how attribution is read, the house rules — and the
 are installed once for your user, not per repository, by the same command that gave you step 1:
 
 ```bash
-apm install -g KaxaNuk/KaxaNuk-Researcher
+apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
+
+`--target codex`, `cursor` or another assistant in place of `claude`; the researcher package's
+[`SETUP.md`](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/SETUP.md) says what each
+receives.
 
 They are then available in every folder, this one included, and `apm update -g` keeps every
 strategy current at once. **A strategy installs nothing.** Your researcher's home, made once with
@@ -143,8 +152,9 @@ researcher's folder>`, `/add-dir` once inside, or the desktop app's add-folder b
 results are the same with or without them.
 
 > **For the agent.** Do not install skills into this repository. If they are missing, give the user
-> the command above — it installs for their user, not here, with `uvx --from apm-cli` in front if
-> `apm` is not on the path — and say that they appear in a **new** session.
+> the command above, with the assistant you are as the target — it installs for their user, not
+> here, with `uvx --from apm-cli` in front if `apm` is not on the path — and say that they appear
+> in a **new** session.
 
 ---
 
@@ -176,12 +186,23 @@ read.
 | [`SETUP.md`](SETUP.md) | how this repository is set up on a new machine |
 ```
 
-Put the same status line in place of the banner at the top of `AGENTS.md`, and rename `name` and
-`author` in `apm.yml` to the strategy's and yours. Then commit them together with `uv.lock`, the
-other file the setup itself produced:
+Put the same status line in place of the banner at the top of `AGENTS.md`. Rename `name` and
+`author` in `apm.yml`, and `name` in `pyproject.toml`, to the strategy's and yours, and set
+`version` in both to `0.1.0`. In `CHANGELOG.md`, keep everything above the `---` line and replace
+the template's entries below it with the strategy's first, naming the template version `apm.yml`
+declared before you reset it:
+
+```markdown
+## 0.1.0 (YYYY-MM-DD)
+
+**MINOR** — started from the KaxaNuk Strategy Template <template-version>. Nothing measured yet.
+```
+
+Then run `uv lock`, so `uv.lock` records the new name and version, and commit them together with
+`uv.lock`, the other file the setup itself produced:
 
 ```bash
-git add README.md AGENTS.md apm.yml uv.lock
+git add README.md AGENTS.md apm.yml pyproject.toml CHANGELOG.md uv.lock
 git commit -m "README: <strategy-name>"
 ```
 
@@ -202,9 +223,11 @@ git status
 ```
 
 **It should be clean.** Step 5 committed what the setup itself changed: the README, the `AGENTS.md`
-banner, `apm.yml`'s name and author, and `uv.lock` — which pins the versions this strategy's results
-will come from, and is why the template ships without one and your repository keeps one. Everything
-else the commands produced — `.venv/`, `apm_modules/`, `.claude/`, `apm.lock.yaml` — is ignored.
+banner, `apm.yml`'s name, author and version, `pyproject.toml`'s name and version, the first
+`CHANGELOG.md` entry, and `uv.lock` — which pins the versions this strategy's results will come
+from, and is why the template ships without one and your repository keeps one. Everything else the
+commands produced — `.venv/`, `Config/.env`, and whatever your assistant writes per machine, such as
+`.claude/` — is ignored.
 **Anything showing up means something was written in the wrong place.**
 
 **The repository exists only on this machine until you publish it.** Nothing is lost and nothing

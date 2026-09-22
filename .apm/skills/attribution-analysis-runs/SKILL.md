@@ -13,7 +13,7 @@ description: >
   does NOT cover what the numbers mean for a strategy (use `alpha-decomposition`) or running the
   backtest that produced the book (use `backtest-engine-runs`).
 metadata:
-  version: 0.2.4
+  version: 0.2.5
 ---
 
 # Running the KaxaNuk Attribution Analysis
@@ -33,11 +33,20 @@ into selection, sizing and timing — is `alpha-decomposition`.
 ## 1. Install it without leaking the key
 
 The documentation's quick start has the command; the ready-to-run version, key included, arrives in
-the licence welcome email:
+the licence welcome email. Run it from the repository root and through `uv`, so it lands in the
+repository's `.venv` rather than wherever the first `pip` on the path points:
 
 ```bash
-pip install kaxanuk-attribution_analysis --extra-index-url https://license:{YOUR_LICENSE_KEY}@{SERVER}/simple/
-kaxanuk.attribution_analysis init excel
+uv pip install kaxanuk-attribution_analysis --extra-index-url https://license:{YOUR_LICENSE_KEY}@{SERVER}/simple/
+```
+
+Inside a KaxaNuk Strategy Template repository that is all: in the worked example
+`Experiments/attribution_analysis.py` shapes the inputs and the notebook builds the attribution
+objects in code (sections 6 and 8), so there is no workbook and nothing at the root. Outside one,
+lay down the project files once:
+
+```bash
+uv run kaxanuk.attribution_analysis init excel
 ```
 
 Three rules, and the first is not negotiable:
@@ -68,14 +77,17 @@ A clone without a licence must still run everything else. Any module or cell tha
 library reports what is missing and skips, rather than raising:
 
 ```python
-try:
-    from kaxanuk.attribution_analysis import performance_attribution
-except ImportError:
-    performance_attribution = None
+import importlib.util
+
+LIBRARY_INSTALLED = importlib.util.find_spec("kaxanuk.attribution_analysis") is not None
 ```
 
-Check for `None` at the call site and say plainly that step 6 was skipped for want of the licensed
-library. **A pipeline that dies at an optional import is a pipeline nobody can read.**
+Check `LIBRARY_INSTALLED` before the call, and import
+`kaxanuk.attribution_analysis.performance_attribution` only inside that branch, as the worked
+example does (`report_missing_inputs` in `Experiments/attribution_analysis.py`, then the import in
+the notebook's branch); where it is `False`, say plainly that step 6 was skipped for want of the
+licensed library. A `try` around `from kaxanuk… import …` does the same job but fails Bloom Code
+(BLOOM003). **A pipeline that dies at an optional import is a pipeline nobody can read.**
 
 ## 3. The four inputs
 
@@ -100,10 +112,13 @@ each trading day, drift included (section 8).
 
 **Market data — one file per security**, `{TICKER}.csv` or `{TICKER}.parquet`, with the date and price
 columns named in the configuration (`user_column_date`, `user_column_price`); returns are computed
-from the prices, and the Data Curator's `m_date` and `m_close_split_adjusted` drop straight in. Dates
-must be `YYYY-MM-DD` or `YYYY/MM/DD`. **A blank price in any row read fails that security, and one
-failed security aborts the whole load** with a single `DataLoadingError` naming them all — so trim a
-file's rows before its first price and after its last.
+from the prices, and the Data Curator's `m_date` and `m_close_dividend_and_split_adjusted` drop
+straight in. **Use the price basis the backtest marked on**: in a KaxaNuk Strategy Template
+repository that is the dividend-and-split-adjusted close, and a split-adjusted column would drop
+every dividend from the attribution. Dates must be `YYYY-MM-DD` or `YYYY/MM/DD`. **A blank price in
+any row read fails that security, and one failed security aborts the whole load** with a single
+`DataLoadingError` naming them all — so trim a file's rows before its first price and after its
+last.
 
 **Benchmark returns** go through the same portfolio loader, so they take the same two shapes: one row
 of dates-as-columns, or a vertical file whose first header is `date_column` and whose single other
@@ -178,9 +193,10 @@ Three traps:
 
 ## 5. Run it
 
-The CLI, from the project root, is on the documentation's *CLI* page. Two details it is easy to
-misread: `autorun` on a fresh folder **installs the project files and exits** — it runs only on the
-next call — and `run` executes each entry script as its own subprocess.
+The CLI, from the project root and through `uv run`, is on the documentation's *CLI* page; a
+KaxaNuk Strategy Template repository calls the library in code instead (sections 6 and 8). Two
+details it is easy to misread: `autorun` on a fresh folder **installs the project files and exits**
+— it runs only on the next call — and `run` executes each entry script as its own subprocess.
 
 In code, the documented sequence — *Running from Python* — is four calls, and the first two are not
 optional in a notebook:

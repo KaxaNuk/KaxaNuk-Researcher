@@ -2,8 +2,6 @@
 description: A multi-session tutor grounded in Knowledge/ — interview first, then one lesson per session with a retrieval quiz; state in Projects/Teach/<topic>/. Only when the owner runs it by name, on a topic they give.
 input:
   - topic: "The topic to teach"
-metadata:
-  version: 0.2
 ---
 
 # Teach a topic
@@ -11,7 +9,7 @@ metadata:
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. This command works at home only.
 
-Teach `` from what the owner has read, one lesson per session. Running this command
+Teach `${input:topic}` from what the owner has read, one lesson per session. Running this command
 names `Projects/Teach/<topic-slug>/` as the only place it may write — the place, not the go: every
 write still waits for a plan and an explicit go, as `AGENTS.md` requires of every command that
 writes.

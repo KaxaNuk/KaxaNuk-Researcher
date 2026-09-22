@@ -19,7 +19,7 @@
 
 <!-- example: begin -->
 
-> **On `example`, everything below is `liquid-golden-cross`, measured.** Steps 1 to 6 are run and
+> **In this example, everything below is `liquid-golden-cross`, measured.** Steps 1 to 6 are run and
 > the numbers are real. Step 7's gate has been *evaluated* and the book fails it — but no paper
 > trading has run, so **nothing here is out of sample**. Which criteria it fails and why is in
 > [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md).
@@ -121,7 +121,7 @@ The control column is the **equalised** control — the same names with the filt
 rule's own dates — because that is the arm differing in exactly one thing. Against the plain
 control, which also trades a seventh as often, the Sharpe gap reads +0.048.
 
-Window 2017-01-03 to 2026-06-01, 9.74 years, net of costs. The control is the same thirty names with
+Window 2017-01-03 to 2026-06-01, 9.4 years, net of costs. The control is the same thirty names with
 the trend filter switched off: it earns **more** (18.62% against 17.85%) at a worse Sharpe and a
 9.3-point deeper drawdown. **The filter buys drawdown, not return.** Put on the rule's own
 rebalance dates, so that it differs in one thing only, that control earns **18.97%** and the
@@ -217,7 +217,7 @@ the next person repeating it; this list is where that value is stored.
 `OBJECTIVE.md` claim 1 says stocks whose 50-day average is above their 200-day "go on to earn more
 than those whose is not". **On our own data, inside our own universe, they do not** — not by enough
 to matter, and not once the same names are held without the filter. The claim survives only in a
-weaker form: they earn about the same, less volatily, with shallower drawdowns. The strategy is
+weaker form: they earn about the same with less volatility and shallower drawdowns. The strategy is
 defensible; the claim as written is not, and the next experiment should be an honest attempt to
 kill it rather than to decorate it.
 
@@ -273,7 +273,7 @@ name with a reason is how that stays honest.
 
 <!-- example: begin -->
 
-**Limitation 2 no longer holds on this branch, and that is the one good piece of news in the
+**Limitation 2 no longer holds in this example, and that is the one good piece of news in the
 table.** Experiment 1 has a control arm differing in exactly one thing — the trend filter, on or
 off, same universe, same sizing, same band **and the same rebalance dates** — which is why this
 repository can say the filter costs 1.12 points a year instead of inferring it. Every other

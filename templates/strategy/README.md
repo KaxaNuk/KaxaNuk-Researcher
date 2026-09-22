@@ -10,10 +10,11 @@ without knowing what is in it: **equities, ETFs, FX, crypto, commodities or futu
 same process.**
 
 **To start a strategy, install the KaxaNuk skills once, for your user** — with
-`uvx --from apm-cli` in front if `apm` is not on the path:
+`uvx --from apm-cli` in front if `apm` is not on the path, and your assistant, such as `codex`, in
+place of `claude`:
 
 ```bash
-apm install -g KaxaNuk/KaxaNuk-Researcher
+apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 **Then ask Claude or Codex to run `init-strategy <strategy-name>`.** It copies this template into
@@ -27,7 +28,7 @@ This template is the shape: six folders and the documents at the root. Every fil
 expects inside those folders is in the
 [example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross),
 worked through for one strategy, `liquid-golden-cross`; *What is in here* says how to copy one
-across with `init-example` and what to delete, the seed in `Universe/` included.
+across with `init-example` and what to delete.
 
 ---
 
@@ -93,9 +94,10 @@ not make.
 ## Starting your own strategy
 
 Once setup is done, work in this order. Its eight items are the order of work, not the eight steps
-above: item 3, the universe, is step 2. `OBJECTIVE.md` and `RESULTS.md` are already in your
-repository; every other file the items name — the seed, the drivers, the notebooks, `BLUEPRINT_1.md`
-and its siblings — is in the example. *What is in here* below says how to bring one across with
+above: item 3, the universe, is step 2. `OBJECTIVE.md`, `RESULTS.md` and the seed,
+`Universe/Investable_Universe.csv` with only its `main_identifier` header, are already in your
+repository; every other file the items name — the drivers, the notebooks, `BLUEPRINT_1.md` and its
+siblings — is in the example. *What is in here* below says how to bring one across with
 `init-example` and what to strip, or the `experiment-lifecycle` skill scaffolds an experiment.
 **The objective comes before any paper**: reading with no claim to read for has no stopping
 condition, and a claim written after the reading is an observation wearing a hypothesis's clothes.
@@ -187,7 +189,7 @@ to keep current:
 
 **Every one of those files exists in the
 [example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross)**,
-except `Bibliotheca/Books/` and `Notes/`, which appear with their first note. Each is a description
+except `Bibliotheca/Notes/`, which appears with its first note. Each is a description
 of what is expected in it, with the worked strategy's own lines beside it between the example
 markers `AGENTS.md` names: `<!-- example: begin -->` and `<!-- example: end -->` in Markdown,
 `# --- example: begin ---` in Python, `# EXAMPLE-ONLY CELL` on a notebook cell. To bring one into a
@@ -197,10 +199,11 @@ strategy repository made from the template, run in it:
 init-example Experiments/Experiment_1
 ```
 
-It copies that path of the example across and never overwrites a file already there. Then delete
-everything between the markers — that is what they are there for — and the seed in `Universe/`,
-which is the strategy's whole. `Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md` are already here in the
-template, empty, so there is nothing to bring across for step 1. Or let the `experiment-lifecycle`
+It copies that path of the example across and never overwrites a file already there, so a folder
+holding a file the template already ships is refused: `Universe/` for its seed,
+`Investable_Universe.csv`, and `Bibliotheca/` for `BIBLIOGRAPHY.md` and `LOG.md`. Bring
+`Universe/universe.ipynb` by its own path; there is nothing to bring across for step 1. Then delete
+everything between the markers — that is what they are there for. Or let the `experiment-lifecycle`
 skill — which the install above brings in — scaffold it.
 
 ---

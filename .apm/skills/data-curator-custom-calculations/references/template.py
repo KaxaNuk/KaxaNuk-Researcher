@@ -7,7 +7,9 @@ that same name, and each of its parameters is injected with the data of the colu
 Place this module where the project's caller of ``main()`` loads it from: the library-standard location is
 ``Config/custom_calculations.py``, but projects with their own multi-module layout have their own rules, and a
 notebook can skip files entirely by attaching these functions to an in-memory module (see
-``programmatic-run.md``). Either way, remember to also select the column: the ``Output_Columns`` sheet of
+``programmatic-run.md``). In a KaxaNuk Strategy Template repository the module is
+``Data/Curator/custom_calculations.py``, and the column is selected among the output columns
+``Data/curator.py`` requests. Either way, remember to also select the column: the ``Output_Columns`` sheet of
 ``Config/data_curator_parameters.xlsx`` in the standard setup, or the ``columns`` tuple of the
 ``Configuration`` when calling ``main()`` directly.
 
@@ -124,9 +126,9 @@ def c_example_sales_to_price(
         \mathrm{Sales\ to\ Price}_t = \frac{\mathrm{Revenues}_t}{\mathrm{Market\ Cap}_t}
     """
     if configuration.period not in ('annual', 'quarterly'):
-        msg = f"c_example_sales_to_price failed, unexpected period type: {configuration.period}"
+        message = f"c_example_sales_to_price failed, unexpected period type: {configuration.period}"
 
-        raise CalculationError(msg)
+        raise CalculationError(message)
 
     # DataColumn division already yields null on zero denominators and on null operands
     return fis_revenues / c_market_cap

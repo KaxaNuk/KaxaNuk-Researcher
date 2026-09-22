@@ -13,7 +13,7 @@ description: >
   earned (use `alpha-decomposition`), or the documents around the experiment (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.2.1
+  version: 0.2.2
 ---
 
 # Portfolio construction — the library inside one signature, and one cut
@@ -54,15 +54,15 @@ uv pip install -e "<path to the Portfolio-Construction clone>[solver,clustering]
 ## 2. Guard the import — step 4 still runs without it
 
 ```python
-try:
-    from kaxanuk.portfolio_construction.sizing import build_allocator
-except ImportError:
-    build_allocator = None
+import importlib.util
+
+LIBRARY_INSTALLED = importlib.util.find_spec("kaxanuk.portfolio_construction") is not None
 ```
 
 A clone without the library still builds a book: equal weight needs nothing but the eligible set.
-**A method that needs the library, asked for without it, is reported and skipped — never quietly
-replaced by equal weight**, because a book sized another way is another experiment.
+**A method that needs the library, asked for without it, stops the run with a `ModuleNotFoundError`
+that names it — never quietly replaced by equal weight**, because a book sized another way is
+another experiment.
 
 ## 3. The three stages, and the registry
 
@@ -93,23 +93,30 @@ Every method's configuration, required fields, bounds and short-selling policy a
 ## 4. The contract: one signature, one cut
 
 In a KaxaNuk Strategy Template repository the library is called from **inside** the step-4 shared module,
-`Experiments/portfolio_construction.py`, never around it. A **weigher** is any function of this shape:
+`Experiments/portfolio_construction.py`, never around it. Every method goes through one
+**weigher**, `weigh` in the worked example's module:
 
 ```python
-weigher(
-    eligible_securities: pandas.Index,      # what may be held on this rebalance date
-    returns_history: pandas.DataFrame,      # daily returns, ending STRICTLY BEFORE that date
-    settings: ConstructionSettings,
+weigh(
+    selected: tuple[str, ...],              # what may be held on this rebalance date
+    history: pandas.DataFrame,              # daily returns, ending STRICTLY BEFORE that date
+    method: str,                            # "equal_weight", or a name in the registry
+    maximum_weight: float | None,           # the cap; None switches it off
 ) -> pandas.Series                          # weights, non-negative, summing to at most 1.0
 ```
 
-Equal weight, inverse volatility, HRP or any other method in the registry is the same shape, so
-swapping one for another is one line in the rule cell and nothing else in the notebook moves — which
-is what makes two experiments comparable rather than merely adjacent.
+Equal weight, inverse volatility, HRP or any other method whose configuration has no required
+field is one `method` string, so swapping one for another is one line in the rule cell and nothing
+else in the notebook moves — which is what makes two experiments comparable rather than merely
+adjacent. `weigh` builds each method with its default configuration and always hands it the
+history, so the library refuses the rest: `mean_variance`, `constrained_mean_variance` and
+`black_litterman` need a configuration passed, and `feature_weighting` and `kn_index` take no
+history and read their columns from the snapshot. Such a method needs a weigher of its own, of the
+same shape.
 
-**The cut is the module's, made once.** `build_target_weights` hands each weigher the rows dated
-strictly before the rebalance date; `.loc[:date]` would include the date itself. A weigher never sees
-a date, so it has no future to reach for.
+**The cut is the module's, made once.** `build_weights` hands `weigh` the rows dated strictly
+before the rebalance date; `.loc[:date]` would include the date itself. A weigher never sees a
+date, so it has no future to reach for.
 
 **Never let the library make that cut, because it does not.** A returns-based method estimates over
 whatever table it was built with, and `run_pipeline` builds each method once for every date, so over
@@ -119,7 +126,7 @@ test — and says to slice the history yourself. So **build one allocator per re
 history already cut**, inside the weigher:
 
 ```python
-eligible_history = returns_history[eligible_securities]
+eligible_history = history[list(selected)]
 dated_history = eligible_history.rename_axis("date")
 history_table = pyarrow.Table.from_pandas(
     dated_history.reset_index(),
@@ -132,7 +139,7 @@ allocator = build_allocator(
 )
 eligible_table = pyarrow.table(
     {
-        "ticker": list(eligible_securities),
+        "ticker": list(selected),
     }
 )
 snapshot = UniverseSnapshot(table=eligible_table)
@@ -189,16 +196,16 @@ handler succeeded*.
 
 ## 6. Constraints are levers, switched off
 
-`ConstructionSettings` carries what every weigher respects, kept apart from the weigher so two methods
-can be compared without also changing the constraints:
+`build_weights(eligibility, returns, rebalance_dates, method, maximum_weight, minimum_holdings)`
+takes the constraints as arguments beside the method, so two methods can be compared without also
+changing the constraints:
 
-| Setting | Default | What switching it on means |
+| Argument | Off | What switching it on means |
 | --- | --- | --- |
-| `maximum_weight` | 1.0 | a cap. **What it frees becomes cash.** The library's `Weights.cap` redistributes the excess to keep the book fully invested — a different lever; use it only when the blueprint names that one |
-| `minimum_holdings` | 1 | below it the book is cash. The honest response to too few things to hold is to hold less |
-| `risk_lookback_days` | 63 | the history handed to a weigher that estimates risk |
+| `maximum_weight` | `None` | a cap, applied by `weigh`. **What it frees becomes cash.** The library's `Weights.cap` redistributes the excess to keep the book fully invested — a different lever; use it only when the blueprint names that one |
+| `minimum_holdings` | 1 | below it the date holds nothing: the book is cash. The honest response to too few things to hold is to hold less |
 
-The defaults switch every constraint **off**, because a constraint is a lever a later experiment has
+Start with every constraint **off**, because a constraint is a lever a later experiment has
 to earn against the simpler baseline. The library's richer machinery — a `Mandate` with group limits,
 a tracking-error budget, Black-Litterman views — is a lever of the same kind: one at a time, each
 beating the book without it. `liquid-golden-cross`, the template's worked example, sizes by equal
@@ -241,7 +248,7 @@ name the benchmark could not is a bug wearing a Sharpe.
 - **Redistribute what a cap frees** unless the blueprint names that lever.
 - **Choose a sizing method on the Sharpe it produces** over the window it will be judged on. Choose it
   on a property of the book — concentration, turnover, capacity — and publish the comparison.
-- **Swap in equal weight because the library is missing.** Report the skip.
+- **Swap in equal weight because the library is missing.** Let the error stop the run.
 - **Quote a number the engine did not produce.** This module builds weights; `backtest-engine-runs`
   prices them.
 - **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come from

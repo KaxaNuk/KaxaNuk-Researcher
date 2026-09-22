@@ -1,7 +1,8 @@
 # Backtest Engine — the public surface
 
-Taken from the official documentation on 2026-09-06, and the section below from a run of **0.66.0**
-on 2026-09-17. Where a page could not be reached, this file says so rather than guessing: **an
+Taken from the official documentation on 2026-09-06, the `main()` section from a run of **0.66.0**
+on 2026-09-17, and the `Configuration` section from the worked example's code, run on 0.66.0 on
+2026-09-20. Where a page could not be reached, this file says so rather than guessing: **an
 invented signature is worse than a missing one.** The URLs are at the end of `SKILL.md`.
 
 ## `main()` — the whole run, verified on 0.66.0
@@ -40,6 +41,48 @@ how a notebook keeps the key out of its own source. `BacktestResult` carries `su
 `start_date`, `end_date` and `years` describe what was valued, not what was configured. Compare them
 with the configured window before quoting a metric: a run that stopped partway still returns
 `success=True` with `error=None` (see `SKILL.md`, section 6).
+
+## `entities.Configuration` and the input handlers, as the worked example calls them
+
+Read from the worked example's `Experiments/backtest_engine.py`, run on **0.66.0** on 2026-09-20.
+These are the keyword arguments it passes, not the full signature: a field it does not set is not
+listed, and nothing here says what its default is.
+
+| Field | The example's value | What it decides |
+| --- | --- | --- |
+| `initial_capital` | `1_000_000` | the starting cash |
+| `start_date`, `end_date` | `datetime.date` | the window asked for; compare with `data["start_date"]` and `data["end_date"]` after the run |
+| `cash_reserve_percentage` | `0.02` | cash held back to pay commission; `0` truncates the run (`SKILL.md`, section 6) |
+| `commission_cents` | `0.1`; `0.005` in the realistic variant | the commission rate; not cents per share (`SKILL.md`, section 6) |
+| `commission_model` | `"per_share"` | how commission is charged |
+| `slippage_model`, `slippage_basis_points` | `"basis_points"`, `5.0` | slippage |
+| `market_data_input_format`, `portfolio_input_format` | `"csv"` | the format of each input |
+| `input_market_data_directory` | `Data/Curator/Time_Series`, as a `str` | one `{TICKER}.csv` per security, the benchmark's included |
+| `input_portfolio_directory` | `Experiments/Experiment_N/Portfolio`, as a `str` | where the weight file is |
+| `portfolio_name` | `"portfolio_weights"` | the weight file's name, without `.csv` |
+| `benchmark_file_name` | `"KN600"` | the benchmark's price file in the market-data directory, without `.csv` |
+| `backtest_results_output_directory` | `Experiments/Experiment_N/Backtest`, as a `str` | where the results land |
+| `user_column_date` | `"m_date"` | the date column |
+| `user_column_commission_price` | `"c_vwap"` | the price commission is charged on: **unadjusted** |
+| `user_column_trade_execution_price` | `"c_vwap_dividend_and_split_adjusted"` | the fill price, on the total-return basis |
+| `user_column_mark_to_market_price` | `"m_close_dividend_and_split_adjusted"` | the daily valuation, on the total-return basis |
+| `rebalance_date_handling` | `"next_trading_day"` | a rebalance date that is not a trading day moves to the next one |
+| `delisted_position_handling` | `"sell_at_last_price"` | a position whose prices stop is sold on its last priced day: one day of hindsight |
+
+`commission_model` and `slippage_model` here are strings; the `PyArrowBacktester` arguments of the
+same names take model objects. The input handlers each take a directory as a `str`, and `main()`
+and `create_from_configuration` take each in a one-item list:
+
+```python
+import kaxanuk.backtest_engine.input_handlers
+
+csv_input = kaxanuk.backtest_engine.input_handlers.CsvInput(
+    input_dir=market_data_directory,
+)
+csv_portfolio_input_handler = kaxanuk.backtest_engine.input_handlers.CsvPortfolioInputHandler(
+    portfolio_directory,
+)
+```
 
 ## `PyArrowBacktester`
 
@@ -146,7 +189,7 @@ into the tree.
 ## CLI
 
 ```
-python -m kaxanuk.backtest_engine [--version] COMMAND [ARGS]...
+uv run python -m kaxanuk.backtest_engine [--version] COMMAND [ARGS]...
 ```
 
 | Subcommand | Arguments and options |
@@ -182,5 +225,5 @@ component pages before calling them; do not infer a signature from the name.**
 | Portfolio, vertical | first column `date`; one column per ticker |
 | Market data | `{TICKER}.csv` or `{TICKER}.parquet`; a date column plus at least three price columns, roles mapped in the configuration |
 | Dates | `YYYY-MM-DD` |
-| Configuration | `Config/backtest_engine_parameters.xlsx`, or a dict or YAML in code |
+| Configuration | `Config/backtest_engine_parameters.xlsx`; in code an `entities.Configuration` (see above), or a dict or YAML |
 | Licence | `Config/.env` — `KNBE_API_KEY_KAXANUK`. The published quick start still shows an older `KNPC_API_KEY_KAXANUK`; that spelling is stale |

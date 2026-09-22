@@ -13,6 +13,7 @@ naming, `DataColumn` or composition rules depends on the surface.
 import datetime
 
 import kaxanuk.data_curator
+import kaxanuk.data_curator.data_blocks
 from kaxanuk.data_curator.data_providers import FinancialModelingPrep
 from kaxanuk.data_curator.entities import Configuration
 from kaxanuk.data_curator.output_handlers import InMemoryOutput
@@ -35,8 +36,12 @@ configuration = Configuration(
 
 kaxanuk.data_curator.main(
     configuration=configuration,
-    market_data_provider=data_provider,
-    fundamental_data_provider=data_provider,
+    data_block_providers={
+        kaxanuk.data_curator.data_blocks.market_daily.MarketDailyDataBlock: data_provider,
+        kaxanuk.data_curator.data_blocks.fundamentals.FundamentalsDataBlock: data_provider,
+        kaxanuk.data_curator.data_blocks.dividends.DividendsDataBlock: data_provider,
+        kaxanuk.data_curator.data_blocks.splits.SplitsDataBlock: data_provider,
+    },
     output_handlers=[output_handler],
     custom_calculation_modules=custom_calculation_modules,
 )
@@ -47,10 +52,16 @@ dataframe = output_handler.export_dataframe()
 Notes that matter:
 
 - `main()` is keyword-only, and it calls `initialize()` on the providers itself. Callers only instantiate them.
-- One provider instance can serve both roles. `fundamental_data_provider` may be `None`, in which case the
-  fundamental, dividend and split blocks come out empty and every `f_*`, `fbs_*`, `fcf_*`, `fis_*`, `d_*` and
-  `s_*` column is null — including any `c_*` that depends on them. Dividends and splits are fetched from the
-  **fundamental** provider, not the market one.
+- `data_block_providers` maps each data block to the provider that fetches it, and one provider
+  instance can serve every block. A block left out is not fetched, and every column of its
+  prefixes is null — fundamentals `f_*`, `fbs_*`, `fcf_*`, `fis_*`, dividends `d_*`, splits `s_*`
+  — including any `c_*` that depends on them. The market daily block (`m_*`) is the clock every
+  other block is aligned to (`master_clock_data_block`, which defaults to it), so it is always
+  passed.
+- `data_block_providers` needs kaxanuk-data-curator 0.50.0 or later. The `market_data_provider` and
+  `fundamental_data_provider` arguments of earlier versions are deprecated: they raise a
+  `DeprecationWarning`, and passing either together with `data_block_providers` raises
+  `PassedArgumentError`.
 - `Configuration` is a frozen dataclass that validates its own fields, so a bad `period` or a column name that
   does not match `^(c|d|f|fbs|fcf|fis|m|s)_[A-Za-z0-9_]+$` fails immediately, before any network call. Vary one
   field of an existing configuration with `dataclasses.replace()`.

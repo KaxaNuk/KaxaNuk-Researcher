@@ -71,9 +71,9 @@ parameter as `DataColumn`, a `Returns` section, and a `Notes` section holding th
 
 ## 6. Fundamentals and the period
 
-- Any dependency on `f_*`, `fbs_*`, `fcf_*`, `fis_*`, `d_*` or `s_*` means the run needs a fundamental data
-  provider, which is where dividends and splits are fetched from as well. Without one, those blocks are empty
-  and every column derived from them is null.
+- Any dependency on `f_*`, `fbs_*`, `fcf_*`, `fis_*`, `d_*` or `s_*` means the run needs a provider
+  for the fundamentals, dividends or splits block it comes from, in `data_block_providers`. Without
+  one, that block is empty and every column derived from it is null.
 - Fundamental values are reported per filing and infilled forward onto the daily date index, so consecutive
   rows repeat the same value and the rows before the first filing are null. Design for that.
 - The configured `period` (`annual` or `quarterly`) changes the values. When a formula only makes sense for one

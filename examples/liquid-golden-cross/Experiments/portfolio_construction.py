@@ -12,20 +12,20 @@ What is expected here is one function signature and a few things behind it:
 
 - The signature.  Given the securities eligible today and a returns history that has already been
   cut off before today, return one weight per security, summing to at most 1.0.  Every weighting
-  scheme -- equal weight, or any sizing method the library registers: inverse volatility, risk
-  parity, hierarchical risk parity, a minimum-variance optimiser -- is the same shape, so swapping
-  one for another is one line in the rule cell and nothing else in the notebook moves.  That is what
-  makes two experiments comparable rather than merely adjacent.
+  scheme -- equal weight, or any sizing method the library registers whose configuration has no
+  required field: inverse volatility, risk parity, hierarchical risk parity -- is the same shape,
+  so swapping one for another is one line in the rule cell and nothing else in the notebook moves.
+  That is what makes two experiments comparable rather than merely adjacent.
 - The library inside the signature, never around it.  Build one of its methods per rebalance date,
   on the history already cut: a method that estimates from returns uses whatever history it was
   built with, and the library's own pipeline builds each method once for every date.  Import it
-  inside a guard -- it is KaxaNuk's own library, installed by hand -- and report and skip a method
-  that needs it when it is absent.  Equal weight needs nothing.
+  inside a guard -- it is KaxaNuk's own library, installed by hand -- and stop with an error that
+  names a method needing it when it is absent.  Equal weight needs nothing.
 - At most one, not exactly one.  A strategy that can go to cash cannot satisfy the stricter form;
   the residual becomes a real, priced cash position when the weight file is written.
-- The constraints every scheme respects, switched off by default: a maximum weight, a minimum
-  holding count, a lookback for anything that estimates risk.  Each is a lever a later experiment
-  has to earn by beating the book without it.
+- The constraints every scheme respects, as arguments of `build_weights`: a maximum weight and a
+  minimum holding count.  Each is a lever a later experiment has to earn by beating the book
+  without it.
 - The two timing helpers that cannot be forgotten if they live here: lag the eligibility so the
   set used on rebalance date t is the one observed at t-1, and rebalance only on the dates that set
   changes -- a signal that has not moved is not a reason to pay commission.
@@ -172,13 +172,39 @@ def weigh(
 
         raise ModuleNotFoundError(missing_library_message)
     else:
-        import kaxanuk.portfolio_construction
+        import pyarrow
 
-        allocator = kaxanuk.portfolio_construction.build_allocator(
-            method,
-            history,
+        import kaxanuk.portfolio_construction.entities
+        import kaxanuk.portfolio_construction.sizing
+
+        # The library reads a wide table -- a `date` column, then one column per security -- and
+        # sizes the snapshot of tickers it is handed.  Every argument is keyword-only.
+        dated_history = history.rename_axis("date")
+        history_table = pyarrow.Table.from_pandas(
+            dated_history.reset_index(),
+            preserve_index=False,
         )
-        weights = pandas.Series(allocator.weights)
+        allocator = kaxanuk.portfolio_construction.sizing.build_allocator(
+            name=method,
+            returns=history_table,
+        )
+        eligible_table = pyarrow.table(
+            {
+                "ticker": list(selected),
+            }
+        )
+        snapshot = kaxanuk.portfolio_construction.entities.UniverseSnapshot(
+            table=eligible_table,
+        )
+        allocated = allocator.allocate(
+            snapshot=snapshot,
+        )
+        allocated_weights = kaxanuk.portfolio_construction.entities.Weights.from_allocated(
+            allocated=allocated,
+        )
+        weights = pandas.Series(
+            allocated_weights.as_mapping(),
+        )
 
     if maximum_weight is None:
 

@@ -3,8 +3,6 @@ description: Challenge a finished experiment against its own blueprint — which
 input:
   - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
-metadata:
-  version: 0.1
 ---
 
 # Challenge a finished cycle

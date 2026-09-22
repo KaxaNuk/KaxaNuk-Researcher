@@ -88,7 +88,7 @@ graduates. The convention is right; the number is a placeholder until then.
 
 <!-- example: begin -->
 
-### On `example`: the gate run once, and the answer is no
+### In this example: the gate run once, and the answer is no
 
 **`liquid-golden-cross` does not graduate, and it was never going to** — Experiment 1 is the
 declared benchmark, and a benchmark's job is to be a fair yardstick, not a candidate. It is

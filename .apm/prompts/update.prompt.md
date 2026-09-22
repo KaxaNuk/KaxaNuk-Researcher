@@ -2,8 +2,6 @@
 description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are; plan first, the owner's go, then update. Home only. Only when the owner runs it by name.
 input:
   - mode: "Optional: check, to report what is new without changing anything"
-metadata:
-  version: 0.4
 ---
 
 # Update the researcher
@@ -19,12 +17,13 @@ The researcher arrives in two parts, and each updates its own way:
 - **The skills and commands** are one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for
   the user. `apm update -g` brings its next version to every folder at once, and nothing in the
   home's history changes. Before 0.7.0 the package brought the Lab's skills from
-  `KaxaNuk/KaxaNuk-Agent-Skills`; it now carries them itself, so after `apm update -g`,
-  `apm deps list -g` may show those packages as orphaned. Their skills have the same names as the
-  package's own, so nothing is lost while they remain.
-- **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `.gitignore` — were copied from
-  `templates/researcher/` in the KaxaNuk Researcher package when the home was made. When the package's
-  copy changes, the difference is shown, never merged: the owner's home may have renamed its prose.
+  `KaxaNuk/KaxaNuk-Agent-Skills`; it now carries them itself, and `apm deps list -g` shows those
+  packages as orphaned until the next `apm update -g`, which removes them and what they deployed.
+- **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `README.md`, `LICENSE`, `apm.yml`,
+  `.gitignore` and `.gitattributes` — were copied from `templates/researcher/` in the KaxaNuk
+  Researcher package when the home was made. When the package's copy changes, the difference is
+  shown, never merged: the owner's home may have renamed its prose. In `apm.yml` only the comments
+  are compared: its `name`, `version`, `description`, `author` and `targets` are the owner's.
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/`, `Sources/`,
 `Projects/` and the agent file in `.apm/agents/`. `${input:mode}` set to `check` reports what is new
@@ -46,15 +45,18 @@ and stops, changing nothing.
 
 ## Step 2: What is new
 
-- **The package.** `apm outdated -g` names the installed version and the newest. Read
-  `CHANGELOG.md` in `KaxaNuk/KaxaNuk-Researcher` and take every entry between the two.
-- **The home's files.** The home's `CHANGELOG.md` names the template version it was made from;
-  `templates/researcher/CHANGELOG.md` in the installed package names the current one. For
-  `AGENTS.md`, `CLAUDE.md` and `.gitignore`, compare the home's copy with the package's —
-  `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/templates/researcher/`, after
-  `apm update -g` — section by section, and name what the package's copy says that the home's does
-  not. A home that renamed *the researcher* and *the owner* differs everywhere in wording; report
-  what changed in substance, not in names.
+- **The package.** `apm outdated -g` says whether a newer commit is out, and `apm deps list -g`
+  names the installed version. The copy under `~/.apm/apm_modules/` stays at that version until
+  *Step 4*, so read the newest from GitHub instead: the `main` that `apm update -g` brings, under
+  `https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/`, with `curl -fsSL` or the
+  agent's web fetch. Read `CHANGELOG.md` there and take every entry above the installed version.
+- **The home's files.** The home's `CHANGELOG.md` names the template version it is at — its newest
+  *Brought to template* entry, or else the newest template version in it — and
+  `templates/researcher/CHANGELOG.md` on GitHub names the current one. For each of the home's own
+  files above, compare the home's copy with the one under `templates/researcher/` on GitHub,
+  section by section, and name what the package's copy says that the home's does not. A home that
+  renamed *the researcher* and *the owner* differs everywhere in wording, and its `README.md` opens
+  with a paragraph of its own; report what changed in substance, not in names.
 - **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
   **What to do differently** instruction that applies to this home, in full. Those instructions are
   the point of the update; never summarise them away.
@@ -69,13 +71,20 @@ and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
 ## Step 4: Update
 
-1. **The packages:**
+1. **The package:**
 
    ```bash
-   apm update -g
+   apm update -g --yes
    ```
 
-   For a migration, install them instead — the dependencies are new at user scope:
+   The owner's go in *Step 3* is the confirmation, so `--yes` skips APM's own `[y/N]` prompt,
+   which an agent's shell cannot answer; without it the update stops with an error. Then check
+   `apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new version and no orphaned
+   package. The old `KaxaNuk-Agent-Skills` packages deployed skills under the same names as the
+   package's, so if any of the package's skills or commands is missing afterwards, deploy it again
+   with `apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>`.
+
+   For a migration, install it instead — it is new at user scope:
 
    ```bash
    apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>
@@ -89,12 +98,17 @@ and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
    copies it deployed before.
 3. **The home's files**, the sections the owner approved, edited in place in the home's own names.
    Nothing else in them changes.
+4. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
+   *Brought to template X.Y.Z*, and a line for each section brought across or declined — whatever
+   the owner declined, so the file names the version the home is now at and the next `update`
+   reports only the versions after it. Nothing else in the file changes: it is the home's history.
 
 ## Step 5: Report
 
 In chat and nowhere else:
 
 - the package versions, before and after;
+- the home's template version, before and after;
 - every **What to do differently** instruction, again, as a list of what is now the owner's to do;
 - for a migration, what was removed, and that the skills now live at user scope;
 - the sections of the home's files brought across, and those the owner declined;
