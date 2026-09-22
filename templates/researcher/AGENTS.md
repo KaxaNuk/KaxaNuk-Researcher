@@ -15,10 +15,10 @@ the session happened to open. There are two ways to work:
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
   researcher's folder to the session — `claude --add-dir D:\Research\Luna`, `/add-dir` once
   inside, or the desktop app's add-folder button. The skills and the commands are there already —
-  installed once for the user, `apm install -g`, the researcher's and every Investment Lab
-  package's — so **the strategy installs nothing of its own**, and one `apm update -g` keeps every
-  strategy current. The agent loads from this folder, provided `apm install` has been run here
-  once on this machine.
+  one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user with `apm install -g` —
+  so **the strategy installs nothing of its own**, and one `apm update -g` keeps every strategy
+  current. The agent loads from this folder, provided `apm install --target <agent>` has been run
+  here once on this machine.
   **`CLAUDE.md` does not**, unless `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is in the
   environment before the assistant starts — and it imports this file and `RESEARCHER.md`, so that
   one variable is what makes the researcher arrive whole. Set it once per machine as a user
@@ -144,7 +144,7 @@ linked, never written.
 | At home | In the strategy |
 | --- | --- |
 | `Sources/Books/`, `Sources/Papers/`, `Sources/Clippings/` | `Bibliotheca/Books/`, `Bibliotheca/Papers/`, `Bibliotheca/Notes/` — the template's name for the clippings — the PDFs beside the notes, and the clippings; `BIBLIOGRAPHY.md` indexes them and the leads |
-| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` and `LOG.md` on `main`, empty, since 0.7.15; a strategy created before that has a `.gitkeep`, and `read` gives the command that fetches the two files from the template's `main` rather than scaffolding them |
+| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` and `LOG.md` empty, since 0.7.15; a strategy created before that has a `.gitkeep`, and `read` gives the command that copies the two files from the template inside the KaxaNuk Researcher package (`scaffold.py strategy . --only`), rather than writing them itself |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
 | `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `BRAINSTORMING_N.md`, the notes, `BIBLIOGRAPHY.md` |
@@ -207,7 +207,7 @@ with no investable universe, points at the item that is missing. Going back is h
 meant to work — a claim sharpened by a paper, a universe widened — until the blueprint is written;
 after it, a change to the claims or the rules is a new experiment, not an edit. One item may come
 early: the first entry of `BRAINSTORMING_1.md`, choosing the benchmark, is thinking done before
-Experiment 1's blueprint — the template's `BRAINSTORMING_1.md` says that entry is usually the
+Experiment 1's blueprint — the example's `BRAINSTORMING_1.md` says that entry is usually the
 benchmark choice, and Experiment 1 *is* the benchmark, so the choice cannot wait for the blueprint
 that depends on it.
 
@@ -238,9 +238,10 @@ the chat and the `LOG.md` entry are the record.
 — Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
 *Stop*, and *Go* is the explicit go; where it has none, the words in chat are. When the owner has
 nothing to answer, the researcher proposes options drawn from what is already in the folder — the
-sources and their tables of contents, `RESEARCHER.md`, the notes so far — and lets them pick. A
-proposal the owner picks is theirs; one they did not pick is never written. The point is to keep
-going, never to stall on an empty answer.
+sources and their tables of contents, `RESEARCHER.md`, the notes so far — or, for a work to read,
+from the reading map the package ships, `references/reading-map.md` in the `read` skill's folder,
+and lets them pick. A proposal the owner picks is theirs; one they did not pick is never written.
+The point is to keep going, never to stall on an empty answer.
 
 **An answer that asks for a change is answered with options too.** *Change something* is not a
 prompt for free text: the next question offers the changes the plan actually admits — fewer files,
@@ -267,35 +268,37 @@ owner's consent. It answers, it cites, and it names the skill or command the own
 
 ## Where the skills, the commands and the agent live
 
-The researcher arrives in two parts. **The skills and the commands are packages installed once for the
-user** — `KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill with the
-researcher's own — with `apm install -g`: written once for every home, never committed
-here, available in every folder the owner opens, and brought to their next version by
-`apm update -g`. **The agent is this home's own**, in `.apm/agents/`, because it is written from
-`RESEARCHER.md`, and `apm install` here deploys it.
+The researcher arrives in two parts. **The skills and the commands are one package, installed once
+for the user** — `KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill with the
+researcher's own — with `apm install -g`: written once for every home, never committed here,
+available in every folder the owner opens, and brought to their next version by `apm update -g`.
+**The agent is this home's own**, in `.apm/agents/`, because it is written from `RESEARCHER.md`,
+and `apm install --target <agent>` here deploys it.
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py` and `note.md`, `init-strategy` the `scaffold.py` all three run |
+| **Skill** | `.apm/skills/<name>/` in the package | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other ten — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `researcher-init` from `RESEARCHER.md`, so a fresh home has none until the interview runs |
 
-- **`apm install -g --target <agent>` deploys the packages once per machine**, into the user's
-  folders — `~/.claude/skills/` and `~/.claude/commands/` for Claude Code, the matching folders for
-  the rest — and keeps the packages in `~/.apm/apm_modules/`. **`apm install` here deploys the
-  agent** into `.claude/agents/` or the agent's own folder. Git ignores all of it.
+- **`apm install -g --target <agent>` deploys the package once per machine**, into the user's
+  folders — `~/.claude/skills/` and `~/.claude/commands/` for Claude Code, the matching folders
+  for the rest — and keeps it in `~/.apm/apm_modules/`. **`apm install --target <agent>` here
+  deploys the agent** into `.claude/agents/` or that agent's own folder; a bare `apm install`
+  deploys to every target in `apm.yml`. Git ignores all of it.
 - **Change a skill at its source, never in a deployed copy.** A fix every home needs is a pull
   request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with `apm update -g`. A
   skill or command of this home's own goes in `.apm/skills/` or `.apm/prompts/` here, and deploys
-  beside the packages' — under a name the packages do not use. Then install again and open a new
+  beside the package's — under a name the package does not use. Then install again and open a new
   session. A copy that differs from its source is a stale install; `audit` reports it.
 - **A skill is written the way KaxaNuk's own APM packages write theirs** — frontmatter `name`,
   matching the folder, a folded `description` that says when to use it and what it does not
   cover, and `metadata.version`; a body with *When to Use* and *Steps*. What a skill runs lives in
   its own `scripts/`, and what it reads on demand in its own `references/`, and the skill names
-  them by its own directory. A command is one `.prompt.md` with `description`, its `input` list
-  and `metadata.version`, no `name`; the body reads its inputs as `${input:name}`, and APM turns
-  them into the arguments each harness takes.
+  them by its own directory. A command is one `.prompt.md` with `description` and its `input`
+  list, no `name` and no `metadata`: APM keeps only `description`, `input`, `allowed-tools`,
+  `model` and `argument-hint` for a command, and warns on install for each key it drops. The body
+  reads its inputs as `${input:name}`, and APM turns them into the arguments each harness takes.
 - **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
   says which on install, and a dropped key is a rule that is not enforced. Anything that must hold
   everywhere is written in the body or the description, not only in a key. A folded
@@ -305,9 +308,10 @@ here, available in every folder the owner opens, and brought to their next versi
   *follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/blueprint.prompt.md`
   for experiment 1* — and the skills work as everywhere.
 - **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex takes the
-  agent and drops the tool list; Gemini and Windsurf have no agent primitive at all. That is why
-  the read-only rule is written into the agent's own body as well as its frontmatter: a harness
-  that drops the boundary still reads the instruction.
+  agent and drops the tool list; OpenCode rejects it, wanting the tool list as a mapping; Gemini
+  and Windsurf have no agent primitive at all. That is why the read-only rule is written into the
+  agent's own body as well as its frontmatter: a harness that drops the boundary still reads the
+  instruction.
 - **Nothing goes in `.apm/instructions/`.** `apm compile` would render it over this file, which is
   written by hand. With only skills, prompts and agents, `apm compile` leaves `AGENTS.md` and
   `CLAUDE.md` alone and writes a `GEMINI.md` that imports them, which git ignores.

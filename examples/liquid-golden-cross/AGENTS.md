@@ -24,7 +24,7 @@ survive before anyone believes it.
 [`SETUP.md`](SETUP.md): the commands in it, every one of them run in the repository root, never a
 level above it. A missing `apm_modules/` is expected: the skills are installed once for the user,
 and nothing is installed here. Do not start research work in a folder that has not been set up, and
-never create a folder around this one — `SETUP.md` says what that failure looks like.
+never create a folder around this one: one folder is the whole project, as `SETUP.md` says.
 
 Three rules from `SETUP.md` apply from the first command:
 
@@ -39,15 +39,15 @@ Three rules from `SETUP.md` apply from the first command:
 
 | Branch | What it is | Cut from | Merges into |
 | --- | --- | --- | --- |
-| `main` | the accepted work: on the template, the process with no strategy in it; in a strategy repository, that strategy's finished work | — | — |
+| `main` | the accepted work: the strategy's finished work | — | — |
 | `issues/<number>` | one per issue on your repository's GitHub Project. Where all work happens | `main` | `main` |
 
 <!-- example: begin -->
 
-**On this branch.** `liquid-golden-cross` advances here: its work lands on `example`, directly or
-from a branch cut from it, never in a pull request into `main`, and `BLUEPRINT_1.md` is still
-committed before the rule. `main` is never merged into `example`; process changes come across file
-by file. A strategy of your own starts from `main` and stays in your own repository.
+**In this example.** `liquid-golden-cross` is a folder of the KaxaNuk Researcher package,
+`examples/liquid-golden-cross/`, and a copy made by `init-example` is a repository of its own with
+one first commit. A strategy of your own starts with `init-strategy` and stays in your own
+repository.
 
 <!-- example: end -->
 
@@ -65,9 +65,10 @@ README links to. Issues and pull requests from anyone land there — the process
 A strategy of your own stays in your own repository.
 
 **`init-strategy` copies the template only**, on purpose. `Bibliotheca/BIBLIOGRAPHY.md` and
-`LOG.md` come with it, empty. A strategy takes the other files it needs from the example with
-`init-example <path>`, one path at a time, and deletes what is the worked strategy's — everything
-between the example markers, and the seed — or lets the `experiment-lifecycle` skill scaffold them.
+`LOG.md` come with it, empty, and so does the seed, `Universe/Investable_Universe.csv`, with only
+its header. A strategy takes the other files it needs from the example with `init-example <path>`,
+one path at a time, and deletes what is the worked strategy's — everything between the example
+markers — or lets the `experiment-lifecycle` skill scaffold them.
 **The issue branches below are a recommendation**, there to keep project management simple, not a
 gate.
 
@@ -258,16 +259,20 @@ than committed here. One-line summary: *optimise for the reader who has never se
 
 - **No import aliases**, and **no abbreviations** — no variable name under three characters.
 - **No nested functions, ever.**
-- **One item per line** in any comma-separated construct holding two or more items.
+- **One item per line** in any comma-separated construct holding three or more items, or two on
+  a line over the length limit.
 - **Type hints everywhere**; quoted annotations rather than a `__future__` import.
-- **Assign the error message to `msg` before raising it**, and leave blank lines around
-  `return` / `raise` / `yield`.
+- **Assign the error message to a named variable (`message`) before raising it**, and leave blank
+  lines around `return` / `raise` / `yield`.
 - **Docstrings are prose, not sections**, and never repeat what the type hints already say. Say
   *why*.
 
 What is committed is the style check, and the whole repository passes it. Nothing checks the process
-itself; the rules above rest on review.
+itself; its rules rest on review.
 
 ```bash
 uvx ruff check .
 ```
+
+The house layer above is checked by the `bloom-code-lint` skill, installed with the rest; run it,
+with `--max-line-length 100`, on the Python files you touched.

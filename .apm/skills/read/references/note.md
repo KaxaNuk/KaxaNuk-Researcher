@@ -76,7 +76,8 @@ one or two lines, in their words.
 ## <The chapter's first claim, stated as the source states it>
 
 - Dense bullets and tables, in the source's own terms. Time-bound claims carry their date inline.
-- Page references as `(p. 52)` — the page markers in the extract are the page numbers.
+- Page references as `(p. 52)`, the extract's page markers: PDF pages, counted from the PDF's
+  first page, not the numbers printed on the book's pages.
 
 > **For question 2:** what this claim changes about the owner's question, in one to three sentences.
 > This blockquote is the only part of the note that is the researcher's; everything above it is the
@@ -109,8 +110,9 @@ Four rules, the template's:
 3. **Contradictions stay visible.** When this chapter says the opposite of what an existing note
    claims, the older claim stays and gets a `> [!WARNING]` callout above it naming this note by
    link; when it says the opposite of what the owner believes, the blockquote says so.
-4. **Never invent a URL or a page number.** The extract's page markers are the page numbers; a
-   reference the chapter gives without a page is quoted without one.
+4. **Never invent a URL or a page number.** A page is the extract's marker, a PDF page; where the
+   book's printed numbers differ, its `INDEX.md` says by how much, once, checked against a printed
+   page. A reference the chapter gives without a page is quoted without one.
 
 Links to other notes are standard markdown links, relative, inside the same repository — never
 across. In a strategy, a home note is named in prose. Match the voice of the notes already there.
@@ -153,7 +155,9 @@ Status vocabulary, so it means the same in every book: **read** — a note exist
 extract was read, no note, one line in the Note column says what the chapter holds and why it was
 passed over; **skipped** — not read, by the owner's choice, title and pages only; **to come** —
 chosen but left for a later run. In a strategy the Question column holds the claim — *C2*. `read`
-in the frontmatter names the latest run that touched the book.
+in the frontmatter names the latest run that touched the book. The Pages column holds PDF pages, as
+the extract's markers do; when the book's printed numbers differ, one line above the table says by
+how much.
 
 ## What the indexes show
 

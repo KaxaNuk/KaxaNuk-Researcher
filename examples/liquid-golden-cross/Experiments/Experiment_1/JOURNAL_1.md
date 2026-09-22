@@ -264,4 +264,31 @@ leaves open.
   the counterfactuals has no counterpart in the template, so it stays inside the markers, and a new
   experiment's findings file is not prompted to write one.
 
+## 2026-09-22 — a correction: the long window is 23.8 years
+
+- **Idea / question:** the entry of 2026-09-20 on steps 4 to 6 gave the long window as 24.7 years,
+  and `FINDINGS_1.md` with it. The window runs 2002-07-30 to 2026-06-01, which is 23.8 years, as
+  `RESULTS.md` already says.
+- **What we tried / considered:** nothing was re-run; the length is counted from the window's own
+  dates.
+- **Outcome / decision:** `FINDINGS_1.md` now says 23.8 years. The entry of 2026-09-20 stays as
+  written; this entry is its correction. No figure the engine returned changes.
+- **Open threads:** none.
+
+## 2026-09-22 — recorded late: the findings answered the challenge of 2026-09-20
+
+- **Idea / question:** the challenge entry above named what in `FINDINGS_1.md` did not hold and
+  left the wording to the experimenter. The findings and `RESULTS.md` were corrected afterwards,
+  and no entry said so; a correction is a new entry, so this is it.
+- **What we tried / considered:** each point of that entry against the two files as they now read.
+- **Outcome / decision:** prediction 5 is recorded as *Falsified*, and the tally reads three
+  confirmed, two falsified, one split, with row 1 counted once, as falsified; row 1's verdict now
+  names the index alone, and the control comparison moves to *What it changed*. Caveat 9 records
+  the long window's start at 2002-07-30. The status names criterion 1 as outstanding, and each of
+  the four success criteria has a row. `RESULTS.md` closes predictions 1 and 5 under *What is
+  closed*. Every figure the challenge quoted is unchanged.
+- **Open threads:** prediction 6's second clause — that the cash is where the drawdown difference
+  comes from — is still untested, and its 2008–09 evidence still comes from the long window, which
+  is survivorship-affected.
+
 <!-- example: end -->

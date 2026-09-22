@@ -7,15 +7,16 @@ byte for byte, so every folder made from the same package version starts identic
 written from memory and nothing is generated.
 
 Usage:
-    python scaffold.py researcher <destination>
-    python scaffold.py strategy <destination>
-    python scaffold.py example <destination>
-    python scaffold.py example <strategy root> --only Experiments/Experiment_1
+    uv run --no-project python scaffold.py researcher <destination>
+    uv run --no-project python scaffold.py strategy <destination>
+    uv run --no-project python scaffold.py example <destination>
+    uv run --no-project python scaffold.py example <strategy root> --only Experiments/Experiment_1
 
 Without `--only`, the destination must not exist or must be an empty folder; the copy is then made
-a git repository with one first commit, unless `--no-git`.  With `--only`, one path of the starting
-point is copied into an existing folder: a file already there with the same content is skipped,
-and one with other content stops the run before anything is written, so nothing is overwritten.
+a git repository on branch `main` with one first commit, unless `--no-git`.  With `--only`, one
+path of the starting point is copied into an existing folder: a file already there with the same
+content is skipped, and one with other content stops the run before anything is written, so
+nothing is overwritten.
 
 The package is found beside this script when it runs from a checkout of KaxaNuk-Researcher, then
 under `apm_modules/` in the folder it runs from or any folder above it, then under `~/.apm/`, where
@@ -52,11 +53,11 @@ INSTALLED_PACKAGE_PATHS = [
 ]
 # The package root seen from this file: scripts/ -> init-strategy/ -> skills/ -> .apm/ -> the root.
 SCRIPT_PATH = pathlib.Path(__file__).resolve()
-SOURCE_PACKAGE = SCRIPT_PATH.parents[3]
+SOURCE_PACKAGE = SCRIPT_PATH.parents[4]
 USER_SCOPE_MODULES = pathlib.Path.home() / '.apm' / 'apm_modules'
 MISSING_PACKAGE = ' '.join([
     'The researcher package was not found. Install it with',
-    '`apm install -g KaxaNuk/KaxaNuk-Researcher`, or pass --package.',
+    '`apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, or pass --package.',
 ])
 
 
@@ -389,13 +390,16 @@ def _make_repository(
     first_commit: str,
 ) -> None:
     """
-    Make the copy a git repository with one first commit, and say so; a failed commit is reported.
+    Make the copy a git repository on branch `main` with one first commit, and say so.
+
+    A failed step is reported; a failed commit also with the command that finishes it.
     """
     commands = [
         [
             'git',
             'init',
             '--quiet',
+            '--initial-branch=main',
         ],
         [
             'git',
@@ -423,6 +427,9 @@ def _make_repository(
         if completed.returncode != 0:
             print(f'`{" ".join(command[:2])}` failed; the files are copied, the repository is not finished:')
             print(completed.stderr.strip())
+
+            if command[1] == 'commit':
+                print(f'Finish it in that folder with: git commit -m "{first_commit}"')
 
             return
 

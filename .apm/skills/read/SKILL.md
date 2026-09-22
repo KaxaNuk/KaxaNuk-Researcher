@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.5.2
+  version: 0.6.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -44,7 +44,8 @@ Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belo
 ## 1. Know what happened recently
 
 Read the last five entries of the library's log, its index end to end, and in `RESEARCHER.md` the
-domains, the tag policy and the owner's open questions under *What you are reading for*. In a
+domains, the tag policy and the owner's open questions under *What you are reading for*, with the
+works each one names to *Find first*. In a
 strategy the index is `BIBLIOGRAPHY.md` — a row without a note is a lead, not a source — and the
 questions are the claims in `OBJECTIVE.md`, by number.
 
@@ -55,15 +56,15 @@ the claims from the owner's words, and stop. The reading that follows comes in t
 per claim, to fine-tune the objective before the blueprint; broad, after the blueprint.
 
 **A strategy with no `Bibliotheca/BIBLIOGRAPHY.md`** cannot take a note either: there is no row
-to add and no convention to follow. The KaxaNuk Strategy Template ships it on `main`, empty, with
+to add and no convention to follow. The KaxaNuk Strategy Template ships it empty, with
 `Bibliotheca/LOG.md`, since 0.7.15; a strategy created before that has `Bibliotheca/.gitkeep` and
 nothing else. Say so, and give the command that copies the two files from the template inside
 the KaxaNuk Researcher package, run in the strategy's root — the script is in the `init-strategy`
 skill's folder:
 
 ```bash
-python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Bibliotheca/BIBLIOGRAPHY.md
-python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Bibliotheca/LOG.md
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Bibliotheca/BIBLIOGRAPHY.md
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Bibliotheca/LOG.md
 ```
 
 They come empty, so there is nothing to delete. Then stop; the owner runs it, and the read continues
@@ -82,6 +83,14 @@ clipping under `Notes/` with no note in `Papers/` — or only what the owner nam
 also point at a file under `Sources/` at home for a strategy: it is read for the strategy, and its
 note and its extract are written there, nothing at home.
 
+**At home, with nothing in `Sources/` left to read,** say so, and name the works under *Find first*
+in `RESEARCHER.md` that have no file yet — year, authors and title as written there, and the
+question each serves — for the owner to find by title and authors and put in `Sources/Papers/`.
+With no *Find first* either, name the ten papers of the two timelines in
+`references/reading-map.md`, in this skill's folder, one line each, as leads. Match them against
+`Sources/` and the index as the map's *Match before proposing* says. Never download one, and write
+nothing; stop there.
+
 For every PDF among them, run the script — `scripts/extract.py` in this skill's folder, wherever
 the harness installed it — from the folder whose library this is, home or the strategy, and read
 what it prints:
@@ -93,17 +102,22 @@ uv run "<this skill's directory>/scripts/extract.py" "<pdf>" --outline
 In a strategy, every run of the script carries `--out Bibliotheca/Extracts`: the default is
 `Extracts/` under the folder the command runs in, which in a strategy is the wrong one.
 
-Without `uv`: `pip install pypdf`, then `python` in place of `uv run`. The script's own `--help`
-has every option. Extracts land in `Extracts/<book>/` at home and `Bibliotheca/Extracts/<book>/` in
-a strategy — `--out` names the folder — one markdown file per chapter, a marker before every page.
+Without `uv`: `pip install "pypdf[crypto]"`, then `python` in place of `uv run`; the extra reads
+the AES-encrypted PDFs publishers ship. The script's own `--help` has every option. Extracts land
+in `Extracts/<book>/` at home and `Bibliotheca/Extracts/<book>/` in a strategy — `--out` names the
+folder — one markdown file per chapter, a marker before every page.
 They are a cache: regenerable, gitignored, never cited. If the strategy's `.gitignore` does not
 ignore `Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
 
 - **A PDF with no outline.** The script says so and gives the page count. Read the pages that carry
   the table of contents — the first ten to fifteen, through the assistant's PDF reader — and
-  propose a split by page ranges for the owner to confirm when the table of contents is shown;
-  then run the script with `--split`. A paper is one chapter: `--all`.
-- **A PDF whose depth 1 is parts.** The script says so; run `--outline --depth 2`.
+  propose a split of the whole book by page ranges, every chapter in order, for the owner to
+  confirm when the table of contents is shown. `--split` takes PDF pages and a table of contents
+  gives printed ones: add the offset, checked against one printed page. Every run after that
+  passes that same whole `--split`, with `--chapters` for what the owner chose, so each chapter
+  keeps its number; the book's `INDEX.md` keeps the pages. A paper is one chapter: `--all`.
+- **A PDF whose depth 1 is parts.** The script says so; run `--outline --depth 2`, and carry
+  `--depth 2` into the run that extracts the chapters: without it, `--chapters` counts parts.
 - **A PDF with no text layer.** The script refuses to write and says why. Report the source as
   unreadable, leave it out of the plan, and do not fill it in from memory.
 - **A source that is not a PDF** — a markdown clipping, a transcript — is read directly, whole.
@@ -138,7 +152,8 @@ them to choose is how the reading keeps moving; writing one they did not choose 
 owner would rather not say, the note simply has no `## Why it is here`. Stop here if the owner
 asked for the outline only.
 
-With the owner's choice in hand, extract what they chose — `--chapters 3,4,5,7`, skims included, and
+With the owner's choice in hand, extract what they chose — `--chapters 3,4,5,7`, skims included,
+at the `--depth` the outline was shown at, after the whole `--split` for a PDF with no outline, and
 `--out Bibliotheca/Extracts` in a strategy — and nothing more.
 
 ## 4. Read what was chosen, and decide
@@ -151,8 +166,9 @@ holds, and why it was passed over. For each note, decide:
 - **Where it goes.** At home, the domain folder; in a strategy, `Papers/` or `Books/`. For a
   chapter, the book's folder.
 - **What the citation is.** `source` and `citation` come from the source itself — its title page,
-  its header, its DOI — or from its row in `BIBLIOGRAPHY.md`; never from memory. A URL nobody has
-  checked is not written.
+  its header, its DOI — or from its row in `BIBLIOGRAPHY.md`; never from memory, and never from
+  `references/reading-map.md`, whose years and titles are the deck's. A URL nobody has checked is
+  not written.
 - **Whether the home library has read it already.** In a strategy, when `Knowledge/` at home holds
   a note on the source, the source's part travels — the claim headings and their bullets, in the
   source's terms — and only what is the strategy's is written anew: `## Why it is here` against the
@@ -219,8 +235,10 @@ alternatives — fewer notes or pages, different names, only the notes this run,
 ## 7. Report
 
 In chat: what was written, updated and flagged; any gap the source exposed — a concept the library
-leans on with no source behind it — as a suggestion for the sources; and, at home, the strategy a
-note could serve, with the `read <strategy> <source>` that would carry it there.
+leans on with no source behind it — as a suggestion for the sources, naming the work the reading
+map gives as this one's other side when it names one, as a lead; whether the source changes a
+belief in `Philosophy/`, as a question for the owner to answer there in their words; and, at home,
+the strategy a note could serve, with the `read <strategy> <source>` that would carry it there.
 
 ## What this skill will not let you do
 
@@ -253,3 +271,8 @@ note could serve, with the `read <strategy> <source>` that would carry it there.
 - `references/note.md`, in this skill's folder: the shape of every note — paths and
   names, frontmatter, the chapter note, the paper note, the book's `INDEX.md`, what the indexes
   show, how a home note travels into a strategy — and of the concept page and the synthesis page.
+- `references/reading-map.md`, in this skill's folder: the evolution of investment research,
+  distilled from Section 01 of the KaxaNuk bootcamp's *Intro to Investment Research* — the ten
+  papers of the two timelines, where each belief sits and its other side, the six acts with the
+  arc's 21 questions and their works, and who argues with whom. The one list a work to read may be
+  proposed from besides the owner's library; a work in it is a lead, never a citation.

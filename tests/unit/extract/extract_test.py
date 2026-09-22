@@ -58,6 +58,31 @@ def entry(
 
 
 @pytest.fixture
+def locked_pdf(
+    tmp_path: pathlib.Path,
+) -> pathlib.Path:
+    """
+    A one-page PDF that opens only with its user password.
+    """
+    writer = pypdf.PdfWriter()
+    writer.add_blank_page(
+        width=200,
+        height=200,
+    )
+    writer.encrypt(
+        user_password='secret',
+        owner_password='owner',
+        algorithm='RC4-128',
+    )
+    path = tmp_path / 'locked.pdf'
+
+    with path.open('wb') as stream:
+        writer.write(stream)
+
+    return path
+
+
+@pytest.fixture
 def outlined_pdf(
     tmp_path: pathlib.Path,
 ) -> pathlib.Path:
@@ -192,6 +217,20 @@ class TestFlattenOutline:
 
 
 class TestMain:
+    def test_encrypted_pdf_exits_with_a_message(
+        self,
+        locked_pdf: pathlib.Path,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        exit_code = extract.main([
+            str(locked_pdf),
+            '--outline',
+        ])
+        printed = capsys.readouterr().err
+
+        assert exit_code == 2
+        assert printed.startswith('encrypted PDF: it needs a password')
+
     def test_outline_prints_the_chapter_numbers(
         self,
         outlined_pdf: pathlib.Path,
@@ -229,6 +268,52 @@ class TestMain:
 
         assert exit_code == 2
         assert written == ['OUTLINE.md']
+
+    def test_split_alone_is_refused(self) -> None:
+        with pytest.raises(SystemExit):
+            extract.main([
+                'book.pdf',
+                '--split',
+                'Intro=1-2',
+            ])
+
+    def test_split_with_chapters_keeps_the_number(
+        self,
+        outlined_pdf: pathlib.Path,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture[str],
+    ) -> None:
+        extract.main([
+            str(outlined_pdf),
+            '--split',
+            'Intro=1-2; One=3-6; Two=7-10',
+            '--chapters',
+            '3',
+            '--engine',
+            'pypdf',
+            '--out',
+            str(tmp_path / 'Extracts'),
+        ])
+        reported = capsys.readouterr().err
+        not_written = [
+            line.strip()
+            for line
+            in reported.splitlines()
+            if 'not written:' in line
+        ]
+        expected = ['not written: 3. Two (p. 7–10) — 0 chars/page, no text layer']
+
+        assert not_written == expected
+
+    def test_split_with_outline_is_refused(self) -> None:
+        exit_code = extract.main([
+            'book.pdf',
+            '--outline',
+            '--split',
+            'Intro=1-2',
+        ])
+
+        assert exit_code == 1
 
 
 class TestParseNumbers:

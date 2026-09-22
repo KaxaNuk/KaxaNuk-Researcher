@@ -19,8 +19,8 @@
 > fine-tuned the same day for claim 1 once its notes existed.** Claims 2 to 4 are still in the first
 > pass: their evidence is the question that would settle them, and their sources are leads.
 > **The status column was updated on 2026-09-20, once `FINDINGS_1.md` reported; no claim's wording
-> changed, and the diff shows it** — a claim edited after its test is not a claim. Starting your
-> own: delete everything between the example markers and write yours in its place.
+> changed, and the diff shows it** — a claim edited after its test is not a claim. A strategy of
+> your own starts from `init-strategy`, never from here.
 
 ## The main idea
 
@@ -53,7 +53,7 @@ reader sees which parts of the idea have survived contact with the data, so keep
 
 | | Claim | Status |
 | --- | --- | --- |
-| **1. The signal** | among the most traded US stocks, those whose 50-day average is above their 200-day go on to earn more than those whose is not | **falsified** — they earn about the same, less volatily; the filtered book earns **1.12 points a year less** than the same names unfiltered on the same dates, and the filter accounts for about 5 of its 45.5 idiosyncratic points ([`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md)) |
+| **1. The signal** | among the most traded US stocks, those whose 50-day average is above their 200-day go on to earn more than those whose is not | **falsified** — they earn about the same, with less volatility; the filtered book earns **1.12 points a year less** than the same names unfiltered on the same dates, and the filter accounts for about 5 of its 45.5 idiosyncratic points ([`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md)) |
 | **2. The sizing** | equal weight across the 30 captures that without a risk model | **untested** — the book is equal weighted and works, but no other weighting has been run against it |
 | **3. The construction** | ranking by trading volume keeps every position in a stock that trades heavily enough to be exited in a day | **true by construction**, and **measured as the book's largest idiosyncratic source**: about 28 of the 45.5 points, against random books of the same shape. It was expected to cost return and it did not |
 | **4. The rebalancing** | trading only when the book is 10% away from its target keeps most of the return at a fraction of the turnover | **untested** — the band fired 87 times in 9.4 years at 17.8% turnover each; no no-band arm has been priced |

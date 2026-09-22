@@ -4,7 +4,7 @@ error, found by a script so a person only reads what it says.
 
 Run from the repository root:
 
-    python tools/check_repo.py
+    uv run --no-project python tools/check_repo.py
 
 It reads the working tree.  Each check exists because what it looks for happened:
 
@@ -17,14 +17,15 @@ It reads the working tree.  Each check exists because what it looks for happened
 - **markers** — the example's markers open and close in order, as whole lines, or a copy made with
   them in mind keeps or loses the wrong lines.
 - **section symbol** — never used; the word is "section".
-- **descriptions** — a skill's `description`, folded as an agent reads it, within what APM accepts.
+- **descriptions** — a skill's `description`, folded as an agent reads it, within what APM accepts;
+  one written in a form the check cannot read fails, so it is never skipped.
 - **references** — the experiment documents and notebook `experiment-lifecycle` ships are what
   `tools/sync_investment_lab_references.py` makes from the worked example.  A skill that kept its own
   copies drifted from the template once.
 - **path length** — no tracked path longer than Windows allows once installed under a home folder;
   a 130-character path once made `apm install -g` fail.
 
-Exit code 0 when every check passes, 1 when any fails.  Console output is ASCII only.
+Exit code 0 when every check passes, 1 when any fails.
 """
 import dataclasses
 import pathlib
@@ -87,6 +88,11 @@ HEADING = re.compile(
     r'^#{1,6} \S.*$',
     re.MULTILINE,
 )
+# A description written on its one line: not a block scalar, and not continued on the next line.
+ONE_LINE_DESCRIPTION = re.compile(
+    r'^description:[ \t]+([^>|\s].*)\n(?![ \t])',
+    re.MULTILINE,
+)
 PYPROJECT_VERSION = re.compile(
     r'^version\s*=\s*"([^"]+)"',
     re.MULTILINE,
@@ -111,13 +117,20 @@ def check_descriptions(
     files: list[str],
 ) -> list[Finding]:
     """
-    Every skill's folded description within the length APM accepts.
+    Every skill's description readable by this check, and within the length APM accepts.
     """
-    manifests = [
+    # A skill deleted from the working tree but still tracked is not read: it has nothing to check.
+    tracked_manifests = [
         path
         for path
         in files
         if path.startswith('.apm/skills/') and path.endswith('/SKILL.md')
+    ]
+    manifests = [
+        path
+        for path
+        in tracked_manifests
+        if (root / path).is_file()
     ]
     texts = {
         path: _read(root / path)
@@ -129,7 +142,7 @@ def check_descriptions(
         for path, text
         in texts.items()
     }
-    findings = [
+    too_long = [
         Finding(
             check='description',
             message=f'{path}: {len(description)} characters, over {DESCRIPTION_LIMIT}',
@@ -137,6 +150,19 @@ def check_descriptions(
         for path, description
         in descriptions.items()
         if len(description) > DESCRIPTION_LIMIT
+    ]
+    unreadable = [
+        Finding(
+            check='description',
+            message=f'{path}: no description this check can read; write `description: >` and indent the text',
+        )
+        for path, description
+        in descriptions.items()
+        if not description
+    ]
+    findings = [
+        *too_long,
+        *unreadable,
     ]
 
     return findings
@@ -229,7 +255,16 @@ def check_references(
     """
     The references `experiment-lifecycle` ships match what the worked example says they hold.
     """
-    stale = sync_investment_lab_references.stale_references(root)
+    try:
+        stale = sync_investment_lab_references.stale_references(root)
+    except FileNotFoundError as error:
+        missing = Finding(
+            check='references',
+            message=str(error),
+        )
+
+        return [missing]
+
     findings = [
         Finding(
             check='references',
@@ -292,13 +327,16 @@ def folded_description(
     text: str,
 ) -> str:
     """
-    A skill's `description` as an agent reads it: folded lines joined by single spaces.
+    A skill's `description` as an agent reads it: folded lines joined by single spaces, or the one
+    line it is written on.  Empty when it is missing or written in any other form.
     """
     folded = FOLDED_DESCRIPTION.search(text)
 
     if folded is None:
+        one_line = ONE_LINE_DESCRIPTION.search(text)
+        description = one_line.group(1).strip() if one_line is not None else ''
 
-        return ''
+        return description
 
     lines = folded.group(1).splitlines()
     joined = ' '.join(
@@ -417,13 +455,20 @@ def tracked_files(
         [
             'git',
             'ls-files',
+            '-z',
         ],
         cwd=root,
         capture_output=True,
-        text=True,
+        encoding='utf-8',
         check=True,
     )
-    files = completed.stdout.splitlines()
+    # With -z git gives each path whole and unquoted, a non-ASCII one included, ended by a NUL.
+    files = [
+        path
+        for path
+        in completed.stdout.split('\0')
+        if path
+    ]
 
     return files
 

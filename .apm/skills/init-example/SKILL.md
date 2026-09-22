@@ -8,7 +8,7 @@ description: >
   `init-strategy`), and never builds on the example: it is a worked strategy to read, not a
   template to fill.
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -26,7 +26,7 @@ belongs in each file. It is also readable without installing anything, in
 - **The whole example, in a new folder** — *init-example*, *give me the example to look at*. To
   read it, run its notebooks, or see what a finished experiment looks like.
 - **One piece into an existing strategy** — *init-example Experiments/Experiment_1*, *bring the
-  blueprint across*. The files the template's `main` does not carry — the experiment documents,
+  blueprint across*. The files the template does not carry — the experiment documents,
   the notebooks, `Paper_Trading/BITACORA.md` — come from here.
 - Not on its own initiative. A skill that needs one of these files names this skill and the path,
   and the owner runs it.
@@ -45,8 +45,8 @@ belongs in each file. It is also readable without installing anything, in
 3. **Copy.** The script is in the `init-strategy` skill's folder, beside this one:
 
    ```bash
-   python "<the init-strategy skill's directory>/scripts/scaffold.py" example "<new folder>"
-   python "<the init-strategy skill's directory>/scripts/scaffold.py" example "<strategy root>" --only <path>
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" example "<new folder>"
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" example "<strategy root>" --only <path>
    ```
 
    The whole example becomes a git repository with its first commit; one piece is only copied.

@@ -625,6 +625,23 @@ class TestCheckTypeHints:
 
 
 class TestCheckMultipleCallsPerLine:
+    def test_chain_split_one_call_per_line_is_allowed(self) -> None:
+        source = '''
+            summary = (
+                frame
+                .groupby('sector')
+                .sum()
+                .reset_index()
+            )
+        '''
+        result = codes_for(
+            check_multiple_calls_per_line,
+            source,
+        )
+        expected = []
+
+        assert result == expected
+
     def test_nested_calls_on_one_line_are_reported(self) -> None:
         source = '''
             value = outer(middle(inner(1)))
@@ -958,14 +975,15 @@ class TestMain:
         self,
         tmp_path: pathlib.Path,
         capsys: pytest.CaptureFixture[str],
+        monkeypatch: pytest.MonkeyPatch,
     ) -> None:
         dirty_file = tmp_path / 'dirty.py'
         dirty_file.write_text(
             'import numpy as np\n',
             encoding='utf-8',
         )
-        dirty_path = str(dirty_file)
-        main([dirty_path])
+        monkeypatch.chdir(tmp_path)
+        main(['dirty.py'])
         captured = capsys.readouterr()
         result = captured.out.isascii()
         expected = True

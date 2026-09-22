@@ -2,8 +2,6 @@
 description: A review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, and appends one line to the log; never fixes on its own. Only when the owner runs it by name, on the library at hand.
 input:
   - mode: "Optional: deep, the expensive pass that adds contradictions and gaps"
-metadata:
-  version: 0.2.4
 ---
 
 # Audit the library
@@ -27,8 +25,9 @@ the owner approves separately.
   `BIBLIOGRAPHY.md` in a strategy; a book's `INDEX.md` whose table disagrees with the chapter files
   beside it.
 - Notes whose `local_copy` names a file that is not there.
-- Frontmatter with fields other than `source`, `citation`, `local_copy`, `read` and `tags`, or
-  missing one of the first four.
+- A source note's or a book `INDEX.md`'s frontmatter with fields other than `source`, `citation`,
+  `local_copy`, `read` and `tags`, or missing one of the first four; a concept or synthesis page is
+  checked below.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts a note leans on that no note defines.
 - A note that cites an extract or links into `Extracts/`. Notes cite the source and its pages.
@@ -36,17 +35,17 @@ the owner approves separately.
   extract; a page missing `type`, `updated` or `sources`; two pages that contradict each other with
   no `> [!WARNING]` callout; a chapter note none of whose claims reached any concept page; and an
   idea a page names that no page defines.
-- An installed copy missing or out of step with its source — the packages under
+- An installed copy missing or out of step with its source — the package under
   `~/.apm/apm_modules/` for the skills and commands, the home's own `.apm/` for the agent: a skill
   under `~/.claude/skills/` or the user's folder for another agent, a command under
   `~/.claude/commands/`, the agent under `.claude/agents/` here. A copy of a KaxaNuk skill still
   deployed inside the home, in `.claude/skills/`, is a home from before the user-scope install:
-  the fix is `update`. **Compare what APM does not rewrite**: the body below
-  the frontmatter, and in it the section headings and the prose. APM translates a command's `${input:name}` into the
-  placeholder each harness takes — `$name` for Claude Code — and rewrites the frontmatter keys it
-  knows, so those differences are the install working, not a stale copy. Report a stale install
-  and give the fix: `apm update -g` for a skill or a command, `apm install` here for the agent,
-  then a new session.
+  the fix is `update`. **Compare what APM does not rewrite**: the body below the frontmatter, and
+  in it the section headings and the prose. APM translates a command's input placeholders into the
+  form each harness takes, and rewrites the frontmatter keys it knows, so those differences are the
+  install working, not a stale copy. Report a stale install and give the fix: `apm update -g` for a
+  skill or a command, `apm install --target <the owner's agent>` here for the agent, then a new
+  session.
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
   rather than reading it. The fix for the first is `researcher-init`, which writes it.

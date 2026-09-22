@@ -8,7 +8,7 @@ description: >
   there. It walks the index and the links between notes before reading anything, and cites every
   claim. It does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.3.1
+  version: 0.4.0
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -58,8 +58,12 @@ are the library's value.
    `Knowledge/INDEX.md` and records the run in `Knowledge/LOG.md`. In a strategy, never:
    `OBJECTIVE.md` is where a synthesis belongs, and the owner writes it.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
-   suggest the kind of source that would close it. Do not fill a gap from memory without saying you
-   did, and never write it into the library during a query.
+   suggest the source that would close it: by year, authors and title when
+   `references/reading-map.md` in the `read` skill's folder lists one — labelled *a lead from the
+   reading map, not in your library*, or *in your Sources/, not yet read* when the PDF is there —
+   and otherwise the kind of source. Where the map gives a work's other side and the library holds
+   only one of the two, name the other. Do not fill a gap from memory without saying you did, and
+   never write it into the library during a query.
 
 ## What this skill will not let you do
 

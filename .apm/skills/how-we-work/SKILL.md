@@ -10,7 +10,7 @@ description: >
   `experiment-lifecycle`) or Python style (the `python-bloom-code`
   and `python-pep8` instructions).
 metadata:
-  version: 0.2.2
+  version: 0.2.3
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -39,6 +39,11 @@ idea  ->  issue on the Project board  ->  issues/<number> cut from main  ->  PR 
 Long-lived branches other than `main` exist only when a repository says so in its `AGENTS.md` or
 `README.md` — a product may keep a `dev` branch that is deployed. Never merge into such a branch by
 accident: read the repository's own rule first.
+
+A repository's `AGENTS.md` may also make the issue and its branch a recommendation rather than a
+gate, as a strategy made from the KaxaNuk Strategy Template does. There the repository's rule wins:
+suggest the issue and the branch, never refuse the work without them; the `CHANGELOG.md` entry
+still goes with every change-set.
 
 ## 2. Before any pull request
 
@@ -69,6 +74,10 @@ One entry per change-set, newest first, in the KaxaNuk Data Curator convention:
 ### Removed
 ```
 
+A repository whose `CHANGELOG.md` names another format in its header keeps it: the KaxaNuk
+Researcher's own root `CHANGELOG.md` uses Keep a Changelog, `## [X.Y.Z] - YYYY-MM-DD`. Every
+strategy made from the template, and every researcher's home, uses the one above.
+
 Each item is written for somebody who was not in the room: **say what moved and why, not what file
 you touched**. "The regime model lives in the Refinery so a penalty sweep costs no download" is an
 entry; "updated custom_calculations.py" is a diff. Name anything that invalidates a number or breaks
@@ -94,21 +103,18 @@ strategy that reaches paper trading with its results reproduced from a clean clo
 ## 5. Releasing
 
 1. Bump the version where the repository keeps it — `pyproject.toml`, `apm.yml`, or both — in the
-   same commit as the changelog entry.
-2. Tag on `main` after the merge, and push the tag. **One package per repository** takes
-   `git tag -a vX.Y.Z -m "X.Y.Z"`. **A repository holding several packages that version
-   independently** takes one tag per package, `{name}--v{version}`, where `{name}` is the `name`
-   field of that package's `apm.yml`:
+   same commit as the changelog entry, and run `uv lock` where the repository commits a `uv.lock`,
+   so the lock records the new version too.
+2. Tag on `main` after the merge, and push the tag:
 
    ```bash
-   git tag -a kaxanuk-agent-skills-common--v0.3.3 -m "kaxanuk-agent-skills-common 0.3.3"
+   git tag -a vX.Y.Z -m "X.Y.Z"
+   git push origin vX.Y.Z
    ```
 
-   The shape is not cosmetic. APM resolves a semver range in a dependency's `ref:` against the
-   remote's tags, matching `v{version}` and `{name}--v{version}`, so a consumer can write
-   `ref: ^0.3` only if the tags are named this way; with no tag that matches, the install fails
-   with `NoMatchingTagError` rather than falling back. A single repository-wide `vX.Y.Z` cannot
-   say which of several packages it belongs to, so it is wrong wherever more than one lives.
+   One tag per release, `v` and the version the repository declares at its root: a strategy tags
+   the version its `apm.yml` and `pyproject.toml` share, and the KaxaNuk Researcher tags its
+   package's, while its template, example and home keep their own numbers in their folders.
 3. **Tag the commit where the version became the state of `main`**, which is the merge, not the
    commit on the branch that wrote the bump. A version bump authored early on a long branch names
    a tree that never existed on `main`, and a tag is the one thing that cannot be corrected in

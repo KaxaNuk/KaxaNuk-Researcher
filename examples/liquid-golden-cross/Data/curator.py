@@ -39,8 +39,9 @@ three: an unused column costs bytes, a missing one costs a refetch of every iden
     dividend-and-split    the total-return series a signal and the backtest P&L run on
 
 Two folders beside the time series are drop zones, not outputs: `Benchmarks/` for an index's daily
-holdings and returns, `Factors/` for a factor model's returns.  No price provider sells them;
-attribution reads them; steps 1 to 5 run without them.
+holdings and returns, `Factors/` for a factor model's returns.  No price provider sells them; the
+backtest's benchmark and the attribution read them.  Without them this script still downloads
+every price and says the index was not staged; the notebooks stop where they first read it.
 
 Credentials come from `Config/.env` and are never printed -- not into a log line, a notebook
 output or a commit.  An exposed key is rotated, not edited out.
@@ -365,8 +366,13 @@ def main() -> int:
         if history_position % 25 == 0 or history_position == len(identifiers):
             print(f"history {history_position}/{len(identifiers)}: {extensions}", flush=True)
 
-    index_path = stage_index_price_series()
-    print(f"staged the index as {index_path.name}, rebuilt from its own daily returns")
+    # The index is KaxaNuk's own and arrives by hand, so a copy without it is told what it lacks
+    # rather than handed a traceback after every price has downloaded.
+    if INDEX_RETURNS_PATH.is_file():
+        index_path = stage_index_price_series()
+        print(f"staged the index as {index_path.name}, rebuilt from its own daily returns")
+    else:
+        print(f"{INDEX_IDENTIFIER} not staged: {INDEX_RETURNS_PATH.name} is not in Benchmarks/")
 
     return 0
 

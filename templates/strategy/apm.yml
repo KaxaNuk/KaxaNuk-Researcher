@@ -1,13 +1,13 @@
-# This repository installs no agent skills.  KaxaNuk's skills - the house rules, the process, and
-# one skill package per Investment Lab library - and the researcher's own are installed once for
-# the user: `apm install -g KaxaNuk/KaxaNuk-Researcher`,
+# This repository installs no agent skills.  Every KaxaNuk skill - the house rules, the process,
+# each Investment Lab library's and the researcher's own - is in one package, installed once for
+# the user: `apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`,
 # kept current with `apm update -g`.  See SETUP.md step 4.  This file stays so the folder is an
 # APM project.
 #
 # There is deliberately no `targets` key.  The template serves Claude Code, the Claude app, Codex
 # and Cursor alike, so the target is passed on the command.
 name: kn-strategy-template
-version: 0.8.1
+version: 0.9.0
 description: The KaxaNuk Strategy Template - the KaxaNuk Investment Lab's eight steps as a folder structure
 author: KaxaNuk
 dependencies:

@@ -7,7 +7,7 @@ description: >
   the interview. Only when the owner runs it by name; once per person, never per strategy. It does
   NOT run the interview itself and does NOT create a strategy (use `init-strategy`).
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # Init researcher — a home for the library, once
@@ -39,7 +39,7 @@ in a session of its own, or adds it to a strategy's session to bring the library
 3. **Copy.** The script is in the `init-strategy` skill's folder, beside this one:
 
    ```bash
-   python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher "<full path>"
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher "<full path>"
    ```
 
    It refuses a folder that exists and is not empty. If the first commit fails for want of a git
@@ -48,9 +48,9 @@ in a session of its own, or adds it to a strategy's session to bring the library
 
 4. **Hand over.** Tell the owner to open the new folder in a **new** session and run
    `researcher-init` there: the interview that writes `RESEARCHER.md` and the agent file. Then
-   `apm install` in that folder, once, to deploy the agent; the skills are already installed for
-   the user. Say that the library is private: nothing in `Sources/` is pushed anywhere public, and
-   the `.gitignore` keeps PDFs out.
+   `apm install --target <their agent>` in that folder, once, to deploy the agent; the skills are
+   already installed for the user. Say that the library is private: nothing in `Sources/` is
+   pushed anywhere public, and the `.gitignore` keeps PDFs out.
 
 ## References
 

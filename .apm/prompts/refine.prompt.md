@@ -2,8 +2,6 @@
 description: A voice-preserving editor pass over a file in Philosophy/ — the owner's own writing — typos and slips fixed, ambiguities flagged, diff shown before anything is written. Only when the owner runs it by name, on a path they give.
 input:
   - path: "The file under Philosophy/ to edit"
-metadata:
-  version: 0.1
 ---
 
 # Refine a Philosophy file
