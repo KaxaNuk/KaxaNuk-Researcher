@@ -1,7 +1,5 @@
 # KaxaNuk Researcher
 
-[![CI](https://github.com/KaxaNuk/KaxaNuk-Researcher/actions/workflows/ci.yml/badge.svg)](https://github.com/KaxaNuk/KaxaNuk-Researcher/actions/workflows/ci.yml)
-
 **A research companion you name and teach.** It keeps a library of what you have read, knows the
 KaxaNuk Investment Lab and the KaxaNuk Strategy Template, and helps you write the hypothesis of
 every strategy you build — with every claim pointing back to something you actually read. One
@@ -126,9 +124,8 @@ templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
 tests/                the tests of the skills' scripts and of the tools
-tools/                check_repo.py, the repository's own checks, run by CI; and the script that
+tools/                check_repo.py, the repository's own checks; and the script that
                       regenerates experiment-lifecycle's references from the example
-.github/workflows/    CI: the tests, ruff, check_repo.py and Bloom Code
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the environment of the scripts and their tests
@@ -168,8 +165,8 @@ example that lost a heading of the template, markers left open, the section symb
 description APM would reject, `experiment-lifecycle`'s references out of step with the example, a
 path too long for Windows. The worked example is linted with its own ruff settings, and the last
 command checks the Bloom Code style of the skills' scripts, the tests, the tools and the example.
-CI runs every one of them on every push and pull request, each through `uv` alone: no Python of
-your own is needed.
+Each runs through `uv` alone: no Python of your own is needed. They run on your machine before a
+commit; there is no CI, so nothing runs them for you.
 
 `AGENTS.md` has the rules for changing this repository. Releases are tagged `vX.Y.Z` on `main` after
 the merge, and `CHANGELOG.md` has one entry per version.

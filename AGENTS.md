@@ -33,7 +33,8 @@ Python, `# EXAMPLE-ONLY CELL` on a notebook cell — are the example's own.
   a change to a library's API changes its skill in the same release. KaxaNuk-Agent-Skills is
   retired: its skills came here at its commit `3b8f76c`.
 - **`uv run --no-project python tools/check_repo.py` passes before any commit,** with the tests,
-  ruff and the Bloom Code check, run as the README's *Development* section shows; CI runs them all.
+  ruff and the Bloom Code check, run as the README's *Development* section shows. There is no CI:
+  nothing runs them for you.
 - **Markdown you write or change is wrapped at 100 columns.** Never use the section symbol; write
   "section".
 - **No secrets, no binaries, no in-house strategy.** The worked example is the only strategy this

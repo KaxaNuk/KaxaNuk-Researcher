@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.9.2] - 2026-09-22
+No CI: the checks run on the maintainer's machine, as `AGENTS.md` always asked.
+### Removed
+- **The GitHub Actions workflow** and the README's badge. The five checks are unchanged and still
+  pass before any commit, by hand, as the README's *Development* section shows; GitHub no longer
+  runs them on every push, and nobody who forks or watches the repository sees a workflow run.
+
 ## [0.9.1] - 2026-09-22
 Three paths in the example that failed the repository's own check.
 ### Fixed
