@@ -13,7 +13,7 @@ description: >
   running the engines (`backtest-engine-runs`, `attribution-analysis-runs`), reading attribution
   (`alpha-decomposition`), or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.7.3
+  version: 0.7.4
 ---
 
 # The research process — how a strategy repository is worked in
@@ -184,12 +184,12 @@ last column — which tool each item loads.
 | 7 | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
 | 8 | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
 
-Every file those items name beyond what the template ships — `OBJECTIVE.md`, `RESULTS.md`, the
-empty `Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, and the seed `Universe/Investable_Universe.csv`
-with only its header — is in the worked example. Bring one across with `init-example <path>` — it
-copies from the example inside the KaxaNuk Researcher and never overwrites, so bring
-`Universe/universe.ipynb` by its path — and delete what is the example's: everything between the
-markers.
+Every file those items name is in the template, and so in a strategy made from it: each a
+description of what belongs in it, generated from the worked example with its own lines removed, to
+be filled in. A strategy made from a template before 0.10.0 lacks the files inside the folders;
+bring one across with `init-example <path>` — it copies from the example inside the KaxaNuk
+Researcher and never overwrites, so bring `Universe/universe.ipynb` by its path — and delete what is
+the example's: everything between the markers.
 
 **A new experiment `N` inside an existing strategy:**
 
@@ -218,7 +218,7 @@ is two rules, and the copies drift. Read them where they are.
 | Committed results, bad runs, binaries, Production, `Config/.env`, example markers | `AGENTS.md`, *Other standing rules* |
 | The five ways a backtest lies, and what look-ahead costs a fitted signal | `AGENTS.md`, *Research integrity — the five ways a backtest lies* |
 | What attribution must report | `AGENTS.md`, *What attribution must report*; reading it is `alpha-decomposition` |
-| The graduation gate and its five criteria | `Paper_Trading/BITACORA.md`, in the worked example — bring it across with `init-example` before step 7 |
+| The graduation gate and its five criteria | `Paper_Trading/BITACORA.md`, in the template |
 | What a version number means | `CHANGELOG.md`, *What a version number means here* |
 
 ## References

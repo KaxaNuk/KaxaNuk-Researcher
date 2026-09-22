@@ -41,6 +41,18 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.2 (2026-09-22)
+
+**PATCH** — `AGENTS.md` and `SETUP.md` follow template 0.10.0, which ships every file this example
+works through as a description to fill in. Nothing about any result changes.
+
+### Changed
+
+- **`AGENTS.md` and `SETUP.md` no longer say a strategy takes its files from here** with
+  `init-example <path>`: the template holds them, generated from this example with its marked lines
+  removed. The example markers are now what that generation strips, so a line of the worked
+  strategy left unmarked reaches every new strategy.
+
 ## 0.10.1 (2026-09-22)
 
 **PATCH** — three chapter notes renamed so their paths stay under the 120 characters the

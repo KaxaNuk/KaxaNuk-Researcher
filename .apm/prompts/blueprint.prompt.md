@@ -31,11 +31,11 @@ first, when:
 - **`BLUEPRINT_N.md` already has its slots filled** — it does not change once written; a new idea is
   Experiment N+1.
 
-**A strategy made by `init-strategy` has no blueprint to fill.** The template ships
-`Experiments/Experiment_1/` with its three empty output folders and no documents; `BLUEPRINT_N.md`
-and its siblings are in the worked example. Never write the headings from memory — they are the
-template's. Say so, and give the command that brings the file across, run in the strategy's
-session, and stop:
+**For Experiment 1 the blueprint is already there to fill.** The template ships
+`Experiments/Experiment_1/BLUEPRINT_1.md` as the headings and what belongs under each. Never write
+the headings from memory — they are the template's. A strategy made from a template before 0.10.0
+lacks the file: say so, give the command that brings it across, run in the strategy's session, and
+stop:
 
 > init-example Experiments/Experiment_1/BLUEPRINT_1.md
 
@@ -43,8 +43,7 @@ session, and stop:
 the worked strategy's: everything between `<!-- example: begin -->` and `<!-- example: end -->`,
 which goes before the draft. The owner runs it, and the draft continues from there.
 
-**For N > 1 that command is refused**: `Experiments/Experiment_1/BLUEPRINT_1.md` is already the
-owner's, and `init-example` never overwrites. The blank is the `experiment-lifecycle` skill's
+**For N > 1 there is no file yet.** The blank is the `experiment-lifecycle` skill's
 `references/blueprint-template.md` — the example's file with its own lines stripped — copied to
 `Experiments/Experiment_N/BLUEPRINT_N.md` with `N` replaced, as that skill's section 6 says. Offer
 the copy as the plan, make it on the owner's go, and the draft continues from there.
