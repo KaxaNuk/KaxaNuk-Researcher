@@ -3,7 +3,7 @@ description: Interview the owner and write RESEARCHER.md — the researcher's na
 input:
   - mode: "Optional: force, to start over when RESEARCHER.md is already filled"
 metadata:
-  version: 0.5
+  version: 0.6
 ---
 
 # Initialize the researcher
@@ -49,39 +49,41 @@ did not pick is never written.
 
 ## Step 2: The interview
 
-1. **What you do, and your name** — *tool, one call, two questions*. What you do: *I invest my own
-   money*, *analyst or portfolio manager at a firm*, *I run a mandate*, or *Other*. Your name: the
-   one git has for you — `git config user.name` — as an option, *Other* for a different one; with
-   no git identity, the name is asked in chat.
-2. **What will you call me?** — *tool*. Three names as the options, *Other* for the one they have in
-   mind. Never pick one for them.
-3. **Domains** — *tool, multi-select*. The folders `Knowledge/` will be organised by: Finance,
-   Macro, AI, Business as the options, *Other* for Science and their own. At least one.
-4. **How should I speak?** — *tool, one call, three questions*. Terse / standard / thorough; which
-   language; challenge or defer.
-5. **What do you believe about markets?** — *tool, then chat*. Four ways of investing as the
-   options — systematic, on factors and rules; discretionary, on fundamentals; macro and regimes;
-   a mix of these — and *Other* for their own words. From the pick, draft two or three sentences
-   and show them; the owner keeps, edits or rewrites them, and the version they confirm is the one
-   written, never the draft alone. Offer to write the long version into `Philosophy/HOW-I-INVEST.md`
-   in their exact words — never paraphrased — if they say more.
-6. **Non-negotiables** — *tool*. State KaxaNuk's three defaults in the question (numbers only from
-   the Lab's libraries; the hypothesis before the test with every prediction cited; nothing trades
-   from here); the options: keep all three, change one, add one — the change or the addition then
-   comes in chat.
-7. **Tag policy** — *tool*. Strict — a fixed list they give now, in chat — or loose — proposed on
-   read, pruned at audit.
-8. **Strategies** — *tool*. None, or *I will give the paths*, then the paths and where each stands
-   in chat: strategy repositories on this machine built from the KaxaNuk Strategy Template.
-9. **What are you reading for?** — *tool, multi-select, from a proposal*. Draft three to five
-   candidate questions from what is already there — the PDFs under `Sources/` and their tables of
-   contents, the role from question 1, the beliefs from question 5 — one option each, and *Other*
-   for their own. The owner picks the ones that are theirs and edits the wording in chat if they
-   want; the picked ones go into the section, numbered, and what each feeds and what would change
-   their mind is asked in one follow-up. *None* stays possible, and the section then says so, but
-   the proposal comes first: an empty section costs every note its `## Why it is here`.
+Keep it short. Focus on who they are, how they invest, and what they're reading for. No strategies yet
+— they come later when they exist, or when the researcher is invited into one.
+
+1. **What you do** — *chat*. One paragraph: their role, what they're building, what matters to them.
+   Anchor the researcher in their real work.
+2. **Your name** — *tool*. The one git has for you — `git config user.name` — as an option, *Other*
+   for a different one; with no git identity, ask in chat.
+3. **What will you call me?** — *tool*. Three names as the options, *Other* for their choice. Never
+   pick one for them.
+4. **Domains for Knowledge/** — *tool, multi-select*. Finance, Macro, AI, Business, Coding, Math
+   as the options, *Other* for their own. At least one. Domains can be edited later.
+5. **How should I speak?** — *tool, one call, two questions*. Terse / standard / thorough. Should I
+   challenge when the evidence disagrees, or defer to your judgment?
+6. **Your investment approach** — *tool, then chat*. Four ways as options — systematic (rules and
+   factors), discretionary (fundamentals), macro (regimes), a mix — and *Other* for their own words.
+   Draft two or three sentences from their pick and show them. They keep, edit or rewrite; that
+   version is written. Offer to expand into `Philosophy/HOW-I-INVEST.md` in their exact words if
+   they say more.
+7. **Non-negotiables** — *tool*. State KaxaNuk's three defaults: every number from the Lab's
+   libraries; hypothesis before test, every prediction cited; nothing trades from here. Options:
+   keep all three, or change one — the change in chat.
+8. **What are you reading for?** — *tool, multi-select, from a proposal*. Draft two to three
+   candidate questions from sources already in `Sources/`, their role, and their approach. One
+   option each, *Other* for their own. They pick theirs and edit wording in chat if they want.
+   For each picked: what does it feed (a strategy, a project, your thinking), and what evidence
+   would change your mind? Ask in chat, keep answers short.
 
 ## Step 3: Write
+
+**Tag policy** defaults to loose — the researcher proposes tags as it reads, the owner prunes at
+audit. The owner can change this in `RESEARCHER.md` later.
+
+**Strategies** starts empty. The strategies table in `RESEARCHER.md` has no rows and a note that
+the owner invites the researcher into a strategy when they're ready. A row is added only when the
+owner asks.
 
 Show the filled `RESEARCHER.md` in chat, section by section, following the file's existing headings
 exactly. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and
@@ -162,8 +164,8 @@ carries the process and whose skills for each Lab library carry the modules. The
 
 ## Step 7: Hand over
 
-Five sentences, in the voice the owner chose: who the researcher is now; what to do first (drop a
-source into `Sources/` and run `read`); how to reach it as an agent (*ask <name> what we know
-about X*, once installed and in a new session); how to invite it into a strategy (open the
-assistant in the strategy's folder and add this one to the session); and where the rules live
-(`AGENTS.md`).
+Three sentences, in the voice the owner chose: who the researcher is now; what to do first (drop a
+source into `Sources/` and run `read`); and how to reach it as an agent (*ask <name> what we know
+about X*, once installed and in a new session). Then, on its own line: when you're ready for a
+strategy, run `init-strategy <name>` and invite the researcher into it with `--add-dir`. The rules
+live in `AGENTS.md`.
