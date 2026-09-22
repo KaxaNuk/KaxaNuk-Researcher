@@ -85,28 +85,3 @@ passing ones.**
 **`Paper_Trading_1/` is named for the experiment it would mirror.** Experiment 1 is the benchmark,
 so its graduation is not applicable and this folder is renamed for the experiment that actually
 graduates. The convention is right; the number is a placeholder until then.
-
-<!-- example: begin -->
-
-### In this example: the gate run once, and the answer is no
-
-**`liquid-golden-cross` does not graduate, and it was never going to** — Experiment 1 is the
-declared benchmark, and a benchmark's job is to be a fair yardstick, not a candidate. It is
-evaluated here anyway, because a gate nobody has ever run against a real book is a gate nobody
-knows how to apply. Every row is evidenced from
-[`../Experiments/Experiment_1/FINDINGS_1.md`](../Experiments/Experiment_1/FINDINGS_1.md).
-
-| # | Criterion | Verdict |
-| --- | --- | --- |
-| 1 | Beats the benchmarks **and its own control** | **Fails.** Sharpe 0.861 beats the index's 0.774 and its own control's 0.813 — but the control earns **1.12 points a year more** once it is put on the same rebalance dates, and the criterion is about risk-adjusted return over the same window. It passes on Sharpe and only on Sharpe, which is precisely the kind of single-metric pass this gate exists to catch |
-| 2 | Idiosyncratic alpha in **both** layers | **Partly, and now measured rather than asserted.** The factor model leaves 45.5 points of 159.5 unexplained — but random books of the same shape earn about 12.5, so roughly 33 points are genuine, and of those only about 5 belong to the signal the strategy is named after. The first cut is per asset in this library, so its selection number is not the group-level story the criterion asks for, and the third pass on residual returns has not been run |
-| 3 | Survives perturbation; trial count published | **Fails.** Four variants, all published — but no parameter was perturbed. The 50/200 pair, the 30 names, the 10% band and the 63-day window are all single settings, and none has been read as a curve |
-| 4 | Costs and capacity modelled and stated | **Partly.** Costs are modelled, charged on the unadjusted price, and reported net, with a realistic-commission row beside the frozen one. **Capacity is not modelled at all**, though the liquidity ranking makes this the book least likely to be constrained by it |
-| 5 | Explicit sign-off | **Not sought.** Criteria 1 and 3 block it |
-
-**What the exercise is worth teaching.** The book beats its index on every headline number a
-pitch deck would show, and still fails the gate on the first criterion. That gap — between *beats
-the index* and *beats the thing it is actually a variant of* — is the whole reason criterion 1
-names the control, and it is the one finding of Experiment 1 that generalises.
-
-<!-- example: end -->

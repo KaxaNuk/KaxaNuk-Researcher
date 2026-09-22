@@ -1,18 +1,18 @@
-# Blueprint — Experiment N
+# Blueprint — Experiment 1
 
 > **The hypothesis, fixed once written.** Thesis, rules, predictions, success criteria and key
 > risks, recorded *before* any code runs.
 >
 > **This file does not change when results arrive.** A hypothesis edited after its test is no longer
 > a hypothesis — that is the whole reason it is kept apart from the result. What the experiment
-> actually produced is in [`FINDINGS_N.md`](FINDINGS_N.md); planning lives in
-> [`BRAINSTORMING_N.md`](BRAINSTORMING_N.md), the running log in [`JOURNAL_N.md`](JOURNAL_N.md).
+> actually produced is in [`FINDINGS_1.md`](FINDINGS_1.md); planning lives in
+> [`BRAINSTORMING_1.md`](BRAINSTORMING_1.md), the running log in [`JOURNAL_1.md`](JOURNAL_1.md).
 >
 > Record the date it was written, and delete this blockquote.
 
 ---
 
-## Experiment N — <the idea, in five words>
+## Experiment 1 — the declared benchmark
 
 ### Thesis
 
@@ -52,7 +52,7 @@ As the benchmark, Experiment 1 does not need to win. It needs to be a **fair, st
 1. Reproducible from a clean clone, through the pipeline, with no manual step.
 2. A tradeable trigger frequency — not a rule that fires every day.
 3. Net-of-cost results reported against every benchmark it declares.
-4. Every prediction above evaluated explicitly in `FINDINGS_N.md`, **including the ones that turn
+4. Every prediction above evaluated explicitly in `FINDINGS_1.md`, **including the ones that turn
    out wrong.**
 
 **Graduation: not applicable.** The benchmark's job is to be the thing others are measured against,
