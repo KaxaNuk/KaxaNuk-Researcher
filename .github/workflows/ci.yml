@@ -1,5 +1,5 @@
 # Every push and pull request: the tests, ruff, the repository's own checks, and the Bloom Code
-# style of the scripts. The style checker lives in KaxaNuk-Agent-Skills and is fetched, not copied.
+# style of the scripts, checked by the repository's own `bloom-code-lint`.
 name: CI
 
 on:
@@ -21,7 +21,8 @@ jobs:
         run: uv run --no-project python tools/check_repo.py
       - name: Bloom Code
         run: |
-          curl -fsSL -o /tmp/bloom_code_check.py \
-            https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Agent-Skills/main/common/.apm/skills/bloom-code-lint/scripts/bloom_code_check.py
-          uv run --no-project python /tmp/bloom_code_check.py .apm/skills tests tools \
-            --local-package scaffold --local-package check_repo --local-package extract
+          uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py \
+            .apm/skills/*/scripts tests tools \
+            --local-package scaffold --local-package check_repo --local-package extract \
+            --local-package bloom_code_check --local-package propagate_mcp_env_vars \
+            --local-package sync_investment_lab_references

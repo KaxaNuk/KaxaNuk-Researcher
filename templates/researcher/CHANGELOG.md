@@ -5,6 +5,16 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.6.1 (2026-09-21)
+
+**PATCH** — the researcher's package carries every Investment Lab skill itself.
+
+**What to do differently:** nothing; `apm update -g` brings it.
+
+### Changed
+
+* **`AGENTS.md` names one package**, `KaxaNuk/KaxaNuk-Researcher`, for the skills and the commands.
+
 ## 0.6.0 (2026-09-21)
 
 **MINOR** — the researcher is a package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user;

@@ -1,8 +1,8 @@
-# The development environment for this repository's one script, `scaffold.py`, and its tests. The
+# The development environment for this repository's scripts and tools, and their tests. The
 # worked example in `examples/` carries its own `pyproject.toml`, which governs it alone.
 [project]
 name = "kaxanuk-researcher"
-version = "0.6.6"
+version = "0.7.0"
 requires-python = ">=3.12"
 dependencies = []
 

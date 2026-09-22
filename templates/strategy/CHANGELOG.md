@@ -41,6 +41,17 @@ for somebody who was not in the room:
 
 ---
 
+## 0.8.1 (2026-09-21)
+
+**PATCH** — the KaxaNuk skills are one package. No result changes.
+
+**What to do differently:** nothing; `apm update -g` brings them.
+
+### Changed
+
+- **`README.md` names one package for the skills**, `KaxaNuk/KaxaNuk-Researcher`, which now carries
+  every Investment Lab skill itself instead of bringing them from `KaxaNuk/KaxaNuk-Agent-Skills`.
+
 ## 0.8.0 (2026-09-21)
 
 **MINOR** — the template and the worked example now ship inside the KaxaNuk Researcher,

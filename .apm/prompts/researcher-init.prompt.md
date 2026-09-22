@@ -157,9 +157,8 @@ Beyond `apm install` here, which deploys this home's own agent, there is nothing
 `apm.yml` declares no dependency. The skills and commands — the researcher's and every Investment
 Lab package's — are installed once for the user, `apm install -g`, and every folder has them: this
 home, and every strategy, which installs nothing. If the owner asks about KaxaNuk's core
-knowledge, say where it lives: `KaxaNuk/KaxaNuk-Agent-Skills`, whose `investment-lab` package
-carries the process as the `experiment-lifecycle` skill and whose library packages carry the Lab
-modules. The library at home is built the ordinary way: a source into `Sources/`, then `read`.
+knowledge, say where it lives: `KaxaNuk/KaxaNuk-Researcher`, whose `experiment-lifecycle` skill
+carries the process and whose skills for each Lab library carry the modules. The library at home is built the ordinary way: a source into `Sources/`, then `read`.
 
 ## Step 7: Hand over
 
