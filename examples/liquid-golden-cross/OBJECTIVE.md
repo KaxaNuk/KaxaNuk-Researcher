@@ -102,7 +102,7 @@ against cash, never a cross-section of stocks, and neither reports a 50-day aver
 ### 2. The sizing — equal weight
 
 **The evidence read for it says what the claim is, and why it has no number yet.** [Paleologo (2021),
-chapter 6](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/10_Use_Effective_Heuristics_for_Alpha_Sizing.md)
+chapter 6](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/10_Alpha_Sizing.md)
 lists equal weight among its sizing rules as the 1/N rule — proportional sizing with every
 conviction equal — and this rule has no conviction: the trend state is a yes or a no, and the
 ranking is a cut. So the claim is not that equal weight beats sizing on a signal; it is that the one
@@ -110,7 +110,7 @@ thing the rule could size on, each stock's volatility, would not pay. In the aut
 the proportional rule beat risk parity by about a tenth and mean-variance by a third on identical
 signals, and the mechanism was forecast error meeting a wide spread of volatilities — a spread the
 thirty most traded names compress, so the edge claim 2 defends is smaller here than there.
-[Chapter 8](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/12_Understand_Your_Performance.md)
+[Chapter 8](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/12_Your_Performance.md)
 says why no run so far measures it: the cross-sectionally equalised book *is* this book, so its
 sizing term is zero by construction, and the counterfactuals of `FINDINGS_1.md` measured selection
 and the filter, never sizing. [Grinold & Kahn, chapter
@@ -149,9 +149,9 @@ paper adds to open lead 3 of `RESULTS.md` is weight: the block that read zero in
 the paper says explains most of a large-cap book's beta, so the 28 idiosyncratic points assigned to
 the ranking are provisional until a sector block or a rate term is in the model.
 [Paleologo (2021), chapter
-8](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/12_Understand_Your_Performance.md)
+8](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/12_Your_Performance.md)
 and [Grinold & Kahn, chapter
-16](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs_Turnover_and_Trading.md)
+16](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs.md)
 say what the ranking is for in the other claims' measurements: the counterfactuals assume every
 position can be built in a day, and market impact grows with the square root of a trade's share of
 daily volume, so the thirty most traded names are where both assumptions come closest to true.
@@ -172,7 +172,7 @@ liquidity-aware construction holding up after costs.
 
 **The evidence read for it is the claim's own source, and it came with conditions the sentence
 dropped.** Claim 4 is the rule of thumb of [Grinold & Kahn, chapter
-16](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs_Turnover_and_Trading.md)
+16](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs.md)
 — at least three-quarters of the value added for half the turnover — and the chapter attaches three
 conditions: the bound is for prorating every trade toward an optimum, where this rule trades to the
 full target or not at all; it is guaranteed under equality constraints only, and a long-only book at

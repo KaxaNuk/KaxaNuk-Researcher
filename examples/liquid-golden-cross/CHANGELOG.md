@@ -41,6 +41,19 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.1 (2026-09-22)
+
+**PATCH** — three chapter notes renamed so their paths stay under the 120 characters the
+package's repository check allows once the example sits under a home folder; every link to them
+rewritten. Nothing about any result changes.
+
+### Fixed
+
+- **Three note paths ran past the limit** the check enforces for Windows: Grinold and Kahn's
+  chapter 16 note is now `19_Transactions_Costs.md`, and Paleologo's chapters 6 and 8 are
+  `10_Alpha_Sizing.md` and `12_Your_Performance.md`. The book indexes, the notes that cross-link
+  them and `OBJECTIVE.md` point at the new names; `Bibliotheca/LOG.md` records the rename.
+
 ## 0.10.0 (2026-09-22)
 
 **MINOR** — every claim in `OBJECTIVE.md` now has a note behind it, the objective's evidence for

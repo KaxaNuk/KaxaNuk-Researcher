@@ -17,7 +17,7 @@ returns to convert.*
 Claim 2 of [`OBJECTIVE.md`](../../../OBJECTIVE.md) — *equal weight across the 30 captures that
 without a risk model.* Named in the objective as the source **against** the claim: on when a
 signal's strength should set the size. Its companion is the same book's
-[chapter 8](12_Understand_Your_Performance.md), on how to measure whether it does.
+[chapter 8](12_Your_Performance.md), on how to measure whether it does.
 
 ## The Sharpe ratio is an imperfect metric, imperfectly measured, and used anyway
 
