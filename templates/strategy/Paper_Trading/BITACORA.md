@@ -12,8 +12,8 @@ prices, with live universe changes, and with the delistings and corporate action
 has already tidied up.
 
 Step 8, Production, is not here: a strategy leaves this repository when it is funded — real
-capital, real monitoring, a real drawdown policy, step 8 of the KaxaNuk Strategy Template — and where that
-is depends on whose desk it is.
+capital, real monitoring, a real drawdown policy, step 8 of the KaxaNuk Strategy Template — and
+where that is depends on whose desk it is.
 
 > **This file is the gate, not a log.** `JOURNAL_N.md` means an append-only dated record inside an
 > experiment folder; this document is a contract — what graduation means and what has to be true

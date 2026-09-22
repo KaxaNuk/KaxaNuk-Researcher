@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.10.1] - 2026-09-22
+`check_repo` names a deleted example notebook, and the template stops inheriting four of the
+worked strategy's lines.
+### Fixed
+- **`tools/check_repo.py` crashed on an example notebook deleted from the working tree**: the
+  marker check read it as an empty text and JSON refused it, so the finding that names the
+  missing file never appeared. A tracked notebook that is not on disk is now skipped there, and
+  the template check reports it.
+- **Four lines of the worked example reached every new strategy** through the generated files
+  (template 0.10.1, example 0.10.3); `experiment-lifecycle`'s reference notebook and blueprint
+  template change with them.
+
 ## [0.10.0] - 2026-09-22
 The strategy template ships every file its README names, generated from the worked example, from
 the proposal in pull request #1.
