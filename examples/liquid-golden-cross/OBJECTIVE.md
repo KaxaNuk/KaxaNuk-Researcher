@@ -16,8 +16,9 @@
 > **This file is the worked example — `liquid-golden-cross`.** One strategy filled in, kept as the
 > worked example so the shape can be read rather than imagined. **Drafted 2026-09-19 from the idea
 > as it was first put, before any paper was read, any data downloaded or any rule coded, and
-> fine-tuned the same day for claim 1 once its notes existed.** Claims 2 to 4 are still in the first
-> pass: their evidence is the question that would settle them, and their sources are leads.
+> fine-tuned the same day for claim 1 once its notes existed.** Claims 2 to 4 were fine-tuned on
+> 2026-09-22, once their notes existed, the same way: their evidence rewritten from the notes,
+> their wording untouched.
 > **The status column was updated on 2026-09-20, once `FINDINGS_1.md` reported; no claim's wording
 > changed, and the diff shows it** — a claim edited after its test is not a claim. A strategy of
 > your own starts from `init-strategy`, never from here.
@@ -100,24 +101,65 @@ against cash, never a cross-section of stocks, and neither reports a 50-day aver
 
 ### 2. The sizing — equal weight
 
-**What would settle it — a lead.** A later experiment that proposes another weighting and has to
-beat this one. Until then the claim is that equal weight is *sufficient*, not that it is best.
+**The evidence read for it says what the claim is, and why it has no number yet.** [Paleologo (2021),
+chapter 6](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/10_Use_Effective_Heuristics_for_Alpha_Sizing.md)
+lists equal weight among its sizing rules as the 1/N rule — proportional sizing with every
+conviction equal — and this rule has no conviction: the trend state is a yes or a no, and the
+ranking is a cut. So the claim is not that equal weight beats sizing on a signal; it is that the one
+thing the rule could size on, each stock's volatility, would not pay. In the author's own experiment
+the proportional rule beat risk parity by about a tenth and mean-variance by a third on identical
+signals, and the mechanism was forecast error meeting a wide spread of volatilities — a spread the
+thirty most traded names compress, so the edge claim 2 defends is smaller here than there.
+[Chapter 8](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/12_Understand_Your_Performance.md)
+says why no run so far measures it: the cross-sectionally equalised book *is* this book, so its
+sizing term is zero by construction, and the counterfactuals of `FINDINGS_1.md` measured selection
+and the filter, never sizing. [Grinold & Kahn, chapter
+14](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/17_Portfolio_Construction.md)
+gives the trade-off in its own terms: an equal-weighted screen is robust to a wild input and blind
+to risk, and in Muller's test it earned the lowest average information ratio of four methods and the
+steadiest.
 
-**Worth reading for it — leads, no note yet.** DeMiguel, Garlappi & Uppal (2009), already a lead in
-Part 3, on how hard equal weighting is to beat out of sample. **Against it:** Paleologo (2021),
-chapters 6 and 8, on when a signal's strength should set the size, and how to measure whether it
-does.
+**What would settle it.** A sizing experiment that prices the second row of Paleologo's table, a
+thirtieth divided by volatility, beside this book, with plain mean-variance as the control that
+should lose — judged on step 6's idiosyncratic return rather than on a Sharpe gap, because the gap
+between this book and its equalised control is 0.03 and the confidence band on a nine-year Sharpe is
+far wider than that. Its predictions are fixed in the chapter 6 note: risk parity within a few
+percent of equal weight, mean-variance below both.
+
+**Worth reading for it — a lead, no note yet.** DeMiguel, Garlappi & Uppal (2009), already a lead in
+Part 3, on how hard equal weighting is to beat out of sample.
 
 ### 3. The construction — the volume ranking
 
-**This claim is true by construction, and is expected to cost return rather than add it.** Ranking
+**This claim is true by construction, and was expected to cost return rather than add it.** Ranking
 by trading volume is what makes every position one the desk can get in and out of. It also makes
-this a book of the largest companies, since trading volume follows company size, and step 6 will
-see that as a size exposure, not as skill.
+this a book of the largest companies, since trading volume follows company size, and the first pass
+expected step 6 to see that as a size exposure, not as skill.
+
+**The evidence read for it says what a book of the largest companies loads on, and it is not
+size.** [Sarkar, Du & Vafai
+(2019)](Bibliotheca/Papers/Sarkar_Du_Vafai_2019_Impacts_Of_Sector_And_Company_Size.md) regress a
+354-name large-company portfolio on the French factors, the rate terms and seventeen sectors over
+1990–2016: without the sectors, beta, size, value and momentum are all significant; with them, beta,
+size and value lose significance, and what remains is momentum, the risk-free rate, the yield curve
+and six sectors. Step 6 found size at 4.11 of 159.5 points and momentum at 12.75, which is the
+paper's reading — with the caution that its large-cap momentum coefficient is negative in every
+table and its text never says so, so it is no evidence that the 12.75 points are a premium. What the
+paper adds to open lead 3 of `RESULTS.md` is weight: the block that read zero in step 6 is the block
+the paper says explains most of a large-cap book's beta, so the 28 idiosyncratic points assigned to
+the ranking are provisional until a sector block or a rate term is in the model.
+[Paleologo (2021), chapter
+8](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/12_Understand_Your_Performance.md)
+and [Grinold & Kahn, chapter
+16](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs_Turnover_and_Trading.md)
+say what the ranking is for in the other claims' measurements: the counterfactuals assume every
+position can be built in a day, and market impact grows with the square root of a trade's share of
+daily volume, so the thirty most traded names are where both assumptions come closest to true.
 
 **What is still open — a lead.** How much return the ranking gives up, and whether the trend filter
 works as well among the most traded stocks as among the rest. A later experiment varies the cut and
-reads it as a curve.
+reads it as a curve; the paper's liquidity variable is a market-wide factor, not a stock's own
+volume, so it does not answer this.
 
 **Worth reading for it — leads, no note yet.** **Against it:** Amihud (2002), *Illiquidity and Stock
 Returns: Cross-Section and Time-Series Effects*, on less traded stocks earning more; and Lee &
@@ -128,17 +170,36 @@ liquidity-aware construction holding up after costs.
 
 ### 4. The rebalancing — the 10% band
 
-**What would settle it — a lead.** Does trading only when the book is 10% away from its target keep
-most of the return at a fraction of the turnover, net of costs? The engine answers it directly: the
-same rule with no band, trading to the target on every check, against the band at 10%; then a sweep
-of the band, read as a curve.
+**The evidence read for it is the claim's own source, and it came with conditions the sentence
+dropped.** Claim 4 is the rule of thumb of [Grinold & Kahn, chapter
+16](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs_Turnover_and_Trading.md)
+— at least three-quarters of the value added for half the turnover — and the chapter attaches three
+conditions: the bound is for prorating every trade toward an optimum, where this rule trades to the
+full target or not at all; it is guaranteed under equality constraints only, and a long-only book at
+a thirtieth each is the inequality case, where the authors keep 75 percent as experience rather than
+proof; and it is a bound on incremental value added over a frontier, so the band has to be read as
+that frontier. The band itself comes from [chapter
+14](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/17_Portfolio_Construction.md),
+where it sits on each stock's alpha and is as wide as its two costs, and where Leland's halving of
+turnover "with effectively no change in risk" comes from trading to the boundary, not to the target
+— two things the transplant changed. **Against it,** [chapter
+13](Bibliotheca/Books/Grinold_Kahn_ND_Active_Portfolio_Management/16_The_Information_Horizon.md): a
+band is a delay, a delay loses value at the half-life of the signal's forecasting power, and that
+half-life has never been measured here; the analyzer's coefficients at 21, 63 and 252 days are the
+raw material, on overlapping windows the chapter says overstate the evidence. The first datum is
+already in `FINDINGS_1.md`, and it points the wrong way for the claim: the same names traded on the
+rule's 87 dates earned more, net, than traded on 11.
 
-**Worth reading for it — leads, no note yet.** Grinold & Kahn, *Active Portfolio Management*,
-chapters 14 and 16, on a no-trade band as wide as the costs of buying and selling, and on keeping
-most of the value added at half the turnover. **Against it:** the same book's chapter 13 — a delayed
-trade loses a signal's value at the rate of its half-life, and a band is a delay. Novy-Marx &
-Velikov (2016), already a lead in Parts 4 and 5, on which cost-saving rules keep an anomaly's return
-after costs.
+**What would settle it.** Does trading only when the book is 10% away from its target keep most of
+the return at a fraction of the turnover, net of costs? The engine answers it directly: the same rule
+with no band, trading to the target on every check, against the band at 10%; then a sweep of the
+band — 0%, 5%, 10%, 20%, 30% — read as the chapter's frontier of value added against turnover, with
+an arm that trades to the edge of the band rather than to the target, the slope at 10% read as the
+round-trip cost the band implies, and the delay test — the frozen book implemented one, five and
+twenty-one days late — run before any band is chosen. A new experiment, not an edit to this one.
+
+**Worth reading for it — a lead, no note yet.** Novy-Marx & Velikov (2016), already a lead in
+Parts 4 and 5, on which cost-saving rules keep an anomaly's return after costs.
 
 ## What is not claimed
 
@@ -164,7 +225,12 @@ after costs.
   literature is not this claim's evidence, and step 6 may assign the book little of its return even
   if the filter works, because a factor model built on relative factors is close to blind to an
   absolute rule — [`AGENTS.md`](AGENTS.md), *What attribution must report*. If that happens, it is a
-  finding.
+  finding. [Baltussen, Dom, Van Vliet & Vidojevic
+  (2025)](Bibliotheca/Papers/Baltussen_Dom_VanVliet_Vidojevic_2025_Momentum_Factor_Investing.md)
+  is the momentum evidence read as context: a relative rank throughout, with no test of a stock
+  against its own averages, so the +12.75 momentum points step 6 reported measure how much the book
+  resembled a winners-minus-losers portfolio in momentum's strongest years since 2009 — a factor
+  exposure, not the filter in another name.
 - **Not that the ranking adds return.** See claim 3. If the book beats its benchmark, the ranking is
   not where the outperformance came from, and `FINDINGS_1.md` has to say so.
 - **Not that the book times the market.** When fewer than 30 stocks are in an uptrend the empty
