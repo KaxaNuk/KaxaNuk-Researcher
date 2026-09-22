@@ -25,3 +25,8 @@ Thumbs.db
 
 # Python: the package has no lock of its own; CI runs with --no-project
 /uv.lock
+
+# Eval runs: the throwaway install, the assembled plugin, and the harness results.
+evals/.install/
+evals/.run/
+evals/results/
