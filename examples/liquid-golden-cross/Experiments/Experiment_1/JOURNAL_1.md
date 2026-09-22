@@ -291,4 +291,47 @@ leaves open.
   comes from — is still untested, and its 2008–09 evidence still comes from the long window, which
   is survivorship-affected.
 
+## 2026-09-22 — criterion 1: the pipeline re-run from a wiped working copy, on a fresh download
+
+- **Idea / question:** success criterion 1 of `BLUEPRINT_1.md` — reproducible from a clean clone,
+  through the pipeline, with no manual step — had never been tested from a wiped copy: both earlier
+  re-runs reused the curator's download. A copy made by `init-example` into an empty folder, with
+  nothing but the hand-supplied index and factor files added, is that test.
+- **What we tried / considered:** the whole pipeline in the template's order on 2026-09-22 —
+  `Data/curator.py` against FMP, `Universe/universe.ipynb`, `Data/refinery.py`,
+  `Data/analyzer.ipynb`, `experiment_1.ipynb` — with Backtest Engine 0.66.0, the version the
+  published run used, and Attribution Analysis 0.2.0, the notebooks executed headless and their
+  outputs written outside the repository. The index and factor files came from the desk's own
+  folder under other names and one other header: `KN_US_Equity_Benchmark_Holdings.csv` and
+  `_Returns.csv` for the two the code reads as `KN_US_Equity_Benchmark.csv` and
+  `KN_US_Equity_Returns.csv`, the returns file headed `m_date` where the curator parses
+  `date_column`, and the factor files capitalised where the attribution module wants them lower
+  case with the four reserved series prefixed `f_`. Renamed on copying; `SETUP.md` now says so. The
+  download stalled twice on a hung request after a DNS failure and was restarted; it skips complete
+  files, so nothing was fetched twice.
+- **Outcome / decision:** the pipeline runs end to end from a wiped copy with no manual step beyond
+  the hand-supplied files, every conclusion holds, and the figures reproduce to the data rather than
+  to the digit. The download came back 789 files, `MIC` the one name with no data, as published; the
+  universe stage repeated its counts exactly — 265 late starts, 76 early ends, the four impossible
+  prints, 787 signallable and the book fillable from 2001-10-22 — with one provider-side drift: the
+  profile flag marks 79 names delisted where the blueprint recorded 82. The refined panel is ten rows
+  short of the published 4,252,848, and the analyzer's nine measurements came back identical but for
+  the 63-day coefficient, 0.0026 against 0.0027. The engine's filter-off control and the index
+  reproduced to every published decimal and the long window to within 0.01 of a point; the rule
+  itself fired 86 rebalances against 87 and compounded at 17.89% against 17.85%, Sharpe 0.863
+  against 0.861, drawdown −30.55% against −30.54%. Against the plain control the filter costs 0.73
+  points a year against the published 0.77; against the equalised control, 18.96% this run, 1.07
+  against 1.12. The attribution's factor lines moved by hundredths — momentum 12.69 against 12.75,
+  idiosyncratic 45.44 against 45.52 — and the eleven sector factors read exactly 0.00 again. The
+  random arms moved most, as five draws from a pool that shifted by a few names would: −14.0 to 29.5
+  points, mean 11.1, against −17.6 to 25.2, mean 12.5; the rule still sits above the range's top.
+  Criterion 1 is recorded as met to the data in `FINDINGS_1.md`, with the re-run's figures beside
+  the published ones; **no published figure is changed**, because the numbers moved for a known
+  reason — a fresh pull rebases the adjusted columns, known limitation 5 of `RESULTS.md` — and a
+  committed result is not edited to agree with a new run.
+- **Open threads:** which security's ten rows moved, and which rebalance trigger with them, was not
+  traced; a diff of the two downloads would say. The 82-against-79 delisted count is the provider's
+  flag, not the price files, and only the caveat table cites it. The random arm's sensitivity to the
+  pool is one more reason for the first open lead, far more draws.
+
 <!-- example: end -->

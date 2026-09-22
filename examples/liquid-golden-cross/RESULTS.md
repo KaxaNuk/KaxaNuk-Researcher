@@ -157,10 +157,16 @@ The long window starts 2002-07-30 rather than the blueprint's 2002-01-02: `SHY`,
 launched that day, and the engine cannot value a book whose cash has no price. Caveat 9 of
 [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) carries it.
 
-**Does it reproduce?** Within the same working copy, yes: the notebook was re-run end to end on
+**Does it reproduce?** Within the same working copy, exactly: the notebook was re-run end to end on
 2026-09-20 and every figure above came back identical — 17.85%, 0.8612, −30.54%, and 45.52
-idiosyncratic points. It has **not** been re-run from a wiped working copy, which is the test that
-would also catch a stale intermediate file.
+idiosyncratic points. From a wiped working copy on a fresh download, on 2026-09-22, to the data
+rather than to the digit: the pipeline ran end to end with no manual step beyond the hand-supplied
+index and factor files, every conclusion held, the filter-off control and the index came back to
+every published decimal, and the rule moved by hundredths — 17.89%, 0.863, −30.55%, 45.44
+idiosyncratic points, 86 rebalances against 87 — on a panel ten rows different, which is
+limitation 5 below, measured. No figure above is changed by it;
+[`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) carries the re-run's figures beside
+the published ones.
 
 ### The trial count
 

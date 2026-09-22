@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.9.0] - 2026-09-22
+The worked example's bibliography covers every claim, its Experiment 1 meets its last success
+criterion, and its setup guide names the files it cannot download.
+### Added
+- **Six notes carried and two papers read in `examples/liquid-golden-cross`**, so every claim in
+  its `OBJECTIVE.md` has a note behind it: Grinold and Kahn's chapters 13, 14 and 16 for the
+  rebalancing band, Paleologo's chapters 6 and 8 for the sizing, the momentum review of Baltussen,
+  Dom, Van Vliet and Vidojevic (2025) for the signal, and Sarkar, Du and Vafai (2019) for the
+  construction. The example's own changelog, 0.10.0, has the detail.
+### Changed
+- **The example's `OBJECTIVE.md` is fine-tuned for claims 2 to 4** from those notes, with no
+  claim's wording changed, as the order of work says a fine-tuning pass does.
+- **The example's `SETUP.md` states the exact names, headers and date order of the hand-supplied
+  benchmark and factor files**, and the four reserved factor names, because a file named otherwise
+  is not found, or is silently counted as one more factor.
+- **The example's Experiment 1 meets success criterion 1, to the data.** Its pipeline was re-run
+  from a wiped working copy on a fresh download with no manual step beyond the hand-supplied
+  files; every conclusion held, the filter-off control and the index came back to every
+  published decimal, and the rule moved within hundredths and one rebalance. `FINDINGS_1.md`
+  carries the re-run's figures beside the published ones, which stand.
+
 ## [0.8.2] - 2026-09-22
 Two lines the first testers would have missed.
 ### Fixed

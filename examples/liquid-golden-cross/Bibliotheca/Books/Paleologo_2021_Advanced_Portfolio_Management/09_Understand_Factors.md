@@ -74,6 +74,12 @@ objective as the source on why a trend rule is not a momentum rule.
 - Risk-based explanations have emerged. A quantile plot of medium-term momentum returns, z-scored
   by trailing three-month volatility, shows a left tail heavier than normal, and this is extended by
   [Daniel and Moskowitz, 2016] (p. 76, Figure 5.10).
+> [!WARNING]
+> [Baltussen, Dom, Van Vliet & Vidojevic (2025)](../../Papers/Baltussen_Dom_VanVliet_Vidojevic_2025_Momentum_Factor_Investing.md)
+> find the opposite on 154 years of risk events — downside risk "cannot explain the momentum
+> premium", and risk-based explanations "fail to explain the momentum factor premium" (their
+> p. 27). The chapter's claim stays as it states it.
+
 - A stronger claim: two studies define lower tail dependence, the probability a stock has a large
   loss when the market does, and show that treating it as a factor makes momentum redundant, with
   momentum's returns becoming insignificant once lower tail dependence is included
