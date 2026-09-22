@@ -13,7 +13,7 @@ description: >
   show them), sizing a book (use `portfolio-construction-runs`), or the research process around
   the stage (use `experiment-lifecycle`).
 metadata:
-  version: 0.1.3
+  version: 0.1.4
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -40,8 +40,9 @@ Universe/Investable_Universe.csv   the seed, committed  ->  edit this to change 
                     +--> Data/refinery.py    joins the master onto the panel as current_*
 ```
 
-**The template ships the seed, header-only, and not the notebook.** When `Universe/universe.ipynb`
-is missing, ask the owner to run `init-example Universe/universe.ipynb` — by its own path, because
+**The template ships the seed, header-only, and the notebook as its markdown cells**, each section
+a description of what its code must do. In a strategy made from a template before 0.10.0
+`Universe/universe.ipynb` is missing: ask the owner to run `init-example Universe/universe.ipynb` — by its own path, because
 `init-example Universe` is refused over the seed — and say that its code cells, each starting
 `# EXAMPLE-ONLY CELL`, are `liquid-golden-cross`'s. Never write the notebook from memory.
 

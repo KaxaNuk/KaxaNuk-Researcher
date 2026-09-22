@@ -41,6 +41,37 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.0 (2026-09-22)
+
+**MINOR** — the template ships every file its README's *What is in here* table names, each as a
+description of what belongs in it. No result changes.
+
+**What to do differently:** a new strategy brings nothing across from the example. Fill in the
+files that are already here — a `.py` file is its docstring, a notebook its markdown cells, a
+document its prose. A strategy made from an earlier template can take a file it lacks with
+`init-example <path>`, and delete what is between the example markers.
+
+### Added
+
+- **Eighteen files inside the folders**: `Universe/universe.ipynb`; `Data/curator.py`,
+  `refinery.py`, `analyzer.ipynb` and the two `custom_calculations.py`; the four shared modules in
+  `Experiments/`; `Experiment_1/`'s four documents and notebook; `Paper_Trading/BITACORA.md`,
+  `daily_update.py` and `Paper_Trading_1/paper_trading_1.py`. Each is generated from the worked
+  example with the worked strategy's own lines removed, by
+  `tools/sync_investment_lab_references.py` in the KaxaNuk Researcher, and `tools/check_repo.py`
+  there fails when one differs.
+
+### Changed
+
+- **`README.md`, `AGENTS.md` and `SETUP.md` no longer send a new strategy to
+  `init-example <path>`** for a file: it is already here. `init-example` copies the example whole,
+  to read or run. `AGENTS.md` says the example markers are what the sync tool strips.
+
+### Removed
+
+- **The `.gitkeep` files in `Universe/`, `Data/`, `Experiments/` and `Paper_Trading/`**, which held
+  the folders open while they had no file.
+
 ## 0.9.0 (2026-09-22)
 
 **MINOR** — a new strategy takes its own name and version at setup, `SETUP.md` no longer describes

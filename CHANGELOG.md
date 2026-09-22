@@ -6,6 +6,32 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.10.0] - 2026-09-22
+The strategy template ships every file its README names, generated from the worked example, from
+the proposal in pull request #1.
+### Added
+- **`tools/sync_investment_lab_references.py` regenerates the template's files** — the drivers, the
+  shared modules, the notebooks, Experiment 1's documents and the paper-trading files, eighteen in
+  all, as its `TEMPLATE_FILES` lists them — from the worked example with its own lines removed, the
+  way it already regenerated `experiment-lifecycle`'s references: a `.py` file comes out as its
+  docstring, a notebook as its markdown cells, a document as its prose. Only the files that differ
+  are written, and a missing example file stops the run with its name. **`check_repo.py` fails
+  when a template file differs** from what the example says (template 0.10.0).
+- **Tests for the sync tool's stripping**: the Python example block, blank lines kept around a
+  removed block, adjacent blocks, the transform by suffix, the mapping against the example, and
+  stale detection.
+### Changed
+- **A marker must stand alone at column 0, and markers inside notebook cells are checked too.**
+  `check_repo.py` reads the marker strings from the sync tool and reports an indented marker, one
+  with trailing whitespace, or a broken pair inside a notebook cell: the sync tool would not strip
+  it, and the example's lines would reach every new strategy.
+- **A removed example block no longer merges blank lines across the whole file**, so Python kept
+  outside a block keeps PEP 8's two blank lines between definitions.
+- **`init-example <path>` is for a strategy made before template 0.10.0**, which lacks the files. A
+  strategy made now has nothing to bring across: `init-example` 0.1.2, `init-strategy` 0.1.2,
+  `experiment-lifecycle` 0.7.4, `data-curator-custom-calculations` 0.3.1,
+  `universe-point-in-time` 0.1.4, and the `blueprint` and `brainstorm` commands say so.
+
 ## [0.9.2] - 2026-09-22
 No CI: the checks run on the maintainer's machine, as `AGENTS.md` always asked.
 ### Removed

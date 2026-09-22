@@ -8,7 +8,7 @@ description: >
   `init-strategy`), and never builds on the example: it is a worked strategy to read, not a
   template to fill.
 metadata:
-  version: 0.1.1
+  version: 0.1.2
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -26,8 +26,10 @@ belongs in each file. It is also readable without installing anything, in
 - **The whole example, in a new folder** — *init-example*, *give me the example to look at*. To
   read it, run its notebooks, or see what a finished experiment looks like.
 - **One piece into an existing strategy** — *init-example Experiments/Experiment_1*, *bring the
-  blueprint across*. The files the template does not carry — the experiment documents,
-  the notebooks, `Paper_Trading/BITACORA.md` — come from here.
+  blueprint across*. For a strategy made from a template before 0.10.0, which lacks the files
+  inside the folders: the drivers, the notebooks, the experiment documents,
+  `Paper_Trading/BITACORA.md`. A strategy made since has every one of them already, as a
+  description to fill in; it needs nothing from here.
 - Not on its own initiative. A skill that needs one of these files names this skill and the path,
   and the owner runs it.
 

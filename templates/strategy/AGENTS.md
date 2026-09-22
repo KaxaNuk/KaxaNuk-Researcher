@@ -8,9 +8,9 @@ survive before anyone believes it.
 
 > **Status: the template.** No strategy, no data, no result and no code: beyond
 > `Config/.env.template`, the header-only seed in `Universe/` and the `Bibliotheca/` index and log,
-> the folders hold only `.gitkeep` files, and the files the process expects in them are in the
-> example, which `init-example <path>` copies from. Replace this banner with your own status when
-> you take the repository over; it is the same line as your `README.md`'s.
+> every file in the folders is a description of what belongs in it — a `.py` file its docstring, a
+> notebook its markdown cells — to be filled in. Replace this banner with your own status when you
+> take the repository over; it is the same line as your `README.md`'s.
 
 ## First run — for the agent, before anything else
 
@@ -44,16 +44,18 @@ lines of work: same issue, same discussion, separate history.
 `KaxaNuk/KaxaNuk-Researcher`: the template as `templates/strategy/`, and one strategy,
 `liquid-golden-cross`, worked through it as `examples/liquid-golden-cross/` — its own lines between
 example markers, for reading and copying, never building on. When the process changes, the example
-takes the change file by file. The files inside the folders live only in the example; the shape is
-written down once, in the *What is in here* table of the template's README, which a strategy's own
-README links to. Issues and pull requests from anyone land there — the process improves in public.
-A strategy of your own stays in your own repository.
+takes the change file by file, and the template's files inside the folders are generated from it
+with the worked strategy's lines removed. The shape is written down once, in the *What is in here*
+table of the template's README, which a strategy's own README links to. Issues and pull requests
+from anyone land there — the process improves in public. A strategy of your own stays in your own
+repository.
 
-**`init-strategy` copies the template only**, on purpose. `Bibliotheca/BIBLIOGRAPHY.md` and
-`LOG.md` come with it, empty, and so does the seed, `Universe/Investable_Universe.csv`, with only
-its header. A strategy takes the other files it needs from the example with `init-example <path>`,
-one path at a time, and deletes what is the worked strategy's — everything between the example
-markers — or lets the `experiment-lifecycle` skill scaffold them.
+**`init-strategy` copies the template only**, on purpose, and the template holds every file the
+process expects: the seed, `Universe/Investable_Universe.csv`, with only its header,
+`Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, empty, and each driver, module, notebook and document as
+a description of what belongs in it, to be filled in. Nothing is brought across from the example.
+A strategy made from a template before 0.10.0 lacks the files inside the folders:
+`init-example <path>` brings one across, and what is between its example markers is then deleted.
 **The issue branches below are a recommendation**, there to keep project management simple, not a
 gate.
 
@@ -174,8 +176,8 @@ Two standing exceptions, and one that has to be asked for:
 - **Never use the section symbol** in documents here. Write "section" or name the heading.
 - **In the example, mark the worked strategy's content as you add it.**
   `# --- example: begin ---` in Python, an HTML comment of the same words in Markdown, and
-  `# EXAMPLE-ONLY CELL` on a whole notebook cell. Nothing consumes these; they show a person
-  starting their own strategy what to delete.
+  `# EXAMPLE-ONLY CELL` on a whole notebook cell. The KaxaNuk Researcher's sync tool strips what
+  they enclose to generate the template's files, so a line left unmarked reaches every new strategy.
 
 ---
 
