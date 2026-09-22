@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.6.6] - 2026-09-21
+The README says how to install once.
+### Changed
+- **One *Install* section** replaces the prompt in the introduction and *Install once, for your user*: the prompt to paste into Claude or Codex, the two commands by hand, then the first three commands in a new session.
+
 ## [0.6.5] - 2026-09-21
 The README's install section gives both ways in.
 ### Changed
