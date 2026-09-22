@@ -1,26 +1,32 @@
 """
-Regenerate the `experiment-lifecycle` references from the worked example, or check that they match.
+Regenerate what the worked example generates -- the `experiment-lifecycle` references and the
+template's files -- or check that they match.
 
-The worked example -- `examples/liquid-golden-cross/` -- is the source of truth for the four
-experiment documents and the experiment notebook that `experiment-lifecycle` ships as copyable
-references.  A skill that carried its own version of those files drifted from the template once
-already, so the copies are regenerated from the example rather than edited by hand, and
-`tools/check_repo.py` fails when they differ.
+The worked example -- `examples/liquid-golden-cross/` -- is the source of truth for two sets of
+files.  The four experiment documents and the experiment notebook that `experiment-lifecycle` ships
+as copyable references: a skill that carried its own version of those files drifted from the
+template once already.  And every file inside the folders of `templates/strategy/` -- the drivers,
+the shared modules, the notebooks, Experiment 1's documents, the paper-trading files -- which a new
+strategy used to bring across from the example one by one and strip by hand.  Both sets are
+regenerated from the example rather than edited by hand, and `tools/check_repo.py` fails when they
+differ.
 
-Run from the repository root after changing the example's experiment documents:
+Run from the repository root after changing the example:
 
     uv run --no-project python tools/sync_investment_lab_references.py
     uv run --no-project python tools/sync_investment_lab_references.py --check
 
-Only the references that differ are written, so a run on an unchanged example leaves no change.
-A missing example document stops the run with its name, before anything is written.
+Only the files that differ are written, so a run on an unchanged example leaves no change.  A
+missing example file stops the run with its name, before anything is written.
 
 The example works one strategy through the process, and keeps that strategy's own lines between
-whole-line markers -- `<!-- example: begin -->` and `<!-- example: end -->` in Markdown, and
-`# EXAMPLE-ONLY CELL` at the top of a notebook cell -- so they are stripped before anything is
-written: a reference is the template's description, never another strategy's content.  The four
-documents then have `_1` rewritten to `_N` so they read as templates for any experiment; the
-notebook keeps its name inside, because a new experiment copies and renames it.
+whole-line markers -- `<!-- example: begin -->` and `<!-- example: end -->` in Markdown,
+`# --- example: begin ---` and `# --- example: end ---` in Python, and `# EXAMPLE-ONLY CELL` at the
+top of a notebook cell -- so they are stripped before anything is written: what is generated is the
+template's description, never another strategy's content.  A Python file of the example keeps its
+code inside the block, so its template copy is the module docstring.  The four reference documents
+then have `_1` rewritten to `_N` so they read as templates for any experiment; the template's own
+copies keep `_1`, because they sit in `Experiments/Experiment_1/`.  Notebooks keep their names.
 """
 
 import argparse
@@ -33,6 +39,31 @@ import sys
 REPOSITORY_ROOT = pathlib.Path(__file__).resolve().parent.parent
 REFERENCES_DIRECTORY = ".apm/skills/experiment-lifecycle/references"
 EXPERIMENT_DIRECTORY = "examples/liquid-golden-cross/Experiments/Experiment_1"
+EXAMPLE_DIRECTORY = "examples/liquid-golden-cross"
+TEMPLATE_DIRECTORY = "templates/strategy"
+# The files the template ships as generated from the example: every file inside the folders that
+# its README's *What is in here* table names.  Each lands at the same path under the template with
+# the worked strategy's own lines removed, so what is outside the markers is the template's.
+TEMPLATE_FILES = (
+    "Data/Curator/custom_calculations.py",
+    "Data/Refinery/custom_calculations.py",
+    "Data/analyzer.ipynb",
+    "Data/curator.py",
+    "Data/refinery.py",
+    "Experiments/Experiment_1/BLUEPRINT_1.md",
+    "Experiments/Experiment_1/BRAINSTORMING_1.md",
+    "Experiments/Experiment_1/FINDINGS_1.md",
+    "Experiments/Experiment_1/JOURNAL_1.md",
+    "Experiments/Experiment_1/experiment_1.ipynb",
+    "Experiments/attribution_analysis.py",
+    "Experiments/backtest_engine.py",
+    "Experiments/portfolio_construction.py",
+    "Experiments/securities_panel.py",
+    "Paper_Trading/BITACORA.md",
+    "Paper_Trading/Paper_Trading_1/paper_trading_1.py",
+    "Paper_Trading/daily_update.py",
+    "Universe/universe.ipynb",
+)
 
 # Example file -> reference file.  The documents are renamed from `_1` to `_N`; the notebook keeps
 # its content and takes the name the skill refers to.
@@ -59,15 +90,48 @@ RENAMES = (
         "## Experiment N — <the idea, in five words>",
     ),
 )
-# A marker counts only as a whole line: `JOURNAL_1.md` quotes both markers inside a sentence, and a
-# match that started or stopped there would cut the file in the wrong place.
-EXAMPLE_BLOCK = re.compile(
-    r"^<!-- example: begin -->$.*?^<!-- example: end -->$\n?",
-    re.MULTILINE
-    | re.DOTALL,
-)
+# The worked strategy's own lines sit between markers that count only as whole lines at column 0:
+# `JOURNAL_1.md` quotes both markers inside a sentence, and a match that started or stopped there
+# would cut the file in the wrong place.  Markdown and Python each have their pair; a notebook marks
+# whole cells instead.  `tools/check_repo.py` reads these markers and checks that they stand alone
+# at column 0 and open and close in order.
+EXAMPLE_MARKERS = {
+    ".md": (
+        "<!-- example: begin -->",
+        "<!-- example: end -->",
+    ),
+    ".py": (
+        "# --- example: begin ---",
+        "# --- example: end ---",
+    ),
+}
+# One pattern per pair: the block, with the runs of newlines on both sides of it captured, so the
+# replacement can keep the longer run.  Blocks separated only by blank lines are removed as one
+# match, so the seam sees only the outer runs and the gap between them is not counted twice.  A
+# suffix not here has no line markers: a notebook marks whole cells, and any other file is copied
+# whole.
+EXAMPLE_BLOCKS = {
+    suffix: re.compile(
+        "".join([
+            r"(\n*)^",
+            re.escape(begin),
+            r"$.*?^",
+            re.escape(end),
+            r"$(?:\n*^",
+            re.escape(begin),
+            r"$.*?^",
+            re.escape(end),
+            r"$)*(\n*)",
+        ]),
+        re.MULTILINE
+        | re.DOTALL,
+    )
+    for suffix, (begin, end)
+    in EXAMPLE_MARKERS.items()
+}
+MARKDOWN_EXAMPLE_BLOCK = EXAMPLE_BLOCKS[".md"]
+PYTHON_EXAMPLE_BLOCK = EXAMPLE_BLOCKS[".py"]
 EXAMPLE_ONLY_CELL = "# EXAMPLE-ONLY CELL"
-EXTRA_BLANK_LINES = re.compile(r"\n{3,}")
 
 
 def expected_references(
@@ -99,45 +163,65 @@ def expected_references(
     return references
 
 
+def expected_template_files(
+    root: pathlib.Path,
+) -> dict[str, str]:
+    """Every generated template file's path, and the text the worked example says it should hold."""
+    example_directory = root / EXAMPLE_DIRECTORY
+    files = {
+        relative_path: template_part(
+            read_example_text(example_directory / relative_path),
+            pathlib.PurePosixPath(relative_path).suffix,
+        )
+        for relative_path
+        in TEMPLATE_FILES
+    }
+
+    return files
+
+
 def main() -> int:
-    """Parse the command line, then write the references or check them."""
+    """Parse the command line, then write the references and the template's files, or check them."""
     parser = argparse.ArgumentParser(
-        description="Regenerate the experiment-lifecycle references from the worked example.",
+        description="Regenerate the experiment-lifecycle references and the template's files from the worked example.",
     )
     parser.add_argument(
         "--check",
         action="store_true",
-        help="write nothing; exit 1 when a reference differs from what the example says",
+        help="write nothing; exit 1 when a reference or a template file differs from what the example says",
     )
     arguments = parser.parse_args()
-    stale = stale_references(REPOSITORY_ROOT)
+    stale_reference_names = stale_references(REPOSITORY_ROOT)
+    stale_template_paths = stale_template_files(REPOSITORY_ROOT)
+    anything_stale = bool(stale_reference_names or stale_template_paths)
 
     if arguments.check:
-        for reference_name in stale:
-            print(f"  stale  {reference_name}")
-        exit_code = 1 if stale else 0
+        for reference_name in stale_reference_names:
+            print(f"  stale  {REFERENCES_DIRECTORY}/{reference_name}")
+        for relative_path in stale_template_paths:
+            print(f"  stale  {TEMPLATE_DIRECTORY}/{relative_path}")
+        exit_code = 1 if anything_stale else 0
 
         return exit_code
 
-    if not stale:
-        print("references already match the example")
+    if not anything_stale:
+        print("references and template files already match the example")
 
         return 0
 
-    references_directory = REPOSITORY_ROOT / REFERENCES_DIRECTORY
-    references_directory.mkdir(
-        parents=True,
-        exist_ok=True,
+    _write_files(
+        REPOSITORY_ROOT,
+        REFERENCES_DIRECTORY,
+        expected_references(REPOSITORY_ROOT),
+        stale_reference_names,
     )
-    references = expected_references(REPOSITORY_ROOT)
-    for reference_name in stale:
-        (references_directory / reference_name).write_text(
-            references[reference_name],
-            encoding="utf-8",
-            newline="\n",
-        )
-        print(f"  {reference_name}")
-    print(f"references regenerated from {EXPERIMENT_DIRECTORY}")
+    _write_files(
+        REPOSITORY_ROOT,
+        TEMPLATE_DIRECTORY,
+        expected_template_files(REPOSITORY_ROOT),
+        stale_template_paths,
+    )
+    print(f"regenerated from {EXAMPLE_DIRECTORY}")
 
     return 0
 
@@ -160,7 +244,7 @@ def read_example_text(
 ) -> str:
     """A worked-example file's text with line endings made LF; a missing one stops the sync."""
     if not path.is_file():
-        message = f"{path} is missing; the worked example is the source of the references"
+        message = f"{path} is missing; the worked example is the source of what this tool generates"
 
         raise FileNotFoundError(message)
 
@@ -211,6 +295,21 @@ def stale_references(
     return stale
 
 
+def stale_template_files(
+    root: pathlib.Path,
+) -> list[str]:
+    """The template files that differ from what the worked example says, by path."""
+    template_directory = root / TEMPLATE_DIRECTORY
+    stale = [
+        relative_path
+        for relative_path, text
+        in expected_template_files(root).items()
+        if read_text(template_directory / relative_path) != text
+    ]
+
+    return stale
+
+
 def strip_example_cells(
     text: str,
 ) -> str:
@@ -254,16 +353,19 @@ def strip_example_cells(
 
 def strip_example_content(
     text: str,
+    block: re.Pattern[str] = MARKDOWN_EXAMPLE_BLOCK,
 ) -> str:
     """
-    Remove the worked strategy's own lines from a Markdown text.
+    Remove the worked strategy's own lines from a text.
 
-    A removed block leaves the blank lines on both sides of it, so runs of blank lines collapse to
-    one, and a block that closed the file leaves it ending as it did — only when something was
-    removed, so a text with no markers comes back untouched.
+    The blocks are Markdown's unless another pattern is given.  A removed block gives way to the
+    longer of the blank runs that surrounded it — one blank line in prose stays one, two blank lines
+    between definitions stay two — and a block that closed the file leaves it ending as it did.
+    Only when something was removed: a text with no markers comes back untouched.  The text's line
+    endings are LF, as `read_text` leaves them; a marker before a carriage return is not matched.
     """
-    stripped, removed_blocks = EXAMPLE_BLOCK.subn(
-        "",
+    stripped, removed_blocks = block.subn(
+        _seam,
         text,
     )
 
@@ -271,17 +373,41 @@ def strip_example_content(
 
         return text
 
-    collapsed = EXTRA_BLANK_LINES.sub(
-        "\n\n",
-        stripped,
-    )
-    trimmed = collapsed.rstrip("\n")
+    trimmed = stripped.rstrip("\n")
 
     if text.endswith("\n"):
 
         return f"{trimmed}\n"
 
     return trimmed
+
+
+def template_part(
+    text: str,
+    suffix: str,
+) -> str:
+    """
+    The template's part of one example file: its text with the worked strategy's own lines removed.
+
+    A notebook loses its example-only cells and the example lines of the cells that stay; a Markdown
+    or Python file loses its example blocks; any other file is the template's whole.
+    """
+    if suffix == ".ipynb":
+
+        return strip_example_cells(text)
+
+    block = EXAMPLE_BLOCKS.get(suffix)
+
+    if block is None:
+
+        return text
+
+    stripped = strip_example_content(
+        text,
+        block,
+    )
+
+    return stripped
 
 
 def write_cell_source(
@@ -319,6 +445,23 @@ def _is_example_only_cell(
     return example_only
 
 
+def _seam(
+    match: re.Match[str],
+) -> str:
+    """
+    What replaces a removed block: the longer of the newline runs on either side of it.
+
+    Both runs hold only newlines, so runs of equal length are equal strings and a tie needs no rule.
+    """
+    longer = max(
+        match.group(1),
+        match.group(2),
+        key=len,
+    )
+
+    return longer
+
+
 def _strip_cell(
     cell: dict[str, object],
 ) -> bool:
@@ -334,6 +477,27 @@ def _strip_cell(
         )
 
     return stripped
+
+
+def _write_files(
+    root: pathlib.Path,
+    directory: str,
+    texts: dict[str, str],
+    names: list[str],
+) -> None:
+    """Write the named files of a generated set under its folder, and print each path written."""
+    for name in names:
+        target = root / directory / name
+        target.parent.mkdir(
+            parents=True,
+            exist_ok=True,
+        )
+        target.write_text(
+            texts[name],
+            encoding="utf-8",
+            newline="\n",
+        )
+        print(f"  {directory}/{name}")
 
 
 if __name__ == "__main__":
