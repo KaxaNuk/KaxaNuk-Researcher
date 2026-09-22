@@ -16,9 +16,12 @@ from the day `init-strategy` made it. In a strategy, say so and stop.
 
 The researcher arrives in two parts, and each updates its own way:
 
-- **The skills and commands** are the packages `KaxaNuk/KaxaNuk-Researcher` and
-  `KaxaNuk/KaxaNuk-Agent-Skills/kaxanuk` it brings with it, installed once for the user. `apm update -g` brings their
-  next version to every folder at once, and nothing in the home's history changes.
+- **The skills and commands** are one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for
+  the user. `apm update -g` brings its next version to every folder at once, and nothing in the
+  home's history changes. Before 0.7.0 the package brought the Lab's skills from
+  `KaxaNuk/KaxaNuk-Agent-Skills`; it now carries them itself, so after `apm update -g`,
+  `apm deps list -g` may show those packages as orphaned. Their skills have the same names as the
+  package's own, so nothing is lost while they remain.
 - **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `.gitignore` — were copied from
   `templates/researcher/` in the KaxaNuk Researcher package when the home was made. When the package's
   copy changes, the difference is shown, never merged: the owner's home may have renamed its prose.
@@ -43,10 +46,8 @@ and stops, changing nothing.
 
 ## Step 2: What is new
 
-- **The packages.** `apm outdated -g` names the installed versions and the newest. Read the
-  changelog of each package that moved — `researcher/CHANGELOG.md` and the others in
-  `KaxaNuk/KaxaNuk-Researcher`, and those in `KaxaNuk/KaxaNuk-Agent-Skills` for the Lab's
-  packages — and take every entry between the two.
+- **The package.** `apm outdated -g` names the installed version and the newest. Read
+  `CHANGELOG.md` in `KaxaNuk/KaxaNuk-Researcher` and take every entry between the two.
 - **The home's files.** The home's `CHANGELOG.md` names the template version it was made from;
   `templates/researcher/CHANGELOG.md` in the installed package names the current one. For
   `AGENTS.md`, `CLAUDE.md` and `.gitignore`, compare the home's copy with the package's —

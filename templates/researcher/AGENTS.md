@@ -268,8 +268,8 @@ owner's consent. It answers, it cites, and it names the skill or command the own
 ## Where the skills, the commands and the agent live
 
 The researcher arrives in two parts. **The skills and the commands are packages installed once for the
-user** — `KaxaNuk/KaxaNuk-Researcher`, which brings `KaxaNuk/KaxaNuk-Agent-Skills/kaxanuk` with it,
-every Investment Lab package — with `apm install -g`: written once for every home, never committed
+user** — `KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill with the
+researcher's own — with `apm install -g`: written once for every home, never committed
 here, available in every folder the owner opens, and brought to their next version by
 `apm update -g`. **The agent is this home's own**, in `.apm/agents/`, because it is written from
 `RESEARCHER.md`, and `apm install` here deploys it.

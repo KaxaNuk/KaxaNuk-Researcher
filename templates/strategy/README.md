@@ -61,8 +61,8 @@ Three jobs, one tool for each — either option does the job. Install once, use 
 
 **On top of whichever assistant you pick, KaxaNuk's agent skills** teach it the six Lab modules
 and this process — what each does, how it is called, and what it must never be asked to do. They are
-[`KaxaNuk/KaxaNuk-Researcher`](https://github.com/KaxaNuk/KaxaNuk-Researcher) and the packages it brings from `KaxaNuk/KaxaNuk-Agent-Skills`,
-and **this repository installs none of them**: they are installed once for your user, by the command
+one package, [`KaxaNuk/KaxaNuk-Researcher`](https://github.com/KaxaNuk/KaxaNuk-Researcher), and
+**this repository installs none of them**: they are installed once for your user, by the command
 above, and are there in every strategy; `apm update -g` keeps them current. Nothing here needs them
 to be read; a filled-in repository is faster with them.
 
@@ -201,7 +201,7 @@ It copies that path of the example across and never overwrites a file already th
 everything between the markers — that is what they are there for — and the seed in `Universe/`,
 which is the strategy's whole. `Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md` are already here in the
 template, empty, so there is nothing to bring across for step 1. Or let the `experiment-lifecycle`
-skill — it ships in the `investment-lab` package, which the install above brings in — scaffold it.
+skill — which the install above brings in — scaffold it.
 
 ---
 
