@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.8.2] - 2026-09-22
+Two lines the first testers would have missed.
+### Fixed
+- **`SETUP.md` asks for a global git identity before anything is made.** Every folder the three
+  commands make starts as a git repository with a first commit, and on a machine whose identity is
+  set only per repository the commit stopped, as it did on the maintainer's own; the script's
+  recovery message and the skill's instruction to ask were right, but the stop was avoidable.
+- **The README's three steps name the agent deploy.** Step 2 said to run `researcher-init` in the
+  home but not the `apm install --target <agent>` there that deploys the researcher as an agent
+  called by name; `SETUP.md`, `init-researcher` and the home's README already said it.
+
 ## [0.8.1] - 2026-09-22
 What `apm update -g` does to the retired packages, as it did on a real machine.
 ### Fixed
