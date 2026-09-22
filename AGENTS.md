@@ -12,6 +12,7 @@ before changing anything.
 | `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/` | every skill, command and instruction an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's and the house rules | edited here, then `apm install -g <this folder>` to try them, and a new session |
 | the skills' `scripts/` | `scaffold.py`, `extract.py`, `bloom_code_check.py` | with their tests in `tests/`, which pass before any commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | never by hand: `uv run --no-project python tools/sync_investment_lab_references.py` after the example changes |
+| the generated files of `templates/strategy/` | the 18 files inside its folders that `TEMPLATE_FILES` in `tools/sync_investment_lab_references.py` lists, as the example's with its own lines stripped | never by hand: the same sync tool, after the example changes; `tools/check_repo.py` fails when one differs |
 | `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `apm.yml`, `pyproject.toml` and `CHANGELOG.md` move together |
 | `examples/liquid-golden-cross/` | one strategy worked through the template | the same, and its `uv.lock` records the project version: `uv lock` after a bump |
 | `templates/researcher/` | the researcher's home, copied by `init-researcher` | its `apm.yml` version leads its `CHANGELOG.md`; `update` compares a home against it |
@@ -19,7 +20,9 @@ before changing anything.
 **The template and the example share every file the example does not mark.** A change to the
 template's description of a file changes the example's copy in the same commit; only the lines
 between `<!-- example: begin -->` and `<!-- example: end -->` — `# --- example: begin ---` in
-Python, `# EXAMPLE-ONLY CELL` on a notebook cell — are the example's own.
+Python, `# EXAMPLE-ONLY CELL` on a notebook cell — are the example's own. For a file the template
+generates from the example, the change is made in the example and the sync tool regenerates the
+template's copy.
 
 ## Rules
 

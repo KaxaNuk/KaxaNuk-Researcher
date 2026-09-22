@@ -10,7 +10,7 @@ description: >
   It covers naming, valid input columns, the DataColumn API, composition, and how to wire the column into the
   output, for both configuration-file projects and programmatic or notebook runs of `main()`.
 metadata:
-  version: 0.3
+  version: 0.3.1
 ---
 
 # Data Curator Custom Calculations
@@ -52,16 +52,23 @@ Writing the function into a file is a project convention, not a library requirem
 functions go in `Data/Curator/custom_calculations.py`. `Data/curator.py`, the step-3 driver, loads
 that file and passes the output columns to `main()` as `Configuration.columns`; in the worked
 example's driver they are the `OUTPUT_COLUMNS` tuple. Never create `Config/custom_calculations.py`
-there. The template ships neither file. When they are missing, ask the owner to run
-`init-example Data/curator.py` and `init-example Data/Curator/custom_calculations.py` (or
-`init-example Data` for the whole folder), and say that the lines between the example markers are
-`liquid-golden-cross`'s. Two kinds of column are not `c_*` columns, even when asked for as a
+there. The template ships both, as descriptions of what belongs in them, to be filled in. When
+they are missing — a strategy made before template 0.11.0 — ask the owner to restore them from the
+template, never from the example, with the `init-strategy` skill's script run in the strategy's
+root; `--only Data` restores the whole folder, and one file comes by its own path:
+
+```bash
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
+  strategy . --only Data
+```
+
+Two kinds of column are not `c_*` columns, even when asked for as a
 "signal": one that compares securities on a date (a rank, a breadth reading), and one with a
 setting an experiment will sweep (a fitted model, or a window such as the 50- and 200-day averages
 the example builds as `r_trend_50_200`). Both are `r_*` columns in
 `Data/Refinery/custom_calculations.py`, which the worked example's `Data/refinery.py` computes
-and this skill does not cover; `init-example Data` brings both. Only their frozen arithmetic
-inputs are `c_*` columns.
+and this skill does not cover; the template's `Data/` holds both files. Only their frozen
+arithmetic inputs are `c_*` columns.
 
 Anywhere else, if a project has no surface yet, default to (a): create
 `Config/custom_calculations.py` and confirm the entry script imports it.

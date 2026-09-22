@@ -58,7 +58,7 @@ in the strategy's `Config/.env`, which only you fill in and nobody commits; the 
 | --- | --- | --- |
 | `init-researcher <name>` | once per person | the researcher's home: `RESEARCHER.md`, `Sources/`, `Knowledge/`, `Philosophy/`, `Projects/`. Then `researcher-init` there interviews you and names it |
 | `init-strategy <name>` | once per strategy | a new strategy repository from the KaxaNuk Strategy Template, with its first commit. You publish it to GitHub yourself |
-| `init-example` | when you want it | the worked example, `liquid-golden-cross`, in a folder of its own — or, with a path, one of its files into your strategy: `init-example Experiments/Experiment_1` |
+| `init-example` | when you want it | the worked example, `liquid-golden-cross`, in a folder of its own, to read or run. A strategy made from the template already holds every file it needs |
 
 Each is a skill: in Claude Code, type it as `/init-strategy fcf-yield-quality`; elsewhere, ask for
 it by name. Each copies files with a script, byte for byte, after a plan and your go — never from
@@ -125,7 +125,8 @@ examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
 tests/                the tests of the skills' scripts and of the tools
 tools/                check_repo.py, the repository's own checks; and the script that
-                      regenerates experiment-lifecycle's references from the example
+                      regenerates experiment-lifecycle's references and the template's files
+                      from the example
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the environment of the scripts and their tests
@@ -162,11 +163,11 @@ uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.
 
 `tools/check_repo.py` finds what has shipped before without an error: versions that disagree, an
 example that lost a heading of the template, markers left open, the section symbol, a skill
-description APM would reject, `experiment-lifecycle`'s references out of step with the example, a
-path too long for Windows. The worked example is linted with its own ruff settings, and the last
-command checks the Bloom Code style of the skills' scripts, the tests, the tools and the example.
-Each runs through `uv` alone: no Python of your own is needed. They run on your machine before a
-commit; there is no CI, so nothing runs them for you.
+description APM would reject, `experiment-lifecycle`'s references or the template's files out of
+step with the example, a path too long for Windows. The worked example is linted with its own ruff
+settings, and the last command checks the Bloom Code style of the skills' scripts, the tests, the
+tools and the example. Each runs through `uv` alone: no Python of your own is needed. They run on
+your machine before a commit; there is no CI, so nothing runs them for you.
 
 `AGENTS.md` has the rules for changing this repository. Releases are tagged `vX.Y.Z` on `main` after
 the merge, and `CHANGELOG.md` has one entry per version.

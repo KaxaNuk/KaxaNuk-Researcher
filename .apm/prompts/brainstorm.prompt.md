@@ -18,15 +18,21 @@ of what happened. `${input:experiment}` is the experiment number `N`, `${input:i
 think about when the owner gave one, and `${input:strategy}` the strategy's path when the session is
 not already open in it.
 
-1. **Read the experiment's state.** A strategy made by `init-strategy` has no
-   `BRAINSTORMING_N.md`: the template ships no experiment documents, and the file is in the worked
-   example. For Experiment 1, give the command that brings it across — `init-example
-   Experiments/Experiment_1/BRAINSTORMING_1.md`, run in the strategy's session — say that
-   everything between the example markers is the worked strategy's, and stop. For N > 1 that
-   command is refused, since `BRAINSTORMING_1.md` is already the owner's: the blank is the
-   `experiment-lifecycle` skill's `references/brainstorming-template.md`, copied to
-   `Experiments/Experiment_N/BRAINSTORMING_N.md` with `N` replaced, as that skill's section 6
-   says. Offer the copy, make it on the owner's go, and continue.
+1. **Read the experiment's state.** A strategy made by `init-strategy` before template 0.11.0 has
+   no `BRAINSTORMING_N.md`: that template shipped no experiment documents; from 0.11.0 it ships
+   Experiment 1's. For Experiment 1, give the command that restores the file from the template,
+   run in the strategy's root — the script is in the `init-strategy` skill's folder:
+
+   ```bash
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
+     strategy . --only Experiments/Experiment_1/BRAINSTORMING_1.md
+   ```
+
+   Say that it copies the template's description, with nothing of the example's to delete, and
+   stop. For N > 1 there is no file to restore, since the template ships Experiment 1's documents
+   only: the blank is the `experiment-lifecycle` skill's `references/brainstorming-template.md`,
+   copied to `Experiments/Experiment_N/BRAINSTORMING_N.md` with `N` replaced, as that skill's
+   section 6 says. Offer the copy, make it on the owner's go, and continue.
 
    Otherwise read `BLUEPRINT_N.md`, `BRAINSTORMING_N.md` (the entries so far), `FINDINGS_N.md` if
    it reports, and `RESULTS.md` — what is closed, what is open, what stands. Do not open another

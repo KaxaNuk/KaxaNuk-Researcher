@@ -13,17 +13,18 @@ description: >
   running the engines (`backtest-engine-runs`, `attribution-analysis-runs`), reading attribution
   (`alpha-decomposition`), or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.7.3
+  version: 0.7.4
 ---
 
 # The research process — how a strategy repository is worked in
 
 Every KaxaNuk Investment Lab strategy lives in its own repository, copied from the **KaxaNuk Strategy
 Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/strategy/`. The template is
-the shape and nothing else: six folders and the documents at the root. The worked example beside it,
-`examples/liquid-golden-cross/`, works one strategy,
-`liquid-golden-cross`, through the same folders — every file a description of what is expected in it,
-what the stage produces and prevents, with the strategy's own lines between example markers. The
+the shape: six folders, the documents at the root, and inside the folders every file the process
+expects — each a description of what is expected in it, what the stage produces and prevents. The
+worked example beside it, `examples/liquid-golden-cross/`, works one strategy,
+`liquid-golden-cross`, through the same files, with the strategy's own lines between example
+markers. The
 fixed shape buys comparability and legibility: any
 experiment looks like any other, every experiment is measured against the same declared benchmark,
 and a CIO reads the whole state of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
@@ -184,12 +185,18 @@ last column — which tool each item loads.
 | 7 | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
 | 8 | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
 
-Every file those items name beyond what the template ships — `OBJECTIVE.md`, `RESULTS.md`, the
-empty `Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, and the seed `Universe/Investable_Universe.csv`
-with only its header — is in the worked example. Bring one across with `init-example <path>` — it
-copies from the example inside the KaxaNuk Researcher and never overwrites, so bring
-`Universe/universe.ipynb` by its path — and delete what is the example's: everything between the
-markers.
+Every file those items name ships with the template — `OBJECTIVE.md`, `RESULTS.md`, the empty
+`Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, the seed `Universe/Investable_Universe.csv` with only
+its header, and every file inside the folders as a description of what belongs in it, to be filled
+in. A strategy made before template 0.11.0 lacks the files inside the folders, and restores each
+from the template, never from the example, with the `init-strategy` skill's script run in its root
+— it never overwrites, so bring `Universe/universe.ipynb` by its path, and there is nothing of the
+example's to delete:
+
+```bash
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
+  strategy . --only <path>
+```
 
 **A new experiment `N` inside an existing strategy:**
 
@@ -218,17 +225,20 @@ is two rules, and the copies drift. Read them where they are.
 | Committed results, bad runs, binaries, Production, `Config/.env`, example markers | `AGENTS.md`, *Other standing rules* |
 | The five ways a backtest lies, and what look-ahead costs a fitted signal | `AGENTS.md`, *Research integrity — the five ways a backtest lies* |
 | What attribution must report | `AGENTS.md`, *What attribution must report*; reading it is `alpha-decomposition` |
-| The graduation gate and its five criteria | `Paper_Trading/BITACORA.md`, in the worked example — bring it across with `init-example` before step 7 |
+| The graduation gate and its five criteria | `Paper_Trading/BITACORA.md`, in the template — a strategy made before 0.11.0 restores it from there before step 7 |
 | What a version number means | `CHANGELOG.md`, *What a version number means here* |
 
 ## References
 
 - `references/structure.md` — the template's tree, what is committed, and the steps to fill it in.
 - `references/blueprint-template.md`, `brainstorming-template.md`, `journal-template.md`,
-  `findings-template.md` — the four documents of an experiment; the template ships none.
+  `findings-template.md` — the four documents of an experiment; the template ships them for
+  Experiment 1 only.
 - `references/experiment-notebook.ipynb` — Experiment 1's notebook, markdown only.
 
 The four documents and the notebook are copies of Experiment 1's files in the worked example,
 `examples/liquid-golden-cross/` in KaxaNuk-Researcher, with the example's own lines stripped.
 `uv run --no-project python tools/sync_investment_lab_references.py` there regenerates them, and
-`tools/check_repo.py` fails when they differ; `references/structure.md` is kept by hand.
+`tools/check_repo.py` fails when they differ; `references/structure.md` is kept by hand. The same
+tool generates the template's 18 files inside its folders — Experiment 1's among them — from the
+example the same way, and the same check covers them.

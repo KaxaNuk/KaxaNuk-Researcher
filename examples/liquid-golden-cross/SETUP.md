@@ -7,8 +7,8 @@ strategy runs in, and so a person can read it in two minutes.
 <!-- example: begin -->
 
 > **On the example.** This folder is for reading. To run it, `init-example` copies it into a folder
-> of its own — step 1 — and step 5 is skipped: this README is already the strategy's. How to copy a
-> file from here is in the template's README, *What is in here*.
+> of its own — step 1 — and step 5 is skipped: this README is already the strategy's. A strategy
+> of your own takes nothing from here, as step 1 says.
 >
 > **Its benchmark cannot be downloaded.** The KN600 is KaxaNuk's own index: its daily holdings and
 > returns, `KN_US_Equity_Benchmark.csv` and `KN_US_Equity_Returns.csv` in
@@ -85,9 +85,8 @@ and fail with messages that do not say so, such as `WinError 3: The system canno
 specified`.
 
 A strategy of your own is not made from here: `init-strategy <strategy-name>` makes it from the
-empty template, and `init-example <path>` brings one file or folder of this example into it — the
-[template's README](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md)
-says what to strip. Never build on it.
+template, which already holds every file this example fills in, each as a description of what
+belongs in it. Never build on it.
 
 > **For the agent.** If the first commit refuses for want of an identity, on a machine that has
 > never committed, ask the user for the name and email to use — never invent them — and set them

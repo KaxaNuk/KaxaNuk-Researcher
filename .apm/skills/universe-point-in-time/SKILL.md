@@ -13,7 +13,7 @@ description: >
   show them), sizing a book (use `portfolio-construction-runs`), or the research process around
   the stage (use `experiment-lifecycle`).
 metadata:
-  version: 0.1.3
+  version: 0.1.4
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -40,10 +40,18 @@ Universe/Investable_Universe.csv   the seed, committed  ->  edit this to change 
                     +--> Data/refinery.py    joins the master onto the panel as current_*
 ```
 
-**The template ships the seed, header-only, and not the notebook.** When `Universe/universe.ipynb`
-is missing, ask the owner to run `init-example Universe/universe.ipynb` — by its own path, because
-`init-example Universe` is refused over the seed — and say that its code cells, each starting
-`# EXAMPLE-ONLY CELL`, are `liquid-golden-cross`'s. Never write the notebook from memory.
+**The template ships the seed, header-only, and the notebook, as markdown cells describing each
+section.** When `Universe/universe.ipynb` is missing — a strategy made before template 0.11.0 — ask
+the owner to restore it from the template, never from the example, with the `init-strategy`
+skill's script run in the strategy's root — by its own path, because `--only Universe` is refused
+over a seed that has rows:
+
+```bash
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
+  strategy . --only Universe/universe.ipynb
+```
+
+Never write the notebook from memory.
 
 ## 1. The seed is the whole decision
 

@@ -59,17 +59,19 @@ lines of work: same issue, same discussion, separate history.
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package,
 `KaxaNuk/KaxaNuk-Researcher`: the template as `templates/strategy/`, and one strategy,
 `liquid-golden-cross`, worked through it as `examples/liquid-golden-cross/` — its own lines between
-example markers, for reading and copying, never building on. When the process changes, the example
-takes the change file by file. The files inside the folders live only in the example; the shape is
-written down once, in the *What is in here* table of the template's README, which a strategy's own
-README links to. Issues and pull requests from anyone land there — the process improves in public.
-A strategy of your own stays in your own repository.
+example markers, for reading and running, never building on. When the process changes, the example
+takes the change file by file, and the template's files inside the folders are generated from it
+with the example's own lines removed; the shape is written down once, in the *What is in here*
+table of the template's README, which a strategy's own README links to. Issues and pull requests
+from anyone land there — the process improves in public. A strategy of your own stays in your own
+repository.
 
 **`init-strategy` copies the template only**, on purpose. `Bibliotheca/BIBLIOGRAPHY.md` and
 `LOG.md` come with it, empty, and so does the seed, `Universe/Investable_Universe.csv`, with only
-its header. A strategy takes the other files it needs from the example with `init-example <path>`,
-one path at a time, and deletes what is the worked strategy's — everything between the example
-markers — or lets the `experiment-lifecycle` skill scaffold them.
+its header, and every other file the process expects, each a description of what belongs in it for
+the owner to fill in; nothing is brought across from the example. A strategy made before template
+0.11.0 lacks those files and restores each from the template, never from the example, as the
+`init-strategy` skill says; the `experiment-lifecycle` skill scaffolds each later experiment.
 **The issue branches below are a recommendation**, there to keep project management simple, not a
 gate.
 
@@ -190,8 +192,8 @@ Two standing exceptions, and one that has to be asked for:
 - **Never use the section symbol** in documents here. Write "section" or name the heading.
 - **In the example, mark the worked strategy's content as you add it.**
   `# --- example: begin ---` in Python, an HTML comment of the same words in Markdown, and
-  `# EXAMPLE-ONLY CELL` on a whole notebook cell. Nothing consumes these; they show a person
-  starting their own strategy what to delete.
+  `# EXAMPLE-ONLY CELL` on a whole notebook cell. They decide what the template's files are
+  generated from: an unmarked line lands in every new strategy.
 
 ---
 

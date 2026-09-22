@@ -2,13 +2,13 @@
 name: init-example
 description: >
   Copy the KaxaNuk worked example strategy, liquid-golden-cross, into a new folder to study or run
-  it — or copy one of its files or folders into an existing strategy, such as
-  Experiments/Experiment_1 — from the copy that ships inside the researcher package, by a script.
-  Only when the owner runs it by name. It does NOT start a strategy of the owner's own (use
-  `init-strategy`), and never builds on the example: it is a worked strategy to read, not a
-  template to fill.
+  it — or copy one of its files or folders, such as Experiments/Experiment_1, into a folder that
+  lacks it — from the copy that ships inside the researcher package, by a script. Only when the
+  owner runs it by name. It does NOT start a strategy of the owner's own (use `init-strategy`),
+  does NOT restore a file a strategy lacks (the template's copy, through `init-strategy`), and never
+  builds on the example: it is a worked strategy to read, not a template to fill.
 metadata:
-  version: 0.1.1
+  version: 0.2.0
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -25,17 +25,20 @@ belongs in each file. It is also readable without installing anything, in
 
 - **The whole example, in a new folder** — *init-example*, *give me the example to look at*. To
   read it, run its notebooks, or see what a finished experiment looks like.
-- **One piece into an existing strategy** — *init-example Experiments/Experiment_1*, *bring the
-  blueprint across*. The files the template does not carry — the experiment documents,
-  the notebooks, `Paper_Trading/BITACORA.md` — come from here.
-- Not on its own initiative. A skill that needs one of these files names this skill and the path,
-  and the owner runs it.
+- **One piece into a folder that lacks it** — *init-example Experiments/Experiment_1*, to read that
+  piece worked through. It is not how a strategy gets its files: one made from template 0.11.0 on
+  already holds every file the process expects, each as a description of what belongs in it, and
+  the script refuses to overwrite one. A strategy that lacks a template file — one made before
+  0.11.0 — restores it from the template, as the `init-strategy` skill says, never from here.
+- Not on its own initiative; the owner runs it by name.
 
 ## Steps
 
 1. **Which of the two.** A path of the example — `Experiments/Experiment_1`,
-   `Paper_Trading/BITACORA.md` — means one piece into the strategy the session is open in, or the
-   one the owner names. No path means the whole example into a new folder: ask where through the
+   `Paper_Trading/BITACORA.md` — means one piece into the folder the session is open in, or the
+   one the owner names, where that path is missing. If the owner wants the file to fill in for
+   their strategy, it is the template's: give the `init-strategy` skill's `--only` command
+   instead, and stop. No path means the whole example into a new folder: ask where through the
    question tool, defaulting to `liquid-golden-cross` beside the folder the session is open in.
 
 2. **The plan.** In chat: what will be copied and where; for one piece, that nothing already
@@ -52,9 +55,8 @@ belongs in each file. It is also readable without installing anything, in
    The whole example becomes a git repository with its first commit; one piece is only copied.
 
 4. **For one piece, say what is the example's.** Everything between the markers in what was
-   copied is `liquid-golden-cross`'s and goes before the strategy's own work goes in; the
-   template's description around it stays. List the marked blocks by file, and let the owner
-   delete them — or offer to, as a plan, with the go.
+   copied is `liquid-golden-cross`'s; the template's description around it is the process's. List
+   the marked blocks by file.
 
 5. **Hand over.** For the whole example: open it in a **new** session, and its `SETUP.md` from
    step 2 builds the environment if they want to run it. Never build a strategy on it; a strategy

@@ -31,23 +31,26 @@ first, when:
 - **`BLUEPRINT_N.md` already has its slots filled** — it does not change once written; a new idea is
   Experiment N+1.
 
-**A strategy made by `init-strategy` has no blueprint to fill.** The template ships
-`Experiments/Experiment_1/` with its three empty output folders and no documents; `BLUEPRINT_N.md`
-and its siblings are in the worked example. Never write the headings from memory — they are the
-template's. Say so, and give the command that brings the file across, run in the strategy's
-session, and stop:
+**A strategy made by `init-strategy` before template 0.11.0 has no blueprint to fill.** That
+template shipped `Experiments/Experiment_1/` with its three empty output folders and no documents;
+from 0.11.0 it ships `BLUEPRINT_1.md` and its siblings, as descriptions to be filled in. Never write
+the headings from memory — they are the template's. Say so, and give the command that restores the
+file from the template inside the KaxaNuk Researcher package, run in the strategy's root — the
+script is in the `init-strategy` skill's folder — and stop:
 
-> init-example Experiments/Experiment_1/BLUEPRINT_1.md
+```bash
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" \
+  strategy . --only Experiments/Experiment_1/BLUEPRINT_1.md
+```
 
-`init-example` copies it from the example inside the KaxaNuk Researcher package and names what is
-the worked strategy's: everything between `<!-- example: begin -->` and `<!-- example: end -->`,
-which goes before the draft. The owner runs it, and the draft continues from there.
+It copies the template's description, never the example's, so there is nothing to delete. The
+owner runs it, and the draft continues from there.
 
-**For N > 1 that command is refused**: `Experiments/Experiment_1/BLUEPRINT_1.md` is already the
-owner's, and `init-example` never overwrites. The blank is the `experiment-lifecycle` skill's
-`references/blueprint-template.md` — the example's file with its own lines stripped — copied to
-`Experiments/Experiment_N/BLUEPRINT_N.md` with `N` replaced, as that skill's section 6 says. Offer
-the copy as the plan, make it on the owner's go, and the draft continues from there.
+**For N > 1 there is no file to restore**: the template ships Experiment 1's documents only. The
+blank is the `experiment-lifecycle` skill's `references/blueprint-template.md` — the example's file
+with its own lines stripped — copied to `Experiments/Experiment_N/BLUEPRINT_N.md` with `N`
+replaced, as that skill's section 6 says. Offer the copy as the plan, make it on the owner's go,
+and the draft continues from there.
 
 ## Step 2: Read, in this order
 

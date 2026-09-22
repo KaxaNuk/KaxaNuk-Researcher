@@ -3,16 +3,18 @@
 The canonical tree of a KaxaNuk Investment Lab strategy repository, as the **KaxaNuk Strategy
 Template** holds it — `templates/strategy/` in `KaxaNuk/KaxaNuk-Researcher`, copied into a new
 folder by `init-strategy`. The template ships the shape: the six folders and the documents at the
-root, with what goes in each folder written down in its README, and inside the folders only
-`Config/.env.template`, the header-only seed in `Universe/` and the `Bibliotheca/` index and log.
-Every other file inside the folders is in the worked example beside it,
-`examples/liquid-golden-cross/`, where one strategy is worked through them. **The template is the
-source of truth for this tree; this file is a copy of what it looked like at the version named
-below**, kept by hand. When they disagree, the template wins.
+root, with what goes in each folder written down in its README, and inside the folders every file
+the tree below names but those in `Bibliotheca/Papers/`, `Books/` and `Notes/`, which appear with
+the first note. The worked example beside it, `examples/liquid-golden-cross/`,
+works one strategy through the same files. **The template is the source of truth for this tree;
+this file is a copy of what it looked like at the version named below**, kept by hand. When they
+disagree, the template wins.
 
-Template version: **0.9.0**. In the example every file is a description of what is expected in
-it — the `.py` files are docstrings, the notebooks are markdown cells — with the strategy's own
-lines beside them between example markers.
+Template version: **0.11.0**. Beyond `Config/.env.template`, the header-only seed in `Universe/`
+and the `Bibliotheca/` index and log, every file inside the template's folders is a description of
+what is expected in it — the `.py` files are docstrings, the notebooks are markdown cells, the
+documents are prose — generated from the example's, where the strategy's own lines sit beside
+them between example markers.
 
 ```
 <Strategy_Name>/

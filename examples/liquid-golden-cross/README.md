@@ -16,7 +16,7 @@ current portfolio by 10%, to avoid rebalancing too often.
 > Replace this line as the strategy moves, and the banner at the top of `AGENTS.md` with it.
 
 This is the worked example of the KaxaNuk Strategy Template: one strategy worked through the
-process, for reading and copying, which `init-example` copies. A strategy of your own starts from
+process, for reading and running, which `init-example` copies. A strategy of your own starts from
 `init-strategy`, never from here.
 
 Built on the [KaxaNuk Strategy Template](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md):
