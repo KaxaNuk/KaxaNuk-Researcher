@@ -85,9 +85,8 @@ and fail with messages that do not say so, such as `WinError 3: The system canno
 specified`.
 
 A strategy of your own is not made from here: `init-strategy <strategy-name>` makes it from the
-empty template, and `init-example <path>` brings one file or folder of this example into it — the
-[template's README](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md)
-says what to strip. Never build on it.
+template, which already holds every file this example works through, as a description of what
+belongs in it. Never build on it.
 
 > **For the agent.** If the first commit refuses for want of an identity, on a machine that has
 > never committed, ask the user for the name and email to use — never invent them — and set them

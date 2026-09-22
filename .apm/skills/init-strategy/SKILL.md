@@ -8,7 +8,7 @@ description: >
   the worked example (use `init-example`), and does NOT create a researcher (use
   `init-researcher`).
 metadata:
-  version: 0.1.1
+  version: 0.1.2
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -25,10 +25,11 @@ every strategy made from the same package version starts identical.
 
 - The owner runs `init-strategy` by name — *init-strategy fcf-yield-quality*, *start a new strategy
   called …*.
-- Not on its own initiative, and not to repair an existing strategy. A file of the example comes
-  across with `init-example <path>`. A file of the template that the strategy has lost comes back
-  from the template, never from the example, whose copy is filled in: run this skill's script from
-  the strategy's root; it never overwrites a file.
+- Not on its own initiative, and not to repair an existing strategy. A file of the template that
+  the strategy lacks — lost, or never there because the strategy was made before template 0.10.0
+  shipped the drivers, notebooks and documents — comes back from the template, never from the
+  example, whose copy is filled in: run this skill's script from the strategy's root; it never
+  overwrites a file.
 
   ```bash
   uv run --no-project python "<this skill's directory>/scripts/scaffold.py" strategy . --only <path>

@@ -14,20 +14,28 @@ It reads the working tree.  Each check exists because what it looks for happened
 - **headings** — every heading of a template document is in the example's copy, so the example keeps
   the template's structure.  The two lived on separate branches and drifted; the example's `README.md`
   is its strategy's own and is left out.
-- **markers** — the example's markers open and close in order, as whole lines, or a copy made with
-  them in mind keeps or loses the wrong lines.
+- **markers** — the example's markers open and close in order, each alone on its line at column 0,
+  or a copy made with them in mind keeps or loses the wrong lines.  The sync tool strips no other
+  form of a marker: an indented one would carry the worked strategy's lines into the template.
+  A notebook's cells are checked one by one with the Markdown pair, which the sync tool strips
+  inside them too.
 - **section symbol** — never used; the word is "section".
 - **descriptions** — a skill's `description`, folded as an agent reads it, within what APM accepts;
   one written in a form the check cannot read fails, so it is never skipped.
 - **references** — the experiment documents and notebook `experiment-lifecycle` ships are what
   `tools/sync_investment_lab_references.py` makes from the worked example.  A skill that kept its own
   copies drifted from the template once.
+- **template** — every file `tools/sync_investment_lab_references.py`'s `TEMPLATE_FILES` lists,
+  the files inside the folders the template's README table names, is what the same tool makes
+  from the worked example.  A new strategy used to bring them across one by one and strip them by
+  hand.
 - **path length** — no tracked path longer than Windows allows once installed under a home folder;
   a 130-character path once made `apm install -g` fail.
 
 Exit code 0 when every check passes, 1 when any fails.
 """
 import dataclasses
+import json
 import pathlib
 import re
 import subprocess
@@ -52,16 +60,8 @@ HEADING_EXCEPTIONS = {
 # What APM accepts in a skill's `description`, and the longest path this repository allows.
 DESCRIPTION_LIMIT = 1024
 PATH_LIMIT = 120
-MARKERS = {
-    '.md': (
-        '<!-- example: begin -->',
-        '<!-- example: end -->',
-    ),
-    '.py': (
-        '# --- example: begin ---',
-        '# --- example: end ---',
-    ),
-}
+# The sync tool declares the markers, and matches them only as whole lines at column 0.
+MARKERS = sync_investment_lab_references.EXAMPLE_MARKERS
 # The kinds of file searched for the section symbol.
 TEXT_SUFFIXES = (
     '.ipynb',
@@ -205,7 +205,8 @@ def check_markers(
     files: list[str],
 ) -> list[Finding]:
     """
-    The example's markers open and close in order, in every file that has a kind of marker.
+    The example's markers open and close in order, in every file that has a kind of marker, and in
+    every cell of its notebooks.
     """
     marked = [
         path
@@ -213,7 +214,13 @@ def check_markers(
         in files
         if path.startswith(f'{EXAMPLE_FOLDER}/') and pathlib.PurePosixPath(path).suffix in MARKERS
     ]
-    findings = [
+    notebooks = [
+        path
+        for path
+        in files
+        if path.startswith(f'{EXAMPLE_FOLDER}/') and path.endswith('.ipynb')
+    ]
+    file_findings = [
         Finding(
             check='markers',
             message=f'{path}: {problem}',
@@ -225,6 +232,20 @@ def check_markers(
             _read(root / path),
             MARKERS[pathlib.PurePosixPath(path).suffix],
         )
+    ]
+    cell_findings = [
+        Finding(
+            check='markers',
+            message=f'{path} {problem}',
+        )
+        for path
+        in notebooks
+        for problem
+        in _notebook_marker_problems(_read(root / path))
+    ]
+    findings = [
+        *file_findings,
+        *cell_findings,
     ]
 
     return findings
@@ -303,6 +324,34 @@ def check_section_symbol(
     return findings
 
 
+def check_template_files(
+    root: pathlib.Path,
+) -> list[Finding]:
+    """
+    Every generated file of the template matches what the worked example says it holds.
+    """
+    try:
+        stale = sync_investment_lab_references.stale_template_files(root)
+    except FileNotFoundError as error:
+        missing = Finding(
+            check='template',
+            message=str(error),
+        )
+
+        return [missing]
+
+    findings = [
+        Finding(
+            check='template',
+            message=f'{TEMPLATE_FOLDER}/{relative_path}: differs from the example; run tools/sync_investment_lab_references.py',
+        )
+        for relative_path
+        in stale
+    ]
+
+    return findings
+
+
 def check_versions(
     root: pathlib.Path,
 ) -> list[Finding]:
@@ -369,6 +418,7 @@ def main() -> int:
             files,
         ),
         *check_references(REPOSITORY_ROOT),
+        *check_template_files(REPOSITORY_ROOT),
         *check_path_length(files),
     ]
 
@@ -388,18 +438,28 @@ def marker_problems(
     markers: tuple[str, str],
 ) -> list[str]:
     """
-    Where a text's markers fail to open and close in order, as whole lines.
+    Where a text's markers fail to stand alone at column 0, or to open and close in order.
+
+    The text's line endings are LF, as `_read` leaves them; a marker before a carriage return is
+    reported, because the sync tool would not strip it.
     """
     begin, end = markers
-    stripped_lines = [
-        line.strip()
-        for line
-        in text.splitlines()
+    lines = text.split('\n')
+    misplaced = [
+        number
+        for number, line
+        in enumerate(lines, start=1)
+        if line.strip() in markers and line not in markers
     ]
+
+    if misplaced:
+
+        return [f'line {misplaced[0]} has a marker that is not alone at column 0']
+
     marker_lines = [
         (number, line)
         for number, line
-        in enumerate(stripped_lines, start=1)
+        in enumerate(lines, start=1)
         if line in markers
     ]
     out_of_turn = [
@@ -522,6 +582,27 @@ def _first(
     value = match.group(1) if match is not None else None
 
     return value
+
+
+def _notebook_marker_problems(
+    text: str,
+) -> list[str]:
+    """
+    Where a notebook's cells break the Markdown markers, each problem led by its cell, from 1.
+    """
+    cells = json.loads(text)['cells']
+    problems = [
+        f'cell {number}: {problem}'
+        for number, cell
+        in enumerate(cells, start=1)
+        for problem
+        in marker_problems(
+            sync_investment_lab_references.read_cell_source(cell),
+            MARKERS['.md'],
+        )
+    ]
+
+    return problems
 
 
 def _read(

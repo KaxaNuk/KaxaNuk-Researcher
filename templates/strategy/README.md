@@ -24,11 +24,12 @@ README — and it is written so a person can read it in two minutes too. The ski
 your user, not in a strategy, so a strategy installs nothing. Issues and pull requests are welcome:
 the process improves in public, the way KaxaNuk's open-source Data Curator did.
 
-This template is the shape: six folders and the documents at the root. Every file the process
-expects inside those folders is in the
-[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross),
-worked through for one strategy, `liquid-golden-cross`; *What is in here* says how to copy one
-across with `init-example` and what to delete.
+This template is the shape and every file the process expects in it: six folders, the documents at
+the root, and inside the folders each driver, module, notebook and document as a description of
+what belongs there — a `.py` file as its docstring, a notebook as its markdown cells. The same
+files, worked through for one strategy, `liquid-golden-cross`, are the
+[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross);
+*What is in here* says what each file is for.
 
 ---
 
@@ -94,11 +95,11 @@ not make.
 ## Starting your own strategy
 
 Once setup is done, work in this order. Its eight items are the order of work, not the eight steps
-above: item 3, the universe, is step 2. `OBJECTIVE.md`, `RESULTS.md` and the seed,
-`Universe/Investable_Universe.csv` with only its `main_identifier` header, are already in your
-repository; every other file the items name — the drivers, the notebooks, `BLUEPRINT_1.md` and its
-siblings — is in the example. *What is in here* below says how to bring one across with
-`init-example` and what to strip, or the `experiment-lifecycle` skill scaffolds an experiment.
+above: item 3, the universe, is step 2. Every file the items name is already in your repository —
+`OBJECTIVE.md`, `RESULTS.md`, the seed `Universe/Investable_Universe.csv` with only its
+`main_identifier` header, the drivers, the notebooks, `BLUEPRINT_1.md` and its siblings — each a
+description of what belongs in it, to be filled in; the example shows every one of them worked
+through.
 **The objective comes before any paper**: reading with no claim to read for has no stopping
 condition, and a claim written after the reading is an observation wearing a hypothesis's clothes.
 
@@ -148,8 +149,7 @@ Four documents inside every `Experiments/Experiment_N/`, and the split between t
 point: `BLUEPRINT` is frozen so a result cannot quietly reshape the question it was meant to answer,
 `JOURNAL` is append-only so the path is recoverable, `FINDINGS` is rewritten so there is one current
 answer, and `BRAINSTORMING` looks forward so planning is never mistaken for history. `Bibliotheca/`
-has its index in `BIBLIOGRAPHY.md` and `Paper_Trading/` its gate in `BITACORA.md` — both in the
-example.
+has its index in `BIBLIOGRAPHY.md` and `Paper_Trading/` its gate in `BITACORA.md`.
 
 ---
 
@@ -187,24 +187,25 @@ to keep current:
 | `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `daily_update.py`. `Paper_Trading_N/paper_trading_N.py`, the frozen rule of anything that passed | everything |
 | `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key and the two engine licences | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
 
-**Every one of those files exists in the
-[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross)**,
-except `Bibliotheca/Notes/`, which appears with its first note. Each is a description
-of what is expected in it, with the worked strategy's own lines beside it between the example
-markers `AGENTS.md` names: `<!-- example: begin -->` and `<!-- example: end -->` in Markdown,
-`# --- example: begin ---` in Python, `# EXAMPLE-ONLY CELL` on a notebook cell. To bring one into a
-strategy repository made from the template, run in it:
+**Every one of those files is in this template**, except `Bibliotheca/Notes/`, which appears with
+its first note: each as a description of what is expected in it — a `.py` file as its docstring, a
+notebook as its markdown cells, a document as its prose — to be filled in with the strategy's own.
+The same files are worked through in the
+[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross),
+where the worked strategy's own lines sit beside that description between the example markers
+`AGENTS.md` names: `<!-- example: begin -->` and `<!-- example: end -->` in Markdown,
+`# --- example: begin ---` in Python, `# EXAMPLE-ONLY CELL` on a notebook cell. The drivers, the
+modules, the notebooks and the files of `Experiments/` and `Paper_Trading/` are generated from the
+example with those lines removed, so the two cannot drift. To read the example, or run it, copy it
+whole into a folder of its own:
 
 ```text
-init-example Experiments/Experiment_1
+init-example
 ```
 
-It copies that path of the example across and never overwrites a file already there, so a folder
-holding a file the template already ships is refused: `Universe/` for its seed,
-`Investable_Universe.csv`, and `Bibliotheca/` for `BIBLIOGRAPHY.md` and `LOG.md`. Bring
-`Universe/universe.ipynb` by its own path; there is nothing to bring across for step 1. Then delete
-everything between the markers — that is what they are there for. Or let the `experiment-lifecycle`
-skill — which the install above brings in — scaffold it.
+Never build on it: the seed in `Universe/` and everything between the markers is that strategy's.
+A strategy made from a template before 0.10.0 lacks these files: `init-example <path>` brings one
+across, and what is between its markers is then deleted.
 
 ---
 
@@ -282,8 +283,8 @@ Two rules follow, and one exception worth knowing:
 
 Everything specific to a strategy lives in its notebook, where a reader can see it. Four Python
 modules in `Experiments/` are shared between experiments for one reason: **if they differed between
-experiments, comparing experiments would be meaningless.** In the example, each sits beside the
-notebook as a description of what it must do.
+experiments, comparing experiments would be meaningless.** Here, each is a description of what it
+must do; the example adds the code beneath it.
 
 | Module | Owns |
 | --- | --- |
@@ -306,8 +307,8 @@ GitHub without installing anything:
 
 | Folder | What it is |
 | --- | --- |
-| [`templates/strategy/`](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/templates/strategy) | this — the shape of the process: six folders and the documents at the root. What `init-strategy` copies |
-| [`examples/liquid-golden-cross/`](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross) | one strategy, `liquid-golden-cross`, worked through the same folders and files the process expects — the documents filled in as far as the work has reached, the later steps as descriptions until they are run, the strategy's own lines between example markers. Read it and copy the shape from it — whole with `init-example`, one path with `init-example <path>`; never build on it |
+| [`templates/strategy/`](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/templates/strategy) | this — the shape of the process and a description of every file in it. What `init-strategy` copies |
+| [`examples/liquid-golden-cross/`](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross) | one strategy, `liquid-golden-cross`, worked through the same folders and files the process expects — the documents filled in as far as the work has reached, the later steps as descriptions until they are run, the strategy's own lines between example markers. Read it, whole in a folder of its own with `init-example`; never build on it |
 
 Each strategy made from the template is its own repository, published by its owner — one per
 strategy.
