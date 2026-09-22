@@ -1,11 +1,20 @@
 """
 Unit tests for tools/check_repo.py: each check finds the defect it exists for.
 """
+import json
 import pathlib
 import subprocess
 
 import check_repo
 import sync_investment_lab_references
+
+# The least each kind of example file can hold and still be read: none has markers to strip, so
+# its template copy is the same text.
+MINIMAL_TEXTS = {
+    '.ipynb': '{"cells": [], "metadata": {}, "nbformat": 4, "nbformat_minor": 5}',
+    '.md': '# Document\n',
+    '.py': '"""\nDocstring.\n"""\n',
+}
 
 
 def write(
@@ -23,6 +32,21 @@ def write(
         text,
         encoding='utf-8',
     )
+
+
+def write_example_and_template(
+    root: pathlib.Path,
+) -> None:
+    """
+    Write every file the template is generated from, and its matching template copy, each with the
+    minimal text of its kind.
+    """
+    example = root / sync_investment_lab_references.EXAMPLE_DIRECTORY
+    template = root / sync_investment_lab_references.TEMPLATE_DIRECTORY
+    for relative_path in sync_investment_lab_references.TEMPLATE_FILES:
+        suffix = pathlib.PurePosixPath(relative_path).suffix
+        write(example / relative_path, MINIMAL_TEXTS[suffix])
+        write(template / relative_path, MINIMAL_TEXTS[suffix])
 
 
 class TestCheckDescriptions:
@@ -108,6 +132,64 @@ class TestCheckHeadings:
 
 
 class TestCheckMarkers:
+    def test_balanced_markers_in_a_notebook_cell_pass(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        notebook = json.dumps({
+            'cells': [
+                {
+                    'cell_type': 'markdown',
+                    'metadata': {},
+                    'source': [
+                        '<!-- example: begin -->\n',
+                        'worked lines\n',
+                        '<!-- example: end -->',
+                    ],
+                },
+            ],
+            'nbformat': 4,
+        })
+        path = f'{check_repo.EXAMPLE_FOLDER}/balanced.ipynb'
+        write(tmp_path / path, notebook)
+        findings = check_repo.check_markers(
+            tmp_path,
+            [path],
+        )
+
+        assert findings == []
+
+    def test_block_left_open_in_a_notebook_cell_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        notebook = json.dumps({
+            'cells': [
+                {
+                    'cell_type': 'markdown',
+                    'metadata': {},
+                    'source': [
+                        '<!-- example: begin -->\n',
+                        'worked lines',
+                    ],
+                },
+            ],
+            'nbformat': 4,
+        })
+        path = f'{check_repo.EXAMPLE_FOLDER}/open.ipynb'
+        write(tmp_path / path, notebook)
+        findings = check_repo.check_markers(
+            tmp_path,
+            [path],
+        )
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == [f'{path} cell 1: line 1 opens a block that never closes']
+
     def test_python_block_left_open_is_reported(
         self,
         tmp_path: pathlib.Path,
@@ -206,6 +288,50 @@ class TestCheckSectionSymbol:
         assert messages == ['marked.md: uses the section symbol; write "section"']
 
 
+class TestCheckTemplateFiles:
+    def test_matching_copies_pass(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write_example_and_template(tmp_path)
+        findings = check_repo.check_template_files(tmp_path)
+
+        assert findings == []
+
+    def test_missing_example_file_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        findings = check_repo.check_template_files(tmp_path)
+        checks = [
+            finding.check
+            for finding
+            in findings
+        ]
+
+        assert checks == ['template']
+
+    def test_template_copy_that_differs_is_reported(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write_example_and_template(tmp_path)
+        example = tmp_path / check_repo.EXAMPLE_FOLDER
+        template = tmp_path / check_repo.TEMPLATE_FOLDER
+        write(example / 'Paper_Trading/daily_update.py', 'new\n')
+        write(template / 'Paper_Trading/daily_update.py', 'old\n')
+        findings = check_repo.check_template_files(tmp_path)
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == [
+            'templates/strategy/Paper_Trading/daily_update.py: differs from the example; run tools/sync_investment_lab_references.py',
+        ]
+
+
 class TestFoldedDescription:
     def test_folded_lines_are_joined(self) -> None:
         text = 'name: x\ndescription: >\n  One line\n  and another.\nmetadata:\n'
@@ -253,6 +379,33 @@ class TestMarkerProblems:
         )
 
         assert result == ['line 2 closes a block that is not open']
+
+    def test_indented_marker_is_reported(self) -> None:
+        text = 'a\n    # --- example: begin ---\nb\n    # --- example: end ---\n'
+        result = check_repo.marker_problems(
+            text,
+            check_repo.MARKERS['.py'],
+        )
+
+        assert result == ['line 2 has a marker that is not alone at column 0']
+
+    def test_marker_before_a_carriage_return_is_reported(self) -> None:
+        text = 'a\r\n<!-- example: begin -->\r\nb\r\n<!-- example: end -->\r\n'
+        result = check_repo.marker_problems(
+            text,
+            check_repo.MARKERS['.md'],
+        )
+
+        assert result == ['line 2 has a marker that is not alone at column 0']
+
+    def test_marker_with_trailing_space_is_reported(self) -> None:
+        text = 'a\n<!-- example: begin --> \nb\n<!-- example: end -->\n'
+        result = check_repo.marker_problems(
+            text,
+            check_repo.MARKERS['.md'],
+        )
+
+        assert result == ['line 2 has a marker that is not alone at column 0']
 
 
 class TestMissingHeadings:
