@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.10.0] - 2026-09-22
+The strategy template ships every file its README names, generated from the worked example.
+### Added
+- **`tools/sync_investment_lab_references.py` generates the template's files** — the
+  drivers, the shared modules, the notebooks, Experiment 1's documents and the paper-trading
+  files, eighteen in all — from the worked example with the worked strategy's own lines
+  removed, the way it already made `experiment-lifecycle`'s references: a `.py` file comes out as
+  its docstring, a notebook as its markdown cells, a document as its prose. It writes only what
+  differs, and a missing example file stops it with its name. **`tools/check_repo.py` fails when
+  a template file differs** from what the example says (template and example 0.11.0).
+### Changed
+- **A marker must stand alone at column 0, inside notebook cells too.** `check_repo.py` reads the
+  marker strings from the sync tool and reports an indented marker, one with trailing whitespace
+  or a carriage return, or a broken pair inside a notebook cell: the sync tool would not strip
+  it, and the example's lines would reach every new strategy.
+- **A removed example block no longer merges blank lines across the whole file**, so Python kept
+  outside a block keeps PEP 8's two blank lines between definitions; adjacent blocks leave one
+  seam.
+- **Nothing is brought across from the example any more.** The template, the skills and the
+  commands say a new strategy holds every file, and that a strategy made before template 0.11.0
+  restores a missing file from the template with `scaffold.py strategy . --only <path>`, never
+  from the example: `init-example` 0.2.0, `init-strategy` 0.1.2, `experiment-lifecycle` 0.7.4,
+  `data-curator-custom-calculations` 0.3.1, `universe-point-in-time` 0.1.4, and the `blueprint`
+  and `brainstorm` commands. `init-example` copies the example whole, to read or run.
+
 ## [0.9.2] - 2026-09-22
 No CI: the checks run on the maintainer's machine, as `AGENTS.md` always asked.
 ### Removed

@@ -7,7 +7,7 @@
 # There is deliberately no `targets` key.  The template serves Claude Code, the Claude app, Codex
 # and Cursor alike, so the target is passed on the command.
 name: kn-strategy-template
-version: 0.10.1
+version: 0.11.0
 description: The KaxaNuk Strategy Template - the KaxaNuk Investment Lab's eight steps as a folder structure
 author: KaxaNuk
 dependencies:

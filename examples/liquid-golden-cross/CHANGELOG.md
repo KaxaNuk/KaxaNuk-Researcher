@@ -41,6 +41,24 @@ for somebody who was not in the room:
 
 ---
 
+## 0.11.0 (2026-09-22)
+
+**MINOR**, with the template — the template now ships every file this example fills in,
+generated from it, and a few of this strategy's lines are marked where they reached it. Nothing
+about any result changes.
+
+**What to do differently:** nothing here; an unmarked line of this example now lands in every
+new strategy, so mark the worked strategy's content as you add it, as `AGENTS.md` says.
+
+### Changed
+
+- **Experiment 1's counterfactuals sentence no longer points at cells below it**, which the
+  template does not have, and the notebook's first open item states its condition rather than
+  this strategy's state. `BLUEPRINT_1.md`'s open questions get a placeholder table outside the
+  markers, as its predictions already had. One line of `Paper_Trading/BITACORA.md` is re-wrapped.
+- **`AGENTS.md`, `SETUP.md` and `README.md` no longer say a strategy brings its files across from
+  here**: this folder is for reading and running, whole, in a folder of its own.
+
 ## 0.10.1 (2026-09-22)
 
 **PATCH** — three chapter notes renamed so their paths stay under the 120 characters the
