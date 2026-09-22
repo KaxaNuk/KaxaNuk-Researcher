@@ -18,7 +18,7 @@ its target keeps most of the return at a fraction of the turnover.* Named in the
 source **against** the claim: a delayed trade loses a signal's value at the rate of its half-life,
 and a band is a delay. Its companions for the claim are the same book's
 [chapter 14](17_Portfolio_Construction.md), where the band comes from, and
-[chapter 16](19_Transactions_Costs_Turnover_and_Trading.md), where the turnover rule of thumb does.
+[chapter 16](19_Transactions_Costs.md), where the turnover rule of thumb does.
 
 ## The information horizon is the half-life of forecasting power, and it is intrinsic to the strategy
 
