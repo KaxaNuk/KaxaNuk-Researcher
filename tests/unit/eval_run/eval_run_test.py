@@ -4,7 +4,9 @@ Unit tests for tools/eval_run.py: the plugin it assembles, the cases it generate
 import datetime
 import pathlib
 import re
+import shutil
 import stat
+import subprocess
 
 import pytest
 
@@ -407,6 +409,60 @@ class TestEvalCommand:
             'eval',
             str(tmp_path),
         ]
+
+
+class TestExportPackage:
+    @pytest.mark.skipif(
+        shutil.which('git') is None,
+        reason='git is not installed',
+    )
+    def test_tracked_and_untracked_files_are_exported_and_ignored_ones_are_not(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        repository = tmp_path / 'repository'
+        write(repository / '.gitignore', 'results/\n')
+        write(repository / 'tracked.md', 'edited after staging')
+        write(repository / 'drafts' / 'untracked.md', 'new')
+        write(repository / 'results' / 'report.html', 'ignored')
+        subprocess.run(
+            [
+                'git',
+                'init',
+                '--quiet',
+                str(repository),
+            ],
+            check=True,
+        )
+        subprocess.run(
+            [
+                'git',
+                '-C',
+                str(repository),
+                'add',
+                'tracked.md',
+            ],
+            check=True,
+        )
+        write(repository / 'tracked.md', 'edited on disk')
+        export = tmp_path / 'export'
+        eval_run.export_package(
+            repository,
+            export,
+        )
+        present = sorted(
+            path.relative_to(export).as_posix()
+            for path
+            in export.rglob('*')
+            if path.is_file()
+        )
+
+        assert present == [
+            '.gitignore',
+            'drafts/untracked.md',
+            'tracked.md',
+        ]
+        assert (export / 'tracked.md').read_text(encoding='utf-8') == 'edited on disk'
 
 
 class TestResultsDirectory:
