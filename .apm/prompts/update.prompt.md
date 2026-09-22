@@ -17,8 +17,9 @@ The researcher arrives in two parts, and each updates its own way:
 - **The skills and commands** are one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for
   the user. `apm update -g` brings its next version to every folder at once, and nothing in the
   home's history changes. Before 0.7.0 the package brought the Lab's skills from
-  `KaxaNuk/KaxaNuk-Agent-Skills`; it now carries them itself, and `apm deps list -g` shows those
-  packages as orphaned until the next `apm update -g`, which removes them and what they deployed.
+  `KaxaNuk/KaxaNuk-Agent-Skills`; it now carries them itself. The next `apm update -g` removes what
+  those packages deployed; `apm deps list -g` may still name them as orphaned, because their folders
+  stay under `~/.apm/apm_modules/`, and that is harmless.
 - **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `README.md`, `LICENSE`, `apm.yml`,
   `.gitignore` and `.gitattributes` — were copied from `templates/researcher/` in the KaxaNuk
   Researcher package when the home was made. When the package's copy changes, the difference is
@@ -79,10 +80,11 @@ and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
    The owner's go in *Step 3* is the confirmation, so `--yes` skips APM's own `[y/N]` prompt,
    which an agent's shell cannot answer; without it the update stops with an error. Then check
-   `apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new version and no orphaned
-   package. The old `KaxaNuk-Agent-Skills` packages deployed skills under the same names as the
-   package's, so if any of the package's skills or commands is missing afterwards, deploy it again
-   with `apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>`.
+   `apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new version; a package it still
+   marks orphaned deploys nothing any more. The old `KaxaNuk-Agent-Skills` packages deployed skills
+   under the same names as the package's, so if any of the package's skills or commands is missing
+   afterwards, deploy it again with
+   `apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>`.
 
    For a migration, install it instead — it is new at user scope:
 

@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.8.1] - 2026-09-22
+What `apm update -g` does to the retired packages, as it did on a real machine.
+### Fixed
+- **`update` and the 0.8.0 upgrade note say what the update really does to the eight retired
+  `KaxaNuk/KaxaNuk-Agent-Skills` packages**: it removes what they deployed, and every skill and
+  command of this package stays deployed, but `apm deps list -g` may keep naming them as orphaned,
+  because their folders stay under `~/.apm/apm_modules/`. That is harmless; `apm prune` and
+  `apm uninstall -g` do not reach them in APM 0.29.
+
 ## [0.8.0] - 2026-09-22
 A package for teaching: four leftovers of the old per-repository setup are gone, the researcher's
 interview places you in the history of investment research, and every Lab skill now matches the
