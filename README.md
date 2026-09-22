@@ -7,11 +7,11 @@ KaxaNuk Investment Lab and the KaxaNuk Strategy Template, and helps you write th
 strategy you build — with every claim pointing back to something you actually read. One researcher
 per person, not per strategy; one repository per strategy.
 
-This repository is everything that takes: the researcher's skills and commands, the strategy
-template, a strategy worked through it, and the researcher's home — one source of truth, versioned
-together, so one pull request can change a skill, the template it describes and the example that
-shows it. The skills for each Investment Lab library live in
-[KaxaNuk-Agent-Skills](https://github.com/KaxaNuk/KaxaNuk-Agent-Skills), and come with this package.
+This repository is everything that takes: every KaxaNuk skill — the researcher's, the process's
+and each Investment Lab library's — the strategy template, a strategy worked through it, and the
+researcher's home. One source of truth, versioned together, so one pull request can change a skill,
+the template it describes and the example that shows it, and one `apm update -g` brings it to every
+folder you work in.
 
 ---
 
@@ -83,23 +83,41 @@ Every one that writes shows its plan first and waits for your go.
 | `teach <topic>` | a multi-session tutor grounded in your library |
 | `update [check]` | brings a new version into your home — `apm update -g`, and what changed in the home's own files, shown as a diff |
 
+**The Investment Lab skills**, which the assistant loads when the work calls for them — in a
+strategy, in the order of its steps:
+
+| Skill | What it covers |
+| --- | --- |
+| `experiment-lifecycle` | the process: the document architecture, the order of work, the notebook contract, the graduation gate |
+| `universe-point-in-time` | step 2, the investable universe: the seed, the security master, the usable date |
+| `data-curator-custom-calculations` | the Data Curator's `c_*` columns: naming, inputs, the `DataColumn` API |
+| `portfolio-construction-runs` | step 4, sizing a book with the Portfolio Construction library |
+| `backtest-engine-runs` | pricing a book with the Backtest Engine, and reading its report |
+| `attribution-analysis-runs` | running Attribution Analysis on a book, and getting its tables out |
+| `alpha-decomposition` | reading attribution: is the signal doing anything, or is it a factor exposure |
+
+**The house rules**: `how-we-work` (issues, branches, changelogs, versions), `bloom-code-lint` with
+the Bloom Code, PEP 8 and test-writing instructions, `apm-usage`, `initialize-apm`,
+`devcontainer-aware-command-execution` and `propagate-mcp-env-vars`.
+
 ---
 
 ## What is in here
 
 ```
-.apm/skills/          read and query, which the researcher reaches for on its own; init-researcher,
-                      init-strategy and init-example, which you run by name
-.apm/prompts/         the ten commands
+.apm/skills/          every skill: the researcher's, the Investment Lab's and the house rules'
+.apm/prompts/         the commands
+.apm/instructions/    the house style: Bloom Code, PEP 8, test writing, filesystem boundaries
 templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folders; its README is the
                       process, and the order of work a strategy follows
 templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
-tests/                the tests of scaffold.py, extract.py and the checks
-tools/check_repo.py   the repository's own checks, run by CI
+tests/                the tests of every script and of the checks
+tools/                check_repo.py, the repository's own checks, run by CI; and the script that
+                      regenerates experiment-lifecycle's references from the example
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
-apm.yml               the package: what apm install reads, and its one dependency, kaxanuk
+apm.yml               the package: what apm install reads; it depends on nothing
 ```
 
 The template and the example are ordinary folders: read them here, or make one with the commands

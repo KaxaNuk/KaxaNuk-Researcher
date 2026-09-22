@@ -6,10 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.7.0] - 2026-09-21
+Every KaxaNuk skill is in this package. One install and one `apm update -g` bring them all to every folder.
+### Added
+- **The Investment Lab skills**, from KaxaNuk-Agent-Skills at its commit `3b8f76c`, unchanged but for the lines that named the package they came from: `experiment-lifecycle` and `alpha-decomposition`, the process; `universe-point-in-time`, `data-curator-custom-calculations`, `portfolio-construction-runs`, `backtest-engine-runs` and `attribution-analysis-runs`, one for each library; and the house rules, `how-we-work`, `bloom-code-lint`, `apm-usage`, `devcontainer-aware-command-execution`, `propagate-mcp-env-vars`, the `initialize-apm` command and the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions. The tests of `bloom_code_check.py` and `propagate_mcp_env_vars.py` came with them.
+- **`tools/sync_investment_lab_references.py`** regenerates `experiment-lifecycle`'s references from the worked example on disk instead of from GitHub, and **`check_repo.py` fails when they differ**, so the skill and the example cannot drift apart.
+### Changed
+- **The package depends on nothing.** `KaxaNuk/KaxaNuk-Agent-Skills/kaxanuk`, which was unpinned, is gone from `apm.yml`; a skill and the template it describes now change in one pull request. After `apm update -g`, `apm deps list -g` shows the KaxaNuk-Agent-Skills packages as orphaned; the `update` command says so.
+- **CI checks Bloom Code with the repository's own `bloom-code-lint`**, over every skill's scripts, the tests and the tools, instead of fetching the checker.
+- `AGENTS.md`, the README, `researcher-init`, `update`, the strategy template's README (template 0.8.1) and the home's `AGENTS.md` (home 0.6.1) name one package.
+
 ## [0.6.6] - 2026-09-21
 The README says how to install once.
 ### Changed
 - **One *Install* section** replaces the prompt in the introduction and *Install once, for your user*: the prompt to paste into Claude or Codex, the two commands by hand, then the first three commands in a new session.
+### Removed
+- **The root `uv.lock`**, which nothing read: CI runs with `--no-project`. It is ignored from now on. The worked example keeps its own, which pins the versions its results were run with.
 
 ## [0.6.5] - 2026-09-21
 The README's install section gives both ways in.

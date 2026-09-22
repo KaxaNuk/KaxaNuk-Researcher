@@ -22,3 +22,6 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Python: the package has no lock of its own; CI runs with --no-project
+/uv.lock

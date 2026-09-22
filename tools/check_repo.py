@@ -18,6 +18,9 @@ It reads the working tree.  Each check exists because what it looks for happened
   them in mind keeps or loses the wrong lines.
 - **section symbol** — never used; the word is "section".
 - **descriptions** — a skill's `description`, folded as an agent reads it, within what APM accepts.
+- **references** — the experiment documents and notebook `experiment-lifecycle` ships are what
+  `tools/sync_investment_lab_references.py` makes from the worked example.  A skill that kept its own
+  copies drifted from the template once.
 - **path length** — no tracked path longer than Windows allows once installed under a home folder;
   a 130-character path once made `apm install -g` fail.
 
@@ -28,6 +31,8 @@ import pathlib
 import re
 import subprocess
 import sys
+
+import sync_investment_lab_references
 
 REPOSITORY_ROOT = pathlib.Path(__file__).resolve().parent.parent
 # The package, then each starting point, by its folder; `.` is the package at the root.
@@ -218,6 +223,25 @@ def check_path_length(
     return findings
 
 
+def check_references(
+    root: pathlib.Path,
+) -> list[Finding]:
+    """
+    The references `experiment-lifecycle` ships match what the worked example says they hold.
+    """
+    stale = sync_investment_lab_references.stale_references(root)
+    findings = [
+        Finding(
+            check='references',
+            message=f'{reference_name}: differs from the example; run tools/sync_investment_lab_references.py',
+        )
+        for reference_name
+        in stale
+    ]
+
+    return findings
+
+
 def check_section_symbol(
     root: pathlib.Path,
     files: list[str],
@@ -306,6 +330,7 @@ def main() -> int:
             REPOSITORY_ROOT,
             files,
         ),
+        *check_references(REPOSITORY_ROOT),
         *check_path_length(files),
     ]
 

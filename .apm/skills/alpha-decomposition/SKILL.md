@@ -1,0 +1,238 @@
+---
+name: alpha-decomposition
+description: >
+  Load this skill when a KaxaNuk Investment Lab strategy beats its benchmark and the question
+  becomes "is the signal doing anything, or is this a factor exposure wearing the signal's name?".
+  Use it to read Attribution Analysis output in two layers and a third pass — Brinson-Fachler, the
+  factor model, Brinson-Fachler again on the residual — to decompose idiosyncratic return into
+  selection, sizing and timing by building counterfactual books the Backtest Engine can price, to
+  run the exclusion-filter test when the factor model is blind to an absolute rule, and to evidence
+  graduation criterion 2. It does NOT run the engine or the attribution library for you — it says
+  which books to price and how to read the numbers that come back. Shaping the attribution library's
+  inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
+metadata:
+  version: 0.3.3
+---
+
+# Alpha decomposition — is the signal doing anything?
+
+A book that beats its benchmark has not been understood. It has been observed. This skill is the
+procedure that turns "the book went up" into "here is the part of the return that is the idea, and
+here is the part that is beta, size, sector and luck" — the question `RESULTS.md` has to answer
+before a strategy can graduate, and one this stack can actually answer because step 6 exists.
+
+The method is Paleologo's (*Advanced Portfolio Management*, 2021, chapter 8): split total return
+into factor and idiosyncratic, then split the idiosyncratic part three ways **by counterfactual
+books, never by formula**. The book is listed in Part 0 of the template's
+`Bibliotheca/BIBLIOGRAPHY.md` as provenance, not as a note; write its note before citing it in a
+findings file. Every counterfactual below is a weight file, so the same `Experiments/backtest_engine.py`
+that priced the real book prices it, over the same window, at the same costs — and when a
+counterfactual is attributed as well, the attribution reads *its* daily weights from *its* backtest,
+never the real book's.
+
+Work in the experiment's notebook, section 5 or a section after it. Record every number in
+`FINDINGS_N.md`, then `RESULTS.md`. Publish the count of counterfactuals run.
+
+## 1. First, two layers and a third pass — read what step 6 reports
+
+Savvy investors follow a process, a thesis and data, and attribution gives all three about a book.
+Run both methodologies (the experiment notebook's attribution cell does this) and record:
+
+| Layer | From | Numbers to record | The question it answers |
+| --- | --- | --- | --- |
+| **First cut** | Brinson-Fachler | cumulative alpha; **allocation**, **selection**, **interaction** | is the return the groups the book leans into, or the names it picks inside them? The exact lever that moved |
+| **Second layer** | the factor model | total excess; **factor** contribution by factor — beta, size, value, momentum, residual volatility, liquidity, industries — and the **idiosyncratic** residual | which systematic premia paid, on purpose or by accident? How much of this is a factor fund wearing the strategy's name? |
+| **Third pass** | Brinson-Fachler on the residual | allocation and selection of the return left after factor exposure is stripped | does the selection story survive — and would the Sharpe survive once that factor turns? |
+
+The third pass is what the first cut alone cannot give: a book that looks like skilful stock-picking
+in Brinson-Fachler can be a persistent low-beta or momentum tilt that happened to pay over the
+sample. The attribution library does not run Brinson-Fachler on residual returns directly, so build
+the residual series from the factor model's output — `calc_pct_area()` names it `f_idio_returns`,
+`cummulative_pct_decomp()` names it `idio_returns` — and run the first cut on it in the notebook,
+saying in `FINDINGS_N.md` that it was done that way. Getting those tables out at all is
+`attribution-analysis-runs`.
+
+**Know what the library calls allocation.** KaxaNuk's Attribution Analysis computes the three effects
+**per asset and per date** — its methodology page gives the formulas, and `attribution-analysis-runs`
+repeats them — not by group. An allocation number is a statement about groups only when the inputs
+were aggregated to groups first; `FINDINGS_N.md` says which was run.
+
+**Check the benchmark is whole before reading any of it.** The first cut prices only the securities
+the book's weight file names, so a book that lists only its holdings is compared with the part of the
+index it owns — in the run that proved it, 6% of the index's return, with alpha five times too large and
+the excess filed under interaction. Compare the first cut's `benchmark_returns` with the index's own
+return over the same window; if they are not close, the book was not widened to every constituent
+(`attribution-analysis-runs`, section 3) and no row of the table can be read yet.
+
+Two readings, both of which count as answers:
+
+- **Allocation ≈ 0 with selection and interaction positive**, on inputs aggregated to groups, means a
+  large group tilt is *not* where the money comes from. Say so plainly; it is the opposite of what the tilt makes a reader
+  assume.
+- **A roughly even factor / idiosyncratic split** is a *pass with a qualification* on criterion 2.
+  There is real idiosyncratic alpha, and half the excess is exposure available more cheaply
+  elsewhere. Report both halves with equal weight.
+
+State the attribution window beside the backtest window — it is bound by factor-file coverage and
+benchmark-holdings start, and is usually shorter. Record how many factor files the run used;
+attribution numbers are only comparable across runs when the factor set is identical.
+
+## 2. When the factor model is blind — the absolute-versus-relative problem
+
+**Momentum in a factor model is relative**: a name ranked against its peers. **A trend or regime
+rule is absolute**: a name against its own history. The two produce different books from the same
+names, and a factor model built on the relative kind is close to invisible to an absolute rule. So a
+strategy can beat every benchmark while the model assigns roughly nothing to the factor its thesis
+is named after.
+
+**That is a finding, not a failure**, and it is the expected state for any threshold signal — a
+moving-average cross, a breakout, a regime label, a drawdown gate. When you see it:
+
+1. Say so in `FINDINGS_N.md`, in those terms.
+2. Do not conclude the signal is weak. Conclude the model cannot see it, and go to section 4.
+3. Rename the pillar in `OBJECTIVE.md` if it is called "momentum" and is a trend rule. The
+   distinction predicts which factor model will see the strategy and which will not.
+
+## 3. Then, the idiosyncratic part three ways — counterfactual books
+
+Before any of them: **drop economically insignificant positions** from both the real book and the
+counterfactuals, or the comparison is dominated by residual slivers nobody was betting on.
+
+Each counterfactual keeps everything about the real book except one thing. The Sharpe difference
+between the real book and the counterfactual, over the same engine window, is that one thing's
+contribution. All three read the objects the experiment notebook already has — `selected_matrix`,
+`REBALANCE_DATES`, `target_weights`, and the eligibility matrix the rule built them from — and hand a
+new `target_weights` to `backtest_engine.to_engine_frame` and `backtest_engine.run_variant`.
+
+### 3a. Sizing skill — equalise positions within each date
+
+Same names, same dates, every held position at equal weight. Side and gross unchanged.
+
+```python
+held = target_weights > 0
+sizing_counterfactual = held.astype(float).div(held.sum(axis=1), axis=0).fillna(0.0)
+```
+
+**Sharpe(real) − Sharpe(equal-weighted) is what sizing contributed.** Positive means the big
+positions were the good ones. This is the cheapest counterfactual and often already exists: an
+equal-weight variant in the same experiment *is* this book — and for a benchmark that is already
+equal weight, sizing skill is zero by construction and should be reported as such.
+
+### 3b. Selection skill — a random draw from the eligible pool at the same sizes
+
+Same dates, same number of names, same weight vector — but the names are drawn at random from
+what was eligible that day. Repeat K times; K is a trial count and is published.
+
+```python
+rng = numpy.random.default_rng(seed)
+draws = []
+for _ in range(K):
+    rows = []
+    for date in REBALANCE_DATES:
+        real = target_weights.loc[date]
+        weights = numpy.sort(real[real > 0].to_numpy())[::-1]          # the real size distribution
+        pool = eligible_matrix.loc[date]
+        picked = rng.choice(pool.index[pool], size=len(weights), replace=False)
+        rows.append(pandas.Series(weights, index=picked, name=date))
+    draws.append(pandas.DataFrame(rows).reindex(columns=target_weights.columns).fillna(0.0))
+```
+
+Price every draw. **The real book's percentile among the K random books is the selection skill**;
+the mean random Sharpe is what the eligibility rule plus the sizing scheme earn *without* picking.
+Report the percentile and K, as a permutation test reports a p-value.
+
+### 3c. Timing skill — the same names with entry dates shifted
+
+Same selections, same weights, every re-strike moved by a fixed lag (5, 21 days) or to a random
+date inside a window around the real one. If moving the entries costs nothing, the rule has no
+timing skill — it is a selection rule that happens to fire on some day.
+
+```python
+shifted_dates = REBALANCE_DATES + pandas.tseries.offsets.BDay(lag)
+timing_counterfactual = target_weights.set_axis(shifted_dates)
+```
+
+Clip to trading days that exist in the panel and drop any shifted date past the sample's end.
+
+### Reading the three together
+
+| Counterfactual | Sharpe gap to the real book | Reading |
+| --- | --- | --- |
+| equal-weighted | small positive | sizing helps a little — say "a little", in Sharpe |
+| random draw (mean) | large positive | the names matter; the rule is selecting, not just filtering |
+| random draw (mean) | ≈ 0 | the eligibility filter plus sizing is the whole strategy |
+| shifted entries | ≈ 0 | no timing skill; do not claim any |
+
+Sizing plus selection plus timing does not have to sum to the idiosyncratic return — the
+counterfactuals overlap. They are three questions, not a partition.
+
+## 4. The exclusion-filter test — the counterfactual for an absolute rule
+
+The direct test of whether a threshold signal earns its keep, and the fallback when section 2
+applies: **the same book with the signal switched off.**
+
+```python
+eligible_without_signal = tradable_matrix & ~last_tradable_day          # signal removed
+# then re-run the experiment's own selection and weighting on this eligibility matrix
+```
+
+Same ranking column, same holding count, same weighting, same trigger — only the eligibility
+condition changes. Price both. **Sharpe(with signal) − Sharpe(without) is what the signal
+contributes as a filter**, which a factor model cannot measure.
+
+**What a null result means.** If the two books are close, the signal is not adding beyond the
+sizing rule's own selection, and the honest description of the strategy is "top-N by the sizing
+column". That is worth knowing and belongs in `OBJECTIVE.md` as a falsified claim.
+
+## 5. The worked example — `liquid-golden-cross`
+
+The KaxaNuk Strategy Template works one strategy through the process in its worked example,
+`examples/liquid-golden-cross/` in `KaxaNuk/KaxaNuk-Researcher`, which `init-example` copies into a folder of its own:
+**`liquid-golden-cross`** — own the thirty most heavily traded US stocks whose 50-day simple moving
+average is above the 200-day, equally weighted at one thirtieth with a 2% cash reserve, rebalanced
+only when the eligible top thirty differ from the book by 10%. It has run steps 1 to 6, so the
+numbers below are real: priced by the engine over one shared window, reported in
+`Experiments/Experiment_1/FINDINGS_1.md`.
+
+| Arm | What it removes | CAGR | Sharpe | **Idiosyncratic** |
+| --- | --- | ---: | ---: | ---: |
+| The rule | — | 17.85% | 0.861 | **45.52** |
+| The equalised control | the trend filter | 18.97% | 0.831 | **40.47** |
+| The plain control | the filter, and 76 of the 87 rebalances | 18.62% | 0.813 | **32.09** |
+| Random, five seeds | the liquidity ranking | 3.29% to 9.42% | 0.17 to 0.48 | **−17.63 to 25.17** |
+
+Each row is a lesson for this skill:
+
+- **The signal the book is named after owns about five of its 45.5 idiosyncratic points** — 45.52
+  against the equalised control's 40.47. The book beats its index and the factor model reports a
+  large idiosyncratic share, and almost none of that share is the golden cross. Read the arms before
+  crediting the signal in the name.
+- **An absolute rule is nearly invisible to a relative model**, which is the problem section 2
+  describes. `r_trend_50_200` compares a stock with its own past while the factor model is built on
+  relative factors, so the exclusion-filter test of section 4 — the equalised control — is the arm
+  that answers the question, not the factor split.
+- **Most of the idiosyncratic share is the ranking, not the filter.** The random draws keep the
+  sizing and the dates and replace only the liquidity ranking, and they land at a mean near 12.5
+  against the rule's 45.52. Selection skill, section 3b, is where this book's return lives.
+- **Sizing skill is zero by construction**, so section 3a has nothing to measure. Equal weight
+  across whatever passes the screen *is* the sizing claim — report it as zero, not as a finding.
+- **Timing was never priced, and the findings say so.** No shifted-entry arm was run, so section 3c
+  reports nothing. An arm you did not run is reported as not run, never inferred from the ones you
+  did.
+- **The rule loses on return and wins on Sharpe.** It gives up 1.12 points of CAGR against the
+  control that differs from it in exactly one thing, and buys 0.030 of Sharpe — and a drawdown 9.3
+  points shallower than the same thirty names unfiltered. A decomposition that read return alone
+  would have called the filter worthless.
+
+## What this skill will not let you do
+
+- **Call a strategy understood on the factor split alone.** The split says how much is
+  idiosyncratic; the counterfactuals say what the idiosyncratic part is made of.
+- **Run one random draw.** K is a trial count. Publish it, and report the percentile, not the best
+  draw.
+- **Tune on the counterfactuals.** They measure the rule you stated in `BLUEPRINT_N.md`. A rule
+  changed to look better against its own counterfactual is a new experiment with a new blueprint.
+- **Quote a number that did not come from the engine.** Every counterfactual is priced by
+  `backtest_engine.run_variant` over the shared window, never approximated.
+- **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come
+  from the worked example, `liquid-golden-cross`, only.
