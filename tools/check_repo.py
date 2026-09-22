@@ -214,11 +214,14 @@ def check_markers(
         in files
         if path.startswith(f'{EXAMPLE_FOLDER}/') and pathlib.PurePosixPath(path).suffix in MARKERS
     ]
+    # A notebook deleted from the working tree but still tracked is not read: it has nothing to check.
     notebooks = [
         path
         for path
         in files
-        if path.startswith(f'{EXAMPLE_FOLDER}/') and path.endswith('.ipynb')
+        if path.startswith(f'{EXAMPLE_FOLDER}/')
+        if path.endswith('.ipynb')
+        if (root / path).is_file()
     ]
     file_findings = [
         Finding(

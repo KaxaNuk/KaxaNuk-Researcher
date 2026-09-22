@@ -41,6 +41,18 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.3 (2026-09-22)
+
+**PATCH** — four lines that were this strategy's, outside its markers, reached the template.
+Nothing about any result changes.
+
+### Changed
+
+- **Experiment 1's counterfactuals sentence no longer points at cells below it**, and the
+  notebook's first open item states its condition rather than this strategy's state.
+  `BLUEPRINT_1.md`'s open questions get a placeholder table outside the markers, as its
+  predictions already had. One line of `Paper_Trading/BITACORA.md` is re-wrapped.
+
 ## 0.10.2 (2026-09-22)
 
 **PATCH** — `AGENTS.md` and `SETUP.md` follow template 0.10.0, which ships every file this example
