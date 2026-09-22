@@ -34,7 +34,7 @@ pages.
 | 16 | 13 | The Information Horizon | 352–379 | read | C4 | [16_The_Information_Horizon.md](16_The_Information_Horizon.md) |
 | 17 | 14 | Portfolio Construction | 380–423 | read | C4, C2 | [17_Portfolio_Construction.md](17_Portfolio_Construction.md) |
 | 18 | 15 | Long/Short Investing | 424–448 | skipped | | |
-| 19 | 16 | Transactions Costs, Turnover, and Trading | 449–480 | read | C4 | [19_Transactions_Costs_Turnover_and_Trading.md](19_Transactions_Costs_Turnover_and_Trading.md) |
+| 19 | 16 | Transactions Costs, Turnover, and Trading | 449–480 | read | C4 | [19_Transactions_Costs.md](19_Transactions_Costs.md) |
 | 20 | 17 | Performance Analysis | 481–522 | skipped | | |
 | 21 | 18 | Asset Allocation | 523–545 | skipped | | |
 | 22 | 19 | Benchmark Timing | 546–563 | skipped | | |

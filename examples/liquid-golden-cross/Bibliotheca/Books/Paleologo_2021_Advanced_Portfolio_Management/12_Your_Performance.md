@@ -17,7 +17,7 @@ carried.*
 Claim 2 of [`OBJECTIVE.md`](../../../OBJECTIVE.md) — *equal weight across the 30 captures that
 without a risk model.* Named in the objective as the source on how to measure whether a signal's
 strength should set the size. Its companion is the same book's
-[chapter 6](10_Use_Effective_Heuristics_for_Alpha_Sizing.md), on when it should; and the
+[chapter 6](10_Alpha_Sizing.md), on when it should; and the
 counterfactual section of
 [`FINDINGS_1.md`](../../../Experiments/Experiment_1/FINDINGS_1.md) is this chapter's machinery,
 already run once.

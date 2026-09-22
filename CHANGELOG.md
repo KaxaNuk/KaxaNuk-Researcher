@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.9.1] - 2026-09-22
+Three paths in the example that failed the repository's own check.
+### Fixed
+- **Three chapter notes in `examples/liquid-golden-cross` had paths over 120 characters**, which
+  `tools/check_repo.py` refuses because a home folder on Windows pushes them past the path limit;
+  they are renamed, with every link to them rewritten and the rename logged in the example's
+  `Bibliotheca/LOG.md`.
+
 ## [0.9.0] - 2026-09-22
 The worked example's bibliography covers every claim, its Experiment 1 meets its last success
 criterion, and its setup guide names the files it cannot download.

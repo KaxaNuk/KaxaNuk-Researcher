@@ -23,9 +23,9 @@ lower.
 | 07 | 3 | A Tour of Risk and Performance | 23–41 | skipped | | |
 | 08 | 4 | An Introduction to Multi-Factor Models | 42–55 | skipped | | |
 | 09 | 5 | Understand Factors | 56–83 | read | C1 | [09_Understand_Factors.md](09_Understand_Factors.md) |
-| 10 | 6 | Use Effective Heuristics for Alpha Sizing | 84–109 | read | C2 | [10_Use_Effective_Heuristics_for_Alpha_Sizing.md](10_Use_Effective_Heuristics_for_Alpha_Sizing.md) |
+| 10 | 6 | Use Effective Heuristics for Alpha Sizing | 84–109 | read | C2 | [10_Alpha_Sizing.md](10_Alpha_Sizing.md) |
 | 11 | 7 | Manage Factor Risk | 110–134 | skipped | | |
-| 12 | 8 | Understand Your Performance | 135–160 | read | C2 | [12_Understand_Your_Performance.md](12_Understand_Your_Performance.md) |
+| 12 | 8 | Understand Your Performance | 135–160 | read | C2 | [12_Your_Performance.md](12_Your_Performance.md) |
 | 13 | 9 | Manage Your Losses | 161–171 | skipped | | |
 | 14 | 10 | Set Your Leverage Ratio for a Sustainable Business | 172–179 | skipped | | |
 | 15 | 11 | Appendix | 180–202 | skipped | | |
