@@ -237,17 +237,29 @@ installed:
 ## Replayed turns
 
 An "after the go" case replays the first turn and tests only the second. Its `history.jsonl` is a
-Claude Code session transcript:
+Claude Code session transcript, captured from one run of its first-turn case:
 
-1. Run the first-turn case once: `--case '<its name>' --runs 1`.
-2. In the kept folder, take `config/projects/*/*.jsonl`.
-3. Keep only the `user` and `assistant` lines. The unfiltered file carries the account e-mail of
-   whoever ran it and a snapshot of the system prompt: never commit it.
+1. Run the first-turn case once: `--case '<its name>' --runs 1`. The runner keeps the run's folder.
+2. Write the history from the batch's results; `tools/eval_history.py` finds the kept folder from
+   the case's `tracePath` (`<kept folder>/out/trace.jsonl`) and its session under
+   `config/projects/*/*.jsonl`:
 
    ```bash
-   python3 -c "import json, sys; sys.stdout.writelines(line for line in open(sys.argv[1]) \
-     if json.loads(line).get('type') in ('user', 'assistant'))" <transcript>.jsonl > history.jsonl
+   uv run --no-project python tools/eval_history.py \
+     evals/results/<batch>/aggregate-result.json --case <first-turn case> \
+     evals/contract/<skill>/<after-go case>/history.jsonl
    ```
+
+   It keeps only the `user` and `assistant` lines, and writes nothing if what is left holds an
+   e-mail address. The unfiltered file carries the account e-mail of whoever ran it and a snapshot
+   of the system prompt: never commit it. A kept folder or a session `.jsonl` also works as the
+   source, without `--case`.
+3. Remove the kept folders, as *Traces* above says, and commit the history with its case.
+
+A case whose `case.yaml` names a `history_file` it does not hold stops the run when it is
+selected, naming this procedure. **A history whose first turn lists Bash is captured on a host whose
+sandbox runs a shell**, then committed: `contract/read/after-go-writes-only-the-chosen` replays
+`contract/read/plan-before-write`, and is committed without its history until then.
 
 The replay's workspace is fresh: give the case the same `FIXTURE`, so the scaffold recreates what
 the first turn saw. The history keeps the first run's absolute paths, and the model may notice and
