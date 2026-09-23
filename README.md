@@ -129,12 +129,9 @@ templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
 tests/                the tests of the skills' scripts and of the tools
-tools/                check_repo.py, the repository's own checks;
+tools/                check_repo.py, the repository's own checks; and
                       sync_investment_lab_references.py, which regenerates experiment-lifecycle's
-                      references and the template's generated files from the example; and the
-                      three eval scripts, eval_run.py, eval_fixtures.py and eval_history.py
-evals/                behavioural evals of the skills and commands, run by tools/eval_run.py;
-                      evals/README.md says how
+                      references and the template's generated files from the example
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the environment of the scripts and their tests
@@ -171,8 +168,10 @@ files out of step with the example, a path too long for Windows, a line of prose
 columns. The worked example is linted with its own ruff settings, and the last command checks
 the Bloom Code style of the skills' scripts, the tests, the tools and the example. Each runs
 through `uv` alone: no Python of your own is needed. They run on your machine before a commit;
-there is no CI, so nothing runs them for you. The behavioural evals — what a skill or a command
-does when a user runs it — are a separate run with its own cost; `evals/README.md` says how.
+there is no CI, so nothing runs them for you. What they cannot check is how a skill or a command
+behaves in a session: before a release that changes one, walk the newcomer's path by hand in a
+scratch folder — `init-researcher`, `interview`, `next`, `init-strategy`, and `read` on one
+clipping.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.

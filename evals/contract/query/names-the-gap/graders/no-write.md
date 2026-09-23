@@ -1,8 +1,0 @@
----
-type: tool_used
-tool: Write
-input_match: '.'
-min: 0
-max: 0
----
-A query writes nothing.

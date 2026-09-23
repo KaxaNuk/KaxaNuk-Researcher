@@ -9,14 +9,13 @@ before changing anything.
 
 | Path | What it is | Changed how |
 | --- | --- | --- |
-| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/` | every skill, command and instruction an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's and the house rules | edited here, then tried from a pushed branch — `apm install -g KaxaNuk/KaxaNuk-Researcher#<branch> --target claude` and a new session — never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME; the one local route is what `tools/eval_run.py` does: copy the files `git ls-files` lists to a short folder and install that |
+| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/` | every skill, command and instruction an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's and the house rules | edited here, then tried from a pushed branch — `apm install -g KaxaNuk/KaxaNuk-Researcher#<branch> --target claude` and a new session — never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME; the one local route is to copy the files `git ls-files` lists to a short folder and install that |
 | the skills' `scripts/` | `scaffold.py`, `extract.py`, `bloom_code_check.py` | with their tests in `tests/`, which pass before any commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | never by hand: `uv run --no-project python tools/sync_investment_lab_references.py` after the example changes |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/`, as `TEMPLATE_FILES` in the sync tool lists them | the example's with its own lines stripped | never by hand: the same `sync_investment_lab_references.py`; `check_repo.py` fails when one differs |
 | `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `pyproject.toml`, which declares its version, and `CHANGELOG.md` move together |
 | `examples/liquid-golden-cross/` | one strategy worked through the template | the same, and its `uv.lock` records the project version: `uv lock` after a bump |
 | `templates/researcher/` | the researcher's home, copied by `init-researcher` | its `apm.yml` version leads its `CHANGELOG.md`; `update` compares a home against it |
-| `evals/`, `tools/eval_*.py` | the behavioural evals and their runner | run as `evals/README.md` says, on your own plan: they cost money and nothing runs them for you |
 
 **The template and the example share every file the example does not mark.** A change to the
 template's description of a file changes the example's copy in the same commit; only the lines

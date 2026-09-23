@@ -1,4 +1,0 @@
-schema_version: "1.1"
-name: contract/read/strategy-without-claims
-context:
-  scaffold_script: scaffold.sh
