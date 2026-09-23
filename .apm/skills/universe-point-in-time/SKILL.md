@@ -9,11 +9,11 @@ description: >
   prefixed `current_`, what belongs in `Data_Issues.csv`, or from which date a universe is usable.
   It covers the seed's contract, the two-layer master, the checks and the usable date. It does NOT
   cover downloading prices (use `data-curator-custom-calculations`), the refinery's cross-sectional
-  panel or screening a feature (the worked example's `Data/refinery.py` and `Data/analyzer.ipynb`
-  show them), sizing a book (use `portfolio-construction-runs`), or the research process around
-  the stage (use `experiment-lifecycle`).
+  panel (the worked example's `Data/refinery.py` shows it), screening a feature (use
+  `data-analyzer-runs`), sizing a book (use `portfolio-construction-runs`), or the research
+  process around the stage (use `experiment-lifecycle`).
 metadata:
-  version: 0.1.4
+  version: 0.1.5
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today

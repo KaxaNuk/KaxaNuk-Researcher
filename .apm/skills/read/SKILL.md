@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.6.0
+  version: 0.6.1
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -143,9 +143,9 @@ owner picks are theirs, numbered; the plan offers to write them under *What you 
 in their words, and that is the one write this skill makes outside the library and the extracts,
 at home only, said in the plan. The owner may still read a source as background, no question in
 mind, but the proposal comes first. In a strategy the questions are the claims in `OBJECTIVE.md`,
-by number — a strategy with none stopped at item 1. A question the claims do not cover is a claim to
-add with `objective` before the reading, and *background reading* is a home answer: in a strategy
-every note serves a claim. Nothing is written at home.
+by number — a strategy with none stopped at A, the objective. A question the claims do not cover
+is a claim to add with `objective` before the reading, and *background reading* is a home answer:
+in a strategy every note serves a claim. Nothing is written at home.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the

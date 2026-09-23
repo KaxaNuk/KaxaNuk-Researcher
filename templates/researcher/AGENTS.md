@@ -181,35 +181,35 @@ linked, never written.
 ### The order of work
 
 **An index of *Starting your own strategy* in the template's README**, which is the source and says
-why each item comes where it does. The items are its; the researcher's part is this repository's,
-and the commands cite items by these numbers. **The objective comes before any paper**, and the
-reading comes in two waves — narrow, per claim, before the blueprint; broad, after it, for what the
-blueprint left open.
+why each part comes where it does. The parts are lettered A to H there, so they are never mistaken
+for the eight steps; the researcher's part is this repository's, and the commands cite the parts by
+these letters. **The objective comes before any paper**, and the reading comes in two waves —
+narrow, per claim, before the blueprint; broad, after it, for what the blueprint left open. The
+`next` command reads a strategy against this table and names the part that comes next.
 
-| # | Item | Where it lands | The researcher's part |
+| | Part | Where it lands | The researcher's part |
 | --- | --- | --- | --- |
-| 1 | **The objective**, before any paper is read | `OBJECTIVE.md` | `objective`, first pass: the claims from the owner's words, each *untested*, its evidence the question that would settle it, marked as a lead |
-| 2 | **Fine-tune the objective**, reading for each claim | `Bibliotheca/`, then `OBJECTIVE.md` | `read`, one note per paper or chapter naming the claim it serves; then `objective` again, the evidence rewritten from the notes |
-| 3 | **The investable universe**, delisted names included | `Universe/Investable_Universe.csv` | contrast from the library — survivorship, point-in-time membership — never a number |
-| 4 | **The data** — curator, universe notebook, refinery, analyzer | `Data/` — the analyzer's measurements go straight into `RESULTS.md`, *Before any experiment* | contrast from the library — what the data can do to a signal — never a number |
-| 5 | **The benchmark, then the blueprint**, before the rule | `Experiments/Experiment_N/BLUEPRINT_N.md` | `blueprint`: every prediction cites a note from item 2 or an analyzer measurement, or is a lead, counted |
-| 6 | **The broad reading, and brainstorming** | `Bibliotheca/`, `BRAINSTORMING_N.md` | `read` for what the blueprint left open; `brainstorm` for what to try next |
-| 7 | **The cycle** — portfolio, backtest, attribution | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | `challenge`: each run checked against the blueprint's predictions and the notes; every number comes from the Lab's engines, never from here |
-| 8 | **Results**, kept or rejected | `RESULTS.md`, compiled from `FINDINGS_N.md` | a rejected cycle is reported as loudly as a kept one: *What is closed* is what stops the next person repeating it |
+| A | **The objective**, before any paper is read | `OBJECTIVE.md` | `objective`, first pass: the claims from the owner's words, each *untested*, its evidence the question that would settle it, marked as a lead |
+| B | **The reading**, for each claim | `Bibliotheca/`, then `OBJECTIVE.md` | `read`, one note per paper or chapter naming the claim it serves; then `objective` again, the evidence rewritten from the notes |
+| C | **The universe**, delisted names included | `Universe/Investable_Universe.csv` | contrast from the library — survivorship, point-in-time membership — never a number |
+| D | **The data** — curator, universe notebook, refinery, analyzer | `Data/` — the analyzer's measurements go straight into `RESULTS.md`, *Before any experiment* | contrast from the library — what the data can do to a signal — never a number |
+| E | **The blueprint**, after the benchmark is chosen and before the rule | `Experiments/Experiment_N/BLUEPRINT_N.md` | `blueprint`: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
+| F | **The broad reading**, and brainstorming | `Bibliotheca/`, `BRAINSTORMING_N.md` | `read` for what the blueprint left open; `brainstorm` for what to try next |
+| G | **The cycle** — portfolio, backtest, attribution | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | `challenge`: each run checked against the blueprint's predictions and the notes; every number comes from the Lab's engines, never from here |
+| H | **The results**, kept or rejected | `RESULTS.md`, compiled from `FINDINGS_N.md` | a rejected cycle is reported as loudly as a kept one: *What is closed* is what stops the next person repeating it |
 
-**Items are not steps.** Item 3, the universe, is step 2 of the process, and item 7's cycle is steps
-4 to 6. A strategy's own files say *step* in the second sense, so read *step N* there against the
-README's eight-step table, and *item N* here.
+**Parts are not steps.** C, the universe, is step 2 of the process, and G, the cycle, is steps 4 to
+6. A strategy's own files say *step N* in the process's sense, read against the README's eight-step
+table; a letter is always a part of the order of work.
 
-**A command asked for out of order names the item that comes first, and stops.** `read` in a
+**A command asked for out of order names the part that comes first, and stops.** `read` in a
 strategy whose `OBJECTIVE.md` has no claims points at `objective`; `blueprint` with no claims, or
-with no investable universe, points at the item that is missing. Going back is how items 1 to 4 are
-meant to work — a claim sharpened by a paper, a universe widened — until the blueprint is written;
-after it, a change to the claims or the rules is a new experiment, not an edit. One item may come
-early: the first entry of `BRAINSTORMING_1.md`, choosing the benchmark, is thinking done before
-Experiment 1's blueprint — the example's `BRAINSTORMING_1.md` says that entry is usually the
-benchmark choice, and Experiment 1 *is* the benchmark, so the choice cannot wait for the blueprint
-that depends on it.
+with no investable universe, points at the part that is missing. Going back is how A to D are meant
+to work — a claim sharpened by a paper, a universe widened — until the blueprint is written; after
+it, a change to the claims or the rules is a new experiment, not an edit. One part may come early:
+the first entry of `BRAINSTORMING_1.md`, choosing the benchmark, is thinking done before Experiment
+1's blueprint — the example's `BRAINSTORMING_1.md` says that entry is usually the benchmark choice,
+and Experiment 1 *is* the benchmark, so the choice cannot wait for the blueprint that depends on it.
 
 ## Joining other projects
 
@@ -278,7 +278,7 @@ and `apm install --target <agent>` here deploys it.
 | Primitive | Where | What it is |
 | --- | --- | --- |
 | **Skill** | `.apm/skills/<name>/` in the package | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
-| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other ten — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `researcher-init` from `RESEARCHER.md`, so a fresh home has none until the interview runs |
 
 - **`apm install -g --target <agent>` deploys the package once per machine**, into the user's
