@@ -23,8 +23,10 @@ A case folder that holds a one-line `FIXTURE` file naming a fixture gets a real 
 `scaffold_script: scaffold.sh` itself.  A case whose case.yaml names a `history_file` it does not
 hold stops the run, naming the capture step.  Then `claude plugin eval` runs on the plugin folder.
 Sessions run on Opus 5.5 and the quality judge on Fable 5.1; the no-plugin comparison arm is off.
-Each batch writes its results and report to its own `evals/results/<UTC time>-<cases>/`, and keeps
-every run's folder under /tmp/claude-eval-* for diagnosis.
+`--case` may be repeated: the batch is the union of the cases its globs match, and the harness is
+given `--case '*'` over a plugin that holds only those.  Each batch writes its results and report to
+its own `evals/results/<UTC time>-<label or cases>/`, and keeps every run's folder under
+/tmp/claude-eval-* for diagnosis.
 
 Every triggering run ends with the error "Reached maximum number of turns (2)": the case stops as
 soon as the skill is chosen, and the run is still graded.  The error is expected there.
@@ -354,7 +356,6 @@ def copy_starting_points(
 
 def eval_command(
     plugin_directory: pathlib.Path,
-    case_glob: str,
     runs: int | None,
     max_cost_usd: float,
     output_directory: pathlib.Path,
@@ -363,8 +364,9 @@ def eval_command(
     """
     The `claude plugin eval` command for one batch; the plugin folder comes first, as the harness asks.
 
-    `--allow-tools` names exactly `granted_tools`, and is left out when there are none; `--runs` is
-    passed only when given, so a case's own `runs` counts otherwise.
+    The plugin holds only the batch's cases, so the harness is given `--case '*'`, however many
+    globs chose them.  `--allow-tools` names exactly `granted_tools`, and is left out when there are
+    none; `--runs` is passed only when given, so a case's own `runs` counts otherwise.
     """
     grant = ['--allow-tools', *granted_tools] if granted_tools else []
     run_count = ['--runs', str(runs)] if runs is not None else []
@@ -375,7 +377,7 @@ def eval_command(
         str(plugin_directory),
         *grant,
         '--case',
-        case_glob,
+        '*',
         *run_count,
         '--model',
         SESSION_MODEL,
@@ -556,16 +558,18 @@ def read_authored_cases(
 
 
 def results_directory(
-    case_glob: str,
+    case_globs: list[str],
     started: datetime.datetime,
+    label: str | None = None,
 ) -> pathlib.Path:
     """
-    The folder of one batch's results, named by its UTC start and its case glob.
+    The folder of one batch's results, named by its UTC start and its label, else its case globs.
 
     No batch overwrites another.
     """
     stamp = started.astimezone(datetime.UTC).strftime('%Y%m%dT%H%M%SZ')
-    spelled = case_glob.replace(
+    named = label if label else ' '.join(case_globs)
+    spelled = named.replace(
         '*',
         'all',
     )
@@ -581,18 +585,19 @@ def results_directory(
 
 def select_cases(
     cases: list[EvalCase],
-    case_glob: str,
+    case_globs: list[str],
     no_shell: bool,
 ) -> Selection:
     """
-    The cases whose name matches the glob; with `no_shell`, those listing a shell tool are left out.
+    The cases whose name matches any of the globs, each once, in their order; with `no_shell`,
+    those listing a shell tool are left out.
     """
     matching = [
         case
         for case
         in cases
-        if case_matches(
-            case_glob,
+        if _matches_any(
+            case_globs,
             case.name,
         )
     ]
@@ -714,18 +719,26 @@ def _base_tool(
 
 def _build_parser() -> argparse.ArgumentParser:
     """
-    The command line: which cases, how many runs, the cost ceiling, the shell, and a dry run.
+    The command line: which cases, their label, how many runs, the cost ceiling, the shell, and a
+    dry run.
     """
     parser = argparse.ArgumentParser(
         description="Run the KaxaNuk Researcher's evals against a fresh install.",
     )
     parser.add_argument(
         '--case',
-        default='*',
+        action='append',
+        default=None,
         help=' '.join([
             "a glob over case names, such as 'contract/read/*': * matches any run of characters,",
-            '/ included, and ? one character; braces and brackets stand for themselves',
+            '/ included, and ? one character; braces and brackets stand for themselves;',
+            'repeat it to run the union of several globs as one batch (default: every case)',
         ]),
+    )
+    parser.add_argument(
+        '--label',
+        default=None,
+        help="names the batch's results folder; by default its case globs do",
     )
     parser.add_argument(
         '--runs',
@@ -956,6 +969,25 @@ def _history_name(
     return history
 
 
+def _matches_any(
+    case_globs: list[str],
+    name: str,
+) -> bool:
+    """
+    Whether a case name matches at least one of the `--case` globs.
+    """
+    matched = any(
+        case_matches(
+            case_glob,
+            name,
+        )
+        for case_glob
+        in case_globs
+    )
+
+    return matched
+
+
 def _near_miss_cases(
     skill: str,
     requests: list[str],
@@ -1121,9 +1153,10 @@ def _run_batch(
         *read_authored_cases(EVALS_DIRECTORY),
         *generated_cases(generated_files),
     ]
+    case_globs = parsed.case if parsed.case else ['*']
     selection = select_cases(
         every_case,
-        parsed.case,
+        case_globs,
         parsed.no_shell,
     )
 
@@ -1131,7 +1164,12 @@ def _run_batch(
         print(f'Left out (lists Bash, --no-shell): {left.name}')
 
     if not selection.selected:
-        print(f'No case matches --case {parsed.case!r}')
+        asked = ' '.join(
+            f'--case {case_glob!r}'
+            for case_glob
+            in case_globs
+        )
+        print(f'No case matches {asked}')
 
         return 1
 
@@ -1152,12 +1190,12 @@ def _run_batch(
     )
     command = eval_command(
         PLUGIN_DIRECTORY,
-        case_glob=parsed.case,
         runs=parsed.runs,
         max_cost_usd=parsed.max_cost_usd,
         output_directory=results_directory(
-            parsed.case,
+            case_globs,
             datetime.datetime.now(datetime.UTC),
+            label=parsed.label,
         ),
         granted_tools=list(grants),
     )
