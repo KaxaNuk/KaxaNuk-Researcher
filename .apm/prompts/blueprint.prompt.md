@@ -1,8 +1,8 @@
 ---
 description: Draft BLUEPRINT_N.md in place for a strategy, once its objective has claims and its investable universe exists — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
-  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
+  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
 ---
 
 # Draft a blueprint
@@ -77,17 +77,19 @@ the copy as the plan, make it on the owner's go, and the draft continues from th
 - **Success criteria**, **key risks** and **open questions this experiment does not answer**, in the
   template's terms. For Experiment 1, the benchmark does not need to win.
 - Fill the recorded date with today's, and say in the header that it was written before the rule.
-  Leave the template's blockquote at the top: the owner deletes it when they commit.
+  Leave the template's blockquote at the top, whole, its last line included: *delete this
+  blockquote* is addressed to the owner, who deletes it when they commit — never you, before or
+  after the go.
 
 ## Step 4: Show, wait, then write
 
 Show the draft in chat and list: the leads (notes to write first), the predictions the owner should
 be willing to be wrong about, and the analyzer sections still to run. Wait for the go. Then write
-it into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy, under the template's headings.
-The owner edits and commits it **before writing the rule** — the branch's first commit, so the diff
-shows the order. Then say what comes next in the order of work: the broad reading, for what the
-blueprint left as leads; `brainstorm`, for what to try next; and the cycle — portfolio
-construction, backtest, attribution — until it is finished.
+it into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy, under the template's headings
+and its blockquote. The owner edits and commits it **before writing the rule** — the branch's first
+commit, so the diff shows the order. Then say what comes next in the order of work: the broad
+reading, for what the blueprint left as leads; `brainstorm`, for what to try next; and the cycle —
+portfolio construction, backtest, attribution — until it is finished.
 
 Never write into the researcher's home from here. Never state a performance number as a prediction
 unless an analyzer measurement licenses it; the engine has not run, and the blueprint must not
