@@ -10,7 +10,7 @@ description: >
   It covers naming, valid input columns, the DataColumn API, composition, and how to wire the column into the
   output, for both configuration-file projects and programmatic or notebook runs of `main()`.
 metadata:
-  version: 0.3.2
+  version: 0.3.3
 ---
 
 # Data Curator Custom Calculations
@@ -58,10 +58,10 @@ functions go in `Data/Curator/custom_calculations.py`. `Data/curator.py`, the st
 that file and passes the output columns to `main()` as `Configuration.columns`; in the worked
 example's driver they are the `OUTPUT_COLUMNS` tuple. Never create `Config/custom_calculations.py`
 there. The template ships both as descriptions — a docstring each — to be filled in. In a strategy
-made from a template before 0.10.0 they are missing: ask the owner to run
-`init-example Data/curator.py` and `init-example Data/Curator/custom_calculations.py` (or
-`init-example Data` for the whole folder), and say that the lines between the example markers are
-`liquid-golden-cross`'s. Two kinds of column are not `c_*` columns, even when asked for as a
+made from a template before 0.10.0 they are missing: they come back from the template, never from
+the example, through `init-strategy`'s script run from the strategy's root —
+`scaffold.py strategy . --only Data/curator.py` and `--only Data/Curator/custom_calculations.py`,
+which never overwrite. Two kinds of column are not `c_*` columns, even when asked for as a
 "signal": one that compares securities on a date (a rank, a breadth reading), and one with a
 setting an experiment will sweep (a fitted model, or a window such as the 50- and 200-day averages
 the example builds as `r_trend_50_200`). Both are `r_*` columns in

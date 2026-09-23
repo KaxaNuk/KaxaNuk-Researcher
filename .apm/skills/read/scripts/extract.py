@@ -25,7 +25,8 @@ Options
                     which tables and verse prefer
     --min-chars N   fewer characters per page than this, on average, means no text layer (default 40)
 
-Exit codes: 0 done · 1 usage · 2 no text layer or a password needed, nothing written · 3 no outline for --chapters
+Exit codes: 0 done · 1 usage · 2 no text layer or a password needed, no chapter written ·
+3 no outline for --chapters
 Without uv: pip install "pypdf[crypto]", then python extract.py ...
 """
 import argparse
@@ -60,7 +61,7 @@ NO_OUTLINE_MESSAGE = ' '.join([
     'and pass --split "Title=first-last; ..." for the whole book, with --chapters or --all',
 ])
 NOTHING_WRITTEN_MESSAGE = ' '.join([
-    'nothing written: no text layer in what was asked for — a scanned PDF.',
+    'no chapter written: no text layer in what was asked for — a scanned PDF.',
     'Report it as unreadable.',
 ])
 PAGE_RANGE = re.compile(r'\s*(\d+)\s*(?:-\s*(\d+))?\s*')

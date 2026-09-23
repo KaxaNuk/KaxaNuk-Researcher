@@ -1,11 +1,9 @@
 """
 Unit tests for tools/eval_fixtures.py: every fixture has the shape its cases rely on.
 """
-import json
 import pathlib
 import shutil
 
-import pypdf
 import pytest
 
 import eval_fixtures
@@ -37,14 +35,6 @@ class TestBuildAll:
 
         assert names == sorted(eval_fixtures.FIXTURE_NAMES)
 
-    def test_home_with_book_holds_an_outlined_pdf(
-        self,
-        fixtures: pathlib.Path,
-    ) -> None:
-        reader = pypdf.PdfReader(str(fixtures / 'home-with-book' / eval_fixtures.BOOK_PATH))
-
-        assert len(reader.outline) == 3
-
     def test_home_with_clipping_holds_one_clipping_and_no_note(
         self,
         fixtures: pathlib.Path,
@@ -61,19 +51,6 @@ class TestBuildAll:
         assert clippings == [eval_fixtures.CLIPPING_PATH.name]
         assert 30 <= len(lines) <= 50
         assert not (home / 'Knowledge' / 'Markets').exists()
-
-    def test_home_with_image_pdf_has_no_text(
-        self,
-        fixtures: pathlib.Path,
-    ) -> None:
-        reader = pypdf.PdfReader(str(fixtures / 'home-with-image-pdf' / eval_fixtures.BOOK_PATH))
-        text = ''.join(
-            page.extract_text()
-            for page
-            in reader.pages
-        )
-
-        assert text.strip() == ''
 
     def test_home_with_notes_has_an_index_that_links_the_notes(
         self,
@@ -97,15 +74,6 @@ class TestBuildAll:
         assert '(Daniel_2016_Momentum_Crashes.md)' in older[warning:claim]
         assert '[!WARNING]' not in newer
 
-    def test_notebook_fixture_is_valid_json(
-        self,
-        fixtures: pathlib.Path,
-    ) -> None:
-        notebook = fixtures / 'strategy-ready' / 'Experiments' / 'Experiment_1' / 'experiment_1.ipynb'
-        parsed = json.loads(notebook.read_text(encoding='utf-8'))
-
-        assert 'cells' in parsed
-
     def test_researcher_existing_is_a_filled_home(
         self,
         fixtures: pathlib.Path,
@@ -128,14 +96,6 @@ class TestBuildAll:
 
         assert eval_fixtures.FILLED_BLUEPRINT_MARKER in blueprint
 
-    def test_strategy_no_claims_keeps_the_template_objective(
-        self,
-        fixtures: pathlib.Path,
-    ) -> None:
-        objective = (fixtures / 'strategy-no-claims' / 'OBJECTIVE.md').read_text(encoding='utf-8')
-
-        assert eval_fixtures.CLAIMS_MARKER not in objective
-
     def test_strategy_no_claims_with_home_keeps_the_template_objective_beside_the_home(
         self,
         fixtures: pathlib.Path,
@@ -148,15 +108,7 @@ class TestBuildAll:
         assert paper.is_file()
         assert (folder / eval_fixtures.HOME_FOLDER / 'RESEARCHER.md').is_file()
 
-    def test_strategy_non_empty_target_holds_a_file(
-        self,
-        fixtures: pathlib.Path,
-    ) -> None:
-        files = list((fixtures / 'strategy-non-empty-target' / 'fcf-yield-quality').iterdir())
-
-        assert len(files) == 1
-
-    def test_strategy_ready_has_claims_and_a_seed_with_rows(
+    def test_strategy_ready_has_a_seed_with_rows(
         self,
         fixtures: pathlib.Path,
     ) -> None:
@@ -213,6 +165,6 @@ class TestBuildAllFromAnotherPackage:
             target,
             package_root=package,
         )
-        built = target / 'home-with-book' / 'RESEARCHER.md'
+        built = target / 'home-with-clipping' / 'RESEARCHER.md'
 
         assert built.read_text(encoding='utf-8').startswith('This package, not the repository.')

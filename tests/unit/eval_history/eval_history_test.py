@@ -10,7 +10,7 @@ import eval_history
 
 # Built here, so this file holds no address a scan would take for a real one.
 AT_SIGN = chr(64)
-CASE_NAME = 'contract/read/plan-before-write'
+CASE_NAME = 'contract/blueprint/waits-before-write'
 USER_LINE = json.dumps({
     'type': 'user',
     'message': {
@@ -231,28 +231,6 @@ class TestKeptFolder:
 
 
 class TestMain:
-    def test_a_file_name_after_a_json_escape_is_written(
-        self,
-        tmp_path: pathlib.Path,
-        monkeypatch: pytest.MonkeyPatch,
-    ) -> None:
-        monkeypatch.delenv(
-            'CLAUDE_CODE_USER_EMAIL',
-            raising=False,
-        )
-        folder = kept_run(
-            tmp_path,
-            f'{USER_LINE}\n{TOOL_RESULT_LINE}\n',
-        )
-        destination = tmp_path / 'history.jsonl'
-        exit_code = eval_history.main([
-            str(folder),
-            str(destination),
-        ])
-
-        assert exit_code == 0
-        assert TOOL_RESULT_LINE in destination.read_text(encoding='utf-8')
-
     def test_a_results_file_gives_the_kept_session(
         self,
         tmp_path: pathlib.Path,

@@ -6,12 +6,43 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.8.1 (2026-09-23)
+
+**PATCH** — a new home's own files agree with its rules: the blockquotes of `Knowledge/INDEX.md`
+and `Knowledge/LOG.md` name the synthesis page `query` keeps, as `AGENTS.md` has since 0.8.0.
+`LICENSE` is the MIT licence alone.
+
+**What to do differently:** run `update` in your home, which brings `README.md` and `AGENTS.md`
+across and lists the two blockquotes as *by hand* lines; carry the `INDEX.md` and `LOG.md`
+blockquotes across by hand, since those files are yours. `LICENSE` names KaxaNuk as the holder, as
+the template ships it: put yourself there, as `interview` says.
+
+### Changed
+
+* **`Knowledge/INDEX.md`** is rebuilt by `read` and `refresh-index` and given one line by `query`
+  when you keep a synthesis page; **`Knowledge/LOG.md`** records every synthesis page `query`
+  keeps, beside every `read`, `audit` and `refresh-index`.
+
+### Removed
+
+* **The obsidian-vault-kit notice**, from the end of `LICENSE` and from the *Licence* section of
+  `README.md`: `LICENSE` is the MIT licence alone.
+* **`AGENTS.md`'s version history of a strategy's `Bibliotheca/`**: the *Where things are, in a
+  strategy* table says the template ships `BIBLIOGRAPHY.md` and `LOG.md`, and no longer what a
+  strategy older than 0.7.15 has; the `read` skill still says it.
+
+### Fixed
+
+* **The 0.8.0 entry** called `fcf-yield-quality` the example strategy and the worked example's
+  name; it is the placeholder name `init-strategy` uses, and the worked example is
+  `liquid-golden-cross`. Corrected in place.
+
 ## 0.8.0 (2026-09-23)
 
 **MINOR** — the home's rules change: the numbers rule names the engines the project names, not only
 the Lab's, `query` may write a kept page's index line and log entry, *Joining other projects* says
 who copies and how a project's files are named and cited, and the README says how a researcher
-grows. The example strategy is `fcf-yield-quality`.
+grows. The example path in `AGENTS.md` is `fcf-yield-quality`.
 
 **What to do differently:** run `apm update -g`, open a new session, and run `update` in your home,
 which brings `README.md`, `AGENTS.md`, `apm.yml` and `.gitignore` across. Then by hand: the first
@@ -65,7 +96,7 @@ touches.
   strategy*, where it was "the branch's first commit": a strategy's work lands on `main`, and a
   branch is for a change the owner wants reviewed.
 * **`AGENTS.md` reaches a strategy from home as `blueprint 1 D:\Research\fcf-yield-quality`**, the
-  worked example's name, not a folder of the maintainer's.
+  placeholder name `init-strategy` uses, not a folder of the maintainer's.
 * **A note's *What it changes* is measured against the owner's question**, not their investing;
   the `RESEARCHER.md` paragraph says a line by hand under *How it speaks* or *Non-negotiables* is
   how the owner teaches the researcher to behave; and a skill of the home's own is written as the

@@ -10,7 +10,7 @@ description: >
   It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style (the
   `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.3.0
+  version: 0.3.1
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -109,8 +109,8 @@ strategy that reaches paper trading with its results reproduced from a clean clo
    ```
 
    One tag per release, `v` and the version the repository declares at its root: a strategy tags
-   the version its `apm.yml` and `pyproject.toml` share, and the KaxaNuk Researcher tags its
-   package's, while its template, example and home keep their own numbers in their folders.
+   the version its `pyproject.toml` declares, and the KaxaNuk Researcher tags its package's, while
+   its template, example and home keep their own numbers in their folders.
 3. **Tag the commit where the version became the state of `main`** — when a branch was used, the
    merge, not the commit on the branch that wrote the bump. A version bump authored early on a long
    branch names a tree that never existed on `main`, and a tag is the one thing that cannot be

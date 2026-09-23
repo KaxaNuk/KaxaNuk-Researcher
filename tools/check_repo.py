@@ -8,10 +8,11 @@ Run from the repository root:
 
 It reads the working tree.  Each check exists because what it looks for happened:
 
-- **versions** — the package and each starting point declare one version in `apm.yml`, and it leads
-  their `CHANGELOG.md`, their `pyproject.toml` and their `uv.lock` where git tracks one.  Two fields
-  that always move together once did not; an ignored, stale `uv.lock` at the root once failed the
-  check for a version nobody had declared.
+- **versions** — the package and each starting point declare one version, in `apm.yml` where the
+  folder has one and in `pyproject.toml` where it has none, as the strategy template and the
+  example do; it leads their `CHANGELOG.md`, their `pyproject.toml` beside an `apm.yml`, and their
+  `uv.lock` where git tracks one.  Two fields that always move together once did not; an ignored,
+  stale `uv.lock` at the root once failed the check for a version nobody had declared.
 - **headings** — every heading of a template document is in the example's copy, so the example keeps
   the template's structure.  The two lived on separate branches and drifted; the example's `README.md`
   is its strategy's own and is left out, and so is its `CHANGELOG.md`, whose versions are its own:
@@ -33,11 +34,12 @@ It reads the working tree.  Each check exists because what it looks for happened
   hand.
 - **path length** — no tracked path longer than Windows allows once installed under a home folder;
   a 130-character path once made `apm install -g` fail.
-- **width** — no line of markdown prose wider than 100 columns in `.apm/`, `templates/researcher/`
-  and the root `README.md`, `SETUP.md` and `AGENTS.md`, never a `CHANGELOG.md` or the references
-  the sync tool generates.  Frontmatter, fenced code, table rows and lines holding a URL are set
-  aside; width counts characters, not bytes.  The house rule was kept by hand, and about 250
-  lines had grown past it.
+- **width** — no line of markdown prose wider than 100 columns in `.apm/`, `templates/researcher/`,
+  `templates/strategy/` and the root `README.md`, `SETUP.md` and `AGENTS.md`, never a `CHANGELOG.md`
+  or the references the sync tool generates; the example is left out, its notes and log running
+  wide by design.  Frontmatter, fenced code, table rows and lines holding a URL are set aside;
+  width counts characters, not bytes.  The house rule was kept by hand, and about 250 lines had
+  grown past it.
 
 Exit code 0 when every check passes, 1 when any fails.
 """
@@ -83,6 +85,7 @@ WIDTH_EXCLUDED_FOLDERS = (
 WIDTH_FOLDERS = (
     '.apm/',
     'templates/researcher/',
+    'templates/strategy/',
 )
 # The sync tool declares the markers, and matches them only as whole lines at column 0.
 MARKERS = sync_investment_lab_references.EXAMPLE_MARKERS
@@ -136,9 +139,11 @@ UV_LOCK_VERSION = re.compile(
     r'^\[\[package\]\]\nname = "[^"]+"\nversion = "([^"]+)"\nsource = \{ virtual = "\." \}',
     re.MULTILINE,
 )
-# The files that record a release folder's version, and how each is read.
+# The files that record a release folder's version, and how each is read; the folder declares its
+# version in `apm.yml` when it has one, and in `pyproject.toml` otherwise.
 VERSION_PATTERNS = {
     'CHANGELOG.md': CHANGELOG_VERSION,
+    'apm.yml': APM_VERSION,
     'pyproject.toml': PYPROJECT_VERSION,
     'uv.lock': UV_LOCK_VERSION,
 }
@@ -401,7 +406,7 @@ def check_versions(
     files: list[str],
 ) -> list[Finding]:
     """
-    Each release folder's versions agree, and its changelog leads with them.
+    Each release folder's versions agree with the one it declares, and its changelog leads with it.
     """
     findings = [
         finding
@@ -622,20 +627,23 @@ def version_problems(
     files: list[str],
 ) -> list[Finding]:
     """
-    One release folder's versions, compared with the one its `apm.yml` declares.
+    One release folder's versions, compared with the one it declares: in its `apm.yml` when it has
+    one, and in its `pyproject.toml` otherwise, as a strategy, which has no `apm.yml`, does.
 
     The folder's `uv.lock` is read only when git tracks it: an ignored one holds whatever the last
     local run left, and says nothing about the release.
     """
+    declaring_name = 'apm.yml' if (folder / 'apm.yml').is_file() else 'pyproject.toml'
     declared = _first(
-        APM_VERSION,
-        _read(folder / 'apm.yml'),
+        VERSION_PATTERNS[declaring_name],
+        _read(folder / declaring_name),
     )
     lock_path = pathlib.PurePosixPath(label, 'uv.lock').as_posix()
     read_names = [
         name
         for name
         in VERSION_PATTERNS
+        if name != declaring_name
         if name != 'uv.lock' or lock_path in files
     ]
     recorded = {
@@ -650,7 +658,7 @@ def version_problems(
     findings = [
         Finding(
             check='versions',
-            message=f'{label}: apm.yml declares {declared}; {name} says {version}',
+            message=f'{label}: {declaring_name} declares {declared}; {name} says {version}',
         )
         for name, version
         in recorded.items()

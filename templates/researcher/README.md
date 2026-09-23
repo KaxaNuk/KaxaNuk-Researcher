@@ -99,6 +99,4 @@ project's material stays a private repository.
 
 ## Licence
 
-MIT, see [`LICENSE`](LICENSE). The library architecture — sources compiled into a wiki with an
-append-only log, the person's notes kept apart, plan-and-confirm before any write — adapts the
-MIT-licensed *obsidian-vault-kit*; the notice is kept in `LICENSE`.
+MIT, see [`LICENSE`](LICENSE).

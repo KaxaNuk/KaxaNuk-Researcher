@@ -36,24 +36,11 @@ Work is committed on `main`, in small commits whose messages say what moved and 
 lines of work that must not mix — never a gate — and the branch is deleted once it is merged or
 abandoned: `main` is the only branch that stays.
 
-**The template and the example live in the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package,
-`KaxaNuk/KaxaNuk-Researcher`: the template as `templates/strategy/`, and one strategy,
-`liquid-golden-cross`, worked through it as `examples/liquid-golden-cross/` — its own lines between
-example markers, for reading and copying, never building on. When the process changes, the example
-takes the change file by file, and the template's files inside the folders are generated from it
-with the worked strategy's lines removed. The shape is written down once, in the *What is in here*
-table of the template's README, which a strategy's own README links to. Issues and pull requests
-from anyone land there — the process improves in public. A strategy of your own stays in your own
-repository.
-
-**`init-strategy` copies the template only**, on purpose, and the template holds every file the
-process expects: the seed, `Universe/Investable_Universe.csv`, with only its header,
-`Bibliotheca/BIBLIOGRAPHY.md` with only its seeded leads and `LOG.md` empty, and each driver,
-module, notebook and document as a description of what belongs in it, to be filled in. Nothing is
-brought across from the example. A strategy made from a template before 0.10.0 lacks the files
-inside the folders: `init-example <path>` brings one across, and what is between its example
-markers is then deleted.
+**The template and the worked example, `liquid-golden-cross`, live in the
+[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package. The example is for
+reading, never for building on: nothing in a strategy is brought across from it. Issues and pull
+requests about the process land there; a strategy of your own stays in your own repository.
+What the template ships, and why, is *What is in here* in its README.
 
 ### The blueprint is committed before the rule
 

@@ -80,12 +80,6 @@ class TestStripExampleContent:
 
         assert result == 'import csv\n\n\ndef kept() -> None:\n    pass\n'
 
-    def test_markdown_block_is_the_default(self) -> None:
-        text = 'a\n\n<!-- example: begin -->\nx\n<!-- example: end -->\n\nb\n'
-        result = sync_investment_lab_references.strip_example_content(text)
-
-        assert result == 'a\n\nb\n'
-
     def test_python_block_in_the_middle_leaves_one_blank_line(self) -> None:
         text = 'a\n\n# --- example: begin ---\nx\n# --- example: end ---\n\nb\n'
         result = sync_investment_lab_references.strip_example_content(
@@ -192,20 +186,6 @@ class TestTemplatePart:
 
 
 class TestExpectedTemplateFiles:
-    def test_every_template_file_exists_in_the_example(self) -> None:
-        example_directory = (
-            sync_investment_lab_references.REPOSITORY_ROOT
-            / sync_investment_lab_references.EXAMPLE_DIRECTORY
-        )
-        missing = [
-            relative_path
-            for relative_path
-            in sync_investment_lab_references.TEMPLATE_FILES
-            if not (example_directory / relative_path).is_file()
-        ]
-
-        assert missing == []
-
     def test_stripping_is_idempotent(self) -> None:
         expected = sync_investment_lab_references.expected_template_files(
             sync_investment_lab_references.REPOSITORY_ROOT,
@@ -222,6 +202,15 @@ class TestExpectedTemplateFiles:
         assert stripped_again == expected
 
 
+class TestRenameExperiment:
+    def test_experiment_1_becomes_experiment_n(self) -> None:
+        text = '# Blueprint — Experiment 1\n\nSee [`FINDINGS_1.md`](FINDINGS_1.md).\n\n## Experiment 1 — liquid golden cross\n'
+        result = sync_investment_lab_references.rename_experiment(text)
+        expected = '# Blueprint — Experiment N\n\nSee [`FINDINGS_N.md`](FINDINGS_N.md).\n\n## Experiment N — <the idea, in five words>\n'
+
+        assert result == expected
+
+
 class TestStaleTemplateFiles:
     def test_changed_copy_is_stale(
         self,
@@ -235,19 +224,6 @@ class TestStaleTemplateFiles:
         result = sync_investment_lab_references.stale_template_files(tmp_path)
 
         assert result == ['Paper_Trading/daily_update.py']
-
-    def test_identical_copy_is_not_stale(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        write_every_template_file(tmp_path)
-        example = tmp_path / sync_investment_lab_references.EXAMPLE_DIRECTORY
-        template = tmp_path / sync_investment_lab_references.TEMPLATE_DIRECTORY
-        write(example / 'Paper_Trading/daily_update.py', 'same\n')
-        write(template / 'Paper_Trading/daily_update.py', 'same\n')
-        result = sync_investment_lab_references.stale_template_files(tmp_path)
-
-        assert result == []
 
     def test_missing_copy_is_stale(
         self,

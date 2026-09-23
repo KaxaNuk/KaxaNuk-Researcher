@@ -6,6 +6,64 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.14.1] - 2026-09-23
+Kept clean and to the point: what nothing used is gone, every test can fail, and every eval can
+run. Home template 0.8.1, strategy template 0.10.4, example 0.10.5.
+
+**What to do differently:** `apm update -g`, then a new session. In a strategy made from an
+earlier template, delete `apm.yml`: a strategy installs nothing, and nothing read it. In a home,
+`update` lists the two blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md` to bring
+across by hand.
+### Removed
+- **`.github/CODEOWNERS`.** It asked for a review when a pull request opened; work lands on `main`
+  directly, so it had nothing to do.
+- **The obsidian-vault-kit notice**, from `LICENSE`, the home's `LICENSE` and both READMEs:
+  `LICENSE` is the MIT licence alone.
+- **`apm.yml` from the strategy template and the worked example.** `SETUP.md` step 5 renames and
+  versions `pyproject.toml` alone, and `tools/check_repo.py` reads a strategy's version there.
+- **17 of the 18 eval cases that needed a shell**: the `init-example`, `init-strategy` and
+  `init-researcher` copy cases, `read`'s extraction cases and their four quality cases. None had
+  ever run, nine could not start for want of a history, and the team has no host whose sandbox
+  runs a shell. The three `init-*` skills keep their triggering evals, and their scripts keep
+  their unit tests. With them go the runner's `--no-shell` flag and the four fixtures only they
+  used, and `contract/query/cites-notes`, whose graders now sit in `quality/query/claims-trace`,
+  the same run.
+- **`evals/findings/2026-09-22-pilot.md`**, the record of one past run; it stays in the history at
+  `v0.14.0`.
+- **Tests that repeated another test**, each covered by the test that stays, and the tests of the
+  fixtures and the flag that went with the shell cases.
+- **From the README**: the *Three commands make every folder* section, which repeated *The path*;
+  the maintainers' paragraph on example markers; *Forking this package*, now one rule in
+  `AGENTS.md`; the history of where the skills came from.
+### Changed
+- **Tests that could not fail now can.** Four Bloom Code tests passed with or without the code
+  they name; each now breaks when that code does. New tests cover what a user relies on and
+  nothing tested: `scaffold.py` copies byte for byte, finds a user-scope install, copies one file
+  with `--only` and writes nothing before a refusal; `extract.py` writes a whole paper with its
+  page markers and exits 3 for `--chapters` with no outline; the sync tool renames Experiment 1's
+  documents to Experiment N. Each was checked by breaking the code in a scratch copy.
+- **Every eval case runs**: `init-researcher`'s refusal when a home exists no longer needs a
+  shell; the cases with a home beside the strategy check that the home is read; `clipping-at-home`
+  checks the clipping is read rather than finding its name in the prompt; a regex that could not
+  match a namespaced command is fixed. `evals/README.md` describes the 13 cases and 9 fixtures
+  that exist, and its example commands run.
+- **A file a strategy made before template 0.10.0 lacks comes back from the template**, through
+  `init-strategy`'s script with `--only`, which never overwrites: in the README, `blueprint`,
+  `brainstorm`, `experiment-lifecycle` 0.8.2, `data-curator-custom-calculations` 0.3.3 and
+  `universe-point-in-time` 0.1.7, which sent the owner to the example and to deleting its lines by
+  hand. `init-example` 0.1.4 copies a worked file into a folder of its own, to read beside yours,
+  never into a strategy.
+- **The home**: `Knowledge/INDEX.md` and `LOG.md` name the synthesis page `query` keeps; a
+  version-history clause leaves the strategy table in `AGENTS.md`.
+- **The strategy template**: `AGENTS.md` says in one paragraph where the template and the example
+  live; the README's researcher paragraph names the command for each part of the order of work;
+  `tools/check_repo.py`'s width check reads `templates/strategy/`.
+- **Smaller**: `extract.py` says *no chapter written* where it wrote the outline; `SETUP.md` names
+  the four agents that take the researcher's agent; `how-we-work` says a strategy tags the version
+  its `pyproject.toml` declares; `tools/check_repo.py` reads a folder's version from `apm.yml`
+  where it has one and from `pyproject.toml` otherwise; `evals/README.md` no longer documents the
+  two grader types no case uses.
+
 ## [0.14.0] - 2026-09-23
 The final cleaning before a newcomer meets the package: work lands on `main` without a pull
 request per change, the loose ends of two closed pull requests are settled, the path from install

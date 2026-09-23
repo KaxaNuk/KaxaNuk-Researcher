@@ -369,8 +369,8 @@ class TestCopyAuthoredCase:
             ['name: contract/read/with-book'],
         )
         write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
-        write(case_directory / 'FIXTURE', 'home-with-book\n')
-        write(tmp_path / 'fixtures' / 'home-with-book' / 'Sources' / 'book.md', 'a book')
+        write(case_directory / 'FIXTURE', 'home-with-notes\n')
+        write(tmp_path / 'fixtures' / 'home-with-notes' / 'Sources' / 'book.md', 'a book')
         cases = eval_run.read_authored_cases(tmp_path / 'source')
         target = tmp_path / 'evals'
         eval_run.copy_authored_case(
@@ -403,8 +403,8 @@ class TestCopyAuthoredCase:
             ['name: contract/read/with-book'],
         )
         write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
-        write(case_directory / 'FIXTURE', 'home-with-book\n')
-        write(tmp_path / 'fixtures' / 'home-with-book' / 'README.md', 'home')
+        write(case_directory / 'FIXTURE', 'home-with-notes\n')
+        write(tmp_path / 'fixtures' / 'home-with-notes' / 'README.md', 'home')
         cases = eval_run.read_authored_cases(tmp_path / 'source')
         target = tmp_path / 'evals'
         eval_run.copy_authored_case(
@@ -457,139 +457,88 @@ class TestCopyStartingPoints:
 
 
 class TestEvalCommand:
-    def test_models_ablation_and_ceiling_are_pinned(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        command = eval_run.eval_command(
-            tmp_path,
-            runs=3,
-            max_cost_usd=5.0,
-            output_directory=tmp_path / 'results',
-            granted_tools=['Write'],
-        )
-        joined = ' '.join(command)
-
-        assert all(
-            part in joined
-            for part
-            in (
-                '--model claude-opus-5-5',
-                '--judge-model claude-fable-5-1',
-                '--ablation none',
-                '--max-cost-usd 5.0',
-                '--runs 3',
-                '--scaffold',
-                '--no-publish',
-                '--trust-plugin',
-                '--keep-temp',
-            )
-        )
-
-    def test_no_grant_leaves_out_allow_tools(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        command = eval_run.eval_command(
-            tmp_path,
-            runs=None,
-            max_cost_usd=1.0,
-            output_directory=tmp_path / 'results',
-            granted_tools=[],
-        )
-
-        assert '--allow-tools' not in command
-
-    def test_results_and_report_go_to_the_batch_folder(
+    def test_no_grant_and_no_runs_leave_both_flags_out(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
         output = tmp_path / 'results' / 'batch'
         command = eval_run.eval_command(
             tmp_path,
-            runs=1,
-            max_cost_usd=1.0,
+            runs=None,
+            max_cost_usd=5.0,
             output_directory=output,
             granted_tools=[],
         )
-        joined = ' '.join(command)
 
-        assert f'--output-dir {output}' in joined
-        assert f'--report {output / "report.html"}' in joined
+        assert command == [
+            'claude',
+            'plugin',
+            'eval',
+            str(tmp_path),
+            '--case',
+            '*',
+            '--model',
+            'claude-opus-5-5',
+            '--judge-model',
+            'claude-fable-5-1',
+            '--ablation',
+            'none',
+            '--max-cost-usd',
+            '5.0',
+            '--scaffold',
+            '--trust-plugin',
+            '--keep-temp',
+            '--no-publish',
+            '--output-dir',
+            str(output),
+            '--report',
+            str(output / 'report.html'),
+        ]
 
-    def test_runs_are_left_to_the_cases_unless_given(
+    def test_the_command_with_a_grant_and_runs(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
+        output = tmp_path / 'results' / 'batch'
         command = eval_run.eval_command(
             tmp_path,
-            runs=None,
-            max_cost_usd=1.0,
-            output_directory=tmp_path / 'results',
-            granted_tools=[],
-        )
-
-        assert '--runs' not in command
-
-    def test_the_grant_names_exactly_the_tools_given(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        command = eval_run.eval_command(
-            tmp_path,
-            runs=1,
-            max_cost_usd=1.0,
-            output_directory=tmp_path / 'results',
+            runs=3,
+            max_cost_usd=5.0,
+            output_directory=output,
             granted_tools=[
                 'Bash(npm test *)',
                 'Write',
             ],
         )
-        start = command.index('--allow-tools')
 
-        assert command[start:start + 4] == [
-            '--allow-tools',
-            'Bash(npm test *)',
-            'Write',
-            '--case',
-        ]
-
-    def test_the_harness_is_given_every_assembled_case(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        command = eval_run.eval_command(
-            tmp_path,
-            runs=None,
-            max_cost_usd=1.0,
-            output_directory=tmp_path / 'results',
-            granted_tools=[],
-        )
-        start = command.index('--case')
-
-        assert command[start:start + 2] == [
-            '--case',
-            '*',
-        ]
-        assert command.count('--case') == 1
-
-    def test_the_plugin_folder_is_the_target_and_comes_first(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        command = eval_run.eval_command(
-            tmp_path,
-            runs=1,
-            max_cost_usd=1.0,
-            output_directory=tmp_path / 'results',
-            granted_tools=['Write'],
-        )
-
-        assert command[:4] == [
+        assert command == [
             'claude',
             'plugin',
             'eval',
             str(tmp_path),
+            '--allow-tools',
+            'Bash(npm test *)',
+            'Write',
+            '--case',
+            '*',
+            '--runs',
+            '3',
+            '--model',
+            'claude-opus-5-5',
+            '--judge-model',
+            'claude-fable-5-1',
+            '--ablation',
+            'none',
+            '--max-cost-usd',
+            '5.0',
+            '--scaffold',
+            '--trust-plugin',
+            '--keep-temp',
+            '--no-publish',
+            '--output-dir',
+            str(output),
+            '--report',
+            str(output / 'report.html'),
         ]
 
 
@@ -711,32 +660,6 @@ class TestMain:
 
         assert exit_code == 1
         assert last_line == 'eval_run: stopped: uvx exited with 1'
-
-    def test_a_glob_that_matches_nothing_stops_before_any_install(
-        self,
-        monkeypatch: pytest.MonkeyPatch,
-        tmp_path: pathlib.Path,
-        capsys: pytest.CaptureFixture,
-    ) -> None:
-        point_at(
-            monkeypatch,
-            tmp_path,
-        )
-        monkeypatch.setattr(
-            eval_run,
-            'export_package',
-            fail_like_uvx,
-        )
-        exit_code = eval_run.main([
-            '--case',
-            'nothing/*',
-            '--max-cost-usd',
-            '1',
-            '--dry-run',
-        ])
-
-        assert exit_code == 1
-        assert 'No case matches' in capsys.readouterr().out
 
     def test_a_malformed_case_stops_with_one_line_before_any_install(
         self,
@@ -926,7 +849,7 @@ class TestReadAuthoredCases:
             'contract/read/with-book',
             ['name: contract/read/with-book'],
         )
-        write(case_directory / 'FIXTURE', 'home-with-book\n')
+        write(case_directory / 'FIXTURE', 'home-with-notes\n')
 
         with pytest.raises(
             ValueError,
@@ -1035,7 +958,7 @@ class TestReadAuthoredCases:
             ['name: contract/read/with-book'],
         )
         write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
-        write(case_directory / 'FIXTURE', 'home-with-book\n')
+        write(case_directory / 'FIXTURE', 'home-with-notes\n')
         write(case_directory / reserved, 'committed by hand')
 
         with pytest.raises(
@@ -1127,31 +1050,6 @@ class TestResultsDirectory:
 
 
 class TestSelectCases:
-    def test_no_shell_leaves_out_every_case_that_lists_bash(
-        self,
-    ) -> None:
-        cases = [
-            eval_case(
-                'contract/read/runs-extract',
-                (
-                    'Read',
-                    'Bash(uv run *)',
-                ),
-            ),
-            eval_case(
-                'contract/read/plain',
-                ('Read',),
-            ),
-        ]
-        selection = eval_run.select_cases(
-            cases,
-            ['contract/*'],
-            no_shell=True,
-        )
-
-        assert selection.selected == (cases[1],)
-        assert selection.left_out == (cases[0],)
-
     def test_only_the_cases_the_glob_matches_are_selected(
         self,
     ) -> None:
@@ -1165,14 +1063,12 @@ class TestSelectCases:
                 ('Skill',),
             ),
         ]
-        selection = eval_run.select_cases(
+        selected = eval_run.select_cases(
             cases,
             ['triggering/*'],
-            no_shell=False,
         )
 
-        assert selection.selected == (cases[1],)
-        assert selection.left_out == ()
+        assert selected == (cases[1],)
 
     def test_several_globs_select_the_union_once_each(
         self,
@@ -1191,36 +1087,18 @@ class TestSelectCases:
                 ('Skill',),
             ),
         ]
-        selection = eval_run.select_cases(
+        selected = eval_run.select_cases(
             cases,
             [
                 'triggering/read/*',
                 'triggering/*',
             ],
-            no_shell=False,
         )
 
-        assert selection.selected == (
+        assert selected == (
             cases[1],
             cases[2],
         )
-
-    def test_without_no_shell_a_bash_case_is_kept(
-        self,
-    ) -> None:
-        cases = [
-            eval_case(
-                'contract/read/runs-extract',
-                ('Bash',),
-            ),
-        ]
-        selection = eval_run.select_cases(
-            cases,
-            ['*'],
-            no_shell=False,
-        )
-
-        assert selection.selected == (cases[0],)
 
 
 class TestTriggeringCases:

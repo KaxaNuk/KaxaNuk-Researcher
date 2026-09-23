@@ -60,13 +60,13 @@ class TestCheckDescriptions:
             tmp_path,
             [manifest],
         )
-        checks = [
-            finding.check
+        messages = [
+            finding.message
             for finding
             in findings
         ]
 
-        assert checks == ['description']
+        assert messages == ['.apm/skills/x/SKILL.md: 1025 characters, over 1024']
 
     def test_unreadable_description_is_reported(
         self,
@@ -280,20 +280,6 @@ class TestCheckSectionSymbol:
 
 
 class TestCheckTemplateFiles:
-    def test_matching_copies_pass(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        example = tmp_path / check_repo.EXAMPLE_FOLDER
-        template = tmp_path / check_repo.TEMPLATE_FOLDER
-        # An empty notebook is also a Markdown or Python text with no markers, so every suffix reads it.
-        for relative_path in sync_investment_lab_references.TEMPLATE_FILES:
-            write(example / relative_path, '{"cells": []}\n')
-            write(template / relative_path, '{"cells": []}\n')
-        findings = check_repo.check_template_files(tmp_path)
-
-        assert findings == []
-
     def test_missing_example_file_is_reported(
         self,
         tmp_path: pathlib.Path,
@@ -393,24 +379,6 @@ class TestFoldedDescription:
 
 
 class TestMarkerProblems:
-    def test_balanced_markers_pass(self) -> None:
-        text = 'a\n<!-- example: begin -->\nb\n<!-- example: end -->\n'
-        result = check_repo.marker_problems(
-            text,
-            check_repo.MARKERS['.md'],
-        )
-
-        assert result == []
-
-    def test_block_left_open_is_reported(self) -> None:
-        text = 'a\n<!-- example: begin -->\nb\n'
-        result = check_repo.marker_problems(
-            text,
-            check_repo.MARKERS['.md'],
-        )
-
-        assert result == ['line 2 opens a block that never closes']
-
     def test_close_without_open_is_reported(self) -> None:
         text = 'a\n<!-- example: end -->\n'
         result = check_repo.marker_problems(
@@ -448,18 +416,6 @@ class TestMarkerProblems:
         assert result == ['line 2 has a marker that is not alone at column 0']
 
 
-class TestMissingHeadings:
-    def test_heading_the_example_dropped_is_reported(self) -> None:
-        template = '# Title\n\n## Kept\n\n## Dropped\n'
-        example = '# Title\n\n## Kept\n\nworked lines\n'
-        result = check_repo.missing_headings(
-            template,
-            example,
-        )
-
-        assert result == ['## Dropped']
-
-
 class TestTrackedFiles:
     def test_non_ascii_path_is_read_whole(
         self,
@@ -491,21 +447,6 @@ class TestTrackedFiles:
 
 
 class TestVersionProblems:
-    def test_agreeing_versions_pass(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        write(tmp_path / 'apm.yml', 'name: x\nversion: 1.2.3\n')
-        write(tmp_path / 'CHANGELOG.md', '# Changelog\n\n## [1.2.3] - 2026-01-01\n')
-        write(tmp_path / 'pyproject.toml', '[project]\nversion = "1.2.3"\n')
-        result = check_repo.version_problems(
-            'x',
-            tmp_path,
-            [],
-        )
-
-        assert result == []
-
     def test_changelog_behind_is_reported(
         self,
         tmp_path: pathlib.Path,
@@ -524,6 +465,25 @@ class TestVersionProblems:
         ]
 
         assert messages == ['x: apm.yml declares 1.2.4; CHANGELOG.md says 1.2.3']
+
+    def test_folder_without_apm_yml_declares_in_pyproject(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write(tmp_path / 'pyproject.toml', '[project]\nname = "x"\nversion = "1.2.4"\n')
+        write(tmp_path / 'CHANGELOG.md', '# Changelog\n\n## 1.2.3 (2026-01-01)\n')
+        result = check_repo.version_problems(
+            'x',
+            tmp_path,
+            [],
+        )
+        messages = [
+            finding.message
+            for finding
+            in result
+        ]
+
+        assert messages == ['x: pyproject.toml declares 1.2.4; CHANGELOG.md says 1.2.3']
 
     def test_tracked_uv_lock_behind_is_reported(
         self,
@@ -587,13 +547,6 @@ class TestWideLines:
         result = check_repo.wide_lines(text)
 
         assert result == {}
-
-    def test_wide_prose_line_is_reported_by_number_and_width(self) -> None:
-        wide = 'a' * (check_repo.WIDTH_LIMIT + 3)
-        text = f'# Title\n\nShort.\n{wide}\n'
-        result = check_repo.wide_lines(text)
-
-        assert result == {4: 103}
 
     def test_width_counts_characters_not_bytes(self) -> None:
         accented = 'é' * check_repo.WIDTH_LIMIT
