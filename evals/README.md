@@ -128,7 +128,7 @@ context:
   history_file: history.jsonl     # a replayed first turn; prompt.md's body is the next one
 ```
 
-**Commands** are namespaced in a run: write `/kaxanuk-researcher-evals:blueprint . 1`. A bare
+**Commands** are namespaced in a run: write `/kaxanuk-researcher-evals:blueprint 1`. A bare
 `/blueprint` is sent as text, and reaches the command only if the model chooses to call it. A slash
 command expands without a Skill call, so a `tool_used: Skill` grader cannot check it, and its
 expanded text is in the session transcript, not in `out/trace.jsonl`. **Skills** are reached by
