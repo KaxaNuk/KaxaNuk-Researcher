@@ -1,0 +1,4 @@
+# Every pull request asks these accounts for review the moment it opens. main requires one
+# approval from someone other than the author, administrators included, so a request that goes
+# out by itself is what keeps a pull request from waiting unseen.
+* @alanvaa06 @Arturo-Aguilar-KN

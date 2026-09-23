@@ -6,6 +6,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.13.1] - 2026-09-23
+Every pull request asks for its review the moment it opens.
+### Added
+- **`.github/CODEOWNERS`** names Alan and Arturo as the owners of every path, so GitHub requests
+  their review on every pull request as it opens. `main` requires one approval from someone other
+  than the author, administrators included, with no force push and no deletion; a request that
+  goes out by itself is what keeps a pull request from waiting unseen.
+
 ## [0.13.0] - 2026-09-23
 The interview is `interview`, and the example researcher is no longer named after a real one.
 
