@@ -34,16 +34,17 @@ home, and assembles `evals/.run/` (ignored) from it:
 
 ```
 evals/.run/plugin/              skills/ and commands/ from the install, a minimal manifest, and
-                                every case in plugin/evals/ (committed ones copied, triggering
-                                ones generated)
+                                the batch's cases in plugin/evals/: those --case matches,
+                                committed ones copied, triggering ones generated
 evals/.run/templates/           the starting points, beside the plugin, where the init-* skills'
 evals/.run/examples/            scaffold.py looks for the package
-evals/.run/fixtures/            every fixture, built fresh from the current templates
+evals/.run/fixtures/            every fixture, built fresh from the export's templates
 ```
 
-Then it runs one batch: `claude plugin eval` on the plugin folder, three runs per case
-(`--runs`), a case passing only when every run passes. `--dry-run` builds and assembles, prints the
-command and runs nothing.
+Then it runs one batch: `claude plugin eval` on the plugin folder, each case run as many times as
+its own `runs` says (3 when it says nothing; `--runs` overrides every case), a case passing only
+when every run passes. `--dry-run` builds and assembles, prints the grants and the command, and runs
+nothing.
 
 - **Every run spends the plan of whoever runs it**, so `--max-cost-usd` is required. The ceiling is
   checked before each run starts; runs already in flight can pass it by a dollar or so. The
@@ -51,11 +52,13 @@ command and runs nothing.
   contract run.
 - **Models are pinned** so a before and an after compare: sessions on Opus 5.5 (`--model
   claude-opus-5-5`), the quality judge on Fable 5.1 (`--judge-model claude-fable-5-1`). The runner
-  passes both and `--runs`, so a case's own `model` and `runs` are overridden.
+  passes both, so a case's own `model` is overridden; it passes `--runs` only when you give it.
 - **`--ablation none`**: the no-plugin arm is off. It would double the usage, and without the
   plugin no skill can fire. In this mode a `tool_used: Skill` grader counts toward the score.
-- **`--case` takes a glob over case names, and only `*` works**: braces and brackets match
-  nothing. Batch by prefix, such as `'triggering/*'` or `'contract/init-*/*'`.
+- **`--case` takes a glob over case names, read as the harness reads it**: `*` matches any run of
+  characters, `/` included, `?` one character, and every other character stands for itself, so
+  braces and brackets match nothing. Batch by prefix, such as `'triggering/*'` or
+  `'contract/init-*'`. Only the matching cases are assembled; none matching stops the run.
 - **Results** land in `evals/results/<UTC time>-<glob>/` (ignored), for example
   `20260923T000155Z-triggering-all/`, with `report.html` and `aggregate-result.json`.
 - **Traces**: the runner passes `--keep-temp`, so every run's folder stays under
@@ -71,14 +74,21 @@ command and runs nothing.
   `simplify`, `loop`, `run`, ...) are present in every run, so a near-miss may fire one of them.
 - **The run home sets a git identity** (`Plugin Eval <eval@example.invalid>`), and the working
   directory is inside an empty git repository: no run starts without an identity.
-- **Write tools are granted by the runner**, `--allow-tools Write Edit`, to every case of the
-  batch. A tool not granted is absent from the session, so without the grant a "nothing written"
-  grader would pass trivially.
-- **Bash is granted too, to every case, unless `--no-shell` is passed.** A shell runs only under
-  Claude Code's sandbox, which needs `bubblewrap` and `socat` and a host that allows nested user
-  namespaces: a Linux VM or GitHub Codespaces. In a container without them, run every batch with
-  `--no-shell`, which leaves out the cases that list Bash, and run those elsewhere. The harness
-  refuses the weaker nested sandbox, and no setting reaches the run to change that.
+- **Grants follow the cases.** A case's `allowed_tools` is the only place its tools are named.
+  Read-only tools (`Read`, `Glob`, `Grep`, `Skill`, ...) are granted from there; every other tool
+  (`Write`, `Edit`, `Bash`, `WebFetch`, ...) needs the operator's `--allow-tools`, which covers the
+  whole batch. The runner passes exactly the gated tools the batch's cases list, and no
+  `--allow-tools` at all when they list none, as triggering cases do; it prints each granted tool
+  with the cases that list it. A batch that mixes a case needing Write with one that must not have
+  it gives Write to both: batch them apart. A tool not granted is absent from the session, so a
+  "nothing written" grader passes trivially unless its case lists Write.
+- **A shell runs only under Claude Code's sandbox**, which needs `bubblewrap` and `socat` and a
+  host that allows nested user namespaces: a Linux VM or GitHub Codespaces. In a container without
+  them, run every batch with `--no-shell`, which leaves out the cases that list Bash (the runner
+  names each), and run those elsewhere. The harness refuses the weaker nested sandbox, and no
+  setting reaches the run to change that.
+- **A malformed case stops the run** before anything is installed, with one line naming it; so does
+  a failed export, install or fixture build. The exit code is then 1.
 - **Triggering runs end with the error `Reached maximum number of turns (2)`.** It is expected: the
   case stops once a skill is chosen, and the run is still graded.
 
@@ -91,15 +101,20 @@ An unknown key is an error.
 
 ```markdown
 ---
-name: contract/read/plan-before-write   # what --case matches; the folder name if left out
+name: contract/read/plan-before-write   # what --case matches; the runner requires it
 max_turns: 8                            # default 10; reaching it is a run error
 timeout_seconds: 300
-allowed_tools: [Skill, Read, Glob, Grep] # only read-only tools are granted from here
+allowed_tools: [Skill, Read, Glob, Grep, Write] # the case's grants, and the batch's
 ---
 Read the book I put in Sources/Books into my library.
 ```
 
 Other keys: `description`, `tags`, `append_system_prompt`, `env` (`EVAL_*` names only).
+
+The runner reads two keys itself, strictly. `name` is required, in `prompt.md` or `case.yaml`.
+`allowed_tools` lives only in `prompt.md`'s frontmatter, as one line of list, a trailing comment
+allowed; a block list, a list over several lines, or `execution.allowed_tools` in `case.yaml`
+stops the run with the case's name.
 
 `case.yaml` needs `schema_version: "1.1"` and `name`, and holds what points at other files:
 
@@ -195,13 +210,16 @@ marked as a lead. FAIL otherwise.
 ## Fixtures
 
 A case that starts from a folder puts a one-line `FIXTURE` file, naming the fixture, in its folder,
-and `context.scaffold_script: scaffold.sh` in its `case.yaml`. The runner copies the fixture into
-the case's run copy as `fixture/` and writes `scaffold.sh`, which copies it into the empty working
-directory before the session starts; commit neither. `context.add_dirs` does not do this: it only
+and `context.scaffold_script: scaffold.sh` in its `case.yaml`, on a line of its own. The runner
+copies the fixture into the case's run copy as `fixture/` and writes `scaffold.sh`, which copies it
+into the empty working directory before the session starts. Committing either, naming
+`scaffold.sh` without a `FIXTURE`, a `FIXTURE` without that line, or an unknown fixture stops the
+run. `context.add_dirs` does not do this: it only
 grants read access at an absolute host path the session is never told. No symbolic links anywhere
 under `evals/`: one breaks the loading of other cases.
 
-The fixtures, built by `tools/eval_fixtures.py` from the current templates:
+The fixtures, built by `tools/eval_fixtures.py` from the templates of the same export that is
+installed:
 
 | Name | What it is |
 | --- | --- |

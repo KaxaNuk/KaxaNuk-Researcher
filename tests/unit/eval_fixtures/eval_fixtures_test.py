@@ -3,6 +3,7 @@ Unit tests for tools/eval_fixtures.py: every fixture has the shape its cases rel
 """
 import json
 import pathlib
+import shutil
 
 import pypdf
 import pytest
@@ -120,3 +121,36 @@ class TestBuildAll:
         rows = seed.strip().splitlines()
 
         assert len(rows) > 1
+
+
+class TestBuildAllFromAnotherPackage:
+    def test_the_fixtures_follow_the_package_they_are_given(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        package = tmp_path / 'package'
+
+        for relative_path in (
+            'templates/researcher',
+            'templates/strategy',
+            'examples/liquid-golden-cross',
+            '.apm/skills/init-strategy/scripts',
+        ):
+            shutil.copytree(
+                eval_fixtures.REPOSITORY_ROOT / relative_path,
+                package / relative_path,
+            )
+
+        marked = package / 'templates' / 'researcher' / 'RESEARCHER.md'
+        marked.write_text(
+            'This package, not the repository.\n',
+            encoding='utf-8',
+        )
+        target = tmp_path / 'fixtures'
+        eval_fixtures.build_all(
+            target,
+            package_root=package,
+        )
+        built = target / 'home-with-book' / 'RESEARCHER.md'
+
+        assert built.read_text(encoding='utf-8').startswith('This package, not the repository.')

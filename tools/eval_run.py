@@ -7,19 +7,23 @@ temporary folder, builds the real `apm install -g <that export> --target claude`
 home beside it, outside the repository, and assembles `evals/.run/` from the install:
 
     evals/.run/plugin/             the plugin the harness runs: skills/, commands/, a minimal
-                                   .claude-plugin/plugin.json, and the cases in evals/
+                                   .claude-plugin/plugin.json, and the batch's cases in evals/
     evals/.run/templates/          the three starting points, copied from where apm put the package,
     evals/.run/examples/           so `scaffold.py` finds them beside the plugin (its `parents[4]`)
-    evals/.run/fixtures/           every fixture, built fresh from the current templates
+    evals/.run/fixtures/           every fixture, built fresh from the export's templates
 
-The committed contract and quality cases are copied below `plugin/evals/`, and the triggering cases
-are generated there from `evals/triggering/requests.toml`.  A case folder that holds a one-line
-`FIXTURE` file naming a fixture gets a real copy of it in `fixture/` and a `scaffold.sh` that copies
-it into the empty workspace; its `case.yaml` names `context.scaffold_script: scaffold.sh` itself.
-Then `claude plugin eval` runs on the plugin folder.  Sessions run on Opus 5.5 and the quality judge
-on Fable 5.1; the no-plugin comparison arm is off.  Each batch writes its results and report to its
-own `evals/results/<UTC time>-<cases>/`, and keeps every run's folder under /tmp/claude-eval-* for
-diagnosis.
+Only the cases whose name matches `--case` are assembled: the committed contract and quality cases,
+and the triggering cases generated from `evals/triggering/requests.toml`.  The tools a case lists in
+its `allowed_tools` are the single source of its grants: the batch is granted, with `--allow-tools`,
+exactly the gated tools (Bash, Write, Edit, ...) its cases list, and nothing when they list none.
+`allowed_tools` is a one-line list in `prompt.md`'s frontmatter; anything else stops the run.
+
+A case folder that holds a one-line `FIXTURE` file naming a fixture gets a real copy of it in
+`fixture/` and a `scaffold.sh` that copies it into the empty workspace; its `case.yaml` names
+`scaffold_script: scaffold.sh` itself.  Then `claude plugin eval` runs on the plugin folder.
+Sessions run on Opus 5.5 and the quality judge on Fable 5.1; the no-plugin comparison arm is off.
+Each batch writes its results and report to its own `evals/results/<UTC time>-<cases>/`, and keeps
+every run's folder under /tmp/claude-eval-* for diagnosis.
 
 Every triggering run ends with the error "Reached maximum number of turns (2)": the case stops as
 soon as the skill is chosen, and the run is still graded.  The error is expected there.
@@ -30,18 +34,19 @@ Run from the repository root:
     uv run --no-project --with pypdf python tools/eval_run.py --case 'contract/read/*' --dry-run \
       --max-cost-usd 1
 
-`--no-shell` leaves out every case that grants Bash, for a machine whose sandbox cannot run a
-shell.  Every run spends the plan of whoever runs it; `--max-cost-usd` is required for that reason.
-Exit code: the harness's, or 1 when the install or the run folder cannot be built.  Console output
-is ASCII only.
+`--no-shell` leaves out every case that lists Bash, for a machine whose sandbox cannot run a shell.
+Every run spends the plan of whoever runs it; `--max-cost-usd` is required for that reason.
+Exit code: the harness's, or 1 with a one-line message when a case is malformed, no case matches,
+or the export, the install or the fixtures cannot be built.  Console output is ASCII only.
 """
 import argparse
+import dataclasses
 import datetime
-import itertools
 import json
 import os
 import pathlib
 import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -90,16 +95,33 @@ SCAFFOLD_SCRIPT = '\n'.join([
     f'cp -r "$here/{FIXTURE_FOLDER}/." .',
     '',
 ])
-ALLOWED_TOOLS_LINE = re.compile(r'\s*allowed_tools\s*:(.*)')
-LIST_ITEM_LINE = re.compile(r'\s*-\s')
-SHELL_TOOL = re.compile(r'\bBash\b')
+SCAFFOLD_LINE = re.compile(r'^\s*scaffold_script:\s*scaffold\.sh\s*(#.*)?$')
+ALLOWED_TOOLS_LINE = re.compile(r'^(\s*)allowed_tools\s*:(.*)$')
+NAME_LINE = re.compile(r'^name\s*:(.*)$')
+FLOW_LIST = re.compile(r'\[([^\[\]]*)\]')
+TRAILING_COMMENT = re.compile(r'(^|\s+)#.*$')
+# The tools a case's `allowed_tools` grants by itself; every other tool needs the operator's grant.
+READ_ONLY_TOOLS = (
+    'Read',
+    'Glob',
+    'Grep',
+    'NotebookRead',
+    'Skill',
+    'Agent',
+    'TodoWrite',
+    'TaskCreate',
+    'TaskGet',
+    'TaskList',
+    'TaskUpdate',
+    'TaskStop',
+)
+# The tools that need the sandbox: a case listing one is left out under --no-shell.
+SHELL_TOOLS = (
+    'Bash',
+    'PowerShell',
+)
 JUDGE_MODEL = 'claude-fable-5-1'
 SESSION_MODEL = 'claude-opus-5-5'
-# Granted by the operator to every case of a batch; Bash only where the sandbox can run a shell.
-WRITE_TOOLS = (
-    'Write',
-    'Edit',
-)
 MANIFEST = {
     'name': 'kaxanuk-researcher-evals',
     'version': '0.0.0',
@@ -142,6 +164,28 @@ NOT_FIRED_GRADER = '\n'.join([
     'The request belongs to another skill, so `{skill}` is not called.',
     '',
 ])
+
+
+@dataclasses.dataclass(frozen=True)
+class EvalCase:
+    """
+    One case as the runner sees it: the name `--case` matches, its folder below the eval folder,
+    the tools it lists, and, for a committed case, the folder it comes from and its fixture.
+    """
+    name: str
+    folder: str
+    tools: tuple[str, ...]
+    source: pathlib.Path | None = None
+    fixture: str | None = None
+
+
+@dataclasses.dataclass(frozen=True)
+class Selection:
+    """
+    The cases of one batch, and the ones `--no-shell` left out of it.
+    """
+    selected: tuple[EvalCase, ...]
+    left_out: tuple[EvalCase, ...]
 
 
 def assemble_plugin(
@@ -210,44 +254,58 @@ def build_install(
     return claude_directory
 
 
-def copy_authored_cases(
-    source_directory: pathlib.Path,
+def case_matches(
+    case_glob: str,
+    name: str,
+) -> bool:
+    """
+    Whether a case name matches a `--case` glob as the harness reads it.
+
+    The harness turns `*` into any run of characters, `/` included, and `?` into one character;
+    every other character, brackets and braces too, stands for itself.
+    """
+    pattern = ''.join(
+        _glob_part(character)
+        for character
+        in case_glob
+    )
+    matched = re.fullmatch(
+        pattern,
+        name,
+    )
+
+    return matched is not None
+
+
+def copy_authored_case(
+    case: EvalCase,
     eval_directory: pathlib.Path,
     fixtures_directory: pathlib.Path,
-    no_shell: bool,
-) -> list[str]:
+) -> None:
     """
-    Copy the committed cases below the eval folder, each with its fixture; return those left out.
-
-    With `no_shell`, a case that grants Bash is left out.  A case with a `FIXTURE` file gets a copy
-    of that fixture and the scaffold script that puts it in the workspace.  Raises ValueError when
-    a case names an unknown fixture or does not name the scaffold script.
+    Copy a committed case below the eval folder, with its fixture and the script that seeds it.
     """
-    left_out = []
+    target = eval_directory / case.folder
+    shutil.copytree(
+        case.source,
+        target,
+    )
 
-    for case_directory in _authored_case_directories(source_directory):
-        name = case_directory.relative_to(source_directory).as_posix()
+    if case.fixture is None:
 
-        if no_shell and _grants_shell(case_directory):
-            left_out.append(name)
+        return
 
-            continue
-
-        target = eval_directory / name
-        shutil.copytree(
-            case_directory,
-            target,
-            dirs_exist_ok=True,
-        )
-
-        if (case_directory / FIXTURE_FILE).is_file():
-            _add_fixture(
-                case_directory,
-                target,
-                fixtures_directory,
-            )
-
-    return left_out
+    shutil.copytree(
+        fixtures_directory / case.fixture,
+        target / FIXTURE_FOLDER,
+    )
+    script = target / SCAFFOLD_FILE
+    script.write_text(
+        SCAFFOLD_SCRIPT,
+        encoding='utf-8',
+        newline='\n',
+    )
+    script.chmod(0o755)
 
 
 def copy_starting_points(
@@ -267,27 +325,28 @@ def copy_starting_points(
 def eval_command(
     plugin_directory: pathlib.Path,
     case_glob: str,
-    runs: int,
+    runs: int | None,
     max_cost_usd: float,
     output_directory: pathlib.Path,
-    no_shell: bool,
+    granted_tools: list[str],
 ) -> list[str]:
     """
     The `claude plugin eval` command for one batch; the plugin folder comes first, as the harness asks.
+
+    `--allow-tools` names exactly `granted_tools`, and is left out when there are none; `--runs` is
+    passed only when given, so a case's own `runs` counts otherwise.
     """
-    shell_grant = [] if no_shell else ['Bash']
+    grant = ['--allow-tools', *granted_tools] if granted_tools else []
+    run_count = ['--runs', str(runs)] if runs is not None else []
     command = [
         'claude',
         'plugin',
         'eval',
         str(plugin_directory),
-        '--allow-tools',
-        *WRITE_TOOLS,
-        *shell_grant,
+        *grant,
         '--case',
         case_glob,
-        '--runs',
-        str(runs),
+        *run_count,
         '--model',
         SESSION_MODEL,
         '--judge-model',
@@ -358,75 +417,112 @@ def export_package(
         )
 
 
+def gated_tools(
+    cases: list[EvalCase],
+) -> dict[str, list[str]]:
+    """
+    Every tool the cases list that needs the operator's grant, with the names of the cases listing it.
+    """
+    listings = [
+        (tool, case.name)
+        for case
+        in cases
+        for tool
+        in case.tools
+        if _base_tool(tool) not in READ_ONLY_TOOLS
+    ]
+    listers = {}
+
+    for tool, name in listings:
+        listers.setdefault(tool, []).append(name)
+
+    ordered = {
+        tool: listers[tool]
+        for tool
+        in sorted(listers)
+    }
+
+    return ordered
+
+
+def generated_cases(
+    files: dict[str, str],
+) -> list[EvalCase]:
+    """
+    The generated cases among files keyed by their path below the eval folder, one per prompt.md.
+    """
+    folders = sorted(
+        path.removesuffix('/prompt.md')
+        for path
+        in files
+        if path.endswith('/prompt.md')
+    )
+    cases = [
+        _generated_case(
+            folder,
+            files[f'{folder}/prompt.md'],
+        )
+        for folder
+        in folders
+    ]
+
+    return cases
+
+
+def grants_shell(
+    case: EvalCase,
+) -> bool:
+    """
+    Whether a case lists a shell tool, which runs only where the sandbox can confine it.
+    """
+    shelled = any(
+        _base_tool(tool) in SHELL_TOOLS
+        for tool
+        in case.tools
+    )
+
+    return shelled
+
+
 def main(
     arguments: list[str] | None = None,
 ) -> int:
     """
-    Build the install, assemble the run folder, and run one batch of cases.
+    Check the cases, build the install, assemble the run folder, and run one batch.
     """
     parser = _build_parser()
     parsed = parser.parse_args(arguments)
 
-    shutil.rmtree(
-        RUN_DIRECTORY,
-        ignore_errors=True,
-    )
-
-    with tempfile.TemporaryDirectory(prefix=INSTALL_PREFIX) as install_folder:
-        installed = _install_into_run(pathlib.Path(install_folder))
-
-    if not installed:
-
-        return 1
-
-    eval_fixtures.build_all(FIXTURES_DIRECTORY)
-
     try:
-        left_out = copy_authored_cases(
-            EVALS_DIRECTORY,
-            PLUGIN_DIRECTORY / 'evals',
-            FIXTURES_DIRECTORY,
-            no_shell=parsed.no_shell,
-        )
-    except ValueError as error:
-        print(error)
+        exit_code = _run_batch(parsed)
+    except (
+        OSError,
+        ValueError,
+        subprocess.CalledProcessError,
+    ) as error:
+        print(f'eval_run: stopped: {_one_line(error)}')
 
         return 1
 
-    for name in left_out:
-        print(f'Left out (grants Bash, --no-shell): {name}')
+    return exit_code
 
-    _write_cases(
-        PLUGIN_DIRECTORY / 'evals',
-        triggering_cases(_read_table(TRIGGERING_TABLE)),
-    )
-    started = datetime.datetime.now(datetime.UTC)
-    command = eval_command(
-        PLUGIN_DIRECTORY,
-        case_glob=parsed.case,
-        runs=parsed.runs,
-        max_cost_usd=parsed.max_cost_usd,
-        output_directory=results_directory(
-            parsed.case,
-            started,
-        ),
-        no_shell=parsed.no_shell,
-    )
-    print(' '.join(command))
 
-    if parsed.dry_run:
+def read_authored_cases(
+    source_directory: pathlib.Path,
+) -> list[EvalCase]:
+    """
+    Every committed case of the authored layers, checked; raises ValueError naming a malformed one.
+    """
+    cases = [
+        _read_authored_case(
+            case_directory,
+            source_directory,
+        )
+        for case_directory
+        in _authored_case_directories(source_directory)
+    ]
 
-        return 0
-
-    print(KEPT_FOLDERS_REMINDER)
-    completed = subprocess.run(
-        command,
-        cwd=PLUGIN_DIRECTORY,
-        check=False,
-    )
-    print(KEPT_FOLDERS_REMINDER)
-
-    return completed.returncode
+    return cases
 
 
 def results_directory(
@@ -434,7 +530,9 @@ def results_directory(
     started: datetime.datetime,
 ) -> pathlib.Path:
     """
-    The folder of one batch's results, named by its UTC start and its case glob, so none overwrites another.
+    The folder of one batch's results, named by its UTC start and its case glob.
+
+    No batch overwrites another.
     """
     stamp = started.astimezone(datetime.UTC).strftime('%Y%m%dT%H%M%SZ')
     spelled = case_glob.replace(
@@ -449,6 +547,43 @@ def results_directory(
     folder = RESULTS_DIRECTORY / f'{stamp}-{slug}'
 
     return folder
+
+
+def select_cases(
+    cases: list[EvalCase],
+    case_glob: str,
+    no_shell: bool,
+) -> Selection:
+    """
+    The cases whose name matches the glob; with `no_shell`, those listing a shell tool are left out.
+    """
+    matching = [
+        case
+        for case
+        in cases
+        if case_matches(
+            case_glob,
+            case.name,
+        )
+    ]
+    left_out = tuple(
+        case
+        for case
+        in matching
+        if no_shell and grants_shell(case)
+    )
+    selected = tuple(
+        case
+        for case
+        in matching
+        if case not in left_out
+    )
+    selection = Selection(
+        selected=selected,
+        left_out=left_out,
+    )
+
+    return selection
 
 
 def triggering_cases(
@@ -472,72 +607,44 @@ def triggering_cases(
     return cases
 
 
-def _add_fixture(
-    case_directory: pathlib.Path,
-    target: pathlib.Path,
-    fixtures_directory: pathlib.Path,
-) -> None:
+def _allowed_tools(
+    frontmatter: list[str],
+    folder: str,
+) -> tuple[str, ...]:
     """
-    Copy the fixture a case names into its run copy, with the script that puts it in the workspace.
+    The tools a case's frontmatter lists; raises ValueError unless it is one line of flow list.
     """
-    fixture_name = (case_directory / FIXTURE_FILE).read_text(encoding='utf-8').strip()
-
-    if fixture_name not in eval_fixtures.FIXTURE_NAMES:
-        unknown = f'{case_directory}: {FIXTURE_FILE} names {fixture_name!r}, which is not a fixture'
-
-        raise ValueError(unknown)
-
-    case_yaml = case_directory / 'case.yaml'
-    names_script = case_yaml.is_file() and SCAFFOLD_FILE in case_yaml.read_text(encoding='utf-8')
-
-    if not names_script:
-        unnamed = f'{case_directory}: a case with a {FIXTURE_FILE} names `context.scaffold_script: {SCAFFOLD_FILE}` in case.yaml'
-
-        raise ValueError(unnamed)
-
-    shutil.copytree(
-        fixtures_directory / fixture_name,
-        target / FIXTURE_FOLDER,
-    )
-    script = target / SCAFFOLD_FILE
-    script.write_text(
-        SCAFFOLD_SCRIPT,
-        encoding='utf-8',
-        newline='\n',
-    )
-    script.chmod(0o755)
-
-
-def _allowed_tools_text(
-    text: str,
-) -> str:
-    """
-    What an `allowed_tools` key holds in YAML text, inline or as a block list; empty when absent.
-    """
-    lines = text.splitlines()
-    starts = [
-        index
-        for index, line
-        in enumerate(lines)
+    found = [
+        ALLOWED_TOOLS_LINE.match(line)
+        for line
+        in frontmatter
         if ALLOWED_TOOLS_LINE.match(line)
     ]
 
-    if not starts:
+    if not found:
+        no_tools: tuple[str, ...] = ()
 
-        return ''
+        return no_tools
 
-    first = starts[0]
-    inline = ALLOWED_TOOLS_LINE.match(lines[first]).group(1)
-    items = list(itertools.takewhile(
-        LIST_ITEM_LINE.match,
-        lines[first + 1:],
-    ))
-    held = '\n'.join([
-        inline,
-        *items,
-    ])
+    value = _strip_comment(found[0].group(2))
+    listed = FLOW_LIST.fullmatch(value)
 
-    return held
+    if len(found) > 1 or found[0].group(1) or listed is None:
+        malformed = ' '.join([
+            f'{folder}: allowed_tools must be one line of list in prompt.md,',
+            'such as allowed_tools: [Read, Write]',
+        ])
+
+        raise ValueError(malformed)
+
+    tools = tuple(
+        item.strip().strip('\'"')
+        for item
+        in listed.group(1).split(',')
+        if item.strip()
+    )
+
+    return tools
 
 
 def _authored_case_directories(
@@ -564,6 +671,17 @@ def _authored_case_directories(
     return directories
 
 
+def _base_tool(
+    tool: str,
+) -> str:
+    """
+    A tool's name without its pattern: `Bash` for `Bash(npm test *)`.
+    """
+    base = tool.split('(')[0].strip()
+
+    return base
+
+
 def _build_parser() -> argparse.ArgumentParser:
     """
     The command line: which cases, how many runs, the cost ceiling, the shell, and a dry run.
@@ -575,15 +693,15 @@ def _build_parser() -> argparse.ArgumentParser:
         '--case',
         default='*',
         help=' '.join([
-            "a glob over case names, such as 'contract/read/*'; only * works:",
-            'braces and brackets match nothing',
+            "a glob over case names, such as 'contract/read/*': * matches any run of characters,",
+            '/ included, and ? one character; braces and brackets stand for themselves',
         ]),
     )
     parser.add_argument(
         '--runs',
         type=int,
-        default=3,
-        help='runs per case; a case passes when every run passes',
+        default=None,
+        help="runs per case; by default each case's own runs, else 3",
     )
     parser.add_argument(
         '--max-cost-usd',
@@ -594,7 +712,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         '--no-shell',
         action='store_true',
-        help='leave out every case that grants Bash, and grant only Write and Edit',
+        help='leave out every case that lists Bash, for a machine whose sandbox cannot run a shell',
     )
     parser.add_argument(
         '--dry-run',
@@ -603,6 +721,52 @@ def _build_parser() -> argparse.ArgumentParser:
     )
 
     return parser
+
+
+def _case_name(
+    frontmatter: list[str],
+    case_yaml_lines: list[str],
+    folder: str,
+) -> str:
+    """
+    The name a case gives itself, in prompt.md's frontmatter or else in case.yaml.
+    """
+    values = [
+        NAME_LINE.match(line).group(1)
+        for line
+        in [
+            *frontmatter,
+            *case_yaml_lines,
+        ]
+        if NAME_LINE.match(line)
+    ]
+    names = [
+        _strip_comment(value).strip('\'"')
+        for value
+        in values
+    ]
+
+    if not names or not names[0]:
+        unnamed = f'{folder}: the case has no name; add name: {folder} to its prompt.md'
+
+        raise ValueError(unnamed)
+
+    return names[0]
+
+
+def _describe(
+    error: Exception,
+) -> str:
+    """
+    What went wrong, in words: a failed command by its program and exit code.
+    """
+    if isinstance(error, subprocess.CalledProcessError):
+        program = pathlib.Path(str(error.cmd[0])).name
+        failed = f'{program} exited with {error.returncode}'
+
+        return failed
+
+    return str(error)
 
 
 def _fires_cases(
@@ -625,90 +789,119 @@ def _fires_cases(
     return cases
 
 
-def _frontmatter(
-    text: str,
-) -> str:
+def _fixture_name(
+    case_directory: pathlib.Path,
+    case_yaml_lines: list[str],
+    folder: str,
+) -> str | None:
     """
-    The frontmatter of a Markdown file, between its opening and closing `---`; empty when it has none.
+    The fixture a committed case names, checked against the scaffold rules; None when it names none.
     """
-    if not text.startswith('---'):
+    committed = [
+        reserved
+        for reserved
+        in (
+            FIXTURE_FOLDER,
+            SCAFFOLD_FILE,
+        )
+        if (case_directory / reserved).exists()
+    ]
 
-        return ''
+    if committed:
+        runner_owned = f'{folder}: {committed[0]} is written by the runner; do not commit it'
 
-    closing = text.find(
-        '\n---',
-        3,
+        raise ValueError(runner_owned)
+
+    names_script = any(
+        SCAFFOLD_LINE.match(line)
+        for line
+        in case_yaml_lines
     )
-    front = text[3:closing] if closing != -1 else ''
+    fixture_file = case_directory / FIXTURE_FILE
+
+    if not fixture_file.is_file():
+        if names_script:
+            no_fixture = f'{folder}: case.yaml names {SCAFFOLD_FILE}, but the case has no {FIXTURE_FILE}'
+
+            raise ValueError(no_fixture)
+
+        return None
+
+    fixture_name = fixture_file.read_text(encoding='utf-8').strip()
+
+    if fixture_name not in eval_fixtures.FIXTURE_NAMES:
+        unknown = f'{folder}: {FIXTURE_FILE} names {fixture_name!r}, which is not a fixture'
+
+        raise ValueError(unknown)
+
+    if not names_script:
+        unnamed = f'{folder}: a case with a {FIXTURE_FILE} needs scaffold_script: {SCAFFOLD_FILE} in case.yaml'
+
+        raise ValueError(unnamed)
+
+    return fixture_name
+
+
+def _frontmatter_lines(
+    text: str,
+) -> list[str]:
+    """
+    The lines between a Markdown file's opening and closing `---`; empty when it has none.
+    """
+    lines = text.splitlines()
+
+    if not lines or lines[0].strip() != '---':
+
+        return []
+
+    closings = [
+        index
+        for index, line
+        in enumerate(lines)
+        if index > 0 and line.strip() == '---'
+    ]
+    front = lines[1:closings[0]] if closings else []
 
     return front
 
 
-def _grants_shell(
-    case_directory: pathlib.Path,
-) -> bool:
+def _generated_case(
+    folder: str,
+    prompt_text: str,
+) -> EvalCase:
     """
-    Whether a case lists Bash in its `allowed_tools`, in prompt.md's frontmatter or in case.yaml.
+    A generated case, read from its prompt.md as a committed one would be.
     """
-    prompt = _read_if_present(case_directory / 'prompt.md')
-    texts = [
-        _frontmatter(prompt),
-        _read_if_present(case_directory / 'case.yaml'),
-    ]
-    grants_held = [
-        _allowed_tools_text(text)
-        for text
-        in texts
-    ]
-    grants = any(
-        SHELL_TOOL.search(held)
-        for held
-        in grants_held
+    frontmatter = _frontmatter_lines(prompt_text)
+    case = EvalCase(
+        name=_case_name(
+            frontmatter,
+            [],
+            folder,
+        ),
+        folder=folder,
+        tools=_allowed_tools(
+            frontmatter,
+            folder,
+        ),
     )
 
-    return grants
+    return case
 
 
-def _install_into_run(
-    install_folder: pathlib.Path,
-) -> bool:
+def _glob_part(
+    character: str,
+) -> str:
     """
-    Export and install into a temporary folder, then copy the plugin and starting points into the run.
+    One character of a `--case` glob as a regular expression, as the harness translates it.
     """
-    export = install_folder / PACKAGE_NAME
-    home = install_folder / 'home'
+    translations = {
+        '*': '.*',
+        '?': '.',
+    }
+    part = translations.get(character, re.escape(character))
 
-    try:
-        export_package(
-            REPOSITORY_ROOT,
-            export,
-        )
-        claude_directory = build_install(
-            export,
-            home,
-        )
-    except subprocess.CalledProcessError as error:
-        print(f'The install could not be built: {error.cmd[0]} exited with {error.returncode}')
-
-        return False
-
-    package_directory = home / INSTALLED_PACKAGE
-
-    if not package_directory.is_dir():
-        print(f'apm did not put the package where the runner looks: {package_directory}')
-
-        return False
-
-    assemble_plugin(
-        claude_directory,
-        PLUGIN_DIRECTORY,
-    )
-    copy_starting_points(
-        package_directory,
-        RUN_DIRECTORY,
-    )
-
-    return True
+    return part
 
 
 def _near_miss_cases(
@@ -729,6 +922,116 @@ def _near_miss_cases(
         cases[f'{name}/graders/not-fired.md'] = NOT_FIRED_GRADER.format(skill=skill)
 
     return cases
+
+
+def _one_line(
+    error: Exception,
+) -> str:
+    """
+    An error as one line of ASCII.
+    """
+    described = _describe(error)
+    flattened = ' '.join(described.split())
+    ascii_only = flattened.encode(
+        'ascii',
+        'replace',
+    ).decode('ascii')
+
+    return ascii_only
+
+
+def _prepare_run(
+    install_folder: pathlib.Path,
+) -> None:
+    """
+    Export and install into a temporary folder; copy the plugin, starting points and fixtures out.
+    """
+    export = install_folder / PACKAGE_NAME
+    export_package(
+        REPOSITORY_ROOT,
+        export,
+    )
+    claude_directory = build_install(
+        export,
+        install_folder / 'home',
+    )
+    package_directory = install_folder / 'home' / INSTALLED_PACKAGE
+
+    if not package_directory.is_dir():
+        misplaced = f'apm did not put the package where the runner looks: {package_directory}'
+
+        raise FileNotFoundError(misplaced)
+
+    assemble_plugin(
+        claude_directory,
+        PLUGIN_DIRECTORY,
+    )
+    copy_starting_points(
+        package_directory,
+        RUN_DIRECTORY,
+    )
+    eval_fixtures.build_all(
+        FIXTURES_DIRECTORY,
+        package_root=export,
+    )
+
+
+def _print_grants(
+    grants: dict[str, list[str]],
+) -> None:
+    """
+    Say which gated tools the batch is granted, and which cases list each.
+    """
+    if not grants:
+        print('Granted: nothing beyond the read-only tools')
+
+        return
+
+    for tool, names in grants.items():
+        print(f'Granted {tool}, listed by: {", ".join(names)}')
+
+
+def _read_authored_case(
+    case_directory: pathlib.Path,
+    source_directory: pathlib.Path,
+) -> EvalCase:
+    """
+    One committed case, checked: its name, its one-line tool list, and its fixture.
+    """
+    folder = case_directory.relative_to(source_directory).as_posix()
+    frontmatter = _frontmatter_lines(_read_if_present(case_directory / 'prompt.md'))
+    case_yaml_lines = _read_if_present(case_directory / 'case.yaml').splitlines()
+    in_case_yaml = any(
+        ALLOWED_TOOLS_LINE.match(line)
+        for line
+        in case_yaml_lines
+    )
+
+    if in_case_yaml:
+        misplaced = f'{folder}: allowed_tools belongs in prompt.md frontmatter, not in case.yaml'
+
+        raise ValueError(misplaced)
+
+    case = EvalCase(
+        name=_case_name(
+            frontmatter,
+            case_yaml_lines,
+            folder,
+        ),
+        folder=folder,
+        tools=_allowed_tools(
+            frontmatter,
+            folder,
+        ),
+        source=case_directory,
+        fixture=_fixture_name(
+            case_directory,
+            case_yaml_lines,
+            folder,
+        ),
+    )
+
+    return case
 
 
 def _read_if_present(
@@ -752,6 +1055,87 @@ def _read_table(
         table = tomllib.load(handle)
 
     return table
+
+
+def _run_batch(
+    parsed: argparse.Namespace,
+) -> int:
+    """
+    Select and check the batch's cases, assemble the run folder, and run the harness on it.
+    """
+    generated_files = triggering_cases(_read_table(TRIGGERING_TABLE))
+    every_case = [
+        *read_authored_cases(EVALS_DIRECTORY),
+        *generated_cases(generated_files),
+    ]
+    selection = select_cases(
+        every_case,
+        parsed.case,
+        parsed.no_shell,
+    )
+
+    for left in selection.left_out:
+        print(f'Left out (lists Bash, --no-shell): {left.name}')
+
+    if not selection.selected:
+        print(f'No case matches --case {parsed.case!r}')
+
+        return 1
+
+    grants = gated_tools(list(selection.selected))
+    _print_grants(grants)
+    shutil.rmtree(
+        RUN_DIRECTORY,
+        ignore_errors=True,
+    )
+
+    with tempfile.TemporaryDirectory(prefix=INSTALL_PREFIX) as install_folder:
+        _prepare_run(pathlib.Path(install_folder))
+
+    _write_selected(
+        selection.selected,
+        generated_files,
+    )
+    command = eval_command(
+        PLUGIN_DIRECTORY,
+        case_glob=parsed.case,
+        runs=parsed.runs,
+        max_cost_usd=parsed.max_cost_usd,
+        output_directory=results_directory(
+            parsed.case,
+            datetime.datetime.now(datetime.UTC),
+        ),
+        granted_tools=list(grants),
+    )
+    print(shlex.join(command))
+
+    if parsed.dry_run:
+
+        return 0
+
+    print(KEPT_FOLDERS_REMINDER)
+    completed = subprocess.run(
+        command,
+        cwd=PLUGIN_DIRECTORY,
+        check=False,
+    )
+    print(KEPT_FOLDERS_REMINDER)
+
+    return completed.returncode
+
+
+def _strip_comment(
+    value: str,
+) -> str:
+    """
+    A YAML value without its trailing comment and surrounding spaces.
+    """
+    stripped = TRAILING_COMMENT.sub(
+        '',
+        value,
+    ).strip()
+
+    return stripped
 
 
 def _uv_cache_directory() -> str:
@@ -779,24 +1163,37 @@ def _uv_cache_directory() -> str:
     return cache
 
 
-def _write_cases(
-    eval_directory: pathlib.Path,
-    cases: dict[str, str],
+def _write_selected(
+    cases: tuple[EvalCase, ...],
+    generated_files: dict[str, str],
 ) -> None:
     """
-    Write generated case files below the eval folder.
+    Put the batch's cases below the plugin's eval folder: committed ones copied, generated ones written.
     """
-    for relative_path, text in cases.items():
-        target = eval_directory / relative_path
-        target.parent.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
-        target.write_text(
-            text,
-            encoding='utf-8',
-            newline='\n',
-        )
+    eval_directory = PLUGIN_DIRECTORY / 'evals'
+
+    for case in cases:
+        if case.source is not None:
+            copy_authored_case(
+                case,
+                eval_directory,
+                FIXTURES_DIRECTORY,
+            )
+
+            continue
+
+        for relative_path, text in generated_files.items():
+            if relative_path.startswith(f'{case.folder}/'):
+                target = eval_directory / relative_path
+                target.parent.mkdir(
+                    parents=True,
+                    exist_ok=True,
+                )
+                target.write_text(
+                    text,
+                    encoding='utf-8',
+                    newline='\n',
+                )
 
 
 if __name__ == '__main__':
