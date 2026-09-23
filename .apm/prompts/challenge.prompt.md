@@ -12,7 +12,7 @@ it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the ses
 repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
 `AGENTS.md` says where each of these paths lands.
 
-This is items 7 and 8 of *The order of work*: the cycle has run, and the researcher's part is to
+This is G and H of *The order of work*: the cycle has run, and the researcher's part is to
 challenge it. A blueprint is a set of predictions somebody was willing to be wrong about; this
 command asks whether the run treated them that way. `${input:experiment}` is the experiment number
 `N`; `${input:strategy}` is the strategy's path, given when the session is not already open in it.
@@ -22,7 +22,7 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 ## Step 1: Refuse if there is nothing to challenge
 
 - **No `Experiments/Experiment_N/BLUEPRINT_N.md`, or its slots are unfilled** — there is no
-  hypothesis to check the run against: `blueprint`, item 5.
+  hypothesis to check the run against: `blueprint`, E.
 - **No `FINDINGS_N.md`, or it reports nothing yet** — the cycle is still running. Say so and stop;
   challenging a run in progress invites the findings to be written to match.
 - **Home** — there is no experiment here. Say so and stop.

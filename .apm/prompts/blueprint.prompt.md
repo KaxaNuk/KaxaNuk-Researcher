@@ -19,7 +19,7 @@ measured, and writes it where the template keeps it. `${input:experiment}` is th
 
 ## Step 1: Refuse if the order is wrong
 
-The blueprint is item 5 of *The order of work* in `AGENTS.md`. Stop, and name the item that comes
+The blueprint is E in *The order of work* in `AGENTS.md`. Stop, and name the part that comes
 first, when:
 
 - **`OBJECTIVE.md` has no claims** — the objective comes first, and its claims fine-tuned by reading
@@ -58,7 +58,7 @@ the copy as the plan, make it on the owner's go, and the draft continues from th
    in the order of work, so if that section is still the template's prose, say so in the plan and
    write every prediction that needed a measurement as a lead — *run analyzer section Y before
    predicting this*. Probe `RESULTS.md` first, not the folder: `Data/Analyzer/` is ignored by git,
-   so a fresh clone has it empty even after item 4 was done.
+   so a fresh clone has it empty even after D, the data, was done.
 4. `Experiments/Experiment_N/BLUEPRINT_N.md` as shipped — the headings to fill — and for N > 1,
    `FINDINGS_1.md` (the benchmark is shared context) but **no other experiment's files** unless the
    owner has written the request and reason into `JOURNAL_N.md` first. Say so if they have not.

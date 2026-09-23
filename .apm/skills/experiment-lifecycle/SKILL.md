@@ -5,15 +5,15 @@ description: >
   repository or one of its experiments. Use it when the user asks to start a strategy from the
   KaxaNuk Strategy Template, scaffold an Experiments/Experiment_N/ folder, write a blueprint,
   journal, brainstorming or findings file, update RESULTS.md or the changelog, or move a strategy
-  through the order of work and the eight steps. It defines the document architecture and each
-  file's contract, the notebook section contract and where each kind of logic goes, and points to
-  the restrictions, the bar a new signal must clear and the graduation gate. It does NOT cover what
-  another tool owns: step 1 (the KaxaNuk Researcher), `universe-point-in-time`, the `c_*`
-  columns (`data-curator-custom-calculations`), sizing a book (`portfolio-construction-runs`),
-  running the engines (`backtest-engine-runs`, `attribution-analysis-runs`), reading attribution
-  (`alpha-decomposition`), or branches and changelogs (`how-we-work`).
+  through the order of work and the eight steps. It defines the document architecture, each file's
+  contract, the notebook section contract and where each kind of logic goes, and points to the
+  restrictions, the bar a new signal must clear and the graduation gate. It does NOT cover what
+  another tool owns: step 1 (the KaxaNuk Researcher), `universe-point-in-time`,
+  `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`,
+  `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
+  `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.7.4
+  version: 0.8.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -66,7 +66,8 @@ Portfolio Construction, the Backtest Engine and Attribution Analysis — and two
 Analyzer, are hand-rolled until theirs land; a hand-rolled stage says so in its docstring and names
 the interface its library will replace. A skill says how each library is called:
 `data-curator-custom-calculations`, `portfolio-construction-runs`, `backtest-engine-runs` and
-`attribution-analysis-runs`, with `universe-point-in-time` for step 2. **Step 1 is the KaxaNuk
+`attribution-analysis-runs`, with `universe-point-in-time` for step 2, `data-analyzer-runs` for the
+hand-rolled Analyzer, and `paper-trading-gate` for step 7. **Step 1 is the KaxaNuk
 Researcher's**, `KaxaNuk/KaxaNuk-Researcher`, whose home `init-researcher` makes: its `objective` drafts
 the claims, its `read` writes the notes in `Bibliotheca/`, and its `blueprint` drafts
 `BLUEPRINT_N.md` with every prediction citing a note.
@@ -170,27 +171,24 @@ nothing to tune — stay in the Curator.
 **A new strategy.** Follow the template's `SETUP.md` — the repository, `uv sync`, the credential
 file; the skills are installed once for the user, not here — then work in this order. **It is an
 index of *Starting your own strategy* in the template's README**, which is the source and says why
-each item comes where it does; the eight items are not the eight steps. What this skill adds is the
-last column — which tool each item loads.
+each part comes where it does; the parts are lettered A to H so they are never mistaken for the
+eight steps. What this skill adds is the last column — which tool each part loads. The KaxaNuk
+Researcher's `next` command reads a strategy against this list and names the part that comes next.
 
-| # | Item | Lands in | Load |
+| | Part | Lands in | Load |
 | --- | --- | --- | --- |
-| 1 | The objective, **before any paper is read** | `OBJECTIVE.md` | the KaxaNuk Researcher, `objective` |
-| 2 | Fine-tune the objective, reading for each claim | `Bibliotheca/`, then `OBJECTIVE.md` | the Researcher, `read` |
-| 3 | The investable universe, delisted names included | `Universe/Investable_Universe.csv` | `universe-point-in-time` |
-| 4 | The data — curator, universe notebook, refinery, analyzer, in that order | `Data/` | `data-curator-custom-calculations` |
-| 5 | The benchmark, then `BLUEPRINT_1.md` **before the rule** | `Experiments/Experiment_1/` | this skill; the Researcher, `blueprint` |
-| 6 | The broad reading, and brainstorming | `Bibliotheca/`, `BRAINSTORMING_1.md` | the Researcher, `read` and `brainstorm` |
-| 7 | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
-| 8 | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
+| A | The objective, **before any paper is read** | `OBJECTIVE.md` | the KaxaNuk Researcher, `objective` |
+| B | The reading, for each claim; then the objective fine-tuned from the notes | `Bibliotheca/`, then `OBJECTIVE.md` | the Researcher, `read`, then `objective` |
+| C | The investable universe, delisted names included | `Universe/Investable_Universe.csv` | `universe-point-in-time` |
+| D | The data — curator, universe notebook, refinery, analyzer, in that order | `Data/`, and `RESULTS.md` for the analyzer's measurements | `data-curator-custom-calculations`, `universe-point-in-time`, `data-analyzer-runs` |
+| E | The benchmark, then `BLUEPRINT_1.md` **before the rule** | `Experiments/Experiment_1/` | this skill; the Researcher, `brainstorm` and `blueprint` |
+| F | The broad reading, and brainstorming | `Bibliotheca/`, `BRAINSTORMING_1.md` | the Researcher, `read` and `brainstorm` |
+| G | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
+| H | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
 
-Every file those items name is in the template, and so in a strategy made from it: each a
-description of what belongs in it, generated from the worked example with its own lines removed, to
-be filled in. A strategy made from a template before 0.10.0 lacks the files inside the folders;
-bring one across with `init-example <path>` — it copies from the example inside the KaxaNuk
-Researcher and never overwrites, so bring `Universe/universe.ipynb` by its path — and delete what is
-the example's: everything between the markers.
+Then the gate — `Paper_Trading/BITACORA.md`, `paper-trading-gate` — or the next experiment.
 
+Every file those parts name is in the template, and so in a strategy made from it: each a
 **A new experiment `N` inside an existing strategy:**
 
 1. Create `Experiments/Experiment_N/` with `Portfolio/`, `Backtest/`, `Attribution/`, each holding a

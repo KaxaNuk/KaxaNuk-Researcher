@@ -11,12 +11,12 @@ it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the ses
 repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
 `AGENTS.md` says where each of these paths lands.
 
-`OBJECTIVE.md` is the first thing a CIO reads and the last thing that changes, and the first item of
-*The order of work* in `AGENTS.md`: **the objective comes before any paper**. This command runs on
-the same file in two kinds of pass — the first before anything is read, the fine-tuning ones as the
-notes for each claim arrive — so every claim ends up pointing back to a source without having been
-written to fit one. `${input:strategy}` is the strategy's path, left out when the session is open
-in it.
+`OBJECTIVE.md` is the first thing a CIO reads and the last thing that changes, and A, the first
+part of *The order of work* in `AGENTS.md`: **the objective comes before any paper**. This command
+runs on the same file in two kinds of pass — the first before anything is read, the fine-tuning
+ones as the notes for each claim arrive — so every claim ends up pointing back to a source without
+having been written to fit one. `${input:strategy}` is the strategy's path, left out when the
+session is open in it.
 
 ## Step 1: Read the strategy's own material, and name the pass
 
