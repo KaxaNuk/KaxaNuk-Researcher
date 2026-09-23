@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.14.4] - 2026-09-23
+The package's own `.gitattributes` leaves it.
+
+**What to do differently:** nothing. A clone on Windows now takes its line endings from git's own
+setting, so `scaffold.py` copies what the clone holds; the researcher home, the strategy template
+and the example keep their `.gitattributes`, so a new home or strategy still commits LF.
+### Removed
+- **`.gitattributes`** at the root, and its row in the README's file map.
+
 ## [0.14.3] - 2026-09-23
 The repository's own tests and tools leave it: what stays is the package users install, and the
 two starting points, kept in step by hand. Strategy template 0.10.5, example 0.10.6.
