@@ -2,9 +2,9 @@
 Build the folders the eval cases start from, from this repository's current templates.
 
 Each fixture is a folder a case copies into its session: a researcher's home, a strategy, a folder
-to be refused.  Homes and strategies are copied by the repository's own `scaffold.py` from
-`templates/`, then edited, so a fixture follows the template instead of freezing a copy of it.
-The PDFs are built here with pypdf, so no binary is committed.
+that already holds a home.  Homes and strategies are copied by the repository's own `scaffold.py`
+from `templates/`, then edited, so a fixture follows the template instead of freezing a copy of it.
+The PDF is built here with pypdf, so no binary is committed.
 
 Run by `tools/eval_run.py`; it can also be run alone to look at the fixtures:
 
@@ -22,7 +22,6 @@ import pypdf
 REPOSITORY_ROOT = pathlib.Path(__file__).resolve().parent.parent
 # The scaffold script, relative to the package whose starting points the fixtures are built from.
 SCAFFOLD_SCRIPT = pathlib.Path('.apm') / 'skills' / 'init-strategy' / 'scripts' / 'scaffold.py'
-BOOK_PATH = pathlib.Path('Sources') / 'Books' / 'Aldous_2021_Signals_In_Prices.pdf'
 CHAPTERS = (
     (
         'Trend and its persistence',
@@ -42,18 +41,14 @@ CLAIMS_MARKER = '<!-- eval: claims -->'
 CLIPPING_PATH = pathlib.Path('Sources') / 'Clippings' / 'Nullwick_2026_Driftwatch_README.md'
 FILLED_BLUEPRINT_MARKER = '<!-- eval: filled blueprint -->'
 FIXTURE_NAMES = (
-    'home-with-book',
     'home-with-clipping',
-    'home-with-image-pdf',
     'home-with-notes',
     'researcher-existing',
     'strategy-blueprint-filled',
     'strategy-empty-universe',
     'strategy-no-claims',
     'strategy-no-claims-with-home',
-    'strategy-non-empty-target',
     'strategy-ready',
-    'strategy-with-bitacora',
     'strategy-with-home',
 )
 # The folder, inside a strategy fixture's working folder, that holds the owner's researcher.
@@ -251,18 +246,14 @@ def build_all(
     default, or an export of it.
     """
     builders = {
-        'home-with-book': _build_home_with_book,
         'home-with-clipping': _build_home_with_clipping,
-        'home-with-image-pdf': _build_home_with_image_pdf,
         'home-with-notes': _build_home_with_notes,
         'researcher-existing': _build_researcher_existing,
         'strategy-blueprint-filled': _build_strategy_blueprint_filled,
         'strategy-empty-universe': _build_strategy_empty_universe,
         'strategy-no-claims': _build_strategy_no_claims,
         'strategy-no-claims-with-home': _build_strategy_no_claims_with_home,
-        'strategy-non-empty-target': _build_strategy_non_empty_target,
         'strategy-ready': _build_strategy_ready,
-        'strategy-with-bitacora': _build_strategy_with_bitacora,
         'strategy-with-home': _build_strategy_with_home,
     }
 
@@ -343,25 +334,6 @@ def _append(
         handle.write(text)
 
 
-def _build_home_with_book(
-    folder: pathlib.Path,
-    package_root: pathlib.Path,
-) -> None:
-    """
-    A researcher's home with two open questions and one outlined book in Sources/Books.
-    """
-    _scaffold(
-        'researcher',
-        folder,
-        package_root,
-    )
-    _add_questions(folder)
-    _write_book(
-        folder / BOOK_PATH,
-        with_text=True,
-    )
-
-
 def _build_home_with_clipping(
     folder: pathlib.Path,
     package_root: pathlib.Path,
@@ -383,25 +355,6 @@ def _build_home_with_clipping(
     clipping.write_text(
         CLIPPING_TEXT,
         encoding='utf-8',
-    )
-
-
-def _build_home_with_image_pdf(
-    folder: pathlib.Path,
-    package_root: pathlib.Path,
-) -> None:
-    """
-    A researcher's home whose only book has no text layer.
-    """
-    _scaffold(
-        'researcher',
-        folder,
-        package_root,
-    )
-    _add_questions(folder)
-    _write_book(
-        folder / BOOK_PATH,
-        with_text=False,
     )
 
 
@@ -518,10 +471,7 @@ def _build_strategy_no_claims(
         folder,
         package_root,
     )
-    _write_book(
-        folder / 'Bibliotheca' / 'Papers' / 'Moskowitz_2012_Time_Series_Momentum.pdf',
-        with_text=True,
-    )
+    _write_book(folder / 'Bibliotheca' / 'Papers' / 'Moskowitz_2012_Time_Series_Momentum.pdf')
 
 
 def _build_strategy_no_claims_with_home(
@@ -538,21 +488,6 @@ def _build_strategy_no_claims_with_home(
     _add_home(
         folder,
         package_root,
-    )
-
-
-def _build_strategy_non_empty_target(
-    folder: pathlib.Path,
-    package_root: pathlib.Path,
-) -> None:
-    """
-    A folder where the strategy is asked for, already holding one file.
-    """
-    target = folder / 'fcf-yield-quality'
-    target.mkdir(parents=True)
-    (target / 'notes.txt').write_text(
-        'An owner file that must survive.\n',
-        encoding='utf-8',
     )
 
 
@@ -584,24 +519,6 @@ def _build_strategy_ready(
     (papers / 'Moskowitz_2012_Time_Series_Momentum.md').write_text(
         MOSKOWITZ_NOTE,
         encoding='utf-8',
-    )
-
-
-def _build_strategy_with_bitacora(
-    folder: pathlib.Path,
-    package_root: pathlib.Path,
-) -> None:
-    """
-    A strategy as the template ships it, whose Paper_Trading/BITACORA.md the owner has edited.
-    """
-    _scaffold(
-        'strategy',
-        folder,
-        package_root,
-    )
-    _append(
-        folder / 'Paper_Trading' / 'BITACORA.md',
-        '\nOwner edit: the gate is reviewed monthly.\n',
     )
 
 
@@ -676,10 +593,9 @@ def _scaffold(
 
 def _write_book(
     path: pathlib.Path,
-    with_text: bool,
 ) -> None:
     """
-    A small PDF of three chapters with an outline; with no text layer when asked.
+    A small PDF of three chapters with an outline and a text layer.
     """
     path.parent.mkdir(
         parents=True,
@@ -692,13 +608,11 @@ def _write_book(
             width=612,
             height=792,
         )
-
-        if with_text:
-            _put_text(
-                writer,
-                page,
-                body,
-            )
+        _put_text(
+            writer,
+            page,
+            body,
+        )
 
         writer.add_outline_item(
             title,

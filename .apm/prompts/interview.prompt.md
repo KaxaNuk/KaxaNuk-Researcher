@@ -339,8 +339,7 @@ whose `experiment-lifecycle` skill carries the process and whose skills for each
 the modules. The library at home is built the ordinary way: a source into `Sources/`, then `read`.
 
 The home's `LICENSE` names KaxaNuk as the copyright holder, as the template ships it. The home is
-the owner's: they put themselves there, or choose another licence, keeping the obsidian-vault-kit
-notice at its end.
+the owner's: they put themselves there, or choose another licence.
 
 ## Step 7: Hand over
 

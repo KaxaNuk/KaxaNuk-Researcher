@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.8.1
+  version: 0.8.2
 ---
 
 # The research process — how a strategy repository is worked in
@@ -194,10 +194,10 @@ Then the gate — `Paper_Trading/BITACORA.md`, `paper-trading-gate` — or the n
 Every file those parts name is in the template, and so in a strategy made from it: each a
 description of what belongs in it, to be filled in — the drivers, modules, notebooks and experiment
 files generated from the worked example with its own lines removed. A strategy made from a template
-before 0.10.0 lacks the files inside the folders; bring one across with `init-example <path>` — it
-copies from the example inside the KaxaNuk Researcher and never overwrites, so bring
-`Universe/universe.ipynb` by its path — and delete what is the example's: everything between the
-markers.
+before 0.10.0 lacks the files inside the folders; each comes back from the template, never from the
+example, whose copy is filled in: `init-strategy`'s script, run from the strategy's root,
+`scaffold.py strategy . --only <path>`. It never overwrites, so bring `Universe/universe.ipynb` by
+its path: `--only Universe` stops over the seed, which is already the strategy's own.
 
 **A new experiment `N` inside an existing strategy:**
 

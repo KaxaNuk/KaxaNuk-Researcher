@@ -13,7 +13,7 @@ before changing anything.
 | the skills' `scripts/` | `scaffold.py`, `extract.py`, `bloom_code_check.py` | with their tests in `tests/`, which pass before any commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | never by hand: `uv run --no-project python tools/sync_investment_lab_references.py` after the example changes |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/`, as `TEMPLATE_FILES` in the sync tool lists them | the example's with its own lines stripped | never by hand: the same `sync_investment_lab_references.py`; `check_repo.py` fails when one differs |
-| `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `apm.yml`, `pyproject.toml` and `CHANGELOG.md` move together |
+| `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `pyproject.toml`, which declares its version, and `CHANGELOG.md` move together |
 | `examples/liquid-golden-cross/` | one strategy worked through the template | the same, and its `uv.lock` records the project version: `uv lock` after a bump |
 | `templates/researcher/` | the researcher's home, copied by `init-researcher` | its `apm.yml` version leads its `CHANGELOG.md`; `update` compares a home against it |
 | `evals/`, `tools/eval_*.py` | the behavioural evals and their runner | run as `evals/README.md` says, on your own plan: they cost money and nothing runs them for you |
@@ -29,14 +29,18 @@ edited by hand. A marker counts only alone on its line at column 0, or it is not
 
 - **A file of a starting point is never written from memory** — not by a skill, not by the script,
   not by an agent helping here. `scaffold.py` copies byte for byte.
-- **Every change carries its `CHANGELOG.md` entry**, and a version bump in `apm.yml` in the same
-  commit: the package's at the root, the template's, the example's or the home's in its own folder.
+- **Every change carries its `CHANGELOG.md` entry**, and a version bump in the same commit: in
+  `apm.yml` for the package at the root and for the home, in `pyproject.toml` for the template and
+  the example, which then re-locks with `uv lock`.
   Tag `vX.Y.Z` on `main` once the release's commit is there.
 - **Work lands on `main`**, as the `how-we-work` skill says: a branch and a pull request only for a
   change you want reviewed, deleted once merged. `main` is the only branch that stays.
 - **Every KaxaNuk skill lives here.** A skill for a new Lab library is a folder in `.apm/skills/`;
-  a change to a library's API changes its skill in the same release. KaxaNuk-Agent-Skills is
-  retired: its skills came here at its commit `3b8f76c`, and the repository is no longer public.
+  a change to a library's API changes its skill in the same release.
+- **A fork changes every line that names `KaxaNuk-Researcher`** — `git grep KaxaNuk-Researcher`
+  finds them, `scaffold.py`'s `INSTALLED_PACKAGE_PATHS` included — and installs as the one
+  researcher package on its user's machine: two packages deploying skills of the same names have
+  not been tested side by side.
 - **`uv run --no-project python tools/check_repo.py` passes before any commit,** with the tests,
   ruff and the Bloom Code check, run as the README's *Development* section shows. There is no CI:
   nothing runs them for you.

@@ -2,7 +2,7 @@
 # worked example in `examples/` carries its own `pyproject.toml`, which governs it alone.
 [project]
 name = "kaxanuk-researcher"
-version = "0.14.0"
+version = "0.14.1"
 requires-python = ">=3.12"
 dependencies = []
 

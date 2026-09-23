@@ -23,11 +23,10 @@ quotes, `brainstorm 2 "a slower exit"`, and a strategy's path without an idea fo
 
 1. **Read the experiment's state.** The template ships `Experiments/Experiment_1/BRAINSTORMING_1.md`
    with its header and the entry format, to be filled. A strategy made from a template before 0.10.0
-   lacks it: give the command that brings it across — `init-example
-   Experiments/Experiment_1/BRAINSTORMING_1.md`, run in the strategy's session — say that
-   everything between the example markers is the worked strategy's, and stop. For N > 1 there is no
-   file yet: the blank is the
-   `experiment-lifecycle` skill's `references/brainstorming-template.md`, copied to
+   lacks it: give the command that brings the template's blank back — `init-strategy`'s script,
+   `scaffold.py strategy . --only Experiments/Experiment_1/BRAINSTORMING_1.md`, run from the
+   strategy's root, which never overwrites — and stop. For N > 1 there is no file yet: the blank is
+   the `experiment-lifecycle` skill's `references/brainstorming-template.md`, copied to
    `Experiments/Experiment_N/BRAINSTORMING_N.md` with `N` replaced, as that skill's section 6
    says. Offer the copy, make it on the owner's go, and continue.
 

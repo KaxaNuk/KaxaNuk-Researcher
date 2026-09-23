@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.6.2
+  version: 0.6.3
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -125,7 +125,7 @@ ignore `Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
   keeps its number; the book's `INDEX.md` keeps the pages. A paper is one chapter: `--all`.
 - **A PDF whose depth 1 is parts.** The script says so; run `--outline --depth 2`, and carry
   `--depth 2` into the run that extracts the chapters: without it, `--chapters` counts parts.
-- **A PDF with no text layer.** The script refuses to write and says why. Report the source as
+- **A PDF with no text layer.** The script writes no chapter and says why. Report the source as
   unreadable, leave it out of the plan, and do not fill it in from memory.
 - **A source that is not a PDF** — a markdown clipping, a transcript — is read directly, whole.
 

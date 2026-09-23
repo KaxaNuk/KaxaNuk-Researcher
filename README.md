@@ -5,11 +5,9 @@ KaxaNuk Investment Lab and the KaxaNuk Strategy Template, and helps you write th
 every strategy you build — with every claim pointing back to something you actually read. One
 researcher per person, not per strategy; one repository per strategy.
 
-This repository is everything that takes: every KaxaNuk skill — the researcher's, the process's
-and each Investment Lab library's — the strategy template, a strategy worked through it, and the
-researcher's home. One source of truth, versioned together, so one commit can change a skill,
-the template it describes and the example that shows it, and one `apm update -g` brings it to every
-folder you work in.
+This repository is one package: every KaxaNuk skill — the researcher's, the process's and each
+Investment Lab library's — the strategy template, a strategy worked through it, and the
+researcher's home.
 
 ---
 
@@ -60,19 +58,8 @@ needs nothing more — and the backtest and attribution say what is missing and 
 in the strategy's `Config/.env`, which only you fill in and nobody commits; the strategy's own
 `SETUP.md` says how.
 
----
-
-## Three commands make every folder
-
-| Command | How often | What it makes |
-| --- | --- | --- |
-| `init-researcher <name>` | once per person | the researcher's home: `RESEARCHER.md`, `Sources/`, `Knowledge/`, `Philosophy/`, `Projects/`. Then `interview` there interviews you and names it |
-| `init-strategy <name>` | once per strategy | a new strategy repository from the KaxaNuk Strategy Template — every file the process expects, each a description to fill in — with its first commit. You publish it to GitHub yourself |
-| `init-example` | when you want it | the worked example, `liquid-golden-cross`, in a folder of its own, to read or run — or, with a path, one of its files into a strategy made before template 0.10.0, which lacks it |
-
-Each is a skill: in Claude Code, type it as `/init-strategy fcf-yield-quality`; elsewhere, ask for
-it by name. Each copies files with a script, byte for byte, after a plan and your go — never from
-memory — so every folder made from the same version starts identical.
+In Claude Code, type a skill or a command with a slash, as `/init-strategy fcf-yield-quality`;
+elsewhere, ask for it by name.
 
 **Invite the researcher into a strategy** by opening your assistant in the strategy's folder and
 adding the home to the session — `claude --add-dir <the home>`, `/add-dir`, or the desktop app's
@@ -89,7 +76,7 @@ Every one that writes shows its plan first and waits for your go.
 | --- | --- |
 | `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. It carries the reading map, `references/reading-map.md`, that `interview` proposes the first works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
-| `init-researcher`, `init-strategy`, `init-example` | make a folder, as above |
+| `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `liquid-golden-cross` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
 
 | Command | What it does |
 | --- | --- |
@@ -102,7 +89,7 @@ Every one that writes shows its plan first and waits for your go.
 | `audit [deep]` | reviews the library — links, duplicates, index, orphans, frontmatter, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
-| `teach <topic>` | tutors you on a topic from your library, one lesson per session. The other way round — you teaching the researcher — is `read` on the sources you put in `Sources/`, and the four moves in *Growing your researcher* in the home's README |
+| `teach <topic>` | tutors you on a topic from your library, one lesson per session |
 | `update [check]` | brings a new version into your home — `apm update -g`, and what changed in the home's own files, shown as a diff |
 
 How a researcher grows beyond the Lab — a tool, a project, a field of its own — is *Growing your
@@ -124,11 +111,9 @@ strategy, in the order of its steps:
 | `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, what a paper-trading run may do |
 
 **The house rules**: `how-we-work` (where work lands, changelogs, versions) and `bloom-code-lint`
-with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions. The four
-instructions are machine-wide: for Claude Code `apm install -g` puts them in `~/.claude/rules/`,
-for Copilot in `~/.copilot/copilot-instructions.md`, so Bloom Code, PEP 8, the test layout and the
-filesystem boundaries apply to every Python project you open on that machine, not only a strategy.
-The other agents receive none, as `SETUP.md` says. `bloom-code-lint` is the check to run by hand.
+with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions, which apply to
+every Python project on the machine where the agent receives them (`SETUP.md` step 1).
+`bloom-code-lint` is the check to run by hand.
 
 ---
 
@@ -150,7 +135,6 @@ tools/                check_repo.py, the repository's own checks;
                       three eval scripts, eval_run.py, eval_fixtures.py and eval_history.py
 evals/                behavioural evals of the skills and commands, run by tools/eval_run.py;
                       evals/README.md says how
-.github/              CODEOWNERS
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the environment of the scripts and their tests
@@ -160,11 +144,6 @@ LICENSE               MIT
 .gitattributes        LF line endings everywhere, so a clone and scaffold.py see the bytes committed
 .gitignore            what apm install and Python write per machine
 ```
-
-The template and the example are ordinary folders: read them here, or make one with the commands
-above. Only the example carries a strategy's own content, between example markers —
-`<!-- example: begin -->` and `<!-- example: end -->` — beside the template's description of what
-belongs in each file.
 
 **What this repository owns, and what a copy owns.** This repository owns what is written once and
 copied or installed everywhere; a copy owns what its owner writes in it. A strategy made from the
@@ -187,31 +166,19 @@ uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.
 
 `tools/check_repo.py` finds what has shipped before without an error: versions that disagree, an
 example that lost a heading of the template, markers left open, the section symbol, a skill
-description APM would reject, `experiment-lifecycle`'s references out of step with the example, a
-path too long for Windows, a line of prose past 100 columns. The worked example is linted with its
-own ruff settings, and the last command checks the Bloom Code style of the skills' scripts, the
-tests, the tools and the example. Each runs through `uv` alone: no Python of your own is needed.
-They run on your machine before a commit; there is no CI, so nothing runs them for you. The
-behavioural evals — what a skill or a command does when a user runs it — are a separate run with
-its own cost; `evals/README.md` says how.
+description APM would reject, `experiment-lifecycle`'s references or the template's generated
+files out of step with the example, a path too long for Windows, a line of prose past 100
+columns. The worked example is linted with its own ruff settings, and the last command checks
+the Bloom Code style of the skills' scripts, the tests, the tools and the example. Each runs
+through `uv` alone: no Python of your own is needed. They run on your machine before a commit;
+there is no CI, so nothing runs them for you. The behavioural evals — what a skill or a command
+does when a user runs it — are a separate run with its own cost; `evals/README.md` says how.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.
 
 ---
 
-## Forking this package
-
-A fork keeps `check_repo.py`, the tests and the evals, and runs them as *Development* shows. It
-changes the three places that name this package by URL or path: `update`'s GitHub URL, the
-candidates `scaffold.py` looks in for the installed package, and the interview's install line. Two
-packages deploying skills and commands of the same names at user scope have not been tested to
-coexist, so one researcher package per user until they are.
-
----
-
 ## Licence
 
-MIT, see [`LICENSE`](LICENSE). The library architecture — sources compiled into a wiki with an
-append-only log, the person's notes kept apart, plan-and-confirm before any write — adapts the
-MIT-licensed *obsidian-vault-kit*; the notice is kept in `LICENSE`.
+MIT, see [`LICENSE`](LICENSE).

@@ -33,11 +33,11 @@ soon as the skill is chosen, and the run is still graded.  The error is expected
 
 Run from the repository root:
 
-    uv run --no-project --with pypdf python tools/eval_run.py --case 'triggering/*' --max-cost-usd 5
+    uv run --no-project --with pypdf python tools/eval_run.py --case 'triggering/*' --max-cost-usd 21
     uv run --no-project --with pypdf python tools/eval_run.py --case 'contract/read/*' --dry-run \
       --max-cost-usd 1
 
-`--no-shell` leaves out every case that lists Bash, for a machine whose sandbox cannot run a shell.
+A case that lists Bash runs only on a host whose sandbox can run a shell; no committed case does.
 Every run spends the plan of whoever runs it; `--max-cost-usd` is required for that reason.
 Exit code: the harness's, or 1 with a one-line message when a case is malformed or lacks its
 history, no case matches, or the export, the install or the fixtures cannot be built.  Console
@@ -122,11 +122,6 @@ READ_ONLY_TOOLS = (
     'TaskUpdate',
     'TaskStop',
 )
-# The tools that need the sandbox: a case listing one is left out under --no-shell.
-SHELL_TOOLS = (
-    'Bash',
-    'PowerShell',
-)
 JUDGE_MODEL = 'claude-fable-5-1'
 SESSION_MODEL = 'claude-opus-5-5'
 MANIFEST = {
@@ -186,15 +181,6 @@ class EvalCase:
     source: pathlib.Path | None = None
     fixture: str | None = None
     history: str | None = None
-
-
-@dataclasses.dataclass(frozen=True)
-class Selection:
-    """
-    The cases of one batch, and the ones `--no-shell` left out of it.
-    """
-    selected: tuple[EvalCase, ...]
-    left_out: tuple[EvalCase, ...]
 
 
 def assemble_plugin(
@@ -503,21 +489,6 @@ def generated_cases(
     return cases
 
 
-def grants_shell(
-    case: EvalCase,
-) -> bool:
-    """
-    Whether a case lists a shell tool, which runs only where the sandbox can confine it.
-    """
-    shelled = any(
-        _base_tool(tool) in SHELL_TOOLS
-        for tool
-        in case.tools
-    )
-
-    return shelled
-
-
 def main(
     arguments: list[str] | None = None,
 ) -> int:
@@ -588,13 +559,11 @@ def results_directory(
 def select_cases(
     cases: list[EvalCase],
     case_globs: list[str],
-    no_shell: bool,
-) -> Selection:
+) -> tuple[EvalCase, ...]:
     """
-    The cases whose name matches any of the globs, each once, in their order; with `no_shell`,
-    those listing a shell tool are left out.
+    The cases whose name matches any of the globs, each once, in their order.
     """
-    matching = [
+    selected = tuple(
         case
         for case
         in cases
@@ -602,25 +571,9 @@ def select_cases(
             case_globs,
             case.name,
         )
-    ]
-    left_out = tuple(
-        case
-        for case
-        in matching
-        if no_shell and grants_shell(case)
-    )
-    selected = tuple(
-        case
-        for case
-        in matching
-        if case not in left_out
-    )
-    selection = Selection(
-        selected=selected,
-        left_out=left_out,
     )
 
-    return selection
+    return selected
 
 
 def triggering_cases(
@@ -721,8 +674,7 @@ def _base_tool(
 
 def _build_parser() -> argparse.ArgumentParser:
     """
-    The command line: which cases, their label, how many runs, the cost ceiling, the shell, and a
-    dry run.
+    The command line: which cases, their label, how many runs, the cost ceiling, and a dry run.
     """
     parser = argparse.ArgumentParser(
         description="Run the KaxaNuk Researcher's evals against a fresh install.",
@@ -753,11 +705,6 @@ def _build_parser() -> argparse.ArgumentParser:
         type=float,
         required=True,
         help="the harness's cost ceiling for this batch; the run stops when it is reached",
-    )
-    parser.add_argument(
-        '--no-shell',
-        action='store_true',
-        help='leave out every case that lists Bash, for a machine whose sandbox cannot run a shell',
     )
     parser.add_argument(
         '--dry-run',
@@ -1156,16 +1103,12 @@ def _run_batch(
         *generated_cases(generated_files),
     ]
     case_globs = parsed.case if parsed.case else ['*']
-    selection = select_cases(
+    selected = select_cases(
         every_case,
         case_globs,
-        parsed.no_shell,
     )
 
-    for left in selection.left_out:
-        print(f'Left out (lists Bash, --no-shell): {left.name}')
-
-    if not selection.selected:
+    if not selected:
         asked = ' '.join(
             f'--case {case_glob!r}'
             for case_glob
@@ -1175,8 +1118,8 @@ def _run_batch(
 
         return 1
 
-    check_histories(selection.selected)
-    grants = gated_tools(list(selection.selected))
+    check_histories(selected)
+    grants = gated_tools(list(selected))
     _print_grants(grants)
     shutil.rmtree(
         RUN_DIRECTORY,
@@ -1187,7 +1130,7 @@ def _run_batch(
         _prepare_run(pathlib.Path(install_folder))
 
     _write_selected(
-        selection.selected,
+        selected,
         generated_files,
     )
     command = eval_command(
