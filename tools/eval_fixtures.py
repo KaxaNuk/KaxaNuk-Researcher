@@ -20,7 +20,8 @@ import sys
 import pypdf
 
 REPOSITORY_ROOT = pathlib.Path(__file__).resolve().parent.parent
-SCAFFOLD_SCRIPT = REPOSITORY_ROOT / '.apm' / 'skills' / 'init-strategy' / 'scripts' / 'scaffold.py'
+# The scaffold script, relative to the package whose starting points the fixtures are built from.
+SCAFFOLD_SCRIPT = pathlib.Path('.apm') / 'skills' / 'init-strategy' / 'scripts' / 'scaffold.py'
 BOOK_PATH = pathlib.Path('Sources') / 'Books' / 'Aldous_2021_Signals_In_Prices.pdf'
 CHAPTERS = (
     (
@@ -140,9 +141,13 @@ INDEX_TEXT = '\n'.join([
 
 def build_all(
     target: pathlib.Path,
+    package_root: pathlib.Path = REPOSITORY_ROOT,
 ) -> None:
     """
     Build every fixture under `target`, one folder each, replacing any that exist.
+
+    The starting points and the scaffold script come from `package_root`: this repository by
+    default, or an export of it.
     """
     builders = {
         'home-with-book': _build_home_with_book,
@@ -163,7 +168,10 @@ def build_all(
             folder,
             ignore_errors=True,
         )
-        builder(folder)
+        builder(
+            folder,
+            package_root,
+        )
 
 
 def main(
@@ -214,6 +222,7 @@ def _append(
 
 def _build_home_with_book(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A researcher's home with two open questions and one outlined book in Sources/Books.
@@ -221,6 +230,7 @@ def _build_home_with_book(
     _scaffold(
         'researcher',
         folder,
+        package_root,
     )
     _add_questions(folder)
     _write_book(
@@ -231,6 +241,7 @@ def _build_home_with_book(
 
 def _build_home_with_image_pdf(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A researcher's home whose only book has no text layer.
@@ -238,6 +249,7 @@ def _build_home_with_image_pdf(
     _scaffold(
         'researcher',
         folder,
+        package_root,
     )
     _add_questions(folder)
     _write_book(
@@ -248,6 +260,7 @@ def _build_home_with_image_pdf(
 
 def _build_home_with_notes(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A researcher's home with two notes, one superseding the other, and an index that links both.
@@ -255,6 +268,7 @@ def _build_home_with_notes(
     _scaffold(
         'researcher',
         folder,
+        package_root,
     )
     _add_questions(folder)
     markets = folder / 'Knowledge' / 'Markets'
@@ -278,6 +292,7 @@ def _build_home_with_notes(
 
 def _build_researcher_existing(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A folder that already holds a filled researcher's home, `Luna/`.
@@ -286,6 +301,7 @@ def _build_researcher_existing(
     _scaffold(
         'researcher',
         home,
+        package_root,
     )
     researcher = home / 'RESEARCHER.md'
     filled = f'# Luna\n\nLuna is the researcher of this home.\n{QUESTIONS_SECTION}'
@@ -297,11 +313,15 @@ def _build_researcher_existing(
 
 def _build_strategy_blueprint_filled(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A ready strategy whose Experiment 1 blueprint is already written.
     """
-    _build_strategy_ready(folder)
+    _build_strategy_ready(
+        folder,
+        package_root,
+    )
     blueprint = folder / 'Experiments' / 'Experiment_1' / 'BLUEPRINT_1.md'
     written = '\n'.join([
         '# Blueprint — Experiment 1',
@@ -323,6 +343,7 @@ def _build_strategy_blueprint_filled(
 
 def _build_strategy_empty_universe(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A strategy with claims but a seed that holds only its header.
@@ -330,6 +351,7 @@ def _build_strategy_empty_universe(
     _scaffold(
         'strategy',
         folder,
+        package_root,
     )
     _append(
         folder / 'OBJECTIVE.md',
@@ -339,6 +361,7 @@ def _build_strategy_empty_universe(
 
 def _build_strategy_no_claims(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A strategy exactly as the template ships it, with one paper waiting in Bibliotheca/Papers.
@@ -346,6 +369,7 @@ def _build_strategy_no_claims(
     _scaffold(
         'strategy',
         folder,
+        package_root,
     )
     _write_book(
         folder / 'Bibliotheca' / 'Papers' / 'Moskowitz_2012_Time_Series_Momentum.pdf',
@@ -355,6 +379,7 @@ def _build_strategy_no_claims(
 
 def _build_strategy_non_empty_target(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A folder where the strategy is asked for, already holding one file.
@@ -369,6 +394,7 @@ def _build_strategy_non_empty_target(
 
 def _build_strategy_ready(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A strategy with claims, a seed with rows and a note in Bibliotheca: ready for a blueprint.
@@ -376,6 +402,7 @@ def _build_strategy_ready(
     _scaffold(
         'strategy',
         folder,
+        package_root,
     )
     _append(
         folder / 'OBJECTIVE.md',
@@ -398,6 +425,7 @@ def _build_strategy_ready(
 
 def _build_strategy_with_bitacora(
     folder: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
     A strategy as the template ships it, whose Paper_Trading/BITACORA.md the owner has edited.
@@ -405,6 +433,7 @@ def _build_strategy_with_bitacora(
     _scaffold(
         'strategy',
         folder,
+        package_root,
     )
     _append(
         folder / 'Paper_Trading' / 'BITACORA.md',
@@ -444,19 +473,20 @@ def _put_text(
 def _scaffold(
     kind: str,
     destination: pathlib.Path,
+    package_root: pathlib.Path,
 ) -> None:
     """
-    Copy a starting point with the repository's own scaffold script, without git.
+    Copy a starting point with the package's own scaffold script, without git.
     """
     subprocess.run(
         [
             sys.executable,
-            str(SCAFFOLD_SCRIPT),
+            str(package_root / SCAFFOLD_SCRIPT),
             kind,
             str(destination),
             '--no-git',
             '--package',
-            str(REPOSITORY_ROOT),
+            str(package_root),
         ],
         check=True,
         capture_output=True,
