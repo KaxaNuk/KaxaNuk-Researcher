@@ -49,7 +49,7 @@ nothing.
 - **Every run spends the plan of whoever runs it**, so `--max-cost-usd` is required. The ceiling is
   checked before each run starts; runs already in flight can pass it by a dollar or so. The
   harness's `costUsd` is a list-price estimate: about $0.11 a triggering run, $0.15 to $1.10 a
-  contract run.
+  contract run, $0.40 to $0.55 a quality run, of which the judge's three votes are $0.12 to $0.22.
 - **Models are pinned** so a before and an after compare: sessions on Opus 5.5 (`--model
   claude-opus-5-5`), the quality judge on Fable 5.1 (`--judge-model claude-fable-5-1`). The runner
   passes both, so a case's own `model` is overridden; it passes `--runs` only when you give it.
@@ -171,8 +171,8 @@ Nothing is written to the library before the owner's go.
 ```
 
 `tool_order`: both were called, and the first matching `before` call precedes the first matching
-`after` call. Each is a tool name or `{tool, input_match}`. Neither `tool_order` nor `focus` has
-been exercised in a run yet.
+`after` call. Each is a tool name or `{tool, input_match}`. `tool_order` has not been exercised in
+a run yet.
 
 ```markdown
 ---
@@ -196,7 +196,11 @@ A PDF with no text layer gets no note.
 ```
 
 `llm`: the body is the rubric; `focus` names what the judge reads, with the same values as a regex
-`target`. The judge votes three times and passes on two.
+`target`. The judge votes three times and passes on two. Each vote is one word, PASS or FAIL, and
+no reasoning is kept: check a verdict by reading the evidence against the rubric yourself. So the
+quality cases write each rubric as lines that must all hold, quoting the fixture text the judge
+compares against. A file `focus` reads one exact path in the workspace, not a glob, and a missing
+file fails the grader. A `trace` focus shows the judge only the first and last 12 messages.
 
 ```markdown
 ---
@@ -266,6 +270,21 @@ each replays the first turn of the case after it, in the same folder of `contrac
 - `init-example/after-go-uses-the-script`, of `init-example/plan-before-copy`;
 - `init-example/never-overwrites`, of `init-example/plan-one-piece`;
 - `init-researcher/after-go-uses-the-script`, of `init-researcher/plan-before-copy`.
+
+Four quality cases start where a contract case above starts, with the same history, and judge
+what that turn produced; each is committed without its history too:
+
+- `quality/read/note-shape`, as `contract/read/after-go-writes-only-the-chosen`;
+- `quality/init-strategy/hand-over`, as `contract/init-strategy/after-go-uses-the-script`;
+- `quality/init-example/hand-over`, as `contract/init-example/after-go-uses-the-script`;
+- `quality/init-researcher/hand-over`, as `contract/init-researcher/after-go-uses-the-script`.
+
+Capture the first turn once and write it into both folders: run `tools/eval_history.py` twice
+from the same results, before removing the kept folder, with the contract case's `history.jsonl`
+as the destination and then the quality case's. A history is never the second turn of a run: the
+replay's workspace holds only what the scaffold put there, so a quality case judges a file its own
+run writes. `quality/read/note-shape`'s prompt names the note's path, because a file `focus` reads
+one exact path in the workspace, not a glob, and fails when nothing is there.
 
 `quality/blueprint/predictions-cite/history.jsonl` is the first turn of
 `contract/blueprint/waits-before-write`, which needs no shell.
