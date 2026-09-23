@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.12.0] - 2026-09-23
+Behavioural evals for the skills and commands, from issue #3, and the three fixes their pilot
+found — merged from `issues/3` with the eval suite extended to the two skills 0.11.0 added.
+
+**What to do differently:** `blueprint`, `brainstorm` and `challenge` take the experiment number
+first: `blueprint 1`, `brainstorm 2 "an idea"`, `challenge 1 D:\Research\Golden-Flow`.
+`apm update -g` brings it; in a home, `update` brings the example in `AGENTS.md` across.
+### Added
+- **`evals/`**: triggering requests for every skill, contract cases for `read`, `query`,
+  `blueprint` and the three `init-*` skills, quality cases judged against written criteria, the
+  pilot's findings, and `tools/eval_run.py`, `eval_fixtures.py` and `eval_history.py` with their
+  tests, run by Claude Code's `claude plugin eval` against a real install of the working tree.
+  `evals/README.md` says how; `docs/superpowers/` holds the design, the plan and the Windows notes.
+  Two triggering entries are new here, for `data-analyzer-runs` and `paper-trading-gate`.
+### Fixed
+- **`blueprint`, `brainstorm` and `challenge` bound the experiment number to the strategy's
+  path** (F-01): the optional strategy was declared first, and a harness binds arguments by
+  position, so `/blueprint 1` read `1` as the path. The experiment comes first now, and
+  `brainstorm` quotes a multi-word idea. Home 0.7.2.
+- **`query` named works from memory** where the reading map has none (F-02): outside the map it
+  now names only the kind of source. `query` 0.4.1.
+- **`blueprint` deleted the template's blockquote when it wrote** (F-03), against its own text:
+  the blockquote stays whole, its last line addressed to the owner.
+- **The eval runner's fixture folder collided with the case's `FIXTURE` file on Windows**: the
+  two names differed only by case, so every fixture case was refused as runner-written and five
+  tests failed here. The folder is `fixture-files/`.
+
 ## [0.11.0] - 2026-09-22
 The path is shorter to follow: a `next` command says where you stand, the order of work is
 lettered so it is never mistaken for the eight steps, the interview shows its shape first, and the
