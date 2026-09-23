@@ -6,6 +6,53 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.11.0] - 2026-09-22
+The path is shorter to follow: a `next` command says where you stand, the order of work is
+lettered so it is never mistaken for the eight steps, the interview shows its shape first, and the
+two stages that had no skill — the analyzer and the paper-trading gate — have one.
+
+**What to do differently:** run `apm update -g`, then open a new session; in a home, run `update`
+to bring `AGENTS.md`'s lettered order of work across. When lost, run `next`.
+### Added
+- **The `next` command** — where the owner stands, at home or in a strategy, and the one thing to
+  do next with the command that does it. It reads the folder against a checklist — the interview,
+  the agent, the sources without a note at home; setup, then the order of work A to H in a
+  strategy — and writes nothing. The README, the home's README and `researcher-init`'s hand-over
+  point to it.
+- **`data-analyzer-runs`**, the skill for the last block of step 3, `Data/analyzer.ipynb`, the one
+  Lab module still hand-rolled and until now without a skill: the notebook's sections and what each
+  measures, the information coefficient per date and on the eligible pool, the rank identity, the
+  separation of return from volatility, what look-ahead costs a fitted signal, and where the
+  numbers go — `RESULTS.md` first, then a blueprint's predictions by section number. Written from
+  the worked example's notebook and nothing else.
+- **`paper-trading-gate`**, the skill for step 7: the five criteria of `Paper_Trading/BITACORA.md`,
+  how each is evidenced from `FINDINGS_N.md` and `RESULTS.md`, the usual way each fails, the
+  promotion, the contract of the two scripts — a paper-trading run re-fits nothing — and what the
+  assistant never decides: graduation is a person's signature.
+### Changed
+- **The order of work is lettered A to H**, in the template's README, the home's `AGENTS.md`,
+  `experiment-lifecycle` and the commands that cite it, so *item 5* can no longer be read as
+  *step 5*: the universe is C and step 2, the cycle is G and steps 4 to 6. The sentence *items are
+  not steps* was the symptom. Template 0.10.2, home 0.7.1, `experiment-lifecycle` 0.8.0, `read`
+  0.6.1, `universe-point-in-time` 0.1.5.
+- **`researcher-init` shows the interview at a glance before question 1** — a table of the seven
+  questions, what each asks, why, and where it lands — numbers every question *n of 7*, names the
+  five things question 2 may cover so the owner is not left with a blank line, and hands over as a
+  numbered list of what happens next, `next` last. The questions themselves and every rule around
+  them are unchanged.
+- **The README opens with the path**: five moves, each in a new session, in the folder the line
+  names, with what each makes; and the tables list `next` and the two new skills.
+### Notes
+- **Two sources checked for this version, both leads, neither read into a library:** Gong (2026),
+  *AI Agents in Financial Markets: Architecture, Applications, and Systemic Implications*,
+  arXiv 2603.13942, whose five governance principles — bounded autonomy, traceability, diversity by
+  design, embedded intervention, supervisory co-evolution — describe what this package already does
+  by construction (plan-first, the go, every claim cited, nothing trades, the other side always
+  named) and name what `next` adds: supervisory observability of where the work stands; and Packt's
+  *Building AI Agents for Finance* (2026), whose chapter 11 evaluation harness is the shape of
+  what issue #3 proposes for these skills and commands. The new primitives are in that issue's
+  scope: two triggering cases each, and the contract check for `next`.
+
 ## [0.10.1] - 2026-09-22
 `check_repo` names a deleted example notebook, and the template stops inheriting four of the
 worked strategy's lines.

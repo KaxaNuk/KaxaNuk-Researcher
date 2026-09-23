@@ -40,6 +40,9 @@ setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
 to confirm it loaded. Work on a strategy lands in the strategy; nothing comes back here unless you
 ask.
 
+**Lost?** Run `next`, here or in a strategy: it reads the folder and says what is done and the one
+thing to do next.
+
 ---
 
 ## What is in here
