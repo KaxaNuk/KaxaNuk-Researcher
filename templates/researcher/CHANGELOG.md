@@ -5,6 +5,18 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.7.1 (2026-09-23)
+
+**PATCH** — `blueprint`, `brainstorm` and `challenge` take the experiment number first.
+
+**What to do differently:** run `blueprint 1`, and `blueprint 1 D:\Research\Golden-Flow` from
+home; `brainstorm 2 "an idea"` quotes an idea of more than one word. `apm update -g` brings it.
+
+### Changed
+
+* **`AGENTS.md`** reaches a strategy from home as `blueprint 1 D:\Research\Golden-Flow`: the
+  strategy's path is optional, so it comes last.
+
 ## 0.7.0 (2026-09-22)
 
 **MINOR** — `RESEARCHER.md` says where your view sits in the evolution of investment research and
