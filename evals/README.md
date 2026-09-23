@@ -258,8 +258,17 @@ Claude Code session transcript, captured from one run of its first-turn case:
 
 A case whose `case.yaml` names a `history_file` it does not hold stops the run when it is
 selected, naming this procedure. **A history whose first turn lists Bash is captured on a host whose
-sandbox runs a shell**, then committed: `contract/read/after-go-writes-only-the-chosen` replays
-`contract/read/plan-before-write`, and is committed without its history until then.
+sandbox runs a shell**, then committed. These are committed without their history until then;
+each replays the first turn of the case after it, in the same folder of `contract/`:
+
+- `read/after-go-writes-only-the-chosen`, of `read/plan-before-write`;
+- `init-strategy/after-go-uses-the-script`, of `init-strategy/plan-before-copy`;
+- `init-example/after-go-uses-the-script`, of `init-example/plan-before-copy`;
+- `init-example/never-overwrites`, of `init-example/plan-one-piece`;
+- `init-researcher/after-go-uses-the-script`, of `init-researcher/plan-before-copy`.
+
+`quality/blueprint/predictions-cite/history.jsonl` is the first turn of
+`contract/blueprint/waits-before-write`, which needs no shell.
 
 The replay's workspace is fresh: give the case the same `FIXTURE`, so the scaffold recreates what
 the first turn saw. The history keeps the first run's absolute paths, and the model may notice and
