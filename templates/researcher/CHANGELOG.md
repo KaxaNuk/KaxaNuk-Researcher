@@ -5,6 +5,16 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.7.1 (2026-09-22)
+
+**PATCH** — *The order of work* in `AGENTS.md` letters its eight parts A to H, as the template's
+README now does, so a part is never mistaken for one of the eight steps; the commands cite the
+parts by letter. The primitives table counts eleven commands, `next` among them, and `README.md`
+says to run `next` when lost.
+
+**What to do differently:** run `update` in your home to bring the lettered table across; nothing
+you wrote changes.
+
 ## 0.7.0 (2026-09-22)
 
 **MINOR** — `RESEARCHER.md` says where your view sits in the evolution of investment research and
