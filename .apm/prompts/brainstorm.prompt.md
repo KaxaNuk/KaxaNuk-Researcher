@@ -1,9 +1,9 @@
 ---
 description: Draft a dated entry for a strategy's BRAINSTORMING_N.md — the next thing to try, considered against the library — and append it there on the owner's go. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
-  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
   - idea: "Optional: the idea to think about, in a phrase"
+  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
 ---
 
 # Draft a brainstorming entry
@@ -16,7 +16,9 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 Brainstorming is forward-looking planning, done before the work, and never mistaken for the record
 of what happened. `${input:experiment}` is the experiment number `N`, `${input:idea}` the idea to
 think about when the owner gave one, and `${input:strategy}` the strategy's path when the session is
-not already open in it.
+not already open in it. The arguments are split on spaces: an idea of more than one word comes in
+quotes, `brainstorm 2 "a slower exit"`, and a strategy's path without an idea follows an empty one,
+`brainstorm 2 "" ../other`. When `${input:strategy}` reads as the rest of an unquoted idea, it is.
 
 1. **Read the experiment's state.** The template ships `Experiments/Experiment_1/BRAINSTORMING_1.md`
    with its header and the entry format, to be filled. A strategy made from a template before 0.10.0
