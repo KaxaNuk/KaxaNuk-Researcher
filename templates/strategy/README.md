@@ -94,41 +94,45 @@ not make.
 
 ## Starting your own strategy
 
-Once setup is done, work in this order. Its eight items are the order of work, not the eight steps
-above: item 3, the universe, is step 2. Every file the items name is already in your repository —
-`OBJECTIVE.md`, `RESULTS.md`, the seed `Universe/Investable_Universe.csv` with only its
-`main_identifier` header, the drivers, the notebooks, `BLUEPRINT_1.md` and its siblings — each a
-description of what belongs in it, to be filled in; the example shows every one of them worked
-through.
+Once setup is done, work in this order. **These eight parts are lettered so they are never mistaken
+for the eight steps above:** the universe, C, is step 2; the cycle, G, is steps 4 to 6. Every file
+they name is already in your repository — `OBJECTIVE.md`, `RESULTS.md`, the seed
+`Universe/Investable_Universe.csv` with only its `main_identifier` header, the drivers, the
+notebooks, `BLUEPRINT_1.md` and its siblings — each a description of what belongs in it, to be
+filled in; the example shows every one of them worked through. Ask your assistant to run `next` at
+any moment: it reads the folder and says which part comes next.
 **The objective comes before any paper**: reading with no claim to read for has no stopping
 condition, and a claim written after the reading is an observation wearing a hypothesis's clothes.
 
-1. **Write `OBJECTIVE.md`** — the idea in one sentence, and the claims inside it, *before* any paper
-   is read and before anything is measured. Each claim's evidence starts as the question that would
-   settle it.
-2. **Fine-tune the objective.** Read for each claim's question, the sources that argue against it
-   included — one note per paper, one per chapter of a book, in `Bibliotheca/` — then rewrite each
-   claim's evidence from the notes.
-3. **Choose the investable universe.** Put your securities in `Universe/Investable_Universe.csv`,
-   one row each and **delisted names included**: a list of today's names has already deleted
-   everything that failed. `main_identifier` is the only required column; add whatever else your
-   strategy groups by. The claims decide what the universe has to contain, which is why it comes
-   after them.
-4. **Build the data.** Write your `c_*` and `r_*` columns into the two `custom_calculations.py`,
-   fill in the Curator and Refinery drivers that call the libraries, and run the Universe and Data
-   steps in this order: curator, then `universe.ipynb`, then refinery, then `analyzer.ipynb`. The
-   universe notebook sits *between* the two Data commands, because it profiles what the curator
-   downloaded and writes the master the refinery joins.
-5. **Choose the benchmark, then write `BLUEPRINT_1.md` before the rule.** Experiment 1 is the
-   benchmark, a real strategy with a real return, so choosing it is the first entry of
-   `BRAINSTORMING_1.md`. Every prediction in the blueprint cites a `Bibliotheca/` note from item 2,
-   or an analyzer measurement; a hypothesis edited after its test is not a hypothesis.
-6. **Search for papers and brainstorm** — the broad reading, for what the blueprint left open, and
-   `BRAINSTORMING_1.md` for what to try next.
-7. **Run the cycle** — portfolio construction, backtest, attribution — until it is finished,
-   rewriting `FINDINGS_1.md` as its results change.
-8. **Send every finished cycle to `RESULTS.md`**, kept or rejected. The rejected result is reported
-   as loudly as the promising one; *What is closed* is what stops the next person repeating it.
+- **A. The objective.** Write `OBJECTIVE.md` — the idea in one sentence, and the claims inside it,
+  *before* any paper is read and before anything is measured. Each claim's evidence starts as the
+  question that would settle it.
+- **B. The reading.** Fine-tune the objective: read for each claim's question, the sources that
+  argue against it included — one note per paper, one per chapter of a book, in `Bibliotheca/` —
+  then rewrite each claim's evidence from the notes.
+- **C. The universe.** Put your securities in `Universe/Investable_Universe.csv`, one row each and
+  **delisted names included**: a list of today's names has already deleted everything that failed.
+  `main_identifier` is the only required column; add whatever else your strategy groups by. The
+  claims decide what the universe has to contain, which is why it comes after them.
+- **D. The data.** Write your `c_*` and `r_*` columns into the two `custom_calculations.py`, fill
+  in the Curator and Refinery drivers that call the libraries, and run the Universe and Data steps
+  in this order: curator, then `universe.ipynb`, then refinery, then `analyzer.ipynb`. The universe
+  notebook sits *between* the two Data commands, because it profiles what the curator downloaded
+  and writes the master the refinery joins. The analyzer's measurements go straight into
+  `RESULTS.md`.
+- **E. The blueprint.** Choose the benchmark, then write `BLUEPRINT_1.md` before the rule.
+  Experiment 1 is the benchmark, a real strategy with a real return, so choosing it is the first
+  entry of `BRAINSTORMING_1.md`. Every prediction in the blueprint cites a `Bibliotheca/` note from
+  B, or an analyzer measurement from D; a hypothesis edited after its test is not a hypothesis.
+- **F. The broad reading.** Search for papers and brainstorm — the reading for what the blueprint
+  left open, and `BRAINSTORMING_1.md` for what to try next.
+- **G. The cycle.** Portfolio construction, backtest, attribution — until it is finished, rewriting
+  `FINDINGS_1.md` as its results change.
+- **H. The results.** Send every finished cycle to `RESULTS.md`, kept or rejected. The rejected
+  result is reported as loudly as the promising one; *What is closed* is what stops the next person
+  repeating it.
+
+Then the gate in `Paper_Trading/BITACORA.md`, or Experiment 2, from E again.
 
 ---
 

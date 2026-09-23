@@ -69,7 +69,7 @@ git config --global core.longpaths true
 
 **What "done" looks like:** for Claude Code, `~/.claude/skills/` holds `init-researcher`,
 `init-strategy`, `init-example`, `read` and `query` among others, and `~/.claude/commands/` holds
-`researcher-init.md`.
+`researcher-init.md` and `next.md`.
 
 ---
 

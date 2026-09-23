@@ -31,13 +31,20 @@ apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 
 `--target codex`, `cursor` or another agent in place of `claude`; Claude Code receives everything,
 and [`SETUP.md`](SETUP.md) says what the others miss. The skills are then in every folder you open,
-so **a strategy installs nothing of its own**; `apm update -g` brings every new version. Then, in a
-new session:
+so **a strategy installs nothing of its own**; `apm update -g` brings every new version.
 
-1. **`init-researcher Luna`** — your researcher's home, with the name you choose.
-2. **`researcher-init`**, in that home — a short interview that makes the researcher yours. Then
-   `apm install --target claude` there, once, deploys it as an agent you call by name.
-3. **`init-strategy fcf-yield-quality`** — your first strategy, one repository of its own.
+## The path
+
+Five moves, each in a **new session**, in the folder the line names. Lost at any point: run `next`
+in the folder, and it says which move is done and what comes next.
+
+| | In | Run | It makes |
+| --- | --- | --- | --- |
+| 1 | anywhere | `init-researcher Luna` | your researcher's home, with the name you choose |
+| 2 | the home | `researcher-init` | a ten-minute interview; `RESEARCHER.md` and the agent file |
+| 3 | the home | `apm install --target claude` | the researcher as an agent you call by name |
+| 4 | anywhere | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own; its `SETUP.md` finishes the setup |
+| 5 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the strategy's README |
 
 **What a strategy needs from outside this package.** The researcher needs nothing more. A strategy
 needs a key from a data provider the Data Curator reads — FMP, Sharadar or LSEG, from the provider
@@ -83,6 +90,7 @@ Every one that writes shows its plan first and waits for your go.
 
 | Command | What it does |
 | --- | --- |
+| `next` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
 | `researcher-init` | the interview; writes `RESEARCHER.md` and the agent that makes your researcher callable by name |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
 | `blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
@@ -102,10 +110,12 @@ strategy, in the order of its steps:
 | `experiment-lifecycle` | the process: the document architecture, the order of work, the notebook contract, the graduation gate |
 | `universe-point-in-time` | step 2, the investable universe: the seed, the security master, the usable date |
 | `data-curator-custom-calculations` | the Data Curator's `c_*` columns: naming, inputs, the `DataColumn` API |
+| `data-analyzer-runs` | step 3's last block, the analyzer: whether a feature carries signal, before any book is built |
 | `portfolio-construction-runs` | step 4, sizing a book with the Portfolio Construction library |
 | `backtest-engine-runs` | pricing a book with the Backtest Engine, and reading its report |
 | `attribution-analysis-runs` | running Attribution Analysis on a book, and getting its tables out |
 | `alpha-decomposition` | reading attribution: is the signal doing anything, or is it a factor exposure |
+| `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, what a paper-trading run may do |
 
 **The house rules**: `how-we-work` (issues, branches, changelogs, versions) and `bloom-code-lint`
 with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions.
