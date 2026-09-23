@@ -2,17 +2,18 @@
 
 The canonical tree of a KaxaNuk Investment Lab strategy repository, as the **KaxaNuk Strategy
 Template** holds it — `templates/strategy/` in `KaxaNuk/KaxaNuk-Researcher`, copied into a new
-folder by `init-strategy`. The template ships the shape: the six folders and the documents at the
-root, with what goes in each folder written down in its README, and inside the folders only
-`Config/.env.template`, the header-only seed in `Universe/` and the `Bibliotheca/` index and log.
-Every other file inside the folders is in the worked example beside it,
-`examples/liquid-golden-cross/`, where one strategy is worked through them. **The template is the
-source of truth for this tree; this file is a copy of what it looked like at the version named
-below**, kept by hand. When they disagree, the template wins.
+folder by `init-strategy`. The template ships the shape and every file the process expects in it:
+the six folders, the documents at the root, and inside the folders each driver, module, notebook
+and document as a description of what belongs there — a `.py` file as its docstring, a notebook as
+its markdown cells — to be filled in with the strategy's own. The same files, worked through for
+one strategy, are the example beside it, `examples/liquid-golden-cross/`, with that strategy's own
+lines between example markers. **The template is the source of truth for this tree; this file is a
+copy of what it looked like at the version named below**, kept by hand. When they disagree, the
+template wins.
 
-Template version: **0.9.0**. In the example every file is a description of what is expected in
-it — the `.py` files are docstrings, the notebooks are markdown cells — with the strategy's own
-lines beside them between example markers.
+Template version: **0.10.3**. The template ships `Experiments/Experiment_1/` and
+`Paper_Trading/Paper_Trading_1/`; the blanks for every experiment after the first are this skill's
+`references/`. `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note.
 
 ```
 <Strategy_Name>/
@@ -26,14 +27,16 @@ lines beside them between example markers.
 ├── LICENSE                      # MIT
 ├── apm.yml                      # committed: marks the folder as an APM project; installs nothing
 ├── pyproject.toml               # Python >=3.12,<3.14, uv-managed; the KaxaNuk libraries installed by hand are absent
+├── .gitignore                   # everything regenerable, everything APM installs, everything binary, Config/.env
+├── .gitattributes               # text=auto eol=lf, so a Windows checkout commits LF
 ├── Config/
 │   └── .env.template            # three data-provider keys, one is enough, and the two engine licences; copy to .env
 ├── Bibliotheca/                 # step 1
-│   ├── BIBLIOGRAPHY.md          #   the index of sources and the leads, in Parts 0-5
-│   ├── LOG.md                   #   what was read here, and when
+│   ├── BIBLIOGRAPHY.md          #   the index of sources and the leads, in Parts 0-5; no notes yet
+│   ├── LOG.md                   #   what was read here, and when; empty until the first read
 │   ├── Papers/Author_Year_Title.md      # one note per paper, beside its PDF; frontmatter source, citation, local_copy, read
 │   ├── Books/Author_Year_Title/INDEX.md # one folder per book: its chapters, one note per chapter chosen
-│   ├── Notes/                   #   clippings and transcripts
+│   ├── Notes/                   #   clippings and transcripts — the three appear with their first note
 │   └── Extracts/                #   the text a researcher's script pulls out of the PDFs, gitignored
 ├── Universe/                    # step 2
 │   ├── Investable_Universe.csv  #   THE SEED, committed: main_identifier is the only required column
@@ -56,16 +59,16 @@ lines beside them between example markers.
 │   ├── portfolio_construction.py    # eligible set -> weights, one signature; the library called inside it
 │   ├── backtest_engine.py       #   the one path from a weight file to a number
 │   ├── attribution_analysis.py  #   the hand-supplied inputs and the book's daily weights; what is missing, first
-│   └── Experiment_N/
+│   └── Experiment_N/            #   Experiment_1 ships, the benchmark; N > 1 from this skill's references/
 │       ├── BLUEPRINT_N.md  BRAINSTORMING_N.md  JOURNAL_N.md  FINDINGS_N.md
 │       ├── experiment_N.ipynb
-│       ├── Portfolio/           #   step 4 output, gitignored
-│       ├── Backtest/            #   step 5 output, gitignored
-│       └── Attribution/         #   step 6 output, gitignored
+│       ├── Portfolio/           #   step 4 output, gitignored, kept by .gitkeep
+│       ├── Backtest/            #   step 5 output, gitignored, kept by .gitkeep
+│       └── Attribution/         #   step 6 output, gitignored, kept by .gitkeep
 └── Paper_Trading/               # step 7
     ├── BITACORA.md              #   the graduation gate — a contract, not a log
     ├── daily_update.py          #   the scheduler over graduated books; contract as docstring
-    └── Paper_Trading_N/paper_trading_N.py   # one frozen rule per graduated experiment
+    └── Paper_Trading_N/paper_trading_N.py   # one frozen rule per graduated experiment; Paper_Trading_1 ships
 ```
 
 ## What is committed, and what is not

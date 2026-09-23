@@ -23,7 +23,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Python: the package has no lock of its own; CI runs with --no-project
+# Python: the package has no lock of its own; every check runs with --no-project
 /uv.lock
 
 # Eval runs: the assembled plugin and the harness results.

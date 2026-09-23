@@ -34,9 +34,9 @@ understood, liquid enough to be traded, and stable enough to measure other thing
 
 ### What this experiment should show
 
-**Predictions, fixed before the run.** Each should come from `Data/analyzer.ipynb`, which measures
-the signal but builds no book. Getting these right is worth more than a good Sharpe; getting them
-wrong is worth more than a bad one.
+**Predictions, fixed before the run.** Each cites a `Bibliotheca/` note or a section of
+`Data/analyzer.ipynb`, which measures the signal but builds no book. Getting these right is worth
+more than a good Sharpe; getting them wrong is worth more than a bad one.
 
 | # | Prediction | Where it comes from | What would falsify it |
 | --- | --- | --- | --- |

@@ -13,34 +13,36 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.8.0
+  version: 0.8.1
 ---
 
 # The research process — how a strategy repository is worked in
 
-Every KaxaNuk Investment Lab strategy lives in its own repository, copied from the **KaxaNuk Strategy
-Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/strategy/`. The template is
-the shape and nothing else: six folders and the documents at the root. The worked example beside it,
-`examples/liquid-golden-cross/`, works one strategy,
-`liquid-golden-cross`, through the same folders — every file a description of what is expected in it,
-what the stage produces and prevents, with the strategy's own lines between example markers. The
-fixed shape buys comparability and legibility: any
-experiment looks like any other, every experiment is measured against the same declared benchmark,
-and a CIO reads the whole state of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
+Every KaxaNuk Investment Lab strategy lives in its own repository, copied from the **KaxaNuk
+Strategy Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/strategy/`. The
+template is the shape and every file the process expects in it: six folders, the documents at the
+root, and inside the folders each driver, module, notebook and document as a description of what
+belongs there — a `.py` file as its docstring, a notebook as its markdown cells — to be filled in
+with the strategy's own. The worked example beside it, `examples/liquid-golden-cross/`, works one
+strategy, `liquid-golden-cross`, through the same files, with the strategy's own lines between
+example markers. The fixed shape buys comparability and legibility: any experiment looks like any
+other, every experiment is measured against the same declared benchmark, and a CIO reads the whole
+state of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
 Work in English: notebook narrative, documents, function names and comments.
 
 **To start a new strategy, copy the template; never scaffold one by hand.** The owner runs
 `init-strategy <name>`, from the KaxaNuk Researcher, which copies it into a new folder by script and
-makes it a repository; the new folder's own `SETUP.md` owns the rest of the procedure. To work inside a
-strategy repository, follow this skill. `references/structure.md` has the tree, what is committed, and the steps to fill
-it in. **Do not name Obsidian, a deck, or any KaxaNuk in-house strategy in a repository document.**
+makes it a repository; the new folder's own `SETUP.md` owns the rest of the procedure. To work
+inside a strategy repository, follow this skill. `references/structure.md` has the tree, what is
+committed, and the steps to fill it in. **Do not name Obsidian, a deck, or any KaxaNuk in-house
+strategy in a repository document.**
 
 ## 1. The eight steps
 
 Steps 1 to 7 are the Investment Lab and live in the repository. Step 8 does not: a strategy leaves
-the Lab when it joins the KN Fund allocation. Each stage owns its outputs and reads only from the
-stage above it.
+the Lab when it is funded, outside the repository. Each stage owns its outputs and reads only from
+the stage above it.
 
 | # | Step | In plain words | It produces | It prevents | Where |
 | --- | --- | --- | --- | --- | --- |
@@ -61,26 +63,27 @@ one command or one notebook.
 The six Lab modules map one to one onto the stages: Data Curator (`Data/curator.py`), Data Refinery
 (`Data/refinery.py`), Data Analyzer (`Data/analyzer.ipynb`), Portfolio Construction
 (`Experiments/portfolio_construction.py`), Backtest Engine (`Experiments/backtest_engine.py`),
-Attribution Analysis (`Experiments/attribution_analysis.py`). Four have libraries — the Data Curator,
-Portfolio Construction, the Backtest Engine and Attribution Analysis — and two, the Refinery and the
-Analyzer, are hand-rolled until theirs land; a hand-rolled stage says so in its docstring and names
-the interface its library will replace. A skill says how each library is called:
+Attribution Analysis (`Experiments/attribution_analysis.py`). Four have libraries — the Data
+Curator, Portfolio Construction, the Backtest Engine and Attribution Analysis — and two, the
+Refinery and the Analyzer, are hand-rolled until theirs land; a hand-rolled stage says so in its
+docstring and names the interface its library will replace. A skill says how each library is called:
 `data-curator-custom-calculations`, `portfolio-construction-runs`, `backtest-engine-runs` and
 `attribution-analysis-runs`, with `universe-point-in-time` for step 2, `data-analyzer-runs` for the
 hand-rolled Analyzer, and `paper-trading-gate` for step 7. **Step 1 is the KaxaNuk
-Researcher's**, `KaxaNuk/KaxaNuk-Researcher`, whose home `init-researcher` makes: its `objective` drafts
-the claims, its `read` writes the notes in `Bibliotheca/`, and its `blueprint` drafts
+Researcher's**, `KaxaNuk/KaxaNuk-Researcher`, whose home `init-researcher` makes: its `objective`
+drafts the claims, its `read` writes the notes in `Bibliotheca/`, and its `blueprint` drafts
 `BLUEPRINT_N.md` with every prediction citing a note.
 
 ## 2. The control documents
 
-Four files at the root carry the whole state. Everything else is code, or a note feeding one of them.
+Four files at the root carry the whole state. Everything else is code, or a note feeding one of
+them.
 
 | Document | Holds | Changes when |
 | --- | --- | --- |
-| `OBJECTIVE.md` | the main idea, the objective, the claims inside it with their status | almost never — a change here means a different strategy |
+| `OBJECTIVE.md` | the main idea, the objective, the claims inside it with their status | the idea and the claims' wording almost never — a change there is a different strategy; each claim's evidence and status move as notes arrive (B) and as findings report (H) |
 | `RESULTS.md` | the executive summary of every experiment, **compiled from the `FINDINGS_N.md` files and citing each** | a `FINDINGS_N.md` changes |
-| `CHANGELOG.md` | every version, newest first: `## X.Y.Z (YYYY-MM-DD)` with `### Added / Changed / Removed` | any change-set lands |
+| `CHANGELOG.md` | every version, newest first, in the form `how-we-work` section 3 gives: `## X.Y.Z (YYYY-MM-DD)` and its five headings | any change-set lands |
 | `AGENTS.md` | how work is done: workflow, who writes each document, restrictions, the bar, the five ways a backtest lies | the process changes |
 
 `CLAUDE.md` is one line, `@AGENTS.md`. `README.md` says what the repository is and where each kind
@@ -134,21 +137,21 @@ section saying what that section computes — and is the file to copy.
 | 7 · Verdict | what it concluded, in words |
 | Handoff · Open items | what the next stage consumes; what this one left open |
 
-**Two look-aheads are stated plainly and nowhere else:** the signal used on rebalance date *t* is the
-one observed at *t-1* (the lag), and a delisting exit needs one day of hindsight, because a position
-is sold on the last day it still has a fill price.
+**Two look-aheads are stated plainly and nowhere else:** the signal used on rebalance date *t* is
+the one observed at *t-1* (the lag), and a delisting exit needs one day of hindsight, because a
+position is sold on the last day it still has a fill price.
 
 **Four modules beside the notebook are shared by every experiment**, one per Lab library:
 `securities_panel.py` (the one panel loader), `portfolio_construction.py` (eligible set to weights,
 one signature every scheme shares, the Portfolio Construction library called inside it one rebalance
 date at a time where it is installed, constraints switched off by default as levers a later
 experiment earns), `backtest_engine.py` (the one path from a weight file to a number),
-`attribution_analysis.py` (shaping the hand-supplied inputs and the book's **daily** weights from the
-backtest — the attribution library rejects a rebalance-only file — and saying what is missing
+`attribution_analysis.py` (shaping the hand-supplied inputs and the book's **daily** weights from
+the backtest — the attribution library rejects a rebalance-only file — and saying what is missing
 first). **A strategy column is named in exactly two kinds of place — a notebook's setup cell and the
-rule — never in a shared module**, so a signal cannot become every later experiment's default without
-anyone deciding it. Experiment 1 loads the panel through `securities_panel.py` like every later
-experiment, so the comparison is on the rule and nothing else.
+rule — never in a shared module**, so a signal cannot become every later experiment's default
+without anyone deciding it. Experiment 1 loads the panel through `securities_panel.py` like every
+later experiment, so the comparison is on the rule and nothing else.
 
 ## 5. Where each kind of logic goes
 
@@ -189,6 +192,13 @@ Researcher's `next` command reads a strategy against this list and names the par
 Then the gate — `Paper_Trading/BITACORA.md`, `paper-trading-gate` — or the next experiment.
 
 Every file those parts name is in the template, and so in a strategy made from it: each a
+description of what belongs in it, to be filled in — the drivers, modules, notebooks and experiment
+files generated from the worked example with its own lines removed. A strategy made from a template
+before 0.10.0 lacks the files inside the folders; bring one across with `init-example <path>` — it
+copies from the example inside the KaxaNuk Researcher and never overwrites, so bring
+`Universe/universe.ipynb` by its path — and delete what is the example's: everything between the
+markers.
+
 **A new experiment `N` inside an existing strategy:**
 
 1. Create `Experiments/Experiment_N/` with `Portfolio/`, `Backtest/`, `Attribution/`, each holding a
@@ -223,10 +233,13 @@ is two rules, and the copies drift. Read them where they are.
 
 - `references/structure.md` — the template's tree, what is committed, and the steps to fill it in.
 - `references/blueprint-template.md`, `brainstorming-template.md`, `journal-template.md`,
-  `findings-template.md` — the four documents of an experiment; the template ships none.
-- `references/experiment-notebook.ipynb` — Experiment 1's notebook, markdown only.
+  `findings-template.md` — the four documents of an experiment, the blanks for Experiment N > 1;
+  the template ships Experiment 1's, the same files under `Experiments/Experiment_1/`.
+- `references/experiment-notebook.ipynb` — Experiment 1's notebook, markdown only, the blank for
+  `experiment_N.ipynb`.
 
 The four documents and the notebook are copies of Experiment 1's files in the worked example,
-`examples/liquid-golden-cross/` in KaxaNuk-Researcher, with the example's own lines stripped.
+`examples/liquid-golden-cross/` in KaxaNuk-Researcher, with the example's own lines stripped — what
+the template ships as Experiment 1, kept here for every experiment after it.
 `uv run --no-project python tools/sync_investment_lab_references.py` there regenerates them, and
 `tools/check_repo.py` fails when they differ; `references/structure.md` is kept by hand.

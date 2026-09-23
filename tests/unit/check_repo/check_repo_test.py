@@ -88,7 +88,7 @@ class TestCheckDescriptions:
 
 
 class TestCheckHeadings:
-    def test_readme_is_left_out_and_other_documents_are_checked(
+    def test_readme_and_changelog_are_left_out_and_other_documents_are_checked(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
@@ -98,6 +98,8 @@ class TestCheckHeadings:
         write(example / 'README.md', '# Liquid golden cross\n')
         write(template / 'SETUP.md', '# Setup\n\n## Kept\n\n## Dropped\n')
         write(example / 'SETUP.md', '# Setup\n\n## Kept\n')
+        write(template / 'CHANGELOG.md', '# Changelog\n\n## 0.10.3 (2026-09-23)\n')
+        write(example / 'CHANGELOG.md', '# Changelog\n\n## 0.10.4 (2026-09-23)\n')
         findings = check_repo.check_headings(tmp_path)
         messages = [
             finding.message
@@ -327,6 +329,49 @@ class TestCheckTemplateFiles:
         ]
 
 
+class TestCheckWidth:
+    def test_changelog_and_generated_references_are_left_out(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        wide_text = f'{"a" * (check_repo.WIDTH_LIMIT + 1)}\n'
+        write(tmp_path / 'templates/researcher/CHANGELOG.md', wide_text)
+        write(tmp_path / '.apm/skills/experiment-lifecycle/references/structure.md', wide_text)
+        write(tmp_path / 'examples/liquid-golden-cross/README.md', wide_text)
+        findings = check_repo.check_width(
+            tmp_path,
+            [
+                'templates/researcher/CHANGELOG.md',
+                '.apm/skills/experiment-lifecycle/references/structure.md',
+                'examples/liquid-golden-cross/README.md',
+            ],
+        )
+
+        assert findings == []
+
+    def test_wide_prose_line_is_reported_with_its_number(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        wide_line = 'a' * (check_repo.WIDTH_LIMIT + 4)
+        write(tmp_path / '.apm/skills/x/SKILL.md', f'---\nname: x\n---\n\n# Title\n\n{wide_line}\n')
+        write(tmp_path / 'README.md', 'Short.\n')
+        findings = check_repo.check_width(
+            tmp_path,
+            [
+                '.apm/skills/x/SKILL.md',
+                'README.md',
+            ],
+        )
+        messages = [
+            finding.message
+            for finding
+            in findings
+        ]
+
+        assert messages == ['.apm/skills/x/SKILL.md: line 7 has 104 columns, over 100']
+
+
 class TestFoldedDescription:
     def test_folded_lines_are_joined(self) -> None:
         text = 'name: x\ndescription: >\n  One line\n  and another.\nmetadata:\n'
@@ -456,6 +501,7 @@ class TestVersionProblems:
         result = check_repo.version_problems(
             'x',
             tmp_path,
+            [],
         )
 
         assert result == []
@@ -469,6 +515,7 @@ class TestVersionProblems:
         result = check_repo.version_problems(
             'x',
             tmp_path,
+            [],
         )
         messages = [
             finding.message
@@ -478,7 +525,7 @@ class TestVersionProblems:
 
         assert messages == ['x: apm.yml declares 1.2.4; CHANGELOG.md says 1.2.3']
 
-    def test_uv_lock_behind_is_reported(
+    def test_tracked_uv_lock_behind_is_reported(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
@@ -492,6 +539,7 @@ class TestVersionProblems:
         result = check_repo.version_problems(
             'x',
             tmp_path,
+            ['x/uv.lock'],
         )
         messages = [
             finding.message
@@ -500,3 +548,55 @@ class TestVersionProblems:
         ]
 
         assert messages == ['x: apm.yml declares 1.2.4; uv.lock says 1.2.3']
+
+    def test_untracked_uv_lock_is_not_read(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write(tmp_path / 'apm.yml', 'name: x\nversion: 1.2.4\n')
+        write(tmp_path / 'CHANGELOG.md', '# Changelog\n\n## [1.2.4] - 2026-01-01\n')
+        write(tmp_path / 'pyproject.toml', '[project]\nversion = "1.2.4"\n')
+        write(
+            tmp_path / 'uv.lock',
+            'version = 1\n\n[[package]]\nname = "x"\nversion = "1.2.3"\nsource = { virtual = "." }\n',
+        )
+        result = check_repo.version_problems(
+            '.',
+            tmp_path,
+            ['examples/other/uv.lock'],
+        )
+
+        assert result == []
+
+
+class TestWideLines:
+    def test_fenced_code_table_rows_and_urls_are_set_aside(self) -> None:
+        wide = 'a' * (check_repo.WIDTH_LIMIT + 1)
+        text = '\n'.join([
+            '---',
+            f'description: {wide}',
+            '---',
+            '',
+            '```',
+            wide,
+            '```',
+            f'| {wide} |',
+            f'{wide} https://example.com',
+            '',
+        ])
+        result = check_repo.wide_lines(text)
+
+        assert result == {}
+
+    def test_wide_prose_line_is_reported_by_number_and_width(self) -> None:
+        wide = 'a' * (check_repo.WIDTH_LIMIT + 3)
+        text = f'# Title\n\nShort.\n{wide}\n'
+        result = check_repo.wide_lines(text)
+
+        assert result == {4: 103}
+
+    def test_width_counts_characters_not_bytes(self) -> None:
+        accented = 'é' * check_repo.WIDTH_LIMIT
+        result = check_repo.wide_lines(f'{accented}\n')
+
+        assert result == {}

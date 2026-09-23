@@ -9,7 +9,8 @@ input:
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
 repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
-`AGENTS.md` says where each of these paths lands.
+`AGENTS.md` says where each of these paths lands. With no home in the session, work from the
+strategy alone, with no library contrast, and say so.
 
 `OBJECTIVE.md` is the first thing a CIO reads and the last thing that changes, and A, the first
 part of *The order of work* in `AGENTS.md`: **the objective comes before any paper**. This command
@@ -77,4 +78,4 @@ universe. Wait for the go. Then write it into the strategy's `OBJECTIVE.md`, kee
 owner wrote. The owner reviews the diff and commits; that commit is what makes the objective theirs.
 
 Never write into the researcher's home from here. Never compute or promise a number. The objective
-is a capability and a set of claims; the numbers arrive from the Lab's engines later.
+is a capability and a set of claims; the numbers arrive later, from the engines the project names.

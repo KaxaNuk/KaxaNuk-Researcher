@@ -36,16 +36,19 @@ the owner approves separately.
   no `> [!WARNING]` callout; a chapter note none of whose claims reached any concept page; and an
   idea a page names that no page defines.
 - An installed copy missing or out of step with its source — the package under
-  `~/.apm/apm_modules/` for the skills and commands, the home's own `.apm/` for the agent: a skill
-  under `~/.claude/skills/` or the user's folder for another agent, a command under
-  `~/.claude/commands/`, the agent under `.claude/agents/` here. A copy of a KaxaNuk skill still
-  deployed inside the home, in `.claude/skills/`, is a home from before the user-scope install:
-  the fix is `update`. **Compare what APM does not rewrite**: the body below the frontmatter, and
-  in it the section headings and the prose. APM translates a command's input placeholders into the
-  form each harness takes, and rewrites the frontmatter keys it knows, so those differences are the
-  install working, not a stale copy. Report a stale install and give the fix: `apm update -g` for a
-  skill or a command, `apm install --target <the owner's agent>` here for the agent, then a new
-  session.
+  `~/.apm/apm_modules/` for the skills and commands, the home's own `.apm/` for the agent and for
+  any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`: a skill under
+  `~/.claude/skills/` or the user's folder for another agent, a command under
+  `~/.claude/commands/`, the agent under `.claude/agents/` here, and the home's own skills and
+  commands under `.claude/skills/` and `.claude/commands/` here, or the folder another agent
+  takes. A copy of a KaxaNuk skill still deployed inside the home, in `.claude/skills/`, is a home
+  from before the user-scope install: the fix is `update`. **Compare what APM does not rewrite**:
+  the body below the frontmatter, and in it the section headings and the prose. APM translates a
+  command's input placeholders into the form each harness takes, and rewrites the frontmatter keys
+  it knows, so those differences are the install working, not a stale copy. Report a stale install
+  and give the fix: `apm update -g` for a skill or a command of the package,
+  `apm install --target <the owner's agent>` here for the agent or a skill or command of the home's
+  own, then a new session.
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
   rather than reading it. The fix for the first is `interview`, which writes it.
@@ -71,6 +74,9 @@ the owner approves separately.
 
 In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them
 as a plan and wait for a go; approved fixes append their own log entry. Append one entry to the
-library's `LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep`.
+library's `LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep`. Its entries come
+from `read`, `audit` and `refresh-index`, and from `query` when the owner keeps a synthesis page,
+whose index line `query` adds on the same go — so a page whose line `query` added is not a
+stale-index finding.
 
 Never touch `Philosophy/` or the sources. Never fix silently. In a strategy, never write at home.

@@ -10,7 +10,8 @@ input:
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
 repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
-`AGENTS.md` says where each of these paths lands.
+`AGENTS.md` says where each of these paths lands. With no home in the session, work from the
+strategy alone, with no library contrast, and say so.
 
 This is G and H of *The order of work*: the cycle has run, and the researcher's part is to
 challenge it. A blueprint is a set of predictions somebody was willing to be wrong about; this
@@ -21,8 +22,9 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 
 ## Step 1: Refuse if there is nothing to challenge
 
-- **No `Experiments/Experiment_N/BLUEPRINT_N.md`, or its slots are unfilled** — there is no
-  hypothesis to check the run against: `blueprint`, E.
+- **No `Experiments/Experiment_N/BLUEPRINT_N.md`, or it is not filled** — its *Thesis* section
+  still holds the template's guidance paragraph — there is no hypothesis to check the run against:
+  `blueprint`, E.
 - **No `FINDINGS_N.md`, or it reports nothing yet** — the cycle is still running. Say so and stop;
   challenging a run in progress invites the findings to be written to match.
 - **Home** — there is no experiment here. Say so and stop.
@@ -59,7 +61,10 @@ numbers out of them is the line the non-negotiables draw. Every number in the re
    run added. A deviation with a good reason is fine — an undisclosed one is not: check that it is
    in the caveats or the journal, and name it when it is nowhere.
 5. **Success criteria, one by one.** Each is met, unmet or unevaluated, before any claim of
-   adoption or graduation. A criterion that passes is worth a line too.
+   adoption or graduation. A criterion that passes is worth a line too. When the owner claims
+   graduation, the gate is covered here: `Paper_Trading/BITACORA.md`'s five criteria are read
+   against `FINDINGS_N.md` and `RESULTS.md`, each evidenced or not met, and nothing is written
+   there.
 6. **The notes behind the predictions** — the part no backtest reviewer will do. Open each cited
    note: does it say what the prediction says it says, does the relative path resolve inside the
    strategy, and is any source cited that has no note? Where the findings claim a source's failure

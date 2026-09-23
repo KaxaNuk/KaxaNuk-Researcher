@@ -8,7 +8,7 @@ description: >
   the worked example (use `init-example`), and does NOT create a researcher (use
   `init-researcher`).
 metadata:
-  version: 0.1.2
+  version: 0.1.3
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -56,9 +56,11 @@ every strategy made from the same package version starts identical.
 
    It refuses a folder that exists and is not empty, and says why; go back to step 1 rather than
    around it. If it cannot find the package, it prints the install command — give it to the owner.
-   If the first commit fails for want of a git identity, ask for the name and email — never invent
-   them — set them in that repository only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, and commit with the message the script printed.
+   A fork of the package, or a clone in a folder of another name, is not found on its own: pass
+   `--package <its install folder>`. If the first commit fails for want of a git identity, ask for
+   the name and email — never invent them — set them in that repository only,
+   `git config user.name "<name>"` and `git config user.email "<email>"`, and commit with the
+   message the script printed.
 
 4. **Hand over.** Tell the owner to open the new folder in a **new** session and follow its
    `SETUP.md` from step 2 — the environment, the keys, and the strategy's own README, into which

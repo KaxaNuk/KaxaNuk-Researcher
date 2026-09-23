@@ -41,6 +41,58 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.3 (2026-09-23)
+
+**PATCH** — work lands on `main` without an issue, a branch or a pull request per change, the
+documents say who appends `Bibliotheca/LOG.md` and what moves in `OBJECTIVE.md`, the README names
+the researcher's other commands, `SETUP.md` covers the licence holder and the
+researcher's identity, and `.gitattributes` normalises line endings. Nothing about any result
+changes.
+
+**What to do differently:** commit on `main`; open a branch only for a change you want reviewed.
+In a strategy made from an earlier template, add `.gitattributes` with `* text=auto eol=lf`, and
+put yourself as the holder in `LICENSE` if you have not.
+
+### Added
+
+- **`.gitattributes`**, `* text=auto eol=lf`, as the researcher package and a home already carry,
+  so a clone on Windows, macOS or Linux sees exactly what was committed.
+- **A row for `Bibliotheca/LOG.md` in `AGENTS.md`'s who-writes table**: whoever reads a source or
+  audits the folder appends it, the researcher's `read` and `audit` do so themselves, and a past
+  entry is never edited. The log's own header says the same.
+
+### Changed
+
+- **Work lands on `main`.** *How work reaches `main`* no longer asks for an issue and an
+  `issues/<number>` branch before every change, nor a pull request after it: work is committed on
+  `main` with its changelog entry, and a branch and a pull request are for a change you want
+  reviewed, deleted once merged. The blueprint rule keeps its point without a branch: under *The
+  blueprint is committed before the rule*, `BLUEPRINT_N.md` is committed in a commit of its own
+  before the rule cell holds code. *Before any pull request* is *Before any commit to `main`*, a
+  result is committed once the pipeline has re-run from a wiped working copy, and a moved number
+  is named in the commit message. The paragraph on what `init-strategy` copies says
+  `BIBLIOGRAPHY.md` ships with only its seeded leads.
+- **`OBJECTIVE.md`'s "Changes when" cell** separates the idea and the claims' wording, which almost
+  never change, from each claim's evidence and status, which move as notes arrive (B) and as
+  findings report (H).
+- **The README** says `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note,
+  names what `brainstorm` (E, F), `challenge` (G) and `next` do beside `objective`, `read` and
+  `blueprint`, and points to *In a strategy or another project* in the researcher's own README for
+  its identity to load with it. `SETUP.md` step 4 gives the same pointer.
+- **`SETUP.md` step 5** says `LICENSE` names KaxaNuk as the holder — put yourself there, or choose
+  another licence — commits it with the rest, and says it is the first `---` line of
+  `CHANGELOG.md` that everything is kept above.
+- **`Experiments/Experiment_1/BLUEPRINT_1.md`** says each prediction cites a `Bibliotheca/` note or
+  a section of `Data/analyzer.ipynb`, as *Starting your own strategy* already did.
+- **`Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md` are generated from the example**, with the rest of
+  the files inside the folders, so the two cannot drift. Part 5's row on Sullivan, Timmermann &
+  White says its note, once read for a claim, is linked from its Part 1 row.
+
+### Removed
+
+- **The rule on marking the example's content**, which a strategy has no example to apply to, no
+  longer reaches a new strategy; it stays in the example's `AGENTS.md`.
+
 ## 0.10.2 (2026-09-22)
 
 **PATCH** — *Starting your own strategy* in the README letters its eight parts A to H, so a part of

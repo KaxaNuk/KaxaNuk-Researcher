@@ -71,15 +71,18 @@ to be read; a filled-in repository is faster with them.
 ### A researcher beside the process
 
 A researcher is a separate project, made once with `init-researcher`, a skill of the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher): a
-companion you name and teach, one per person rather than per strategy, with its own library of what
-you have read — invite it with `claude --add-dir <its folder>` and its library comes along. It
-drafts the claims in `OBJECTIVE.md` from your words before any paper is read. It writes the notes
-in `Bibliotheca/` with `read`: a script pulls a book's table of contents out of the PDF, you pick
-the chapters that serve a claim, and after a plan and your go it writes one note per chapter with
-its row in `BIBLIOGRAPHY.md`; a note its own library already holds comes across without reading the
-PDF twice. It then rewrites each claim's evidence from those notes, and drafts the hypothesis in
-each `BLUEPRINT_N.md`, every prediction citing the note it came from.
+[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher): a companion you name and
+teach, one per person rather than per strategy, with its own library of what you have read — invite
+it with `claude --add-dir <its folder>` and its library comes along; for its identity to load with
+it, follow *In a strategy or another project* in the researcher's own README. It drafts the claims
+in `OBJECTIVE.md` from your words before any paper is read. It writes the notes in `Bibliotheca/`
+with `read`: a script pulls a book's table of contents out of the PDF, you pick the chapters that
+serve a claim, and after a plan and your go it writes one note per chapter with its row in
+`BIBLIOGRAPHY.md`; a note its own library already holds comes across without reading the PDF twice.
+It then rewrites each claim's evidence from those notes, and drafts the hypothesis in each
+`BLUEPRINT_N.md`, every prediction citing the note it came from. `brainstorm` drafts the entries of
+`BRAINSTORMING_N.md` (E, F), `challenge` checks a finished cycle against its blueprint (G), and
+`next` says at any moment which part comes next.
 
 ---
 
@@ -191,17 +194,18 @@ to keep current:
 | `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `daily_update.py`. `Paper_Trading_N/paper_trading_N.py`, the frozen rule of anything that passed | everything |
 | `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key and the two engine licences | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
 
-**Every one of those files is in this template**, except `Bibliotheca/Notes/`, which appears with
-its first note: each as a description of what is expected in it — a `.py` file as its docstring, a
-notebook as its markdown cells, a document as its prose — to be filled in with the strategy's own.
+**Every one of those files is in this template**, except `Bibliotheca/Papers/`, `Books/` and
+`Notes/`, which appear with their first note: each as a description of what is expected in it — a
+`.py` file as its docstring, a notebook as its markdown cells, a document as its prose — to be
+filled in with the strategy's own.
 The same files are worked through in the
 [example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross),
-where the worked strategy's own lines sit beside that description between the example markers
-`AGENTS.md` names: `<!-- example: begin -->` and `<!-- example: end -->` in Markdown,
-`# --- example: begin ---` in Python, `# EXAMPLE-ONLY CELL` on a notebook cell. The drivers, the
-modules, the notebooks and the files of `Experiments/` and `Paper_Trading/` are generated from the
-example with those lines removed, so the two cannot drift. To read the example, or run it, copy it
-whole into a folder of its own:
+where the worked strategy's own lines sit beside that description between the example markers:
+`<!-- example: begin -->` and `<!-- example: end -->` in Markdown, `# --- example: begin ---` in
+Python, `# EXAMPLE-ONLY CELL` on a notebook cell. The `Bibliotheca/` index and log, the drivers,
+the modules, the notebooks and the files of `Experiments/` and `Paper_Trading/` are generated from
+the example with those lines removed, so the two cannot drift. To read the example, or run it,
+copy it whole into a folder of its own:
 
 ```text
 init-example

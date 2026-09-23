@@ -11,7 +11,8 @@ input:
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
 repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
-`AGENTS.md` says where each of these paths lands.
+`AGENTS.md` says where each of these paths lands. With no home in the session, work from the
+strategy alone, with no library contrast, and say so.
 
 Brainstorming is forward-looking planning, done before the work, and never mistaken for the record
 of what happened. `${input:experiment}` is the experiment number `N`, `${input:idea}` the idea to
