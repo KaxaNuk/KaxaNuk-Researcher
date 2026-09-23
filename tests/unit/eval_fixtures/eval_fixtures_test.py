@@ -93,9 +93,9 @@ class TestBuildAll:
         self,
         fixtures: pathlib.Path,
     ) -> None:
-        researcher = (fixtures / 'researcher-existing' / 'Arya' / 'RESEARCHER.md').read_text(encoding='utf-8')
+        researcher = (fixtures / 'researcher-existing' / 'Ada' / 'RESEARCHER.md').read_text(encoding='utf-8')
 
-        assert 'Arya' in researcher
+        assert 'Ada' in researcher
 
     def test_strategy_blueprint_filled_has_no_template_slots(
         self,
