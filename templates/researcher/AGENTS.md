@@ -11,7 +11,7 @@ The home is the folder that holds `RESEARCHER.md`. Every path in this file and i
 the session happened to open. There are two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
-  path: `blueprint D:\Research\Golden-Flow 1`.
+  path: `blueprint 1 D:\Research\Golden-Flow`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
   researcher's folder to the session — `claude --add-dir D:\Research\Luna`, `/add-dir` once
   inside, or the desktop app's add-folder button. The skills and the commands are there already —

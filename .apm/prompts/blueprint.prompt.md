@@ -1,8 +1,8 @@
 ---
 description: Draft BLUEPRINT_N.md in place for a strategy, once its objective has claims and its investable universe exists — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
-  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
+  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
 ---
 
 # Draft a blueprint
