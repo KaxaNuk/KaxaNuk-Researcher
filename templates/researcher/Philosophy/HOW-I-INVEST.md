@@ -4,7 +4,7 @@
 > how you think when you decide. The researcher reads this file and cites it as your view, never
 > as a source; it never writes here, except to fix a typo through `refine`, diff first. Write it in
 > your voice — lists, fragments and strong opinions are fine — and keep adding to it as you learn.
-> `researcher-init` can start it from the interview. Delete this blockquote once it is filled.
+> `interview` can start it from the interview. Delete this blockquote once it is filled.
 
 ## What I believe about markets
 

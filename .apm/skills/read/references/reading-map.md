@@ -16,7 +16,7 @@ evolve by replacement; it evolved by addition (page 48).
 
 ## How the researcher uses this file
 
-- **Place the belief.** *Where a belief sits* gives, for each stance the `researcher-init`
+- **Place the belief.** *Where a belief sits* gives, for each stance the `interview`
   interview offers, the act, the arc's question, the work that holds it, who tested it where the
   deck names someone, and its *other side*. *Beliefs people type* does the same for the beliefs a
   newcomer states in their own words. A belief neither lists is placed by the arc question whose

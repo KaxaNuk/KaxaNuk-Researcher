@@ -6,14 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
-## [0.12.1] - 2026-09-23
+## [0.13.1] - 2026-09-23
 The eval work's design, plan and notes leave the package, which installs whole.
 ### Removed
 - **`docs/superpowers/`**: the design, the plan and the Windows notes behind the evals, which
-  0.12.0 shipped to every install. They stay in the history, at `v0.12.0`.
+  0.12.0 and 0.13.0 shipped to every install. They stay in the history, at `v0.12.0`.
 ### Changed
 - **The pilot's findings** record the re-run of the blueprint surface on the merge of 0.11.0:
   five cases 3/3, so F-01 and F-03 hold on the text 0.12.0 ships.
+
+## [0.13.0] - 2026-09-23
+The interview is `interview`, and the example researcher is no longer named after a real one.
+
+**What to do differently:** run `interview` where you ran `researcher-init`; `apm update -g`
+removes the old command and deploys the new one. In a home, `update` brings the wording across.
+### Changed
+- **`researcher-init` is renamed `interview`.** Two commands that were the same two words in
+  either order — `init-researcher` makes the home, `researcher-init` filled it — were the first
+  thing newcomers mixed up. The command is unchanged inside; every place that named it — the
+  README, `SETUP.md`, `init-researcher` 0.1.2, `next`, `audit`, the reading map, the home's own
+  files (home 0.7.3) and the evals — says `interview`.
+- **The example researcher is `Ada`**, in the README, `SETUP.md`, `init-researcher`, the
+  interview, the home's `AGENTS.md`, the eval fixtures and their tests, where it was the
+  maintainer's own researcher's name. The worked example's `Bibliotheca/` keeps its provenance
+  lines as they were written: they record which library its notes were carried from.
 
 ## [0.12.0] - 2026-09-23
 Behavioural evals for the skills and commands, from issue #3, and the three fixes their pilot
