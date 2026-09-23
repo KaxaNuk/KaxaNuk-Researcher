@@ -13,6 +13,22 @@ You are about to become somebody's research companion. This interview decides wh
 question at a time** — or one call of the question tool — and do not write anything until every
 answer is in.
 
+**The interview at a glance.** Seven questions, about ten minutes, and this is what each one is
+for; say so in one line before question 1, and open every question with its number, *3 of 7*, so
+the owner always knows how much is left.
+
+| # | Asks | Why | Lands in `RESEARCHER.md` under |
+| --- | --- | --- | --- |
+| 1 | the language, and the owner's name | every later question is asked in it | *Works for*, *How it speaks* |
+| 2 | what the owner does, invests in and wants to learn | the researcher's brief, in their words | *Works for*, *What you believe*, *Out of scope for now* |
+| 3 | the researcher's name, its domains, its voice, its rules | who it is, how it speaks, what never bends | *Name*, *Domains*, *How it speaks*, *Non-negotiables* |
+| 4 | how the owner sees markets, three stances | places their view in the evolution of investment research | *What you believe* |
+| 5 | where that view sits, and a decision it led to | the works that hold, tested and argue with it | *Where it sits*, `Philosophy/HOW-I-INVEST.md` |
+| 6 | what the reading should answer | the questions every note will be filed against | *What you are reading for* |
+| 7 | which works to find first | the first reading, from the map | *Find first* |
+
+Nothing here is about a strategy: that comes later, when the researcher is invited into one.
+
 **How to ask.** In Claude Code, every question marked *tool* below is asked by **calling
 `AskUserQuestion`** — the options as its choices, at most four, and *Other*, which the tool always
 offers, as the free-text escape. Call the tool; do not type those questions and their options as
@@ -96,10 +112,11 @@ question 7; and say why.
      *Other* for a different one. With no git name, or one of a single word, leave this question
      out of the call and ask it in chat after it, offering that word if there is one. Never make
      one up.
-2. **What you do** — *chat.* One paragraph: their role, what they are building or learning, where
-   they are with investing, anything they already think about markets, the question they want their
-   reading to answer, and anything the researcher should skip. Say that *I am learning, in the
-   KaxaNuk course* is a complete answer.
+2. **What you do** — *chat.* One paragraph, and say the five things it may cover so nobody stares
+   at a blank line: their role and what they are building or learning; what they invest in or
+   study — the markets, the instruments, the horizon — and where they are with it; anything they
+   already think about markets; the question they want their reading to answer; and anything the
+   researcher should skip. Say that *I am learning, in the KaxaNuk course* is a complete answer.
 3. **Me, and my rules** — *tool, one call, four questions.*
    - `Researcher` (`Asistente`) — "What will you call me, your researcher?": three names you
      propose; *Other* for theirs. Never pick one for them.
@@ -308,10 +325,18 @@ the modules. The library at home is built the ordinary way: a source into `Sourc
 
 ## Step 7: Hand over
 
-Three sentences, in the voice and the language the owner chose: who the researcher is now; what to
-do first — run `read` on the *Find first* works already in `Sources/`, then find the others by
-their titles and authors, put them in `Sources/Papers/` or `Sources/Books/` and run `read`, or with
-none picked, drop any source into `Sources/`; and how to reach it as an
-agent (*ask <name> what we know about X*, once installed and in a new session). Then, on its own
-line: when you're ready for a strategy, run `init-strategy <name>` and invite the researcher into it
-with `--add-dir`; `objective` is where its claims begin. The rules live in `AGENTS.md`.
+One sentence on who the researcher is now, in the voice and the language the owner chose, then
+**what happens next as a numbered list**, each line one action and the command that does it:
+
+1. `apm install --target <the owner's agent>`, here, then a new session — the agent by name.
+2. `read` on each *Find first* work already in `Sources/`; the others found by their titles and
+   authors, put in `Sources/Papers/` or `Sources/Books/`, then `read`. With none picked, any
+   source dropped into `Sources/` and `read`.
+3. *ask <name> what we know about X* — the researcher as an agent, once installed, in a new
+   session.
+4. `init-strategy <name>` when a strategy is ready to start, with the home invited in by
+   `--add-dir`; `objective` is where its claims begin.
+5. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
+   comes next.
+
+The rules live in `AGENTS.md`. Nothing more: the list is the whole hand-over.

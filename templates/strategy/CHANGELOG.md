@@ -41,6 +41,15 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.2 (2026-09-22)
+
+**PATCH** — *Starting your own strategy* in the README letters its eight parts A to H, so a part of
+the order of work is never mistaken for one of the eight steps; each part is named, the analyzer's
+measurements are said to go straight into `RESULTS.md` under D, and the list ends with what comes
+after H: the gate, or Experiment 2 from E again. It also says that `next`, a command of the KaxaNuk
+Researcher, reads the folder and names the part that comes next. Nothing inside the folders
+changes.
+
 ## 0.10.1 (2026-09-22)
 
 **PATCH** — three generated files no longer carry the worked example's own state. No
