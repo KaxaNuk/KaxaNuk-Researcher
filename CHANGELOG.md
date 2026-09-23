@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.13.0] - 2026-09-23
+The interview is `interview`, and the example researcher is no longer named after a real one.
+
+**What to do differently:** run `interview` where you ran `researcher-init`; `apm update -g`
+removes the old command and deploys the new one. In a home, `update` brings the wording across.
+### Changed
+- **`researcher-init` is renamed `interview`.** Two commands that were the same two words in
+  either order — `init-researcher` makes the home, `researcher-init` filled it — were the first
+  thing newcomers mixed up. The command is unchanged inside; every place that named it — the
+  README, `SETUP.md`, `init-researcher` 0.1.2, `next`, `audit`, the reading map, the home's own
+  files (home 0.7.3) and the evals — says `interview`.
+- **The example researcher is `Ada`**, in the README, `SETUP.md`, `init-researcher`, the
+  interview, the home's `AGENTS.md`, the eval fixtures and their tests, where it was the
+  maintainer's own researcher's name. The worked example's `Bibliotheca/` keeps its provenance
+  lines as they were written: they record which library its notes were carried from.
+
 ## [0.12.0] - 2026-09-23
 Behavioural evals for the skills and commands, from issue #3, and the three fixes their pilot
 found — merged from `issues/3` with the eval suite extended to the two skills 0.11.0 added.

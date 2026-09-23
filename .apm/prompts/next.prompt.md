@@ -33,8 +33,8 @@ Check in this order and stop at the first that fails; that is the next thing.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
-| 1 | `RESEARCHER.md` has no angle-bracketed slot left | `researcher-init` — the interview |
-| 2 | `.apm/agents/` holds an agent file named for the researcher | `researcher-init` again: it writes the agent from `RESEARCHER.md` without repeating the interview |
+| 1 | `RESEARCHER.md` has no angle-bracketed slot left | `interview` — the interview |
+| 2 | `.apm/agents/` holds an agent file named for the researcher | `interview` again: it writes the agent from `RESEARCHER.md` without repeating the interview |
 | 3 | the agent is deployed: `.claude/agents/<slug>.md`, or the folder of the assistant in use | `apm install --target <the assistant>` in this folder, then a new session |
 | 4 | every file under `Sources/` has a note — match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves |
 | 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/` | find it by its title and authors, put it in `Sources/Papers/` or `Sources/Books/`, then `read` |
