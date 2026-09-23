@@ -8,11 +8,10 @@ description: >
   which horizons, on which pool, how to check coverage, diversification or a cross-sectional rank,
   what a fitted signal's look-ahead costs, what to write in `RESULTS.md` under *Before any
   experiment*, or which predictions the analyzer licenses a blueprint to make. It covers the
-  notebook's sections, the measurements each makes, the traps that make a clean-looking screen
-  wrong, and where the numbers go. It does NOT cover building the `c_*` or `r_*` columns it reads
-  (use `data-curator-custom-calculations`), the security master (use `universe-point-in-time`),
-  sizing a book (use `portfolio-construction-runs`), running the engine (use
-  `backtest-engine-runs`), or the documents around the stage (use `experiment-lifecycle`).
+  notebook's sections, the traps that make a clean screen wrong, and where the numbers go. It does
+  NOT cover the `c_*` and `r_*` columns it reads (`data-curator-custom-calculations`), the
+  security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
+  (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
   version: 0.1.0
 ---
