@@ -7,7 +7,7 @@ researcher per person, not per strategy; one repository per strategy.
 
 This repository is everything that takes: every KaxaNuk skill — the researcher's, the process's
 and each Investment Lab library's — the strategy template, a strategy worked through it, and the
-researcher's home. One source of truth, versioned together, so one pull request can change a skill,
+researcher's home. One source of truth, versioned together, so one commit can change a skill,
 the template it describes and the example that shows it, and one `apm update -g` brings it to every
 folder you work in.
 
@@ -43,8 +43,11 @@ in the folder, and it says which move is done and what comes next.
 | 1 | anywhere | `init-researcher Ada` | your researcher's home, with the name you choose |
 | 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md` and the agent file |
 | 3 | the home | `apm install --target claude` | the researcher as an agent you call by name |
-| 4 | anywhere | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own; its `SETUP.md` finishes the setup |
-| 5 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the strategy's README |
+| 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
+| 5 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
+
+The interview's questions on markets and the reading map cover investment research; a researcher
+for another field answers *not sure yet* where it must and grows by reading.
 
 **What a strategy needs from outside this package.** The researcher needs nothing more. A strategy
 needs a key from a data provider the Data Curator reads — FMP, Sharadar or LSEG, from the provider
@@ -90,7 +93,7 @@ Every one that writes shows its plan first and waits for your go.
 
 | Command | What it does |
 | --- | --- |
-| `next` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
+| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
 | `interview` | seven questions that make the researcher yours; writes `RESEARCHER.md` and the agent that makes it callable by name. `interview force` starts over |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
 | `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
@@ -99,8 +102,11 @@ Every one that writes shows its plan first and waits for your go.
 | `audit [deep]` | reviews the library — links, duplicates, index, orphans, frontmatter, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
-| `teach <topic>` | a multi-session tutor grounded in your library |
+| `teach <topic>` | tutors you on a topic from your library, one lesson per session. The other way round — you teaching the researcher — is `read` on the sources you put in `Sources/`, and the four moves in *Growing your researcher* in the home's README |
 | `update [check]` | brings a new version into your home — `apm update -g`, and what changed in the home's own files, shown as a diff |
+
+How a researcher grows beyond the Lab — a tool, a project, a field of its own — is *Growing your
+researcher* in the home's README: four moves, each with the file it changes.
 
 **The Investment Lab skills**, which the assistant loads when the work calls for them — in a
 strategy, in the order of its steps:
@@ -117,8 +123,12 @@ strategy, in the order of its steps:
 | `alpha-decomposition` | reading attribution: is the signal doing anything, or is it a factor exposure |
 | `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, what a paper-trading run may do |
 
-**The house rules**: `how-we-work` (issues, branches, changelogs, versions) and `bloom-code-lint`
-with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions.
+**The house rules**: `how-we-work` (where work lands, changelogs, versions) and `bloom-code-lint`
+with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions. The four
+instructions are machine-wide: for Claude Code `apm install -g` puts them in `~/.claude/rules/`,
+for Copilot in `~/.copilot/copilot-instructions.md`, so Bloom Code, PEP 8, the test layout and the
+filesystem boundaries apply to every Python project you open on that machine, not only a strategy.
+The other agents receive none, as `SETUP.md` says. `bloom-code-lint` is the check to run by hand.
 
 ---
 
@@ -134,8 +144,13 @@ templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
 tests/                the tests of the skills' scripts and of the tools
-tools/                check_repo.py, the repository's own checks; and the script that
-                      regenerates experiment-lifecycle's references from the example
+tools/                check_repo.py, the repository's own checks;
+                      sync_investment_lab_references.py, which regenerates experiment-lifecycle's
+                      references and the template's generated files from the example; and the
+                      three eval scripts, eval_run.py, eval_fixtures.py and eval_history.py
+evals/                behavioural evals of the skills and commands, run by tools/eval_run.py;
+                      evals/README.md says how
+.github/              CODEOWNERS
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the environment of the scripts and their tests
@@ -173,13 +188,25 @@ uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.
 `tools/check_repo.py` finds what has shipped before without an error: versions that disagree, an
 example that lost a heading of the template, markers left open, the section symbol, a skill
 description APM would reject, `experiment-lifecycle`'s references out of step with the example, a
-path too long for Windows. The worked example is linted with its own ruff settings, and the last
-command checks the Bloom Code style of the skills' scripts, the tests, the tools and the example.
-Each runs through `uv` alone: no Python of your own is needed. They run on your machine before a
-commit; there is no CI, so nothing runs them for you.
+path too long for Windows, a line of prose past 100 columns. The worked example is linted with its
+own ruff settings, and the last command checks the Bloom Code style of the skills' scripts, the
+tests, the tools and the example. Each runs through `uv` alone: no Python of your own is needed.
+They run on your machine before a commit; there is no CI, so nothing runs them for you. The
+behavioural evals — what a skill or a command does when a user runs it — are a separate run with
+its own cost; `evals/README.md` says how.
 
-`AGENTS.md` has the rules for changing this repository. Releases are tagged `vX.Y.Z` on `main` after
-the merge, and `CHANGELOG.md` has one entry per version.
+`AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
+tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.
+
+---
+
+## Forking this package
+
+A fork keeps `check_repo.py`, the tests and the evals, and runs them as *Development* shows. It
+changes the three places that name this package by URL or path: `update`'s GitHub URL, the
+candidates `scaffold.py` looks in for the installed package, and the interview's install line. Two
+packages deploying skills and commands of the same names at user scope have not been tested to
+coexist, so one researcher package per user until they are.
 
 ---
 

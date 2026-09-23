@@ -16,19 +16,26 @@ The researcher arrives in two parts, and each updates its own way:
 
 - **The skills and commands** are one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for
   the user. `apm update -g` brings its next version to every folder at once, and nothing in the
-  home's history changes. Before 0.7.0 the package brought the Lab's skills from
-  `KaxaNuk/KaxaNuk-Agent-Skills`; it now carries them itself. The next `apm update -g` removes what
+  home's history changes.
+
+  Only for a home from before 0.7.0: the package then brought the Lab's skills from
+  `KaxaNuk/KaxaNuk-Agent-Skills`, and now carries them itself. The next `apm update -g` removes what
   those packages deployed; `apm deps list -g` may still name them as orphaned, because their folders
   stay under `~/.apm/apm_modules/`, and that is harmless.
 - **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `README.md`, `LICENSE`, `apm.yml`,
   `.gitignore` and `.gitattributes` — were copied from `templates/researcher/` in the KaxaNuk
   Researcher package when the home was made. When the package's copy changes, the difference is
-  shown, never merged: the owner's home may have renamed its prose. In `apm.yml` only the comments
-  are compared: its `name`, `version`, `description`, `author` and `targets` are the owner's.
+  shown, never merged: the owner's home may have renamed its prose. In `apm.yml` the comments,
+  `includes` and `dependencies` are compared: its `name`, `version`, `description`, `author` and
+  `targets` are the owner's — the version by a rule of its own, which the report in *Step 5* gives
+  in these words: "The home's own version in `apm.yml` is yours: `interview` sets it to 0.1.0, you
+  bump it with each entry you add to `CHANGELOG.md`, and `update` reads the *Brought to template*
+  line there, never this field."
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/`, `Sources/`,
-`Projects/` and the agent file in `.apm/agents/`. `${input:mode}` set to `check` reports what is new
-and stops, changing nothing.
+`Projects/`, the agent file in `.apm/agents/`, and any skill or command of the home's own in
+`.apm/skills/` or `.apm/prompts/`. `${input:mode}` set to `check` reports what is new and stops,
+changing nothing.
 
 ## Step 1: Pre-flight
 
@@ -55,9 +62,19 @@ and stops, changing nothing.
   *Brought to template* entry, or else the newest template version in it — and
   `templates/researcher/CHANGELOG.md` on GitHub names the current one. For each of the home's own
   files above, compare the home's copy with the one under `templates/researcher/` on GitHub,
-  section by section, and name what the package's copy says that the home's does not. A home that
-  renamed *the researcher* and *the owner* differs everywhere in wording, and its `README.md` opens
-  with a paragraph of its own; report what changed in substance, not in names.
+  section by section and in both directions: what the package's copy says that the home's does
+  not, and what the home's copy carries that the package's dropped or renamed — a `.gitignore`
+  line, a section, a product or file name — because a home that has run `update` four times can
+  still carry lines the template removed. A rename of a product or a file name is substance; the
+  owner's renaming of *the researcher* and *the owner* is not: such a home differs everywhere in
+  wording, and its `README.md` opens with a paragraph of its own, so report what changed in
+  substance, not in names. In `apm.yml` compare `includes` and `dependencies` as well as the
+  comments.
+- **The owner's files, read and never written.** The template's `RESEARCHER.md` headings — not its
+  slots, nor the blockquote the interview deletes — the headings of `Philosophy/HOW-I-INVEST.md`,
+  and the blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md`, each against the home's.
+  Every difference is a *by hand* line in *Step 3* and *Step 5*, never a change `update` makes:
+  those files are the owner's.
 - **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
   **What to do differently** instruction that applies to this home, in full. Those instructions are
   the point of the update; never summarise them away.
@@ -67,8 +84,9 @@ and stops, changing nothing.
 
 In chat: the package versions before and after; for each home file, the sections to bring across,
 quoted, in the home's own names; what a migration removes; and what the owner will have to do by
-hand afterwards. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* —
-and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
+hand afterwards, one line for each heading or blockquote of their own files that the template
+changed. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and
+update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
 ## Step 4: Update
 
@@ -110,11 +128,14 @@ and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 In chat and nowhere else:
 
 - the package versions, before and after;
-- the home's template version, before and after;
+- the home's template version, before and after, and the rule for the home's own version in
+  `apm.yml`, in the words above;
 - every **What to do differently** instruction, again, as a list of what is now the owner's to do;
+- the *by hand* lines: each heading or blockquote of the owner's files that the template changed,
+  for the owner to carry across or leave;
 - for a migration, what was removed, and that the skills now live at user scope;
 - the sections of the home's files brought across, and those the owner declined;
 - that the new skills and commands appear in a **new** session, not this one.
 
-Nothing is appended to `Knowledge/LOG.md`: that log records reads, audits and index refreshes, not
-version changes — the changelogs are the record of what changed.
+Nothing is appended to `Knowledge/LOG.md`: that log records reads, audits, index refreshes and kept
+synthesis pages, not version changes — the changelogs are the record of what changed.

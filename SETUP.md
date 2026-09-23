@@ -48,11 +48,12 @@ That installs the researcher's skills and commands and, with them, every KaxaNuk
 skill, for your user: every folder you open has them, and no folder installs anything of its own.
 
 **Claude Code receives all of it:** the skills, the commands and the four instructions — Bloom
-Code, PEP 8, test writing and filesystem boundaries. Copilot receives the same, its instructions
-merged into `~/.copilot/copilot-instructions.md`. Cursor, Gemini, OpenCode and Windsurf get the
-skills and the commands but not the instructions. Codex gets the skills only: no instructions and
-no commands, so there a command is run by naming its file in the package. For `interview`
-in step 2, ask Codex to *follow
+Code, PEP 8, test writing and filesystem boundaries. The instructions land in `~/.claude/rules/`,
+so they apply to every Python project you open on that machine, not only a strategy. Copilot
+receives the same, its instructions merged into `~/.copilot/copilot-instructions.md`. Cursor,
+Gemini, OpenCode and Windsurf get the skills and the commands but not the instructions. Codex gets
+the skills only: no instructions and no commands, so there a command is run by naming its file in
+the package. For `interview` in step 2, ask Codex to *follow
 `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/interview.prompt.md`*.
 
 **On Windows, if the install fails with *checkout failed* or `WinError 3`,** a path went past
@@ -97,20 +98,28 @@ once, with your assistant in place of `claude` as in step 1, deploys the agent.
 > email — never invent them — and set them in that repository only. One researcher per person: if a
 > home already exists, say where it is and do not make a second.
 
+**What "done" looks like:** `RESEARCHER.md` with no angle-bracketed slot left,
+`.apm/agents/<slug>.agent.md`, `.claude/agents/<slug>.md` after the install, a clean `git status`,
+and a private remote if you want a backup. On Windows, `git diff` prints a CRLF warning for the
+files the researcher wrote; it is expected and harmless — `.gitattributes` normalises them on
+commit.
+
 ---
 
 ## Step 3 — Make a strategy, once per strategy
 
-From the folder that holds your work:
+From your home, in a new session:
 
 ```text
 init-strategy fcf-yield-quality
 ```
 
-It makes `fcf-yield-quality/` from the KaxaNuk Strategy Template, as a git repository with its first
-commit. Open that folder in a new session; its own `SETUP.md` builds the environment and the keys,
-and its `README.md` says what to fill in, in order — `OBJECTIVE.md` first. To bring your
-researcher's library along, add its home to the session: `claude --add-dir <the home>`.
+It makes `fcf-yield-quality/` beside the home — `D:\Research\fcf-yield-quality`, for example — from
+the KaxaNuk Strategy Template, as a git repository with its first commit. Open that folder in a new
+session; its own `SETUP.md` builds the environment and the keys, and its `README.md` says what to
+fill in, in order — `OBJECTIVE.md` first. To bring your researcher's library along, add its home to
+the session: `claude --add-dir <the home>`; for its identity to load with it, follow *In a strategy
+or another project* in the home's README.
 
 To see a finished strategy first:
 

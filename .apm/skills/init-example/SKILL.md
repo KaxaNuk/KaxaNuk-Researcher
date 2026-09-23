@@ -8,7 +8,7 @@ description: >
   `init-strategy`), and never builds on the example: it is a worked strategy to read, not a
   template to fill.
 metadata:
-  version: 0.1.2
+  version: 0.1.3
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -51,7 +51,9 @@ belongs in each file. It is also readable without installing anything, in
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" example "<strategy root>" --only <path>
    ```
 
-   The whole example becomes a git repository with its first commit; one piece is only copied.
+   The whole example becomes a git repository with its first commit; one piece is only copied. A
+   fork of the package, or a clone in a folder of another name, is not found on its own: pass
+   `--package <its install folder>`.
 
 4. **For one piece, say what is the example's.** Everything between the markers in what was
    copied is `liquid-golden-cross`'s and goes before the strategy's own work goes in; the

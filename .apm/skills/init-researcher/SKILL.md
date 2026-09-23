@@ -7,7 +7,7 @@ description: >
   the interview. Only when the owner runs it by name; once per person, never per strategy. It does
   NOT run the interview itself and does NOT create a strategy (use `init-strategy`).
 metadata:
-  version: 0.1.2
+  version: 0.1.3
 ---
 
 # Init researcher — a home for the library, once
@@ -31,8 +31,9 @@ in a session of its own, or adds it to a strategy's session to bring the library
    `D:\Research\Ada`, never a deep synced path. Say the full path you will create.
 
 2. **The plan.** In chat: the path; that it will hold the researcher's home at this package's
-   version — `RESEARCHER.md` and `Philosophy/HOW-I-INVEST.md` as blanks for the interview, the
-   empty `Sources/`, `Knowledge/` and `Projects/`, and `AGENTS.md`; that it becomes a git
+   version — `RESEARCHER.md` and `Philosophy/HOW-I-INVEST.md` as blanks for the interview,
+   `Sources/` with its empty `Books/`, `Papers/` and `Clippings/`, the empty `Projects/`,
+   `Knowledge/` with an empty `INDEX.md` and `LOG.md`, and `AGENTS.md`; that it becomes a git
    repository with the first commit *Start from the KaxaNuk Researcher template*. Ask for the go —
    *Go*, *Change something*, *Stop* — and run on *Go* only.
 
@@ -42,9 +43,10 @@ in a session of its own, or adds it to a strategy's session to bring the library
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher "<full path>"
    ```
 
-   It refuses a folder that exists and is not empty. If the first commit fails for want of a git
-   identity, ask for the name and email — never invent them — set them in that repository only,
-   and commit with the message the script printed.
+   It refuses a folder that exists and is not empty. A fork of the package, or a clone in a folder
+   of another name, is not found on its own: pass `--package <its install folder>`. If the first
+   commit fails for want of a git identity, ask for the name and email — never invent them — set
+   them in that repository only, and commit with the message the script printed.
 
 4. **Hand over.** Tell the owner to open the new folder in a **new** session and run
    `interview` there: the interview that writes `RESEARCHER.md` and the agent file. Then

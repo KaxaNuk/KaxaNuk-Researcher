@@ -11,7 +11,7 @@ description: >
   which books to price and how to read the numbers that come back. Shaping the attribution library's
   inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
 metadata:
-  version: 0.3.4
+  version: 0.3.5
 ---
 
 # Alpha decomposition — is the signal doing anything?
@@ -25,10 +25,10 @@ The method is Paleologo's (*Advanced Portfolio Management*, 2021, chapter 8): sp
 into factor and idiosyncratic, then split the idiosyncratic part three ways **by counterfactual
 books, never by formula**. The book is listed in Part 0 of the template's
 `Bibliotheca/BIBLIOGRAPHY.md` as provenance, not as a note; write its note before citing it in a
-findings file. Every counterfactual below is a weight file, so the same `Experiments/backtest_engine.py`
-that priced the real book prices it, over the same window, at the same costs — and when a
-counterfactual is attributed as well, the attribution reads *its* daily weights from *its* backtest,
-never the real book's.
+findings file. Every counterfactual below is a weight file, so the same
+`Experiments/backtest_engine.py` that priced the real book prices it, over the same window, at the
+same costs — and when a counterfactual is attributed as well, the attribution reads *its* daily
+weights from *its* backtest, never the real book's.
 
 Work in the experiment's notebook, section 5 or a section after it. Record every number in
 `FINDINGS_N.md`, then `RESULTS.md`. Publish the count of counterfactuals run.
@@ -52,23 +52,23 @@ the residual series from the factor model's output — `calc_pct_area()` names i
 saying in `FINDINGS_N.md` that it was done that way. Getting those tables out at all is
 `attribution-analysis-runs`.
 
-**Know what the library calls allocation.** KaxaNuk's Attribution Analysis computes the three effects
-**per asset and per date** — its methodology page gives the formulas, and `attribution-analysis-runs`
-repeats them — not by group. An allocation number is a statement about groups only when the inputs
-were aggregated to groups first; `FINDINGS_N.md` says which was run.
+**Know what the library calls allocation.** KaxaNuk's Attribution Analysis computes the three
+effects **per asset and per date** — its methodology page gives the formulas, and
+`attribution-analysis-runs` repeats them — not by group. An allocation number is a statement about
+groups only when the inputs were aggregated to groups first; `FINDINGS_N.md` says which was run.
 
 **Check the benchmark is whole before reading any of it.** The first cut prices only the securities
-the book's weight file names, so a book that lists only its holdings is compared with the part of the
-index it owns — in the run that proved it, 6% of the index's return, with alpha five times too large and
-the excess filed under interaction. Compare the first cut's `benchmark_returns` with the index's own
-return over the same window; if they are not close, the book was not widened to every constituent
-(`attribution-analysis-runs`, section 3) and no row of the table can be read yet.
+the book's weight file names, so a book that lists only its holdings is compared with the part of
+the index it owns — in the run that proved it, 6% of the index's return, with alpha five times too
+large and the excess filed under interaction. Compare the first cut's `benchmark_returns` with the
+index's own return over the same window; if they are not close, the book was not widened to every
+constituent (`attribution-analysis-runs`, section 3) and no row of the table can be read yet.
 
 Two readings, both of which count as answers:
 
-- **Allocation ≈ 0 with selection and interaction positive**, on inputs aggregated to groups, means a
-  large group tilt is *not* where the money comes from. Say so plainly; it is the opposite of what the tilt makes a reader
-  assume.
+- **Allocation ≈ 0 with selection and interaction positive**, on inputs aggregated to groups, means
+  a large group tilt is *not* where the money comes from. Say so plainly; it is the opposite of what
+  the tilt makes a reader assume.
 - **A roughly even factor / idiosyncratic split** is a *pass with a qualification* on criterion 2.
   There is real idiosyncratic alpha, and half the excess is exposure available more cheaply
   elsewhere. Report both halves with equal weight.
@@ -192,11 +192,11 @@ column". That is worth knowing and belongs in `OBJECTIVE.md` as a falsified clai
 ## 5. The worked example — `liquid-golden-cross`
 
 The KaxaNuk Strategy Template works one strategy through the process in its worked example,
-`examples/liquid-golden-cross/` in `KaxaNuk/KaxaNuk-Researcher`, which `init-example` copies into a folder of its own:
-**`liquid-golden-cross`** — own the thirty most heavily traded US stocks whose 50-day simple moving
-average is above the 200-day, equally weighted at one thirtieth with a 2% cash reserve, rebalanced
-only when the eligible top thirty differ from the book by 10%. It has run steps 1 to 6, so the
-numbers below are real: priced by the engine over one shared window, reported in
+`examples/liquid-golden-cross/` in `KaxaNuk/KaxaNuk-Researcher`, which `init-example` copies into a
+folder of its own: **`liquid-golden-cross`** — own the thirty most heavily traded US stocks whose
+50-day simple moving average is above the 200-day, equally weighted at one thirtieth with a 2% cash
+reserve, rebalanced only when the eligible top thirty differ from the book by 10%. It has run steps
+1 to 6, so the numbers below are real: priced by the engine over one shared window, reported in
 `Experiments/Experiment_1/FINDINGS_1.md`.
 
 | Arm | What it removes | CAGR | Sharpe | **Idiosyncratic** |

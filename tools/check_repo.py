@@ -9,11 +9,13 @@ Run from the repository root:
 It reads the working tree.  Each check exists because what it looks for happened:
 
 - **versions** — the package and each starting point declare one version in `apm.yml`, and it leads
-  their `CHANGELOG.md`, their `pyproject.toml` and their `uv.lock` where they have one.  Two fields that
-  always move together once did not.
+  their `CHANGELOG.md`, their `pyproject.toml` and their `uv.lock` where git tracks one.  Two fields
+  that always move together once did not; an ignored, stale `uv.lock` at the root once failed the
+  check for a version nobody had declared.
 - **headings** — every heading of a template document is in the example's copy, so the example keeps
   the template's structure.  The two lived on separate branches and drifted; the example's `README.md`
-  is its strategy's own and is left out.
+  is its strategy's own and is left out, and so is its `CHANGELOG.md`, whose versions are its own:
+  the template and the example move together but take their own numbers.
 - **markers** — the example's markers open and close in order, each alone on its line at column 0,
   or a copy made with them in mind keeps or loses the wrong lines.  The sync tool strips no other
   form of a marker: an indented one would carry the worked strategy's lines into the template.
@@ -31,6 +33,11 @@ It reads the working tree.  Each check exists because what it looks for happened
   hand.
 - **path length** — no tracked path longer than Windows allows once installed under a home folder;
   a 130-character path once made `apm install -g` fail.
+- **width** — no line of markdown prose wider than 100 columns in `.apm/`, `templates/researcher/`
+  and the root `README.md`, `SETUP.md` and `AGENTS.md`, never a `CHANGELOG.md` or the references
+  the sync tool generates.  Frontmatter, fenced code, table rows and lines holding a URL are set
+  aside; width counts characters, not bytes.  The house rule was kept by hand, and about 250
+  lines had grown past it.
 
 Exit code 0 when every check passes, 1 when any fails.
 """
@@ -55,11 +62,28 @@ EXAMPLE_FOLDER = 'examples/liquid-golden-cross'
 TEMPLATE_FOLDER = 'templates/strategy'
 # Documents of the template whose headings the example need not keep.
 HEADING_EXCEPTIONS = {
+    'CHANGELOG.md',
     'README.md',
 }
-# What APM accepts in a skill's `description`, and the longest path this repository allows.
+# What APM accepts in a skill's `description`, the longest path this repository allows, and the
+# widest line of markdown prose.
 DESCRIPTION_LIMIT = 1024
 PATH_LIMIT = 120
+WIDTH_LIMIT = 100
+# The markdown the width check reads: these root documents and these folders, minus the folders the
+# sync tool generates; a `CHANGELOG.md` is never read.
+WIDTH_DOCUMENTS = (
+    'AGENTS.md',
+    'README.md',
+    'SETUP.md',
+)
+WIDTH_EXCLUDED_FOLDERS = (
+    '.apm/skills/experiment-lifecycle/references/',
+)
+WIDTH_FOLDERS = (
+    '.apm/',
+    'templates/researcher/',
+)
 # The sync tool declares the markers, and matches them only as whole lines at column 0.
 MARKERS = sync_investment_lab_references.EXAMPLE_MARKERS
 # The kinds of file searched for the section symbol.
@@ -80,9 +104,19 @@ CHANGELOG_VERSION = re.compile(
     r'^## \[?(\d+\.\d+\.\d+)\]?',
     re.MULTILINE,
 )
+# A fenced code block, from its opening fence to the line that closes it with the same fence.
+FENCED_BLOCK = re.compile(
+    r'^[ \t]*(`{3,}|~{3,}).*?\n.*?^[ \t]*\1[ \t]*$',
+    re.MULTILINE | re.DOTALL,
+)
 FOLDED_DESCRIPTION = re.compile(
     r'^description: >-?\n((?:[ \t]+\S.*\n)+)',
     re.MULTILINE,
+)
+# YAML frontmatter: the text opens with a `---` line and the block ends with the next one.
+FRONTMATTER = re.compile(
+    r'\A---[ \t]*\n.*?^---[ \t]*$',
+    re.MULTILINE | re.DOTALL,
 )
 HEADING = re.compile(
     r'^#{1,6} \S.*$',
@@ -97,10 +131,17 @@ PYPROJECT_VERSION = re.compile(
     r'^version\s*=\s*"([^"]+)"',
     re.MULTILINE,
 )
+URL = re.compile(r'https?://')
 UV_LOCK_VERSION = re.compile(
     r'^\[\[package\]\]\nname = "[^"]+"\nversion = "([^"]+)"\nsource = \{ virtual = "\." \}',
     re.MULTILINE,
 )
+# The files that record a release folder's version, and how each is read.
+VERSION_PATTERNS = {
+    'CHANGELOG.md': CHANGELOG_VERSION,
+    'pyproject.toml': PYPROJECT_VERSION,
+    'uv.lock': UV_LOCK_VERSION,
+}
 
 
 @dataclasses.dataclass(frozen=True)
@@ -357,6 +398,7 @@ def check_template_files(
 
 def check_versions(
     root: pathlib.Path,
+    files: list[str],
 ) -> list[Finding]:
     """
     Each release folder's versions agree, and its changelog leads with them.
@@ -369,7 +411,38 @@ def check_versions(
         in version_problems(
             folder,
             root / folder,
+            files,
         )
+    ]
+
+    return findings
+
+
+def check_width(
+    root: pathlib.Path,
+    files: list[str],
+) -> list[Finding]:
+    """
+    No line of prose wider than the limit in the markdown a person reads.
+    """
+    # A document deleted from the working tree but still tracked is not read: it has nothing to check.
+    documents = [
+        path
+        for path
+        in files
+        if _width_checked(path) and (root / path).is_file()
+    ]
+    findings = [
+        Finding(
+            check='width',
+            message=f'{path}: line {number} has {width} columns, over {WIDTH_LIMIT}',
+        )
+        for path
+        in documents
+        for number, width
+        in wide_lines(
+            _read(root / path),
+        ).items()
     ]
 
     return findings
@@ -406,7 +479,10 @@ def main() -> int:
     """
     files = tracked_files(REPOSITORY_ROOT)
     findings = [
-        *check_versions(REPOSITORY_ROOT),
+        *check_versions(
+            REPOSITORY_ROOT,
+            files,
+        ),
         *check_headings(REPOSITORY_ROOT),
         *check_markers(
             REPOSITORY_ROOT,
@@ -423,6 +499,10 @@ def main() -> int:
         *check_references(REPOSITORY_ROOT),
         *check_template_files(REPOSITORY_ROOT),
         *check_path_length(files),
+        *check_width(
+            REPOSITORY_ROOT,
+            files,
+        ),
     ]
 
     for finding in findings:
@@ -539,27 +619,33 @@ def tracked_files(
 def version_problems(
     label: str,
     folder: pathlib.Path,
+    files: list[str],
 ) -> list[Finding]:
     """
     One release folder's versions, compared with the one its `apm.yml` declares.
+
+    The folder's `uv.lock` is read only when git tracks it: an ignored one holds whatever the last
+    local run left, and says nothing about the release.
     """
     declared = _first(
         APM_VERSION,
         _read(folder / 'apm.yml'),
     )
+    lock_path = pathlib.PurePosixPath(label, 'uv.lock').as_posix()
+    read_names = [
+        name
+        for name
+        in VERSION_PATTERNS
+        if name != 'uv.lock' or lock_path in files
+    ]
     recorded = {
-        'CHANGELOG.md': _first(
-            CHANGELOG_VERSION,
-            _read(folder / 'CHANGELOG.md'),
-        ),
-        'pyproject.toml': _first(
-            PYPROJECT_VERSION,
-            _read(folder / 'pyproject.toml'),
-        ),
-        'uv.lock': _first(
-            UV_LOCK_VERSION,
-            _read(folder / 'uv.lock'),
-        ),
+        name: _first(
+            VERSION_PATTERNS[name],
+            _read(folder / name),
+        )
+        for name
+        in read_names
+        if (folder / name).is_file()
     }
     findings = [
         Finding(
@@ -568,10 +654,63 @@ def version_problems(
         )
         for name, version
         in recorded.items()
-        if (folder / name).is_file() and version != declared
+        if version != declared
     ]
 
     return findings
+
+
+def wide_lines(
+    text: str,
+) -> dict[int, int]:
+    """
+    Each line of prose wider than the limit, by its number from 1, with its width in characters.
+
+    Prose is what is left once the frontmatter, the fenced code blocks, the table rows and the
+    lines holding a URL are set aside.  Width counts characters, not bytes.
+    """
+    lines = text.split('\n')
+    frontmatter = _covered_line_numbers(
+        text,
+        FRONTMATTER,
+    )
+    fenced = _covered_line_numbers(
+        text,
+        FENCED_BLOCK,
+    )
+    set_aside = frontmatter | fenced
+    wide = {
+        number: len(line)
+        for number, line
+        in enumerate(lines, start=1)
+        if number not in set_aside
+        if not line.lstrip().startswith('|')
+        if URL.search(line) is None
+        if len(line) > WIDTH_LIMIT
+    }
+
+    return wide
+
+
+def _covered_line_numbers(
+    text: str,
+    pattern: re.Pattern[str],
+) -> set[int]:
+    """
+    The numbers, from 1, of every line a match of the pattern covers, in part or whole.
+    """
+    covered = {
+        number
+        for match
+        in pattern.finditer(text)
+        for number
+        in range(
+            _line_number(text, match.start()),
+            _line_number(text, match.end()) + 1,
+        )
+    }
+
+    return covered
 
 
 def _first(
@@ -585,6 +724,18 @@ def _first(
     value = match.group(1) if match is not None else None
 
     return value
+
+
+def _line_number(
+    text: str,
+    position: int,
+) -> int:
+    """
+    The number, from 1, of the line a position in a text falls on.
+    """
+    number = text[:position].count('\n') + 1
+
+    return number
 
 
 def _notebook_marker_problems(
@@ -622,6 +773,20 @@ def _read(
     text = raw.replace('\r\n', '\n')
 
     return text
+
+
+def _width_checked(
+    path: str,
+) -> bool:
+    """
+    Whether the width check reads a tracked path: markdown a person reads, never a changelog.
+    """
+    named = pathlib.PurePosixPath(path)
+    in_scope = path.startswith(WIDTH_FOLDERS) or path in WIDTH_DOCUMENTS
+    excluded = path.startswith(WIDTH_EXCLUDED_FOLDERS) or named.name == 'CHANGELOG.md'
+    checked = named.suffix == '.md' and in_scope and not excluded
+
+    return checked
 
 
 if __name__ == '__main__':

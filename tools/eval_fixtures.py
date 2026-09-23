@@ -38,25 +38,79 @@ CHAPTERS = (
     ),
 )
 CLAIMS_MARKER = '<!-- eval: claims -->'
+# One markdown clipping at home: a tool's README, invented for the fixture.
+CLIPPING_PATH = pathlib.Path('Sources') / 'Clippings' / 'Nullwick_2026_Driftwatch_README.md'
 FILLED_BLUEPRINT_MARKER = '<!-- eval: filled blueprint -->'
 FIXTURE_NAMES = (
     'home-with-book',
+    'home-with-clipping',
     'home-with-image-pdf',
     'home-with-notes',
     'researcher-existing',
     'strategy-blueprint-filled',
     'strategy-empty-universe',
     'strategy-no-claims',
+    'strategy-no-claims-with-home',
     'strategy-non-empty-target',
     'strategy-ready',
     'strategy-with-bitacora',
+    'strategy-with-home',
 )
+# The folder, inside a strategy fixture's working folder, that holds the owner's researcher.
+HOME_FOLDER = 'Ada'
 QUESTIONS_SECTION = '\n'.join([
     '',
     '## What you are reading for',
     '',
     '1. Do trends in prices persist long enough to trade after costs?',
     '2. What ends a trend, and can it be seen coming?',
+    '',
+])
+ADA_RESEARCHER = '\n'.join([
+    '# Ada',
+    '',
+    '## Who',
+    '',
+    '**Name:** Ada',
+    '',
+    '**Works for:** the owner, who invests their own money.',
+    '',
+    '**Domains:** Markets.',
+    '',
+    '## How it speaks',
+    '',
+    'Terse, in English. It challenges a claim that has no source behind it.',
+    '',
+    '## What you believe',
+    '',
+    'Trends in prices persist, and most of what a trend rule earns goes to costs. The full account is',
+    'in [`Philosophy/HOW-I-INVEST.md`](Philosophy/HOW-I-INVEST.md).',
+    '',
+    '## Non-negotiables',
+    '',
+    '- Every number about a book comes from the engines the project names — in a KaxaNuk strategy',
+    '  the Lab\'s libraries, the Backtest Engine for performance and Attribution Analysis for where it',
+    '  came from — never from the researcher.',
+    '- A hypothesis is written before its test, and every prediction in it cites a source.',
+    '- Nothing trades. No live execution, no order, no money moves from here.',
+    '',
+    '## Tag policy',
+    '',
+    'Loose: the researcher proposes tags and the owner prunes them at audit.',
+    '',
+    '## The strategies and projects it works on',
+    '',
+    '| Strategy or project | Path | State |',
+    '| --- | --- | --- |',
+    '| *none listed* | — | — |',
+    '',
+    '*I join a strategy when you invite me; a row is added only when you ask.*',
+    QUESTIONS_SECTION,
+    '## How it cites',
+    '',
+    'Inside `Knowledge/`, a standard markdown link to the note. Inside a strategy, the relative path',
+    'of the note in that repository\'s `Bibliotheca/` — never a path into this folder. A claim with no',
+    'source is written as a lead, never as a fact.',
     '',
 ])
 CLAIMS_SECTION = '\n'.join([
@@ -69,6 +123,52 @@ CLAIMS_SECTION = '\n'.join([
     '   *Evidence:* Moskowitz, Ooi and Pedersen (2012), note in Bibliotheca/Papers.',
     '2. **The trend survives costs.** A monthly rebalance keeps turnover low enough to keep the edge.',
     '   *Evidence:* the question that would settle it: turnover times cost against the spread.',
+    '',
+])
+CLIPPING_TEXT = '\n'.join([
+    '# Driftwatch',
+    '',
+    'Driftwatch is a command-line tool from Nullwick Research that measures how long a trend in',
+    'daily prices lasts and what following it costs. Version 0.4.1, released 2026-08-14.',
+    '',
+    '## Install',
+    '',
+    '```bash',
+    'uv tool install driftwatch',
+    '```',
+    '',
+    'It needs Python 3.12 and a CSV of daily closes with one column per name.',
+    '',
+    '## Commands',
+    '',
+    '- `driftwatch persist <prices.csv>` — for every name, the number of consecutive months the sign',
+    '  of the return held, as a distribution, and the autocorrelation of monthly returns at lags one',
+    '  to twelve.',
+    '- `driftwatch ends <prices.csv> --volume <volume.csv>` — for every trend longer than three',
+    '  months, the volume in the last month against the trend\'s average, so a fading flow can be',
+    '  seen before the price turns.',
+    '- `driftwatch cost <prices.csv> --speed <days>` — the yearly turnover of a rule that follows',
+    '  the trend at that speed, and the round-trip cost at a spread given in basis points.',
+    '',
+    '## Output',
+    '',
+    'Every command writes one CSV to standard output and a one-line summary to standard error. The',
+    'summary line names the version, so a number can be traced to the release that produced it.',
+    '',
+    '## What it does not do',
+    '',
+    '- It does not download prices. The CSV is the owner\'s.',
+    '- It does not size a book or price one: turnover is a count of trades, not a return.',
+    '- It does not know about survivorship: a name that left the file is a name it never saw.',
+    '',
+    '## Changes in 0.4',
+    '',
+    '- 0.4.1: `cost` reads the spread from `--spread-bp`; the default of 10 basis points is gone.',
+    '- 0.4.0: `ends` added.',
+    '',
+    '## Licence',
+    '',
+    'MIT. Nullwick Research, 2026.',
     '',
 ])
 SEED_ROWS = 'main_identifier\nAAPL\nMSFT\nJPM\nXOM\nKO\n'
@@ -152,15 +252,18 @@ def build_all(
     """
     builders = {
         'home-with-book': _build_home_with_book,
+        'home-with-clipping': _build_home_with_clipping,
         'home-with-image-pdf': _build_home_with_image_pdf,
         'home-with-notes': _build_home_with_notes,
         'researcher-existing': _build_researcher_existing,
         'strategy-blueprint-filled': _build_strategy_blueprint_filled,
         'strategy-empty-universe': _build_strategy_empty_universe,
         'strategy-no-claims': _build_strategy_no_claims,
+        'strategy-no-claims-with-home': _build_strategy_no_claims_with_home,
         'strategy-non-empty-target': _build_strategy_non_empty_target,
         'strategy-ready': _build_strategy_ready,
         'strategy-with-bitacora': _build_strategy_with_bitacora,
+        'strategy-with-home': _build_strategy_with_home,
     }
 
     for name, builder in builders.items():
@@ -193,6 +296,25 @@ def main(
     print(f'Built {len(FIXTURE_NAMES)} fixtures in {target}')
 
     return 0
+
+
+def _add_home(
+    folder: pathlib.Path,
+    package_root: pathlib.Path,
+) -> None:
+    """
+    Put Ada's home inside a strategy's working folder: scaffolded from the template, then filled.
+    """
+    home = folder / HOME_FOLDER
+    _scaffold(
+        'researcher',
+        home,
+        package_root,
+    )
+    (home / 'RESEARCHER.md').write_text(
+        ADA_RESEARCHER,
+        encoding='utf-8',
+    )
 
 
 def _add_questions(
@@ -237,6 +359,30 @@ def _build_home_with_book(
     _write_book(
         folder / BOOK_PATH,
         with_text=True,
+    )
+
+
+def _build_home_with_clipping(
+    folder: pathlib.Path,
+    package_root: pathlib.Path,
+) -> None:
+    """
+    A researcher's home with two open questions and one markdown clipping, a tool's README.
+    """
+    _scaffold(
+        'researcher',
+        folder,
+        package_root,
+    )
+    _add_questions(folder)
+    clipping = folder / CLIPPING_PATH
+    clipping.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+    clipping.write_text(
+        CLIPPING_TEXT,
+        encoding='utf-8',
     )
 
 
@@ -378,6 +524,23 @@ def _build_strategy_no_claims(
     )
 
 
+def _build_strategy_no_claims_with_home(
+    folder: pathlib.Path,
+    package_root: pathlib.Path,
+) -> None:
+    """
+    The strategy-no-claims fixture with Ada's home inside the working folder.
+    """
+    _build_strategy_no_claims(
+        folder,
+        package_root,
+    )
+    _add_home(
+        folder,
+        package_root,
+    )
+
+
 def _build_strategy_non_empty_target(
     folder: pathlib.Path,
     package_root: pathlib.Path,
@@ -439,6 +602,23 @@ def _build_strategy_with_bitacora(
     _append(
         folder / 'Paper_Trading' / 'BITACORA.md',
         '\nOwner edit: the gate is reviewed monthly.\n',
+    )
+
+
+def _build_strategy_with_home(
+    folder: pathlib.Path,
+    package_root: pathlib.Path,
+) -> None:
+    """
+    The strategy-ready fixture with Ada's home inside the working folder.
+    """
+    _build_strategy_ready(
+        folder,
+        package_root,
+    )
+    _add_home(
+        folder,
+        package_root,
     )
 
 

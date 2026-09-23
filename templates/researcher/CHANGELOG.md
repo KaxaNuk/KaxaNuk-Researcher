@@ -1,9 +1,90 @@
 # Changelog
 
 Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` with
-`### Added / Changed / Removed / Fixed`, and
+`### Added / Changed / Deprecated / Fixed / Removed`, and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
+This is the home template's changelog, which `init-researcher` copies into every home and `update`
+extends with a *Brought to template* entry at the top; the home's own entries go there too.
+
+## 0.8.0 (2026-09-23)
+
+**MINOR** — the home's rules change: the numbers rule names the engines the project names, not only
+the Lab's, `query` may write a kept page's index line and log entry, *Joining other projects* says
+who copies and how a project's files are named and cited, and the README says how a researcher
+grows. The example strategy is `fcf-yield-quality`.
+
+**What to do differently:** run `apm update -g`, open a new session, and run `update` in your home,
+which brings `README.md`, `AGENTS.md`, `apm.yml` and `.gitignore` across. Then by hand: the first
+non-negotiable in `RESEARCHER.md` in the new wording, its table heading to *The strategies and
+projects it works on*, and the version field in `apm.yml`, which is yours and which `update` never
+touches.
+
+### Added
+
+* **`README.md` has *Growing your researcher***: the four moves — a tool's or a project's
+  documentation into `Sources/Clippings/` then `read`; a skill or command of the home's own in
+  `.apm/skills/` or `.apm/prompts/`, then `apm install --target <agent>`; a line under *What you
+  are reading for*; a line by hand under *How it speaks* or *Non-negotiables* — each with the
+  `AGENTS.md` section that governs it, and one line on who teaches whom: `teach` tutors you from
+  the library, you teach the researcher by these four moves.
+* **`AGENTS.md` says who copies a project's files**: the researcher names them and gives the copy
+  command, the owner runs it, then `read`; `Sources/` stays the owner's. A paragraph under *Joining
+  other projects* names the clipping `Org_Year_Project_File.md`, cites a private repository as
+  "private repository; link not checked", ties the read to a numbered question, says a project's
+  own skills are installed or read there, never imitated, and that a home holding a private
+  project's material stays a private repository. `README.md` says the last of these too.
+* **`AGENTS.md` and `README.md` say the home's version is the owner's**: `interview` sets it to
+  0.1.0, the owner bumps it with each changelog entry, and `update` reads the *Brought to template*
+  line, never the field.
+* **`README.md` lists `.apm/skills/` and `.apm/prompts/`** in its file map, for a home's own skills
+  and commands, and says `git diff` prints a CRLF warning on Windows for files the researcher
+  wrote, which `.gitattributes` settles on commit.
+* **`.gitignore` ignores `.ruff_cache/` and `.pytest_cache/`.**
+
+### Changed
+
+* **The numbers rule names the engines the project names.** `RESEARCHER.md`'s first non-negotiable
+  and the hard don't in `AGENTS.md` say every number about a book comes from the engines the
+  project names — in a KaxaNuk strategy the Lab's libraries — never from the researcher.
+* **`RESEARCHER.md` is a researcher's, not only an investor's**: the table is *The strategies and
+  projects it works on* with a *Strategy or project* column, the *What you believe* prompt asks
+  how you work and what you think is true in your field, and *How it cites* says that in any other
+  project the note is named in prose. `Philosophy/HOW-I-INVEST.md` tells an owner whose research is
+  not investing to edit the headings and keep the file name, which `interview` and the skills find
+  it by.
+* **`query` reaches the index and the log** in `AGENTS.md`: `INDEX.md` takes one line from it when
+  the owner keeps a synthesis page, and `LOG.md` an entry.
+* **`AGENTS.md` names every file the commands write in a strategy**: a line in `Bibliotheca/LOG.md`
+  from `read` and `audit`, and one dated entry appended to `JOURNAL_N.md` by `challenge`, which the
+  mapping table lists. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads,
+  and `LOG.md` empty. The commands assume the KaxaNuk Strategy Template's paths; a strategy made
+  from another template keeps or maps them in its own `AGENTS.md`.
+* **The order of work's row E** names `brainstorm 1` for the benchmark entry, then `blueprint`, as
+  `next` does, and row G says every number comes from the engines the project names.
+* **A blueprint is committed in a commit of its own, before the rule**, in *Working in a
+  strategy*, where it was "the branch's first commit": a strategy's work lands on `main`, and a
+  branch is for a change the owner wants reviewed.
+* **`AGENTS.md` reaches a strategy from home as `blueprint 1 D:\Research\fcf-yield-quality`**, the
+  worked example's name, not a folder of the maintainer's.
+* **A note's *What it changes* is measured against the owner's question**, not their investing;
+  the `RESEARCHER.md` paragraph says a line by hand under *How it speaks* or *Non-negotiables* is
+  how the owner teaches the researcher to behave; and a skill of the home's own is written as the
+  package's are — a body that says when it applies, then numbered steps, as `read` does.
+* **`apm.yml` lists the four targets that take an agent** — `claude`, `copilot`, `cursor`,
+  `codex` — and its comment says `apm install --target <agent>` here deploys the agent and any
+  skill or command of this home's own.
+* **`.gitignore` ignores only what APM writes under `.github/`**, the five lines the strategy
+  template uses, so a home backed up on GitHub can carry a workflow.
+* **`README.md`'s *In a strategy* is *In a strategy or another project***, and says that what comes
+  back comes as a source in `Sources/` that `read` files; its first paragraph says `interview`
+  proposes its replacement.
+
+### Fixed
+
+* **`CHANGELOG.md` lists its five headings**, says it is the home template's changelog, which
+  `init-researcher` copies and `update` extends, and the 0.7.3 entry promises only `README.md` and
+  `AGENTS.md` through `update`, the rest by hand. Two lines named a real home; they say "a home"
+  and "Ada".
 
 ## 0.7.3 (2026-09-23)
 
@@ -12,8 +93,8 @@ This is the researcher *skeleton*; a person's own library is their clone and is 
 The example home in `AGENTS.md` is `D:\Research\Ada`.
 
 **What to do differently:** run `interview` where you ran `researcher-init`, and `interview force`
-to start over. `apm update -g` brings it; `update` brings the wording in `README.md`,
-`RESEARCHER.md`'s blockquote, `AGENTS.md` and `Philosophy/HOW-I-INVEST.md` across.
+to start over. `apm update -g` brings it; `update` brings the wording in `README.md` and
+`AGENTS.md` across; `RESEARCHER.md`'s blockquote and `Philosophy/HOW-I-INVEST.md` are by hand.
 
 ## 0.7.2 (2026-09-23)
 
@@ -170,7 +251,7 @@ run the `git remote set-url` line that `update` now gives. Nothing else.
 
 * **The template's own prose keeps the width every other line here keeps.** The renames of 0.5.2
   and the index of 0.5.3 pushed three lines past 100 columns — one in `researcher-init` reached
-  106 — so every home taking the update inherited them, and Luna had once committed a rewrap for
+  106 — so every home taking the update inherited them, and a home had once committed a rewrap for
   exactly this. The same words, rewrapped; no command reads differently.
 
 ## 0.5.3 (2026-09-21)
@@ -590,7 +671,7 @@ rest keep their names, and they are discoverable only in a **new** session.
   the researcher's folder to the session, and the skills come along.
 * **The researcher is an agent, not only a way of configuring a session.** `/researcher-init` now
   writes `.apm/agents/<your researcher>.agent.md` as well, so the harness can call it by name —
-  *ask Luna what we have read about momentum crashes* — with its own tool boundary: read, search
+  *ask Ada what we have read about momentum crashes* — with its own tool boundary: read, search
   and the skills, and nothing that writes. Its prompt points at `RESEARCHER.md` and `AGENTS.md`
   instead of copying them, so there is still one source of truth. **It never writes**, structurally
   rather than by preference: every skill that writes waits for your go, and an agent reporting back

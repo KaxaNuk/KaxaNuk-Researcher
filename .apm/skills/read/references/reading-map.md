@@ -27,7 +27,8 @@ evolve by replacement; it evolved by addition (page 48).
   the belief's own entry. A proposal the owner does not pick is never written.
 - **Say where it lands.** A picked work is written after the owner's go, in `RESEARCHER.md` under
   *What you are reading for*, as *Find first* under the question it serves. Never download it: the
-  owner finds it by its title and authors, puts the PDF in `Sources/Papers/` and runs `read`.
+  owner finds it by its title and authors, puts the PDF in `Sources/Papers/`, or `Sources/Books/`
+  for a book, and runs `read`.
 - **Match before proposing.** Compare each work here with the file names under `Sources/` and the
   notes in `Knowledge/INDEX.md` by the distinctive words of the title, and by the first author's
   surname wherever the file name or the note carries one, ignoring the year, punctuation and
@@ -225,8 +226,7 @@ The evidence timeline's roles, as questions a newcomer can pick when their `Sour
 Each act asks the question the one before could not answer, dated by the works that forced it
 (page 5). The arc's 21 questions are given as the deck words them, with the page of the question;
 the works are on the page after it. *Edge* is the deck's "where the edge is" line, shortened. The
-edge lines are strategy-stage questions — `objective`, `blueprint` and `challenge` use them — and
-never questions for setup.
+edge lines are strategy-stage questions, never questions for setup.
 
 ### Act I — Prices: can prices be predicted?
 

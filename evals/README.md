@@ -17,7 +17,7 @@ Three layers:
 Contract and quality cover a pilot of six: the skills `read`, `query`, `init-strategy`,
 `init-example` and `init-researcher`, and the command `blueprint`. Out of scope: the seven
 Investment Lab skills beyond triggering (their real behaviour needs the licensed engines), the other
-nine commands, Codex and Cursor (the harness is Claude only), and CI (there is none).
+ten commands, Codex and Cursor (the harness is Claude only), and CI (there is none).
 
 ## Running
 
@@ -217,11 +217,11 @@ marked as a lead. FAIL otherwise.
 
 A case that starts from a folder puts a one-line `FIXTURE` file, naming the fixture, in its folder,
 and `context.scaffold_script: scaffold.sh` in its `case.yaml`, on a line of its own. The runner
-copies the fixture into the case's run copy as `fixture-files/` and writes `scaffold.sh`, which copies it
-into the empty working directory before the session starts. Committing either, naming
+copies the fixture into the case's run copy as `fixture-files/` and writes `scaffold.sh`, which
+copies it into the empty working directory before the session starts. Committing either, naming
 `scaffold.sh` without a `FIXTURE`, a `FIXTURE` without that line, or an unknown fixture stops the
-run. `context.add_dirs` does not do this: it only
-grants read access at an absolute host path the session is never told. No symbolic links anywhere
+run. `context.add_dirs` does not do this: it only grants read access at an absolute host path the
+session is never told. No symbolic links anywhere
 under `evals/`: one breaks the loading of other cases.
 
 The fixtures, built by `tools/eval_fixtures.py` from the templates of the same export that is
@@ -230,15 +230,22 @@ installed:
 | Name | What it is |
 | --- | --- |
 | `home-with-book` | a researcher's home with two open questions and one outlined book |
+| `home-with-clipping` | a home with two open questions and one markdown clipping, a tool's README |
 | `home-with-image-pdf` | a home whose only book has no text layer |
 | `home-with-notes` | a home with two notes, one superseding the other, and an index linking both |
 | `researcher-existing` | a folder that already holds a filled researcher's home, `Ada/` |
 | `strategy-blueprint-filled` | a ready strategy whose Experiment 1 blueprint is already written |
 | `strategy-empty-universe` | a strategy with claims, but a seed that holds only its header |
 | `strategy-no-claims` | a strategy as the template ships it, one paper in `Bibliotheca/Papers` |
+| `strategy-no-claims-with-home` | `strategy-no-claims` with Ada's filled home in `Ada/` inside it |
 | `strategy-non-empty-target` | a folder where the strategy is asked for, already holding one file |
 | `strategy-ready` | claims, a seed with rows and a note in `Bibliotheca`: ready for a blueprint |
 | `strategy-with-bitacora` | a strategy whose `Paper_Trading/BITACORA.md` the owner has edited |
+| `strategy-with-home` | `strategy-ready` with Ada's filled home in `Ada/` inside it |
+
+The strategy fixtures without a home test the no-home fallback on purpose — a strategy-side
+command run with no home in the session works from the strategy alone and says so — and the ones
+with a home test the invited case, where the prompt names the home's path, `./Ada`.
 
 ## Replayed turns
 

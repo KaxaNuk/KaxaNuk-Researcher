@@ -31,7 +31,8 @@ there are that many — the year, and the title's first words, joined by undersc
 own capitals: `Ilmanen_2011_Expected_Returns`, `DeMiguel_Garlappi_Uppal_2009_Optimal_Versus_Naive`.
 `NN` is the chapter's number in the book's outline, two digits, so the folder sorts like the book;
 `00` is front matter. A chapter file is named by the chapter's own title, the same way:
-`03_The_Equity_Premium.md`.
+`03_The_Equity_Premium.md`; a long chapter title may be shortened to its first distinctive words,
+to keep the path short.
 
 At home, a book folder is the only kind of subfolder a domain has, and its `INDEX.md` the only
 per-folder index. A clipping or a transcript — `Sources/Clippings/` at home, `Bibliotheca/Notes/`
@@ -91,7 +92,7 @@ one or two lines, in their words.
 
 ## What it changes
 
-- Three to seven bullets on what this chapter changes for the owner's investing, measured against
+- Three to seven bullets on what this chapter changes for the owner's question, measured against
   the question it was read for.
 - One line on what it does not settle.
 ```
@@ -124,6 +125,12 @@ section 4 only* is honest and allowed. The paper's own sections become the claim
 long paper may have many; a short one may have two. `## Why it is here` and `## What it changes`
 stay.
 
+A tool's or a project's documentation — a README, an `AGENTS.md`, API docs — is a paper too, with
+these conventions: the author is the organisation, the year is the release read, `citation` names
+the version and the commit or date read, `source` is written only when the link has been checked
+and is `none` otherwise, a claim about the tool's behaviour carries its version inline, and the
+note is filed under the domain the tool belongs to.
+
 ## A book's `INDEX.md`
 
 ```markdown
@@ -154,10 +161,11 @@ One to three lines, written after the chapters read; revised as more are.
 Status vocabulary, so it means the same in every book: **read** — a note exists; **skimmed** — the
 extract was read, no note, one line in the Note column says what the chapter holds and why it was
 passed over; **skipped** — not read, by the owner's choice, title and pages only; **to come** —
-chosen but left for a later run. In a strategy the Question column holds the claim — *C2*. `read`
-in the frontmatter names the latest run that touched the book. The Pages column holds PDF pages, as
-the extract's markers do; when the book's printed numbers differ, one line above the table says by
-how much.
+chosen but left for a later run. In a strategy the Question column holds the claim — *C2* — and
+may be headed *Claim*; an optional *Book* column after *#* holds the printed chapter number when it
+differs from the outline position. `read` in the frontmatter names the latest run that touched the
+book. The Pages column holds PDF pages, as the extract's markers do; when the book's printed
+numbers differ, one line above the table says by how much.
 
 ## What the indexes show
 
@@ -218,7 +226,7 @@ strategy's synthesis.
 type: concept
 updated: 2026-09-11
 sources:
-  - Paleologo_2021_Advanced_Portfolio_Management/06_Use_Effective_Heuristics_for_Alpha_Sizing.md
+  - Paleologo_2021_Advanced_Portfolio_Management/10_Use_Effective_Heuristics_for_Alpha_Sizing.md
 tags: [position-sizing]
 ---
 ```
@@ -231,7 +239,7 @@ One paragraph: what the idea is, in the sources' own terms, as the library holds
 ## What the sources say
 
 - One claim in one or two lines, then where it comes from — the chapter note and the page
-  ([Paleologo 2021, ch. 6, p. 93](Paleologo_2021_Advanced_Portfolio_Management/06_Use_Effective_Heuristics_for_Alpha_Sizing.md)).
+  ([Paleologo 2021, ch. 6, p. 93](Paleologo_2021_Advanced_Portfolio_Management/10_Use_Effective_Heuristics_for_Alpha_Sizing.md)).
 - The next claim, from the same source or another, the same way.
 
 > [!WARNING]
@@ -257,4 +265,5 @@ A `query` whose answer drew on three or more notes may be kept, on the owner's g
 page in the domain folder: `type: synthesis`, `updated`, `sources` and `tags` in the frontmatter;
 the question as its title; the answer as its body, every claim linked to the note or the concept
 page it rests on; `## Open` at the end. A synthesis cites notes and concept pages; a note never
-cites a synthesis. In a strategy the synthesis is `OBJECTIVE.md`, and the owner writes it.
+cites a synthesis. In a strategy the synthesis is `OBJECTIVE.md`, which `objective` drafts and the
+owner commits.

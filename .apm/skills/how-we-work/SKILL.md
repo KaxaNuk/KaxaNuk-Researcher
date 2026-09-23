@@ -2,50 +2,46 @@
 name: how-we-work
 description: >
   Load this skill whenever work in a KaxaNuk repository is about to be committed, branched, merged,
-  versioned or released. Use it when the user asks how to name a branch, whether to open an issue
-  first, what a pull request must contain, how to write a changelog entry, which version number a
-  change takes, or how to publish a release. It covers the issue-before-branch rule, the
-  `issues/<number>` branch convention, the pull-request checklist, the changelog format and
-  Semantic Versioning as KaxaNuk applies it. It does NOT cover the research process itself (use
-  `experiment-lifecycle`) or Python style (the `python-bloom-code`
-  and `python-pep8` instructions).
+  versioned or released. Use it when the user asks where work lands, how to name a branch, what to
+  check before a commit, how to write a changelog entry, which version number a change takes, or
+  how to publish a release. It covers where work lands (on `main`; an issue, a branch and a pull
+  request only when a review is wanted), the `issues/<number>` convention for a branch, the
+  checklist before a commit, the changelog format and Semantic Versioning as KaxaNuk applies it.
+  It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style (the
+  `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.2.3
+  version: 0.3.0
 ---
 
 # How we work — issues, branches, changelogs, versions
 
 The same procedure in every KaxaNuk repository, so nobody has to explain it before sharing a tool.
-Fewer meetings, more pull requests: a change proposed as a PR with its reasoning attached is
-reviewable at any hour; a change proposed in a call is not.
+Fewer meetings, more commits with their reasoning attached: a change that carries its changelog
+entry is reviewable at any hour; a change proposed in a call is not.
 
-## 1. The issue exists before the branch
+## 1. Work lands on `main`
 
-An idea goes on the repository's **GitHub Project** first. The issue is where the *why* lives; the
-branch is only where the *what* happens. A branch with no issue is work whose reasoning cannot be
-reviewed.
+Work is committed on `main`: small commits whose messages say what moved and why, each
+change-set with its `CHANGELOG.md` entry and its version bump. An issue, a branch and a pull
+request are tools for a change you want a second pair of eyes on, or for two lines of work that
+must not mix — never a gate. Nobody opens an issue to fix a sentence, and a change that carries
+its changelog entry has its reasoning with it.
 
-```
-idea  ->  issue on the Project board  ->  issues/<number> cut from main  ->  PR into main
-```
+When you do want them:
 
 1. **Open the issue.** State the question or the problem, not the solution.
 2. **Cut the branch** from `main`: `git switch -c issues/<number> main`. Use `issues/27-B` and
    `issues/27-C` when one issue needs a second attempt or splits into parallel lines of work — same
    issue, same discussion, separate history.
 3. **Work**, committing against the issue. Small commits with messages that say what moved and why.
-4. **Open the PR into `main`.** `main` is not where you work; it is where work arrives.
+4. **Open the pull request into `main`**, and delete the branch once it is merged or abandoned:
+   `main` is the only branch that stays.
 
-Long-lived branches other than `main` exist only when a repository says so in its `AGENTS.md` or
-`README.md` — a product may keep a `dev` branch that is deployed. Never merge into such a branch by
-accident: read the repository's own rule first.
+Long-lived branches other than `main` exist only when a repository says so in its `AGENTS.md`
+or `README.md` — a product may keep a `dev` branch that is deployed. Never merge into such a
+branch by accident: read the repository's own rule first.
 
-A repository's `AGENTS.md` may also make the issue and its branch a recommendation rather than a
-gate, as a strategy made from the KaxaNuk Strategy Template does. There the repository's rule wins:
-suggest the issue and the branch, never refuse the work without them; the `CHANGELOG.md` entry
-still goes with every change-set.
-
-## 2. Before any pull request
+## 2. Before any commit to `main`
 
 - **The linter passes.** For Python, `uvx ruff check .`, notebooks included; the repository's own
   configuration decides the rules.
@@ -55,8 +51,8 @@ still goes with every change-set.
   entry, the change-set is not finished.
 - **No secrets, no binaries.** Nothing from a `.env` file, no keys in a notebook output or a log
   line, no charts, workbooks or PDFs unless the repository explicitly keeps them.
-- **If a published number or a public interface moved, the PR says which**, and the documents that
-  cite it changed in the same PR.
+- **If a published number or a public interface moved, the commit message says which** — the pull
+  request too, when there is one — and the documents that cite it changed in the same change-set.
 
 ## 3. The changelog
 
@@ -105,7 +101,7 @@ strategy that reaches paper trading with its results reproduced from a clean clo
 1. Bump the version where the repository keeps it — `pyproject.toml`, `apm.yml`, or both — in the
    same commit as the changelog entry, and run `uv lock` where the repository commits a `uv.lock`,
    so the lock records the new version too.
-2. Tag on `main` after the merge, and push the tag:
+2. Tag on `main` once the version's commit is there, and push the tag:
 
    ```bash
    git tag -a vX.Y.Z -m "X.Y.Z"
@@ -115,10 +111,10 @@ strategy that reaches paper trading with its results reproduced from a clean clo
    One tag per release, `v` and the version the repository declares at its root: a strategy tags
    the version its `apm.yml` and `pyproject.toml` share, and the KaxaNuk Researcher tags its
    package's, while its template, example and home keep their own numbers in their folders.
-3. **Tag the commit where the version became the state of `main`**, which is the merge, not the
-   commit on the branch that wrote the bump. A version bump authored early on a long branch names
-   a tree that never existed on `main`, and a tag is the one thing that cannot be corrected in
-   place once somebody has pinned to it.
+3. **Tag the commit where the version became the state of `main`** — when a branch was used, the
+   merge, not the commit on the branch that wrote the bump. A version bump authored early on a long
+   branch names a tree that never existed on `main`, and a tag is the one thing that cannot be
+   corrected in place once somebody has pinned to it.
 4. For a package published to an index, the release job builds from the tag, never from a working
    copy.
 

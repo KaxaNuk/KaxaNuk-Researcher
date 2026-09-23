@@ -38,10 +38,10 @@ Three rules from `SETUP.md` apply from the first command:
 
 ## How work reaches `main`
 
-| Branch | What it is | Cut from | Merges into |
-| --- | --- | --- | --- |
-| `main` | the accepted work: the strategy's finished work | — | — |
-| `issues/<number>` | one per issue on your repository's GitHub Project. Where all work happens | `main` | `main` |
+Work is committed on `main`, in small commits whose messages say what moved and why, each with its
+`CHANGELOG.md` entry. A branch and a pull request are for a change you want reviewed, or for two
+lines of work that must not mix — never a gate — and the branch is deleted once it is merged or
+abandoned: `main` is the only branch that stays.
 
 <!-- example: begin -->
 
@@ -51,9 +51,6 @@ one first commit. A strategy of your own starts with `init-strategy` and stays i
 repository.
 
 <!-- example: end -->
-
-Use `issues/27-B` and `issues/27-C` when one issue needs a second attempt or splits into parallel
-lines of work: same issue, same discussion, separate history.
 
 **The template and the example live in the
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package,
@@ -68,50 +65,38 @@ repository.
 
 **`init-strategy` copies the template only**, on purpose, and the template holds every file the
 process expects: the seed, `Universe/Investable_Universe.csv`, with only its header,
-`Bibliotheca/BIBLIOGRAPHY.md` and `LOG.md`, empty, and each driver, module, notebook and document as
-a description of what belongs in it, to be filled in. Nothing is brought across from the example.
-A strategy made from a template before 0.10.0 lacks the files inside the folders:
-`init-example <path>` brings one across, and what is between its example markers is then deleted.
-**The issue branches below are a recommendation**, there to keep project management simple, not a
-gate.
+`Bibliotheca/BIBLIOGRAPHY.md` with only its seeded leads and `LOG.md` empty, and each driver,
+module, notebook and document as a description of what belongs in it, to be filled in. Nothing is
+brought across from the example. A strategy made from a template before 0.10.0 lacks the files
+inside the folders: `init-example <path>` brings one across, and what is between its example
+markers is then deleted.
 
-### The issue exists before the branch
+### The blueprint is committed before the rule
 
-An idea goes on the **GitHub Project** first. The issue is where the *why* lives; the branch is only
-where the *what* happens. A branch with no issue is work whose reasoning cannot be reviewed, and in
-this repository the reasoning is the product.
+For an experiment, `BLUEPRINT_N.md` is committed in a commit of its own before the rule cell of
+`experiment_N.ipynb` holds code; for Experiment 1 only the `BRAINSTORMING_1.md` entry choosing the
+benchmark comes before it. The commit order is what shows the hypothesis was written before the
+answer, so the two never share a commit.
 
-```
-idea  ->  issue on the Project board  ->  issues/<number> cut from main  ->  PR into main
-```
-
-1. **Open the issue.** State the question, not the solution.
-2. **Cut the branch** — `git switch -c issues/<number> main`.
-3. **For an experiment, `BLUEPRINT_N.md` is the first commit on that branch**, before the rule; for
-   Experiment 1 only the `BRAINSTORMING_1.md` entry choosing the benchmark comes before it. The
-   branch makes it visible in the diff that the hypothesis was written before the answer.
-4. **Work**, committing against the issue.
-5. **PR into `main`**, once the pipeline has been re-run end to end from a wiped working copy.
-
-### Before any pull request
+### Before any commit to `main`
 
 - `uvx ruff check .` passes, notebooks included.
 - **Notebook outputs are stripped.** The committed notebook is the method; `FINDINGS_N.md` is the
   record.
 - The `CHANGELOG.md` entry is part of the change-set, not a follow-up. If you cannot write the
   entry, the change-set is not finished.
-- **If a published number moved, the PR says which** — and `FINDINGS_N.md` changed before
-  `RESULTS.md`, never the other way round.
-
-**`main` is not where you work.** It is where work arrives.
+- **A result is committed once the pipeline has re-run end to end from a wiped working copy.**
+- **If a published number moved, the commit message says which** — and `FINDINGS_N.md` changed
+  before `RESULTS.md`, never the other way round.
 
 ## Who writes each document, and when it changes
 
 | Document | Who writes it | Changes when |
 | --- | --- | --- |
-| `OBJECTIVE.md` | a person, first | almost never — a change here means a *different* strategy |
+| `OBJECTIVE.md` | a person, first | the idea and the claims' wording almost never — a change is a *different* strategy; each claim's evidence and status move as notes arrive (B) and as findings report (H) |
 | the notes in `Bibliotheca/` | a person, or a researcher made with `init-researcher` from the [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher), with its `read` skill — one per paper, one per chapter of a book somebody chose, after a plan and a go | a source is read. A later note corrects an earlier one with a callout above the claim, never by smoothing it away |
 | `Bibliotheca/BIBLIOGRAPHY.md` | a person adds the leads; whoever writes a note adds its row | a source is added, or read |
+| `Bibliotheca/LOG.md` | whoever reads a source or audits the folder appends it; the researcher's `read` and `audit` do so themselves | append only. Past entries are never edited |
 | `RESULTS.md` | the AI, from the findings files | a `FINDINGS_N.md` changes |
 | `CHANGELOG.md` | whoever lands a change-set | any change-set lands |
 | `AGENTS.md` | anyone | the process changes |
@@ -190,10 +175,15 @@ Two standing exceptions, and one that has to be asked for:
 - **Never print a value from `Config/.env`** — not into a commit, a notebook output, a log line, or
   a command that gets recorded. An exposed key is rotated, not edited out.
 - **Never use the section symbol** in documents here. Write "section" or name the heading.
+
+<!-- example: begin -->
+
 - **In the example, mark the worked strategy's content as you add it.**
   `# --- example: begin ---` in Python, an HTML comment of the same words in Markdown, and
   `# EXAMPLE-ONLY CELL` on a whole notebook cell. The KaxaNuk Researcher's sync tool strips what
   they enclose to generate the template's files, so a line left unmarked reaches every new strategy.
+
+<!-- example: end -->
 
 ---
 

@@ -5,11 +5,11 @@ template's files -- or check that they match.
 The worked example -- `examples/liquid-golden-cross/` -- is the source of truth for two sets of
 files.  The four experiment documents and the experiment notebook that `experiment-lifecycle` ships
 as copyable references: a skill that carried its own version of those files drifted from the
-template once already.  And every file inside the folders of `templates/strategy/` -- the drivers,
-the shared modules, the notebooks, Experiment 1's documents, the paper-trading files -- which a new
-strategy used to bring across from the example one by one and strip by hand.  Both sets are
-regenerated from the example rather than edited by hand, and `tools/check_repo.py` fails when they
-differ.
+template once already.  And every file inside the folders of `templates/strategy/` -- the
+`Bibliotheca/` index and log, the drivers, the shared modules, the notebooks, Experiment 1's
+documents, the paper-trading files -- which a new strategy used to bring across from the example
+one by one and strip by hand.  Both sets are regenerated from the example rather than edited by
+hand, and `tools/check_repo.py` fails when they differ.
 
 Run from the repository root after changing the example:
 
@@ -45,6 +45,8 @@ TEMPLATE_DIRECTORY = "templates/strategy"
 # its README's *What is in here* table names.  Each lands at the same path under the template with
 # the worked strategy's own lines removed, so what is outside the markers is the template's.
 TEMPLATE_FILES = (
+    "Bibliotheca/BIBLIOGRAPHY.md",
+    "Bibliotheca/LOG.md",
     "Data/Curator/custom_calculations.py",
     "Data/Refinery/custom_calculations.py",
     "Data/analyzer.ipynb",

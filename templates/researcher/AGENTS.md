@@ -11,7 +11,7 @@ The home is the folder that holds `RESEARCHER.md`. Every path in this file and i
 the session happened to open. There are two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
-  path: `blueprint 1 D:\Research\Golden-Flow`.
+  path: `blueprint 1 D:\Research\fcf-yield-quality`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
   researcher's folder to the session — `claude --add-dir D:\Research\Ada`, `/add-dir` once
   inside, or the desktop app's add-folder button. The skills and the commands are there already —
@@ -50,17 +50,19 @@ a skill its rules.
 | `Sources/` | what the owner reads — PDFs, papers, decks, clippings, transcripts | **read only.** Never move, rename or delete a source |
 | `Extracts/` | the text the read skill's script pulls out of the PDFs in `Sources/` — one file per chapter, a marker before every page | **write, through the `read` skill's `scripts/extract.py` only.** A cache: regenerable, gitignored, never cited, never edited by hand |
 | `Knowledge/` | what the researcher read — one note per paper, one folder per book with a note per chapter read — and its wiki: one concept page per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
-| `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index` |
-| `Knowledge/LOG.md` | append-only record of every read, audit and refresh | **append one entry** at the end of those runs; never edit past entries |
+| `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
+| `Knowledge/LOG.md` | append-only record of every read, audit and refresh, and of every synthesis page kept | **append one entry** at the end of those runs, and from `query` when a page is kept; never edit past entries |
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first |
 | `Projects/` | what the owner asked for at home: lessons from `teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from
 the interview; `read`, at home, may add a question under *What you are reading for* — in the
 owner's words, after their go — and nothing else writes it. The owner edits it by hand whenever they
-like. The same holds for `Philosophy/HOW-I-INVEST.md`, which the template ships as headings to
-fill: a heading still holding its angle-bracketed prompt says nothing yet, and the researcher never
-cites a prompt as the owner's view.
+like: to teach the researcher how to behave, they add a line by hand under *How it speaks* or
+*Non-negotiables*, which every skill and the agent read first. The same holds for
+`Philosophy/HOW-I-INVEST.md`, which the template ships as headings to fill: a heading still holding
+its angle-bracketed prompt says nothing yet, and the researcher never cites a prompt as the owner's
+view.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Projects/`. Notes are born from sources,
 never from `Philosophy/` alone; `Philosophy/` is cited from notes, never compiled into them. That
@@ -103,7 +105,7 @@ researcher writes from it.
   asked it; absent if they gave none, never invented. The body is the source's claims as headings,
   each with the implication for that question as a blockquote — the only part that is the
   researcher's. The last is `## What it changes` — three to seven bullets on what this source
-  changes for the owner's investing, measured against that question, and one line on what it does
+  changes for the owner's question, measured against that question, and one line on what it does
   not settle.
 - **Contradictions are recorded, never smoothed.** When a new source conflicts with or supersedes
   a claim in an existing note, keep the original claim and put a `> [!WARNING]` callout above it
@@ -114,7 +116,7 @@ researcher writes from it.
 ## The log
 
 `Knowledge/LOG.md` is the library's memory of what was done. One entry at the end of every completed
-`read`, `audit` and `refresh-index`:
+`read`, `audit` and `refresh-index`, and one from `query` when the owner keeps a synthesis page:
 
 ```
 ## [YYYY-MM-DD] read | one line on what came in
@@ -139,22 +141,25 @@ eyes through the rest of the construction, in the order *The order of work* belo
 **Where things are, in a strategy.** The skills read their paths through this table whenever the
 session is open in a strategy — a repository with a `Bibliotheca/` — or the owner names one by path
 from home. Home's `Knowledge/` and `Philosophy/` are context there: read, named in prose, never
-linked, never written.
+linked, never written. The commands assume the KaxaNuk Strategy Template's paths; a strategy made
+from another template keeps or maps them in its own `AGENTS.md`.
 
 | At home | In the strategy |
 | --- | --- |
 | `Sources/Books/`, `Sources/Papers/`, `Sources/Clippings/` | `Bibliotheca/Books/`, `Bibliotheca/Papers/`, `Bibliotheca/Notes/` — the template's name for the clippings — the PDFs beside the notes, and the clippings; `BIBLIOGRAPHY.md` indexes them and the leads |
-| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` and `LOG.md` empty, since 0.7.15; a strategy created before that has a `.gitkeep`, and `read` gives the command that copies the two files from the template inside the KaxaNuk Researcher package (`scaffold.py strategy . --only`), rather than writing them itself |
+| `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads, and `LOG.md` empty, since 0.7.15; a strategy created before that has a `.gitkeep`, and `read` gives the command that copies the two files from the template inside the KaxaNuk Researcher package (`scaffold.py strategy . --only`), rather than writing them itself |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
-| `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `BRAINSTORMING_N.md`, the notes, `BIBLIOGRAPHY.md` |
+| `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md` |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, whatever the owner says they are reading for, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
   and the owner's go — a note into `Bibliotheca/Papers/` or `Books/` with its row in
   `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`,
-  an entry appended to `BRAINSTORMING_N.md`. The owner reviews the diff and commits; the commit is
-  the human act, and for a blueprint it is the branch's first commit, before the rule.
+  an entry appended to `BRAINSTORMING_N.md`, a line in `Bibliotheca/LOG.md` from `read` and
+  `audit`, and one dated entry appended to `JOURNAL_N.md` by `challenge`. The owner reviews the
+  diff and commits; the commit is the human act, and for a blueprint it is a commit of its own,
+  before the rule.
 - **Nothing flows back.** While it works on a strategy the researcher writes nothing at home — no
   note, no index line, no log entry, no extract — unless the owner asks for that write by name in
   chat. A strategy's source enters the home library only when the owner puts it in `Sources/` at
@@ -193,9 +198,9 @@ narrow, per claim, before the blueprint; broad, after it, for what the blueprint
 | B | **The reading**, for each claim | `Bibliotheca/`, then `OBJECTIVE.md` | `read`, one note per paper or chapter naming the claim it serves; then `objective` again, the evidence rewritten from the notes |
 | C | **The universe**, delisted names included | `Universe/Investable_Universe.csv` | contrast from the library — survivorship, point-in-time membership — never a number |
 | D | **The data** — curator, universe notebook, refinery, analyzer | `Data/` — the analyzer's measurements go straight into `RESULTS.md`, *Before any experiment* | contrast from the library — what the data can do to a signal — never a number |
-| E | **The blueprint**, after the benchmark is chosen and before the rule | `Experiments/Experiment_N/BLUEPRINT_N.md` | `blueprint`: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
+| E | **The blueprint**, after the benchmark is chosen and before the rule | `Experiments/Experiment_N/BLUEPRINT_N.md` | `brainstorm 1` for the benchmark entry, then `blueprint`: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
 | F | **The broad reading**, and brainstorming | `Bibliotheca/`, `BRAINSTORMING_N.md` | `read` for what the blueprint left open; `brainstorm` for what to try next |
-| G | **The cycle** — portfolio, backtest, attribution | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | `challenge`: each run checked against the blueprint's predictions and the notes; every number comes from the Lab's engines, never from here |
+| G | **The cycle** — portfolio, backtest, attribution | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | `challenge`: each run checked against the blueprint's predictions and the notes; every number comes from the engines the project names — in a KaxaNuk strategy the Lab's libraries — never from here |
 | H | **The results**, kept or rejected | `RESULTS.md`, compiled from `FINDINGS_N.md` | a rejected cycle is reported as loudly as a kept one: *What is closed* is what stops the next person repeating it |
 
 **Parts are not steps.** C, the universe, is step 2 of the process, and G, the cycle, is steps 4 to
@@ -224,8 +229,17 @@ follow, and the rules are the ones that keep the library honest:
   home from it.
 - **Nothing flows back unless the owner asks.** When they want the researcher to learn from a
   project, what is to be learned enters as a source — a paper, a document or a clipping put in
-  `Sources/` at home — and `read` files it into `Knowledge/` with its provenance. Never a note
-  written from memory of the project.
+  `Sources/` at home — and `read` files it into `Knowledge/` with its provenance. The researcher
+  names the project's files and gives the copy command; you run it, then `read`. `Sources/` stays
+  the owner's: the researcher never writes there. Never a note written from memory of the project.
+
+**Learning from a project, in practice.** The clipping is named `Org_Year_Project_File.md` — the
+organisation as the author, the year of the release read. A private repository is cited as
+"private repository; link not checked", never by a link the researcher could not open. The read
+is tied to a numbered question under *What you are reading for* in `RESEARCHER.md`, as every read
+is. The project's own skills and commands are installed or read there, never imitated at home.
+Clippings and the notes read from them are committed with the home, so a home that holds a private
+project's material stays a private repository.
 
 ## Plan first, then write
 
@@ -273,7 +287,9 @@ for the user** — `KaxaNuk/KaxaNuk-Researcher`, which carries every Investment 
 researcher's own — with `apm install -g`: written once for every home, never committed here,
 available in every folder the owner opens, and brought to their next version by `apm update -g`.
 **The agent is this home's own**, in `.apm/agents/`, because it is written from `RESEARCHER.md`,
-and `apm install --target <agent>` here deploys it.
+and `apm install --target <agent>` here deploys it. The home's own version in `apm.yml` is the
+owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to `CHANGELOG.md`, and
+`update` reads the *Brought to template* line there, never this field.
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
@@ -293,12 +309,13 @@ and `apm install --target <agent>` here deploys it.
   session. A copy that differs from its source is a stale install; `audit` reports it.
 - **A skill is written the way KaxaNuk's own APM packages write theirs** — frontmatter `name`,
   matching the folder, a folded `description` that says when to use it and what it does not
-  cover, and `metadata.version`; a body with *When to Use* and *Steps*. What a skill runs lives in
-  its own `scripts/`, and what it reads on demand in its own `references/`, and the skill names
-  them by its own directory. A command is one `.prompt.md` with `description` and its `input`
-  list, no `name` and no `metadata`: APM keeps only `description`, `input`, `allowed-tools`,
-  `model` and `argument-hint` for a command, and warns on install for each key it drops. The body
-  reads its inputs as `${input:name}`, and APM turns them into the arguments each harness takes.
+  cover, and `metadata.version`; a body that says when it applies, then numbered steps, as `read`
+  does. What a skill runs lives in its own `scripts/`, and what it reads on demand in its own
+  `references/`, and the skill names them by its own directory. A command is one `.prompt.md`
+  with `description` and its `input` list, no `name` and no `metadata`: APM keeps only
+  `description`, `input`, `allowed-tools`, `model` and `argument-hint` for a command, and warns on
+  install for each key it drops. The body reads its inputs as `${input:name}`, and APM turns them
+  into the arguments each harness takes.
 - **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
   says which on install, and a dropped key is a rule that is not enforced. Anything that must hold
   everywhere is written in the body or the description, not only in a key. A folded
@@ -329,8 +346,9 @@ and `apm install --target <agent>` here deploys it.
 - Don't invent a citation. Don't cite a source that has no note.
 - Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
   regenerated. A concept page cites notes, never a PDF, and is never built from memory.
-- Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the Lab's
-  libraries, and a number without an engine behind it is not quoted.
+- Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the engines
+  the project names, in a KaxaNuk strategy the Lab's libraries, and a number without an engine
+  behind it is not quoted.
 - Don't rewrite a note in generic voice; match the library's existing notes.
 - Don't write any file without the owner's go on the plan.
 - Never print a value from a `.env` file. Never use the section symbol; write "section".

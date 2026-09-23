@@ -128,11 +128,11 @@ question 7; and say why.
      *Brief, push back on evidence*; *Thorough, argue the other side*. Every voice challenges on
      evidence only, never on taste.
    - `Your rules` (`Tus reglas`) — the question states KaxaNuk's three, a line each: every number
-     about a portfolio comes from KaxaNuk's Lab libraries, never from me; a hypothesis is written
-     before its test, and every prediction cites a source; nothing trades from here. *Keep the
-     three*, *Keep them and add one*, *Change one*. On an add or a change, one line in chat, in
-     their words — *a mistake you have seen made, and never want me to let you repeat* is a good
-     place to start.
+     about a book comes from the engines the project names — in a KaxaNuk strategy the Lab's
+     libraries — never from me; a hypothesis is written before its test, and every prediction cites
+     a source; nothing trades from here. *Keep the three*, *Keep them and add one*, *Change one*.
+     On an add or a change, one line in chat, in their words — *a mistake you have seen made, and
+     never want me to let you repeat* is a good place to start.
 4. **How you see markets** — *tool, one call, three multi-select questions.* Say first, in one
    line, that no answer is right and picking several is expected: in the map's *Nothing is
    discarded*, every view keeps its job. Each option's label is the stance as the map's *Where a
@@ -214,12 +214,16 @@ now*, with KaxaNuk's three non-negotiables and *How it cites*.
   sure yet* throughout and no belief typed, the section is one line, *Not formed yet — I start from
   the works under Find first.*, and the template's closing sentence.
 - **Non-negotiables** — as they stand, when question 3 kept them; otherwise KaxaNuk's three, with
-  the rule question 3 added or changed, in their words.
+  the rule question 3 added or changed, in their words. The first of the three reads: *Every
+  number about a book comes from the engines the project names — in a KaxaNuk strategy the Lab's
+  libraries, the Backtest Engine for performance and Attribution Analysis for where it came from —
+  never from the researcher.*
 - **Tag policy** — loose: the researcher proposes tags as it reads, the owner prunes at audit. On
   a re-run, the policy the file already states is kept.
-- **The strategies it works on** — as the template ships it: one row, `| *none listed* | — | — |`,
-  and under it *I join a strategy when you invite me; a row is added only when you ask.* The first
-  real row replaces the placeholder. On a re-run, the rows already there are kept verbatim.
+- **The strategies and projects it works on** — as the template ships it: one row,
+  `| *none listed* | — | — |`, and under it *I join a strategy or a project when you invite me; a
+  row is added only when you ask.* The first real row replaces the placeholder. On a re-run, the
+  rows already there are kept verbatim.
 - **What you are reading for** — question 6's questions, numbered, each with its *feeds*, its
   *Would change my mind* and its *Find first*; *None yet* when there are none. Then the closing
   *Find first* line, before *Out of scope for now*.
@@ -234,14 +238,21 @@ holds. A heading they said nothing for keeps its prompt. A file they have alread
 to, never restructured: what is new goes at its end, under the template's headings for those lines
 only.
 
+**The README's opening paragraph.** The home's `README.md` opens with the template's paragraph
+and asks to be replaced with one about this researcher once it is named; nothing offered one until
+now. On the same go, propose that paragraph — the researcher's name, the owner, what it reads for
+— in the owner's language, in place of the first paragraph only. Everything under the first `---`
+line stays as it is. On a re-run, a paragraph already written by the owner is kept verbatim.
+
 Show in chat the filled `RESEARCHER.md`, section by section; the agent file and the `apm.yml`
-lines of *Step 4*; and what `Philosophy/HOW-I-INVEST.md` would take, or *nothing typed, left as it
-is* — marking which answers were typed and which were picked from a proposal. Then ask for the go
-through the question tool, header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and
-write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go. On *Change something*, offer
-the changes the preview admits as options. Then write `RESEARCHER.md`, the agent file, the
-`apm.yml` lines and, when it takes anything, `Philosophy/HOW-I-INVEST.md`, and remove the
-instruction blockquote at the top of `RESEARCHER.md`.
+lines of *Step 4*; the README's opening paragraph; and what `Philosophy/HOW-I-INVEST.md` would
+take, or *nothing typed, left as it is* — marking which answers were typed and which were picked
+from a proposal. Then ask for the go through the question tool, header `Go?` (`¿Escribo?`) —
+*Go*, *Change something*, *Stop* — and write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes*
+is the go. On *Change something*, offer the changes the preview admits as options. Then write
+`RESEARCHER.md`, the agent file, the `apm.yml` lines, the README's opening paragraph and, when it
+takes anything, `Philosophy/HOW-I-INVEST.md`, and remove the instruction blockquote at the top of
+`RESEARCHER.md`.
 
 ## Step 4: The agent
 
@@ -279,7 +290,7 @@ for one. When an answer needs a write, name what the owner should run — `read`
 into the library, `refresh-index` to rebuild the index — and stop there.
 
 **Never invent** a citation, a URL or a page number, and never quote a performance number that did
-not come from the Lab's engines.
+not come from the engines the project names.
 ```
 
 **Keep the description to one line, and put no colon in it.** A colon followed by a space makes the
@@ -294,13 +305,16 @@ the owner chose.
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
 the package's name, which this home is not. On the same go, set its `name:` to `<slug>`, its
 `description:` to one line — *<Name>, <owner>'s research companion* and what it is for — with no
-colon in it, for the reason above, and its `author:` to the owner. Nothing else in it changes.
+colon in it, for the reason above, its `author:` to the owner, and its `version:` to `0.1.0`. The
+home's own version is the owner's: `interview` sets it to 0.1.0, the owner bumps it with each
+entry they add to `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never
+this field. Nothing else in it changes.
 
 ## Step 5: Install it
 
 The agent is a file until APM deploys it. Tell the owner to run, in this folder — the target being
-the assistant they use, `claude`, `codex`, `cursor`, `copilot` or `opencode`; the skills themselves
-are already installed for the user:
+the assistant they use, `claude`, `codex`, `cursor` or `copilot`; the skills themselves are already
+installed for the user:
 
 ```bash
 apm install --target <the owner's agent>
@@ -315,7 +329,8 @@ primitive at all. On those three the researcher is its skills and commands, exac
 
 ## Step 6: Core knowledge
 
-Beyond `apm install` here, which deploys this home's own agent, there is nothing to install:
+Beyond `apm install --target <agent>` here, which deploys this home's own agent and any skill or
+command of the home's own in `.apm/skills/` or `.apm/prompts/`, there is nothing to install:
 `apm.yml` declares no dependency. Every KaxaNuk skill and command — the researcher's, the
 process's and each Lab library's — comes in one package, installed once for the user with
 `apm install -g`, and every folder has them: this home, and every strategy, which installs nothing.
@@ -323,12 +338,17 @@ If the owner asks about KaxaNuk's core knowledge, say where it lives: `KaxaNuk/K
 whose `experiment-lifecycle` skill carries the process and whose skills for each Lab library carry
 the modules. The library at home is built the ordinary way: a source into `Sources/`, then `read`.
 
+The home's `LICENSE` names KaxaNuk as the copyright holder, as the template ships it. The home is
+the owner's: they put themselves there, or choose another licence, keeping the obsidian-vault-kit
+notice at its end.
+
 ## Step 7: Hand over
 
 One sentence on who the researcher is now, in the voice and the language the owner chose, then
 **what happens next as a numbered list**, each line one action and the command that does it:
 
-1. `apm install --target <the owner's agent>`, here, then a new session — the agent by name.
+1. Review the diff and commit, then `apm install --target <the owner's agent>` here, then a new
+   session — the agent by name.
 2. `read` on each *Find first* work already in `Sources/`; the others found by their titles and
    authors, put in `Sources/Papers/` or `Sources/Books/`, then `read`. With none picked, any
    source dropped into `Sources/` and `read`.
@@ -338,5 +358,8 @@ One sentence on who the researcher is now, in the voice and the language the own
    `--add-dir`; `objective` is where its claims begin.
 5. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
    comes next.
+6. Anything else you work on: invite me with `--add-dir`; to teach me a tool, put its documentation
+   in `Sources/Clippings/` and run `read` — *Growing your researcher* in this folder's `README.md`
+   says the four moves.
 
 The rules live in `AGENTS.md`. Nothing more: the list is the whole hand-over.

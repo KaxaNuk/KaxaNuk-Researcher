@@ -19,7 +19,7 @@ exactly the gated tools (Bash, Write, Edit, ...) its cases list, and nothing whe
 `allowed_tools` is a one-line list in `prompt.md`'s frontmatter; anything else stops the run.
 
 A case folder that holds a one-line `FIXTURE` file naming a fixture gets a real copy of it in
-`fixture/` and a `scaffold.sh` that copies it into the empty workspace; its `case.yaml` names
+`fixture-files/` and a `scaffold.sh` that copies it into the empty workspace; its `case.yaml` names
 `scaffold_script: scaffold.sh` itself.  A case whose case.yaml names a `history_file` it does not
 hold stops the run, naming the capture step.  Then `claude plugin eval` runs on the plugin folder.
 Sessions run on Opus 5.5 and the quality judge on Fable 5.1; the no-plugin comparison arm is off.

@@ -13,7 +13,7 @@ description: >
   `data-analyzer-runs`), sizing a book (use `portfolio-construction-runs`), or the research
   process around the stage (use `experiment-lifecycle`).
 metadata:
-  version: 0.1.5
+  version: 0.1.6
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -25,10 +25,10 @@ testing on the winners that happened to survive.
 **Eligibility is decided here and nowhere else.** Everything downstream reads the security master
 and does not second-guess it.
 
-The stage comes **after the objective**: the claims in `OBJECTIVE.md` decide what the universe has to
-contain, so the seed is chosen once they exist. And it sits **between** the two Data commands, where
-the order is not cosmetic either: the curator downloads from the seed, this notebook profiles what the
-curator wrote, and the refinery joins the master this notebook produces.
+The stage comes **after the objective**: the claims in `OBJECTIVE.md` decide what the universe has
+to contain, so the seed is chosen once they exist. And it sits **between** the two Data commands,
+where the order is not cosmetic either: the curator downloads from the seed, this notebook profiles
+what the curator wrote, and the refinery joins the master this notebook produces.
 
 ```
 Universe/Investable_Universe.csv   the seed, committed  ->  edit this to change the universe
@@ -42,9 +42,10 @@ Universe/Investable_Universe.csv   the seed, committed  ->  edit this to change 
 
 **The template ships the seed, header-only, and the notebook as its markdown cells**, each section
 a description of what its code must do. In a strategy made from a template before 0.10.0
-`Universe/universe.ipynb` is missing: ask the owner to run `init-example Universe/universe.ipynb` — by its own path, because
-`init-example Universe` is refused over the seed — and say that its code cells, each starting
-`# EXAMPLE-ONLY CELL`, are `liquid-golden-cross`'s. Never write the notebook from memory.
+`Universe/universe.ipynb` is missing: ask the owner to run `init-example Universe/universe.ipynb` —
+by its own path, because `init-example Universe` is refused over the seed — and say that its code
+cells, each starting `# EXAMPLE-ONLY CELL`, are `liquid-golden-cross`'s. Never write the notebook
+from memory.
 
 ## 1. The seed is the whole decision
 
@@ -67,7 +68,7 @@ unverifiable.
 
 **Changing the seed changes every published number.** Adding or removing a security changes the
 cross-section, so every rank, every breadth reading and every book struck from them moves. Treat it
-as a change-set of its own: its own branch, its own changelog entry, and the pipeline re-run before
+as a change-set of its own: its own commit, its own changelog entry, and the pipeline re-run before
 any figure from it is quoted beside an older one.
 
 ### What else the seed is worth carrying
@@ -184,8 +185,9 @@ different universe from the one the row count suggests.
   seed.
 - **Select on a `current_*` column**, or present a classification-bucketed number without saying it
   is a today-snapshot.
-- **Drop a bad identifier silently.** It goes in the register, by name, with the check that caught it.
-- **Change the seed without a change-set.** New branch, changelog entry, and the pipeline re-run
+- **Drop a bad identifier silently.** It goes in the register, by name, with the check that caught
+  it.
+- **Change the seed without a change-set.** Its own commit, changelog entry, and the pipeline re-run
   before a figure from the new universe stands beside one from the old.
 - **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come
   from the worked example, `liquid-golden-cross`, only.

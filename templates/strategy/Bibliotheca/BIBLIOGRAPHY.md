@@ -166,7 +166,7 @@ it does not.
 | --- | --- |
 | Brown, Goetzmann, Ibbotson & Ross (1992) | the point-in-time universe retains delisted names. *No note yet.* |
 | Shumway (1997) | **a gap, not a control.** The final day of a delisted name is unaudited. *No note yet.* |
-| Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | any rule that was searched for rather than stated first — and the finding that the search is run by the whole investment community, not by one researcher. *No note yet.* |
+| Sullivan, Timmermann & White (1999) — *Data-Snooping, Technical Trading Rule Performance, and the Bootstrap* | any rule that was searched for rather than stated first — and the finding that the search is run by the whole investment community, not by one researcher. Its note, once it is read for a claim, is linked from its Part 1 row |
 | Harvey, Liu & Zhu (2016) — *… and the Cross-Section of Expected Returns* | the information-coefficient table screens, it does not prove; publish the trial count. *No note yet.* |
 | Bailey & López de Prado (2014) — *The Deflated Sharpe Ratio* | the best of N variants is the maximum of N draws. *No note yet.* |
 | Bailey, Borwein, López de Prado & Zhu (2014) — *Pseudo-Mathematics and Financial Charlatanism* | the argument for step 7 existing at all, and for freezing parameters at graduation. *No note yet.* |

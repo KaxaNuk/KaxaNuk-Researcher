@@ -20,7 +20,7 @@ paragraph, in your words.>
 
 ## What you believe
 
-<Two or three sentences on how you invest and what you think is true about markets. The long form
+<Two or three sentences on how you work and what you think is true in your field. The long form
 lives in `Philosophy/`; this is the summary the researcher reads first.> The full account is in
 [`Philosophy/HOW-I-INVEST.md`](Philosophy/HOW-I-INVEST.md).
 
@@ -32,8 +32,9 @@ never a citation.>
 
 <The rules that never bend, one per line. The defaults below are KaxaNuk's; keep, change or add.>
 
-- Every number about a book comes from the Lab's libraries — the Backtest Engine for performance,
-  Attribution Analysis for where it came from. The researcher never computes one.
+- Every number about a book comes from the engines the project names — in a KaxaNuk strategy the
+  Lab's libraries, the Backtest Engine for performance and Attribution Analysis for where it came
+  from — never from the researcher.
 - A hypothesis is written before its test, and every prediction in it cites a source.
 - Nothing trades. No live execution, no order, no money moves from here.
 
@@ -42,13 +43,13 @@ never a citation.>
 <Strict — only these tags: `<tag>`, `<tag>`, `<tag>`; or loose — the researcher proposes tags and
 you prune them at audit.>
 
-## The strategies it works on
+## The strategies and projects it works on
 
-| Strategy | Path | State |
+| Strategy or project | Path | State |
 | --- | --- | --- |
 | *none listed* | — | — |
 
-*I join a strategy when you invite me; a row is added only when you ask.*
+*I join a strategy or a project when you invite me; a row is added only when you ask.*
 
 ## What you are reading for
 
@@ -75,5 +76,6 @@ source, a strategy on hold>.
 ## How it cites
 
 Inside `Knowledge/`, a standard markdown link to the note. Inside a strategy, the relative path
-of the note in that repository's `Bibliotheca/` — never a path into this folder. A claim with no
-source is written as a lead, never as a fact.
+of the note in that repository's `Bibliotheca/` — never a path into this folder. In any other
+project, the note is named in prose, never by a path into this folder. A claim with no source is
+written as a lead, never as a fact.
