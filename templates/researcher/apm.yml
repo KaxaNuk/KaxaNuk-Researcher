@@ -1,5 +1,5 @@
 name: kaxanuk-researcher
-version: 0.7.2
+version: 0.7.3
 description: A KaxaNuk researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read and drafts the hypothesis of every strategy you build
 author: KaxaNuk
 license: MIT
@@ -8,7 +8,7 @@ license: MIT
 # `apm install -g KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill itself,
 # and `apm update -g` brings new versions. Every folder — this home, and every strategy —
 # then has them, and a strategy installs nothing. `apm install` here deploys only this home's own
-# agent, from `.apm/agents/`, which `researcher-init` writes.
+# agent, from `.apm/agents/`, which `interview` writes.
 dependencies:
   apm: []
   mcp: []

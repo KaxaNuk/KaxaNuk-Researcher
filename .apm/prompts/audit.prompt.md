@@ -48,7 +48,7 @@ the owner approves separately.
   session.
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
-  rather than reading it. The fix for the first is `researcher-init`, which writes it.
+  rather than reading it. The fix for the first is `interview`, which writes it.
 
 ## Step 2: In a strategy, also
 

@@ -5,6 +5,16 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 This is the researcher *skeleton*; a person's own library is their clone and is not versioned here.
 
+## 0.7.3 (2026-09-23)
+
+**PATCH** — the interview is the `interview` command. `init-researcher <name>` makes the home,
+`interview` makes the researcher yours; the two are no longer the same two words in either order.
+The example home in `AGENTS.md` is `D:\Research\Ada`.
+
+**What to do differently:** run `interview` where you ran `researcher-init`, and `interview force`
+to start over. `apm update -g` brings it; `update` brings the wording in `README.md`,
+`RESEARCHER.md`'s blockquote, `AGENTS.md` and `Philosophy/HOW-I-INVEST.md` across.
+
 ## 0.7.2 (2026-09-23)
 
 **PATCH** — `blueprint`, `brainstorm` and `challenge` take the experiment number first.
