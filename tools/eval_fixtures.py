@@ -296,16 +296,16 @@ def _build_researcher_existing(
     package_root: pathlib.Path,
 ) -> None:
     """
-    A folder that already holds a filled researcher's home, `Luna/`.
+    A folder that already holds a filled researcher's home, `Ada/`.
     """
-    home = folder / 'Luna'
+    home = folder / 'Ada'
     _scaffold(
         'researcher',
         home,
         package_root,
     )
     researcher = home / 'RESEARCHER.md'
-    filled = f'# Luna\n\nLuna is the researcher of this home.\n{QUESTIONS_SECTION}'
+    filled = f'# Ada\n\nAda is the researcher of this home.\n{QUESTIONS_SECTION}'
     researcher.write_text(
         filled,
         encoding='utf-8',

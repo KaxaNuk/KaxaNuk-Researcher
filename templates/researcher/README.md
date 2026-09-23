@@ -4,13 +4,13 @@ This folder is a researcher's home: its library of what you have read, your own 
 rules it works by. It was made by `init-researcher` from the KaxaNuk Researcher, in
 [KaxaNuk-Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher), which says what the
 researcher is and how to install it. Replace this paragraph with one about your researcher once
-`researcher-init` has named it.
+`interview` has named it.
 
 ---
 
 ## Working with it
 
-**First, once.** Open your assistant in this folder, in a new session, and run `researcher-init`: a
+**First, once.** Open your assistant in this folder, in a new session, and run `interview`: a
 short interview that writes `RESEARCHER.md` and the agent file that makes your researcher callable
 by name. Then deploy the agent for the assistant you use — `codex`, `cursor` or `copilot` in place
 of `claude` — and open a new session:
@@ -48,7 +48,7 @@ thing to do next.
 ## What is in here
 
 ```
-RESEARCHER.md    who the researcher is, and what you are reading for — written by researcher-init
+RESEARCHER.md    who the researcher is, and what you are reading for — written by interview
 AGENTS.md        the library's rules: folders, conventions, strategies and projects, plan first
 CLAUDE.md        imports AGENTS.md and RESEARCHER.md
 CHANGELOG.md     the template's changelog, then this home's; update adds the version it brings
@@ -59,7 +59,7 @@ Extracts/        text pulled out of the PDFs, one file per chapter; regenerable,
 Knowledge/       notes by domain, a folder per book, concept pages; INDEX.md and LOG.md
 Philosophy/      your voice. HOW-I-INVEST.md is the page to write it in; cited, never generated
 Projects/        what you ask for at home — lessons from teach, anything asked in chat
-.apm/agents/     your researcher as a callable agent, written by researcher-init
+.apm/agents/     your researcher as a callable agent, written by interview
 ```
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Projects/`. `Philosophy/` is cited, never

@@ -4,7 +4,7 @@ input:
   - mode: "Optional: force, to start over when RESEARCHER.md is already filled"
 ---
 
-# Initialize the researcher
+# The interview
 
 This runs in the folder that becomes the researcher's home — the one that will hold
 `RESEARCHER.md` — and every path below is relative to it.
@@ -246,9 +246,9 @@ instruction blockquote at the top of `RESEARCHER.md`.
 ## Step 4: The agent
 
 `RESEARCHER.md` says who the researcher is. This file makes it something the harness can call by
-name — *ask Luna what we have read about momentum crashes* — with its own tool boundary. Write
+name — *ask Ada what we have read about momentum crashes* — with its own tool boundary. Write
 `.apm/agents/<slug>.agent.md`, where `<slug>` is the researcher's name in lowercase with hyphens
-and nothing else: `Luna` becomes `luna`, `Ada Lovelace` becomes `ada-lovelace`. Show it in chat
+and nothing else: `Ada` becomes `ada`, `Ada Lovelace` becomes `ada-lovelace`. Show it in chat
 beside `RESEARCHER.md` and write it on the same go.
 
 ```markdown

@@ -13,7 +13,7 @@ the session happened to open. There are two ways to work:
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
   path: `blueprint 1 D:\Research\Golden-Flow`.
 - **Invited into a strategy.** Open the assistant in the strategy's folder and add the
-  researcher's folder to the session — `claude --add-dir D:\Research\Luna`, `/add-dir` once
+  researcher's folder to the session — `claude --add-dir D:\Research\Ada`, `/add-dir` once
   inside, or the desktop app's add-folder button. The skills and the commands are there already —
   one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user with `apm install -g` —
   so **the strategy installs nothing of its own**, and one `apm update -g` keeps every strategy
@@ -36,7 +36,7 @@ learns in one experiment must not leak into the next through its own library.
 *Memory files*, and the researcher can say which instruction files it was started with, by path. If
 they are missing, the variable is not set or the assistant does not honour it; the desktop app does
 not document it. The fallback is a `CLAUDE.local.md` at the strategy's root holding one line, the
-researcher's `CLAUDE.md` by absolute path — `@D:/Research/Luna/CLAUDE.md` — which then loads with
+researcher's `CLAUDE.md` by absolute path — `@D:/Research/Ada/CLAUDE.md` — which then loads with
 the strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md` to the
 strategy's `.gitignore`, and approve the external import the first time the assistant asks, because
 declined it stays off. Whatever loads, every skill and command still begins by reading
@@ -55,7 +55,7 @@ a skill its rules.
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first |
 | `Projects/` | what the owner asked for at home: lessons from `teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
 
-`RESEARCHER.md` is not a folder, but it is the owner's too. `researcher-init` writes it once, from
+`RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from
 the interview; `read`, at home, may add a question under *What you are reading for* — in the
 owner's words, after their go — and nothing else writes it. The owner edits it by hand whenever they
 like. The same holds for `Philosophy/HOW-I-INVEST.md`, which the template ships as headings to
@@ -279,7 +279,7 @@ and `apm install --target <agent>` here deploys it.
 | --- | --- | --- |
 | **Skill** | `.apm/skills/<name>/` in the package | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
-| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `researcher-init` from `RESEARCHER.md`, so a fresh home has none until the interview runs |
+| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs |
 
 - **`apm install -g --target <agent>` deploys the package once per machine**, into the user's
   folders — `~/.claude/skills/` and `~/.claude/commands/` for Claude Code, the matching folders

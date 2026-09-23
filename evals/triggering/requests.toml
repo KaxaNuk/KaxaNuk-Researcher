@@ -84,8 +84,8 @@ near_miss = [
 
 [init-researcher]
 fires = [
-    "init-researcher Luna",
-    "Run init-researcher; call my researcher Ada.",
+    "init-researcher Ada",
+    "Run init-researcher; call my researcher Hypatia.",
 ]
 near_miss = [
     "init-strategy fcf-yield-quality",  # init-strategy
