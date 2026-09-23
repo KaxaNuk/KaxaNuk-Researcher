@@ -37,6 +37,20 @@ CONTEXT_LINE = json.dumps({
         'content': f'The user is someone{AT_SIGN}example.com.',
     },
 })
+# The line of a real transcript that was taken for an address: a CLAUDE.md read by the Read tool.
+TOOL_RESULT_LINE = json.dumps({
+    'type': 'user',
+    'message': {
+        'role': 'user',
+        'content': [
+            {
+                'tool_use_id': 'toolu_01Si2HRwC42FhRvmfwWzGpT3',
+                'type': 'tool_result',
+                'content': f'1\t{AT_SIGN}AGENTS.md',
+            },
+        ],
+    },
+})
 COST_LINE = json.dumps({
     'type': 'cost-state',
     'totalCostUSD': 0.14,
@@ -100,6 +114,75 @@ def results_for(
     return results
 
 
+class TestHoldsEMail:
+    def test_a_file_name_after_a_json_escape_is_not_an_address(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        monkeypatch.delenv(
+            'CLAUDE_CODE_USER_EMAIL',
+            raising=False,
+        )
+
+        assert f'1\\t{AT_SIGN}AGENTS.md' in TOOL_RESULT_LINE
+        assert not eval_history.holds_e_mail(TOOL_RESULT_LINE)
+
+    def test_a_file_name_after_an_at_sign_is_not_an_address(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        monkeypatch.delenv(
+            'CLAUDE_CODE_USER_EMAIL',
+            raising=False,
+        )
+
+        assert not eval_history.holds_e_mail(f'Import it with {AT_SIGN}AGENTS.md, or read notes{AT_SIGN}INDEX.md.')
+
+    def test_an_address_after_a_json_escape_is_found(
+        self,
+    ) -> None:
+        text = json.dumps({'content': f'Done.\nCommitted as eval{AT_SIGN}example.invalid.'})
+
+        assert eval_history.holds_e_mail(text)
+
+    def test_the_address_in_the_environment_is_found_whatever_its_domain(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        monkeypatch.setenv(
+            'CLAUDE_CODE_USER_EMAIL',
+            f'owner{AT_SIGN}studio.md',
+        )
+
+        assert eval_history.holds_e_mail(f'Written by Owner{AT_SIGN}Studio.md today.')
+
+    def test_the_git_address_is_found_whatever_its_domain(
+        self,
+        tmp_path: pathlib.Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        git_config = tmp_path / 'gitconfig'
+        git_config.write_text(
+            f'[user]\n\temail = author{AT_SIGN}desk.py\n',
+            encoding='utf-8',
+        )
+        monkeypatch.setenv(
+            'GIT_CONFIG_GLOBAL',
+            str(git_config),
+        )
+        monkeypatch.setenv(
+            'GIT_CONFIG_NOSYSTEM',
+            '1',
+        )
+        monkeypatch.chdir(tmp_path)
+        monkeypatch.delenv(
+            'CLAUDE_CODE_USER_EMAIL',
+            raising=False,
+        )
+
+        assert eval_history.holds_e_mail(f'Committed as author{AT_SIGN}desk.py.')
+
+
 class TestKeptFolder:
     def test_a_case_not_in_the_results_is_refused(
         self,
@@ -148,6 +231,28 @@ class TestKeptFolder:
 
 
 class TestMain:
+    def test_a_file_name_after_a_json_escape_is_written(
+        self,
+        tmp_path: pathlib.Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        monkeypatch.delenv(
+            'CLAUDE_CODE_USER_EMAIL',
+            raising=False,
+        )
+        folder = kept_run(
+            tmp_path,
+            f'{USER_LINE}\n{TOOL_RESULT_LINE}\n',
+        )
+        destination = tmp_path / 'history.jsonl'
+        exit_code = eval_history.main([
+            str(folder),
+            str(destination),
+        ])
+
+        assert exit_code == 0
+        assert TOOL_RESULT_LINE in destination.read_text(encoding='utf-8')
+
     def test_a_results_file_gives_the_kept_session(
         self,
         tmp_path: pathlib.Path,

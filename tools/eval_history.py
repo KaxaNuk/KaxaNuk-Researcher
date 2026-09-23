@@ -25,16 +25,66 @@ written.  Console output is ASCII only.
 """
 import argparse
 import json
+import os
 import pathlib
 import re
+import subprocess
 import sys
 
-EMAIL_ADDRESS = re.compile(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}')
+# A top-level domain that is one of these is a file name after an @, such as `@AGENTS.md`.
+FILE_EXTENSIONS = (
+    'csv',
+    'ipynb',
+    'json',
+    'md',
+    'pdf',
+    'py',
+    'toml',
+    'txt',
+    'yaml',
+    'yml',
+)
+EXTENSION_ALTERNATIVES = '|'.join(FILE_EXTENSIONS)
+# The local part starts at a word boundary that is not the letter of a JSON escape such as `\t`, or
+# right after one of `\n`, `\r`, `\t`.
+EMAIL_PARTS = (
+    r'(?:(?<=\\[nrt])|(?<![\\A-Za-z0-9._%+-]))',
+    r'[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*',
+    rf'\.(?!(?:{EXTENSION_ALTERNATIVES})\b)[A-Za-z]{{2,}}\b',
+)
+EMAIL_ADDRESS = re.compile(''.join(EMAIL_PARTS))
 KEPT_LINE_TYPES = (
     'user',
     'assistant',
 )
 SESSION_GLOB = 'config/projects/*/*.jsonl'
+
+
+def holds_e_mail(
+    text: str,
+) -> bool:
+    """
+    Whether the text holds an e-mail address: one of the runner's own, or any that looks like one.
+
+    The runner's own are `CLAUDE_CODE_USER_EMAIL` and `git config user.email`, when set; they are
+    refused whatever their domain.  Any other address is found by `EMAIL_ADDRESS`, which does not
+    take a JSON escape before an @ or a file name after it for one.
+    """
+    lowered = text.lower()
+    known = [
+        address
+        for address
+        in _known_addresses()
+        if address.lower() in lowered
+    ]
+
+    if known:
+
+        return True
+
+    found = EMAIL_ADDRESS.search(text) is not None
+
+    return found
 
 
 def kept_folder(
@@ -183,7 +233,7 @@ def write_history(
         in lines
     )
 
-    if EMAIL_ADDRESS.search(text):
+    if holds_e_mail(text):
         personal = f'the filtered {transcript.name} still holds an e-mail address; remove it from the run first'
 
         raise ValueError(personal)
@@ -226,6 +276,42 @@ def _build_parser() -> argparse.ArgumentParser:
     )
 
     return parser
+
+
+def _known_addresses() -> list[str]:
+    """
+    The addresses of whoever runs this: `CLAUDE_CODE_USER_EMAIL` and `git config user.email`, if set.
+    """
+    from_environment = os.environ.get(
+        'CLAUDE_CODE_USER_EMAIL',
+        '',
+    )
+
+    try:
+        configured = subprocess.run(
+            [
+                'git',
+                'config',
+                'user.email',
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        ).stdout
+    except OSError:
+        configured = ''
+
+    addresses = [
+        address.strip()
+        for address
+        in (
+            from_environment,
+            configured,
+        )
+        if address.strip()
+    ]
+
+    return addresses
 
 
 def _line_type(
