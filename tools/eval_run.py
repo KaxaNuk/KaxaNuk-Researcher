@@ -20,7 +20,8 @@ exactly the gated tools (Bash, Write, Edit, ...) its cases list, and nothing whe
 
 A case folder that holds a one-line `FIXTURE` file naming a fixture gets a real copy of it in
 `fixture/` and a `scaffold.sh` that copies it into the empty workspace; its `case.yaml` names
-`scaffold_script: scaffold.sh` itself.  Then `claude plugin eval` runs on the plugin folder.
+`scaffold_script: scaffold.sh` itself.  A case whose case.yaml names a `history_file` it does not
+hold stops the run, naming the capture step.  Then `claude plugin eval` runs on the plugin folder.
 Sessions run on Opus 5.5 and the quality judge on Fable 5.1; the no-plugin comparison arm is off.
 Each batch writes its results and report to its own `evals/results/<UTC time>-<cases>/`, and keeps
 every run's folder under /tmp/claude-eval-* for diagnosis.
@@ -36,8 +37,9 @@ Run from the repository root:
 
 `--no-shell` leaves out every case that lists Bash, for a machine whose sandbox cannot run a shell.
 Every run spends the plan of whoever runs it; `--max-cost-usd` is required for that reason.
-Exit code: the harness's, or 1 with a one-line message when a case is malformed, no case matches,
-or the export, the install or the fixtures cannot be built.  Console output is ASCII only.
+Exit code: the harness's, or 1 with a one-line message when a case is malformed or lacks its
+history, no case matches, or the export, the install or the fixtures cannot be built.  Console
+output is ASCII only.
 """
 import argparse
 import dataclasses
@@ -96,6 +98,7 @@ SCAFFOLD_SCRIPT = '\n'.join([
     '',
 ])
 SCAFFOLD_LINE = re.compile(r'^\s*scaffold_script:\s*scaffold\.sh\s*(#.*)?$')
+HISTORY_LINE = re.compile(r'^\s*history_file\s*:(.*)$')
 ALLOWED_TOOLS_LINE = re.compile(r'^(\s*)allowed_tools\s*:(.*)$')
 NAME_LINE = re.compile(r'^name\s*:(.*)$')
 FLOW_LIST = re.compile(r'\[([^\[\]]*)\]')
@@ -170,13 +173,15 @@ NOT_FIRED_GRADER = '\n'.join([
 class EvalCase:
     """
     One case as the runner sees it: the name `--case` matches, its folder below the eval folder,
-    the tools it lists, and, for a committed case, the folder it comes from and its fixture.
+    the tools it lists, and, for a committed case, the folder it comes from, its fixture and the
+    replayed history its case.yaml names.
     """
     name: str
     folder: str
     tools: tuple[str, ...]
     source: pathlib.Path | None = None
     fixture: str | None = None
+    history: str | None = None
 
 
 @dataclasses.dataclass(frozen=True)
@@ -275,6 +280,31 @@ def case_matches(
     )
 
     return matched is not None
+
+
+def check_histories(
+    cases: tuple[EvalCase, ...],
+) -> None:
+    """
+    Raise ValueError naming the first case whose case.yaml names a history file it does not hold.
+
+    A replayed first turn is captured on a host that can run it, then committed; until it is, the
+    case cannot run, and the harness would be handed a path to nothing.
+    """
+    missing = [
+        case
+        for case
+        in cases
+        if case.history is not None and not (case.source / case.history).is_file()
+    ]
+
+    if missing:
+        uncaptured = ' '.join([
+            f'{missing[0].name}: case.yaml names {missing[0].history}, which is not there;',
+            'capture it first, as "Replayed turns" in evals/README.md says (tools/eval_history.py)',
+        ])
+
+        raise ValueError(uncaptured)
 
 
 def copy_authored_case(
@@ -904,6 +934,28 @@ def _glob_part(
     return part
 
 
+def _history_name(
+    case_yaml_lines: list[str],
+) -> str | None:
+    """
+    The history file a case.yaml names in `context.history_file`; None when it names none.
+    """
+    values = [
+        HISTORY_LINE.match(line).group(1)
+        for line
+        in case_yaml_lines
+        if HISTORY_LINE.match(line)
+    ]
+    names = [
+        _strip_comment(value).strip('\'"')
+        for value
+        in values
+    ]
+    history = names[0] if names and names[0] else None
+
+    return history
+
+
 def _near_miss_cases(
     skill: str,
     requests: list[str],
@@ -1029,6 +1081,7 @@ def _read_authored_case(
             case_yaml_lines,
             folder,
         ),
+        history=_history_name(case_yaml_lines),
     )
 
     return case
@@ -1082,6 +1135,7 @@ def _run_batch(
 
         return 1
 
+    check_histories(selection.selected)
     grants = gated_tools(list(selection.selected))
     _print_grants(grants)
     shutil.rmtree(
