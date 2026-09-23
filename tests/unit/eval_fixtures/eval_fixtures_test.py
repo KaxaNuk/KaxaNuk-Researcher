@@ -66,6 +66,20 @@ class TestBuildAll:
 
         assert 'Moskowitz_2012_Time_Series_Momentum.md' in index
 
+    def test_home_with_notes_warns_in_the_older_note_above_the_superseded_claim(
+        self,
+        fixtures: pathlib.Path,
+    ) -> None:
+        markets = fixtures / 'home-with-notes' / 'Knowledge' / 'Markets'
+        older = (markets / 'Moskowitz_2012_Time_Series_Momentum.md').read_text(encoding='utf-8')
+        newer = (markets / 'Daniel_2016_Momentum_Crashes.md').read_text(encoding='utf-8')
+        warning = older.index('> [!WARNING]')
+        claim = older.index('## The effect partly reverses after a year (p. 240)')
+
+        assert warning < claim
+        assert '(Daniel_2016_Momentum_Crashes.md)' in older[warning:claim]
+        assert '[!WARNING]' not in newer
+
     def test_notebook_fixture_is_valid_json(
         self,
         fixtures: pathlib.Path,
