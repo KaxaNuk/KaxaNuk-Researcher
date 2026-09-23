@@ -134,7 +134,6 @@ pyproject.toml        the ruff settings for the skills' scripts
 AGENTS.md, CLAUDE.md  the rules for changing this repository
 CHANGELOG.md          one entry per version
 LICENSE               MIT
-.gitattributes        LF line endings everywhere, so a clone and scaffold.py see the bytes committed
 .gitignore            what apm install and Python write per machine
 ```
 
