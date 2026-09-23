@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.14.0] - 2026-09-23
+The final cleaning before a newcomer meets the package: the loose ends of two closed pull requests
+settled, the path from install to first strategy checked sentence by sentence, and the way a
+researcher grows beyond the KaxaNuk Lab written down.
+
+**What to do differently:** `apm update -g`, then a new session; in a home, `update` brings the
+home's files to template 0.8.0 and lists what is yours to edit by hand.
+### Added
+- **`.github/CODEOWNERS`** names Alan and Arturo as the owners of every path, so GitHub requests
+  their review on every pull request as it opens. `main` requires one approval from someone other
+  than the author, administrators included; a request that goes out by itself is what keeps a pull
+  request from waiting unseen. Taken over from pull request #11, which closed unmerged.
+### Removed
+- **`docs/superpowers/`**, the eval work's design, plan and Windows notes, which 0.12.0 and 0.13.0
+  shipped to every install because the package installs whole. They stay in the history at
+  `v0.12.0` and `v0.13.0`. Taken over from pull request #9, which closed unmerged, with the
+  addendum it added to `evals/findings/2026-09-22-pilot.md`: the blueprint surface re-run on the
+  merge of 0.11.0, F-01 and F-03 holding on what `main` ships.
+
 ## [0.13.0] - 2026-09-23
 The interview is `interview`, and the example researcher is no longer named after a real one.
 
