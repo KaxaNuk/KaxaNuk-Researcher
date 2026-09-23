@@ -35,6 +35,13 @@ FIXTURE_CASE_YAML = '\n'.join([
     '  scaffold_script: scaffold.sh   # written by the runner',
     '',
 ])
+HISTORY_CASE_YAML = '\n'.join([
+    'schema_version: "1.1"',
+    'name: contract/read/after-go',
+    'context:',
+    '  history_file: history.jsonl   # captured on a host with a shell',
+    '',
+])
 TOOLS_IN_CASE_YAML = '\n'.join([
     'schema_version: "1.1"',
     'name: contract/read/bad',
@@ -124,6 +131,25 @@ def fail_like_uvx(
     )
 
     raise failed
+
+
+def history_case(
+    eval_directory: pathlib.Path,
+) -> pathlib.Path:
+    """
+    A committed after-the-go case below `eval_directory` whose case.yaml names a history file.
+    """
+    case_directory = eval_directory / 'contract' / 'read' / 'after-go'
+    write(
+        case_directory / 'prompt.md',
+        '---\nname: contract/read/after-go\n---\nGo.\n',
+    )
+    write(
+        case_directory / 'case.yaml',
+        HISTORY_CASE_YAML,
+    )
+
+    return case_directory
 
 
 def input_match(
@@ -261,6 +287,49 @@ class TestCaseMatches:
             'contract/read/*',
             'contract/query/after-go',
         )
+
+
+class TestCheckHistories:
+    def test_a_captured_history_lets_the_case_run(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        case_directory = history_case(tmp_path / 'source')
+        write(
+            case_directory / 'history.jsonl',
+            '{"type": "user"}\n',
+        )
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
+        eval_run.check_histories(tuple(cases))
+
+        assert cases[0].history == 'history.jsonl'
+
+    def test_a_case_without_history_needs_none(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        committed_case(
+            tmp_path,
+            'contract/read/first-turn',
+            ['name: contract/read/first-turn'],
+        )
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
+        eval_run.check_histories(tuple(cases))
+
+        assert cases[0].history is None
+
+    def test_a_missing_history_is_refused_naming_the_capture(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        history_case(tmp_path / 'source')
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
+
+        with pytest.raises(
+            ValueError,
+            match='contract/read/after-go: case.yaml names history.jsonl, which is not there; capture it first',
+        ):
+            eval_run.check_histories(tuple(cases))
 
 
 class TestCopyAuthoredCase:
@@ -706,6 +775,62 @@ class TestMain:
 
         assert exit_code == 1
         assert last_line == "eval_run: stopped: [Errno 2] No such file or directory: 'git'"
+
+    def test_a_selected_case_without_its_history_stops_before_any_install(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        history_case(tmp_path / 'evals')
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_uvx,
+        )
+        exit_code = eval_run.main([
+            '--case',
+            'contract/*',
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+        output = capsys.readouterr().out.splitlines()
+
+        assert exit_code == 1
+        assert output[-1].startswith('eval_run: stopped: contract/read/after-go: case.yaml names history.jsonl')
+
+    def test_an_unselected_case_without_its_history_does_not_stop_the_batch(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        history_case(tmp_path / 'evals')
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_uvx,
+        )
+        exit_code = eval_run.main([
+            '--case',
+            'triggering/*',
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+        last_line = capsys.readouterr().out.splitlines()[-1]
+
+        assert exit_code == 1
+        assert last_line == 'eval_run: stopped: uvx exited with 1'
 
 
 class TestReadAuthoredCases:
