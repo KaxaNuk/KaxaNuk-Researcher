@@ -7,23 +7,103 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 tagged `vX.Y.Z`.
 
 ## [0.14.0] - 2026-09-23
-The final cleaning before a newcomer meets the package: the loose ends of two closed pull requests
-settled, the path from install to first strategy checked sentence by sentence, and the way a
-researcher grows beyond the KaxaNuk Lab written down.
+The final cleaning before a newcomer meets the package: work lands on `main` without a pull
+request per change, the loose ends of two closed pull requests are settled, the path from install
+to first strategy is checked sentence by sentence, and the way a researcher grows beyond the
+KaxaNuk Lab is written down. Home template 0.8.0, strategy template 0.10.3, example 0.10.4.
 
-**What to do differently:** `apm update -g`, then a new session; in a home, `update` brings the
-home's files to template 0.8.0 and lists what is yours to edit by hand.
+**What to do differently:** commit on `main`; open a branch and a pull request only for a change
+you want reviewed. `apm update -g`, then a new session. In a home, run `update`: it brings the
+home's files to template 0.8.0 and lists what is yours to edit by hand — the first
+non-negotiable, the table heading *The strategies and projects it works on*, and the home's own
+version in `apm.yml`. To teach your researcher a tool or a project, read *Growing your
+researcher* in the home's README.
 ### Added
-- **`.github/CODEOWNERS`** names Alan and Arturo as the owners of every path, so GitHub requests
-  their review on every pull request as it opens. `main` requires one approval from someone other
-  than the author, administrators included; a request that goes out by itself is what keeps a pull
-  request from waiting unseen. Taken over from pull request #11, which closed unmerged.
+- **Growing your researcher**, a section of the home's README: a tool's or a project's
+  documentation into `Sources/Clippings/`, then `read`; a skill or command of the home's own; a
+  line under *What you are reading for*; a line by hand under *How it speaks* or *Non-negotiables*.
+  The package README, the interview's hand-over and `next` point to it. *Joining other projects*
+  in the home's `AGENTS.md` says who copies a project's files — the researcher names them and gives
+  the command, the owner runs it, so `Sources/` stays the owner's — and how a clipping is named
+  and a private repository cited. `read`'s `note.md` gives the convention for a tool's
+  documentation as a source.
+- **`next` knows more states.** A project the researcher joined through `--add-dir`, which is
+  neither a home nor a strategy, is recognised and sent to *Joining other projects*, never to an
+  `init-*` command; a home or strategy one folder down is named. At home it checks a clean tree
+  first, skips `.gitkeep`, and lets the owner drop a *Find first* work that cannot be found; in a
+  strategy, a claim carried into the blueprint as a lead counts at B, and a missing engine or
+  attribution licence skips G rather than blocking it.
+- **A home is committed.** The interview's hand-over, `read`'s close and `next`'s first check at
+  home say to review the diff and commit; `SETUP.md` step 2 says what done looks like.
+- **`update` compares in both directions** and reads `includes` and `dependencies` in `apm.yml`,
+  so a home that ran it four times no longer keeps what the template dropped; the template's
+  `RESEARCHER.md` and `HOW-I-INVEST.md` headings and the `INDEX.md` and `LOG.md` blockquotes come
+  back as lines to edit by hand. `audit` checks a home's own skills and commands for a stale
+  install.
+- **The interview** proposes the home README's opening paragraph, sets the home's `apm.yml` version
+  to 0.1.0, which is the owner's from then on, and says who holds `LICENSE`.
+- **A strategy-side command with no home in the session** — `objective`, `blueprint`,
+  `brainstorm`, `challenge` — works from the strategy alone and says so; `challenge` says it covers
+  the graduation gate. `read` never offers `scaffold.py` into a strategy made from another
+  template, and appends to a `LOG.md` only if it exists.
+- **`tools/check_repo.py` checks width**: no line of markdown prose past 100 columns in `.apm/`,
+  `templates/researcher/`, `README.md`, `SETUP.md` and `AGENTS.md`, with its tests. 236 lines in
+  the Lab skills and their references were rewrapped to pass it, no word changed.
+- **Three eval fixtures and three contract cases**: `blueprint` and `read` in a strategy with the
+  home beside it, and `read` on a markdown clipping at home. The strategy fixtures without a home
+  now test the no-home fallback on purpose.
+- **`.github/CODEOWNERS`** names Alan and Arturo as the owners of every path, so a pull request,
+  when one is opened, asks for their review at once. Taken over from pull request #11, which closed
+  unmerged.
+- **"Forking this package"** in the README: what a fork keeps, the three places that name this
+  package, and one researcher package per user until two are tested side by side.
+### Changed
+- **Work lands on `main`.** `how-we-work` 0.3.0, this repository's `AGENTS.md` and the strategy
+  template drop the issue, the branch and the pull request as a gate for every change: each
+  change-set is committed on `main` with its changelog entry, and a branch is for a change someone
+  wants reviewed, deleted once merged. A blueprint is committed in a commit of its own before the
+  rule, which keeps the control without a branch.
+- **The numbers rule names the engines the project names** — in a KaxaNuk strategy the Lab's
+  libraries — in `RESEARCHER.md`, the interview, the agent it writes, the home's `AGENTS.md`,
+  `query` and `objective`, so a researcher invited into a project on another stack is not told to
+  distrust that project's own engine.
+- **The home reads as a researcher's, not only an investor's**: *What it changes* in a note is
+  measured against the owner's question; *The strategies and projects it works on*; *How it cites*
+  in any other project; `HOW-I-INVEST.md` may take other headings. The README says the interview
+  and the reading map cover investment research, and `read` names the map's ten papers only when
+  Finance is a domain.
+- **`query` 0.5.0** writes a kept synthesis page's index line and a log entry on the same go, and
+  may name a work on a *Find first* line or already in `Sources/`.
+- **`experiment-lifecycle` 0.8.1** describes the template as it has been since 0.10.0 — every file,
+  each a description to fill in — and `references/structure.md` is at template 0.10.3.
+- **Where things land**: `init-strategy` runs from the home and the strategy lands beside it, as
+  `SETUP.md` and the README now say; the three `init-*` skills say how a fork passes `--package`;
+  `scaffold.py` leaves cache folders behind, with tests.
+- **The README** lists `evals/` and `.github/`, the eval scripts under `tools/`, and says the four
+  house instructions are machine-wide for Claude Code and Copilot. `AGENTS.md` gives a route for
+  trying a change that does not stage the working tree under HOME.
+- **`tools/check_repo.py`** reads a folder's `uv.lock` only when git tracks it, and leaves the
+  example's `CHANGELOG.md` out of the headings check: the template and the example move together
+  but take their own version numbers.
+### Fixed
+- **`experiment-lifecycle` section 6** had a sentence cut mid-clause since 0.11.0; the paragraph is
+  restored.
+- **Smaller slips**: `next [strategy]` in the README; `interview` lists four agent targets, not
+  `opencode`; `update`'s migration text is only for a home from before 0.7.0; the Data Curator
+  skill compiles with `uv run --no-project`; the reading map sends a book to `Sources/Books/`;
+  `note.md`'s Paleologo path; the home's example path is `fcf-yield-quality`, not a folder of the
+  maintainer's; `evals/README.md` counts ten other commands.
 ### Removed
 - **`docs/superpowers/`**, the eval work's design, plan and Windows notes, which 0.12.0 and 0.13.0
   shipped to every install because the package installs whole. They stay in the history at
   `v0.12.0` and `v0.13.0`. Taken over from pull request #9, which closed unmerged, with the
   addendum it added to `evals/findings/2026-09-22-pilot.md`: the blueprint surface re-run on the
   merge of 0.11.0, F-01 and F-03 holding on what `main` ships.
+
+Left for later, as leads: a weight-matched null and a one-ingredient control in the template's
+bar, a read-only `gate` command, evals for `interview`, `next` and `update`, `update` building its
+URL from the installed package, and the legacy paths for homes before 0.7.0 and strategies before
+0.7.15 and 0.10.0, which leave together at 1.0.0.
 
 ## [0.13.0] - 2026-09-23
 The interview is `interview`, and the example researcher is no longer named after a real one.

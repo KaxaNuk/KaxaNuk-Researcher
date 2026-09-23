@@ -41,6 +41,39 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.4 (2026-09-23)
+
+**PATCH** — template 0.10.3: work lands on `main`, the who-writes table, the log's header,
+`SETUP.md`'s licence and researcher lines and `.gitattributes`; and this strategy's own lines in
+`Bibliotheca/` and `AGENTS.md` marked, so the template's copies are generated from here. Nothing
+about any result changes.
+
+**What to do differently:** nothing.
+
+### Added
+
+- **`.gitattributes`**, `* text=auto eol=lf`, as template 0.10.3 carries.
+- **A row for `Bibliotheca/LOG.md` in `AGENTS.md`'s who-writes table**, and the log's header says
+  whoever reads or audits appends it, the researcher's `read` and `audit` themselves, and a past
+  entry is never edited.
+
+### Changed
+
+- **Work lands on `main`**, as template 0.10.3 says: *How work reaches `main`* drops the issue,
+  the branch and the pull request as a gate, and *The blueprint is committed before the rule* keeps
+  the blueprint in a commit of its own, before the rule cell holds code.
+- **`OBJECTIVE.md`'s "Changes when" cell** separates the idea and the claims' wording from each
+  claim's evidence and status, as template 0.10.3 does.
+- **`SETUP.md`** points to *In a strategy or another project* in the researcher's own README for
+  its identity to load with it, says `LICENSE` names KaxaNuk as the holder, and says it is the
+  first `---` line of `CHANGELOG.md` that is kept above.
+- **`BLUEPRINT_1.md`** says, outside the markers, that each prediction cites a `Bibliotheca/` note
+  or a section of `Data/analyzer.ipynb`.
+- **`Bibliotheca/LOG.md`'s entries and `AGENTS.md`'s rule on marking this example's content sit
+  inside example markers**, and `BIBLIOGRAPHY.md`'s Part 5 row on Sullivan, Timmermann & White
+  reads as the template's — its note is linked from its Part 1 row — so the template's
+  `BIBLIOGRAPHY.md` and `LOG.md` are generated from here with the rest.
+
 ## 0.10.3 (2026-09-22)
 
 **PATCH** — four lines that were this strategy's, outside its markers, reached the template.

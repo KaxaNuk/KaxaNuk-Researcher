@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.6.1
+  version: 0.6.2
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -71,6 +71,11 @@ They come empty, so there is nothing to delete. Then stop; the owner runs it, an
 from there. Never scaffold `BIBLIOGRAPHY.md` by hand: it is the template's file, with its parts and
 its prose.
 
+The commands assume the KaxaNuk Strategy Template's paths; a strategy made from another template
+keeps or maps them in its own `AGENTS.md`. In a strategy whose `README.md` or `AGENTS.md` names
+another template, never offer `scaffold.py` to copy KaxaNuk files in: follow that template's own
+record of what was read, wherever its `AGENTS.md` says it lives.
+
 A source already read is not read again unless the owner says so. A book begun in an earlier run is
 found by its path in the log and by its `INDEX.md` — the status column says which chapters are
 read, skimmed, skipped or to come — and this run continues from there.
@@ -85,10 +90,12 @@ note and its extract are written there, nothing at home.
 
 **At home, with nothing in `Sources/` left to read,** say so, and name the works under *Find first*
 in `RESEARCHER.md` that have no file yet — year, authors and title as written there, and the
-question each serves — for the owner to find by title and authors and put in `Sources/Papers/`.
-With no *Find first* either, name the ten papers of the two timelines in
-`references/reading-map.md`, in this skill's folder, one line each, as leads. Match them against
-`Sources/` and the index as the map's *Match before proposing* says. Never download one, and write
+question each serves — for the owner to find by title and authors and put in `Sources/Papers/`, or
+`Sources/Books/` for a book. With no *Find first* either, and Finance among the domains in
+`RESEARCHER.md`, name the ten papers of the two timelines in `references/reading-map.md`, in this
+skill's folder, one line each, as leads, matched against `Sources/` and the index as the map's
+*Match before proposing* says. With Finance not among the domains, ask the owner for the works to
+find, and say that the reading map covers investment research. Never download one, and write
 nothing; stop there.
 
 For every PDF among them, run the script — `scripts/extract.py` in this skill's folder, wherever
@@ -228,9 +235,9 @@ alternatives — fewer notes or pages, different names, only the notes this run,
   *No note yet* of a lead, or added where the source was not listed — and nothing else in that
   file: its parts and its prose are the owner's.
 - One entry appended to the library's log — `Knowledge/LOG.md` at home, `Bibliotheca/LOG.md` in a
-  strategy — in the format `AGENTS.md` gives: `read`, the notes and concept pages written and
-  updated, the flags, and for a book a `read:` line naming the chapters read, skimmed, skipped and
-  to come.
+  strategy, and only if the file exists — in the format `AGENTS.md` gives: `read`, the notes and
+  concept pages written and updated, the flags, and for a book a `read:` line naming the chapters
+  read, skimmed, skipped and to come.
 
 ## 7. Report
 
@@ -239,6 +246,8 @@ leans on with no source behind it — as a suggestion for the sources, naming th
 map gives as this one's other side when it names one, as a lead; whether the source changes a
 belief in `Philosophy/`, as a question for the owner to answer there in their words; and, at home,
 the strategy a note could serve, with the `read <strategy> <source>` that would carry it there.
+
+Then say: review the diff and commit.
 
 ## What this skill will not let you do
 

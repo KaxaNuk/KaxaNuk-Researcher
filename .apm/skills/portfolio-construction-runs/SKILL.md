@@ -13,7 +13,7 @@ description: >
   earned (use `alpha-decomposition`), or the documents around the experiment (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.2.2
+  version: 0.2.3
 ---
 
 # Portfolio construction — the library inside one signature, and one cut
@@ -39,14 +39,14 @@ uv pip install -e "<path to the Portfolio-Construction clone>[solver,clustering]
 
 - **Distribution and import `kaxanuk.portfolio_construction`; Python 3.12 or 3.13** — the Backtest
   Engine's ceiling too, so a KaxaNuk Strategy Template repository needs nothing new.
-- **The extras decide which methods exist.** `solver` (cvxpy) for constrained mean-variance, CVaR and
-  CDaR; `clustering` (scipy) for HRP, HERC and NCO; `plots` (matplotlib) for figures and the PDF
+- **The extras decide which methods exist.** `solver` (cvxpy) for constrained mean-variance, CVaR
+  and CDaR; `clustering` (scipy) for HRP, HERC and NCO; `plots` (matplotlib) for figures and the PDF
   report; `calendars` (QuantLib, whatever the README says) for the exchange-calendar rebalancers. A
-  missing extra fails differently per method: HRP and the solver methods when they are built, HERC and
-  NCO only when they allocate, the calendar rebalancers with a bare `ModuleNotFoundError`.
+  missing extra fails differently per method: HRP and the solver methods when they are built, HERC
+  and NCO only when they allocate, the calendar rebalancers with a bare `ModuleNotFoundError`.
 - **`init excel` needs the editable install.** From a wheel it creates `Config/`, `Input/` and
-  `Output/`, then fails to find its templates, and the leftover `Config/` blocks the retry. A research
-  notebook does not need those files at all: configure in code.
+  `Output/`, then fails to find its templates, and the leftover `Config/` blocks the retry. A
+  research notebook does not need those files at all: configure in code.
 - **Never add it to a strategy's `pyproject.toml`.** A clone without access must still resolve. And
   as with the licensed engines, `uv sync` is exact and removes a hand-installed package: after a
   relock use `uv sync --inexact`, and run everything else through `uv run`.
@@ -92,8 +92,8 @@ Every method's configuration, required fields, bounds and short-selling policy a
 
 ## 4. The contract: one signature, one cut
 
-In a KaxaNuk Strategy Template repository the library is called from **inside** the step-4 shared module,
-`Experiments/portfolio_construction.py`, never around it. Every method goes through one
+In a KaxaNuk Strategy Template repository the library is called from **inside** the step-4 shared
+module, `Experiments/portfolio_construction.py`, never around it. Every method goes through one
 **weigher**, `weigh` in the worked example's module:
 
 ```python
@@ -159,8 +159,8 @@ weight_by_security = pandas.Series(
   snapshot table: put the feature there, as it stood before the date.
 - **Weights sum to at most one, not to exactly one.** A method's book sums to its target exposure,
   1.0; the module scales it down when a lever asks for cash, and the residual becomes a real, priced
-  cash position when the weight file is written. Nothing eligible is an empty book — 100% cash, kept as
-  an all-zero row, because "went to cash" is an instruction the engine has to receive.
+  cash position when the weight file is written. Nothing eligible is an empty book — 100% cash, kept
+  as an all-zero row, because "went to cash" is an instruction the engine has to receive.
 
 ## 5. Eligibility and timing, point in time
 
@@ -171,28 +171,30 @@ order is the module's, and it is fixed:
   with False so the warm-up holds nothing rather than everything. A security has to have been
   authorised yesterday and be sellable today, and those are two different days on purpose.
 - **Rebalance on change** when the rule is event-driven: the days the lagged set changed. A
-  `BinaryMatrix` of the lagged signal counts entries and exits per date with `turnover()`. A calendar
-  rule takes `CalendarRebalancer(trading_dates=..., frequency=RebalanceFrequency.MONTH_END)` on the
-  panel's own dates — and yields a date for an incomplete last period too, so check the last one.
+  `BinaryMatrix` of the lagged signal counts entries and exits per date with `turnover()`. A
+  calendar rule takes
+  `CalendarRebalancer(trading_dates=..., frequency=RebalanceFrequency.MONTH_END)` on the panel's own
+  dates — and yields a date for an incomplete last period too, so check the last one.
 
-In a KaxaNuk Strategy Template repository the eligible set comes from the refined panel — the rule builds
-it from the `r_*` columns — and the library sizes it. If you do use its loaders and `run_pipeline`,
-three traps are silent until they are not:
+In a KaxaNuk Strategy Template repository the eligible set comes from the refined panel — the rule
+builds it from the `r_*` columns — and the library sizes it. If you do use its loaders and
+`run_pipeline`, three traps are silent until they are not:
 
-- **Snapshots match dates exactly.** A rebalance date the panel does not hold gives all-null features,
-  every filter goes null and the run aborts. Take dates from the panel's own `date` column;
-  `FixedDateRebalancer` checks nothing.
-- **Warm-up nulls abort the whole run.** A 252-day column is null for a year, `EXCLUDE` removes every
-  security, and one failing date stops every date with nothing written. Start after the warm-up.
+- **Snapshots match dates exactly.** A rebalance date the panel does not hold gives all-null
+  features, every filter goes null and the run aborts. Take dates from the panel's own `date`
+  column; `FixedDateRebalancer` checks nothing.
+- **Warm-up nulls abort the whole run.** A 252-day column is null for a year, `EXCLUDE` removes
+  every security, and one failing date stops every date with nothing written. Start after the
+  warm-up.
 - **Filters inside the pipeline are date-blind.** A selection stage receives a bare table, so a
   `MembershipFilter` on a dated `Classification` raises, or applies one date to all. Point-in-time
   membership comes from a per-date flag column (`BinaryFilter`) or
   `UniverseCreator.build_membership`, read per date with
   `BinaryMatrix.active_on(target_date=..., missing=MissingDataPolicy.EXCLUDE)`.
 
-The loaders — `CsvInput` and `ParquetInput`, over the Curator's one-file-per-identifier folders — read
-**numeric columns only**; a text column or a Parquet `NaN` fails with nothing more than *No input
-handler succeeded*.
+The loaders — `CsvInput` and `ParquetInput`, over the Curator's one-file-per-identifier folders —
+read **numeric columns only**; a text column or a Parquet `NaN` fails with nothing more than *No
+input handler succeeded*.
 
 ## 6. Constraints are levers, switched off
 
@@ -206,23 +208,24 @@ changing the constraints:
 | `minimum_holdings` | 1 | below it the date holds nothing: the book is cash. The honest response to too few things to hold is to hold less |
 
 Start with every constraint **off**, because a constraint is a lever a later experiment has
-to earn against the simpler baseline. The library's richer machinery — a `Mandate` with group limits,
-a tracking-error budget, Black-Litterman views — is a lever of the same kind: one at a time, each
-beating the book without it. `liquid-golden-cross`, the template's worked example, sizes by equal
-weight: the method every other one in the registry has to beat.
+to earn against the simpler baseline. The library's richer machinery — a `Mandate` with group
+limits, a tracking-error budget, Black-Litterman views — is a lever of the same kind: one at a time,
+each beating the book without it. `liquid-golden-cross`, the template's worked example, sizes by
+equal weight: the method every other one in the registry has to beat.
 
 ## 7. The weight file
 
 In a KaxaNuk Strategy Template repository `Experiments/backtest_engine.py` writes
 `Portfolio/portfolio_weights.csv`: wide, `Ticker` first, one ISO date per column, every column
-summing to exactly 1.0 with the residual in the cash proxy. Outside one, the library's exporter writes
-the same layout — `PortfolioEntity.from_dict(weights_dict={"2025-01-02": {...}})`, then
-`CsvOutputHandler(output_dir=..., filename="portfolio_weights.csv").write(portfolio=..., config=None)`
-— with two things to know: it **upper-cases tickers**, which must still match the market-data file
-names, and it **refuses negative weights**, so a long/short book cannot go through it.
+summing to exactly 1.0 with the residual in the cash proxy. Outside one, the library's exporter
+writes the same layout — `PortfolioEntity.from_dict(weights_dict={"2025-01-02": {...}})`, then
+`CsvOutputHandler(output_dir=..., filename="portfolio_weights.csv").write(portfolio=...,
+config=None)` — with two things to know: it **upper-cases tickers**, which must still match the
+market-data file names, and it **refuses negative weights**, so a long/short book cannot go through
+it.
 
-The attribution library does not read this file: it needs the book's **daily** weights, as the engine
-marked them. That hand-off is `attribution-analysis-runs`.
+The attribution library does not read this file: it needs the book's **daily** weights, as the
+engine marked them. That hand-off is `attribution-analysis-runs`.
 
 ## 8. The invariants every rule must pass
 
@@ -246,17 +249,17 @@ name the benchmark could not is a bug wearing a Sharpe.
 - **Build one returns-based allocator for many dates**, or run one through `run_pipeline` over a
   multi-date window.
 - **Redistribute what a cap frees** unless the blueprint names that lever.
-- **Choose a sizing method on the Sharpe it produces** over the window it will be judged on. Choose it
-  on a property of the book — concentration, turnover, capacity — and publish the comparison.
+- **Choose a sizing method on the Sharpe it produces** over the window it will be judged on. Choose
+  it on a property of the book — concentration, turnover, capacity — and publish the comparison.
 - **Swap in equal weight because the library is missing.** Let the error stop the run.
 - **Quote a number the engine did not produce.** This module builds weights; `backtest-engine-runs`
   prices them.
-- **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come from
-  the worked example, `liquid-golden-cross`, only.
+- **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come
+  from the worked example, `liquid-golden-cross`, only.
 
 ## Where the documentation is
 
 The library has no public documentation site yet. Its repository carries it: `README.md` for the
-principles and each method's card, `CHANGELOG.md` — read *Known and open* before trusting a feature —
-and `examples/`. `references/api.md` is the surface this skill was checked against, with the places
-where the README and the code disagree.
+principles and each method's card, `CHANGELOG.md` — read *Known and open* before trusting a feature
+— and `examples/`. `references/api.md` is the surface this skill was checked against, with the
+places where the README and the code disagree.

@@ -8,7 +8,7 @@ description: >
   there. It walks the index and the links between notes before reading anything, and cites every
   claim. It does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.4.1
+  version: 0.5.0
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -27,7 +27,6 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 The owner built this library so that answers rest on sources they chose. Answering from general
 knowledge defeats the point; answering from one note in isolation misses the connections that
 are the library's value.
-
 
 1. **Index first.** Read the library's index end to end — `Knowledge/INDEX.md` at home,
    `Bibliotheca/BIBLIOGRAPHY.md` in a strategy, where a row without a note is a lead and not a
@@ -52,26 +51,29 @@ are the library's value.
    claim has been superseded — report the newer one.
 7. **Offer to keep the answer.** At home, when the answer drew on three or more notes, ask through
    the question tool whether to keep it as a synthesis page — the shape is in `references/note.md`
-   in the `read` skill's folder — and write it on *Go* only: the page itself, under the domain,
-   and nothing else. The index and the log belong to `read`, `audit` and `refresh-index`, so say
-   in the same breath that `refresh-index` is what puts the page under *Concepts* in
-   `Knowledge/INDEX.md` and records the run in `Knowledge/LOG.md`. In a strategy, never:
-   `OBJECTIVE.md` is where a synthesis belongs, and the owner writes it.
+   in the `read` skill's folder — and write it on *Go* only: the page itself, under the domain;
+   its one line under *Concepts* in `Knowledge/INDEX.md`, title and one-line definition; and one
+   entry appended to `Knowledge/LOG.md`, `## [YYYY-MM-DD] query | kept a synthesis page`, with the
+   page's path. Nothing else. In a strategy, never: `OBJECTIVE.md` is the strategy's synthesis,
+   which `objective` drafts and the owner commits.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
    suggest the source that would close it: by year, authors and title when
    `references/reading-map.md` in the `read` skill's folder lists one — labelled *a lead from the
    reading map, not in your library*, or *in your Sources/, not yet read* when the PDF is there —
    and otherwise the kind of source. Where the map gives a work's other side and the library holds
-   only one of the two, name the other. Outside the map, name no work — no title, author or year,
-   not even labelled as memory: the kind of source is the whole suggestion. Do not answer from
-   memory without saying you did, and never write it into the library during a query.
+   only one of the two, name the other. Outside the map, two works may be named: one the owner
+   wrote on a *Find first* line of `RESEARCHER.md`, labelled *on your Find first line*, and a file
+   already in `Sources/`, labelled *in your Sources/, not yet read*. Every other suggestion outside
+   the map names no work — no title, author or year, not even labelled as memory: the kind of
+   source is the whole suggestion. Do not answer from memory without saying you did, and never
+   write it into the library during a query.
 
 ## What this skill will not let you do
 
 - Invent a source, a page or a URL. If it is not in the library, `Philosophy/` or the sources, the
   honest answer is that the library does not know, followed by what the researcher would read to
   find out.
-- Modify the library, `Philosophy/` or the sources while answering, beyond the one synthesis page
-  step 7 offers and the owner approves — never `INDEX.md`, never `LOG.md`, never a note — and in a
-  strategy, write anything at home.
-- Quote a performance number that did not come from the Lab's engines.
+- Modify the library, `Philosophy/` or the sources while answering, beyond what step 7 offers and
+  the owner approves — the synthesis page, its one line in `INDEX.md` and its one entry in
+  `LOG.md`, never a note — and in a strategy, write anything at home.
+- Quote a performance number that did not come from the engines the project names.

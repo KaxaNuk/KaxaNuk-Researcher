@@ -4,7 +4,8 @@ Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy
 The three starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
 `templates/strategy/` and `examples/liquid-golden-cross/` — and this script copies one of them
 byte for byte, so every folder made from the same package version starts identical.  Nothing is
-written from memory and nothing is generated.
+written from memory and nothing is generated; a cache folder a checkout or a local install carries
+is left behind.
 
 Usage:
     uv run --no-project python scaffold.py researcher <destination>
@@ -31,6 +32,15 @@ import shutil
 import subprocess
 import sys
 
+# Folders never copied: a checkout or a local install carries them, and every folder made from one
+# version of the package must start identical, so no run may carry a cache it happens to hold.
+CACHE_FOLDERS = frozenset({
+    '.ipynb_checkpoints',
+    '.pytest_cache',
+    '.ruff_cache',
+    '.venv',
+    '__pycache__',
+})
 # Each starting point: where it sits inside the package, and the first commit of a copy of it.
 STARTING_POINTS = {
     'researcher': (
@@ -175,12 +185,18 @@ def plan_copy(
 ) -> CopyPlan:
     """
     Every file under the source, in a stable order, paired with the path it lands at.
+
+    A file inside one of the `CACHE_FOLDERS` is left out.
     """
     sources = sorted(
         path
         for path
         in source_root.rglob('*')
         if path.is_file()
+        and not _is_in_cache_folder(
+            path,
+            source_root,
+        )
     )
     files = tuple(
         (
@@ -368,6 +384,23 @@ def _installed_candidates(
     ]
 
     return candidates
+
+
+def _is_in_cache_folder(
+    path: pathlib.Path,
+    source_root: pathlib.Path,
+) -> bool:
+    """
+    Whether a file under the source sits inside one of the `CACHE_FOLDERS`.
+    """
+    parts = path.relative_to(source_root).parts
+    inside = any(
+        part in CACHE_FOLDERS
+        for part
+        in parts
+    )
+
+    return inside
 
 
 def _is_package(

@@ -13,7 +13,7 @@ description: >
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -99,7 +99,7 @@ a folder of its own. Sections 0 to 4 are what any strategy needs; 5 depends on t
   Findings from this stage go there **directly**, the one exception to *findings first*: notebook
   outputs are stripped before committing, so a measurement living only in a cell output does not
   survive the commit.
-- **`BLUEPRINT_N.md`** — each prediction's *where it comes from* is *analyzer section N*, by
+- **`BLUEPRINT_N.md`** — each prediction's *where it comes from* is *analyzer section Y*, by
   number, or a `Bibliotheca/` note. A prediction with neither is a lead: *run analyzer section Y
   before predicting this.* The `blueprint` command of the KaxaNuk Researcher probes `RESULTS.md`
   for these, not `Data/Analyzer/`, which git ignores.

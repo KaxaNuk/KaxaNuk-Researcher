@@ -1,11 +1,14 @@
 # Log
 
-> Append-only record of every `read` and `audit` run in this `Bibliotheca/`, oldest first. Written
-> by the researcher, never edited by hand. File-level actions only — the notes written, updated and
-> flagged, the chapters of a book read, skimmed, skipped and to come — never a note's content. The
-> last five entries: `grep "^## \[" Bibliotheca/LOG.md | tail -5`
+> Append-only record of every `read` and `audit` run in this `Bibliotheca/`, oldest first, written
+> by whoever reads or audits; the researcher's `read` and `audit` append it themselves, and a past
+> entry is never edited. File-level actions only — the notes written, updated and flagged, the
+> chapters of a book read, skimmed, skipped and to come — never a note's content. The last five
+> entries: `grep "^## \[" Bibliotheca/LOG.md | tail -5`
 
 ---
+
+<!-- example: begin -->
 
 ## [2026-09-19] read | Paleologo (2021), chapter 5, carried from Luna's library for claim 1 — the PDF not read again
 - wrote: `Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md`, `Books/Paleologo_2021_Advanced_Portfolio_Management/09_Understand_Factors.md`
@@ -30,3 +33,5 @@
 
 ## [2026-09-22] audit | three chapter notes renamed: their paths ran past the 120 characters the package's check allows once the example sits under a home folder
 - updated: `Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs_Turnover_and_Trading.md` is now `Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs.md`; `Books/Paleologo_2021_Advanced_Portfolio_Management/10_Use_Effective_Heuristics_for_Alpha_Sizing.md` is now `Books/Paleologo_2021_Advanced_Portfolio_Management/10_Alpha_Sizing.md`; `Books/Paleologo_2021_Advanced_Portfolio_Management/12_Understand_Your_Performance.md` is now `Books/Paleologo_2021_Advanced_Portfolio_Management/12_Your_Performance.md`; every link to the three rewritten, in the two book indexes, the notes that cross-link them and `OBJECTIVE.md`. The entries above keep the names they were written with
+
+<!-- example: end -->

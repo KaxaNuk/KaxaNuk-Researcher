@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`), reading attribution output (use `alpha-decomposition`), or authoring
   Data Curator `c_*` columns (use `data-curator-custom-calculations`).
 metadata:
-  version: 0.1.4
+  version: 0.1.5
 ---
 
 # Running the KaxaNuk Backtest Engine
@@ -24,7 +24,8 @@ PyPI, and it is deliberately absent from the KaxaNuk Strategy Template's `pyproj
 index URL and key never enter version control.
 
 **Every performance figure in a KaxaNuk strategy comes from this engine.** There is deliberately no
-second, lighter simulator: one that disagreed would only let a reader pick the number they preferred.
+second, lighter simulator: one that disagreed would only let a reader pick the number they
+preferred.
 
 ## 1. Install it without leaking the key
 
@@ -161,9 +162,9 @@ CAGR, Sharpe, Sortino, alpha, VaR, CVaR, maximum drawdown, annual returns, drawd
 portfolio weights. `references/api.md` lists the keys of `data`, verified on 0.66.0.
 
 **`Daily_Weights` is the book as the engine actually held it**, one row per trading day, its columns
-the holdings plus the benchmark and `CASH_RESERVE`. That is the drifted daily series **step 6 reads**
-— the attribution library rejects a file that only carries the rebalance dates — so it is written out
-beside the other results rather than recomputed later from the weight file.
+the holdings plus the benchmark and `CASH_RESERVE`. That is the drifted daily series **step 6
+reads** — the attribution library rejects a file that only carries the rebalance dates — so it is
+written out beside the other results rather than recomputed later from the weight file.
 
 The `metrics` module is public, so a figure quoted in a document can be recomputed from the returned
 series rather than copied out of a cell: `sharpe_ratio`, `sortino_ratio`, `annualize_rets`,
@@ -188,8 +189,8 @@ line — `Cash error on <date> with $-340.92` — stops valuing there, and retur
 | a key naming the stub | none | — |
 
 Both runs wrote an Excel report, and the shorter one annualised over its stub, so its CAGR is the
-higher of the two. **The check that catches it:** `data["end_date"]` and `data["years"]` describe the
-window the engine *valued*, not the one the configuration asked for — compare them with the
+higher of the two. **The check that catches it:** `data["end_date"]` and `data["years"]` describe
+the window the engine *valued*, not the one the configuration asked for — compare them with the
 configured dates before reading a single metric. **The cure is `cash_reserve_percentage`**, a
 fraction: in a Strategy Template repository the weight file always sums to one (section 7), so the
 reserve is the only cash that pays commission. `liquid-golden-cross` needed `0.02`; its long window

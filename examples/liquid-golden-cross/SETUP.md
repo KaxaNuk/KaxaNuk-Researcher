@@ -153,7 +153,8 @@ receives.
 They are then available in every folder, this one included, and `apm update -g` keeps every
 strategy current at once. **A strategy installs nothing.** Your researcher's home, made once with
 `init-researcher`, can be invited into this folder for its library — `claude --add-dir <the
-researcher's folder>`, `/add-dir` once inside, or the desktop app's add-folder button.
+researcher's folder>`, `/add-dir` once inside, or the desktop app's add-folder button; for its
+identity to load with it, follow *In a strategy or another project* in the researcher's own README.
 
 **Nothing in the pipeline imports a skill either.** The repository runs, the notebooks run and the
 results are the same with or without them.
@@ -195,7 +196,8 @@ read.
 
 Put the same status line in place of the banner at the top of `AGENTS.md`. Rename `name` and
 `author` in `apm.yml`, and `name` in `pyproject.toml`, to the strategy's and yours, and set
-`version` in both to `0.1.0`. In `CHANGELOG.md`, keep everything above the `---` line and replace
+`version` in both to `0.1.0`. `LICENSE` names KaxaNuk as the holder — put yourself there, or
+choose another licence. In `CHANGELOG.md`, keep everything above the first `---` line and replace
 the template's entries below it with the strategy's first, naming the template version `apm.yml`
 declared before you reset it:
 
@@ -209,7 +211,7 @@ Then run `uv lock`, so `uv.lock` records the new name and version, and commit th
 `uv.lock`, the other file the setup itself produced:
 
 ```bash
-git add README.md AGENTS.md apm.yml pyproject.toml CHANGELOG.md uv.lock
+git add README.md AGENTS.md apm.yml pyproject.toml LICENSE CHANGELOG.md uv.lock
 git commit -m "README: <strategy-name>"
 ```
 
@@ -230,11 +232,11 @@ git status
 ```
 
 **It should be clean.** Step 5 committed what the setup itself changed: the README, the `AGENTS.md`
-banner, `apm.yml`'s name, author and version, `pyproject.toml`'s name and version, the first
-`CHANGELOG.md` entry, and `uv.lock` — which pins the versions this strategy's results will come
-from, and is why the template ships without one and your repository keeps one. Everything else the
-commands produced — `.venv/`, `Config/.env`, and whatever your assistant writes per machine, such as
-`.claude/` — is ignored.
+banner, `apm.yml`'s name, author and version, `pyproject.toml`'s name and version, the licence
+holder, the first `CHANGELOG.md` entry, and `uv.lock` — which pins the versions this strategy's
+results will come from, and is why the template ships without one and your repository keeps one.
+Everything else the commands produced — `.venv/`, `Config/.env`, and whatever your assistant
+writes per machine, such as `.claude/` — is ignored.
 **Anything showing up means something was written in the wrong place.**
 
 **The repository exists only on this machine until you publish it.** Nothing is lost and nothing

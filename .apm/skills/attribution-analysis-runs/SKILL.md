@@ -13,7 +13,7 @@ description: >
   does NOT cover what the numbers mean for a strategy (use `alpha-decomposition`) or running the
   backtest that produced the book (use `backtest-engine-runs`).
 metadata:
-  version: 0.2.5
+  version: 0.2.6
 ---
 
 # Running the KaxaNuk Attribution Analysis
@@ -56,17 +56,17 @@ Three rules, and the first is not negotiable:
   back. An exposed key is rotated, not edited out.
 - **Never add the library to a repository's dependency file.** It is installed by hand, per machine,
   by whoever holds the licence.
-- **Python 3.12 or 3.13** — the Backtest Engine's ceiling too, and part of why a KaxaNuk Strategy Template
-  repository pins `requires-python = ">=3.12,<3.14"`.
+- **Python 3.12 or 3.13** — the Backtest Engine's ceiling too, and part of why a KaxaNuk Strategy
+  Template repository pins `requires-python = ">=3.12,<3.14"`.
 
 The licence key lives in `Config/.env` as **`KNAA_API_KEY_KAXANUK`** — a different variable from the
 engine's `KNBE_API_KEY_KAXANUK`, and both sit in the same file; `~/.kaxanuk_license` or the exported
-variable work too. **Never print the value of any of them.** The licence is checked against KaxaNuk's
-server on every run, with a 24-hour local cache and a 7-day offline grace period: a run that worked
-last week can fail today on a plane, and that is the licence, not the data.
+variable work too. **Never print the value of any of them.** The licence is checked against
+KaxaNuk's server on every run, with a 24-hour local cache and a 7-day offline grace period: a run
+that worked last week can fail today on a plane, and that is the licence, not the data.
 
-**Keep it installed.** `uv sync` is *exact* by default and removes every package the lockfile does not
-name, and this one is deliberately not in the lockfile. Once it is installed, after a relock use
+**Keep it installed.** `uv sync` is *exact* by default and removes every package the lockfile does
+not name, and this one is deliberately not in the lockfile. Once it is installed, after a relock use
 `uv sync --inexact` with the repository's groups, run everything else through `uv run`, and check
 `uv pip list | grep -i kaxanuk` before step 6. If the library has vanished, that is why, and the
 install command is the fix.
@@ -92,38 +92,38 @@ licensed library. A `try` around `from kaxanuk… import …` does the same job 
 ## 3. The four inputs
 
 The layouts are on the documentation's *Data Formats* page; `init excel` lays down `Input/Data/`,
-`Input/Portfolios/`, `Input/Benchmark_Portfolios/` and `Input/Factor_Models/`. What decides whether a
-run is right:
+`Input/Portfolios/`, `Input/Benchmark_Portfolios/` and `Input/Factor_Models/`. What decides whether
+a run is right:
 
 **The first header decides everything, and it is not what the documentation says.** A weight file is
 read as horizontal when its first header is `Ticker` and as vertical when it is **`date_column`** —
 `StandardField.DATE.value`, case-insensitive, checked on 0.2.0 by running it. Anything else raises
-`MissingPortfolioError: First column must be 'Ticker' or 'date_column'` before a number is read. *Data
-Formats* and `detect_portfolio_format`'s own docstring both say `Date`/`date`, and both are wrong;
-`date` is rejected. The same rule governs the portfolio weights, the benchmark weights and the
-benchmark returns file.
+`MissingPortfolioError: First column must be 'Ticker' or 'date_column'` before a number is read.
+*Data Formats* and `detect_portfolio_format`'s own docstring both say `Date`/`date`, and both are
+wrong; `date` is rejected. The same rule governs the portfolio weights, the benchmark weights and
+the benchmark returns file.
 
 **The weights are daily.** Portfolio and benchmark weights alike, no nulls. **Once a weight table
 spans a year or more, the library requires 240 to 260 rows a year** in its first and last year and
-raises `DataIntegrityError` otherwise, precisely to catch a rebalance-only file passed by mistake. So
-the weight file a Backtest Engine priced — one column per rebalance date — **cannot be passed in**,
-whatever the *Data Formats* example suggests. The attribution reads the book as it was actually held
-each trading day, drift included (section 8).
+raises `DataIntegrityError` otherwise, precisely to catch a rebalance-only file passed by mistake.
+So the weight file a Backtest Engine priced — one column per rebalance date — **cannot be passed
+in**, whatever the *Data Formats* example suggests. The attribution reads the book as it was
+actually held each trading day, drift included (section 8).
 
-**Market data — one file per security**, `{TICKER}.csv` or `{TICKER}.parquet`, with the date and price
-columns named in the configuration (`user_column_date`, `user_column_price`); returns are computed
-from the prices, and the Data Curator's `m_date` and `m_close_dividend_and_split_adjusted` drop
-straight in. **Use the price basis the backtest marked on**: in a KaxaNuk Strategy Template
+**Market data — one file per security**, `{TICKER}.csv` or `{TICKER}.parquet`, with the date and
+price columns named in the configuration (`user_column_date`, `user_column_price`); returns are
+computed from the prices, and the Data Curator's `m_date` and `m_close_dividend_and_split_adjusted`
+drop straight in. **Use the price basis the backtest marked on**: in a KaxaNuk Strategy Template
 repository that is the dividend-and-split-adjusted close, and a split-adjusted column would drop
 every dividend from the attribution. Dates must be `YYYY-MM-DD` or `YYYY/MM/DD`. **A blank price in
 any row read fails that security, and one failed security aborts the whole load** with a single
 `DataLoadingError` naming them all — so trim a file's rows before its first price and after its
 last.
 
-**Benchmark returns** go through the same portfolio loader, so they take the same two shapes: one row
-of dates-as-columns, or a vertical file whose first header is `date_column` and whose single other
-column is the index's daily return. Checked on 0.2.0: the vertical form loads and is reported as one
-ticker.
+**Benchmark returns** go through the same portfolio loader, so they take the same two shapes: one
+row of dates-as-columns, or a vertical file whose first header is `date_column` and whose single
+other column is the index's daily return. Checked on 0.2.0: the vertical form loads and is reported
+as one ticker.
 
 **Per-factor returns — one CSV per factor**: the first column is the date, then one column per asset
 holding that factor's return *for that asset*. **The first header may be empty** — the loader takes
@@ -134,27 +134,27 @@ the first column whatever it is called, and a file whose header row starts with 
   becomes `f_residual`, and two names that collide overwrite each other.
 - **Every entry in the directory is read as a factor file**; only `.gitkeep` is skipped. A stray
   `notes.md` or `.DS_Store` fails there, not with a message about the directory.
-- **Only the portfolio's own tickers are read.** A column for a name the book never held is skipped in
-  0.2.0, and a held name missing from a factor file lowers that factor's coverage instead of raising.
-  The run logs `Average total factor coverage throughout the portfolio`, as a percentage, and
-  `Factor '<name>': reading k/n asset columns` per file. **Read both.** Low coverage means the factor
-  attribution describes part of the book.
-- **An explicit `start_date` earlier than a factor file's first date raises `DateRangeError`**, while a
-  late `end_date` is quietly clamped.
+- **Only the portfolio's own tickers are read.** A column for a name the book never held is skipped
+  in 0.2.0, and a held name missing from a factor file lowers that factor's coverage instead of
+  raising. The run logs `Average total factor coverage throughout the portfolio`, as a percentage,
+  and `Factor '<name>': reading k/n asset columns` per file. **Read both.** Low coverage means the
+  factor attribution describes part of the book.
+- **An explicit `start_date` earlier than a factor file's first date raises `DateRangeError`**,
+  while a late `end_date` is quietly clamped.
 - **Observed in the 0.2.0 source, not promised by the documentation:** `f_market`,
   `f_total_factor_returns`, `f_total_excess_returns` and `f_idyo_returns` are dropped from the
-  percentage decomposition, which uses `f_total_excess_returns` as its denominator when present. Name
-  a factor one of these by accident and it vanishes without a word. The plots group on exactly
+  percentage decomposition, which uses `f_total_excess_returns` as its denominator when present.
+  Name a factor one of these by accident and it vanishes without a word. The plots group on exactly
   `f_size`, `f_momentum`, `f_beta`, `f_residual volatility` (with the space), `f_value` and
   `f_<GICS sector>`; any other name still attributes and lands in neither panel.
 
 **Widen the book to the benchmark, or the first cut compares it with a fraction of the index.**
-`main()` loads market data only for the securities named in the *portfolio* weight file, and the first
-cut computes the benchmark's return from those prices alone — the benchmark returns file never enters
-it. Benchmark weight on a name the book does not list has no return and silently drops out. **List every
-benchmark constituent in the portfolio file, at zero weight where it is not held, each with a price
-series.** Proved on 0.2.0 with a book of 8 names inside a 788-name index, the other 780 priced to earn
-exactly the index's daily return:
+`main()` loads market data only for the securities named in the *portfolio* weight file, and the
+first cut computes the benchmark's return from those prices alone — the benchmark returns file never
+enters it. Benchmark weight on a name the book does not list has no return and silently drops out.
+**List every benchmark constituent in the portfolio file, at zero weight where it is not held, each
+with a price series.** Proved on 0.2.0 with a book of 8 names inside a 788-name index, the other 780
+priced to earn exactly the index's daily return:
 
 | First cut | Book only | Widened |
 | --- | --- | --- |
@@ -163,10 +163,10 @@ exactly the index's daily return:
 | interaction | +0.7415 | +0.0399 |
 | portfolio return | +0.9305 | +0.9305 |
 
-Unwidened, the benchmark was the 7.3% of the index the book happened to own, alpha came out about five
-times too large, and nearly all of the excess was filed under **interaction** — the effect least likely
-to be questioned. The book's own return did not move, which is what zero weights should do. The last
-1.1% was the 8 held names earning their own returns rather than the index's.
+Unwidened, the benchmark was the 7.3% of the index the book happened to own, alpha came out about
+five times too large, and nearly all of the excess was filed under **interaction** — the effect
+least likely to be questioned. The book's own return did not move, which is what zero weights should
+do. The last 1.1% was the 8 held names earning their own returns rather than the index's.
 
 ## 4. Configure it
 
@@ -174,13 +174,14 @@ to be questioned. The book's own return did not move, which is what zero weights
 not touch**), your value in B, the description in C. The documentation's *Configuration Reference*
 has every row; `references/configuration.md` has them with the traps below. The ones that decide the
 run are the two methods (`brinson_fachler_method`, `factor_model_method`, independent), the two
-columns read from your market data, the formats (lowercase), and the window (`YYYY-MM-DD` or `auto`).
+columns read from your market data, the formats (lowercase), and the window (`YYYY-MM-DD` or
+`auto`).
 
 Three traps:
 
 - **`portfolio_input_format = excel` does not complete.** In 0.2.0 the benchmark-returns handler is
-  still built only on the `csv` branch, so the Excel branch reaches an unbound name. Keep the weights
-  as `.csv`, and report it upstream rather than working around it silently.
+  still built only on the `csv` branch, so the Excel branch reaches an unbound name. Keep the
+  weights as `.csv`, and report it upstream rather than working around it silently.
 - **Three directories are joined onto `input_directory`** — the portfolio weights, the benchmark
   weights and the benchmark returns — while `investable_assets_directory` and
   `factor_returns_by_factor_directory` are used as given. Moving `input_directory` moves the first
@@ -218,17 +219,17 @@ performance_attribution.main(
 )
 ```
 
-`load_config_env()` is what reads `Config/.env`, and without `configure_logger` at `INFO` the coverage
-and date-range lines this skill tells you to read never print. The imports are
+`load_config_env()` is what reads `Config/.env`, and without `configure_logger` at `INFO` the
+coverage and date-range lines this skill tells you to read never print. The imports are
 `services.env_loader`, `services.configuration_logger`, `config_handlers.excel_configurator` and
 `performance_attribution`, under `kaxanuk.attribution_analysis`.
 
 - **`dashboard_port` is keyword-only and has no default** — required even with the dashboard off,
   whatever the `main()` examples in the documentation show.
 - **`main()` shows plots itself.** With Brinson-Fachler on it always draws its figure, and with
-  `launch_dashboard=False` it draws the factor model's too — each through `plt.show()`. In a script, a
-  notebook batch or CI, call `matplotlib.use("Agg")` before `main()`, or the run blocks on a window
-  nobody will close.
+  `launch_dashboard=False` it draws the factor model's too — each through `plt.show()`. In a script,
+  a notebook batch or CI, call `matplotlib.use("Agg")` before `main()`, or the run blocks on a
+  window nobody will close.
 
 ## 6. Read what comes back
 
@@ -253,11 +254,11 @@ brinson.attribution_plots()                # sets .brinston_fach_indexes, and ca
 | `.output_dict` | date to per-asset detail: `asset`, both weights, `returns_data`, both returns, `alpha` and the three effects |
 | `.brinston_fach_indexes` | the cumulative sums — the series to quote. Set only by `attribution_plots()` |
 
-**Read the effects the way the library defines them.** Its *Brinson-Fachler* methodology page computes
-them **per asset and per date**: with `r` the asset's return, `r_b = w_b · r`, and
-`alpha = w_p · r − r_b`, allocation is `(w_p − w_b) · r_b`, selection is `alpha · w_p`, and interaction
-the remainder. That is not the textbook group-level split, so an *allocation* number is not a sector
-bet unless the inputs were built as groups. Say which you mean when you quote one.
+**Read the effects the way the library defines them.** Its *Brinson-Fachler* methodology page
+computes them **per asset and per date**: with `r` the asset's return, `r_b = w_b · r`, and
+`alpha = w_p · r − r_b`, allocation is `(w_p − w_b) · r_b`, selection is `alpha · w_p`, and
+interaction the remainder. That is not the textbook group-level split, so an *allocation* number is
+not a sector bet unless the inputs were built as groups. Say which you mean when you quote one.
 
 ```python
 factor_returns = load_by_factor_returns_arrow(
@@ -282,41 +283,41 @@ decomposition = factor_model.cummulative_pct_decomp()
 ```
 
 `load_by_factor_returns_arrow` returns `FactorReturns` entities; the class wants their tables.
-`.portfolio_attribution_ts` is the daily contribution per factor, `.simulated_rets` its cumulative sum,
-`.pct_df_returns` the daily percentage split, and `cummulative_pct_decomp()` a dict: each factor's
-share of total excess return at the last date. Tables are `pa.Table`; `.to_pandas()` at the analysis
-boundary.
+`.portfolio_attribution_ts` is the daily contribution per factor, `.simulated_rets` its cumulative
+sum, `.pct_df_returns` the daily percentage split, and `cummulative_pct_decomp()` a dict: each
+factor's share of total excess return at the last date. Tables are `pa.Table`; `.to_pandas()` at the
+analysis boundary.
 
 Note the names, none of which is a typo you may fix. The first cut is
 **`Brinston`**`FachlerArrowAttribution` with `.brinston_fach_indexes`, while its method is
-`brinson_fachler_model`; its constructor takes `returns_investable_assets` where the interface spells
-it `returns_investible_assets`. **The factor model class is `KNFMArrowAttribution`** — the
+`brinson_fachler_model`; its constructor takes `returns_investable_assets` where the interface
+spells it `returns_investible_assets`. **The factor model class is `KNFMArrowAttribution`** — the
 documentation calls it `FactorModelArrowAttribution` throughout, and importing that name from
 `interfaces.factor_model_arrow_attribution` raises `ImportError` on 0.2.0. The module path keeps the
 `factor_model` spelling; only the class is `KNFM`.
 
 Four things to know before quoting any of it:
 
-- **The idiosyncratic residual has three spellings.** `f_idio_returns` is the column `calc_pct_area()`
-  creates; `idio_returns` is the key `cummulative_pct_decomp()` returns; `f_idyo_returns` is a reserved
-  input name both drop. Say which one a quoted number came from.
+- **The idiosyncratic residual has three spellings.** `f_idio_returns` is the column
+  `calc_pct_area()` creates; `idio_returns` is the key `cummulative_pct_decomp()` returns;
+  `f_idyo_returns` is a reserved input name both drop. Say which one a quoted number came from.
 - **The percentage decomposition divides by the day's total return.** On days near zero the ratio
-  explodes, and the library forward-fills the non-finite result. Read `.pct_df_returns` as a shape and
-  quote `cummulative_pct_decomp()` for a number.
+  explodes, and the library forward-fills the non-finite result. Read `.pct_df_returns` as a shape
+  and quote `cummulative_pct_decomp()` for a number.
 - **Everything is aligned to the intersection of every input's date range**, and the run logs it as
-  `Aligned all tables to common date range`. One short factor file shortens the whole analysis; state
-  the common range beside the backtest window. An intersection with no dates raises rather than
-  returning an empty result.
-- `summary_stats(returns)`, in `modules.performance_functions`, gives the one-row frame the dashboard
-  shows; the whole module is public, so a figure in a document can be recomputed from the series. Its
-  functions do not infer periods per year — pass them.
+  `Aligned all tables to common date range`. One short factor file shortens the whole analysis;
+  state the common range beside the backtest window. An intersection with no dates raises rather
+  than returning an empty result.
+- `summary_stats(returns)`, in `modules.performance_functions`, gives the one-row frame the
+  dashboard shows; the whole module is public, so a figure in a document can be recomputed from the
+  series. Its functions do not infer periods per year — pass them.
 
 ## 7. The dashboard
 
 With `factor_model_method` on and `launch_dashboard=True`, a Dash app is served on `dashboard_port`
-(1–9999, typically 8050). **It needs the factor model**: with only Brinson-Fachler, static matplotlib
-plots are what you get. `run_server` **blocks**, and runs with `debug=True` by default. Never launch it
-from an automated run, a scheduled job or a notebook you expect to finish: pass
+(1–9999, typically 8050). **It needs the factor model**: with only Brinson-Fachler, static
+matplotlib plots are what you get. `run_server` **blocks**, and runs with `debug=True` by default.
+Never launch it from an automated run, a scheduled job or a notebook you expect to finish: pass
 `launch_dashboard=False` and read the tables.
 
 ## 8. Inside a KaxaNuk Strategy Template repository
@@ -325,17 +326,17 @@ Step 6 reads what step 5 produced, and `Experiments/attribution_analysis.py` sha
 
 - **The book's daily weights, not `Portfolio/portfolio_weights.csv`.** That file is the book on its
   rebalance dates, which the library rejects. Take the weights the engine actually held each trading
-  day — `Daily_Weights` in its results, verified on engine 0.66.0 — reshape them to one row per trading
-  day with `date_column` first, keep the cash position, drop the engine's benchmark column (it comes
-  back at zero), and **widen them to every benchmark constituent at zero weight** (section 3). The
-  engine names only what was held, so the widening is a step of its own, and every added name needs a
-  price series in the market-data directory.
+  day — `Daily_Weights` in its results, verified on engine 0.66.0 — reshape them to one row per
+  trading day with `date_column` first, keep the cash position, drop the engine's benchmark column
+  (it comes back at zero), and **widen them to every benchmark constituent at zero weight** (section
+  3). The engine names only what was held, so the widening is a step of its own, and every added
+  name needs a price series in the market-data directory.
 - **The benchmark's daily weights and its daily returns** belong to the experiment, not to the
-  library's defaults, with the same density rule. A benchmark chosen after seeing the result is not a
-  benchmark.
-- `Experiments/Experiment_N/Attribution/` is where output lands, and **nothing in it is committed**: no
-  workbooks, no charts, no dashboards. The numbers reach `FINDINGS_N.md`, and `RESULTS.md` is compiled
-  from those.
+  library's defaults, with the same density rule. A benchmark chosen after seeing the result is not
+  a benchmark.
+- `Experiments/Experiment_N/Attribution/` is where output lands, and **nothing in it is committed**:
+  no workbooks, no charts, no dashboards. The numbers reach `FINDINGS_N.md`, and `RESULTS.md` is
+  compiled from those.
 - **Record the factor set** — how many files, and their names — and the coverage line. Attribution
   numbers are only comparable across runs when the factor set is identical, and the file names *are*
   the factor set.
@@ -351,10 +352,11 @@ counterfactual books that say what the residual is made of.
   itself; it shapes inputs, calls the library and reads tables back.
 - **Report a factor split without its coverage.** The coverage line and the count of factor files
   travel with every attribution number.
-- **Treat an empty `Output/` as a failed run.** It is what `main()` does; read the attributes instead.
+- **Treat an empty `Output/` as a failed run.** It is what `main()` does; read the attributes
+  instead.
 - **Silently accept a shortened window.** The common date range is an output, and it is stated.
-- **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come from
-  the worked example, `liquid-golden-cross`, only.
+- **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come
+  from the worked example, `liquid-golden-cross`, only.
 
 ## Where the documentation is
 

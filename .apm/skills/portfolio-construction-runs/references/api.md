@@ -1,8 +1,8 @@
 # Portfolio Construction — the public surface
 
-Checked against **`kaxanuk.portfolio_construction` 1.28.0**, from its source and a wheel built from it,
-on 2026-09-17. Almost every callable is keyword-only. Where this file and the library disagree, the
-library wins; report the difference.
+Checked against **`kaxanuk.portfolio_construction` 1.28.0**, from its source and a wheel built from
+it, on 2026-09-17. Almost every callable is keyword-only. Where this file and the library disagree,
+the library wins; report the difference.
 
 ## Imports
 
@@ -20,9 +20,10 @@ library wins; report the difference.
 | by module path only | `builders.universe_builder.UniverseBuilder`, `config_handlers.excel_configurator.ExcelConfigurator`, `market_data_pipeline_services.market_data_service.MarketDataProcessingService`, `entities.portfolio.PortfolioEntity`, `output_handlers.excel_output_handler.ExcelOutputHandler` |
 
 Every exception derives from `exceptions.PortfolioConstructionError`: `AllocationError`,
-`ConfigurationError` (with `AllocatorConfigurationError`, `MandateError`, `ViewError`, `BenchmarkError`
-under it), `FilterError`, `PipelineError`, `PortfolioEntityError`, `ReadingCSVError`, `MarketDataError`.
-An unknown method name in `build_allocator` raises `KeyError`, listing the names.
+`ConfigurationError` (with `AllocatorConfigurationError`, `MandateError`, `ViewError`,
+`BenchmarkError` under it), `FilterError`, `PipelineError`, `PortfolioEntityError`,
+`ReadingCSVError`, `MarketDataError`. An unknown method name in `build_allocator` raises `KeyError`,
+listing the names.
 
 ## Sizing: the registry
 
@@ -47,18 +48,20 @@ returns-based method takes `returns`; a snapshot-only method refuses it.
 | `cvar` | `CVaRConfig(alpha=0.95, mandate=None)` | returns | — | `solver` | hard | mandate |
 | `cdar` | `CDaRConfig(alpha=0.95, mandate=None)` | returns | — | `solver` | hard | mandate |
 
-*Bounds*: **hard**, the mandate is a constraint of the solve; **clip**, negatives clipped and the book
-renormalised; **none**, group limits only afterwards, with `Weights.cap_groups`. The returns-based
-configs share `covariance_method` (`SAMPLE`, `LEDOIT_WOLF`, `OAS`, `EWMA`, `SEMICOVARIANCE`),
-`periods_per_year=252`, `ewma_decay=0.94`, `shrinkage=0.0` and `missing=MissingDataPolicy.EXCLUDE`.
-**Since 1.28.0 every limit is annual** against `periods_per_year`: monthly returns need `12`.
+*Bounds*: **hard**, the mandate is a constraint of the solve; **clip**, negatives clipped and the
+book renormalised; **none**, group limits only afterwards, with `Weights.cap_groups`. The
+returns-based configs share `covariance_method` (`SAMPLE`, `LEDOIT_WOLF`, `OAS`, `EWMA`,
+`SEMICOVARIANCE`), `periods_per_year=252`, `ewma_decay=0.94`, `shrinkage=0.0` and
+`missing=MissingDataPolicy.EXCLUDE`. **Since 1.28.0 every limit is annual** against
+`periods_per_year`: monthly returns need `12`.
 
 - `SizingInterface.allocate(*, snapshot) -> AllocatedUniverse`, and
-  `get_sizing_weights(*, universe) -> pa.Table`, which returns the table with the weight column added.
+  `get_sizing_weights(*, universe) -> pa.Table`, which returns the table with the weight column
+  added.
 - **A returns-based method never slices its history by date** (see the skill, section 4).
-- `KNIndexAllocator`: `kn_weight = zeta * traded-value weight + (1 - zeta) * market-cap weight`. With
-  `max_constituents` set, `min_weight` is not applied; `min_constituents` is validated and never
-  enforced.
+- `KNIndexAllocator`: `kn_weight = zeta * traded-value weight + (1 - zeta) * market-cap weight`.
+  With `max_constituents` set, `min_weight` is not applied; `min_constituents` is validated and
+  never enforced.
 
 ## Entities
 
@@ -79,12 +82,12 @@ configs share `covariance_method` (`SAMPLE`, `LEDOIT_WOLF`, `OAS`, `EWMA`, `SEMI
 - `BinaryFilter(*, column, include_value=1.0)`; `CompositeUniverseFilter(*, filters)`.
 - `UniverseCreator(*, classification, dimension, rules_by_group, base_filters=())` is not a pipeline
   stage: `build_membership(*, snapshots) -> UniverseMembership`, whose `matrix` is a `BinaryMatrix`.
-- `CalendarRebalancer(*, trading_dates, frequency)` with `RebalanceFrequency.WEEK_START`, `WEEK_END`,
-  `MONTH_START`, `MONTH_END`, `QUARTER_START`, `QUARTER_END`, `YEAR_START`, `YEAR_END`;
+- `CalendarRebalancer(*, trading_dates, frequency)` with `RebalanceFrequency.WEEK_START`,
+  `WEEK_END`, `MONTH_START`, `MONTH_END`, `QUARTER_START`, `QUARTER_END`, `YEAR_START`, `YEAR_END`;
   `get_timing_dates()`.
 - `FixedDateRebalancer(*, dates)` returns the dates as given: no sorting, no trading-day check.
-- `TimeSignalRebalancer(*, signal, mode)` — `TimingMode.ON_CHANGE` or `WHILE_TRUE`. With `EXCLUDE`, a
-  null inside a True run makes two spurious change points.
+- `TimeSignalRebalancer(*, signal, mode)` — `TimingMode.ON_CHANGE` or `WHILE_TRUE`. With `EXCLUDE`,
+  a null inside a True run makes two spurious change points.
 
 ## Pipeline
 
@@ -116,18 +119,20 @@ market_data = service.load_and_process_market_data(tickers=set(configuration.ide
 ```
 
 - Both directories must already exist, relative to the working directory.
-- `market_data` maps each column to a wide panel: `date`, then one column per identifier, null where an
-  identifier has no row. Column order follows the set, so it is not stable between runs.
+- `market_data` maps each column to a wide panel: `date`, then one column per identifier, null where
+  an identifier has no row. Column order follows the set, so it is not stable between runs.
 - Only numeric columns load, as decimals. `PanelHelper.simple_returns(*, table)` turns a price panel
   into returns.
-- `UniverseBuilder().build_snapshots(*, market_data_dict, tickers, required_fields, rebalance_dates)`
-  gives one table per date, reading values **on** that date, and all-null for a date the panel lacks.
+- `UniverseBuilder().build_snapshots(*, market_data_dict, tickers, required_fields,
+  rebalance_dates)` gives one table per date, reading values **on** that date, and all-null for a
+  date the panel lacks.
 
 ## Writing the weight file
 
 `PortfolioEntity.from_dict(weights_dict)` takes ISO date strings as keys — a `date` key raises —
-upper-cases tickers, fills tickers absent on a date with 0.0, refuses negatives, and accepts a column
-summing below 1. `CsvOutputHandler(*, output_dir, filename="portfolio_weights.csv").write(portfolio=...,
+upper-cases tickers, fills tickers absent on a date with 0.0, refuses negatives, and accepts a
+column summing below 1.
+`CsvOutputHandler(*, output_dir, filename="portfolio_weights.csv").write(portfolio=...,
 config=None)` writes `Ticker` then one column per date: the horizontal layout the Backtest Engine
 detects.
 
@@ -143,16 +148,16 @@ detects.
 The workbook — sheets `General`, `Identifiers`, `Column_Mapping`, `Universe_Filters`, `KN_Index` —
 describes one flow, a threshold filter then the KN Index; the rebalance dates live in the entry
 script. `ExcelConfigurator` calls `sys.exit(1)` on a configuration error, so in a notebook it raises
-`SystemExit`. The shipped workbook carries absolute paths from a developer's machine in `General`, and
-its format list offers `excel`, which no input handler reads, while leaving out `parquet`, which one
-does.
+`SystemExit`. The shipped workbook carries absolute paths from a developer's machine in `General`,
+and its format list offers `excel`, which no input handler reads, while leaving out `parquet`, which
+one does.
 
 ## Where the README and the code disagree, at 1.28.0
 
 - The `calendars` extra installs QuantLib, not `exchange-calendars`.
 - Market data is CSV or Parquet, one file per identifier; there is no Excel input.
 - The example scripts live in `examples/`.
-- The API is described as stable since 1.0.0, but 1.28.0, a minor release, changed `HRPAllocator` and
-  renamed `FrontierBand` fields.
+- The API is described as stable since 1.0.0, but 1.28.0, a minor release, changed `HRPAllocator`
+  and renamed `FrontierBand` fields.
 - *The library never guesses around look-ahead* — true of what it does, but a returns-based method
   inside `run_pipeline` reads future rows, as the changelog's *Known and open* section says.

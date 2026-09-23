@@ -14,7 +14,13 @@ Sources/**/*.jpeg
 .agents/
 .codex/
 .cursor/
-.github/
+# The copilot target writes inside .github/ - only what APM puts there is ignored, so a workflow
+# committed there later still shows up.
+.github/skills/
+.github/prompts/
+.github/agents/
+.github/instructions/
+.github/copilot-instructions.md
 .gemini/
 .opencode/
 .windsurf/
@@ -27,6 +33,8 @@ GEMINI.md
 Extracts/
 __pycache__/
 .venv/
+.ruff_cache/
+.pytest_cache/
 
 # IDE and OS
 .idea/

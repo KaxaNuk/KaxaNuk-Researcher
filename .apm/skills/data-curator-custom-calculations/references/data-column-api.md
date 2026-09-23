@@ -1,7 +1,7 @@
 # DataColumn API
 
-`DataColumn` wraps a `pyarrow.Array`. It is what every calculation parameter receives, and the preferred
-return type.
+`DataColumn` wraps a `pyarrow.Array`. It is what every calculation parameter receives, and the
+preferred return type.
 
 ```python
 from kaxanuk.data_curator import DataColumn
@@ -9,16 +9,17 @@ from kaxanuk.data_curator import DataColumn
 
 ## Null semantics
 
-`DataColumn` treats any null or `NaN` as a missing value and propagates it: **any row where an operand is null
-comes out null**, and a division by zero comes out null instead of `inf`. That is the main reason to stay in
-`DataColumn` arithmetic rather than dropping to raw arrays — you get the correct missing-data behaviour for
-free. When you do drop down to `pyarrow.compute`, `pandas` or `numpy`, you own that cleanup.
+`DataColumn` treats any null or `NaN` as a missing value and propagates it: **any row where an
+operand is null comes out null**, and a division by zero comes out null instead of `inf`. That is
+the main reason to stay in `DataColumn` arithmetic rather than dropping to raw arrays — you get the
+correct missing-data behaviour for free. When you do drop down to `pyarrow.compute`, `pandas` or
+`numpy`, you own that cleanup.
 
 ## Operators
 
-`+`, `-`, `*`, `/`, `//`, `%`, unary `-`/`+`, and the comparisons `==`, `!=`, `<`, `<=`, `>`, `>=` all work
-element-wise between two `DataColumn`s or between a `DataColumn` and a scalar (`int`, `float`, `Decimal`,
-`pyarrow.Scalar`), and preserve length:
+`+`, `-`, `*`, `/`, `//`, `%`, unary `-`/`+`, and the comparisons `==`, `!=`, `<`, `<=`, `>`, `>=`
+all work element-wise between two `DataColumn`s or between a `DataColumn` and a scalar (`int`,
+`float`, `Decimal`, `pyarrow.Scalar`), and preserve length:
 
 ```python
 return m_close_split_adjusted * fis_weighted_average_diluted_shares_outstanding   # market cap
@@ -91,7 +92,8 @@ return DataColumn.load(result)
 
 ## Pattern C — clean up non-finite results
 
-Whenever a formula leaves `pyarrow`'s or `pandas`' own null handling, funnel the result through the helper:
+Whenever a formula leaves `pyarrow`'s or `pandas`' own null handling, funnel the result through the
+helper:
 
 ```python
 from kaxanuk.data_curator.features import helpers

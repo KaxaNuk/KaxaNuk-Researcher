@@ -45,6 +45,23 @@ class TestBuildAll:
 
         assert len(reader.outline) == 3
 
+    def test_home_with_clipping_holds_one_clipping_and_no_note(
+        self,
+        fixtures: pathlib.Path,
+    ) -> None:
+        home = fixtures / 'home-with-clipping'
+        clippings = sorted(
+            path.name
+            for path
+            in (home / 'Sources' / 'Clippings').iterdir()
+            if path.suffix == '.md'
+        )
+        lines = (home / eval_fixtures.CLIPPING_PATH).read_text(encoding='utf-8').splitlines()
+
+        assert clippings == [eval_fixtures.CLIPPING_PATH.name]
+        assert 30 <= len(lines) <= 50
+        assert not (home / 'Knowledge' / 'Markets').exists()
+
     def test_home_with_image_pdf_has_no_text(
         self,
         fixtures: pathlib.Path,
@@ -119,6 +136,18 @@ class TestBuildAll:
 
         assert eval_fixtures.CLAIMS_MARKER not in objective
 
+    def test_strategy_no_claims_with_home_keeps_the_template_objective_beside_the_home(
+        self,
+        fixtures: pathlib.Path,
+    ) -> None:
+        folder = fixtures / 'strategy-no-claims-with-home'
+        objective = (folder / 'OBJECTIVE.md').read_text(encoding='utf-8')
+        paper = folder / 'Bibliotheca' / 'Papers' / 'Moskowitz_2012_Time_Series_Momentum.pdf'
+
+        assert eval_fixtures.CLAIMS_MARKER not in objective
+        assert paper.is_file()
+        assert (folder / eval_fixtures.HOME_FOLDER / 'RESEARCHER.md').is_file()
+
     def test_strategy_non_empty_target_holds_a_file(
         self,
         fixtures: pathlib.Path,
@@ -135,6 +164,25 @@ class TestBuildAll:
         rows = seed.strip().splitlines()
 
         assert len(rows) > 1
+
+    def test_strategy_with_home_carries_a_filled_home_for_ada(
+        self,
+        fixtures: pathlib.Path,
+    ) -> None:
+        folder = fixtures / 'strategy-with-home'
+        home = folder / eval_fixtures.HOME_FOLDER
+        objective = (folder / 'OBJECTIVE.md').read_text(encoding='utf-8')
+        researcher = (home / 'RESEARCHER.md').read_text(encoding='utf-8')
+        index = (home / 'Knowledge' / 'INDEX.md').read_text(encoding='utf-8')
+
+        assert eval_fixtures.CLAIMS_MARKER in objective
+        assert researcher.startswith('# Ada')
+        assert '<' not in researcher
+        assert '1. Do trends in prices persist' in researcher
+        assert '2. What ends a trend' in researcher
+        assert (home / 'AGENTS.md').is_file()
+        assert (home / 'Knowledge' / 'LOG.md').is_file()
+        assert 'nothing read yet' in index
 
 
 class TestBuildAllFromAnotherPackage:

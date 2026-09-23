@@ -100,6 +100,33 @@ class TestFindPackage:
 
 
 class TestMain:
+    def test_cache_folder_is_not_copied(
+        self,
+        package: pathlib.Path,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        cache = package / 'templates' / 'strategy' / '.ruff_cache'
+        cache.mkdir()
+        (cache / 'CACHEDIR.TAG').write_text(
+            'cache',
+            encoding='utf-8',
+        )
+        destination = tmp_path / 'clean'
+        scaffold.main([
+            'strategy',
+            str(destination),
+            '--package',
+            str(package),
+            '--no-git',
+        ])
+        contents = sorted(
+            path.name
+            for path
+            in destination.iterdir()
+        )
+
+        assert contents == ['Folder', 'README.md']
+
     def test_failed_commit_prints_the_command_that_finishes_it(
         self,
         package: pathlib.Path,
@@ -326,6 +353,31 @@ class TestMain:
 
 
 class TestPlanCopy:
+    def test_cache_folder_is_not_planned(
+        self,
+        package: pathlib.Path,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        source = package / 'templates' / 'strategy'
+        cache = source / 'Folder' / '__pycache__'
+        cache.mkdir()
+        (cache / 'file.cpython-313.pyc').write_bytes(b'compiled')
+        plan = scaffold.plan_copy(
+            source,
+            tmp_path / 'new',
+        )
+        landings = [
+            target.relative_to(tmp_path / 'new').as_posix()
+            for _, target
+            in plan.files
+        ]
+        expected = [
+            'Folder/file.md',
+            'README.md',
+        ]
+
+        assert landings == expected
+
     def test_every_file_lands_under_the_destination(
         self,
         package: pathlib.Path,

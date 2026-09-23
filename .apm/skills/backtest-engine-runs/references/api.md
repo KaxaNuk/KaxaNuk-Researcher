@@ -138,8 +138,8 @@ Properties on the instance: `execution_broker` (`ExecutionBroker`), `portfolio_m
 
 ## The `metrics` module
 
-Public, so a figure quoted in a document can be recomputed from the returned series instead of copied
-out of a cell.
+Public, so a figure quoted in a document can be recomputed from the returned series instead of
+copied out of a cell.
 
 **Return and risk**
 
@@ -183,8 +183,8 @@ benchmark_returns=None, additional_metrics=None)` returns `dict[str, float]` —
 distribution metrics in one call.
 
 `annual_returns_plot(...)` and `active_returns_plot(...)` return a `matplotlib.figure.Figure`.
-**A KaxaNuk Strategy Template repository commits no charts**, so these are for looking at, not for saving
-into the tree.
+**A KaxaNuk Strategy Template repository commits no charts**, so these are for looking at, not for
+saving into the tree.
 
 ## CLI
 

@@ -48,10 +48,10 @@ what 0.2.0 adds:
   place, decimals, **no nulls**.
 - Every weight file's first header is `Ticker` or **`date_column`**, the benchmark returns file
   included. `date` is rejected, whatever the documentation says.
-- Nothing but factor CSVs lives in the factor directory. Every entry but `.gitkeep` is read as one, and
-  each file's name, up to its first dot, is the factor's name.
-- A factor column for a name the book never held is skipped, not an error; a held name missing from a
-  factor file lowers that factor's coverage. Read the coverage line.
+- Nothing but factor CSVs lives in the factor directory. Every entry but `.gitkeep` is read as one,
+  and each file's name, up to its first dot, is the factor's name.
+- A factor column for a name the book never held is skipped, not an error; a held name missing from
+  a factor file lowers that factor's coverage. Read the coverage line.
 - All input date ranges overlap. An empty intersection raises; a configured window that contains no
   weight date raises `DateRangeError` as soon as the weights load; an explicit `start_date` before a
   factor file's first date raises too.
@@ -62,9 +62,9 @@ what 0.2.0 adds:
 
 `Configuration` is a frozen dataclass with exactly the fields above, minus `dashboard_port` and
 `parameters_format_version`, which belong to the configurator. Constructing it directly is the right
-form for a sweep, a notebook or a test — **a sweep that edits a workbook between runs is a sweep nobody
-will reproduce** — and a bad value raises `ConfigurationError` at construction instead of ending the
-process.
+form for a sweep, a notebook or a test — **a sweep that edits a workbook between runs is a sweep
+nobody will reproduce** — and a bad value raises `ConfigurationError` at construction instead of
+ending the process.
 
 ```python
 configuration = Configuration(
@@ -97,7 +97,7 @@ KNAA_API_KEY_KAXANUK=LIC-...
 ```
 
 The generated entry script loads it; in a notebook, `load_config_env()` from
-`kaxanuk.attribution_analysis.services.env_loader` does, as *Running from Python* shows. The licence is
-also read from `~/.kaxanuk_license` or from the exported variable. A KaxaNuk Strategy Template repository's
-`Config/.env.template` carries this beside the Backtest Engine's `KNBE_API_KEY_KAXANUK` and the data
-providers' keys. **Never print any of their values.**
+`kaxanuk.attribution_analysis.services.env_loader` does, as *Running from Python* shows. The licence
+is also read from `~/.kaxanuk_license` or from the exported variable. A KaxaNuk Strategy Template
+repository's `Config/.env.template` carries this beside the Backtest Engine's `KNBE_API_KEY_KAXANUK`
+and the data providers' keys. **Never print any of their values.**

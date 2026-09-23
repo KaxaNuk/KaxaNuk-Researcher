@@ -6,6 +6,8 @@ version = "0.14.0"
 requires-python = ">=3.12"
 dependencies = []
 
+# The dev group is for `uv sync`, for those who want a local environment; every documented command
+# runs with --no-project.
 [dependency-groups]
 dev = [
     "pypdf",
