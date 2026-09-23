@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.14.2] - 2026-09-23
+The behavioural evals leave the package: they ran once, cost about $30 a run, and needed a tool
+nobody on the team had installed. A release that changes a skill is checked by walking the
+newcomer's path by hand instead.
+
+**What to do differently:** before a release that changes a skill or a command, walk the path in a
+scratch folder — `init-researcher`, `interview`, `next`, `init-strategy`, and `read` on one
+clipping. The evals stay in the history at `v0.14.1`, to restore the day a release needs them.
+### Removed
+- **`evals/`**, its 13 cases, 48 triggering requests and README; **`tools/eval_run.py`,
+  `eval_fixtures.py` and `eval_history.py`**; and their 74 tests. Their one run, the pilot of
+  0.12.0, found three real faults in `blueprint`, `brainstorm`, `challenge` and `query`, all fixed
+  then; no run followed through 0.13.0, 0.14.0 and 0.14.1, and the cases covered none of the
+  commands those releases changed.
+### Changed
+- **The README's *Development*** says how a release that changes a skill is checked, and its file
+  map and `AGENTS.md` no longer name the evals.
+
 ## [0.14.1] - 2026-09-23
 Kept clean and to the point: what nothing used is gone, every test can fail, and every eval can
 run. Home template 0.8.1, strategy template 0.10.4, example 0.10.5.
