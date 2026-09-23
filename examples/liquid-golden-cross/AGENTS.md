@@ -167,8 +167,8 @@ Two standing exceptions, and one that has to be asked for:
 
 - **In the example, mark the worked strategy's content as you add it.**
   `# --- example: begin ---` in Python, an HTML comment of the same words in Markdown, and
-  `# EXAMPLE-ONLY CELL` on a whole notebook cell. The KaxaNuk Researcher's sync tool strips what
-  they enclose to generate the template's files, so a line left unmarked reaches every new strategy.
+  `# EXAMPLE-ONLY CELL` on a whole notebook cell. The template's copy of a shared file is this one
+  without what they enclose, so a line left unmarked belongs in every new strategy too.
 
 <!-- example: end -->
 

@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.14.3] - 2026-09-23
+The repository's own tests and tools leave it: what stays is the package users install, and the
+two starting points, kept in step by hand. Strategy template 0.10.5, example 0.10.6.
+
+**What to do differently:** before a commit, run ruff and the Bloom Code check as the README's
+*Development* shows. Keep the template's copy of a shared file in step with the example's by hand,
+in the same commit. Before a release that changes a skill, a command or a script, walk the
+newcomer's path by hand in a scratch folder. The tests and the tools stay in the history at
+`v0.14.2`.
+### Removed
+- **`tests/`**, 145 tests of the skills' three scripts and of the two tools.
+- **`tools/check_repo.py`**, which checked versions, headings, markers, the section symbol, skill
+  descriptions, generated files, path length and width before a commit.
+- **`tools/sync_investment_lab_references.py`**, which generated the template's shared files and
+  `experiment-lifecycle`'s references from the worked example.
+- **The pytest settings and the dev dependencies** in `pyproject.toml`, and the pytest and coverage
+  lines in `.gitignore`.
+### Changed
+- **`AGENTS.md`** says the template's shared files and `experiment-lifecycle`'s references change
+  by hand, in the same commit as the example's; the skills' scripts are tried by running their
+  skill in a scratch folder; ruff and the Bloom Code check pass before a commit.
+- **`experiment-lifecycle` 0.8.3** says its references are kept in step with the example by hand.
+- **The README's *Development*** lists the two checks that remain and what is done by hand.
+
 ## [0.14.2] - 2026-09-23
 The behavioural evals leave the package: they ran once, cost about $30 a run, and needed a tool
 nobody on the team had installed. A release that changes a skill is checked by walking the

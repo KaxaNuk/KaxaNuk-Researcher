@@ -41,6 +41,18 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.5 (2026-09-23)
+
+**PATCH** — the README no longer says the template's files are generated from the example: the
+KaxaNuk Researcher keeps the two in step by hand. Nothing about any result changes.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **The README's *What is in here*** says the shared files are the example's with its own lines
+  removed, and no longer that a tool generates them.
+
 ## 0.10.4 (2026-09-23)
 
 **PATCH** — `AGENTS.md` and the README stop explaining how the researcher package keeps the template

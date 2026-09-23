@@ -14,9 +14,7 @@ GEMINI.md
 # Python
 __pycache__/
 .venv/
-.pytest_cache/
 .ruff_cache/
-.coverage
 
 # IDE and OS
 .idea/
@@ -24,5 +22,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Python: the package has no lock of its own; every check runs with --no-project
+# Python: the package has no lock of its own
 /uv.lock
