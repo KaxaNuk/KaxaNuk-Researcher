@@ -458,7 +458,6 @@ class TestEvalCommand:
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='contract/read/*',
             runs=3,
             max_cost_usd=5.0,
             output_directory=tmp_path / 'results',
@@ -474,7 +473,6 @@ class TestEvalCommand:
                 '--judge-model claude-fable-5-1',
                 '--ablation none',
                 '--max-cost-usd 5.0',
-                '--case contract/read/*',
                 '--runs 3',
                 '--scaffold',
                 '--no-publish',
@@ -489,7 +487,6 @@ class TestEvalCommand:
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='triggering/*',
             runs=None,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
@@ -505,7 +502,6 @@ class TestEvalCommand:
         output = tmp_path / 'results' / 'batch'
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='*',
             runs=1,
             max_cost_usd=1.0,
             output_directory=output,
@@ -522,7 +518,6 @@ class TestEvalCommand:
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='*',
             runs=None,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
@@ -537,7 +532,6 @@ class TestEvalCommand:
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='contract/*',
             runs=1,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
@@ -555,13 +549,31 @@ class TestEvalCommand:
             '--case',
         ]
 
+    def test_the_harness_is_given_every_assembled_case(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        command = eval_run.eval_command(
+            tmp_path,
+            runs=None,
+            max_cost_usd=1.0,
+            output_directory=tmp_path / 'results',
+            granted_tools=[],
+        )
+        start = command.index('--case')
+
+        assert command[start:start + 2] == [
+            '--case',
+            '*',
+        ]
+        assert command.count('--case') == 1
+
     def test_the_plugin_folder_is_the_target_and_comes_first(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='*',
             runs=1,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
@@ -775,6 +787,35 @@ class TestMain:
 
         assert exit_code == 1
         assert last_line == "eval_run: stopped: [Errno 2] No such file or directory: 'git'"
+
+    def test_a_repeated_case_glob_that_matches_nothing_names_every_glob(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_uvx,
+        )
+        exit_code = eval_run.main([
+            '--case',
+            'nothing/*',
+            '--case',
+            'none/*',
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+        output = capsys.readouterr().out
+
+        assert exit_code == 1
+        assert "No case matches --case 'nothing/*' --case 'none/*'" in output
 
     def test_a_selected_case_without_its_history_stops_before_any_install(
         self,
@@ -1028,11 +1069,56 @@ class TestResultsDirectory:
             tzinfo=datetime.UTC,
         )
         folder = eval_run.results_directory(
-            'contract/read/*',
+            ['contract/read/*'],
             started,
         )
 
         assert folder == eval_run.RESULTS_DIRECTORY / '20260922T231536Z-contract-read-all'
+
+    def test_a_label_names_the_folder(
+        self,
+    ) -> None:
+        started = datetime.datetime(
+            2026,
+            9,
+            22,
+            23,
+            15,
+            36,
+            tzinfo=datetime.UTC,
+        )
+        folder = eval_run.results_directory(
+            [
+                'triggering/read/*',
+                'triggering/query/*',
+            ],
+            started,
+            label='triggering 1',
+        )
+
+        assert folder == eval_run.RESULTS_DIRECTORY / '20260922T231536Z-triggering-1'
+
+    def test_without_a_label_every_glob_names_the_folder(
+        self,
+    ) -> None:
+        started = datetime.datetime(
+            2026,
+            9,
+            22,
+            23,
+            15,
+            36,
+            tzinfo=datetime.UTC,
+        )
+        folder = eval_run.results_directory(
+            [
+                'triggering/read/*',
+                'triggering/query/*',
+            ],
+            started,
+        )
+
+        assert folder == eval_run.RESULTS_DIRECTORY / '20260922T231536Z-triggering-read-all-triggering-query-all'
 
 
 class TestSelectCases:
@@ -1054,7 +1140,7 @@ class TestSelectCases:
         ]
         selection = eval_run.select_cases(
             cases,
-            'contract/*',
+            ['contract/*'],
             no_shell=True,
         )
 
@@ -1076,12 +1162,43 @@ class TestSelectCases:
         ]
         selection = eval_run.select_cases(
             cases,
-            'triggering/*',
+            ['triggering/*'],
             no_shell=False,
         )
 
         assert selection.selected == (cases[1],)
         assert selection.left_out == ()
+
+    def test_several_globs_select_the_union_once_each(
+        self,
+    ) -> None:
+        cases = [
+            eval_case(
+                'contract/read/plain',
+                ('Read',),
+            ),
+            eval_case(
+                'triggering/query/fires-1',
+                ('Skill',),
+            ),
+            eval_case(
+                'triggering/read/fires-1',
+                ('Skill',),
+            ),
+        ]
+        selection = eval_run.select_cases(
+            cases,
+            [
+                'triggering/read/*',
+                'triggering/*',
+            ],
+            no_shell=False,
+        )
+
+        assert selection.selected == (
+            cases[1],
+            cases[2],
+        )
 
     def test_without_no_shell_a_bash_case_is_kept(
         self,
@@ -1094,7 +1211,7 @@ class TestSelectCases:
         ]
         selection = eval_run.select_cases(
             cases,
-            '*',
+            ['*'],
             no_shell=False,
         )
 
