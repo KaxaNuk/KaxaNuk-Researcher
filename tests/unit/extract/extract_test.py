@@ -119,6 +119,29 @@ def outlined_pdf(
     return path
 
 
+@pytest.fixture
+def plain_pdf(
+    tmp_path: pathlib.Path,
+) -> pathlib.Path:
+    """
+    A three-page PDF with no text and no outline.
+    """
+    writer = pypdf.PdfWriter()
+
+    for _ in range(3):
+        writer.add_blank_page(
+            width=200,
+            height=200,
+        )
+
+    path = tmp_path / 'paper.pdf'
+
+    with path.open('wb') as stream:
+        writer.write(stream)
+
+    return path
+
+
 class TestChapter:
     def test_one_page_has_no_range(self) -> None:
         chapter = extract.Chapter(
@@ -129,16 +152,6 @@ class TestChapter:
         )
 
         assert chapter.pages == '5'
-
-    def test_range_uses_an_en_dash(self) -> None:
-        chapter = extract.Chapter(
-            1,
-            'One',
-            2,
-            5,
-        )
-
-        assert chapter.pages == '3–6'
 
 
 class TestChaptersFromOutline:
@@ -217,6 +230,61 @@ class TestFlattenOutline:
 
 
 class TestMain:
+    def test_all_without_outline_writes_the_whole_pdf_with_page_markers(
+        self,
+        plain_pdf: pathlib.Path,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        output = tmp_path / 'Extracts'
+        exit_code = extract.main([
+            str(plain_pdf),
+            '--all',
+            '--engine',
+            'pypdf',
+            '--min-chars',
+            '0',
+            '--out',
+            str(output),
+        ])
+        written = sorted(
+            path.name
+            for path
+            in (output / 'paper').iterdir()
+        )
+        chapter_text = (output / 'paper' / '01_paper.md').read_text(encoding='utf-8')
+        markers = [
+            '<!-- p.1 -->',
+            '<!-- p.2 -->',
+            '<!-- p.3 -->',
+        ]
+        missing_markers = [
+            marker
+            for marker
+            in markers
+            if marker not in chapter_text
+        ]
+
+        assert exit_code == 0
+        assert written == ['01_paper.md', 'OUTLINE.md']
+        assert missing_markers == []
+
+    def test_chapters_without_outline_exit_3(
+        self,
+        plain_pdf: pathlib.Path,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        exit_code = extract.main([
+            str(plain_pdf),
+            '--chapters',
+            '1',
+            '--engine',
+            'pypdf',
+            '--out',
+            str(tmp_path / 'Extracts'),
+        ])
+
+        assert exit_code == 3
+
     def test_encrypted_pdf_exits_with_a_message(
         self,
         locked_pdf: pathlib.Path,

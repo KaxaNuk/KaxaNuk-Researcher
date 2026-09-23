@@ -41,6 +41,52 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.4 (2026-09-23)
+
+**PATCH** — `AGENTS.md` and the README stop explaining how the researcher package keeps the template
+and the example in step, the README's researcher paragraph maps each command to the part it serves,
+a strategy made before 0.10.0 is sent to `init-strategy`'s script rather than to the example,
+`apm.yml` is gone, and this template's markdown is wrapped at 100 columns. Nothing about any result
+changes.
+
+**What to do differently:** in a strategy made from a template before 0.10.0, bring a missing file
+back from the template with `init-strategy`'s script, `scaffold.py strategy . --only <path>`, never
+from the example. In a strategy made from an earlier template, delete `apm.yml`: its version lives
+in `pyproject.toml` alone.
+
+### Changed
+
+- **`AGENTS.md`'s two paragraphs on where the template and the example live are one**: both live in
+  the KaxaNuk Researcher package, the example is for reading and nothing in a strategy is brought
+  across from it, issues and pull requests about the process land there, and what the template ships
+  is *What is in here* in its README. How the template's files are generated from the example is the
+  package's business, not a strategy's.
+- **The README's *A researcher beside the process* is one paragraph**: what a researcher is, and
+  which command serves which part — `objective` (A, B), `read` (B, F), `blueprint` (E), `brainstorm`
+  (E, F), `challenge` (G) and `next`. How `read` works is in `Bibliotheca/BIBLIOGRAPHY.md`, and how
+  to invite a researcher is in `SETUP.md` step 4.
+- **The README's sentence for a strategy made before 0.10.0** sends a missing file to
+  `init-strategy`'s script, which copies it from the template and never overwrites, rather than to
+  `init-example` and a hand-deletion of the example's lines.
+- **The README says the skills teach the Lab modules**, not the six of them: no skill covers the
+  Data Refinery.
+- **`Bibliotheca/BIBLIOGRAPHY.md`** says `Papers/`, `Books/` and `Notes/` are directories created on
+  the day there is something to put in them; the template ships none of the three, and it named only
+  two.
+- **Eight lines of the README, `SETUP.md` and `Bibliotheca/BIBLIOGRAPHY.md` are rewrapped at 100
+  columns**, and the researcher package's check now reads this template's markdown for width.
+
+### Removed
+
+- **`apm.yml`.** A strategy installs nothing — the skills come with the researcher, installed once
+  for the user — and nothing read it. `SETUP.md` step 5 renames and versions `pyproject.toml` alone,
+  the first `CHANGELOG.md` entry names the template version `pyproject.toml` declared, and the agent
+  asks for the user's name as the holder in `LICENSE`. `.gitignore`'s header, the README's
+  *What is in here* and `SETUP.md`'s *What "done" looks like* no longer name it.
+- **The README's *Where the template and the example live***, the fourth description of the example
+  after the intro, *What is in here* and `SETUP.md` step 1. Its closing pointer to `AGENTS.md` stays
+  as the README's last line.
+
 ## 0.10.3 (2026-09-23)
 
 **PATCH** — work lands on `main` without an issue, a branch or a pull request per change, the

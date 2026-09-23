@@ -98,6 +98,36 @@ class TestFindPackage:
 
         assert result == expected
 
+    def test_user_scope_install_is_found(
+        self,
+        package: pathlib.Path,
+        tmp_path: pathlib.Path,
+        monkeypatch: pytest.MonkeyPatch,
+    ) -> None:
+        user_modules = tmp_path / 'home' / '.apm' / 'apm_modules'
+        installed = user_modules / 'KaxaNuk' / 'KaxaNuk-Researcher'
+        installed.parent.mkdir(parents=True)
+        package.rename(installed)
+        start = tmp_path / 'elsewhere'
+        start.mkdir()
+        monkeypatch.setattr(
+            scaffold,
+            'USER_SCOPE_MODULES',
+            user_modules,
+        )
+        monkeypatch.setattr(
+            scaffold,
+            'SOURCE_PACKAGE',
+            tmp_path / 'nowhere',
+        )
+        result = scaffold.find_package(
+            None,
+            start,
+        )
+        expected = installed
+
+        assert result == expected
+
 
 class TestMain:
     def test_cache_folder_is_not_copied(
@@ -105,12 +135,15 @@ class TestMain:
         package: pathlib.Path,
         tmp_path: pathlib.Path,
     ) -> None:
-        cache = package / 'templates' / 'strategy' / '.ruff_cache'
-        cache.mkdir()
-        (cache / 'CACHEDIR.TAG').write_text(
+        top_level_cache = package / 'templates' / 'strategy' / '.ruff_cache'
+        top_level_cache.mkdir()
+        (top_level_cache / 'CACHEDIR.TAG').write_text(
             'cache',
             encoding='utf-8',
         )
+        nested_cache = package / 'templates' / 'strategy' / 'Folder' / '__pycache__'
+        nested_cache.mkdir()
+        (nested_cache / 'file.cpython-313.pyc').write_bytes(b'compiled')
         destination = tmp_path / 'clean'
         scaffold.main([
             'strategy',
@@ -120,12 +153,17 @@ class TestMain:
             '--no-git',
         ])
         contents = sorted(
-            path.name
+            path.relative_to(destination).as_posix()
             for path
-            in destination.iterdir()
+            in destination.rglob('*')
+            if path.is_file()
         )
+        expected = [
+            'Folder/file.md',
+            'README.md',
+        ]
 
-        assert contents == ['Folder', 'README.md']
+        assert contents == expected
 
     def test_failed_commit_prints_the_command_that_finishes_it(
         self,
@@ -168,40 +206,7 @@ class TestMain:
         assert exit_code == 0
         assert expected in printed
 
-    def test_git_repository_has_a_first_commit(
-        self,
-        package: pathlib.Path,
-        tmp_path: pathlib.Path,
-        monkeypatch: pytest.MonkeyPatch,
-    ) -> None:
-        monkeypatch.setenv('GIT_AUTHOR_NAME', 'Test')
-        monkeypatch.setenv('GIT_AUTHOR_EMAIL', 'test@example.com')
-        monkeypatch.setenv('GIT_COMMITTER_NAME', 'Test')
-        monkeypatch.setenv('GIT_COMMITTER_EMAIL', 'test@example.com')
-        monkeypatch.setenv('GIT_CONFIG_GLOBAL', os.devnull)
-        destination = tmp_path / 'with-git'
-        exit_code = scaffold.main([
-            'researcher',
-            str(destination),
-            '--package',
-            str(package),
-        ])
-        head = subprocess.run(
-            [
-                'git',
-                'rev-parse',
-                '--verify',
-                'HEAD',
-            ],
-            cwd=destination,
-            capture_output=True,
-            check=False,
-        )
-
-        assert exit_code == 0
-        assert head.returncode == 0
-
-    def test_git_repository_starts_on_main(
+    def test_git_repository_has_its_first_commit_on_main(
         self,
         package: pathlib.Path,
         tmp_path: pathlib.Path,
@@ -213,7 +218,7 @@ class TestMain:
         monkeypatch.setenv('GIT_COMMITTER_EMAIL', 'test@example.com')
         monkeypatch.setenv('GIT_CONFIG_GLOBAL', os.devnull)
         destination = tmp_path / 'on-main'
-        scaffold.main([
+        exit_code = scaffold.main([
             'strategy',
             str(destination),
             '--package',
@@ -222,23 +227,27 @@ class TestMain:
         completed = subprocess.run(
             [
                 'git',
-                'branch',
-                '--show-current',
+                'log',
+                '--format=%s',
+                'main',
             ],
             cwd=destination,
             capture_output=True,
             text=True,
-            check=True,
+            check=False,
         )
-        branch = completed.stdout.strip()
+        subjects = completed.stdout.strip()
 
-        assert branch == 'main'
+        assert exit_code == 0
+        assert subjects == 'Start from the KaxaNuk Strategy Template'
 
     def test_new_folder_receives_the_starting_point(
         self,
         package: pathlib.Path,
         tmp_path: pathlib.Path,
     ) -> None:
+        mixed_bytes = b'line one\r\nline two\n\xc3\xa9\x00'
+        (package / 'templates' / 'strategy' / 'Folder' / 'mixed.ipynb').write_bytes(mixed_bytes)
         destination = tmp_path / 'My-Strategy'
         exit_code = scaffold.main([
             'strategy',
@@ -248,9 +257,11 @@ class TestMain:
             '--no-git',
         ])
         copied = (destination / 'Folder' / 'file.md').read_text(encoding='utf-8')
+        copied_bytes = (destination / 'Folder' / 'mixed.ipynb').read_bytes()
 
         assert exit_code == 0
         assert copied == 'nested'
+        assert copied_bytes == mixed_bytes
 
     def test_non_empty_destination_is_refused(
         self,
@@ -278,6 +289,31 @@ class TestMain:
 
         assert exit_code == 1
         assert contents == ['mine.md']
+
+    def test_only_copies_one_file_into_an_existing_folder(
+        self,
+        package: pathlib.Path,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        strategy = tmp_path / 'strategy'
+        strategy.mkdir()
+        exit_code = scaffold.main([
+            'strategy',
+            str(strategy),
+            '--only',
+            'Folder/file.md',
+            '--package',
+            str(package),
+        ])
+        copied = sorted(
+            path.relative_to(strategy).as_posix()
+            for path
+            in strategy.rglob('*')
+            if path.is_file()
+        )
+
+        assert exit_code == 0
+        assert copied == ['Folder/file.md']
 
     def test_only_copies_one_folder_into_an_existing_one(
         self,
@@ -310,6 +346,10 @@ class TestMain:
             'mine',
             encoding='utf-8',
         )
+        (package / 'examples' / 'liquid-golden-cross' / 'Folder' / 'new.md').write_text(
+            'new',
+            encoding='utf-8',
+        )
         exit_code = scaffold.main([
             'example',
             str(strategy),
@@ -319,9 +359,11 @@ class TestMain:
             str(package),
         ])
         kept = (strategy / 'Folder' / 'file.md').read_text(encoding='utf-8')
+        new_file_written = (strategy / 'Folder' / 'new.md').exists()
 
         assert exit_code == 1
         assert kept == 'mine'
+        assert not new_file_written
 
     def test_only_skips_identical_files(
         self,
@@ -350,53 +392,3 @@ class TestMain:
 
         assert exit_code == 0
         assert copied == 'new'
-
-
-class TestPlanCopy:
-    def test_cache_folder_is_not_planned(
-        self,
-        package: pathlib.Path,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        source = package / 'templates' / 'strategy'
-        cache = source / 'Folder' / '__pycache__'
-        cache.mkdir()
-        (cache / 'file.cpython-313.pyc').write_bytes(b'compiled')
-        plan = scaffold.plan_copy(
-            source,
-            tmp_path / 'new',
-        )
-        landings = [
-            target.relative_to(tmp_path / 'new').as_posix()
-            for _, target
-            in plan.files
-        ]
-        expected = [
-            'Folder/file.md',
-            'README.md',
-        ]
-
-        assert landings == expected
-
-    def test_every_file_lands_under_the_destination(
-        self,
-        package: pathlib.Path,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        source = package / 'templates' / 'strategy'
-        destination = tmp_path / 'new'
-        plan = scaffold.plan_copy(
-            source,
-            destination,
-        )
-        landings = [
-            target.relative_to(destination).as_posix()
-            for _, target
-            in plan.files
-        ]
-        expected = [
-            'Folder/file.md',
-            'README.md',
-        ]
-
-        assert landings == expected

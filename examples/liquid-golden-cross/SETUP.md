@@ -7,8 +7,9 @@ strategy runs in, and so a person can read it in two minutes.
 <!-- example: begin -->
 
 > **On the example.** This folder is for reading. To run it, `init-example` copies it into a folder
-> of its own — step 1 — and step 5 is skipped: this README is already the strategy's. How to copy a
-> file from here is in the template's README, *What is in here*.
+> of its own — step 1 — and step 5 is skipped: this README is already the strategy's. A file a
+> strategy lacks comes from the template, never from here: the template's README, *What is in
+> here*, says how.
 >
 > **Its benchmark cannot be downloaded.** The KN600 is KaxaNuk's own index: its daily holdings and
 > returns, `KN_US_Equity_Benchmark.csv` and `KN_US_Equity_Returns.csv` in
@@ -60,7 +61,7 @@ One folder is the repository: open that folder, and run every command in it — 
 a level above it, nothing nested a level below. What setup writes there, `.venv/` and
 `Config/.env`, is ignored, as is anything an assistant or APM writes per machine (`.claude/`,
 `.agents/`, `.codex/`, `apm_modules/`, `apm.lock.yaml`); `uv.lock`, which `uv sync` writes, is
-committed, and `apm.yml` comes committed with the template.
+committed.
 
 ---
 
@@ -106,9 +107,9 @@ uv sync
 That creates `.venv/` and installs the pipeline. **If neither Python 3.12 nor 3.13 is on the
 machine, `uv` downloads 3.13** — there is nothing to install by hand.
 
-**Why 3.13 and not the newest.** The Backtest Engine is documented for Python 3.12 or 3.13, and every
-performance figure in this process comes from that engine, so the ceiling is its, not ours. The Data
-Curator allows 3.12 to 3.14, which makes 3.13 the version that satisfies both.
+**Why 3.13 and not the newest.** The Backtest Engine is documented for Python 3.12 or 3.13, and
+every performance figure in this process comes from that engine, so the ceiling is its, not ours.
+The Data Curator allows 3.12 to 3.14, which makes 3.13 the version that satisfies both.
 
 **Once the Backtest Engine, Attribution Analysis or Portfolio Construction is installed by hand,
 never run a bare `uv sync` here again:** it is exact, and removes every package `uv.lock` does not
@@ -129,9 +130,9 @@ Fill in the key for your data provider; the template has a line for FMP, Sharada
 licences: the process runs without them up to portfolio construction, and the backtest and
 attribution report what is missing and skip.
 
-> **For the agent.** Never open, read back, print or echo `Config/.env`, and never put a value from it
-> in a command that gets recorded. You may say **which keys are still empty, by name only** — and you
-> cannot fill them: that is the one thing in this file only the user can do.
+> **For the agent.** Never open, read back, print or echo `Config/.env`, and never put a value from
+> it in a command that gets recorded. You may say **which keys are still empty, by name only** —
+> and you cannot fill them: that is the one thing in this file only the user can do.
 
 ---
 
@@ -194,12 +195,11 @@ read.
 | [`SETUP.md`](SETUP.md) | how this repository is set up on a new machine |
 ```
 
-Put the same status line in place of the banner at the top of `AGENTS.md`. Rename `name` and
-`author` in `apm.yml`, and `name` in `pyproject.toml`, to the strategy's and yours, and set
-`version` in both to `0.1.0`. `LICENSE` names KaxaNuk as the holder — put yourself there, or
-choose another licence. In `CHANGELOG.md`, keep everything above the first `---` line and replace
-the template's entries below it with the strategy's first, naming the template version `apm.yml`
-declared before you reset it:
+Put the same status line in place of the banner at the top of `AGENTS.md`. In `pyproject.toml`,
+rename `name` to the strategy's and set `version` to `0.1.0`. `LICENSE` names KaxaNuk as the
+holder — put yourself there, or choose another licence. In `CHANGELOG.md`, keep everything above
+the first `---` line and replace the template's entries below it with the strategy's first,
+naming the template version `pyproject.toml` declared before you reset it:
 
 ```markdown
 ## 0.1.0 (YYYY-MM-DD)
@@ -211,12 +211,12 @@ Then run `uv lock`, so `uv.lock` records the new name and version, and commit th
 `uv.lock`, the other file the setup itself produced:
 
 ```bash
-git add README.md AGENTS.md apm.yml pyproject.toml LICENSE CHANGELOG.md uv.lock
+git add README.md AGENTS.md pyproject.toml LICENSE CHANGELOG.md uv.lock
 git commit -m "README: <strategy-name>"
 ```
 
 > **For the agent.** The name is the one you asked for at the start; the sentence too, if the user
-> gave one — **never invent a thesis**, use the placeholder. `author` in `apm.yml` is the user's
+> gave one — **never invent a thesis**, use the placeholder. The holder in `LICENSE` is the user's
 > name: ask if you do not have it, never invent it. Everything else in the block is fixed. Do not
 > keep the template's README under another name: the process lives upstream, and a copy here is a
 > copy that drifts.
@@ -232,9 +232,9 @@ git status
 ```
 
 **It should be clean.** Step 5 committed what the setup itself changed: the README, the `AGENTS.md`
-banner, `apm.yml`'s name, author and version, `pyproject.toml`'s name and version, the licence
-holder, the first `CHANGELOG.md` entry, and `uv.lock` — which pins the versions this strategy's
-results will come from, and is why the template ships without one and your repository keeps one.
+banner, `pyproject.toml`'s name and version, the licence holder, the first `CHANGELOG.md` entry,
+and `uv.lock` — which pins the versions this strategy's results will come from, and is why the
+template ships without one and your repository keeps one.
 Everything else the commands produced — `.venv/`, `Config/.env`, and whatever your assistant
 writes per machine, such as `.claude/` — is ignored.
 **Anything showing up means something was written in the wrong place.**

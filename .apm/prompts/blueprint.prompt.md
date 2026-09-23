@@ -35,14 +35,14 @@ first, when:
 **For Experiment 1 the blueprint is already there to fill.** The template ships
 `Experiments/Experiment_1/BLUEPRINT_1.md` as the headings and what belongs under each. Never write
 the headings from memory — they are the template's. A strategy made from a template before 0.10.0
-lacks the file: say so, give the command that brings it across, run in the strategy's session, and
-stop:
+lacks the file: say so, give the command that brings the template's blank back, run from the
+strategy's root, and stop. It never overwrites:
 
-> init-example Experiments/Experiment_1/BLUEPRINT_1.md
+```bash
+uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Experiments/Experiment_1/BLUEPRINT_1.md
+```
 
-`init-example` copies it from the example inside the KaxaNuk Researcher package and names what is
-the worked strategy's: everything between `<!-- example: begin -->` and `<!-- example: end -->`,
-which goes before the draft. The owner runs it, and the draft continues from there.
+The owner runs it, and the draft continues from there.
 
 **For N > 1 there is no file yet.** The blank is the `experiment-lifecycle` skill's
 `references/blueprint-template.md` — the example's file with its own lines stripped — copied to

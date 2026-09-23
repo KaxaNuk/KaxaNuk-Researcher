@@ -1,8 +1,7 @@
 # --- Agent tooling ---------------------------------------------------------------------------
-# apm.yml IS committed, and installs nothing: the skills come with the researcher - see SETUP.md
-# step 4.  Should somebody install them here anyway, everything APM downloads and writes is build
-# output, ignored the way .venv/ is, so the AI setup stays per machine and the research tree stays
-# research.
+# A strategy installs nothing: the skills come with the researcher - see SETUP.md step 4.  Should
+# somebody install them here anyway, everything APM downloads and writes is build output, ignored
+# the way .venv/ is, so the AI setup stays per machine and the research tree stays research.
 .agents/
 .claude/
 .codex/

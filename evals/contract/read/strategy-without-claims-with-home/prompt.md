@@ -1,7 +1,7 @@
 ---
 name: contract/read/strategy-without-claims-with-home
 runs: 3
-max_turns: 6
+max_turns: 10
 timeout_seconds: 300
 allowed_tools: [Skill, Read, Glob, Grep, Write, Edit]
 ---

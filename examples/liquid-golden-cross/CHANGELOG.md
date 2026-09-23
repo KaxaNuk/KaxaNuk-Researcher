@@ -41,6 +41,36 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.5 (2026-09-23)
+
+**PATCH** — template 0.10.4: `AGENTS.md`'s paragraphs on where the template and the example live are
+one, `Bibliotheca/BIBLIOGRAPHY.md` names `Papers/` among the folders created on first use,
+`apm.yml` is gone, and `SETUP.md` and `BIBLIOGRAPHY.md` are rewrapped at 100 columns. Nothing about
+any result changes.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`'s two paragraphs on where the template and the example live are one**, as template
+  0.10.4's: the example is for reading, nothing in a strategy is brought across from it, and what
+  the template ships is *What is in here* in its README. *In this example*, between the markers, is
+  unchanged.
+- **`Bibliotheca/BIBLIOGRAPHY.md`** says `Papers/`, `Books/` and `Notes/` are directories created on
+  the day there is something to put in them, so the template's generated copy names all three.
+- **Four lines of `SETUP.md` and `Bibliotheca/BIBLIOGRAPHY.md` are rewrapped at 100 columns**, as
+  the template's.
+- **`SETUP.md`'s note on the example**, between the markers, says a file a strategy lacks comes
+  from the template, never from here, and that the template's README says how; it pointed to the
+  README for how to copy a file from here.
+
+### Removed
+
+- **`apm.yml`**, as template 0.10.4 removes it: a strategy installs nothing, and nothing read it.
+  `SETUP.md` step 5 renames and versions `pyproject.toml` alone, and `.gitignore`'s header and
+  *What "done" looks like* no longer name it. This example's version is in `pyproject.toml` and
+  `uv.lock`.
+
 ## 0.10.4 (2026-09-23)
 
 **PATCH** — template 0.10.3: work lands on `main`, the who-writes table, the log's header,

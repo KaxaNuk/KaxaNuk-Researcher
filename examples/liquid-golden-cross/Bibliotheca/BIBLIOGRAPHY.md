@@ -1,7 +1,7 @@
 # Bibliotheca — the index
 
-**Step 1 of the KaxaNuk Strategy Template.** Nothing here is a strategy; everything here is a reason a
-strategy is shaped the way it is. [`../OBJECTIVE.md`](../OBJECTIVE.md) states what we believe, and
+**Step 1 of the KaxaNuk Strategy Template.** Nothing here is a strategy; everything here is a reason
+a strategy is shaped the way it is. [`../OBJECTIVE.md`](../OBJECTIVE.md) states what we believe, and
 this folder is where those beliefs are supposed to come from.
 
 **In plain words:** the literature that argues with the claims in `OBJECTIVE.md`, read after they
@@ -24,9 +24,9 @@ Bibliotheca/
 └── Extracts/                        # the PDFs' chapters as text, pulled by the researcher's script; gitignored
 ```
 
-**A folder appears when its first note does.** Nothing empty is committed here, so `Books/` and any
-`Notes/` you want are directories you create on the day you have something to put in them. The shape
-above is the convention, not a skeleton to keep swept.
+**A folder appears when its first note does.** Nothing empty is committed here, so `Papers/`,
+`Books/` and `Notes/` are directories you create on the day you have something to put in them. The
+shape above is the convention, not a skeleton to keep swept.
 
 **A source listed without a note is a *lead*, not a citation.** It is here because somebody thought
 it would answer a question this repository has. Nothing may be claimed on its authority until it has

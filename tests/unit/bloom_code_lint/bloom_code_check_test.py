@@ -511,6 +511,7 @@ class TestCheckOneItemPerLine:
             values = [
                 1,
                 2,
+                3,
             ]
         '''
         result = codes_for(
@@ -521,9 +522,9 @@ class TestCheckOneItemPerLine:
 
         assert result == expected
 
-    def test_single_argument_call_is_allowed(self) -> None:
+    def test_single_argument_on_a_long_line_is_allowed(self) -> None:
         source = '''
-            compute(1)
+            value = compute(first_extremely_long_argument_name_number_one_padding_second_extremely_long_argument_name_number_two_padding_more)
         '''
         result = codes_for(
             check_one_item_per_line,
@@ -571,7 +572,7 @@ class TestCheckOneItemPerLine:
 
     def test_type_parameter_list_inside_subscript_is_allowed(self) -> None:
         source = '''
-            Handler = typing.Callable[[str, int], bool]
+            Handler = typing.Callable[[str, int, float], bool]
         '''
         result = codes_for(
             check_one_item_per_line,
@@ -654,13 +655,13 @@ class TestCheckMultipleCallsPerLine:
 
         assert result == expected
 
-    def test_nested_calls_on_separate_lines_are_allowed(self) -> None:
+    def test_nested_calls_on_separate_lines_under_strict_are_allowed(self) -> None:
         source = '''
             value = outer(
                 inner(1)
             )
         '''
-        result = codes_for(
+        result = strict_codes_for(
             check_multiple_calls_per_line,
             source,
         )

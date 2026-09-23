@@ -16,8 +16,8 @@ The source is one of:
 Run from the repository root, after running the first-turn case once with tools/eval_run.py:
 
     uv run --no-project python tools/eval_history.py \
-      evals/results/<batch>/aggregate-result.json --case contract/read/plan-before-write \
-      evals/contract/read/after-go-writes-only-the-chosen/history.jsonl
+      evals/results/<batch>/aggregate-result.json --case contract/blueprint/waits-before-write \
+      evals/quality/blueprint/predictions-cite/history.jsonl
 
 Exit code: 0 written, 1 with a one-line message when the source cannot be read or found, when it holds
 no user or assistant line, or when what would be written holds an e-mail address; then nothing is

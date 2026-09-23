@@ -1,4 +1,0 @@
-schema_version: "1.1"
-name: quality/init-strategy/hand-over
-context:
-  history_file: history.jsonl

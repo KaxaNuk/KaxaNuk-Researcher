@@ -92,7 +92,8 @@ interview
 
 a short interview — seven questions, in your language — that writes `RESEARCHER.md` and the agent
 that makes your researcher callable by name. Then `apm install --target claude` in that folder,
-once, with your assistant in place of `claude` as in step 1, deploys the agent.
+once — `codex`, `cursor` or `copilot` in its place; Gemini, OpenCode and Windsurf take no agent,
+and the researcher there is its skills and commands — deploys the agent.
 
 > **For the agent.** If a commit fails for want of a git identity, ask the user for the name and
 > email — never invent them — and set them in that repository only. One researcher per person: if a

@@ -61,37 +61,33 @@ Three jobs, one tool for each — either option does the job. Install once, use 
 | **Code and debug** | your pair for the parts you have not written before | [Claude](https://claude.ai/download), or [Codex](https://openai.com/codex) |
 | **Read and run** | where you write and run Python; the free editions are enough | [PyCharm](https://www.jetbrains.com/pycharm/), or [VS Code](https://code.visualstudio.com) |
 
-**On top of whichever assistant you pick, KaxaNuk's agent skills** teach it the six Lab modules
-and this process — what each does, how it is called, and what it must never be asked to do. They are
-one package, [`KaxaNuk/KaxaNuk-Researcher`](https://github.com/KaxaNuk/KaxaNuk-Researcher), and
-**this repository installs none of them**: they are installed once for your user, by the command
-above, and are there in every strategy; `apm update -g` keeps them current. Nothing here needs them
-to be read; a filled-in repository is faster with them.
+**On top of whichever assistant you pick, KaxaNuk's agent skills** teach it the Lab modules and this
+process — what each does, how it is called, and what it must never be asked to do. They are one
+package, [`KaxaNuk/KaxaNuk-Researcher`](https://github.com/KaxaNuk/KaxaNuk-Researcher), and **this
+repository installs none of them**: they are installed once for your user, by the command above, and
+are there in every strategy; `apm update -g` keeps them current. Nothing here needs them to be read;
+a filled-in repository is faster with them.
 
 ### A researcher beside the process
 
 A researcher is a separate project, made once with `init-researcher`, a skill of the
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher): a companion you name and
-teach, one per person rather than per strategy, with its own library of what you have read — invite
-it with `claude --add-dir <its folder>` and its library comes along; for its identity to load with
-it, follow *In a strategy or another project* in the researcher's own README. It drafts the claims
-in `OBJECTIVE.md` from your words before any paper is read. It writes the notes in `Bibliotheca/`
-with `read`: a script pulls a book's table of contents out of the PDF, you pick the chapters that
-serve a claim, and after a plan and your go it writes one note per chapter with its row in
-`BIBLIOGRAPHY.md`; a note its own library already holds comes across without reading the PDF twice.
-It then rewrites each claim's evidence from those notes, and drafts the hypothesis in each
-`BLUEPRINT_N.md`, every prediction citing the note it came from. `brainstorm` drafts the entries of
-`BRAINSTORMING_N.md` (E, F), `challenge` checks a finished cycle against its blueprint (G), and
-`next` says at any moment which part comes next.
+teach, one per person rather than per strategy, with its own library of what you have read. Its
+commands serve the parts below: `objective` drafts the claims in `OBJECTIVE.md` and rewrites their
+evidence from the notes (A, B), `read` writes the notes in `Bibliotheca/` (B, F), `blueprint`
+drafts each `BLUEPRINT_N.md`, every prediction citing a note (E), `brainstorm` drafts the entries
+of `BRAINSTORMING_N.md` (E, F), `challenge` checks a finished cycle against its blueprint (G), and
+`next` says at any moment which part comes next. [`SETUP.md`](SETUP.md) step 4 says how to invite
+it.
 
 ---
 
 ## Setup
 
 **[`SETUP.md`](SETUP.md) is the whole of it, and nothing here repeats it** — so the two cannot
-drift. It covers getting the repository, the one folder it has to live in, the environment, the keys,
-and where the agent skills come from, each with the command an agent runs and the mistake it must
-not make.
+drift. It covers getting the repository, the one folder it has to live in, the environment, the
+keys, and where the agent skills come from, each with the command an agent runs and the mistake it
+must not make.
 
 ---
 
@@ -170,9 +166,8 @@ OBJECTIVE.md          the idea, and the status of each claim inside it
 RESULTS.md            every number this repository has measured
 AGENTS.md             how work is done here: the workflow, and the bar a result must clear
 CHANGELOG.md          every version, and what a version number means here
-apm.yml               marks this as an APM project; it installs nothing — the skills are
-                      installed once for your user
-pyproject.toml        the environment: Python 3.13, the open-source libraries, uv-managed
+pyproject.toml        the version, and the environment: Python 3.13, the open-source libraries,
+                      uv-managed
 
 Bibliotheca/          step 1
 Universe/             step 2
@@ -212,8 +207,8 @@ init-example
 ```
 
 Never build on it: the seed in `Universe/` and everything between the markers is that strategy's.
-A strategy made from a template before 0.10.0 lacks these files: `init-example <path>` brings one
-across, and what is between its markers is then deleted.
+A strategy made from a template before 0.10.0 lacks these files; `init-strategy`'s script brings
+each back from the template, `scaffold.py strategy . --only <path>`, and never overwrites.
 
 ---
 
@@ -237,14 +232,14 @@ tracked to completion. The other door is `pip install`: the open-source librarie
 [PyPI](https://pypi.org/project/kaxanuk.data-curator/) and [GitHub](https://github.com/KaxaNuk), no
 account and no platform login required, and `uv sync` installs the Data Curator.
 
-The **licensed** engines — Backtest Engine and Attribution Analysis — are deliberately absent from
-`pyproject.toml`, so their index URLs and keys never enter version control. **Portfolio Construction**
-is absent too: it is KaxaNuk's own library, not distributed publicly yet. Install each by hand, as the
-`portfolio-construction-runs`, `backtest-engine-runs` and `attribution-analysis-runs` skills describe,
-and **guard their imports**: a notebook that uses one reports what is missing and skips. Without
-Portfolio Construction an equal-weight book still needs nothing but the eligible set; without the
-engines the pipeline still builds its portfolios and produces no backtest or attribution results
-until they are there.
+The **licensed** engines — Backtest Engine and Attribution Analysis — are deliberately absent
+from `pyproject.toml`, so their index URLs and keys never enter version control. **Portfolio
+Construction** is absent too: it is KaxaNuk's own library, not distributed publicly yet. Install
+each by hand, as the `portfolio-construction-runs`, `backtest-engine-runs` and
+`attribution-analysis-runs` skills describe, and **guard their imports**: a notebook that uses one
+reports what is missing and skips. Without Portfolio Construction an equal-weight book still needs
+nothing but the eligible set; without the engines the pipeline still builds its portfolios and
+produces no backtest or attribution results until they are there.
 
 ---
 
@@ -304,22 +299,6 @@ must do; the example adds the code beneath it.
 **A strategy column is named in exactly two kinds of place: a notebook's setup cell, and the rule.**
 Never in a shared module, so a signal cannot become every later experiment's default without anyone
 deciding it.
-
----
-
-## Where the template and the example live
-
-Both are folders of
-[`KaxaNuk/KaxaNuk-Researcher`](https://github.com/KaxaNuk/KaxaNuk-Researcher), readable on
-GitHub without installing anything:
-
-| Folder | What it is |
-| --- | --- |
-| [`templates/strategy/`](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/templates/strategy) | this — the shape of the process and a description of every file in it. What `init-strategy` copies |
-| [`examples/liquid-golden-cross/`](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross) | one strategy, `liquid-golden-cross`, worked through the same folders and files the process expects — the documents filled in as far as the work has reached, the later steps as descriptions until they are run, the strategy's own lines between example markers. Read it, whole in a folder of its own with `init-example`; never build on it |
-
-Each strategy made from the template is its own repository, published by its owner — one per
-strategy.
 
 **[`AGENTS.md`](AGENTS.md) is next**: the workflow, the bar any new signal has to clear, and the
 five ways a backtest lies.
