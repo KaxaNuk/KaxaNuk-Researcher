@@ -1,21 +1,10 @@
-# The development environment for this repository's scripts and tools, and their tests. The
-# worked example in `examples/` carries its own `pyproject.toml`, which governs it alone.
+# This repository's ruff settings, for the skills' scripts. The worked example in `examples/`
+# carries its own `pyproject.toml`, which governs it alone.
 [project]
 name = "kaxanuk-researcher"
-version = "0.14.2"
+version = "0.14.3"
 requires-python = ">=3.12"
 dependencies = []
-
-# The dev group is for `uv sync`, for those who want a local environment; every documented command
-# runs with --no-project.
-[dependency-groups]
-dev = [
-    "pypdf",
-    "pytest",
-]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 120

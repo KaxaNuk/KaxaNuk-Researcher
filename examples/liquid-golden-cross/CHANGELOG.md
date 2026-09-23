@@ -41,6 +41,18 @@ for somebody who was not in the room:
 
 ---
 
+## 0.10.6 (2026-09-23)
+
+**PATCH** — template 0.10.5: the template's files are the example's without its marked lines, kept
+in step by hand. Nothing about any result changes.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`'s rule on marking this example's content**, inside the example markers, says a line
+  left unmarked belongs in every new strategy too, and no longer names the sync tool.
+
 ## 0.10.5 (2026-09-23)
 
 **PATCH** — template 0.10.4: `AGENTS.md`'s paragraphs on where the template and the example live are
