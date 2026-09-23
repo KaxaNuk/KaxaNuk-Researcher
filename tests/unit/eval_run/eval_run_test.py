@@ -1,5 +1,5 @@
 """
-Unit tests for tools/eval_run.py: the plugin it assembles, the cases it generates, the command it runs.
+Unit tests for tools/eval_run.py: the plugin it assembles, the cases it selects and checks, the command it runs.
 """
 import datetime
 import pathlib
@@ -22,38 +22,108 @@ QUERY_TABLE = {
         'near_miss': [],
     },
 }
-SHELL_PROMPT = '\n'.join([
-    '---',
-    'name: contract/read/runs-extract',
-    'allowed_tools: [Skill, Read, Bash]',
-    '---',
-    'Read the book.',
-    '',
-])
-SHELL_CASE_YAML = '\n'.join([
-    'schema_version: "1.1"',
-    'name: contract/read/runs-in-yaml',
-    'execution:',
-    '  allowed_tools:',
-    '    - Read',
-    '    - Bash',
-    '',
-])
-PLAIN_PROMPT = '\n'.join([
-    '---',
-    'name: contract/read/plain',
-    'allowed_tools: [Skill, Read]',
-    '---',
-    'Mention Bash in the body; only the grant counts.',
+QUERY_TABLE_TOML = '\n'.join([
+    '[query]',
+    'fires = ["What does my library say about momentum?"]',
+    'near_miss = []',
     '',
 ])
 FIXTURE_CASE_YAML = '\n'.join([
     'schema_version: "1.1"',
     'name: contract/read/with-book',
     'context:',
-    '  scaffold_script: scaffold.sh',
+    '  scaffold_script: scaffold.sh   # written by the runner',
     '',
 ])
+TOOLS_IN_CASE_YAML = '\n'.join([
+    'schema_version: "1.1"',
+    'name: contract/read/bad',
+    'execution:',
+    '  allowed_tools: [Read, Bash]',
+    '',
+])
+SCAFFOLD_SCRIPT_TEXT = '\n'.join([
+    '#!/usr/bin/env bash',
+    'set -euo pipefail',
+    'here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"',
+    'cp -r "$here/fixture/." .',
+    '',
+])
+
+
+def committed_case(
+    root: pathlib.Path,
+    folder: str,
+    frontmatter: list[str],
+) -> pathlib.Path:
+    """
+    A committed case folder below `root/source`, with a prompt.md holding the given frontmatter.
+    """
+    case_directory = root / 'source' / folder
+    prompt = '\n'.join([
+        '---',
+        *frontmatter,
+        '---',
+        'Read the book.',
+        '',
+    ])
+    write(
+        case_directory / 'prompt.md',
+        prompt,
+    )
+
+    return case_directory
+
+
+def eval_case(
+    name: str,
+    tools: tuple[str, ...],
+) -> eval_run.EvalCase:
+    """
+    A generated case with a name and a tool list, for selection and grants.
+    """
+    case = eval_run.EvalCase(
+        name=name,
+        folder=name,
+        tools=tools,
+    )
+
+    return case
+
+
+def fail_like_a_missing_program(
+    repository: pathlib.Path,
+    destination: pathlib.Path,
+) -> None:
+    """
+    Stand in for the export when git is not installed.
+    """
+    missing = FileNotFoundError(
+        2,
+        'No such file or directory',
+        'git',
+    )
+
+    raise missing
+
+
+def fail_like_uvx(
+    repository: pathlib.Path,
+    destination: pathlib.Path,
+) -> None:
+    """
+    Stand in for a step whose command fails, as a failed install does.
+    """
+    failed = subprocess.CalledProcessError(
+        1,
+        [
+            'uvx',
+            '--from',
+            'apm-cli',
+        ],
+    )
+
+    raise failed
 
 
 def input_match(
@@ -75,6 +145,44 @@ def input_match(
     )
 
     return pattern
+
+
+def point_at(
+    monkeypatch: pytest.MonkeyPatch,
+    root: pathlib.Path,
+) -> None:
+    """
+    Point the runner's folders and table below `root`, so nothing in the repository is touched.
+    """
+    write(
+        root / 'evals' / 'triggering' / 'requests.toml',
+        QUERY_TABLE_TOML,
+    )
+    monkeypatch.setattr(
+        eval_run,
+        'EVALS_DIRECTORY',
+        root / 'evals',
+    )
+    monkeypatch.setattr(
+        eval_run,
+        'TRIGGERING_TABLE',
+        root / 'evals' / 'triggering' / 'requests.toml',
+    )
+    monkeypatch.setattr(
+        eval_run,
+        'RUN_DIRECTORY',
+        root / 'run',
+    )
+    monkeypatch.setattr(
+        eval_run,
+        'PLUGIN_DIRECTORY',
+        root / 'run' / 'plugin',
+    )
+    monkeypatch.setattr(
+        eval_run,
+        'FIXTURES_DIRECTORY',
+        root / 'run' / 'fixtures',
+    )
 
 
 def write(
@@ -121,42 +229,84 @@ class TestAssemblePlugin:
         ]
 
 
-class TestCopyAuthoredCases:
-    def test_a_fixture_case_that_does_not_name_the_scaffold_stops_the_assembly(
+class TestCaseMatches:
+    def test_a_question_mark_is_one_character(
+        self,
+    ) -> None:
+        assert eval_run.case_matches(
+            'triggering/query/fires-?',
+            'triggering/query/fires-1',
+        )
+
+    def test_a_star_crosses_slashes(
+        self,
+    ) -> None:
+        assert eval_run.case_matches(
+            'triggering/*',
+            'triggering/query/fires-1',
+        )
+
+    def test_brackets_stand_for_themselves(
+        self,
+    ) -> None:
+        assert not eval_run.case_matches(
+            'triggering/[q]uery/*',
+            'triggering/query/fires-1',
+        )
+
+    def test_the_whole_name_must_match(
+        self,
+    ) -> None:
+        assert not eval_run.case_matches(
+            'contract/read/*',
+            'contract/query/after-go',
+        )
+
+
+class TestCopyAuthoredCase:
+    def test_a_case_without_a_fixture_is_copied_alone(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
-        case = tmp_path / 'source' / 'contract' / 'read' / 'with-book'
-        write(case / 'prompt.md', PLAIN_PROMPT)
-        write(case / 'FIXTURE', 'home-with-book\n')
-        write(tmp_path / 'fixtures' / 'home-with-book' / 'README.md', 'home')
+        committed_case(
+            tmp_path,
+            'contract/read/plain',
+            ['name: contract/read/plain'],
+        )
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
+        target = tmp_path / 'evals'
+        eval_run.copy_authored_case(
+            cases[0],
+            target,
+            tmp_path / 'fixtures',
+        )
+        present = sorted(
+            path.relative_to(target).as_posix()
+            for path
+            in target.rglob('*')
+            if path.is_file()
+        )
 
-        with pytest.raises(
-            ValueError,
-            match='scaffold_script',
-        ):
-            eval_run.copy_authored_cases(
-                tmp_path / 'source',
-                tmp_path / 'evals',
-                tmp_path / 'fixtures',
-                no_shell=False,
-            )
+        assert present == ['contract/read/plain/prompt.md']
 
     def test_a_named_fixture_is_copied_into_the_case_as_real_files(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
-        case = tmp_path / 'source' / 'contract' / 'read' / 'with-book'
-        write(case / 'prompt.md', PLAIN_PROMPT)
-        write(case / 'case.yaml', FIXTURE_CASE_YAML)
-        write(case / 'FIXTURE', 'home-with-book\n')
+        case_directory = committed_case(
+            tmp_path,
+            'contract/read/with-book',
+            ['name: contract/read/with-book'],
+        )
+        write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
+        write(case_directory / 'FIXTURE', 'home-with-book\n')
         write(tmp_path / 'fixtures' / 'home-with-book' / 'Sources' / 'book.md', 'a book')
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
         target = tmp_path / 'evals'
-        eval_run.copy_authored_cases(
-            tmp_path / 'source',
+        eval_run.copy_authored_case(
+            cases[0],
             target,
             tmp_path / 'fixtures',
-            no_shell=False,
         )
         copied = target / 'contract' / 'read' / 'with-book' / 'fixture' / 'Sources' / 'book.md'
         links = [
@@ -169,107 +319,30 @@ class TestCopyAuthoredCases:
         assert copied.read_text(encoding='utf-8') == 'a book'
         assert links == []
 
-    def test_an_unknown_fixture_stops_the_assembly(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        case = tmp_path / 'source' / 'contract' / 'read' / 'with-book'
-        write(case / 'prompt.md', PLAIN_PROMPT)
-        write(case / 'case.yaml', FIXTURE_CASE_YAML)
-        write(case / 'FIXTURE', 'no-such-fixture\n')
-
-        with pytest.raises(
-            ValueError,
-            match='no-such-fixture',
-        ):
-            eval_run.copy_authored_cases(
-                tmp_path / 'source',
-                tmp_path / 'evals',
-                tmp_path / 'fixtures',
-                no_shell=False,
-            )
-
-    def test_no_shell_leaves_out_every_case_that_grants_bash(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        source = tmp_path / 'source' / 'contract' / 'read'
-        write(source / 'runs-extract' / 'prompt.md', SHELL_PROMPT)
-        write(source / 'runs-in-yaml' / 'case.yaml', SHELL_CASE_YAML)
-        write(source / 'runs-in-yaml' / 'prompt.md', 'Read the book.\n')
-        write(source / 'plain' / 'prompt.md', PLAIN_PROMPT)
-        target = tmp_path / 'evals'
-        left_out = eval_run.copy_authored_cases(
-            tmp_path / 'source',
-            target,
-            tmp_path / 'fixtures',
-            no_shell=True,
-        )
-        copied = sorted(
-            path.name
-            for path
-            in (target / 'contract' / 'read').iterdir()
-        )
-
-        assert left_out == [
-            'contract/read/runs-extract',
-            'contract/read/runs-in-yaml',
-        ]
-        assert copied == ['plain']
-
     def test_the_case_gets_an_executable_scaffold_that_copies_its_fixture(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
-        case = tmp_path / 'source' / 'contract' / 'read' / 'with-book'
-        write(case / 'prompt.md', PLAIN_PROMPT)
-        write(case / 'case.yaml', FIXTURE_CASE_YAML)
-        write(case / 'FIXTURE', 'home-with-book\n')
+        case_directory = committed_case(
+            tmp_path,
+            'contract/read/with-book',
+            ['name: contract/read/with-book'],
+        )
+        write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
+        write(case_directory / 'FIXTURE', 'home-with-book\n')
         write(tmp_path / 'fixtures' / 'home-with-book' / 'README.md', 'home')
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
         target = tmp_path / 'evals'
-        eval_run.copy_authored_cases(
-            tmp_path / 'source',
+        eval_run.copy_authored_case(
+            cases[0],
             target,
             tmp_path / 'fixtures',
-            no_shell=False,
         )
         script = target / 'contract' / 'read' / 'with-book' / 'scaffold.sh'
         mode = script.stat().st_mode
 
-        assert script.read_text(encoding='utf-8') == '\n'.join([
-            '#!/usr/bin/env bash',
-            'set -euo pipefail',
-            'here="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"',
-            'cp -r "$here/fixture/." .',
-            '',
-        ])
+        assert script.read_text(encoding='utf-8') == SCAFFOLD_SCRIPT_TEXT
         assert mode & stat.S_IXUSR
-
-    def test_without_no_shell_every_case_is_copied(
-        self,
-        tmp_path: pathlib.Path,
-    ) -> None:
-        source = tmp_path / 'source' / 'quality' / 'read'
-        write(source / 'runs-extract' / 'prompt.md', SHELL_PROMPT)
-        write(source / 'plain' / 'prompt.md', PLAIN_PROMPT)
-        target = tmp_path / 'evals'
-        left_out = eval_run.copy_authored_cases(
-            tmp_path / 'source',
-            target,
-            tmp_path / 'fixtures',
-            no_shell=False,
-        )
-        copied = sorted(
-            path.name
-            for path
-            in (target / 'quality' / 'read').iterdir()
-        )
-
-        assert left_out == []
-        assert copied == [
-            'plain',
-            'runs-extract',
-        ]
 
 
 class TestCopyStartingPoints:
@@ -320,7 +393,7 @@ class TestEvalCommand:
             runs=3,
             max_cost_usd=5.0,
             output_directory=tmp_path / 'results',
-            no_shell=False,
+            granted_tools=['Write'],
         )
         joined = ' '.join(command)
 
@@ -341,21 +414,20 @@ class TestEvalCommand:
             )
         )
 
-    def test_no_shell_grants_write_and_edit_only(
+    def test_no_grant_leaves_out_allow_tools(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
-            case_glob='*',
-            runs=1,
+            case_glob='triggering/*',
+            runs=None,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
-            no_shell=True,
+            granted_tools=[],
         )
 
-        assert '--allow-tools Write Edit' in ' '.join(command)
-        assert 'Bash' not in command
+        assert '--allow-tools' not in command
 
     def test_results_and_report_go_to_the_batch_folder(
         self,
@@ -368,27 +440,51 @@ class TestEvalCommand:
             runs=1,
             max_cost_usd=1.0,
             output_directory=output,
-            no_shell=False,
+            granted_tools=[],
         )
         joined = ' '.join(command)
 
         assert f'--output-dir {output}' in joined
         assert f'--report {output / "report.html"}' in joined
 
-    def test_the_operator_grant_includes_bash_by_default(
+    def test_runs_are_left_to_the_cases_unless_given(
         self,
         tmp_path: pathlib.Path,
     ) -> None:
         command = eval_run.eval_command(
             tmp_path,
             case_glob='*',
+            runs=None,
+            max_cost_usd=1.0,
+            output_directory=tmp_path / 'results',
+            granted_tools=[],
+        )
+
+        assert '--runs' not in command
+
+    def test_the_grant_names_exactly_the_tools_given(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        command = eval_run.eval_command(
+            tmp_path,
+            case_glob='contract/*',
             runs=1,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
-            no_shell=False,
+            granted_tools=[
+                'Bash(npm test *)',
+                'Write',
+            ],
         )
+        start = command.index('--allow-tools')
 
-        assert '--allow-tools Write Edit Bash' in ' '.join(command)
+        assert command[start:start + 4] == [
+            '--allow-tools',
+            'Bash(npm test *)',
+            'Write',
+            '--case',
+        ]
 
     def test_the_plugin_folder_is_the_target_and_comes_first(
         self,
@@ -400,7 +496,7 @@ class TestEvalCommand:
             runs=1,
             max_cost_usd=1.0,
             output_directory=tmp_path / 'results',
-            no_shell=False,
+            granted_tools=['Write'],
         )
 
         assert command[:4] == [
@@ -465,6 +561,334 @@ class TestExportPackage:
         assert (export / 'tracked.md').read_text(encoding='utf-8') == 'edited on disk'
 
 
+class TestGatedTools:
+    def test_each_gated_tool_names_the_cases_that_list_it(
+        self,
+    ) -> None:
+        cases = [
+            eval_case(
+                'contract/read/runs-extract',
+                (
+                    'Skill',
+                    'Read',
+                    'Bash(uv run *)',
+                    'Write',
+                ),
+            ),
+            eval_case(
+                'contract/read/writes',
+                (
+                    'Read',
+                    'Write',
+                ),
+            ),
+        ]
+
+        assert eval_run.gated_tools(cases) == {
+            'Bash(uv run *)': ['contract/read/runs-extract'],
+            'Write': [
+                'contract/read/runs-extract',
+                'contract/read/writes',
+            ],
+        }
+
+    def test_triggering_cases_need_no_grant(
+        self,
+    ) -> None:
+        cases = eval_run.generated_cases(eval_run.triggering_cases(QUERY_TABLE))
+
+        assert eval_run.gated_tools(cases) == {}
+
+
+class TestMain:
+    def test_a_failed_command_stops_with_one_line(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_uvx,
+        )
+        exit_code = eval_run.main([
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+        last_line = capsys.readouterr().out.splitlines()[-1]
+
+        assert exit_code == 1
+        assert last_line == 'eval_run: stopped: uvx exited with 1'
+
+    def test_a_glob_that_matches_nothing_stops_before_any_install(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_uvx,
+        )
+        exit_code = eval_run.main([
+            '--case',
+            'nothing/*',
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+
+        assert exit_code == 1
+        assert 'No case matches' in capsys.readouterr().out
+
+    def test_a_malformed_case_stops_with_one_line_before_any_install(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        write(
+            tmp_path / 'evals' / 'contract' / 'read' / 'bad' / 'case.yaml',
+            TOOLS_IN_CASE_YAML,
+        )
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_uvx,
+        )
+        exit_code = eval_run.main([
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+        output = capsys.readouterr().out.splitlines()
+
+        assert exit_code == 1
+        assert len(output) == 1
+        assert output[0].startswith('eval_run: stopped: contract/read/bad: allowed_tools')
+
+    def test_a_missing_program_stops_with_one_line(
+        self,
+        monkeypatch: pytest.MonkeyPatch,
+        tmp_path: pathlib.Path,
+        capsys: pytest.CaptureFixture,
+    ) -> None:
+        point_at(
+            monkeypatch,
+            tmp_path,
+        )
+        monkeypatch.setattr(
+            eval_run,
+            'export_package',
+            fail_like_a_missing_program,
+        )
+        exit_code = eval_run.main([
+            '--max-cost-usd',
+            '1',
+            '--dry-run',
+        ])
+        last_line = capsys.readouterr().out.splitlines()[-1]
+
+        assert exit_code == 1
+        assert last_line == "eval_run: stopped: [Errno 2] No such file or directory: 'git'"
+
+
+class TestReadAuthoredCases:
+    def test_a_block_list_is_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        committed_case(
+            tmp_path,
+            'contract/read/bad',
+            [
+                'name: contract/read/bad',
+                'allowed_tools:',
+                '  - Read',
+                '  - Bash',
+            ],
+        )
+
+        with pytest.raises(
+            ValueError,
+            match='contract/read/bad: allowed_tools must be one line',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    def test_a_case_without_a_name_is_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        committed_case(
+            tmp_path,
+            'contract/read/unnamed',
+            ['allowed_tools: [Read]'],
+        )
+
+        with pytest.raises(
+            ValueError,
+            match='contract/read/unnamed: the case has no name',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    def test_a_fixture_case_that_does_not_name_the_scaffold_is_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        case_directory = committed_case(
+            tmp_path,
+            'contract/read/with-book',
+            ['name: contract/read/with-book'],
+        )
+        write(case_directory / 'FIXTURE', 'home-with-book\n')
+
+        with pytest.raises(
+            ValueError,
+            match='scaffold_script: scaffold.sh',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    def test_a_multi_line_flow_list_is_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        committed_case(
+            tmp_path,
+            'contract/read/bad',
+            [
+                'name: contract/read/bad',
+                'allowed_tools: [Read,',
+                '  Bash]',
+            ],
+        )
+
+        with pytest.raises(
+            ValueError,
+            match='contract/read/bad: allowed_tools must be one line',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    def test_a_one_line_list_is_read_without_its_comment(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        committed_case(
+            tmp_path,
+            'contract/read/writes',
+            [
+                'name: contract/read/writes   # what --case matches',
+                'allowed_tools: [Skill, Read, "Bash(uv run *)", Write] # the grant',
+            ],
+        )
+        cases = eval_run.read_authored_cases(tmp_path / 'source')
+
+        assert cases == [
+            eval_run.EvalCase(
+                name='contract/read/writes',
+                folder='contract/read/writes',
+                tools=(
+                    'Skill',
+                    'Read',
+                    'Bash(uv run *)',
+                    'Write',
+                ),
+                source=tmp_path / 'source' / 'contract' / 'read' / 'writes',
+            ),
+        ]
+
+    def test_a_scaffold_named_without_a_fixture_is_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        case_directory = committed_case(
+            tmp_path,
+            'contract/read/with-book',
+            ['name: contract/read/with-book'],
+        )
+        write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
+
+        with pytest.raises(
+            ValueError,
+            match='no FIXTURE',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    def test_an_unknown_fixture_is_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        case_directory = committed_case(
+            tmp_path,
+            'contract/read/with-book',
+            ['name: contract/read/with-book'],
+        )
+        write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
+        write(case_directory / 'FIXTURE', 'no-such-fixture\n')
+
+        with pytest.raises(
+            ValueError,
+            match='no-such-fixture',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    @pytest.mark.parametrize(
+        'reserved',
+        [
+            'fixture/README.md',
+            'scaffold.sh',
+        ],
+    )
+    def test_files_the_runner_writes_may_not_be_committed(
+        self,
+        tmp_path: pathlib.Path,
+        reserved: str,
+    ) -> None:
+        case_directory = committed_case(
+            tmp_path,
+            'contract/read/with-book',
+            ['name: contract/read/with-book'],
+        )
+        write(case_directory / 'case.yaml', FIXTURE_CASE_YAML)
+        write(case_directory / 'FIXTURE', 'home-with-book\n')
+        write(case_directory / reserved, 'committed by hand')
+
+        with pytest.raises(
+            ValueError,
+            match='written by the runner',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+    def test_tools_in_case_yaml_are_refused(
+        self,
+        tmp_path: pathlib.Path,
+    ) -> None:
+        write(
+            tmp_path / 'source' / 'contract' / 'read' / 'bad' / 'case.yaml',
+            TOOLS_IN_CASE_YAML,
+        )
+
+        with pytest.raises(
+            ValueError,
+            match='contract/read/bad: allowed_tools belongs in prompt.md',
+        ):
+            eval_run.read_authored_cases(tmp_path / 'source')
+
+
 class TestResultsDirectory:
     def test_a_batch_folder_is_named_by_its_time_and_its_cases(
         self,
@@ -484,6 +908,72 @@ class TestResultsDirectory:
         )
 
         assert folder == eval_run.RESULTS_DIRECTORY / '20260922T231536Z-contract-read-all'
+
+
+class TestSelectCases:
+    def test_no_shell_leaves_out_every_case_that_lists_bash(
+        self,
+    ) -> None:
+        cases = [
+            eval_case(
+                'contract/read/runs-extract',
+                (
+                    'Read',
+                    'Bash(uv run *)',
+                ),
+            ),
+            eval_case(
+                'contract/read/plain',
+                ('Read',),
+            ),
+        ]
+        selection = eval_run.select_cases(
+            cases,
+            'contract/*',
+            no_shell=True,
+        )
+
+        assert selection.selected == (cases[1],)
+        assert selection.left_out == (cases[0],)
+
+    def test_only_the_cases_the_glob_matches_are_selected(
+        self,
+    ) -> None:
+        cases = [
+            eval_case(
+                'contract/read/plain',
+                ('Read',),
+            ),
+            eval_case(
+                'triggering/query/fires-1',
+                ('Skill',),
+            ),
+        ]
+        selection = eval_run.select_cases(
+            cases,
+            'triggering/*',
+            no_shell=False,
+        )
+
+        assert selection.selected == (cases[1],)
+        assert selection.left_out == ()
+
+    def test_without_no_shell_a_bash_case_is_kept(
+        self,
+    ) -> None:
+        cases = [
+            eval_case(
+                'contract/read/runs-extract',
+                ('Bash',),
+            ),
+        ]
+        selection = eval_run.select_cases(
+            cases,
+            '*',
+            no_shell=False,
+        )
+
+        assert selection.selected == (cases[0],)
 
 
 class TestTriggeringCases:
@@ -509,6 +999,24 @@ class TestTriggeringCases:
         grader = cases['triggering/query/fires-1/graders/fired.md']
 
         assert 'min: 1' in grader
+
+    def test_each_generated_case_is_named_by_its_folder(
+        self,
+    ) -> None:
+        cases = eval_run.generated_cases(eval_run.triggering_cases(QUERY_TABLE))
+
+        assert cases == [
+            eval_run.EvalCase(
+                name='triggering/query/fires-1',
+                folder='triggering/query/fires-1',
+                tools=(
+                    'Skill',
+                    'Read',
+                    'Glob',
+                    'Grep',
+                ),
+            ),
+        ]
 
     @pytest.mark.parametrize(
         'skill_input',
