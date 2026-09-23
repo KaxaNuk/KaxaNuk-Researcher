@@ -128,13 +128,9 @@ templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folde
 templates/researcher/ the researcher's home, empty
 examples/liquid-golden-cross/
                       one strategy worked through every folder of the template
-tests/                the tests of the skills' scripts and of the tools
-tools/                check_repo.py, the repository's own checks; and
-                      sync_investment_lab_references.py, which regenerates experiment-lifecycle's
-                      references and the template's generated files from the example
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
-pyproject.toml        the environment of the scripts and their tests
+pyproject.toml        the ruff settings for the skills' scripts
 AGENTS.md, CLAUDE.md  the rules for changing this repository
 CHANGELOG.md          one entry per version
 LICENSE               MIT
@@ -152,24 +148,17 @@ template is its owner's from the first commit and never merges back; the skills 
 ## Development
 
 ```bash
-uv run --no-project --with pytest --with pypdf pytest -q
 uvx ruff check .
 (cd examples/liquid-golden-cross && uvx ruff check .)
-uv run --no-project python tools/check_repo.py
 uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py \
-  .apm/skills/*/scripts tests tools examples/liquid-golden-cross \
-  --local-package bloom_code_check
+  .apm/skills/*/scripts examples/liquid-golden-cross
 ```
 
-`tools/check_repo.py` finds what has shipped before without an error: versions that disagree, an
-example that lost a heading of the template, markers left open, the section symbol, a skill
-description APM would reject, `experiment-lifecycle`'s references or the template's generated
-files out of step with the example, a path too long for Windows, a line of prose past 100
-columns. The worked example is linted with its own ruff settings, and the last command checks
-the Bloom Code style of the skills' scripts, the tests, the tools and the example. Each runs
-through `uv` alone: no Python of your own is needed. They run on your machine before a commit;
-there is no CI, so nothing runs them for you. What they cannot check is how a skill or a command
-behaves in a session: before a release that changes one, walk the newcomer's path by hand in a
+Ruff lints the skills' scripts, the worked example with its own settings, and the last command
+checks the Bloom Code style of both. Each runs through `uv` alone: no Python of your own is needed.
+They run on your machine before a commit; there is no CI, so nothing runs them for you. Nothing else
+is automated: the template and the example are kept in step by hand, as `AGENTS.md` says, and
+before a release that changes a skill, a command or a script, walk the newcomer's path by hand in a
 scratch folder — `init-researcher`, `interview`, `next`, `init-strategy`, and `read` on one
 clipping.
 

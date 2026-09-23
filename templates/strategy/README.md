@@ -198,8 +198,8 @@ The same files are worked through in the
 where the worked strategy's own lines sit beside that description between the example markers:
 `<!-- example: begin -->` and `<!-- example: end -->` in Markdown, `# --- example: begin ---` in
 Python, `# EXAMPLE-ONLY CELL` on a notebook cell. The `Bibliotheca/` index and log, the drivers,
-the modules, the notebooks and the files of `Experiments/` and `Paper_Trading/` are generated from
-the example with those lines removed, so the two cannot drift. To read the example, or run it,
+the modules, the notebooks and the files of `Experiments/` and `Paper_Trading/` are the example's
+with those lines removed. To read the example, or run it,
 copy it whole into a folder of its own:
 
 ```text
