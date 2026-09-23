@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: quality/init-researcher/hand-over
+context:
+  history_file: history.jsonl

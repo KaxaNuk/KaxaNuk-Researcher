@@ -8,7 +8,7 @@ description: >
   there. It walks the index and the links between notes before reading anything, and cites every
   claim. It does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -62,8 +62,9 @@ are the library's value.
    `references/reading-map.md` in the `read` skill's folder lists one — labelled *a lead from the
    reading map, not in your library*, or *in your Sources/, not yet read* when the PDF is there —
    and otherwise the kind of source. Where the map gives a work's other side and the library holds
-   only one of the two, name the other. Do not fill a gap from memory without saying you did, and
-   never write it into the library during a query.
+   only one of the two, name the other. Outside the map, name no work — no title, author or year,
+   not even labelled as memory: the kind of source is the whole suggestion. Do not answer from
+   memory without saying you did, and never write it into the library during a query.
 
 ## What this skill will not let you do
 

@@ -93,9 +93,9 @@ Every one that writes shows its plan first and waits for your go.
 | `next` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
 | `researcher-init` | the interview; writes `RESEARCHER.md` and the agent that makes your researcher callable by name |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
-| `blueprint [strategy] <N>` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
-| `brainstorm [strategy] <N>` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
-| `challenge [strategy] <N>` | checks a finished experiment against its own blueprint |
+| `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
+| `brainstorm <N> ["idea"] [strategy]` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
+| `challenge <N> [strategy]` | checks a finished experiment against its own blueprint |
 | `audit [deep]` | reviews the library — links, duplicates, index, orphans, frontmatter, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |

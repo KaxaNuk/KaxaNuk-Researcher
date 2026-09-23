@@ -1,8 +1,8 @@
 ---
 description: Challenge a finished experiment against its own blueprint — which predictions held, which falsifiers fired, what the findings do not say — reported in chat and, on the owner's go, as one appended JOURNAL_N.md entry. Never edits the blueprint, the findings or the results, and never computes a number. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
-  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
   - experiment: "The experiment number N"
+  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
 ---
 
 # Challenge a finished cycle
