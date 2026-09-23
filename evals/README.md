@@ -59,8 +59,10 @@ nothing.
   characters, `/` included, `?` one character, and every other character stands for itself, so
   braces and brackets match nothing. Batch by prefix, such as `'triggering/*'` or
   `'contract/init-*'`. Only the matching cases are assembled; none matching stops the run.
+  `--case` may be repeated: the batch is the union, and the harness gets `--case '*'` over it.
 - **Results** land in `evals/results/<UTC time>-<glob>/` (ignored), for example
-  `20260923T000155Z-triggering-all/`, with `report.html` and `aggregate-result.json`.
+  `20260923T000155Z-triggering-all/`, with `report.html` and `aggregate-result.json`;
+  `--label triggering-1` names the folder instead of the globs.
 - **Traces**: the runner passes `--keep-temp`, so every run's folder stays under
   `/tmp/claude-eval-*`: `out/trace.jsonl` (the session as stream-json) and
   `config/projects/*/*.jsonl` (the session transcript). Copy what you need, then remove it:
