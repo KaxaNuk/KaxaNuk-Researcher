@@ -40,8 +40,8 @@ in the folder, and it says which move is done and what comes next.
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Luna` | your researcher's home, with the name you choose |
-| 2 | the home | `researcher-init` | a ten-minute interview; `RESEARCHER.md` and the agent file |
+| 1 | anywhere | `init-researcher Ada` | your researcher's home, with the name you choose |
+| 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md` and the agent file |
 | 3 | the home | `apm install --target claude` | the researcher as an agent you call by name |
 | 4 | anywhere | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own; its `SETUP.md` finishes the setup |
 | 5 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the strategy's README |
@@ -63,7 +63,7 @@ in the strategy's `Config/.env`, which only you fill in and nobody commits; the 
 
 | Command | How often | What it makes |
 | --- | --- | --- |
-| `init-researcher <name>` | once per person | the researcher's home: `RESEARCHER.md`, `Sources/`, `Knowledge/`, `Philosophy/`, `Projects/`. Then `researcher-init` there interviews you and names it |
+| `init-researcher <name>` | once per person | the researcher's home: `RESEARCHER.md`, `Sources/`, `Knowledge/`, `Philosophy/`, `Projects/`. Then `interview` there interviews you and names it |
 | `init-strategy <name>` | once per strategy | a new strategy repository from the KaxaNuk Strategy Template — every file the process expects, each a description to fill in — with its first commit. You publish it to GitHub yourself |
 | `init-example` | when you want it | the worked example, `liquid-golden-cross`, in a folder of its own, to read or run — or, with a path, one of its files into a strategy made before template 0.10.0, which lacks it |
 
@@ -84,14 +84,14 @@ Every one that writes shows its plan first and waits for your go.
 
 | Skill | What it does |
 | --- | --- |
-| `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. It carries the reading map, `references/reading-map.md`, that `researcher-init` proposes the first works from |
+| `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. It carries the reading map, `references/reading-map.md`, that `interview` proposes the first works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
 | `init-researcher`, `init-strategy`, `init-example` | make a folder, as above |
 
 | Command | What it does |
 | --- | --- |
 | `next` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
-| `researcher-init` | the interview; writes `RESEARCHER.md` and the agent that makes your researcher callable by name |
+| `interview` | seven questions that make the researcher yours; writes `RESEARCHER.md` and the agent that makes it callable by name. `interview force` starts over |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
 | `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
 | `brainstorm <N> ["idea"] [strategy]` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |

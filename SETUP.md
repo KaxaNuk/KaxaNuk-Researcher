@@ -51,9 +51,9 @@ skill, for your user: every folder you open has them, and no folder installs any
 Code, PEP 8, test writing and filesystem boundaries. Copilot receives the same, its instructions
 merged into `~/.copilot/copilot-instructions.md`. Cursor, Gemini, OpenCode and Windsurf get the
 skills and the commands but not the instructions. Codex gets the skills only: no instructions and
-no commands, so there a command is run by naming its file in the package. For `researcher-init`
+no commands, so there a command is run by naming its file in the package. For `interview`
 in step 2, ask Codex to *follow
-`~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/researcher-init.prompt.md`*.
+`~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/interview.prompt.md`*.
 
 **On Windows, if the install fails with *checkout failed* or `WinError 3`,** a path went past
 Windows' 260-character limit. Let git use long paths, once, then install again:
@@ -69,7 +69,7 @@ git config --global core.longpaths true
 
 **What "done" looks like:** for Claude Code, `~/.claude/skills/` holds `init-researcher`,
 `init-strategy`, `init-example`, `read` and `query` among others, and `~/.claude/commands/` holds
-`researcher-init.md` and `next.md`.
+`interview.md` and `next.md`.
 
 ---
 
@@ -79,14 +79,14 @@ In a **new** session of your assistant, opened in the folder that should hold yo
 Windows, `D:\Research`, never a deep synced path such as `C:\Users\<you>\OneDrive\...`:
 
 ```text
-init-researcher Luna
+init-researcher Ada
 ```
 
-with the name you will call it. It shows a plan, waits for your go, and makes `Luna/` — the
+with the name you will call it. It shows a plan, waits for your go, and makes `Ada/` — the
 researcher's home — as a git repository. Open **that folder** in a new session and run:
 
 ```text
-researcher-init
+interview
 ```
 
 a short interview — seven questions, in your language — that writes `RESEARCHER.md` and the agent

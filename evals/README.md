@@ -232,7 +232,7 @@ installed:
 | `home-with-book` | a researcher's home with two open questions and one outlined book |
 | `home-with-image-pdf` | a home whose only book has no text layer |
 | `home-with-notes` | a home with two notes, one superseding the other, and an index linking both |
-| `researcher-existing` | a folder that already holds a filled researcher's home, `Luna/` |
+| `researcher-existing` | a folder that already holds a filled researcher's home, `Ada/` |
 | `strategy-blueprint-filled` | a ready strategy whose Experiment 1 blueprint is already written |
 | `strategy-empty-universe` | a strategy with claims, but a seed that holds only its header |
 | `strategy-no-claims` | a strategy as the template ships it, one paper in `Bibliotheca/Papers` |

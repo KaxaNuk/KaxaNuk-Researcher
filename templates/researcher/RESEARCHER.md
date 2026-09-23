@@ -1,7 +1,7 @@
 # Researcher
 
-> **Written by `researcher-init`.** Everything in angle brackets is a slot the interview fills.
-> Edit it by hand whenever you like — it is yours — and re-run `researcher-init force` to start
+> **Written by `interview`.** Everything in angle brackets is a slot the interview fills.
+> Edit it by hand whenever you like — it is yours — and re-run `interview force` to start
 > over. Delete this blockquote once it is filled.
 
 ## Who
