@@ -1,0 +1,4 @@
+schema_version: "1.1"
+name: contract/init-example/after-go-uses-the-script
+context:
+  history_file: history.jsonl
