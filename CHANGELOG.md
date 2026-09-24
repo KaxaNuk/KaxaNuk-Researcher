@@ -6,6 +6,52 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.18.0] - 2026-09-24
+The worked example reports Experiment 1's second design and opens Experiment 2, and a researcher's
+home keeps its lessons in `Lessons/`. Experiment 1's second design is run, reported and reproduced
+from a wiped working copy: it beats the index on Sharpe, earns 0.86 points a year less than the same
+names without its cross, and fails its kill switch, so nothing graduates. Experiment 2, its
+diagnostic arm's design on years before 2017, is committed as a blueprint before its rule. A new
+home has no `Projects/`: `teach` writes to `Lessons/<topic>/`, and anything else asked for at home
+is answered in chat. Home template 0.10.0, strategy template 0.13.0, example 0.13.0,
+`init-researcher` 0.2.1, `read` 0.7.2, `attribution-analysis-runs` 0.2.9.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g` and open a new session.
+In a home, run `update`: it brings `AGENTS.md` and `README.md` across and, on your go, moves each
+`Projects/Teach/<topic>/` to `Lessons/<topic>/`. In a strategy, take the template's 0.13.0 files by
+hand, as its entry lists them. Quote the example's Experiment 1 exits, entries, turnover and
+capacity from its reproduction of 2026-09-24, never from its run of 2026-09-23.
+### Added
+- **Experiment 1's second design, reported** in `FINDINGS_1.md`, `RESULTS.md` and the gate's rows,
+  and reproduced from a wiped working copy on 2026-09-24, with one manual step, every engine and
+  attribution figure to the digit, on the 788-name seed.
+- **Experiment 2 in the worked example, before its rule**: its brainstorming, a blueprint reviewed
+  cold by `blueprint-critic`, the first entry of its journal, and its findings, not yet run. None of
+  its results is in this release.
+- **A second price provider**: in the example's `Data/curator.py`, `--provider sharadar`, for the
+  names FMP does not carry, through the Data Curator's `issues/31` branch until a release carries
+  it; in the strategy template, a line of the Curator stage's contract for names the first provider
+  does not carry.
+### Changed
+- **A home has no `Projects/`** (home template 0.10.0). `teach` keeps each topic in
+  `Lessons/<topic>/`; `update` offers, on the owner's go, to move a home's `Projects/Teach/<topic>/`
+  there and to remove a `Projects/` left empty; `interview`, `init-researcher` 0.2.1 and `read`
+  0.7.2 name `Lessons/` where they named `Projects/`.
+- **The desk's folders**: the strategy template, the example and `attribution-analysis-runs` 0.2.9
+  name the Analytics Factory's `Benchmark Portfolios/` and `Factor Models/`, read first, and the
+  older `Benchmarks/` and `Factors/`, still read where those are absent.
+- **The findings template's status**, in `experiment-lifecycle`'s reference and the strategy
+  template, asks whether the rule beat the benchmark and its control by what its blueprint required,
+  and whether it is a candidate for the gate.
+- **The README's `paper-trading-gate` row** names the freeze, the daily run and its record.
+### Fixed
+- **The example's slot book is in date order**, which corrects Experiment 1's exits, entries,
+  turnover and capacity as its run of 2026-09-23 printed them; no engine figure moved. The faults
+  the paper-trading machinery's first runs found are fixed with it: a window prices only the
+  listings it holds, a refused engine run stops the book with the engine's reason, a band is read
+  with a billionth of tolerance, a stale lock is removed, and the record replaces a day's flags and
+  holdings whole on a re-run.
+
 ## [0.17.0] - 2026-09-23
 The researcher is its owner's, and grows with what they believe. The interview asks what pulls the
 owner to markets and how they like to invest, puts the view that leads as one testable sentence

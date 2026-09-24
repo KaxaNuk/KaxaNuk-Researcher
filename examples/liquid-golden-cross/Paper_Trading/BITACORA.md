@@ -112,6 +112,16 @@ under it, dated:
 **Nothing has graduated. Nothing has been tested.** This is the template; the first candidate
 arrives when an experiment's `FINDINGS_N.md` can evidence criterion 1.
 
+<!-- example: begin -->
+
+**In this example the gate has been tested**, against both designs of Experiment 1, and neither
+graduated: the rows for the second are below. No book is on paper, and `Paper_Trading_1/` holds more
+than the contract, as *Nothing is frozen here* below says. The daily machinery has been run outside
+this repository, on a candidate frozen only to test it: *The machinery, tested* below says what that
+showed, and why none of its figures is read.
+
+<!-- example: end -->
+
 When one does, record it here: which experiment, which variant, which criteria it clears, and —
 above all — which it does not and why. **The blocking items are the content of this section, not the
 passing ones.**
@@ -122,25 +132,73 @@ until one does, this folder holds the contract and nothing else.
 
 <!-- example: begin -->
 
-### In this example: the gate run once, and the answer is no
+### In this example: the gate run on Experiment 1's second design, and the answer is no
 
-**`liquid-golden-cross` does not graduate, and it was never going to** — Experiment 1 is the
-declared benchmark, and a benchmark's job is to be a fair yardstick, not a candidate. It is
-evaluated here anyway, because a gate nobody has ever run against a real book is a gate nobody
-knows how to apply. Every row is evidenced from
-[`../Experiments/Experiment_1/FINDINGS_1.md`](../Experiments/Experiment_1/FINDINGS_1.md).
+**Experiment 1's second design does not graduate.** It is the owner's rule, the twenty most traded
+names above their 50/200 cross, sold the day after the cross breaks, and it was written to reach
+paper trading if it passed. It failed its own kill switch first, and the gate says the same, row by
+row. Every row is evidenced from
+[`../Experiments/Experiment_1/FINDINGS_1.md`](../Experiments/Experiment_1/FINDINGS_1.md) and
+[`../RESULTS.md`](../RESULTS.md).
 
-| # | Criterion | Verdict |
-| --- | --- | --- |
-| 1 | Beats the benchmarks **and its own control** | **Fails.** Sharpe 0.861 beats the index's 0.774 and its own control's 0.813 — but the control earns **1.12 points a year more** once it is put on the same rebalance dates, and the criterion is about risk-adjusted return over the same window. It passes on Sharpe and only on Sharpe, which is precisely the kind of single-metric pass this gate exists to catch |
-| 2 | Idiosyncratic alpha in **both** layers | **Partly, and now measured rather than asserted.** The factor model leaves 45.5 points of 159.5 unexplained — but random books of the same shape earn about 12.5, so roughly 33 points are genuine, and of those only about 5 belong to the signal the strategy is named after. The first cut is per asset in this library, so its selection number is not the group-level story the criterion asks for, and the third pass on residual returns has not been run |
-| 3 | Survives perturbation; trial count published | **Fails.** Four variants, all published — but no parameter was perturbed. The 50/200 pair, the 30 names, the 10% band and the 63-day window are all single settings, and none has been read as a curve |
-| 4 | Costs and capacity modelled and stated | **Partly.** Costs are modelled, charged on the unadjusted price, and reported net, with a realistic-commission row beside the frozen one. **Capacity is not modelled at all**, though the liquidity ranking makes this the book least likely to be constrained by it |
-| 5 | Explicit sign-off | **Not sought.** Criteria 1 and 3 block it |
+| # | Criterion | Verdict | Evidence |
+| --- | --- | --- | --- |
+| 1 | Beats the benchmarks **and its own control** | **Fails** | Sharpe 0.8057 beats the index's 0.7699 and the control's 0.7748, but the rule earns **0.86 points a year less** than its control, where its blueprint required 0.5 points more, and it is ahead of the control on both Sharpe and CAGR in one sub-period of three. A pass on Sharpe alone is the single-metric pass this gate exists to catch |
+| 2 | Idiosyncratic alpha in **both** layers | **Partly** | The factor model leaves 36.19 of the rule's 160.02 points of excess return unexplained, just above the top of five random twenty-name books, −11.78 to 35.31. But the control keeps 40.99 without the cross, so the signal subtracts idiosyncratic return rather than adding it, and the rule's Sharpe edge comes with a beta of 1.067 against the control's 1.238, which the blueprint reads as timing, not selection. The first cut is per asset in this library, so its selection of 12.26 points is not the group-level story the criterion asks for, and the third pass on residual returns has not been run |
+| 3 | Survives perturbation; trial count published | **Passes, on its own rule** | 12 of 15 cells keep the sign of the rule's Sharpe margin over its control, where the blueprint asked for twelve. The trial count is published: thirty-one, as the blueprint fixed it, with this design's 45 engine runs listed by role. What passes is a Sharpe margin of +0.031 that comes with a CAGR margin below zero, and the deflated figure was not computed |
+| 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 1.99 times the book a year, and 6.0% one-way per trade date on average. Costs are charged on the unadjusted price at two rows, the blueprint's commission setting of 0.1 and a realistic 0.005, with 5 basis points of slippage, and reported net: $76,911.00 of commission and $37,862.98 of slippage at the headline row. Capacity is stated from the book, as the largest book at which a trade takes no more than a share of the name's 63-day average traded value. At 1%: $91,546,647 for the worst trade, $146,012,883 at the first percentile of trades, $16,231,104,636 at the median. At 5%: $457,733,236, $730,064,416 and $81,155,523,178. The turnover and capacity figures are the reproduction's of 2026-09-24: the run of 2026-09-23 printed 2.9 times the book a year and $2,018,972 for the worst trade at 1%, read from the slot book's rows out of date order. It is a bound on participation, not a model of market impact, and which trade is the worst was not traced |
+| 5 | Explicit sign-off | **Not sought** | Criteria 1 and 2 block it, and the kill switch had already tripped |
 
-**What the exercise is worth teaching.** The book beats its index on every headline number a
-pitch deck would show, and still fails the gate on the first criterion. That gap — between *beats
-the index* and *beats the thing it is actually a variant of* — is the whole reason criterion 1
-names the control, and it is the one finding of Experiment 1 that generalises.
+### Nothing is frozen here
+
+`promote.py` has not run in this repository and no `FREEZE.json` exists in it.
+`Paper_Trading_1/paper_trading_1.py` carries Experiment 1's second design's rule in the form a
+frozen book takes, to show that form: nothing here froze it, its `BANDS` are not registered here,
+and it has never run from this repository. The data stages processed the months after 2026-06-01
+when Experiment 1's download was refreshed through 2026-09-23.
+
+### The machinery, tested
+
+**A book that graduates should not be the first to find the plumbing's faults**, so the daily
+machinery was run on 2026-09-24 in the working copy Experiment 1's second design ran in, outside
+this repository, on that design frozen there as a candidate. The freeze was never committed there,
+and nothing graduated: the gate above says why it could not. What the runs showed:
+
+- **A dry run**, then **a real run for 2026-09-23**, writing the record to local files and to a
+  DuckDB database. The two records are identical: 7,566 rows of performance, 102 of statistics, 40
+  of books, 8 diagnostics, 2 flags and 1 run. It exited 1, flagged, and the two flags say why: the
+  desk's holdings and the index's returns end on 2026-08-14, so membership is held at that date and
+  the book is priced against `SPY` until the desk's files reach the day.
+- **The same day again**: the row counts did not change.
+- **The lock** refused a second run, with exit 2.
+- **A restatement.** Frozen again, the book priced the past differently; the run flagged the
+  restatement and overwrote nothing.
+
+**The faults those runs found**, each fixed in this repository's code before any book depends on
+it: the slot book's rows were out of date order, which also corrected Experiment 1's construction
+and capacity figures; a window now prices only the listings it holds; a refused engine run stops
+the book with the engine's reason; the band is read with a billionth of tolerance; and the record
+replaces a day's flags and holdings whole on a re-run.
+
+**What the runs cannot show.** They priced days after 2026-06-01, the months Experiment 1's
+blueprint held out for a frozen book. No figure from them is read or reported here, and none would
+count: the book was frozen to test the plumbing, not to start a paper record.
+
+### What comes next
+
+**The arm, on years it was not found on, is Experiment 2.** The diagnostic arm, twenty names on the
+first design's rebalancing at a 15% band, reproduced the first design's delay and earned 1.65 points
+a year more than Experiment 1's rule. The owner chose on 2026-09-24 to take its design to years
+before 2017, which it was not found on, and set it against the same names without the cross, as
+Experiment 2. It reaches paper trading only by passing this gate on its own; its blueprint is
+committed before its rule, and none of its results is reported here. Nothing is a candidate now.
+
+**The first design's gate run**, thirty names on a 10% band, failed criteria 1 and 3 and met 2 and
+4 only in part. It is kept at tag `v0.15.0` of the KaxaNuk Researcher.
+
+**What the exercise is worth teaching.** A rule rewritten to fix the mechanism the first run blamed
+failed its own test, and the arm built to confirm the blame beat it. The kill switch, the arm and
+the control were all written down before the run, which is what makes each a result rather than a
+reason to tune the rule until it passes.
 
 <!-- example: end -->

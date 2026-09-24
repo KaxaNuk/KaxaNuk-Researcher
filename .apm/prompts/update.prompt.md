@@ -33,9 +33,10 @@ The researcher arrives in two parts, and each updates its own way:
   line there, never this field."
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/`, `Sources/`,
-`Projects/`, the agent file in `.apm/agents/`, and any skill or command of the home's own in
-`.apm/skills/` or `.apm/prompts/`. `${input:mode}` set to `check` reports what is new and stops,
-changing nothing.
+`Lessons/`, the agent file in `.apm/agents/`, and any skill or command of the home's own in
+`.apm/skills/` or `.apm/prompts/`. The one exception is the `Projects/` a home made before template
+0.10.0 still has, which *Step 2* reads and *Step 4* moves or removes on the owner's go.
+`${input:mode}` set to `check` reports what is new and stops, changing nothing.
 
 ## Step 1: Pre-flight
 
@@ -90,25 +91,38 @@ changing nothing.
 - **A home at or ahead of the template.** When the home's template version is at or above the one
   `templates/researcher/CHANGELOG.md` names on GitHub — a home made from a checkout with
   `--package`, or from a release not yet pushed — the home is current: say so. Nothing it has is
-  proposed for removal, because what the GitHub copy lacks may be what a newer template added.
+  proposed for removal, because what the GitHub copy lacks may be what a newer template added. A
+  `Projects/` it still holds is listed all the same, as the next item says.
 - **The owner's files, read and never written.** The template's `RESEARCHER.md` headings — not its
   slots, nor the blockquote the interview deletes — the headings of `Philosophy/HOW-I-INVEST.md`,
   and the blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md`, each against the home's.
   Every difference is a *by hand* line in *Step 3* and *Step 5*, never a change `update` makes:
   those files are the owner's.
+- **`Projects/`, whenever the home still has one**, whatever template version it is at, so a
+  move the owner declined once is offered again. Until 0.10.0 the template shipped an
+  empty `Projects/`; from 0.10.0 a new home has none, `teach` keeps its lessons in
+  `Lessons/<topic>/`, and anything else the owner asks for at home is answered in chat. List what
+  the home's `Projects/` holds, sorted three ways: each `Projects/Teach/<topic>/` is to move to
+  `Lessons/<topic>/` — unless a `Lessons/<topic>/` exists already, which is listed instead and
+  nothing moves; anything else is listed, one line per path, and stays where it is, the owner's to
+  keep, move or delete by hand; and when nothing is left but `Projects/.gitkeep`, it is to be
+  removed, and the folder with it. The list goes in the report. A home with no `Projects/` has
+  nothing to do here.
 - **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
   **What to do differently** instruction that applies to this home, in full. Those instructions are
   the point of the update; never summarise them away.
-- **All current?** Say so and stop. **`check` mode?** Stop here.
+- **All current?** Say so and stop — unless the home still has a `Projects/`, which goes on to the
+  plan as the item above lists it. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
 In chat: the pinned APM install, when *Step 1* asked for it; the package versions before and after;
 for each home file, the sections to bring across, quoted, in the home's own names, and each file
-the home lacks, to bring across whole; what a migration removes; and what the owner will have to
-do by hand afterwards, one line for each heading or blockquote of their own files that the
-template changed. Then ask for the go through the question tool — *Go*, *Change something*,
-*Stop* — and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
+the home lacks, to bring across whole; what a migration removes; each move out of `Projects/` and
+its removal, path by path, and what stays there; and what the owner will have to do by hand
+afterwards, one line for each heading or blockquote of their own files that the template changed.
+Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and update on
+*Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
 ## Step 4: Update
 
@@ -148,10 +162,26 @@ template changed. Then ask for the go through the question tool — *Go*, *Chang
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only <path>
    ```
 
-4. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
-   *Brought to template X.Y.Z*, and a line for each section brought across or declined — whatever
-   the owner declined, so the file names the version the home is now at and the next `update`
-   reports only the versions after it. Nothing else in the file changes: it is the home's history.
+4. **`Projects/`**, the moves and the removal the owner approved, by git, so each file keeps its
+   history:
+
+   ```bash
+   mkdir -p Lessons
+   git mv Projects/Teach/<topic> Lessons/<topic>
+   rmdir Projects/Teach
+   git rm Projects/.gitkeep
+   ```
+
+   `mkdir` and `git mv` only when a topic moves: a home with none gets no `Lessons/`, which the
+   first `teach` makes. One `git mv` per topic, never onto a `Lessons/<topic>/` that exists, which
+   would nest one topic inside the other. `rmdir` once `Projects/Teach/` is empty, and `git rm` only
+   when nothing but `Projects/.gitkeep` is left, which removes the folder with it. What else
+   `Projects/` holds stays where it is.
+5. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
+   *Brought to template X.Y.Z*, a line for each section brought across or declined, and one for
+   what left `Projects/` and what stayed — whatever the owner declined, so the file names the
+   version the home is now at and the next `update` reports only the versions after it. Nothing
+   else in the file changes: it is the home's history.
 
 ## Step 5: Report
 
@@ -164,6 +194,7 @@ In chat and nowhere else:
 - the *by hand* lines: each heading or blockquote of the owner's files that the template changed,
   for the owner to carry across or leave;
 - for a migration, what was removed, and that the skills now live at user scope;
+- what left `Projects/` — each move and the removal — and each path left there for the owner;
 - the sections of the home's files brought across, and those the owner declined;
 - that the new skills and commands appear in a **new** session, not this one.
 

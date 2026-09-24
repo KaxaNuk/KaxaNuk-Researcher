@@ -28,6 +28,10 @@ What is expected here is a short driver, not a framework:
   that fails and says why, and writes `<identifier>.csv` for each.
 - Point its output at `Data/Curator/Time_Series/`.  The library's default folder is `Output/`;
   here every stage has one home, and this is the Curator's.
+- A provider's history can stop where its coverage does: a name that left the market years ago may
+  be missing from it altogether.  Fetch such names from a second provider that carries them, into
+  the same files and columns, and say in the strategy's documents which names came from where and
+  how any column the second provider lacks was filled.
 
 Two groups ride along in the same folder although they are not in the seed: a cash proxy, because
 a book that goes to cash has to hold a real priced instrument, and the benchmarks the strategy is

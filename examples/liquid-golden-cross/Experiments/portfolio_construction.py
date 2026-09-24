@@ -41,21 +41,112 @@ as a signal difference because each notebook invented its own sizing.
 
 # --- example: begin ---
 
+import dataclasses
 import importlib.util
 
 import pandas
 
 __all__ = [
+    "CASH_KEY",
     "LIBRARY_INSTALLED",
+    "SlotSettings",
+    "build_slot_book",
     "build_weights",
+    "first_trading_days",
     "lag_eligibility",
     "select_rebalance_dates",
     "weigh",
 ]
 
+# The key the slot book keeps its uninvested weight under; never a security's name.
+CASH_KEY = "__cash__"
 # KaxaNuk's own library, installed by hand rather than by `uv sync`.  Equal weight needs nothing,
 # so the module stays usable without it and says so instead of failing on import.
 LIBRARY_INSTALLED = importlib.util.find_spec("kaxanuk.portfolio_construction") is not None
+
+
+
+@dataclasses.dataclass(frozen=True)
+class SlotSettings:
+    """
+    The settings of a book that sells on a signal and fills the slot it frees.
+
+    `decision_dates`, when given, are the only dates the book may trade on, which is how a control
+    is held to the rule's own dates: it is evaluated on them and drifts in between.
+    """
+
+    book_size: int
+    buffer_rank: int
+    reequalise_dates: "pandas.DatetimeIndex"
+    decision_dates: "pandas.DatetimeIndex | None" = None
+
+
+def build_slot_book(
+    eligible: "pandas.DataFrame",
+    ranking: "pandas.DataFrame",
+    returns: "pandas.DataFrame",
+    cash_returns: "pandas.Series",
+    settings: "SlotSettings",
+) -> "pandas.DataFrame":
+    """
+    Build a book of fixed slots that sells a name the day it stops being eligible.
+
+    Every input is already lagged, so a book struck on a date uses what was known the day before.
+    On each date, in order: a holding that is no longer eligible is sold; on a re-equalisation date
+    a holding ranked below the buffer is sold too; the freed slots are filled from the top of the
+    ranking with names not held; and on a re-equalisation date every holding is set back to equal
+    weight.  Between trades the holdings drift with their prices, so a date that trades nobody
+    records no target, and a date that sells one name leaves the other weights where the market
+    put them.  An entrant takes an equal slot, or the cash available split among the entrants when
+    that is less, and what is left waits in cash for the next re-equalisation.
+
+    Returns the target weights on every date the book traded, positions across, cash left out: the
+    engine's weight file puts the residual in the cash proxy.
+    """
+    held = {
+        CASH_KEY: 1.0,
+    }
+    targets = {}
+    decision_dates = (
+        set(settings.decision_dates)
+        if settings.decision_dates is not None
+        else None
+    )
+    reequalise_dates = set(settings.reequalise_dates)
+
+    for date in eligible.index:
+        starting = len(targets) == 0
+        deciding = decision_dates is None or date in decision_dates
+
+        if starting or deciding:
+            traded = _decide_date(
+                held,
+                eligible.loc[date],
+                ranking.loc[date],
+                starting or date in reequalise_dates,
+                settings,
+            )
+
+            if traded:
+                targets[date] = _without_cash(held)
+
+        _drift(
+            held,
+            returns.loc[date],
+            cash_returns.get(date, 0.0),
+        )
+
+    frame = pandas.DataFrame.from_dict(
+        targets,
+        orient="index",
+    )
+    # The frame's rows come back in the order the names first appear, not in date order: sorted
+    # here, because every reader of a book -- turnover, the latest target, a window's opening
+    # book -- takes its rows in sequence.
+    in_date_order = frame.sort_index()
+    aligned = in_date_order.reindex(columns=eligible.columns)
+
+    return aligned.fillna(0.0)
 
 
 def build_weights(
@@ -99,6 +190,31 @@ def build_weights(
         rows[date] = aligned.fillna(0.0)
 
     return pandas.DataFrame(rows).transpose()
+
+
+def first_trading_days(
+    dates: "pandas.DatetimeIndex",
+    frequency: str,
+) -> "pandas.DatetimeIndex":
+    """
+    The first trading day of each month or quarter in the calendar, or none at all.
+
+    `frequency` is `month`, `quarter` or `never`.  Taken from the dates the panel actually has, so a
+    holiday on the first of the month moves the day rather than skipping it.
+    """
+    if frequency == "never":
+
+        return pandas.DatetimeIndex([])
+
+    period_code = "M" if frequency == "month" else "Q"
+    periods = dates.to_period(period_code)
+    series = pandas.Series(
+        dates,
+        index=dates,
+    )
+    firsts = series.groupby(periods).min()
+
+    return pandas.DatetimeIndex(firsts.to_numpy())
 
 
 def lag_eligibility(
@@ -211,6 +327,126 @@ def weigh(
         return weights
 
     return weights.clip(upper=maximum_weight)
+
+
+def _decide_date(
+    held: dict[str, float],
+    eligible_row: "pandas.Series",
+    ranking_row: "pandas.Series",
+    reequalising: bool,
+    settings: "SlotSettings",
+) -> bool:
+    """
+    Apply one date's sales and purchases to the holdings in place, and say whether anything traded.
+    """
+    eligible_names = eligible_row[eligible_row].index
+    ranked = ranking_row.reindex(eligible_names)
+    standing = ranked.dropna().sort_values(ascending=False)
+    places = {
+        name: place
+        for place, name in enumerate(standing.index, start=1)
+    }
+    stocks = [
+        name
+        for name in held
+        if name != CASH_KEY
+    ]
+    leaving = [
+        name
+        for name in stocks
+        if name not in places or (reequalising and places[name] > settings.buffer_rank)
+    ]
+
+    for name in leaving:
+        held[CASH_KEY] += held.pop(name)
+
+    open_slots = settings.book_size - (len(held) - 1)
+    candidates = [
+        name
+        for name in standing.index
+        if name not in held
+    ]
+    entering = candidates[:max(open_slots, 0)]
+
+    if reequalising:
+        _reequalise(
+            held,
+            entering,
+            settings.book_size,
+        )
+
+        return True
+
+    if len(entering) > 0:
+        slot = 1.0 / settings.book_size
+        share = min(
+            slot,
+            held[CASH_KEY] / len(entering),
+        )
+
+        for name in entering:
+            held[name] = share
+            held[CASH_KEY] -= share
+
+    return len(leaving) > 0 or len(entering) > 0
+
+
+def _drift(
+    held: dict[str, float],
+    returns_row: "pandas.Series",
+    cash_return: float,
+) -> None:
+    """
+    Let the holdings move with the day's returns, in place: each weight is the one the market left.
+    """
+    grown = {}
+
+    for name, weight in held.items():
+        daily = cash_return if name == CASH_KEY else returns_row.get(name, 0.0)
+        growth = 1.0 if pandas.isna(daily) else 1.0 + daily
+        grown[name] = weight * growth
+
+    total = sum(grown.values())
+
+    for name, value in grown.items():
+        held[name] = value / total
+
+
+def _reequalise(
+    held: dict[str, float],
+    entering: list[str],
+    book_size: int,
+) -> None:
+    """
+    Add the entrants and set every holding to one equal slot, the rest in cash, in place.
+    """
+    for name in entering:
+        held[name] = 0.0
+
+    stocks = [
+        name
+        for name in held
+        if name != CASH_KEY
+    ]
+
+    for name in stocks:
+        held[name] = 1.0 / book_size
+
+    held[CASH_KEY] = 1.0 - len(stocks) / book_size
+
+
+def _without_cash(
+    held: dict[str, float],
+) -> dict[str, float]:
+    """
+    The holdings as a target row: every stock's weight, and no cash key.
+    """
+
+    return {
+        name: weight
+        for name, weight in held.items()
+        if name != CASH_KEY
+    }
 
 
 # --- example: end ---

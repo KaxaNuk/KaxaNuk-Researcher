@@ -108,7 +108,8 @@ licences: the process runs without them up to portfolio construction, and the ba
 attribution report what is missing and skip.
 
 `KN_ANALYTICS_PATH` is not a key: it is the folder the desk ships the index and the factor model
-in, holding `Benchmarks/` and `Factors/`, read in place in the desk's own names and headers. Leave
+in, holding `Benchmark Portfolios/` and `Factor Models/`, read in place in the desk's own names and
+headers; the older `Benchmarks/` and `Factors/` are still read where the new ones are absent. Leave
 it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`. The four `PAPER_TRADING_*` lines configure step 7, below.
 

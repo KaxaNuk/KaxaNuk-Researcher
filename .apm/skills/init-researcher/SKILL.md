@@ -7,7 +7,7 @@ description: >
   the interview. Only when the owner runs it by name; once per person, never per strategy. It does
   NOT run the interview itself and does NOT create a strategy (use `init-strategy`).
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # Init researcher — a home for the library, once
@@ -32,12 +32,12 @@ in a session of its own, or adds it to a strategy's session to bring the library
 
 2. **The plan.** In chat: the path; that it will hold the researcher's home at this package's
    version — `RESEARCHER.md` and `Philosophy/HOW-I-INVEST.md` as blanks for the interview,
-   `Sources/` with its empty `Books/`, `Papers/` and `Clippings/`, the empty `Projects/`,
-   `Knowledge/` with an empty `INDEX.md` and `LOG.md`, `AGENTS.md`, and the template's `README.md`,
-   `CHANGELOG.md`, `LICENSE`, `CLAUDE.md`, `apm.yml`, `.gitignore` and `.gitattributes` — every file
-   the script copies, the empty folders' `.gitkeep` files aside; that it becomes a git repository
-   with the first commit *Start from the KaxaNuk Researcher template*. Ask for the go — *Go*,
-   *Change something*, *Stop* — and run on *Go* only.
+   `Sources/` with its empty `Books/`, `Papers/` and `Clippings/`, `Knowledge/` with an empty
+   `INDEX.md` and `LOG.md`, `AGENTS.md`, and the template's `README.md`, `CHANGELOG.md`, `LICENSE`,
+   `CLAUDE.md`, `apm.yml`, `.gitignore` and `.gitattributes` — every file the script copies, the
+   empty folders' `.gitkeep` files aside; that it becomes a git repository with the first commit
+   *Start from the KaxaNuk Researcher template*. Ask for the go — *Go*, *Change something*, *Stop*
+   — and run on *Go* only.
 
 3. **Copy.** The script is in the `init-strategy` skill's folder, beside this one:
 

@@ -12,21 +12,23 @@ strategy runs in, and so a person can read it in two minutes.
 > here*, says how.
 >
 > **Its benchmark cannot be downloaded.** The KN600 is KaxaNuk's own index: its daily holdings and
-> returns, `KN_US_Equity_Benchmark.csv` and `KN_US_Equity_Returns.csv` in
-> `Data/Curator/Benchmarks/`, and the factor returns in `Data/Curator/Factors/`, are supplied by
-> hand, and no provider sells them. **Their names and headers are fixed by the code that reads
-> them.** The holdings file is `KN_US_Equity_Benchmark.csv`, `date_column` first and one column
-> per security; the returns file is `KN_US_Equity_Returns.csv`, `date_column` then one return
-> column; both carry day-first dates. Each factor is one CSV in `Factors/` named for it in lower
-> case — `momentum.csv`, `size.csv`, the eleven sectors — with the four reserved series as
-> `f_market.csv`, `f_total_factor_returns.csv`, `f_total_excess_returns.csv` and
-> `f_idyo_returns.csv`, an unnamed date column first and one column per security after it. A
-> file named otherwise is not found, or is counted as one more factor. Without them
-> `Data/curator.py` downloads every price and says
-> the index was not staged; `Universe/universe.ipynb` writes `Security_Master.csv` and
-> `Data_Issues.csv`, then stops at the cell that reads the index's holdings; and
-> `Experiments/Experiment_1/experiment_1.ipynb` stops in its first cell. Every number the example
-> measured is in `RESULTS.md`.
+> returns and the factor model's returns are supplied by hand, by the desk that builds them, and no
+> provider sells them. **Their names and headers are fixed by the code that reads them**,
+> `Data/hand_supplied.py`. With `KN_ANALYTICS_PATH` set, they are read in place from the desk's
+> folder, in `Benchmark Portfolios/` and `Factor Models/`, or in the older `Benchmarks/` and
+> `Factors/` where those are absent; with it empty, from `Data/Curator/Benchmarks/` and
+> `Data/Curator/Factors/`. The holdings file is `KN_US_Equity_Benchmark_Holdings.csv`, `m_date`
+> first, with ISO dates, and one column per listing; the returns file is
+> `KN_US_Equity_Benchmark_Returns.csv`, `m_date`, with day-first dates, then `kn600`, the index's
+> daily return. Each factor is one CSV named for it — `Momentum.csv`, `Size.csv`, the eleven sectors
+> such as `Information_Technology.csv` — and read under its file name in lower case, with the four
+> reserved series as `Market.csv`, `Total_Factor_Returns.csv`, `Total_Excess_Returns.csv` and
+> `Idyo_Returns.csv`; each has an unnamed ISO date column first and one column per listing after it.
+> A file named otherwise is not found, or is counted as one more factor. Without them
+> `Data/curator.py` downloads every price and says the index was not staged;
+> `Universe/universe.ipynb` writes `Security_Master.csv` and `Data_Issues.csv`, then stops at the
+> cell that reads the index's holdings; and `Experiments/Experiment_1/experiment_1.ipynb` stops in
+> its first cell. Every number the example measured is in `RESULTS.md`.
 
 <!-- example: end -->
 
@@ -131,7 +133,8 @@ licences: the process runs without them up to portfolio construction, and the ba
 attribution report what is missing and skip.
 
 `KN_ANALYTICS_PATH` is not a key: it is the folder the desk ships the index and the factor model
-in, holding `Benchmarks/` and `Factors/`, read in place in the desk's own names and headers. Leave
+in, holding `Benchmark Portfolios/` and `Factor Models/`, read in place in the desk's own names and
+headers; the older `Benchmarks/` and `Factors/` are still read where the new ones are absent. Leave
 it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`. The four `PAPER_TRADING_*` lines configure step 7, below.
 

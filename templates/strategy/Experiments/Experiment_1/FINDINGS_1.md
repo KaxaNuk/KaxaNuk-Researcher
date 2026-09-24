@@ -9,10 +9,11 @@
 
 ## Status
 
-**Not yet run.** When it has: one line saying whether the benchmark is adopted, and the reminder
-that the benchmark is not a graduation candidate — its job is to be the thing others are measured
-against. Then **the claim it moved**: the claim of `OBJECTIVE.md` the blueprint named, and the
-status it reached — or why it reached none.
+**Not yet run.** When it has: one line saying whether the rule beat the benchmark and its control
+by what the blueprint required, and whether it is a candidate for the gate in
+`Paper_Trading/BITACORA.md` — a success is necessary for graduation, not sufficient. Then **the
+claim it moved**: the claim of `OBJECTIVE.md` the blueprint named, and the status it reached — or
+why it reached none.
 
 ## The predictions, evaluated
 
