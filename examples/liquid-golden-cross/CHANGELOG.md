@@ -41,6 +41,59 @@ for somebody who was not in the room:
 
 ---
 
+## 0.11.0 (2026-09-23)
+
+**MINOR** — template 0.11.0: the bar's three new items, the claim each experiment moves, and a
+Verify section at the end of every notebook, here as code. Nothing about any result changes: every
+published figure stands, and nothing was re-run.
+
+**What to do differently:** nothing to re-derive. The next run of the analyzer writes the share of
+dates with the expected sign, and the next run of any notebook stops at its Verify section if what
+it wrote is wrong.
+
+### Added
+
+- **A Verify section in each of the three notebooks, as code that reads back what the notebook
+  wrote and raises.** The universe's checks the master against the seed, the register's eight
+  checks, and that a usable date exists; the analyzer's, the coefficient table's rows, that its
+  figures are finite, and that no row counts more dates than the panel has forward returns for; the
+  experiment's raises on the invariants of section 2.1, reads back `portfolio_weights.csv`, and
+  counts each engine run's valued days against the trading days of the window it was asked for —
+  at least 99% of them valued, and no more than five unvalued at the end — and checks the
+  attribution window. The engine and attribution checks skip, as sections 4 and 5 do, without a
+  licence. None has run yet.
+- **Section 4 of the analyzer writes `overlap_days` and `share_expected_sign`** to
+  `information_coefficient.csv`: the days consecutive windows share, and the share of dates on
+  which the coefficient was positive, the sign the rule expects.
+- ***What a correct run shows* in the README**, stage by stage, from the figures `RESULTS.md`,
+  `FINDINGS_1.md` and `JOURNAL_1.md` recorded, the re-run's beside the published ones where they
+  moved. No stage's duration was recorded, so none is given.
+- **An entry in `JOURNAL_1.md`** recording why the blueprint's new sections are left unfilled.
+
+### Changed
+
+- **`AGENTS.md`** as template 0.11.0's, and, inside the markers under the bar, a note that item 9
+  was learned after this run: the first control chose its own dates.
+- **`BLUEPRINT_1.md` changed after its test, and only in its template text.** The three new
+  sections carry the template's guidance and, inside the markers, a note that each was not written
+  on 2026-09-19 and where its answer lives; the hypothesis inside the markers is unchanged.
+- **`FINDINGS_1.md`'s status** names the claim the run moved: claim 1, the signal, to falsified, as
+  `OBJECTIVE.md` records.
+- **`RESULTS.md`**: the analyzer table has the sign column, *not measured* for the four coefficients
+  and the ratio, since the run of 2026-09-19 did not compute it; the experiments table has *Claim
+  moved*; limitation 2 says what the control is, as the template's, and is written as a condition on
+  any experiment that claims a margin, so it no longer contradicts the control column of the
+  experiments table.
+- **Criterion 1 of `Paper_Trading/BITACORA.md`** says which control, as the template's.
+- **`SETUP.md`'s note for the agent** pins APM 0.29.0, as the template's.
+- **The README's example-only line** says the example is for reading and running, where it said
+  *for reading and copying*: its lines are never copied into a strategy of one's own.
+
+### Removed
+
+- **`uv.lock`.** The example no longer commits one: its library versions resolve when `uv sync`
+  runs. A strategy made from the template still commits its own, as `SETUP.md` says.
+
 ## 0.10.6 (2026-09-23)
 
 **PATCH** — template 0.10.5: the template's files are the example's without its marked lines, kept

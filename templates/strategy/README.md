@@ -10,8 +10,8 @@ without knowing what is in it: **equities, ETFs, FX, crypto, commodities or futu
 same process.**
 
 **To start a strategy, install the KaxaNuk skills once, for your user** — with
-`uvx --from apm-cli` in front if `apm` is not on the path, and your assistant, such as `codex`, in
-place of `claude`:
+`uvx --from apm-cli==0.29.0` in front if `apm` is not on the path, and your assistant, such as
+`codex`, in place of `claude`:
 
 ```bash
 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
@@ -122,14 +122,15 @@ condition, and a claim written after the reading is an observation wearing a hyp
 - **E. The blueprint.** Choose the benchmark, then write `BLUEPRINT_1.md` before the rule.
   Experiment 1 is the benchmark, a real strategy with a real return, so choosing it is the first
   entry of `BRAINSTORMING_1.md`. Every prediction in the blueprint cites a `Bibliotheca/` note from
-  B, or an analyzer measurement from D; a hypothesis edited after its test is not a hypothesis.
+  B, or an analyzer measurement from D, and the blueprint names the claim it moves, its control and
+  what would falsify it; a hypothesis edited after its test is not a hypothesis.
 - **F. The broad reading.** Search for papers and brainstorm — the reading for what the blueprint
   left open, and `BRAINSTORMING_1.md` for what to try next.
-- **G. The cycle.** Portfolio construction, backtest, attribution — until it is finished, rewriting
-  `FINDINGS_1.md` as its results change.
-- **H. The results.** Send every finished cycle to `RESULTS.md`, kept or rejected. The rejected
-  result is reported as loudly as the promising one; *What is closed* is what stops the next person
-  repeating it.
+- **G. The cycle.** Portfolio construction, backtest, attribution — until it is finished and the
+  notebook's last section, Verify, passes, rewriting `FINDINGS_1.md` as its results change.
+- **H. The results.** Send every finished cycle to `RESULTS.md`, kept or rejected, with the claim it
+  moved. The rejected result is reported as loudly as the promising one; *What is closed* is what
+  stops the next person repeating it.
 
 Then the gate in `Paper_Trading/BITACORA.md`, or Experiment 2, from E again.
 

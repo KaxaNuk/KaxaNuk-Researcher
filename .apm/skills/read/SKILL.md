@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.6.3
+  version: 0.7.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -49,6 +49,10 @@ works each one names to *Find first*. In a
 strategy the index is `BIBLIOGRAPHY.md` — a row without a note is a lead, not a source — and the
 questions are the claims in `OBJECTIVE.md`, by number.
 
+**A home whose `RESEARCHER.md` still holds an angle-bracketed slot** has not been interviewed: with
+*Domains* a slot there is no folder for a note, and with the tag policy a slot no tag can be
+checked. A section holding only such slots counts as empty. Say so, offer `interview`, and stop.
+
 **A strategy whose `OBJECTIVE.md` has no claims yet** cannot take a note. The objective comes
 before any paper — *The order of work* in `AGENTS.md` — because a note is read for a claim, and a
 claim written after the reading is shaped by it. Say so, offer `objective`, whose first pass drafts
@@ -82,11 +86,11 @@ read, skimmed, skipped or to come — and this run continues from there.
 
 ## 2. List the sources, and extract
 
-List what is in the sources that has no note yet — at home, every subfolder of `Sources/`; in a
-strategy, every PDF under `Bibliotheca/Papers/` and `Books/` with no note beside it, and every
-clipping under `Notes/` with no note in `Papers/` — or only what the owner named. The owner may
-also point at a file under `Sources/` at home for a strategy: it is read for the strategy, and its
-note and its extract are written there, nothing at home.
+List what is in the sources that has no note yet — at home, every subfolder of `Sources/`, where a
+`.gitkeep` is never a source; in a strategy, every PDF under `Bibliotheca/Papers/` and `Books/`
+with no note beside it, and every clipping under `Notes/` with no note in `Papers/` — or only what
+the owner named. The owner may also point at a file under `Sources/` at home for a strategy: it is
+read for the strategy, and its note and its extract are written there, nothing at home.
 
 **At home, with nothing in `Sources/` left to read,** say so, and name the works under *Find first*
 in `RESEARCHER.md` that have no file yet — year, authors and title as written there, and the
@@ -111,10 +115,12 @@ In a strategy, every run of the script carries `--out Bibliotheca/Extracts`: the
 
 Without `uv`: `pip install "pypdf[crypto]"`, then `python` in place of `uv run`; the extra reads
 the AES-encrypted PDFs publishers ship. The script's own `--help` has every option. Extracts land
-in `Extracts/<book>/` at home and `Bibliotheca/Extracts/<book>/` in a strategy — `--out` names the
-folder — one markdown file per chapter, a marker before every page.
-They are a cache: regenerable, gitignored, never cited. If the strategy's `.gitignore` does not
-ignore `Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
+in `Extracts/<slug>/` at home and `Bibliotheca/Extracts/<slug>/` in a strategy — `--out` names the
+root, the slug is the PDF's name without `.pdf`, its ASCII words joined by underscores, and the
+script's *extracts in* line names the folder — one markdown file per chapter, a marker before every
+page, with `OUTLINE.md` beside them listing every chapter the run knows of, written or not. They
+are a cache: regenerable, gitignored, never cited. If the strategy's `.gitignore` does not ignore
+`Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
 
 - **A PDF with no outline.** The script says so and gives the page count. Read the pages that carry
   the table of contents — the first ten to fifteen, through the assistant's PDF reader — and
@@ -126,8 +132,16 @@ ignore `Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
 - **A PDF whose depth 1 is parts.** The script says so; run `--outline --depth 2`, and carry
   `--depth 2` into the run that extracts the chapters: without it, `--chapters` counts parts.
 - **A PDF with no text layer.** The script writes no chapter and says why. Report the source as
-  unreadable, leave it out of the plan, and do not fill it in from memory.
+  unreadable, leave it out of the plan, and do not fill it in from memory. A chapter reported *not
+  written* while others were written has no text layer of its own: it is unreadable the same way,
+  and the plan says so. One reported *thin* was written with few characters a page — a preface,
+  plates, a page of figures — and is checked for prose before a note is planned on it.
 - **A source that is not a PDF** — a markdown clipping, a transcript — is read directly, whole.
+
+**Exit 1 is a mistake in the command, not in the source** — a chapter number the outline does not
+have, a `--split` item the script cannot read or with pages outside the PDF, `--split` with
+`--outline`, a path that is not a file or not a PDF, `--engine pdftotext` with no `pdftotext` on the
+PATH. Fix the command and run it again; never report the source unreadable for it.
 
 ## 3. Show the table of contents, and ask
 
@@ -143,7 +157,8 @@ question the list does not have yet, which the plan offers to add to `RESEARCHER
 owner's words; *the other side of question N*; and *background reading, no question in mind*,
 recorded as such.
 
-**If the section is empty at home, propose the questions first.** Three to five candidates drawn
+**If the section is empty at home — no question under it, or only angle-bracketed slots — propose
+the questions first.** Three to five candidates drawn
 from this source's table of contents, the other sources under `Sources/`, and the role and beliefs
 in `RESEARCHER.md`, offered through the question tool as a multi-select with *Other*. The ones the
 owner picks are theirs, numbered; the plan offers to write them under *What you are reading for*,
@@ -202,12 +217,15 @@ serves, by number — and, for a book, what its `INDEX.md` will record for the c
 skipped; in a strategy, the row each note adds to `BIBLIOGRAPHY.md` or the lead it replaces, under
 the part it bears on; at home, the concept pages it creates and the ones it updates, one line each;
 links; `Philosophy/` files to cite; contradictions found; new domain folders at home, if any;
-questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log
-line. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — or in
-chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. **On *Change something*, ask
-again with options, never with an open question**: the changes this plan admits, as concrete
-alternatives — fewer notes or pages, different names, only the notes this run, a different domain
-— and ask for the go again on the revised plan. **Never write on silence or on a rejection.**
+questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log line. In a
+strategy, a clipping in markdown or plain text under `Notes/` is committed with the strategy unless
+the owner ignores it — the `.gitignore` keeps out PDFs and extracts, not clippings — so the plan
+says so, beside the note it becomes. Then ask for the go through the question tool — *Go*, *Change
+something*, *Stop* — or in chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. **On
+*Change something*, ask again with options, never with an open question**: the changes this plan
+admits, as concrete alternatives — fewer notes or pages, different names, only the notes this run, a
+different domain — and ask for the go again on the revised plan. **Never write on silence or on a
+rejection.**
 
 ## 6. Write, on approval only
 
@@ -270,6 +288,9 @@ Then say: review the diff and commit.
 - Create a concept page for a passing mention, or one in a strategy — `OBJECTIVE.md` is the
   strategy's synthesis.
 - Read a source you could not open, or fill one in from memory or from a summary.
+- Enter a paper's figure into a note as though it were the strategy's. A number in a source is the
+  source's, and the note says whose it is; a figure about the strategy is quoted only from the file
+  that owns it, as *Numbers* in the `query` skill says.
 - Write a plan or a report as a file. The chat and the log entry are the record.
 - Rewrite an existing note in a different voice. Match what is there.
 

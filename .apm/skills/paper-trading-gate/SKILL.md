@@ -12,7 +12,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`), the documents of an
   experiment (use `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -45,9 +45,9 @@ it has not been met.**
 
 | # | Criterion | Evidenced by | The usual way it fails |
 | --- | --- | --- | --- |
-| 1 | **Beats the benchmarks on risk-adjusted return** — every benchmark it reports against *and* its own control row, over the same window | the ranking table of `FINDINGS_N.md`, the control on the same rebalance dates | a pass on Sharpe alone while the control earns more a year on the same dates — the single-metric pass the criterion exists to catch |
+| 1 | **Beats the benchmarks on risk-adjusted return** — every benchmark it reports against *and* its own control row, over the same window | the ranking table of `FINDINGS_N.md`, and the control `BLUEPRINT_N.md` names in its *Rules* — the same rule with one ingredient removed — on the rule's own rebalance dates | a pass on Sharpe alone while the control earns more a year on the same dates — the single-metric pass the criterion exists to catch; a control on its own dates, which differs in two things |
 | 2 | **Attribution shows idiosyncratic alpha in both layers** — selection in the Brinson-Fachler cut, a residual the factor model cannot explain, and a selection story that survives the third pass on residual returns | the attribution section of `FINDINGS_N.md`, read with `alpha-decomposition` | the residual is there but random books of the same shape earn most of it; the third pass was never run. Expect *a pass with a qualification*: a book half factor, half idiosyncratic has passed and been told how much of it is not the idea |
-| 3 | **Conclusions survive parameter perturbation, and the trial count is published beside the winner** | a sweep read as a curve; the count of variants and of features screened | every setting a single value, none read as a curve; a count nobody wrote down. Publishing the count is the minimum, and the sign-off says whether the deflated figure was also computed |
+| 3 | **Conclusions survive parameter perturbation, and the trial count is published beside the winner** | a sweep read as a curve; the count of variants and of features screened | every setting a single value, none read as a curve; a count nobody wrote down; a setting the blueprint listed as unable to rescue the experiment moved after the result and counted as an edit rather than a trial. Publishing the count is the minimum, and the sign-off says whether the deflated figure was also computed |
 | 4 | **Costs and capacity are modelled and stated** — turnover, commission, and every assumption the engine does not model, borrow cost above all | the cost rows of `FINDINGS_N.md`, a realistic-commission row beside the frozen one | costs modelled, capacity not modelled at all; a long/short book with borrow cost in a footnote |
 | 5 | **Explicit sign-off** | a person's name and date in `BITACORA.md` | sought before 1 to 4 are evidenced |
 

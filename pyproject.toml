@@ -2,7 +2,7 @@
 # carries its own `pyproject.toml`, which governs it alone.
 [project]
 name = "kaxanuk-researcher"
-version = "0.14.4"
+version = "0.15.0"
 requires-python = ">=3.12"
 dependencies = []
 

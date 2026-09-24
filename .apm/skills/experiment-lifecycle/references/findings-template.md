@@ -11,7 +11,8 @@
 
 **Not yet run.** When it has: one line saying whether the benchmark is adopted, and the reminder
 that the benchmark is not a graduation candidate — its job is to be the thing others are measured
-against.
+against. Then **the claim it moved**: the claim of `OBJECTIVE.md` the blueprint named, and the
+status it reached — or why it reached none.
 
 ## The predictions, evaluated
 
@@ -26,8 +27,9 @@ and it cost one run to find out.
 ## The book, priced by the engine
 
 Record the date of the last full re-run from a wiped working copy, the engine version, and the
-window. Then the book against every benchmark it reports against: CAGR, volatility, Sharpe, Sortino,
-maximum drawdown.
+window. Then the book against every benchmark it reports against, and against the control its
+blueprint names, on the rule's own rebalance dates: CAGR, volatility, Sharpe, Sortino, maximum
+drawdown.
 
 ## What the benchmark actually is, structurally
 

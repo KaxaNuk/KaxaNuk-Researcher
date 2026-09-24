@@ -21,6 +21,11 @@ not already open in it. The arguments are split on spaces: an idea of more than 
 quotes, `brainstorm 2 "a slower exit"`, and a strategy's path without an idea follows an empty one,
 `brainstorm 2 "" ../other`. When `${input:strategy}` reads as the rest of an unquoted idea, it is.
 
+**Never in the worked example.** When the folder is the worked example — its `README.md` is titled
+*Liquid Golden-Cross*, or `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`,
+the test `next` uses — say so and stop: the example is for reading and running, never built on; a
+strategy of the owner's own is `init-strategy <name>`.
+
 1. **Read the experiment's state.** The template ships `Experiments/Experiment_1/BRAINSTORMING_1.md`
    with its header and the entry format, to be filled. A strategy made from a template before 0.10.0
    lacks it: give the command that brings the template's blank back — `init-strategy`'s script,

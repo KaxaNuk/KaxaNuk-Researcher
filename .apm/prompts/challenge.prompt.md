@@ -22,9 +22,13 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 
 ## Step 1: Refuse if there is nothing to challenge
 
-- **No `Experiments/Experiment_N/BLUEPRINT_N.md`, or it is not filled** — its *Thesis* section
-  still holds the template's guidance paragraph — there is no hypothesis to check the run against:
-  `blueprint`, E.
+- **The folder is the worked example** — its `README.md` is titled *Liquid Golden-Cross*, or
+  `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`, the test `next` uses.
+  The example is for reading and running, never built on; a strategy of the owner's own is
+  `init-strategy <name>`.
+- **No `Experiments/Experiment_N/BLUEPRINT_N.md`, or it is not filled** — it lacks the line
+  `blueprint` writes under the experiment's heading, `**Written YYYY-MM-DD, before any rule was
+  coded.**` — there is no hypothesis to check the run against: `blueprint`, E.
 - **No `FINDINGS_N.md`, or it reports nothing yet** — the cycle is still running. Say so and stop;
   challenging a run in progress invites the findings to be written to match.
 - **Home** — there is no experiment here. Say so and stop.
@@ -32,8 +36,10 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 ## Step 2: Read, in this order
 
 1. `Experiments/Experiment_N/BLUEPRINT_N.md` — every prediction with its falsifier, the declared
-   window, universe, rules, costs and success criteria. This is the fixed side of the comparison.
-2. `FINDINGS_N.md` — the verdicts, the tally, the caveats.
+   window, universe, rules, costs and success criteria, and the claim it names under *The claim this
+   moves* where it has that section. This is the fixed side of the comparison.
+2. `FINDINGS_N.md` — the verdicts, the tally, the trial count, the caveats, and the claim it says
+   the experiment moved.
 3. `JOURNAL_N.md` — what happened during the run, and what was already disclosed.
 4. `RESULTS.md`, including *Before any experiment* — where the analyzer's measurements survive once
    notebook outputs are stripped, and where the published numbers live.
@@ -69,17 +75,30 @@ numbers out of them is the line the non-negotiables draw. Every number in the re
    note: does it say what the prediction says it says, does the relative path resolve inside the
    strategy, and is any source cited that has no note? Where the findings claim a source's failure
    mode reproduced, check that against the note rather than against memory.
-7. **Closure.** Every falsified prediction and every falsified claim reaches `RESULTS.md` under
-   *What is closed* or *Known limitations*, and the claim's status in `OBJECTIVE.md` moves. What
-   stops the next person repeating an experiment is written down, or it does not exist.
-8. **Arithmetic between published numbers.** A difference published alongside the two numbers it
+7. **The trial count.** `FINDINGS_N.md` owes it, under *The trial count*: how many variants were
+   ranked to reach the book, and every run excluded by name with its reason. `RESULTS.md` compiles
+   it. A count missing from the findings is a finding whether or not graduation is claimed, and one
+   present in `RESULTS.md` but not in `FINDINGS_N.md` is a summary leading its source.
+8. **Closure.** Every falsified prediction and every falsified claim reaches `RESULTS.md` under
+   *What is closed* or *Known limitations*, and the claim's status in `OBJECTIVE.md` moves. Where
+   the blueprint names a claim under *The claim this moves*, that is the claim to follow:
+   `FINDINGS_N.md` names the status it reached, and `OBJECTIVE.md` — and the experiment's *Claim
+   moved* in `RESULTS.md`, where that column exists — carry the same one. A findings file that names
+   a different claim, or two files that give it different statuses, is a finding. Where the
+   blueprint names none, read the statuses in `OBJECTIVE.md` of the claims it tests. What stops the
+   next person repeating an experiment is written down, or it does not exist.
+9. **Arithmetic between published numbers.** A difference published alongside the two numbers it
    comes from either reconciles or it does not. Report a disagreement and ask for a re-run; never
    supply the corrected value.
 
 Two things cannot be checked from the working tree, and the report says so when they matter: the
 falsifiers are prose, so pairing *a beta at or above one* with *beta is 1.028* is a judgement made
 in words; and the ordering the whole process rests on — the blueprint committed before the rule,
-the counterfactuals before the engine — lives in the git log, not in the files.
+the counterfactuals before the engine — lives in the git log, not in the files. So read the log:
+run `git log --oneline -- Experiments/Experiment_N` and quote in the report what it shows — the
+commit that brought `BLUEPRINT_N.md` in, and whether it came before the one that put the rule into
+`experiment_N.ipynb`. A blueprint that arrived in the same commit as its rule, or after it, cannot
+be told from one written afterwards; say so. The log is read, never changed.
 
 ## Step 4: Report, and offer the one line it may write
 
