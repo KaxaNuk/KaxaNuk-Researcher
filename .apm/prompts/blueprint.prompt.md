@@ -72,6 +72,9 @@ the copy as the plan, make it on the owner's go, and the draft continues from th
    owner has written the request and reason into `JOURNAL_N.md` first. Say so if they have not.
 6. The home library, for the domains the thesis touches, and the owner's `Philosophy/` — as
    contrast and warning, never as a citation.
+7. The reading map, `references/reading-map.md` in the `read` skill's folder — *Seven questions
+   before any backtest* and *An idea's anatomy* — as questions to put to the owner, never as a bar
+   the draft is held to.
 
 ## Step 3: Draft, in the file's own shape
 
@@ -79,7 +82,15 @@ Under each heading, the draft replaces the template's guidance paragraph: what b
 way to what does. The example's blueprint keeps the guidance only because its own lines are marked
 as the example's.
 
-- **Thesis** — one paragraph, modest on purpose, naming the economic mechanism.
+- **Thesis** — one paragraph, modest on purpose, naming the economic mechanism. Before drafting it,
+  put the map's seven questions before any backtest to the owner, once, in chat, as questions they
+  may answer or skip: why the edge exists; who is on the other side, and why they keep losing; risk
+  premium or mispricing, and which they mean to own; how many independent bets a year; whether it
+  survives costs, and how much capital it takes; when it fails, and whether they would hold it
+  through that; how many ideas came before this one. The thesis draws on what they answer — the
+  deck's test is that the seven answers fit in one paragraph — and a question they skip is left
+  out, never answered for them, and named again in *Step 5*. The bar in `AGENTS.md`, not these
+  seven, is what the draft must meet.
 - **The claim this moves** — one claim of `OBJECTIVE.md`, by number, and the status it reaches if
   the predictions hold and if they fail.
 - **Rules** — selection, sizing, cash, timing, lag, the control, screens deliberately absent — each
@@ -93,6 +104,10 @@ as the example's.
   changes that may not rescue it — **key risks** and **open questions this experiment does not
   answer**, in the template's terms. For Experiment 1, what it has to beat is the benchmark
   `BRAINSTORMING_1.md` names.
+  For the falsifying condition, ask the owner for the kill switch — the result that would make them
+  drop the idea rather than tune it, the map's *An idea's anatomy* — or propose the one the claim
+  already carries in `OBJECTIVE.md`; the condition names it, in their words. With none given, the
+  drafted condition stands, labelled as the kill switch for them to confirm, change or refuse.
 - Add one line under the experiment's heading, with today's date, as the example's blueprint does:
   `**Written YYYY-MM-DD, before any rule was coded.**` Leave the template's blockquote at the top,
   whole, its last line included: *delete this blockquote* is addressed to the owner, who deletes it
@@ -139,7 +154,8 @@ library is yours to check:
 Show the draft in chat, the critic's objections beside it — each with what the draft does about it,
 changed or kept and why — or the line saying the command reviewed it itself. Then list: the leads
 (notes to write first), the predictions the owner should be willing to be wrong about, the analyzer
-sections still to run, and **anything the bar in `AGENTS.md` asks for that the draft does not have**
+sections still to run, the seven questions they left open and whether the kill switch is theirs or
+still the draft's, and **anything the bar in `AGENTS.md` asks for that the draft does not have**
 — a control differing in exactly one thing on the rule's own dates, a trial count if variants will
 be ranked, the one falsification condition — so the owner meets now what graduation will ask, not at
 the gate. Wait for the go. Then write it into `Experiments/Experiment_N/BLUEPRINT_N.md` in the

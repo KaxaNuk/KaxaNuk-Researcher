@@ -1,14 +1,15 @@
-# Reading map — the evolution of investment research
+# Reading map — the evolution of investment research, and where alpha comes from
 
-> **Distilled from Section 01, *The Evolution of Investment Research*, pages 4 to 54, of the
-> KaxaNuk Investment Research Bootcamp, session 02, *Intro to Investment Research*.** Nothing else
-> in the deck, and nothing from memory. A page below is a slide of that deck. The researcher
-> proposes a work to read only from this file or from the owner's own library. A work listed here
-> is a **lead, not a source**: nothing is claimed on it until its PDF is in `Sources/` and `read`
-> has written its note. Years, authors and titles are copied as the deck gives them, and where the
-> deck shortens a title, gives it two ways or names no author, the line says so. A note's
-> `citation` comes from the source's own title page, never from this file. The one-line summaries
-> are the deck's orientation, never evidence.
+> **Distilled from Section 01, *The Evolution of Investment Research*, pages 4 to 54, and Section
+> 02, *Where Alpha Comes From*, pages 55 to 60, of the KaxaNuk Investment Research Bootcamp,
+> session 02, *Intro to Investment Research*.** Nothing else in the deck, and nothing from memory.
+> A page below is a slide of that deck. The researcher proposes a work to read only from this file
+> or from the owner's own library. A work listed here is a **lead, not a source**: nothing is
+> claimed on it until its PDF is in `Sources/` and `read` has written its note. Years, authors and
+> titles are copied as the deck gives them, and where the deck shortens a title, gives it two ways
+> or names no author, the line says so. A note's `citation` comes from the source's own title page,
+> never from this file. The one-line summaries are the deck's orientation, never evidence; Section
+> 02's are hints — questions to ask of an idea, offered as options — never a position to adopt.
 
 The session's premise: every belief a person holds about markets has already been written down,
 tested and argued with, and research starts by finding out by whom. Investment research did not
@@ -37,6 +38,12 @@ evolve by replacement; it evolved by addition (page 48).
   one to find. A file with no note is *in your Sources/, not yet read*. A title match whose author
   or length disagrees is *possibly in your Sources/*, never *read*: a paper by other authors whose
   title begins *Efficiently Inefficient* is not Pedersen's book of 2015.
+- **Offer Section 02 as hints.** *Where alpha comes from* holds the five sources of edge, where
+  ideas come from and how each fools you, seven questions before any backtest, an idea's anatomy
+  and three questions for discussion. Each is offered as a question the owner may answer, edit,
+  skip or refuse — `interview` takes its *Edge from?* options and its testable sentence from them,
+  `objective` the anatomy of a claim, `blueprint` the seven questions and the kill switch — never
+  as a position to adopt, and never cited as evidence.
 
 ## Start here — the ten papers of the two timelines
 
@@ -116,22 +123,37 @@ so.
 
 ### If there is an edge, where does it come from?
 
-- **People repeat the same mistake.** Holds it: Kahneman & Tversky, 1979 (page 49, the
-  counterparty). Act IV, question 12, "If the anomalies are real… who keeps making the mistake?"
-  (page 28), with Shiller, 1981, and De Bondt & Thaler, 1985 (page 29). Tested: the deck names no
-  test. Other side: Fama, 1970, the claim (page 49). Why it persists: Shleifer & Vishny, 1997
-  (page 49).
-- **Others cannot take the other side.** Holds it: Shleifer & Vishny, 1997 (page 49, why it
-  persists). Act IV, question 13, "If mistakes are obvious… why do they survive?" (page 30), with
-  Lakonishok, Shleifer & Vishny, 1994 (page 31). Tested: the deck names no test. Other side: Fama &
-  French, 1992 and 1993 — the value premium as a risk factor, where the same authors call it a
-  mistake (pages 25 and 31).
-- **A risk others refuse to hold.** Holds it: Ross, 1976 (page 21). Act III, question 08, "If one
-  beta cannot explain returns… how many risks are we being paid to carry?" (page 20). Measured:
-  Fama & French, 1992 and 1993, and Carhart, 1997 — value, size and momentum (page 25). Other side:
-  Lakonishok, Shleifer & Vishny, 1994 — the value premium as a mistake, not a risk (page 31).
-- **Not sure yet.** No placement; Shleifer & Vishny, 1997, is still *why it persists* for any edge
-  (page 49).
+The five sources of edge of page 56, in four options: information and implementation share the
+last. *Not sure yet* is typed under *Other*.
+
+- **Paid for a risk others avoid.** Risk premia, the first source (page 56). Holds it: Ross, 1976
+  (page 21). Act III, question 08, "If one beta cannot explain returns… how many risks are we being
+  paid to carry?" (page 20). Measured: Fama & French, 1992 and 1993, and Carhart, 1997 — value,
+  size and momentum (page 25). Other side: Lakonishok, Shleifer & Vishny, 1994 — the value premium
+  as a mistake, not a risk (page 31).
+- **A mistake others repeat.** Behavioral, the second source (page 56). Holds it: Kahneman &
+  Tversky, 1979 (page 49, the counterparty). Act IV, question 12, "If the anomalies are real… who
+  keeps making the mistake?" (page 28), with Shiller, 1981, and De Bondt & Thaler, 1985 (page 29).
+  Tested: the deck names no test. Other side: Fama, 1970, the claim (page 49). Why it persists:
+  Shleifer & Vishny, 1997 (page 49).
+- **Others cannot take the other side.** Limits to arbitrage, the third source (page 56). Holds it:
+  Shleifer & Vishny, 1997 (page 49, why it persists). Act IV, question 13, "If mistakes are
+  obvious… why do they survive?" (page 30), with Lakonishok, Shleifer & Vishny, 1994 (page 31).
+  Tested: the deck names no test. Other side: Fama & French, 1992 and 1993 — the value premium as a
+  risk factor, where the same authors call it a mistake (pages 25 and 31).
+- **Something I see or do better.** Information and implementation, the fourth and fifth sources
+  (page 56). Place the half the owner's words point to; with nothing to go on, both, a line each.
+  *Information*, something measured that the price has not absorbed. Holds it: Grossman & Stiglitz,
+  1980 (page 49, why it must exist). Act III, question 09, "If nobody beats the market… why does
+  anyone still pay for research?" (page 22). Tested: the deck names no test. Other side: Fama,
+  1970, the claim, which the deck sets against Grossman & Stiglitz (pages 23 and 51); page 56 names
+  Fama with this source too — assume the price already knows, and name what it has not absorbed
+  (page 19). *Implementation*, the same signal with more of it kept after costs. Holds it: Grinold
+  & Kahn, 1995, *Active Portfolio Management* (page 41). Act VI, question 18, "If an edge is real…
+  how does it become a portfolio — and what can a machine add?" (page 40). Tested: the deck names
+  no test. Other side: the deck names none.
+- **Not sure yet**, typed under *Other*. No placement; Shleifer & Vishny, 1997, is still *why it
+  persists* for any edge (page 49).
 
 ### Are most published findings real? (page 50)
 
@@ -506,3 +528,91 @@ a work, or a work without its title, the researcher proposes nothing by title.
    and attribution, re-runnable on tomorrow's idea. Automate the process, not the signal. Who is on
    it: Guo, Wang, Ni & Shum, 2022 — Quant 4.0 · knowledge-driven AI. In the bootcamp: all six
    sessions, the process repository you fork.
+
+## Where alpha comes from — Section 02 (pages 55 to 60)
+
+Each stop on the arc points to a source of edge, and the deck keeps five that hold up under
+scrutiny (page 55). Everything here is a hint: a question to put to an idea, which the owner may
+answer, edit, skip or refuse, never a position to adopt. These pages give surnames only; the works
+behind them are the ones *The six acts* gives under the question named, and a name the acts give no
+work for is proposed by no title.
+
+### Five sources of edge (page 56)
+
+An idea with no named source of edge is only a pattern: say which source it draws on, and why that
+door is still open, before testing anything.
+
+1. **Risk premia** — being paid for carrying a risk others will not. *Ask:* what risk am I
+   carrying, and who pays me to carry it? Sharpe · Ross · Fama & French — questions 05, 08 and 10.
+2. **Behavioral** — people making the same error, in the same direction, over and over. *Ask:*
+   which bias leads the other side to sell to me? Kahneman & Tversky · Thaler · Shiller — question
+   12.
+3. **Limits to arbitrage** — those who know better are unable to act on it. *Ask:* who cannot take
+   the other side, and why? Shleifer & Vishny · Amihud — questions 13 and 11.
+4. **Information** — measuring something the price has not yet taken in. *Ask:* what can I see
+   that the price cannot, and why am I the one who sees it? Grossman & Stiglitz · Fama · Gu, Kelly &
+   Xiu — questions 09, 07 and 20.
+5. **Implementation** — the same signal, with more of it kept after costs. *Ask:* can I collect a
+   known edge better than others do? Markowitz · Grinold & Kahn · Paleologo — questions 04, 18 and
+   19.
+
+`interview` offers them as four options, the last two together as *Something I see or do better*;
+*Where a belief sits* places each.
+
+### Where ideas come from, and how each fools you (page 57)
+
+Six places to look, each with its trap. The page names no work.
+
+1. **Published anomalies** — the factor zoo: hundreds of documented patterns, most with a paper
+   behind them. *Trap:* most are noise; prefer an idea with a mechanism that replicated out of
+   sample.
+2. **Market structure** — index rebalances, option expiries, month-end flows, forced sellers.
+   *Trap:* crowded and small; check capacity before getting attached.
+3. **Behavioral patterns** — slow reaction to news, overreaction to stories, the disposition
+   effect. *Trap:* name the bias and who holds it, or it is only a story.
+4. **Frictions** — illiquidity, funding constraints, limits on short sales. *Trap:* the premium
+   exists; what is being tested is the cost of collecting it.
+5. **Your own data** — something you can measure that others do not, or measure better. *Trap:* a
+   new dataset generates hypotheses; it is not one.
+6. **Combining known premia** — value with momentum, trend with liquidity, carry with trend.
+   *Trap:* the mix is an edge only if its parts fail at different times.
+
+### Seven questions before any backtest (page 58)
+
+Each with the names the deck sets beside it. The page's test: if the seven answers do not fit in
+one paragraph, the idea is not yet a hypothesis.
+
+1. What makes this edge exist? — Grossman & Stiglitz · Fama.
+2. Who is on the other side, and what keeps them on the losing end? — Kahneman & Tversky ·
+   Shleifer & Vishny.
+3. Paid risk or mispricing — and which one am I setting out to own? — Ross · Fama & French.
+4. How many independent bets a year does it offer? — Grinold & Kahn.
+5. Does it last after costs, and how much capital before it stops working? — Amihud · Paleologo.
+6. When does it break, and would I stay in through the break? — Lo · Shiller.
+7. How many ideas came before this one? — Harvey, Liu & Zhu · McLean & Pontiff.
+
+### An idea's anatomy (page 59)
+
+A belief is one sentence; a hypothesis also names its edge, the other side, its test, and what
+would make you drop it. Five parts:
+
+- **The claim** — one sentence, in the present tense, about a relationship that can be measured.
+- **The source of edge** — which of the five it draws on, and why that door should still be open.
+- **The other side** — who sells to you, and what keeps them doing so.
+- **The test** — the measurement that settles it, chosen before looking at the data.
+- **The kill switch** — the result that ends the idea, rather than sending it back for tuning.
+
+The deck fills each part for one worked idea, trend in liquid assets. It shows the shape — a claim
+a measurement can settle, a kill switch read off sub-periods net of costs — and is not a claim to
+adopt.
+
+### Discussion (page 60)
+
+Three questions the deck leaves open, to put to any belief:
+
+- Whose paper does it contradict, and can the owner live with that?
+- If alpha decays, how long would the strategy they want to build last?
+- What evidence would change their mind before four months go into it?
+
+`interview` asks the last two its own way, as the belief's shelf life and what would change the
+owner's mind; the first is the other side it offers to find.
