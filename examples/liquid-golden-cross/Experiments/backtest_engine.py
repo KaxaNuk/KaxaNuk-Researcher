@@ -46,6 +46,7 @@ __all__ = [
     "BENCHMARK_IDENTIFIER",
     "CASH_IDENTIFIER",
     "ENGINE_INSTALLED",
+    "EXECUTION_PRICE_COLUMN",
     "MARKET_DATA_DIRECTORY",
     "align_variants",
     "build_configuration",
@@ -64,6 +65,8 @@ CASH_IDENTIFIER = "SHY"
 # The engine installs from a licensed index rather than PyPI, so a clone without it still runs
 # every other step and says which one it skipped.
 ENGINE_INSTALLED = importlib.util.find_spec("kaxanuk.backtest_engine") is not None
+# The fill, on the total-return series every return in the experiment uses: the day's VWAP.
+EXECUTION_PRICE_COLUMN = "c_vwap_dividend_and_split_adjusted"
 MARKET_DATA_DIRECTORY = pathlib.Path(__file__).parent.parent / "Data" / "Curator" / "Time_Series"
 # The engine parses weights as fixed-scale decimals and refuses a value it cannot hold exactly, so
 # a third written as 0.3333333333333333 fails before the first fill.  Six places is a hundredth of
@@ -107,6 +110,7 @@ def build_configuration(
     cash_reserve_percentage: float,
     portfolio_name: str = "portfolio_weights",
     benchmark_identifier: str = BENCHMARK_IDENTIFIER,
+    execution_price_column: str = EXECUTION_PRICE_COLUMN,
 ) -> object:
     """
     Describe the simulation, including which column of the market data plays which role.
@@ -121,7 +125,10 @@ def build_configuration(
     quietly overdrawing.  A real book holds the same buffer for the same reason.
 
     The benchmark is an argument for a paper book: the index arrives by hand and can lag the day,
-    and a run past its last date has to be priced against a benchmark that reached it.
+    and a run past its last date has to be priced against a benchmark that reached it.  The fill
+    price is one for a check: a book whose names come from two providers, one with a VWAP and one
+    without, is priced again with every name filled at the close, to show the verdict does not rest
+    on how the fills were made.
     """
     import kaxanuk.backtest_engine.entities
 
@@ -143,7 +150,7 @@ def build_configuration(
         # Commission is charged on the price a person would have paid that day.
         user_column_commission_price="c_vwap",
         # Fills and marks run on the total-return series every return in the experiment uses.
-        user_column_trade_execution_price="c_vwap_dividend_and_split_adjusted",
+        user_column_trade_execution_price=execution_price_column,
         user_column_mark_to_market_price="m_close_dividend_and_split_adjusted",
         # A rebalance date that is not a trading day moves to the next one rather than failing.
         rebalance_date_handling="next_trading_day",
@@ -282,7 +289,13 @@ def write_weight_file(
         parents=True,
         exist_ok=True,
     )
-    held = weights.transpose().round(WEIGHT_DECIMALS)
+    # Each weight is rounded down, never to the nearest: a book fully invested in twenty names at a
+    # twentieth each rounds up past one, and the engine refuses a column whose gross exposure is
+    # above one by a millionth. Rounding down leaves the remainder in cash, where it belongs.
+    scale = 10 ** WEIGHT_DECIMALS
+    transposed = weights.transpose()
+    scaled = transposed.mul(scale)
+    held = scaled.floordiv(1).div(scale)
     invested = held.sum(axis=0).round(WEIGHT_DECIMALS)
     cash = 1.0 - invested
     held.loc[CASH_IDENTIFIER] = cash.round(WEIGHT_DECIMALS).clip(lower=0.0)

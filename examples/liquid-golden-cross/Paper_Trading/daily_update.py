@@ -15,7 +15,8 @@ backtest wearing a costume, and it answers a question nobody asked.
 
 What one run does, in order:
 
-1. Takes a lock, so two runs never overlap, and writes its log to `Paper_Trading/Logs/`.
+1. Takes a lock, so two runs never overlap -- a lock a killed run left for twelve hours is
+   removed, and the log says so -- and writes its log to `Paper_Trading/Logs/`.
 2. Refreshes the shared raw data once -- `Data/curator.py` with the day as its end date -- or,
    with `PAPER_TRADING_INPUT=database`, reads the panel another machine published.
 3. Checks the newest day before any book reads it: a close with no fill price, a move no price can
@@ -97,6 +98,11 @@ EXIT_FLAGGED = 1
 # A price that multiplies or divides by more than this in a day is a bad print, not a return; the
 # universe notebook's register uses the same threshold.
 IMPOSSIBLE_MOVE = 6.0
+# A sum of weights lands a billionth past its band's edge on a fully invested day; that is
+# arithmetic, not a divergence.
+BAND_TOLERANCE = 1e-9
+# No run takes this long, so a lock older than this was left by a run that was killed.
+STALE_LOCK_HOURS = 12
 # The cash proxy and the benchmark may trail the day asked for by a weekend and a holiday.
 STALE_PRICE_DAYS = 4
 # The desk's index files are refreshed by hand; older than this, membership is being held at their
@@ -218,6 +224,8 @@ def main() -> int:
         exist_ok=True,
     )
 
+    _clear_stale_lock(requested)
+
     try:
         LOCK_PATH.touch(exist_ok=False)
     except FileExistsError:
@@ -252,7 +260,7 @@ def _band_flags(
 
         low, high = bands[row.measure]
 
-        if row.value < low or row.value > high:
+        if row.value < low - BAND_TOLERANCE or row.value > high + BAND_TOLERANCE:
             flags.append(_flag(
                 "divergence",
                 f"{row.measure} {row.value:.4f} outside {low:.4f} to {high:.4f}",
@@ -260,6 +268,31 @@ def _band_flags(
             ))
 
     return flags
+
+
+def _benchmark_frame(
+    book: str,
+    window: str,
+    benchmark_table: object,
+) -> "pandas.DataFrame":
+    """
+    The engine's benchmark over the book's own window, as rows of the performance table.
+    """
+    frame = benchmark_table.to_pandas()
+    dates = pandas.to_datetime(frame["date_column"])
+    iso_dates = [
+        timestamp.date().isoformat()
+        for timestamp in dates
+    ]
+
+    return pandas.DataFrame({
+        "book": book,
+        "window": window,
+        "series": "benchmark",
+        "date": iso_dates,
+        "value": frame["bench_value"].astype(float).to_numpy(),
+        "daily_return": frame["daily_return"].astype(float).to_numpy(),
+    })
 
 
 def _check_newest_row(
@@ -300,6 +333,24 @@ def _check_newest_row(
     return flags
 
 
+def _clear_stale_lock(
+    requested: "datetime.date",
+) -> None:
+    """
+    Remove a lock a killed run left behind, and say so; a lock younger than that is respected.
+    """
+    if not LOCK_PATH.is_file():
+
+        return
+
+    locked_at = datetime.datetime.fromtimestamp(LOCK_PATH.stat().st_mtime)
+    age = datetime.datetime.now() - locked_at
+
+    if age > datetime.timedelta(hours=STALE_LOCK_HOURS):
+        LOCK_PATH.unlink()
+        _note(requested, f"removed a lock left at {locked_at:%Y-%m-%d %H:%M} by a run that stopped")
+
+
 def _engine_tables(
     book: str,
     run: object,
@@ -328,6 +379,13 @@ def _engine_tables(
             "value": register["Total_Portfolio_Value"].to_numpy(),
             "daily_return": register["Returns"].to_numpy(),
         }))
+        if series == "book":
+            performance_frames.append(_benchmark_frame(
+                book,
+                window,
+                result.data["benchmark"],
+            ))
+
         statistic_rows.extend(_statistic_rows(
             result.data["portfolio_stats"],
             [

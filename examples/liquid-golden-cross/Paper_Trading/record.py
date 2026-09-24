@@ -93,6 +93,16 @@ TABLE_KEYS = {
         "statistic",
     ),
 }
+# A day's flags and holdings are replaced whole when the day is run again: a flag the new run no
+# longer raises, or a name it no longer holds, must not survive from the earlier run.
+DAY_REPLACED_TABLES = (
+    "books",
+    "flags",
+)
+DAY_KEY = (
+    "book",
+    "as_of",
+)
 
 
 def export_market_data(
@@ -249,7 +259,8 @@ def write_tables(
     database: str,
 ) -> None:
     """
-    Upsert every table into every configured sink: rows with a key already held are replaced.
+    Upsert every table into every configured sink: rows with a key already held are replaced, and a
+    day's flags and holdings are replaced whole when the day is run again.
     """
     for name, frame in tables.items():
         if len(frame) == 0:
@@ -346,7 +357,7 @@ def _replace_rows(
     """
     The rows on file whose keys do not arrive, followed by every row that does.
     """
-    keys = list(TABLE_KEYS[name])
+    keys = list(_replacement_keys(name))
     arriving_keys = arriving[keys].apply(tuple, axis=1)
     held_keys = existing[keys].apply(tuple, axis=1)
     replaced = held_keys.isin(set(arriving_keys))
@@ -359,6 +370,19 @@ def _replace_rows(
         ],
         ignore_index=True,
     )
+
+
+def _replacement_keys(
+    name: str,
+) -> tuple[str, ...]:
+    """
+    The columns a row is replaced by: the whole day for a day's flags and holdings, else its key.
+    """
+    if name in DAY_REPLACED_TABLES:
+
+        return DAY_KEY
+
+    return TABLE_KEYS[name]
 
 
 def _write_database(
@@ -375,7 +399,7 @@ def _write_database(
     connection.execute(f"CREATE TABLE IF NOT EXISTS {table} AS SELECT * FROM incoming WHERE false")
     matches = " AND ".join([
         f"{table}.{key} = incoming.{key}"
-        for key in TABLE_KEYS[name]
+        for key in _replacement_keys(name)
     ])
     connection.execute(f"DELETE FROM {table} USING incoming WHERE {matches}")
     connection.execute(f"INSERT INTO {table} BY NAME SELECT * FROM incoming")

@@ -113,7 +113,7 @@ strategy, in the order of its steps:
 | `backtest-engine-runs` | pricing a book with the Backtest Engine, and reading its report |
 | `attribution-analysis-runs` | running Attribution Analysis on a book, and getting its tables out |
 | `alpha-decomposition` | reading attribution: is the signal doing anything, or is it a factor exposure |
-| `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, what a paper-trading run may do |
+| `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, the freeze, and the daily run and its record |
 
 **The house rules**: `how-we-work` (where work lands, changelogs, versions) and `bloom-code-lint`
 with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions, which apply to

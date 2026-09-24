@@ -41,6 +41,37 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.0 (2026-09-24)
+
+**MINOR** — the template describes a second price provider and the desk's new folders, and
+Experiment 1's findings ask the question Experiment 1 now answers. Nothing about any result changes.
+
+**What to do differently:** in a strategy made from 0.12.0, bring across by hand the docstrings of
+`Data/curator.py`, `Data/hand_supplied.py` and `Paper_Trading/daily_update.py`, `SETUP.md`'s
+paragraph on `KN_ANALYTICS_PATH` and its comment in `Config/.env.template`, and the status guidance
+of `FINDINGS_1.md`. If your desk reader reads only `Benchmarks/` and `Factors/`, teach it the
+Analytics Factory's `Benchmark Portfolios/` and `Factor Models/` as well.
+
+### Added
+
+- **A second price provider, in `Data/curator.py`'s contract.** A provider's history can stop where
+  its coverage does, so a name that left the market is fetched from a second provider that carries
+  it, into the same files and columns, and the strategy's documents say which names came from where
+  and how any column the second provider lacks was filled.
+
+### Changed
+
+- **The desk's folders.** `Data/hand_supplied.py`, `SETUP.md` and `Config/.env.template` name the
+  Analytics Factory's `Benchmark Portfolios/` and `Factor Models/`, read first, and the older
+  `Benchmarks/` and `Factors/`, still read where those are absent. The files keep their names and
+  headers, and the drop-in folders under `Data/Curator/` keep the older names.
+- **`FINDINGS_1.md`'s status** asks whether the rule beat the benchmark and its control by what the
+  blueprint required, and whether it is a candidate for the gate, where it asked whether the
+  benchmark was adopted: Experiment 1 is the first rule tested against the benchmark, not the
+  benchmark itself.
+- **`Paper_Trading/daily_update.py`'s contract** says a lock a killed run left for twelve hours is
+  removed, and the log says so.
+
 ## 0.12.0 (2026-09-23)
 
 **MINOR** — step 7 gets its machinery: a graduated book is the strategy frozen, and one daily run

@@ -87,16 +87,18 @@ Sources/         what you read — Books/, Papers/, Clippings/. The researcher r
 Extracts/        text pulled out of the PDFs, one file per chapter; regenerable, gitignored
 Knowledge/       notes by domain, a folder per book, concept pages; INDEX.md and LOG.md
 Philosophy/      your voice. HOW-I-INVEST.md is the page to write it in; cited, never generated
-Projects/        what you ask for at home — lessons from teach, anything asked in chat
+Lessons/         teach's lessons, a folder per topic; the first teach creates it
 .apm/agents/     your researcher as a callable agent, written by interview
 .apm/skills/, .apm/prompts/  your researcher's own skills and commands, if you write any
 ```
 
-**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Projects/`. `Philosophy/` is cited, never
-compiled into notes, so your judgement stays yours. The library is private to you: nothing in
-`Sources/` should ever be pushed anywhere public, and the `.gitignore` keeps PDFs out by default.
-Clippings and the notes read from them are committed with the home, so a home that holds a private
-project's material stays a private repository.
+**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Lessons/`: lessons are built from the
+notes. `Philosophy/` is cited, never compiled into notes, so your judgement stays yours. Anything
+else you ask for here is answered in chat, or as a page you can share, never written as a file;
+strategy work lives in the strategy. The library is private to you: nothing in `Sources/` should
+ever be pushed anywhere public, and the `.gitignore` keeps PDFs out by default. Clippings and the
+notes read from them are committed with the home, so a home that holds a private project's
+material stays a private repository.
 
 ---
 

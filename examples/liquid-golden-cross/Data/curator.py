@@ -28,6 +28,10 @@ What is expected here is a short driver, not a framework:
   that fails and says why, and writes `<identifier>.csv` for each.
 - Point its output at `Data/Curator/Time_Series/`.  The library's default folder is `Output/`;
   here every stage has one home, and this is the Curator's.
+- A provider's history can stop where its coverage does: a name that left the market years ago may
+  be missing from it altogether.  Fetch such names from a second provider that carries them, into
+  the same files and columns, and say in the strategy's documents which names came from where and
+  how any column the second provider lacks was filled.
 
 Two groups ride along in the same folder although they are not in the seed: a cash proxy, because
 a book that goes to cash has to hold a real priced instrument, and the benchmarks the strategy is
@@ -83,6 +87,7 @@ import kaxanuk.data_curator.output_handlers
 
 __all__ = [
     "download_identifier",
+    "download_with_sharadar",
     "extend_history",
     "load_custom_calculations",
     "load_hand_supplied",
@@ -124,9 +129,21 @@ HISTORY_OVERLAP_DAYS = 150
 # the first trading day of a year is never the first of January.
 HISTORY_TOLERANCE_DAYS = 14
 IDENTIFIER_COLUMN = "main_identifier"
+# The seed's optional column naming the provider that serves a row; empty means FMP. The names FMP
+# does not carry are marked `sharadar`, so a refresh never asks FMP for a ticker that may since have
+# passed to another company, whose history would overwrite the one that left.
+PROVIDER_COLUMN = "provider"
 # The index the book is reported against. No price provider sells it, so it arrives by hand as a
 # daily return series and is rebuilt here as a level the engine can price like any other file.
 INDEX_IDENTIFIER = "KN600"
+# The second provider, for the names FMP does not carry: Sharadar keeps the companies that left
+# the market, which FMP does not for this key. Its provider is in the Data Curator from the release
+# after 0.50.0, on the library's issues/31 branch until then.
+PROVIDERS = (
+    "fmp",
+    "sharadar",
+)
+SHARADAR_KEY = "KNDC_API_KEY_SHARADAR"
 # Prices are the only block this strategy reads, and they also set the calendar every other column
 # is aligned to.
 MARKET_DATA_BLOCK = kaxanuk.data_curator.data_blocks.market_daily.MarketDailyDataBlock
@@ -220,18 +237,13 @@ def download_identifier(
     before = output_path.stat().st_mtime if output_path.is_file() else None
 
     for attempt in range(1, DOWNLOAD_ATTEMPTS + 1):
-        try:
-            kaxanuk.data_curator.main(
-                configuration=configuration,
-                output_handlers=[output_handler],
-                custom_calculation_modules=[custom_calculations],
-                data_block_providers={MARKET_DATA_BLOCK: provider},
-                master_clock_data_block=MARKET_DATA_BLOCK,
-                logger_level=logging.WARNING,
-            )
-        except OSError as error:
-            print(f"{identifier}: attempt {attempt} failed ({type(error).__name__})", flush=True)
-
+        outcome = _fetch_once(
+            identifier,
+            configuration,
+            output_handler,
+            provider,
+            custom_calculations,
+        )
         written = output_path.is_file() and output_path.stat().st_mtime != before
 
         if written:
@@ -239,10 +251,72 @@ def download_identifier(
 
             return "downloaded"
 
+        if outcome == "answered":
+            # A provider that answered with nothing does not carry the identifier: asking again
+            # only costs the pause. Only a connection that failed is worth another attempt.
+
+            return "missing"
+
+        print(f"{identifier}: attempt {attempt} failed ({outcome})", flush=True)
+
         if attempt < DOWNLOAD_ATTEMPTS:
             time.sleep(RETRY_PAUSE_SECONDS)
 
     return "missing"
+
+
+def download_with_sharadar(
+    identifiers: tuple[str, ...],
+    custom_calculations: "types.ModuleType",
+    end_date: "datetime.date",
+    fetched_through: dict[str, str],
+) -> dict[str, str]:
+    """
+    Fetch the names FMP does not carry from Sharadar, in one call, and say what happened to each.
+
+    Sharadar publishes no VWAP, so its split-adjusted close stands in for the split-adjusted VWAP:
+    the Curator's own calculations then make the fill price the day's close and the traded value
+    the close times the volume, the same columns as every other file.  That is a difference in how
+    these names are filled, and the strategy's documents say so.  One call covers every name,
+    because past a hundred names the provider switches to its whole-table exports, an order of
+    magnitude cheaper than asking thirty names at a time; nothing here needs the history pass,
+    because the exports carry the whole history.
+    """
+    provider = _sharadar_closing_provider()
+    configuration = kaxanuk.data_curator.entities.Configuration(
+        start_date=START_DATE,
+        end_date=end_date,
+        period="quarterly",
+        identifiers=identifiers,
+        columns=OUTPUT_COLUMNS,
+    )
+    output_handler = kaxanuk.data_curator.output_handlers.CsvOutput(
+        output_base_dir=str(OUTPUT_DIRECTORY),
+    )
+    before = {
+        identifier: _modified_time(OUTPUT_DIRECTORY / f"{identifier}.csv")
+        for identifier in identifiers
+    }
+    outcome = _fetch_once(
+        ",".join(identifiers[:3]),
+        configuration,
+        output_handler,
+        provider,
+        custom_calculations,
+    )
+    print(f"sharadar: {len(identifiers)} names asked for, the call {outcome}", flush=True)
+    outcomes = {}
+
+    for identifier in identifiers:
+        after = _modified_time(OUTPUT_DIRECTORY / f"{identifier}.csv")
+
+        if after is not None and after != before[identifier]:
+            fetched_through[identifier] = end_date.isoformat()
+            outcomes[identifier] = "downloaded"
+        else:
+            outcomes[identifier] = "missing"
+
+    return outcomes
 
 
 def extend_history(
@@ -385,7 +459,13 @@ def main() -> int:
     parser.add_argument(
         "--identifiers",
         default="",
-        help="a comma-separated subset of the seed, for a quick check",
+        help="a comma-separated subset of the seed, or the names for the second provider",
+    )
+    parser.add_argument(
+        "--provider",
+        choices=PROVIDERS,
+        default="fmp",
+        help="fmp for the seed; sharadar for the rows the seed marks as Sharadar's",
     )
     arguments = parser.parse_args()
     end_date = datetime.date.fromisoformat(arguments.end_date)
@@ -404,6 +484,17 @@ def main() -> int:
     everything = read_identifiers() + BENCHMARK_AND_CASH_IDENTIFIERS
     identifiers = requested if len(requested) > 0 else everything
     fetched_through = read_fetched_through()
+
+    if arguments.provider == "sharadar":
+        sharadar_identifiers = requested if len(requested) > 0 else read_identifiers("sharadar")
+
+        return _main_with_sharadar(
+            sharadar_identifiers,
+            custom_calculations,
+            end_date,
+            fetched_through,
+        )
+
     outcomes = {
         "downloaded": 0,
         "missing": 0,
@@ -495,12 +586,16 @@ def read_fetched_through() -> dict[str, str]:
     return json.loads(FETCHED_THROUGH_PATH.read_text(encoding="utf-8"))
 
 
-def read_identifiers() -> tuple[str, ...]:
+def read_identifiers(
+    provider: str = "fmp",
+) -> tuple[str, ...]:
     """
     Read the seed, which is the authority on what exists and therefore on what is downloaded.
 
-    Reading it here rather than reading the security master keeps this runnable before the universe
-    notebook has ever run -- and that notebook needs these files to profile.
+    Only the rows the given provider serves: a row whose `provider` column names another one is
+    left to it, and a seed without the column is FMP's throughout.  Reading it here rather than
+    reading the security master keeps this runnable before the universe notebook has ever run --
+    and that notebook needs these files to profile.
     """
     with SEED_PATH.open(encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -508,6 +603,7 @@ def read_identifiers() -> tuple[str, ...]:
             row[IDENTIFIER_COLUMN].strip()
             for row in reader
             if row.get(IDENTIFIER_COLUMN, "").strip()
+            and (row.get(PROVIDER_COLUMN) or "fmp").strip() == provider
         ]
 
     if len(identifiers) == 0:
@@ -563,6 +659,136 @@ def stage_index_price_series(
     )
 
     return path
+
+
+def _fetch_once(
+    identifier: str,
+    configuration: object,
+    output_handler: object,
+    provider: object,
+    custom_calculations: "types.ModuleType",
+) -> str:
+    """
+    One call to the library for one identifier: `answered`, or the name of the error that stopped
+    it.
+    """
+    try:
+        kaxanuk.data_curator.main(
+            configuration=configuration,
+            output_handlers=[output_handler],
+            custom_calculation_modules=[custom_calculations],
+            data_block_providers={MARKET_DATA_BLOCK: provider},
+            master_clock_data_block=MARKET_DATA_BLOCK,
+            logger_level=logging.WARNING,
+        )
+    except OSError as error:
+
+        return type(error).__name__
+
+    return "answered"
+
+
+def _main_with_sharadar(
+    identifiers: tuple[str, ...],
+    custom_calculations: "types.ModuleType",
+    end_date: "datetime.date",
+    fetched_through: dict[str, str],
+) -> int:
+    """
+    The second provider's run: the names given, in one call, and the record of what arrived.
+    """
+    if len(identifiers) == 0:
+        message = "--provider sharadar found no names, in --identifiers or marked in the seed"
+
+        raise ValueError(message)
+
+    outcomes = download_with_sharadar(
+        identifiers,
+        custom_calculations,
+        end_date,
+        fetched_through,
+    )
+    remembered_dates = json.dumps(
+        fetched_through,
+        indent=1,
+        sort_keys=True,
+    )
+    FETCHED_THROUGH_PATH.write_text(
+        remembered_dates,
+        encoding="utf-8",
+    )
+    missing = [
+        identifier
+        for identifier, outcome in outcomes.items()
+        if outcome == "missing"
+    ]
+    arrived = len(outcomes) - len(missing)
+    print(f"sharadar through {end_date}: {arrived} downloaded, {len(missing)} missing", flush=True)
+
+    if len(missing) > 0:
+        names = ", ".join(missing)
+        print(f"no data for {len(missing)}: {names}")
+
+    return 0
+
+
+def _modified_time(
+    path: "pathlib.Path",
+) -> "float | None":
+    """
+    When a file was last written, or nothing when it does not exist.
+    """
+    if not path.is_file():
+
+        return None
+
+    return path.stat().st_mtime
+
+
+def _sharadar_closing_provider() -> object:
+    """
+    The Sharadar provider, its split-adjusted close standing in for the VWAP it does not publish.
+
+    Built at run time, because the provider exists only in a Data Curator newer than 0.50.0: a run
+    on 0.50.0 is told which version it needs rather than failing on an import.
+    """
+    base = getattr(
+        kaxanuk.data_curator.data_providers,
+        "Sharadar",
+        None,
+    )
+
+    if base is None:
+        missing_message = " ".join([
+            "--provider sharadar needs the Data Curator's Sharadar provider, released after 0.50.0",
+            "and on the library's issues/31 branch until then",
+        ])
+
+        raise RuntimeError(missing_message)
+
+    api_key = os.environ.get(SHARADAR_KEY, "")
+
+    if api_key == "":
+        key_message = f"{SHARADAR_KEY} is empty; fill it in Config/.env"
+
+        raise RuntimeError(key_message)
+
+    vwap_field = kaxanuk.data_curator.entities.MarketDataDailyRow.vwap_split_adjusted
+    row_map = {
+        **base._market_data_row_map,
+        vwap_field: "close",
+    }
+    endpoint_map = dict.fromkeys(
+        base._market_data_endpoint_map,
+        row_map,
+    )
+    closing = type(
+        "SharadarClosingPrice",
+        (base,),
+        {"_market_data_endpoint_map": endpoint_map},
+    )
+
+    return closing(api_key=api_key)
 
 
 if __name__ == "__main__":

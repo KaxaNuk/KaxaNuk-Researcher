@@ -8,13 +8,15 @@ survive before anyone believes it.
 
 <!-- example: begin -->
 
-> **Status: steps 1 to 6 run end to end, reproduced from a wiped working copy on 2026-09-22, and
-> step 7's gate evaluated against the result.** The rule
-> beats the index by 3.1 points a year and loses to its own control by 1.1; of its 45.5
-> idiosyncratic points, about 5 belong to the signal it is named after. It is **not a defensive
-> book** — beta 1.028, and more volatile than the index — and what it buys is a drawdown 9.3 points
-> shallower than the same thirty names unfiltered. Every number is in `RESULTS.md`. **It does not
-> pass the gate, no paper trading has run, and nothing here is out of sample.**
+> **Status: steps 1 to 6 run end to end on Experiment 1's two designs, and step 7's gate evaluated
+> against each; claim 1 is falsified.** Experiment 1's second design, the twenty most traded names
+> above their cross, sold the day after it breaks, beats the index on Sharpe, 0.806 against 0.770,
+> earns 0.86 points a year less than the same names without the cross and **fails its kill switch**;
+> reproduced from a wiped working copy on 2026-09-24, it returned every engine figure to the digit.
+> Its diagnostic arm, the first design's band at twenty names, earned 1.65 points a year more than
+> it. Experiment 2, that arm's design on years before 2017, is open: its blueprint is committed
+> before its rule, and none of its results is reported. Every number is in `RESULTS.md`. **Nothing
+> has graduated, no book is on paper, and nothing here is out of sample.**
 > Replace this line as the strategy moves, and the banner at the top of the README with it.
 
 <!-- example: end -->
@@ -215,6 +217,15 @@ The part of the process that has nothing to do with Python.
 | 3 | **Overfitting.** Try enough rules and one looks brilliant. The Sharpe of the best of *N* trials is the maximum of *N* draws | economic reason first, sweeps read as curves, parameters never chosen on the metric they are judged by, **the trial count published beside the winner** | compute the deflated figure. Publishing the count is the minimum, not the answer |
 | 4 | **Costs and capacity.** A backtest with no costs describes a market that does not exist | commission on the **unadjusted** price, integer share counts, a cash reserve, turnover reported, results accepted **net** | model capacity, anywhere. Borrow cost, short rebate and margin are a headline caveat on any long/short book, not a footnote |
 | 5 | **Dirty data presented as a finding.** An unadjusted split, a stale price, a reused identifier — each produces a plausible number and no error | coverage checked before conclusions; a truncated engine run is caught by the experiment's Verify section, which counts the days the engine valued against the window's trading days, and the variant is excluded **by name** | catch what nobody thought to check. The instructive case was a run that stopped valuing a book partway and still summarised cleanly over the stub |
+
+<!-- example: begin -->
+
+**In this example, row 4's last column holds only in part.** The second design's findings state
+capacity from the book's own trades: the largest book at which each trade takes no more than a
+stated share of its name's 63-day average traded value. That bounds participation; it does not
+model market impact.
+
+<!-- example: end -->
 
 **Every notebook ends in a Verify section, and that is where a strategy's tests live.** A strategy
 has no test suite: what it adds is a pipeline, and each stage is checked where it produces its

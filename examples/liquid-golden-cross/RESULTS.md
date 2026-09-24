@@ -19,10 +19,12 @@
 
 <!-- example: begin -->
 
-> **In this example, everything below is `liquid-golden-cross`, measured.** Steps 1 to 6 are run and
-> the numbers are real. Step 7's gate has been *evaluated* and the book fails it — but no paper
-> trading has run, so **nothing here is out of sample**. Which criteria it fails and why is in
-> [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md).
+> **In this example, everything below is `liquid-golden-cross`, measured.** Steps 1 to 6 are run,
+> and the numbers are real: Experiment 1's second design, run 2026-09-23 and reproduced from a wiped
+> working copy on 2026-09-24, with its first design kept as a row. Experiment 2 is open, and none of
+> its results is reported here. Step 7's gate has been *evaluated* against each design of Experiment
+> 1 and neither passes. No book is on paper, so **nothing here is out of sample**. Which criteria
+> each fails and why is in [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md).
 
 <!-- example: end -->
 
@@ -33,22 +35,26 @@ return comes from. Which lever earned its place after the benchmark, and which w
 
 <!-- example: begin -->
 
-**The book works, but not for the reason it was built.** Holding the thirty most traded US stocks
-whose 50-day average sits above their 200-day compounded at 17.85% against the index's 14.71% over
-2017–2026, net of costs, with a shallower drawdown — but the same thirty names without the filter
-earned **more**, so the trend condition bought drawdown rather than return. Against the control
-that differs in exactly one thing, the filter costs **1.12 points a year**.
+**The book beats the index, and misses the margins it set itself against the same names without
+its signal.** Holding the twenty most traded US stocks whose 50-day average sits above their
+200-day, and selling each the day after its cross breaks, compounded at 17.87% against the index's
+14.63% over 2017–2026, net of costs, at a Sharpe of 0.806 against 0.770. Against the same twenty
+names without the cross it is ahead on Sharpe by 0.031 and **0.86 points a year behind** on CAGR,
+so prediction 1's margins are not met, and it is ahead of them on both in one sub-period of three,
+so it fails its kill switch. The first design, thirty names on a 10% band, lost to its control too,
+by 1.12 points a year, and is kept at tag `v0.15.0`.
 
-**Attribution says 71% of the excess return is factor exposure**, more than half of it plain market
-beta, with a beta of 1.028 and a momentum loading the book acquired without trading it. Six
-counterfactual books split the remaining 45.5 points three ways: **about 12.5 is what any
-concentrated equally weighted book earns here, about 28 is the liquidity ranking, and about 5 is
-the trend filter.**
+**Attribution says the cross trades beta for momentum, not for selection.** Against its control the
+rule carries a beta of 1.067 to 1.238 and a momentum line of 15.44 points to 5.99, and keeps fewer
+idiosyncratic points, 36.19 to 40.99: just above the top of five random twenty-name books. The
+blueprint reads a Sharpe edge that comes with a lower beta as timing.
 
-**Nothing has earned a lever yet, and one published reading has been tightened.** The idiosyncratic
-share is measured against a baseline of 12.5 rather than zero, so the honest figure for selection
-is nearer 33 points than 45.5. Experiment 1 is the benchmark; the next experiment tests the
-rebalancing band, which has never been tested at all.
+**Nothing has earned a lever, and the one surprise is Experiment 2's to test.** The first design's
+rebalancing, kept at twenty names on a 15% band as a diagnostic arm, reproduced its delay and earned
+1.65 points a year more than the fast exit, so exit speed is not why the cross loses. Experiment 2
+takes that arm's design to years before 2017, which it was not found on, from the first date its
+blueprint's coverage rule allows, no earlier than 2002-07-30, to 2016-12-30, against the same names
+without the cross; it is open. Claim 1 stays falsified, and nothing graduates.
 
 <!-- example: end -->
 
@@ -115,6 +121,11 @@ can break more than once. It is not what a rule that sells on the break earns: t
 the next day's VWAP and buys a replacement, not the pool. It is the most a rule that holds on after
 a break can lose, and it is small — half a point a month, on barely more than half the breaks.
 
+**Measured a third time on 2026-09-24**, in Experiment 1's reproduction from a wiped working copy,
+on a fresh download through 2026-06-01 from which the refinery read 787 securities and 4,252,838
+rows. Rows 1, 2 and 4 to 18 came back as printed, and row 3 at 0.0026, as on 2026-09-23; the
+analyzer's Verify section ran its 8 checks.
+
 **What it says.** The trend signal barely predicts return and strongly predicts volatility. An
 information coefficient of 0.011 at one month is noise beside the 0.02 to 0.03 a working signal
 shows; it decays to nothing by three months and turns negative at a year, on 5,939 dates. The
@@ -156,66 +167,105 @@ finding.
 
 | Exp | Book | CAGR | Sharpe | Max DD | Control Sharpe | vs control | Status | Claim moved | Findings |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| **1** | thirty most traded, in an uptrend | **17.85%** | **0.861** | −30.5% | 0.831 | **+0.030** | **the benchmark** | 1, the signal: **falsified** | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
+| **1** | twenty most traded above the cross, sold the day after it breaks | **17.87%** | **0.8057** | −32.20% | 0.7748 | **+0.031** | **fails its kill switch**; does not graduate | 1, the signal: stays **falsified**, exit speed ruled out; 4, the rebalancing: **measured**, on an engine-priced arm at a 15% band | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
+| 1, first design | thirty most traded, in an uptrend, on a 10% band | 17.85% | 0.861 | −30.54% | 0.831 | +0.030 | superseded, kept at tag `v0.15.0` | 1, the signal: **falsified** | `FINDINGS_1.md` at tag `v0.15.0` |
 
-The control column is the **equalised** control — the same names with the filter off, trading on the
-rule's own dates — because that is the arm differing in exactly one thing. Against the plain
-control, which also trades a seventh as often, the Sharpe gap reads +0.048.
-
-Window 2017-01-03 to 2026-06-01, 9.4 years, net of costs. The control is the same thirty names with
-the trend filter switched off: it earns **more** (18.62% against 17.85%) at a worse Sharpe and a
-9.3-point deeper drawdown. **The filter buys drawdown, not return.** Put on the rule's own
-rebalance dates, so that it differs in one thing only, that control earns **18.97%** and the
-filter's cost rises to **1.12 points a year**.
+**One window, two downloads.** Experiment 1's two designs both run 2017-01-03 to 2026-06-01, net of
+costs. The panel was refreshed on 2026-09-23 before the second ran, which rebases every adjusted
+column, so compare each design with its own control and index row; the second design's reproduction,
+on a fresh download through 2026-06-01, returned every engine figure to the digit. In every row the
+control is the same book without the trend condition, trading on the rule's own dates: in the first
+design, the equalised control. **`vs control` is a Sharpe difference, and it hides the CAGR**: each
+book earns less than its control, by 0.86 points a year in the second design and 1.12 in the first.
 
 ### The counterfactuals
 
-Six more books, each removing one choice the rule makes. Idiosyncratic return, in percentage points
-over the same window:
+Experiment 1's second design and its arms. Idiosyncratic points from the factor model, over the
+same window:
 
-| Arm | What it removes | Idiosyncratic |
-| --- | --- | ---: |
-| The rule | — | 45.52 |
-| The equalised control | the trend filter | 40.47 |
-| The plain control | the filter, and 76 of the 87 rebalances | 32.09 |
-| Random, five seeds | the liquidity ranking | −17.63 to 25.17, mean 12.5 |
+| Arm | What it removes | CAGR | Sharpe | Beta | Idiosyncratic |
+| --- | --- | ---: | ---: | ---: | ---: |
+| The rule | — | 17.87% | 0.8057 | 1.067 | 36.19 |
+| The control | the cross | 18.73% | 0.7748 | 1.238 | 40.99 |
+| The diagnostic arm | the fast exit: the first design's rebalancing at twenty names, on a 15% band | 19.52% | 0.8773 | 1.093 | 50.02 |
+| Random, five seeds | the ranking and the cross | 1.82% to 8.95% | 0.091 to 0.461 | not measured | −11.78 to 35.31, mean 22.4 |
 
-**The random arm is why this matters.** A thirty-name book drawn at random earns positive residual
-here too, so 45.5 is measured against roughly 12.5, not against zero. Genuine selection is nearer
-**33 points**. Five seeds is five samples and the spread is 43 points wide, so the split is
-indicative; what stands is that the rule sits above the random range's top.
+The random books draw twenty names on the first trading day of each month from 2017-01-03, a day
+on which the rule does not trade and the pool they draw from is empty, so each holds only `SHY`,
+the cash proxy, until its second draw, on 2017-02-01: their weight files show it, and no cell
+prints it. Every random figure above carries that month.
 
-### Against the world
+**The arm is the finding.** It reproduced the first design's delay, a broken name held a median of
+28 days, and beat the rule on return, on Sharpe and on idiosyncratic points. **The random arm sets
+the baseline**: the rule's 36.19 sits just above the random books' top, 35.31. In the first design
+the random arm put genuine selection nearer 33 of 45.5 points, against a random mean of 12.5.
+
+### Against the world, Experiment 1
 
 | Book | CAGR | Volatility | Sharpe | Max drawdown |
 | --- | ---: | ---: | ---: | ---: |
-| The rule | 17.85% | 20.73% | 0.861 | −30.5% |
-| The KN600 index | 14.71% | 19.01% | 0.774 | −33.8% |
-| The rule, filter off | 18.62% | 22.91% | 0.813 | −39.8% |
-| The rule, 2002-07-30 onward | 10.29% | 20.00% | 0.514 | −60.7% |
+| The rule | 17.87% | 22.18% | 0.8057 | −32.20% |
+| The rule, realistic costs | 18.36% | 22.17% | 0.8280 | −32.15% |
+| The control, without the cross | 18.73% | 24.17% | 0.7748 | −41.83% |
+| The diagnostic arm | 19.52% | 22.25% | 0.8773 | −32.36% |
+| The KN600 index | 14.63% | 19.01% | 0.7699 | −33.75% |
 
-The long window starts 2002-07-30 rather than the blueprint's 2002-01-02: `SHY`, the cash proxy,
-launched that day, and the engine cannot value a book whose cash has no price. Caveat 9 of
-[`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) carries it.
+The index's own row reads 14.71% and 0.774 at `v0.15.0`, over the window both designs asked for.
+This design's row is read from the rule's run, valued from 2017-01-04, the rule's first trade. The
+refresh is not why it moved: the index is staged from the desk's own daily returns, not from the
+provider's prices, and the reproduction, on a download never refreshed, returned the same row. Two
+candidates were not traced: a different first valued day, which the first design did not record, and
+a change in the desk's index files between the designs, whose holdings began in 2017 at `v0.15.0`
+and begin on 2000-01-03 now. The first design's long window, from 2002-07-30 at 10.29% and a −60.7%
+drawdown, held its membership fixed and has no counterpart here: Experiment 2, open, is to be the
+first point-in-time window before 2017.
 
-**Does it reproduce?** Within the same working copy, exactly: the notebook was re-run end to end on
-2026-09-20 and every figure above came back identical — 17.85%, 0.8612, −30.54%, and 45.52
-idiosyncratic points. From a wiped working copy on a fresh download, on 2026-09-22, to the data
-rather than to the digit: the pipeline ran end to end with no manual step beyond the hand-supplied
-index and factor files, every conclusion held, the filter-off control and the index came back to
-every published decimal, and the rule moved by hundredths — 17.89%, 0.863, −30.55%, 45.44
-idiosyncratic points, 86 rebalances against 87 — on a panel ten rows different, which is
-limitation 5 below, measured. No figure above is changed by it;
-[`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) carries the re-run's figures beside
-the published ones.
+**Does it reproduce? Yes, every engine figure to the digit.** The second design's run of
+2026-09-23 reached the end of its Verify section: 14 checks on the book and its weight file, and 92
+on the runs, 90 of them window checks on the 45 engine runs, each valued on at least 99% of its
+window's trading days. On 2026-09-24 it was reproduced from a wiped working copy, as its
+blueprint's success criteria ask, with one manual step they do not allow for: a fresh clone on its
+788-name seed and a fresh download from FMP through 2026-06-01, made at the working copy's commit
+`50ebdad`, which holds the design's code. The universe stage then stopped, because the desk had
+moved its files that day and the index was not staged. By hand, the clone moved to `45a690f`, which
+sorts the slot book by date, and took `Data/hand_supplied.py` from `d7d1816`, which reads the
+desk's new layout; the curator ran again to stage the index, and every later stage ran in order,
+every notebook headless to the end of its Verify section, which raised nothing, in the first run's
+environment. Every engine figure, sub-period and perturbation cell, and every figure the
+attribution library returned, came back to the digit. The first design was reproduced on
+2026-09-22, to the data rather than to the digit, as `v0.15.0` records.
+
+**What the reproduction moved.** The panel holds 771 positions, against 772 in the run of
+2026-09-23, whose download, refreshed through that day, carried `MIC`. The notebook's own sum of
+unpriced weight read 0.01 more for four of the random books, for a reason not traced. And **the
+book's construction figures are corrected**: 290 exits and 310 entries, a mean one-way turnover of
+6.0% a trade date and 1.99 times the book a year, where the second design's run of 2026-09-23
+printed 462, 482, 8.8% and 2.9. Pandas had assembled the slot book's rows in the order the names
+first appeared, and each of those figures compares a row with the one before;
+`portfolio_construction.build_slot_book` now sorts them by date. The engine reads each trade date's
+weights by its date, so no engine figure moved. The capacity figures moved with them: *What stands*
+has the corrected ones.
+
+### Experiment 2: open
+
+The owner opened it on 2026-09-24, once the second design had failed its kill switch: the diagnostic
+arm's design, its rules unchanged, on years before 2017, which it was not found on, from the first
+date its blueprint's coverage rule allows, no earlier than 2002-07-30, to 2016-12-30, against the
+same names without the cross, with the seed widened to every name the index held since 2000.
+[`BLUEPRINT_2.md`](Experiments/Experiment_2/BLUEPRINT_2.md) is committed before its rule, and none
+of its results is reported here.
 
 ### The trial count
 
-**Ten engine runs, all ten reported.** Four are strategy variants, specified before the engine ran:
-the rule, the rule at realistic costs, the filter-off control, and the long window. **Six are
-counterfactual arms** added on 2026-09-20 — the equalised control and five random books — whose
-four possible outcomes were committed before they were priced, and none of which is a candidate for
-the headline. **Three further runs are excluded by name**, below.
+**Thirty-one trials**, the count `BLUEPRINT_1.md` fixed: the first design's thirteen engine runs,
+ten reported and three excluded; the owner's earlier test, counted as one, so the count is a lower
+bound; and the second design's rule, its diagnostic arm and fifteen perturbation cells.
+
+**Experiment 1's second design ran 45 engine runs**: the rule, the control, the arm, the rule at
+realistic costs, six sub-period runs, thirty sweep runs for fifteen cells and their controls, and
+five random books. Its reproduction ran the same 45 on the same books and adds no trial. Every run
+that is not the rule, the arm or a cell is a diagnostic. One further attempt is excluded by name,
+below. The deflated Sharpe was not computed.
 
 <!-- example: end -->
 
@@ -228,62 +278,89 @@ with its number.
 
 <!-- example: begin -->
 
-- **The panel and the pipeline.** 4.25M rows, 787 securities, 2001-01-02 to 2026-06-01, with the
-  rank identity checked and the corrupted securities named. Any later experiment reads it unchanged.
-- **The filter's drawdown effect.** −30.5% against the control's −39.8% on the same names, same
-  sizing, same band. That is the one thing the trend condition demonstrably does.
-- **The truncation check.** Three runs reported success while valuing a stub; comparing the valued
-  window against the requested one caught all three. Every later experiment keeps it.
-- **The random arm as a baseline.** Before calling a residual "alpha", price five random books of
-  the same shape and subtract what they earn. Here that was 12.5 of 45.5 points — a quarter of the
-  headline number — and no part of the factor model revealed it. Cheap, and every experiment that
-  reports idiosyncratic return should run it.
-- **The equalised control.** A control that differs in one thing has to match the rule's *trading*
-  too, not only its selection. Matching dates moved the filter's measured cost from −0.77 to −1.12
-  points a year.
+- **The panel and the pipeline.** Experiment 1's, on the 788-name seed, read to 2026-06-01: 6,390
+  dates by 771 positions from the reproduction's fresh download, 772 from the download refreshed
+  through 2026-09-23, with the index's membership from its own holdings, 2000-01-03 to 2026-08-14.
+- **The cross's drawdown effect, in both designs.** −32.20% against its control's −41.83% in
+  Experiment 1's second design, and −30.54% against the plain control's −39.79% in the first. That
+  is the one thing the trend condition demonstrably does.
+- **The truncation check, now the Verify section.** It counted each of Experiment 1's 45 engine runs
+  against its window's trading days, two checks a run, after three runs of the first design had
+  reported success while valuing a stub.
+- **The random arm as a baseline.** Before calling a residual "alpha", price random books of the
+  same shape. Their mean was 22.4 against the rule's 36.19 points in Experiment 1's second design,
+  and 12.5 against 45.5 in the first; no part of the factor model reveals it.
+- **A control on the rule's own trade dates, from the start.** Experiment 1's second design's
+  control traded on 114 dates, every one of them the rule's. In the first design, matching the dates
+  moved the filter's measured cost from −0.77 to −1.12 points a year.
+- **A weight file rounds down.** The engine refuses a column above full exposure, and rounding a
+  fully invested book to six decimals pushed one to 1.000002. `write_weight_file` rounds every
+  weight down and leaves the remainder in cash.
+- **A slot book in date order.** `portfolio_construction.build_slot_book` sorts its rows by date.
+  Pandas had assembled them in the order the names first appeared, so every figure that compares a
+  row with the one before — exits, entries, turnover, capacity — compared dates that were not
+  neighbours. The first dry run of the daily paper-trading machinery found it.
+- **Capacity, read from the book.** Each trade against its name's 63-day average traded value: at 1%
+  of a day's traded value the worst trade limits Experiment 1's second design to $91,546,647 and its
+  median trade to $16,231,104,636. The worst trade binds. The second design's run of 2026-09-23
+  printed $2,018,972 and $14,574,799,654, read from rows out of date order; the reproduction's
+  figures replace them.
 
 ## What is closed — do not re-propose without a new argument
 
 Each rejected idea, with the number that rejected it. A negative result costs real work and stops
 the next person repeating it; this list is where that value is stored.
 
-- **The 50/200 filter as a return signal.** Closed by an information coefficient of 0.0112 at a
-  month, −0.0060 at a year, and by the control beating the filtered book by 1.12 points a year. Do
-  not re-propose it as an alpha source; it is a risk control.
-- **The filter as protection against fast crashes.** Closed by 2020: no cash held at all through
-  a 23-day fall. It steps aside from slow declines only.
-- **This book as a defensive, low-beta position.** Closed by a beta of **1.028**, which falsified
-  prediction 5 of `BLUEPRINT_1.md`: holding the most traded names in an uptrend is a full-beta
-  equity position. It is shallower in drawdown than the index, and that is a different claim.
-- **This book as lower-volatility than the index.** Closed by 20.73% against the index's 19.01%,
-  which falsified prediction 1. Thirty names are more volatile than six hundred whatever the filter
-  does; the filter's 2.2 points of volatility show only against the same thirty names unfiltered.
+- **The 50/200 cross as a return signal.** Closed by an information coefficient of 0.0112 at a month
+  and −0.0060 at a year, and by two books that each earn less than the same names without it: 1.12
+  points a year in Experiment 1's first design and 0.86 in its second. It is a risk control, not an
+  alpha source.
+- **Fast exits on this signal, on this window.** Closed by the second design: selling the day after
+  the cross breaks earned 1.65 points a year less than holding on through the first design's band,
+  at twenty names, with the band's delay reproduced. Acting 5 or 21 days late narrowed the rule's
+  shortfall against its control, −0.543 and −0.496 points against −0.86, rather than widening it,
+  though both late books targeted `TWTR` after its last price and the engine held that weight in
+  cash. Do not re-propose a faster exit on the 50/200 cross without a new argument.
+- **The filter as protection against fast crashes.** Closed by 2020 in the first design: no cash
+  held at all through a 23-day fall. It steps aside from slow declines only.
+- **This book as a defensive position.** Closed on 2017 to 2026 by a beta of **1.028** in the first
+  design and **1.067** in the second: holding the most traded names in an uptrend is a full-beta
+  equity position there. Each is shallower in drawdown than its index, and that is a different
+  claim.
+- **This book as lower-volatility than the index, on 2017 to 2026.** Closed by 20.73% in the first
+  design and 22.18% in the second, against the index's 19.01%: twenty or thirty names were more
+  volatile than six hundred there.
 
 ### The uncomfortable one
 
 `OBJECTIVE.md` claim 1 says stocks whose 50-day average is above their 200-day "go on to earn more
-than those whose is not". **On our own data, inside our own universe, they do not** — not by enough
-to matter, and not once the same names are held without the filter. The claim survives only in a
-weaker form: they earn about the same with less volatility and shallower drawdowns. The strategy is
-defensible; the claim as written is not, and the next experiment should be an honest attempt to
-kill it rather than to decorate it.
+than those whose is not". **On our own data, inside our own universe, they do not**, and the design
+built to rescue the claim did not rescue it. The owner's diagnosis, that the band sold broken names
+too late, was tested with its own arm and came back the wrong way: the late seller earned more. The
+claim survives only in a weaker form: less volatility and a shallower drawdown than the same names
+unfiltered, in both designs, for 0.86 to 1.12 points a year less return.
 
 ## Open leads, ranked
 
 The single highest-value run outstanding, and what it would settle.
 
-1. **Draw far more random books and report the percentile.** Five seeds put the baseline at 12.5
-   points with a 43-point spread — enough to prove it is not zero, not enough to say what it is —
-   and every share in the counterfactual table rests on it.
-2. **The band, read as a curve**: 0%, 5%, 10%, 20%, 30%, everything else frozen. Claim 4 has never
-   been tested, and the equalised control is the first evidence bearing on it — the same book at 87
-   rebalances beat itself at 11, net of costs. Choose the band on turnover and persistence, never
-   on the metric it will be judged by. A new experiment, not an edit to this one.
-3. **The eleven sector factors read exactly zero** in the decomposition, which is not credible for
-   a book whose technology weight moved between 15% and 45%. No sector claim stands until it is
-   understood.
-4. **Decompose the long window's −60.7% drawdown.** The nine-year and twenty-four-year records
-   disagree about what this rule is.
+**None of these can turn Experiment 1's verdict**: both of its designs earn less than their
+controls. The first is a new experiment, with its own gate; the rest bear on how the books are read.
+
+1. **Experiment 2: the arm's design on years before 2017**, which it was not found on, from the
+   first date its blueprint's coverage rule allows, no earlier than 2002-07-30, to 2016-12-30,
+   against the same names without the cross, with the seed widened to every name the index held
+   since 2000. The owner opened it on 2026-09-24, and its blueprint is committed before its rule. It
+   also puts 2008 inside a point-in-time window for the first time. Highest value.
+2. **The third pass, Brinson-Fachler on the residual.** Not run for either design; criterion 2 of
+   the gate cannot pass without it.
+3. **Sector factor files with data.** The desk's eleven are empty, so the sector lines read zero in
+   both designs and no sector claim stands.
+4. **Far more random books, and the percentile.** Five seeds span −11.78 to 35.31 points, and the
+   rule sits just above their top.
+5. **The band read as a curve**, claim 4's full test: Experiment 1's arm measured one setting of it,
+   net of costs. Choose the band on turnover and persistence, never on the metric it will be judged
+   by. A new experiment, not an edit to Experiment 1.
 
 <!-- example: end -->
 
@@ -304,6 +381,10 @@ name with a reason is how that stays honest.
 | Long window, 0.5% cash reserve | Valued only to 2003-04-22 of 23.8 years. The book could not pay commission at a rebalance — "Cash error on 2003-04-23 with $-416.34" — and the engine returned success with a clean summary over the stub. Caught by comparing the valued window against the requested one; the reserve is now an argument every run states |
 | Long window, 1% cash reserve | The same failure in a different decade, valued to 2009-06-01. Both are in the trial count |
 | Point-in-time, 0.5% cash reserve | Cash error on day one, when the book is entirely in the cash proxy and commission has nothing to come from |
+| Second design, the first attempt, 2026-09-23 | Stopped at the rule's engine run: the engine refused a weight column whose gross exposure was 1.000002, because rounding a fully invested twenty-name book to six decimals pushed it past one. It produced no figure. `write_weight_file` in `Experiments/backtest_engine.py` now rounds every weight down, and the remainder goes to cash |
+
+The first three are the first design's, at `v0.15.0`, and count in its thirteen engine runs. The
+fourth priced no book, so it is not counted among the trials.
 
 <!-- example: end -->
 
@@ -320,13 +401,26 @@ name with a reason is how that stays honest.
 
 <!-- example: begin -->
 
-**Limitation 2 no longer holds in this example, and that is the one good piece of news in the
-table.** Experiment 1 has a control arm differing in exactly one thing — the trend filter, on or
-off, same universe, same sizing, same band **and the same rebalance dates** — which is why this
-repository can say the filter costs 1.12 points a year instead of inferring it. Every other
-limitation above stands as written, and limitation 6 now has company: the idiosyncratic share is
-measured against a five-seed baseline, which is a floor on the honest figure rather than a
+**Limitation 1 holds here with two qualifications.** Step 7's gate has been evaluated, against both
+designs of Experiment 1, and neither graduated, so no experiment has reached paper trading and
+nothing here is out of sample. And the daily machinery has run: on 2026-09-24, in the working copy
+Experiment 1's second design ran in, on that design frozen there as a candidate only to test the
+plumbing, never committed. Those runs priced days after 2026-06-01, and no figure from them is read
+here; [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) says what they showed.
+
+**Limitation 2 no longer holds in this example.** Every experiment has a control arm differing in
+exactly one thing, the trend condition, on the rule's own trade dates. That is why this repository
+can say the cross costs 0.86 points a year in Experiment 1's second design and 1.12 in its first,
+instead of inferring it. Limitation 6 still stands, and has company: the idiosyncratic share is
+measured against a five-seed random baseline, which is a floor on the honest figure rather than a
 deflated one.
+
+Two more, specific to this example:
+
+| # | Limitation | Effect |
+| --- | --- | --- |
+| 7 | **Experiment 1's seed never holds the whole index**: 39.8% of its members on 2000-01-03, and on no date through 2026-08-14 as many as 99% of them, by the universe runs of 2026-09-23 and 2026-09-24. Its share of the index's weight was not measured by any run recorded here | The rest of the index was never selectable, by any rule or arm of Experiment 1. Experiment 2's blueprint widens the seed to every listing the index held since 2000 |
+| 8 | **Limitation 5, met: the refresh of 2026-09-23 rebased the adjusted prices** the first design ran on | The two designs sit on two downloads; compare each with its own control and index row. The index row moved too, 14.63% against 14.71% at `v0.15.0`, but not with the refresh: it is staged from the desk's own returns, and the second design's own two downloads, refreshed and fresh, gave the same engine figures, the index's included. A different first valued day, or a change in the desk's index files, may explain it; neither was traced |
 
 <!-- example: end -->
 
