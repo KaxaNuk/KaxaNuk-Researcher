@@ -14,8 +14,8 @@
 entry is left alone — it was correct on its date.
 
 **Repository-level history belongs here** — choosing the benchmark, the data step, the architecture.
-Experiment 1 is the declared benchmark and therefore the shared context; later experiments' journals
-point here rather than copying it.
+Experiment 1 is the first rule tested against the benchmark and therefore the shared context; later
+experiments' journals point here rather than copying it.
 
 **Entry format:**
 
@@ -351,5 +351,29 @@ leaves open.
   `RESULTS.md` says so rather than supplying one. No figure changes.
 - **Open threads:** the next run of the analyzer fills the sign column. The next run of the
   experiment is the first to reach its Verify section, and what it prints is recorded then.
+
+<!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-23 — the owner rewrites Experiment 1
+
+- **Idea / question:** the owner decided to rewrite Experiment 1 around his own tested idea — the
+  twenty most traded names above the cross, sold the day after it breaks — and to bring it to paper
+  trading if it passes the gate. The template freezes a reported Experiment 1; this is the recorded
+  exception its `AGENTS.md` now allows.
+- **What we tried / considered:** the first design's `BLUEPRINT_1.md` says a rebalance fires when
+  the move "would trade at least 10% of the book, with price drift counted". The code it ran,
+  `select_rebalance_dates`, compares the day's selected set with the day before's, ignores drift,
+  and counts a swapped name twice — out and in — so one swap in thirty is 6.7% and never fires, and
+  two are 13.3% and do. The published numbers came from the code, so the code is what the first
+  design was; the blueprint was not edited. The gap is the mechanism behind the delay measured in
+  `BRAINSTORMING_1.md` on this date.
+- **Outcome / decision:** the first design stays at tag `v0.15.0` of the KaxaNuk Researcher and as a
+  row of `RESULTS.md`; its runs count in the trials. `BLUEPRINT_1.md` is replaced by the second
+  design's, committed on its own before the rule. The index's files are now read in place from the
+  desk's folder by `Data/hand_supplied.py`, and the Curator can refresh through a later date for
+  paper trading; the experiment's window is unchanged, and everything after 2026-06-01 is held out.
+- **Open threads:** the rule, the run, the findings and the gate follow the blueprint's commit.
 
 <!-- example: end -->

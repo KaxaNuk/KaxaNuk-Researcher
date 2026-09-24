@@ -59,3 +59,37 @@ benchmark is chosen for being transparent, liquid and stable, not for being clev
   throughout, which is a survivorship caveat rather than a second result.
 
 <!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-23 — rewriting Experiment 1 to sell a broken cross fast
+
+- **Idea / question:** the owner's: hold the twenty most traded stocks above their 50/200 cross,
+  tested before outside this repository, and his lead on why the first design lost to its control —
+  the 10% band keeps a name after its cross breaks, until enough of the rest of the book moves.
+- **What we tried / considered:** measuring the lead before designing anything.
+    - *The first design's book*, read from its weight file against the refined signal lagged a
+      day: 9.6% of its 70,920 held name-days were in a stock already below its cross; after a break
+      the book kept the name a median of 19 trading days, a mean of 29.1 and at most 147; and on
+      74.9% of days it held at least one such name. This is the book's construction, read from the
+      weight file, not a performance figure.
+    - *The analyzer*, section 5, on the whole panel. As a 0/1 state inside the traded pool the cross
+      ranks names at an information coefficient of 0.0066 over 21 days, positive on 51.8% of dates,
+      −0.0011 over 63 and 0.0035 over 252 — a weak ranker. After a break, on 616 breaks, a name
+      trails the rest of the pool by a mean 0.51% and a median 0.31% over 21 days, and 0.91% and
+      1.04% over 63, below the pool 51.9% and 53.4% of the time.
+    - *Trading every day* to a fresh top twenty: rejected, because ranking churn is noise the
+      analyzer already measures as close to zero, and paying for it is what the band was for.
+- **Outcome / decision:** the owner decided on 2026-09-23 to **rewrite Experiment 1** rather than
+  open Experiment 2, knowing the template freezes a reported Experiment 1: the first design is kept
+  at tag `v0.15.0` and as a row of `RESULTS.md`, and its runs count in the trials. The rewrite
+  separates exits from entries — sell the day after the cross breaks, replace from the top of the
+  ranking with the proceeds, and let ranking churn trade only once a month through a buffer of
+  thirty. Twenty names, the owner's number. The benchmark stays the KN US Equity 600; the control
+  becomes the same rule without the cross.
+- **Open threads:** the break measurement is modest — half a point a month, on barely more than half
+  the breaks — so the rewrite may not rescue claim 1, and the kill switch in the blueprint is
+  written for that case. The desk's holdings now reach back to 2000, which would allow a
+  twenty-four-year point-in-time window once the seed is widened to every name the index held.
+
+<!-- example: end -->

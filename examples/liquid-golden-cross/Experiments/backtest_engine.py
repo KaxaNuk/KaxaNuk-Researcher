@@ -106,6 +106,7 @@ def build_configuration(
     slippage_basis_points: float,
     cash_reserve_percentage: float,
     portfolio_name: str = "portfolio_weights",
+    benchmark_identifier: str = BENCHMARK_IDENTIFIER,
 ) -> object:
     """
     Describe the simulation, including which column of the market data plays which role.
@@ -118,6 +119,9 @@ def build_configuration(
     The cash reserve is an argument for a different reason: weights summing to exactly one leave
     nothing to pay commission with, and the engine fails at the first rebalance rather than
     quietly overdrawing.  A real book holds the same buffer for the same reason.
+
+    The benchmark is an argument for a paper book: the index arrives by hand and can lag the day,
+    and a run past its last date has to be priced against a benchmark that reached it.
     """
     import kaxanuk.backtest_engine.entities
 
@@ -131,7 +135,7 @@ def build_configuration(
         market_data_input_format="csv",
         portfolio_name=portfolio_name,
         portfolio_input_format="csv",
-        benchmark_file_name=BENCHMARK_IDENTIFIER,
+        benchmark_file_name=benchmark_identifier,
         input_market_data_directory=str(MARKET_DATA_DIRECTORY),
         input_portfolio_directory=str(experiment_directory / "Portfolio"),
         backtest_results_output_directory=str(experiment_directory / "Backtest"),

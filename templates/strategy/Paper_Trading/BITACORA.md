@@ -55,23 +55,57 @@ soften it.
 
 ## What a paper-trading run is
 
-Unlike an experiment, this stage is **not** a notebook. It is a script that can be run on a
-schedule, because the question is no longer "what would this have done" but "what does it hold
-today, and how is it doing":
+Unlike an experiment, this stage is **not** a notebook. It is a script that runs on a schedule,
+because the question is no longer "what would this have done" but "what does it hold today, and
+how is it doing".
 
-- reads the same refined panel the experiment did, refreshed;
-- applies the graduated rule with **no re-fitting** — the parameters are frozen at graduation;
-- writes the target book for the date, and appends to a running performance record;
-- flags divergence from the backtest's expected behaviour: turnover, holdings count, exposure.
+**A graduated book is the strategy, frozen.** `promote.py N` runs once, after the sign-off: it
+copies byte for byte, from the commit that graduated, every file the book needs to go from raw
+prices to a priced book into `Paper_Trading_N/`, in the strategy's own layout, and writes
+`FREEZE.json` with the commit, the date and the hash of each file. The rule itself goes into
+`paper_trading_N.py`, copied from the experiment's cells and committed first. Every module resolves
+its paths from its own folder, so the copies read and write inside the book's folder alone: the
+experiments under construction can change the shared modules, and a graduated book never moves.
+A repository can hold several books on paper and several experiments under construction at once.
 
-`daily_update.py` is the scheduler over every graduated book; `Paper_Trading_1/paper_trading_1.py`
-is one graduated rule, frozen. Both carry their contract as a docstring and **no logic**: nothing
-has graduated yet, and agreeing what the stage may and may not do is worth more than code written
-before there is a book to run.
+**`daily_update.py` runs every graduated book once a day**, after the market closes:
+
+- refreshes the shared raw prices once, or reads them from a database another machine published;
+- checks the newest day before any book reads it, and stops every book on a close with no fill
+  price or a move no price can make — a book on broken data is worse than none;
+- runs each frozen book: its frozen refinery, its frozen rule from the experiment's first day,
+  and the engine, twice — over the whole history, and since the day it was frozen;
+- writes the record — the book in force, the engine's daily values and statistics, what the book
+  looked like that day — to local files, a DuckDB database, or both, as `Config/.env` says;
+- flags every diagnostic outside the band registered below, every failed check, an input that
+  lags the day, and a **restatement**: a past value the engine now prices differently, which is
+  flagged and never overwritten;
+- exits 0, 1 or 2 — clean, flagged, failed — so a scheduler can tell.
 
 One rule in that contract is worth repeating, because it is the whole point of the stage: **a
 paper-trading script re-fits nothing.** A run that tunes anything is a backtest wearing a costume,
-and it re-introduces exactly the search that produces negative out-of-sample performance.
+and it re-introduces exactly the search that produces negative out-of-sample performance. The
+freeze is what makes the rule checkable: a book that changed on paper has restarted its paper
+record.
+
+**Months on paper cannot show skill.** Proving a good information ratio takes years, not a
+quarter, so the daily record is read for whether the book behaves like its backtest — turnover,
+holdings, exposure, costs — and never for a good month. What it can show in months is the plumbing,
+which is what this step exists to find before money does.
+
+## Before a book's first day
+
+Each graduated book gets a section in *Current status*, written and committed before
+`daily_update.py` first runs it, and never edited afterwards — a later observation is a new line
+under it, dated:
+
+- the experiment it mirrors, the variant, the commit and the freeze date;
+- the gate, row by row, and the sign-off: a person's name and date;
+- **the bands**: for each diagnostic `daily_update.py` reads, the range `FINDINGS_N.md` measured
+  over the backtest, which the book's `BANDS` carries too;
+- **the kill switch**: the result that retires the book instead of tuning it;
+- the review dates, and the period it has to be watched before anyone proposes production;
+- what the record cannot show, said before anyone is tempted to read it there.
 
 ## Current status
 
@@ -82,6 +116,6 @@ When one does, record it here: which experiment, which variant, which criteria i
 above all — which it does not and why. **The blocking items are the content of this section, not the
 passing ones.**
 
-**`Paper_Trading_1/` is named for the experiment it would mirror.** Experiment 1 is the benchmark,
-so its graduation is not applicable and this folder is renamed for the experiment that actually
-graduates. The convention is right; the number is a placeholder until then.
+**`Paper_Trading_1/` is named for the experiment it would mirror.** It becomes Experiment 1's
+frozen book if Experiment 1 graduates; a later experiment that graduates takes its own number, and
+until one does, this folder holds the contract and nothing else.

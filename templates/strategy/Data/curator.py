@@ -19,6 +19,10 @@ What is expected here is a short driver, not a framework:
   -- the provider's `m_*` columns plus the `c_*` columns defined in
   `Data/Curator/custom_calculations.py`.  Fix the end date rather than using today, so two people
   running a week apart get comparable files.
+- Take a later end date as an argument, `--end-date`, for the one caller that needs today's data:
+  `Paper_Trading/daily_update.py`.  A refresh refetches each file whole, because a fresh pull
+  rebases every adjusted column from the present, and remembers the date each file was fetched
+  through, so a run that stops half way resumes where it stopped.
 - Call the public library once -- `kaxanuk-data-curator`, already installed by `uv sync` from
   `pyproject.toml`, imported as `kaxanuk.data_curator`.  It loops over the identifiers, skips one
   that fails and says why, and writes `<identifier>.csv` for each.
@@ -38,10 +42,11 @@ three: an unused column costs bytes, a missing one costs a refetch of every iden
     split-adjusted        traded value, which is liquidity in today's share terms
     dividend-and-split    the total-return series a signal and the backtest P&L run on
 
-Two folders beside the time series are drop zones, not outputs: `Benchmarks/` for an index's daily
-holdings and returns, `Factors/` for a factor model's returns.  No price provider sells them; the
-backtest's benchmark and the attribution read them.  Without them this script still downloads
-every price and says the index was not staged; the notebooks stop where they first read it.
+An index's daily holdings and returns, and a factor model's returns, are not sold by any price
+provider: they arrive from the desk that builds them, and `Data/hand_supplied.py` reads them -- in
+place, from the folder `KN_ANALYTICS_PATH` names, or from the drop zones `Benchmarks/` and
+`Factors/` beside the time series.  Without them this script still downloads every price and says
+the index was not staged; the notebooks stop where they first read it.
 
 Credentials come from `Config/.env` and are never printed -- not into a log line, a notebook
 output or a commit.  An exposed key is rotated, not edited out.

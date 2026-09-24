@@ -41,7 +41,8 @@ Template version: **0.11.0**. The template ships `Experiments/Experiment_1/` and
 │   ├── Investable_Universe.csv  #   THE SEED, committed: main_identifier is the only required column
 │   └── universe.ipynb           #   -> Security_Master.csv, Data_Issues.csv, Provider_Cache/ (gitignored)
 ├── Data/                        # step 3
-│   ├── curator.py               #   Data Curator driver
+│   ├── curator.py               #   Data Curator driver; --end-date refreshes it for paper trading
+│   ├── hand_supplied.py         #   reads the desk's index and factor files, in place or dropped in
 │   ├── Curator/
 │   │   ├── custom_calculations.py   # c_* columns: one security's own history
 │   │   ├── Time_Series/         #   downloaded, gitignored — universe, cash proxy, benchmarks
@@ -58,7 +59,7 @@ Template version: **0.11.0**. The template ships `Experiments/Experiment_1/` and
 │   ├── portfolio_construction.py    # eligible set -> weights, one signature; the library called inside it
 │   ├── backtest_engine.py       #   the one path from a weight file to a number
 │   ├── attribution_analysis.py  #   the hand-supplied inputs and the book's daily weights; what is missing, first
-│   └── Experiment_N/            #   Experiment_1 ships, the benchmark; N > 1 from this skill's references/
+│   └── Experiment_N/            #   Experiment_1 ships, the first rule; N > 1 from this skill's references/
 │       ├── BLUEPRINT_N.md  BRAINSTORMING_N.md  JOURNAL_N.md  FINDINGS_N.md
 │       ├── experiment_N.ipynb
 │       ├── Portfolio/           #   step 4 output, gitignored, kept by .gitkeep
@@ -66,8 +67,10 @@ Template version: **0.11.0**. The template ships `Experiments/Experiment_1/` and
 │       └── Attribution/         #   step 6 output, gitignored, kept by .gitkeep
 └── Paper_Trading/               # step 7
     ├── BITACORA.md              #   the graduation gate — a contract, not a log
-    ├── daily_update.py          #   the scheduler over graduated books; contract as docstring
-    └── Paper_Trading_N/paper_trading_N.py   # one frozen rule per graduated experiment; Paper_Trading_1 ships
+    ├── promote.py               #   freezes a graduated experiment into Paper_Trading_N/
+    ├── daily_update.py          #   runs every frozen book each day; record.py keeps the record
+    ├── record.py                #   the six tables, to CSV files, a DuckDB database or both
+    └── Paper_Trading_N/         #   one frozen book: paper_trading_N.py, its files, FREEZE.json
 ```
 
 ## What is committed, and what is not
@@ -116,7 +119,7 @@ done
 Then copy the four templates from this skill's `references/` into `$base/`, renaming `N`, and copy
 `experiment-notebook.ipynb` to `$base/experiment_$N.ipynb`. The notebook is Experiment 1's: retitle
 it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that only apply to
-the benchmark. Then, in the notebook, declare the experiment's columns in section 0, import the
+Experiment 1. Then, in the notebook, declare the experiment's columns in section 0, import the
 panel loader from `Experiments/securities_panel.py` in section 1, write the rule in section 2 and
 hand its sizing to `portfolio_construction.py`.
 **`BLUEPRINT_N.md` is written before the rule**, and does not change afterwards.

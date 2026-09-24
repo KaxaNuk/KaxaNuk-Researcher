@@ -68,7 +68,7 @@ the copy as the plan, make it on the owner's go, and the draft continues from th
    predicting this*. Probe `RESULTS.md` first, not the folder: `Data/Analyzer/` is ignored by git,
    so a fresh clone has it empty even after D, the data, was done.
 5. `Experiments/Experiment_N/BLUEPRINT_N.md` as shipped — the headings to fill — and for N > 1,
-   `FINDINGS_1.md` (the benchmark is shared context) but **no other experiment's files** unless the
+   `FINDINGS_1.md` (Experiment 1 is shared context) but **no other experiment's files** unless the
    owner has written the request and reason into `JOURNAL_N.md` first. Say so if they have not.
 6. The home library, for the domains the thesis touches, and the owner's `Philosophy/` — as
    contrast and warning, never as a citation.
@@ -91,7 +91,8 @@ as the example's.
   Each row says what would falsify it.
 - **Success criteria**, **what would falsify it** — one condition for the whole experiment, and the
   changes that may not rescue it — **key risks** and **open questions this experiment does not
-  answer**, in the template's terms. For Experiment 1, the benchmark does not need to win.
+  answer**, in the template's terms. For Experiment 1, what it has to beat is the benchmark
+  `BRAINSTORMING_1.md` names.
 - Add one line under the experiment's heading, with today's date, as the example's blueprint does:
   `**Written YYYY-MM-DD, before any rule was coded.**` Leave the template's blockquote at the top,
   whole, its last line included: *delete this blockquote* is addressed to the owner, who deletes it
