@@ -1,17 +1,32 @@
 """
-The frozen rule for the first strategy to graduate -- a placeholder until one does.
+The frozen book of Experiment 1 -- step 7 of 8.  `Paper_Trading_N` mirrors the `Experiment_N` it
+was promoted from, so the lineage of a paper-traded book is never in question.
 
-Empty of logic on purpose.  `Paper_Trading_N` mirrors the `Experiment_N` it was promoted from, so
-that the lineage of a paper-traded book is never in question, and this directory is the skeleton
-showing that convention rather than a strategy already running.
+In plain words: the rule that graduated, **copied out of the experiment notebook and then left
+alone**.  The notebook is the record of how the rule was *chosen*, including everything tried and
+rejected, and it stays free for the next piece of research.  This file is the record of what is
+*being traded*, and a change to it is a change to a live book, not a change to an experiment.
 
-When a strategy graduates, this file holds its selection and weighting rule **copied out of the
-experiment notebook and then left alone**.  The duplication is intentional: the notebook is the
-record of how the rule was *chosen*, including everything tried and rejected, and it stays free to
-be edited by the next piece of research.  This file is the record of what is *being traded*, and a
-change to it is a change to a live book, not a change to an experiment.
+What it holds, once its experiment graduates:
 
-`../daily_update.py` calls into here; it never re-derives the rule itself.
+- the rule's settings, copied from the experiment notebook, and its costs;
+- the rule itself, in the form the notebook ran it, with its control -- the same rule with one
+  ingredient removed, which runs beside the book every day;
+- `BANDS`: for each diagnostic, the range `FINDINGS_N.md` measured over the backtest, registered
+  in this book's section of `../BITACORA.md` before its first day; a day outside one is a flag;
+- `run(as_of)`, which `../daily_update.py` calls once a day.  It runs the frozen refinery in this
+  folder over the raw files linked into `Data/Curator/Time_Series/`, applies the rule from the
+  experiment's first day to `as_of`, writes the weight files, prices the book and its control with
+  the frozen engine module twice -- over the whole history and since the freeze date in
+  `FREEZE.json` -- and returns what the record needs: the engine's results, the book in force,
+  the day's diagnostics, the flags and a summary.
+
+Every module it imports is the copy `../promote.py` made in this folder, loaded by path under a
+name of its own, never the shared one in `Experiments/`: that is what keeps it frozen.  It re-fits
+nothing, and it computes no performance figure -- the engine does.
+
+`../daily_update.py` calls into here; it never re-derives the rule itself.  A strategy with no
+graduated book keeps this file as it is: the contract, with no logic.
 
 See `../BITACORA.md` for the gate, and `../../RESULTS.md` for the numbers a candidate is judged on.
 """

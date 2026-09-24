@@ -88,8 +88,32 @@ from.
 
 **The sign column arrived after this was measured.** Section 4 of the analyzer now writes the share
 of dates on which the coefficient was positive, the sign the rule expects; the run of 2026-09-19
-did not, so rows 2 to 5 carry none until the analyzer runs again. The windows overlap: consecutive
-dates share 20 of 21 days at a month and 251 of 252 at a year.
+did not, so rows 2 to 5 carry none. The windows overlap: consecutive dates share 20 of 21 days at a
+month and 251 of 252 at a year.
+
+**Measured again 2026-09-23, on the same panel, which ended 2026-06-01**, for the second design of
+Experiment 1: the refinery had not been re-run since, so nothing after the window's end was read.
+The rows above reproduce — 0.0112, 0.0026, −0.0060 and 0.038 — and now carry their signs, and the
+cross is measured as the rule reads it, a state of 1 or 0.
+
+| # | Measurement | Value | Dates with the expected sign | Section |
+| --- | --- | ---: | ---: | --- |
+| 10 | Information coefficient of `r_trend_50_200`, 21 days, eligible pool, on 6,170 dates | 0.0112 | 53.2% | 4 |
+| 11 | The same, 63 days, on 6,128 dates | 0.0026 | 51.4% | 4 |
+| 12 | The same, 252 days, on 5,939 dates | −0.0060 | 47.6% | 4 |
+| 13 | Information coefficient of the cross as a state, 21 days, eligible pool, on 6,066 dates | 0.0066 | 51.8% | 5 |
+| 14 | The same, 63 days, on 6,024 dates | −0.0011 | 49.2% | 5 |
+| 15 | The same, 252 days, on 5,835 dates | 0.0035 | 48.9% | 5 |
+| 16 | A name whose cross breaks, against the rest of the eligible pool over the next 5 days: mean, median | −0.16%, −0.06% | 50.5% below the pool | 5 |
+| 17 | The same over 21 days, on 616 breaks | −0.51%, −0.31% | 51.9% below the pool | 5 |
+| 18 | The same over 63 days, on 609 breaks | −0.91%, −1.04% | 53.4% below the pool | 5 |
+
+**What rows 16 to 18 measure, and what they do not.** A break is a name in the eligible pool whose
+cross was at 1 the day before and is at 0 that day; its forward return runs from that day's close,
+against the equal average of the pool on the same dates. The windows overlap as above, and a name
+can break more than once. It is not what a rule that sells on the break earns: that rule sells at
+the next day's VWAP and buys a replacement, not the pool. It is the most a rule that holds on after
+a break can lose, and it is small — half a point a month, on barely more than half the breaks.
 
 **What it says.** The trend signal barely predicts return and strongly predicts volatility. An
 information coefficient of 0.011 at one month is noise beside the 0.02 to 0.03 a working signal

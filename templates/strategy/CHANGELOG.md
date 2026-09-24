@@ -41,6 +41,42 @@ for somebody who was not in the room:
 
 ---
 
+## 0.12.0 (2026-09-23)
+
+**MINOR** — step 7 gets its machinery: a graduated book is the strategy frozen, and one daily run
+refreshes, checks, rules and prices every frozen book into a record kept in files, a database or
+both. The benchmark is named in `BRAINSTORMING_1.md` and Experiment 1 can graduate. The desk's files
+are read in place. Nothing about any result changes.
+
+**What to do differently:** in a strategy made from 0.11.0, bring across by hand the new files —
+`Data/hand_supplied.py`, `Paper_Trading/promote.py` and `record.py` — and the changed ones:
+`Data/curator.py`'s docstring, `Paper_Trading/daily_update.py` and `paper_trading_1.py`,
+`BITACORA.md`'s *What a paper-trading run is* and *Before a book's first day*, `SETUP.md`'s keys and
+*Paper trading, daily*, `Config/.env.template`, `.gitignore`, `pyproject.toml`, and the benchmark's
+wording in `AGENTS.md`, this README, `BLUEPRINT_1.md`, `JOURNAL_1.md` and the experiment notebook.
+
+### Added
+
+- **`Paper_Trading/promote.py` and `record.py`**, beside `daily_update.py`, each a contract in its
+  docstring: freeze a graduated experiment into `Paper_Trading_N/` with `FREEZE.json`; run every
+  frozen book each day; keep six keyed tables in CSV files, a DuckDB database or both, a
+  restatement flagged and never overwritten.
+- **`Data/hand_supplied.py`**, the reader of the desk's index and factor files, in place from
+  `KN_ANALYTICS_PATH` or from the drop zones, in the desk's own names and headers.
+- **`KN_ANALYTICS_PATH` and four `PAPER_TRADING_*` settings** in `Config/.env.template`; `duckdb`
+  and `pyarrow` in `pyproject.toml`; `.gitignore` lines for each day's paper-trading output.
+- **`BITACORA.md` *Before a book's first day*** and **`SETUP.md` *Paper trading, daily***.
+
+### Changed
+
+- **The benchmark is what `BRAINSTORMING_1.md` names**, and Experiment 1 is the first rule tested
+  against it, able to graduate like any other; its rules freeze once `FINDINGS_1.md` reports, and a
+  rewrite the owner decides is written down as one. `AGENTS.md`, this README's order of work,
+  `BLUEPRINT_1.md` — its thesis, success criteria and falsifying condition — `JOURNAL_1.md`, the
+  experiment notebook and `BITACORA.md` say so.
+- **`Data/curator.py`** says a paper-trading refresh takes `--end-date` and refetches each file
+  whole; `daily_update.py` and `paper_trading_1.py` state the freeze and the daily run.
+
 ## 0.11.0 (2026-09-23)
 
 **MINOR** — the bar asks for a control on the rule's own rebalance dates, one falsification

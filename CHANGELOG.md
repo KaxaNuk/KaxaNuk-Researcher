@@ -6,6 +6,56 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.16.0] - 2026-09-23
+Paper trading gets its machinery, and Experiment 1 can graduate. A graduated book is the strategy
+frozen: `promote.py` copies every file it needs, byte for byte, into `Paper_Trading_N/`, and
+`daily_update.py` runs every frozen book each day — refresh, check, rule, engine — and keeps the
+record in CSV files, a DuckDB database or both, set in `Config/.env`. The benchmark is now what
+`BRAINSTORMING_1.md` names; Experiment 1 is the first rule tested against it, and a rewrite of it
+is written down as one. The desk's index and factor files are read in place, in their own names.
+The worked example's Experiment 1 is being rewritten: its second blueprint is committed here,
+before any rule. Strategy template 0.12.0, example 0.12.0.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g` and a new session. In a
+strategy, take the template's 0.12.0 files by hand, as its entry lists them. Put the desk's folder
+in `KN_ANALYTICS_PATH` rather than renaming its files into `Data/Curator/`; a drop-in copy must now
+keep the desk's names and headers. Name the benchmark in `BRAINSTORMING_1.md` and hold Experiment 1
+to it like any other experiment. When an experiment graduates, write its rule into
+`paper_trading_N.py`, commit, run `promote.py N`, register the book in `BITACORA.md` before its
+first day, and schedule `daily_update.py` as `SETUP.md` shows.
+### Added
+- **The daily run of a paper book**, in the template as contracts and in the example as code:
+  `Paper_Trading/promote.py` freezes a graduated experiment into `Paper_Trading_N/` with
+  `FREEZE.json`; `daily_update.py` refreshes the prices once, checks the newest day, runs each
+  frozen book's refinery, rule and engine over the whole history and since the freeze, and exits
+  0, 1 or 2; `record.py` keeps six keyed tables, upserted, with a restatement flagged and never
+  overwritten, in local CSV files, a DuckDB file, or a PostgreSQL server through DuckDB. Four
+  `PAPER_TRADING_*` settings and `KN_ANALYTICS_PATH` join `Config/.env.template`; `duckdb` and
+  `pyarrow` join `pyproject.toml`; `.gitignore` ignores each day's output.
+- **`Data/hand_supplied.py`**, the one reader of the desk's index holdings, index returns and factor
+  files, in place from `KN_ANALYTICS_PATH` or from the drop zones, in the desk's own names and
+  headers; the Curator's index staging, the universe notebook, the experiment and
+  `attribution_analysis.py` read through it.
+- **`Data/curator.py --end-date`**, with a resume by the date each file was fetched through and a
+  retry on a request that hangs, so paper trading can refresh through the day.
+- **`BITACORA.md` *Before a book's first day***: the section each graduated book gets, committed
+  before its first run — bands, kill switch, review dates, what the record cannot show. SETUP's
+  *Paper trading, daily* says how to run, configure and schedule it.
+- **In the example**: the analyzer measures the cross as a 0/1 state and what a name earns after
+  its cross breaks; Experiment 1's second blueprint, its brainstorming and journal entries, and the
+  measurements in `RESULTS.md` it cites.
+### Changed
+- **The benchmark is named in `BRAINSTORMING_1.md`** — an index, an ETF or an equal-weight book of
+  the universe — and Experiment 1 is the first rule tested against it, able to graduate. Its rules
+  still freeze once its findings report; a rewrite the owner decides is written down as one. The
+  template's `AGENTS.md`, README, blueprint, journal, notebook and `BITACORA.md`,
+  `experiment-lifecycle` 0.10.0, `paper-trading-gate` 0.2.0 and `blueprint` say so.
+- **`paper-trading-gate` 0.2.0** covers the freeze, the daily run and the registration before day
+  one; it still never declares graduation, computes a number or re-fits.
+- **`attribution-analysis-runs` 0.2.8** says the desk's files are read as shipped.
+- **`Experiments/backtest_engine.py`** takes the benchmark as an argument, for a paper window past
+  the index's last date.
+
 ## [0.15.0] - 2026-09-23
 A blueprint now meets a critic before the go, and the bar it is held to asks for more: a control
 that differs in exactly one thing, one falsification condition fixed before the rule, and the

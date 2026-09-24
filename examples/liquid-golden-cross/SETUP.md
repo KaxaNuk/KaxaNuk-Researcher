@@ -130,6 +130,11 @@ Fill in the key for your data provider; the template has a line for FMP, Sharada
 licences: the process runs without them up to portfolio construction, and the backtest and
 attribution report what is missing and skip.
 
+`KN_ANALYTICS_PATH` is not a key: it is the folder the desk ships the index and the factor model
+in, holding `Benchmarks/` and `Factors/`, read in place in the desk's own names and headers. Leave
+it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and
+`Data/Curator/Factors/`. The four `PAPER_TRADING_*` lines configure step 7, below.
+
 > **For the agent.** Never open, read back, print or echo `Config/.env`, and never put a value from
 > it in a command that gets recorded. You may say **which keys are still empty, by name only** —
 > and you cannot fill them: that is the one thing in this file only the user can do.
@@ -253,6 +258,56 @@ assistant, Claude or Codex.
 > by name, that the skills are installed once for the user and nothing is installed here, whether
 > the repository has a remote yet, and that the next step is `OBJECTIVE.md`. Then stop.
 > Starting research work is a different request.
+
+---
+
+## Paper trading, daily
+
+Once an experiment has graduated and `Paper_Trading/promote.py N` has frozen it,
+`Paper_Trading/daily_update.py` runs every frozen book once a day. Try it by hand first:
+
+```bash
+uv run python Paper_Trading/daily_update.py --dry-run
+uv run python Paper_Trading/daily_update.py
+```
+
+The first reads, checks, runs and prices everything and writes nothing; the second writes the
+record. Running the same day twice replaces that day's rows instead of adding to them.
+
+**Where it reads and writes** is set in `Config/.env`:
+
+| Line | Values | What it does |
+| --- | --- | --- |
+| `PAPER_TRADING_INPUT` | `provider` or `database` | `provider` downloads the day's prices here, with the data key; `database` reads the prices another machine published, with no download and no data key |
+| `PAPER_TRADING_SINKS` | `local`, `database`, `local,database` | `local` writes the record as CSV files in `Paper_Trading/Record/`; `database` writes the same tables to the database |
+| `PAPER_TRADING_DATABASE` | a file, or `postgres:<connection string>` | a DuckDB file, by default `Paper_Trading/paper_trading.duckdb`; or a PostgreSQL server, reached through DuckDB |
+| `PAPER_TRADING_PUBLISH_DATA` | `true` or `false` | with the database sink, also writes the refreshed prices there, for the machines that read them |
+
+Each has a flag that overrides it for one run: `--input`, `--sinks`; `--as-of` runs a past day and
+`--book` one book. **A local record is not a backup**: the provider restates its history, so a
+day's inputs cannot be fetched again as they were. Keep the database sink on, or back the folder
+up.
+
+**Schedule it** after the US close, once the provider has the day. On Windows, from the strategy's
+folder, once:
+
+```bash
+schtasks /Create /SC WEEKLY /D MON,TUE,WED,THU,FRI /ST 19:00 /TN "<strategy-name> daily update" /TR "uv run --directory <full path of this folder> python Paper_Trading/daily_update.py"
+```
+
+On macOS or Linux, one line of `crontab -e`, in the machine's own time zone:
+
+```bash
+0 19 * * 1-5 cd <full path of this folder> && uv run python Paper_Trading/daily_update.py
+```
+
+The run's log is in `Paper_Trading/Logs/`, one file per day, and its exit code says how the day
+went: 0 clean, 1 flagged, 2 failed. The licensed engine checks its licence online at least once a
+week, so the machine needs the network that often.
+
+> **For the agent.** Registering a scheduled task changes the machine: give the command and let
+> the user run it. Never read the record's figures back as your own: they are the engine's, and
+> you quote them with the file they came from.
 
 ---
 

@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.9.0
+  version: 0.10.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -26,7 +26,7 @@ belongs there — a `.py` file as its docstring, a notebook as its markdown cell
 with the strategy's own. The worked example beside it, `examples/liquid-golden-cross/`, works one
 strategy, `liquid-golden-cross`, through the same files, with the strategy's own lines between
 example markers. The fixed shape buys comparability and legibility: any experiment looks like any
-other, every experiment is measured against the same declared benchmark, and a CIO reads the whole
+other, every experiment is measured against the same named benchmark, and a CIO reads the whole
 state of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
 Work in English: notebook narrative, documents, function names and comments.
@@ -112,11 +112,13 @@ append-only so the path is recoverable. `FINDINGS` is rewritten so there is one 
 blueprint cites where it comes from** — a note in `Bibliotheca/` or a section of the analyzer — and
 a prediction with no source is a lead to read first, not a prediction.
 
-Repository-level history — the benchmark once the first entry of `BRAINSTORMING_1.md` has chosen it,
-the data step, the architecture — belongs in `JOURNAL_1.md`, Experiment 1 being the declared
-benchmark. Later journals point there. That brainstorming entry is the one step allowed before
-`BLUEPRINT_1.md`: Experiment 1 *is* the benchmark, so choosing it cannot wait for the blueprint that
-depends on it.
+Repository-level history — the benchmark once the first entry of `BRAINSTORMING_1.md` has named it,
+the data step, the architecture — belongs in `JOURNAL_1.md`, Experiment 1 being the first rule
+tested against that benchmark and the yardstick for every later one. Later journals point there.
+That brainstorming entry is the one step allowed before `BLUEPRINT_1.md`: the blueprint states what
+"beat" means, so the benchmark cannot wait for it. Experiment 1 can graduate like any other; its
+rules freeze once its findings report, and a rewrite the owner decides is written down as one, as
+the strategy's `AGENTS.md` says.
 
 ## 4. The notebook — one section contract, one cell that is the strategy
 
@@ -212,8 +214,8 @@ its path: `--only Universe` stops over the seed, which is already the strategy's
 2. Copy the four templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
    code**, stating the economic mechanism, the claim it moves, its control and the one condition
    that would falsify it, and citing every prediction's source. The blueprint template is the
-   benchmark's; delete the sentences that only apply to Experiment 1.
-3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`. It too is the benchmark's:
+   first experiment's; delete the sentences that only apply to Experiment 1.
+3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`. It too is Experiment 1's:
    retitle it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that
    only apply to Experiment 1. Then declare the experiment's columns in section 0; import the
    panel loader in section 1; write the rule in section 2.
