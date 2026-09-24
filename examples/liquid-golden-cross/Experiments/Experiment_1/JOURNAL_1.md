@@ -377,3 +377,223 @@ leaves open.
 - **Open threads:** the rule, the run, the findings and the gate follow the blueprint's commit.
 
 <!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-24 — the second design, run: it fails its kill switch
+
+- **Idea / question:** run Experiment 1's second design end to end, as `BLUEPRINT_1.md` fixed it on
+  2026-09-23, and read it against its predictions, its kill switch and the gate.
+- **What we tried / considered:**
+    - *The refresh.* The Curator's download was refreshed through 2026-09-23, and the universe and
+      the refinery were re-run on it before the experiment. The experiment reads the panel to
+      2026-06-01 and no further: 6,390 dates by 772 positions, with the index's membership known
+      from 2000-01-03 to 2026-08-14. A refresh rebases every adjusted column, so this design and
+      the first sit on two downloads.
+    - *The aborted run.* The first attempt stopped at the rule's engine run: the engine refused a
+      weight column whose gross exposure was 1.000002, because rounding a fully invested
+      twenty-name book to six decimals pushed it past one. `write_weight_file` in
+      `Experiments/backtest_engine.py` now rounds every weight down, and the remainder goes to
+      cash. The attempt produced no figure; `RESULTS.md` excludes it by name.
+    - *The capacity cell.* Added to section 3 after the blueprint's commit and before the run. It
+      measures construction, each trade against the name's 63-day average traded value, not a
+      figure the blueprint predicted, and it answers criterion 4 of the gate, capacity, which the
+      first design never modelled.
+    - *The seed's coverage.* By the desk's holdings, the 788 identifiers of the seed cover about 92%
+      of the index's weight in 2017 and 97.5% in 2025; the rest of the index was never selectable.
+      The desk's eleven sector factor files are empty, so the sector factors read zero, as in the
+      first design.
+- **Outcome / decision:** the run of 2026-09-23 reached the end of its Verify section: 14 checks on
+  the book and its weight file, and 92 checks on 45 engine runs.
+    - *Against its control.* The rule compounds at 17.87% with a Sharpe of 0.806, against the
+      index's 14.63% and 0.770. Its control, the same names without the cross, earns 18.73% at
+      0.7748: the rule is 0.031 ahead on Sharpe and 0.86 points a year behind on CAGR, so
+      prediction 1 fails. Its beta is 1.067 against the control's 1.238, which the blueprint reads
+      as timing.
+    - *The kill switch trips.* The rule is ahead of its control on both measures only in
+      2020–2022, one sub-period of three. That holds prediction 3 and fires the kill switch.
+    - *The arm.* The diagnostic arm reproduced the first design's delay, a median of 28 days held
+      after a break, and earned 19.52% at 0.8773: 1.65 points a year more than the rule. That fails
+      prediction 2 the other way, and rules out exit speed as the reason the cross loses.
+    - *The perturbation.* 12 of 15 cells keep the sign of the rule's Sharpe margin, so criterion 3
+      reads as passed on its own rule. The trial count stays at the blueprint's thirty-one.
+    - *Attribution.* Idiosyncratic points: the rule 36.19, the control 40.99, the arm 50.02, and
+      five random books −11.78 to 35.31, mean 22.4.
+    - *The claims.* Claim 1 stays falsified, with exit speed ruled out as the reason; claim 4 moves
+      to measured. `FINDINGS_1.md` is rewritten for the second design, with the first design's
+      headline figures kept as the superseded row, and `RESULTS.md`, `OBJECTIVE.md` and
+      `Paper_Trading/BITACORA.md` follow it.
+    - **The owner's decision, 2026-09-24.** The rule failed its kill switch, and the diagnostic arm
+      did better than the fast exit. He chose to confirm the arm's design on years it was not
+      found on, 2002 to 2016, as Experiment 2, with the seed widened to every name the index held
+      since 2000. It goes to paper trading only if it passes its own gate. Nothing is frozen, and
+      `Paper_Trading_1/` stays the contract.
+- **Open threads:** Experiment 2's blueprint, before its rule. A run of this design from a wiped
+  working copy, which its success criteria ask for, is not recorded. The third attribution pass has
+  not been run. Sector factor files with data. Far more random books.
+
+<!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-24 — corrections to the entry above, and the data step since
+
+- **Idea / question:** an independent check of the second design's documents against the executed
+  notebooks of 2026-09-23 found figures in the entry above that no run printed or that it misread,
+  and a change to the data step that no journal recorded.
+- **What we tried / considered:** each point read again from the executed experiment and universe
+  notebooks and the refinery's log of that run, and the entry above left as it was written.
+- **Outcome / decision:**
+    - *The seed's coverage.* The entry above says the seed covers about 92% of the index's weight
+      in 2017 and 97.5% in 2025. No run recorded here printed either figure, and both are
+      withdrawn. The universe run of 2026-09-23 printed the seed's share of the index's members,
+      not of its weight: 39.8% on 2000-01-03, and no date through 2026-08-14 on which it held 99%
+      of them.
+    - *The universe and the refinery, re-run on 2026-09-23.* The universe notebook found 788
+      identifiers in the seed, 79 flagged delisted, 266 late starts and 76 early ends, 787 that can
+      ever be signalled, and the index's holdings from 2000-01-03 to 2026-08-14, 571 to 600 members
+      a date. The refinery wrote 788 files, a panel of 4,308,857 rows.
+    - *Sharpe ratios at one precision.* The entry above quotes the rule and the index to three
+      decimals and the control to four. Section 4's table gives the rule 0.8057, the control
+      0.7748, the diagnostic arm 0.8773 and the index 0.7699.
+    - *The random books.* All five engine summaries were printed: CAGR 6.88%, 8.75%, 8.51%, 8.95%
+      and 1.82%, Sharpe 0.344, 0.461, 0.440, 0.455 and 0.091, for seeds 11 to 55. They draw on the
+      first trading day of each month from 2017-01-03, which is not one of the rule's trade dates,
+      and the lagged pool is empty that day, so each holds only cash until 2017-02-01. Every one
+      valued a stale `VMW` price, and four of them a stale `SRCL` one.
+    - *`TWTR`.* It was sold at its last price in 17 of the 45 runs, not in the rule's alone, and
+      both delay cells targeted it after that price; the engine left those weights in cash.
+    - *Claim 4.* *Measured* is the status `BLUEPRINT_1.md` fixed for the arm, reached on an
+      engine-priced book at a 15% band, where the claim names 10% and the vocabulary of
+      `OBJECTIVE.md` names the analyzer. `OBJECTIVE.md` now says both.
+    - *`Paper_Trading_1/`.* The entry above says it stays the contract. `paper_trading_1.py` now
+      carries the second design's rule, in the form a frozen book takes. Nothing froze it: no
+      `FREEZE.json` exists, its bands are not registered in `Paper_Trading/BITACORA.md`, and it
+      has never run.
+    - *Experiment 2's window.* The entry above names it 2002 to 2016. Its blueprint fixes the start
+      by a coverage rule, so it is the years before 2017 that rule allows, from 2002-07-30 at the
+      earliest, to 2016-12-30.
+    - *Experiment 2's blueprint.* Written on 2026-09-24. It goes in a commit of its own, with its
+      brainstorming, before any rule code, and never in this experiment's results commit: that is
+      what the open thread above asks.
+    - *Two printed labels, corrected after the run.* Section 2's rule cell printed "114 of them
+      first days of a month", a count of the first trading days of a month in the window,
+      2017-01-03 among them, on which the rule does not trade. Section 5's first cut printed that
+      the active return falls into allocation and interaction, where the run puts 0.11 points into
+      allocation, 12.26 into selection and 39.78 into interaction. Both now print what they
+      measure, and no figure changes.
+    - *The data step.* After this design ran, `Data/curator.py` gained a second provider,
+      Sharadar, for the names FMP does not carry, keyed by `KNDC_API_KEY_SHARADAR`, through the
+      Data Curator's provider on the library's issues/31 branch until it is released. Sharadar
+      publishes no VWAP, so for its names the split-adjusted close stands in for the split-adjusted
+      VWAP: the fill price is the day's close and the traded value the close times the volume. No
+      figure in `FINDINGS_1.md` comes from it: the run came first, on a seed of 788 identifiers.
+      It is for Experiment 2, whose seed is to widen to every name the index held since 2000, as
+      `../Experiment_2/BRAINSTORMING_2.md` plans.
+- **Open threads:** the seed's share of the index's weight, from a cell that prints it, before any
+  document quotes one. A run of this design from a wiped working copy, before its results are
+  committed.
+
+<!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-24 — the second design reproduced from a wiped working copy
+
+- **Idea / question:** the second design's success criteria ask that it reproduce from a wiped
+  working copy, and `AGENTS.md` commits a result only after such a run. The run of 2026-09-23 was
+  made in the working copy the design was written in, on a download refreshed in place: not that
+  test.
+- **What we tried / considered:**
+    - *The copy.* A fresh clone of that working copy, on its 788-name seed. The download ran on the
+      commit that holds the design's code, the later stages on a later commit that sorts the slot
+      book by date; `Data/curator.py` is the same in both. The environment was the one the run of
+      2026-09-23 used: Backtest Engine 0.66.0 and Attribution Analysis 0.2.0.
+    - *The download.* `Data/curator.py` against FMP from 07:48 to 10:30 on 2026-09-24: 789 files
+      through 2026-06-01, `MIC` the one name with no data, and the pass that pages back for earlier
+      history finished on all 789.
+    - *The desk's move.* The desk moved its files that day, to the Analytics Factory's
+      `Benchmark Portfolios/` and `Factor Models/`. The curator looked for the index in the old
+      folder and did not stage it, and the universe stage, run next, stopped. The clone took
+      `Data/hand_supplied.py`, and nothing else, from a later commit that reads both layouts; the
+      curator ran again, skipped the 789 files it had and staged the index, and the universe, the
+      refinery, the analyzer and the experiment ran, the notebooks headless, the experiment from
+      10:47 to 12:38.
+- **Outcome / decision:** every notebook reached the end of its Verify section: 7 checks in the
+  universe, 8 in the analyzer, and in the experiment 14 on the book and 92 on 45 engine runs.
+    - *To the digit.* Every engine figure: the rule's 17.87% and 0.8057, the control's 18.73% and
+      0.7748, the arm's 19.52% and 0.8773, the rule at realistic costs, the index's 14.63% and
+      0.7699, the three sub-periods, the fifteen cells and their controls, and the five random
+      books. The Brinson-Fachler cut and every factor line of every arm. The book's 311 trade
+      dates, its weight file of 99 identifiers, the nine invariants, the holdings, the broken
+      name-days and the sector drift. The engine's warnings too: `TWTR` sold at its last price in
+      17 runs, the delay books' weights after it, `IPG`, and the stale `SRCL` and `VMW` prices in
+      the random books.
+    - *Not to the digit.* The notebook's own sum of unpriced weight read 0.01 more for random
+      seeds 11, 22, 33 and 55: 39.53, 39.48, 39.35 and 40.05 against 39.52, 39.47, 39.34 and
+      40.04. And the panel holds 771 positions against 772: the provider returned nothing for
+      `MIC` through 2026-06-01, and the refinery read 787 securities, 4,252,838 rows, where the
+      download refreshed through 2026-09-23 gave it 788 and 4,308,857.
+    - *The construction figures, corrected.* Exits 290, where the run of 2026-09-23 printed 462;
+      entries 310, not 482; mean one-way turnover per trade date 0.060, not 0.088; annual turnover
+      1.99 times the book, not 2.9. Capacity at 1% of a day's traded value: the worst trade
+      $91,546,647, the first percentile $146,012,883, the median $16,231,104,636, not $2,018,972,
+      $123,231,452 and $14,574,799,654; at 5%, $457,733,236, $730,064,416 and $81,155,523,178, not
+      $10,094,858, $616,157,261 and $72,873,998,268.
+    - *Why.* `portfolio_construction.build_slot_book` builds its frame with pandas from each trade
+      date's targets, and pandas assembled the rows in the order the names first appeared, not in
+      date order. Section 3 takes each trade as the change from the row before, so exits, entries,
+      turnover and capacity compared dates that were not neighbours. The first daily dry run of the
+      paper-trading machinery found it, and the function now sorts the rows by date. The engine
+      read each trade date's weights by its date, so no engine figure moved; the figures read from
+      the book laid on the window's calendar did not move either.
+    - *`FINDINGS_1.md`.* Success criterion 3 is shown. The construction and capacity figures are
+      the reproduction's, and so is the random books' unpriced weight; the open lead for a run from
+      a wiped working copy is closed. The verdict does not change: the rule fails its kill switch
+      and does not graduate.
+- **Open threads:** which trade is the worst, for capacity, is still not traced, nor the 0.01 of
+  unpriced weight. The paper-trading machinery was tested on this design, frozen as a candidate in
+  that working copy and never committed, and those runs priced days after 2026-06-01, which the
+  blueprint holds out; no figure from them is in `FINDINGS_1.md`.
+
+<!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-24 — a second check of the second design's documents
+
+- **Idea / question:** a second independent check of `FINDINGS_1.md` and `RESULTS.md` against the
+  reproduction's outputs, logs and engine reports found statements that no output supports, a cause
+  the evidence rules out, and the reproduction described more simply than it ran.
+- **What we tried / considered:** each point read again from the reproduction's executed notebooks
+  and logs, the engine's report for the rule, the weight files and the run's environment. The
+  entries above are left as they were written.
+- **Outcome / decision:**
+    - *The reproduction, as it ran.* The entry above describes it rightly, and the findings now do
+      too: the download ran with the clone at the working copy's commit `50ebdad`, which holds the
+      design's code; the universe stage then stopped, once, on the desk's move; and the later stages
+      ran at `45a690f`, which sorts the slot book, with `Data/hand_supplied.py` from `d7d1816`,
+      after the curator ran again to stage the index. That is a manual step, which the blueprint's
+      success criteria do not allow for, and the findings say so beside *Shown*.
+    - *The index's row.* The findings named the refresh of the panel as a possible reason the index
+      reads 14.63% and 0.7699 here against 14.71% and 0.774 at `v0.15.0`. It is not one: the curator
+      stages the index from the desk's own daily returns, and the reproduction, on a download never
+      refreshed, returned the same row. The candidates left, untraced, are a different first valued
+      day and a change in the desk's index files, whose holdings began in 2017 at `v0.15.0` and
+      begin on 2000-01-03 in both runs of this design.
+    - *Sortino.* The findings said the run did not measure it. The engine's report carries it for
+      every run; the notebook does not print it, and no Sortino figure is quoted.
+    - *Turnover.* The findings called the engine's realised turnover lower than the 1.99 times the
+      book, target to target. No output gives a realised turnover, and the claim is withdrawn.
+    - *The reserve and the capital.* The 2% cash reserve and the $1,000,000 are the notebook's
+      settings, not the blueprint's, which fixes the commission, the slippage and `SHY` for cash.
+    - *Unprinted, and now sourced.* The first column of the arm's and the random books' weight
+      files, 2017-01-03, holds only `SHY`, the cash proxy, and the random books first hold stocks on
+      2017-02-01: the weight files show both, and no cell prints either. The arm's 41 rebalances are
+      the 41 dates of its weight file, that first column among them. The library versions, Backtest
+      Engine 0.66.0 and Attribution Analysis 0.2.0, are those installed on 2026-09-22 in the
+      environment both runs used; no cell prints them.
+- **Open threads:** a line in the notebook that prints the library versions and each random book's
+  first invested date, so the next run records them.
+
+<!-- example: end -->

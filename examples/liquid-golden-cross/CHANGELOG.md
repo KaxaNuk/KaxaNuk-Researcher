@@ -41,6 +41,68 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.0 (2026-09-24)
+
+**MINOR** — template 0.13.0; Experiment 1's second design run, reported and reproduced from a wiped
+working copy; and Experiment 2's blueprint, committed before its rule. Experiment 1's exits,
+entries, turnover and capacity, as its run of 2026-09-23 printed them, are corrected. The seed is
+still the 788 identifiers Experiment 1 ran on.
+
+**What to do differently:** quote Experiment 1's exits, entries, turnover and capacity from the
+reproduction of 2026-09-24, never from the run of 2026-09-23. `KN_ANALYTICS_PATH` may name the
+desk's folder in either layout.
+
+### Added
+
+- **Experiment 1's second design, run and reported.** `FINDINGS_1.md` is rewritten for it, with the
+  first design kept as a row: the rule at 17.87% and a Sharpe of 0.8057 against its control's 18.73%
+  and 0.7748, so prediction 1 fails and the kill switch trips; the diagnostic arm at 19.52% and
+  0.8773; fifteen perturbation cells, the attribution, and the gate's rows in
+  `Paper_Trading/BITACORA.md`. Its code is the slot book in `Experiments/portfolio_construction.py`
+  and the notebook's rule, control, arm, capacity, sub-periods and sweep. Reproduced from a wiped
+  working copy on 2026-09-24, with one manual step, every engine and attribution figure to the
+  digit.
+- **Experiment 2, before its rule**: `BRAINSTORMING_2.md`; `BLUEPRINT_2.md`, written before any rule
+  and reviewed cold by the blueprint critic; the first entry of `JOURNAL_2.md`; and `FINDINGS_2.md`,
+  not yet run. It takes Experiment 1's diagnostic arm, its rules unchanged, to years before 2017,
+  against the same names without the cross, with the seed widened to every listing the index held
+  since 2000. None of its results is in this version.
+- **A second price provider in `Data/curator.py`**, `--provider sharadar`, for the names FMP does
+  not carry, its close standing in for the VWAP it does not publish, and the seed's optional
+  `provider` column, so a refresh never asks FMP for a name another provider serves. The universe
+  notebook profiles FMP's rows only.
+- **`backtest_engine.build_configuration` takes the fill column**, the day's VWAP unless told
+  otherwise, for the check with every name filled at the close that Experiment 2's blueprint asks
+  for.
+- **`daily_update.py` writes the engine's benchmark beside each book** in the performance table.
+
+### Changed
+
+- **`Data/hand_supplied.py` reads the desk's new layout**, the Analytics Factory's `Benchmark
+  Portfolios/` and `Factor Models/`, and still the older `Benchmarks/` and `Factors/`. `SETUP.md`
+  names the files it reads and their headers.
+- **`Paper_Trading_1/paper_trading_1.py` carries Experiment 1's second design's rule** in the form a
+  frozen book takes. Nothing froze it, and it has never run from this repository.
+- **`RESULTS.md`, `OBJECTIVE.md`, the README and `AGENTS.md`** are compiled from `FINDINGS_1.md`,
+  with Experiment 2 open.
+
+### Fixed
+
+- **`portfolio_construction.build_slot_book` returns its targets in date order.** Pandas had
+  assembled them in the order the names first appeared, so every figure that compares a row with the
+  one before was wrong in Experiment 1's run of 2026-09-23: exits 290, not 462; entries 310, not
+  482; annual turnover 1.99 times the book, not 2.9; and at 1% of a day's traded value the worst
+  trade's capacity $91,546,647, not $2,018,972. No engine figure moved.
+- **`backtest_engine.write_weight_file` rounds each weight down**: a fully invested book of twenty
+  names at a twentieth each rounded past one, and the engine refuses a column above one.
+- **`Data/curator.py` retries only a request that failed**: one the provider answered with nothing
+  is a missing name, not a hung request.
+- **The daily machinery**, from its first runs on a book frozen outside this repository: a paper
+  book prices each window on the listings that window holds; a refused engine run stops the book
+  with the engine's reason; `daily_update.py` reads a band's edge with a billionth of tolerance and
+  removes a lock a killed run left for twelve hours; and `record.py` replaces a day's flags and
+  holdings whole when the day is run again.
+
 ## 0.12.0 (2026-09-23)
 
 **MINOR** — template 0.12.0, and Experiment 1's second design, fixed before any rule: the owner

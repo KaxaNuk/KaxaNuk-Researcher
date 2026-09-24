@@ -15,7 +15,8 @@ backtest wearing a costume, and it answers a question nobody asked.
 
 What one run does, in order:
 
-1. Takes a lock, so two runs never overlap, and writes its log to `Paper_Trading/Logs/`.
+1. Takes a lock, so two runs never overlap -- a lock a killed run left for twelve hours is
+   removed, and the log says so -- and writes its log to `Paper_Trading/Logs/`.
 2. Refreshes the shared raw data once -- `Data/curator.py` with the day as its end date -- or,
    with `PAPER_TRADING_INPUT=database`, reads the panel another machine published.
 3. Checks the newest day before any book reads it: a close with no fill price, a move no price can

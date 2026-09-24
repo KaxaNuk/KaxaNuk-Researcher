@@ -6,6 +6,38 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.10.0 (2026-09-24)
+
+**MINOR** — the home has no `Projects/`. The researcher is invited into the projects it works on,
+outside its home, so a new home is made without the folder: `teach` keeps each topic's lessons in
+`Lessons/<topic>/`, created the first time it teaches that topic; anything else you ask for at home
+is answered in chat, or as a page you can share, never written as a file; strategy work stays in
+the strategy. The directionality is `Sources/ → Extracts/ → Knowledge/ → Lessons/`, with
+`Philosophy/` cited, never compiled.
+
+**What to do differently:** run `update` in your home. It brings `AGENTS.md` and `README.md`
+across and, on your go, moves each `Projects/Teach/<topic>/` to `Lessons/<topic>/`, removes a
+`Projects/` left holding only its `.gitkeep`, and lists anything else there for you to keep, move
+or delete by hand. If your agent in `.apm/agents/` names `Projects/` among the places it never
+writes, change it to `Lessons/` by hand, or leave it: the folder is gone.
+
+### Changed
+
+* **`AGENTS.md`'s folder table** has a `Lessons/` row, written through `teach` only, after its plan
+  and your go, where the `Projects/` row allowed any write you asked for. A paragraph under the
+  table says anything else asked for at home is answered in chat, never written as a file, and that
+  work on a strategy or another project lives there. The paths the skills resolve, the
+  directionality and the in-strategy table say `Lessons/`.
+* **`README.md`'s file tree and directionality** say the same.
+* **`teach` keeps its lessons in `Lessons/<topic>/`**, in the package, where it kept them in
+  `Projects/Teach/<topic>/`, and writes nowhere else; a topic still in `Projects/Teach/` points at
+  `update` rather than starting again. **`update`** offers to move it whenever a home still has a
+  `Projects/`, at any template version, so a move declined once is offered again.
+
+### Removed
+
+* **`Projects/`**, and its `.gitkeep`: `init-researcher` no longer creates it.
+
 ## 0.9.0 (2026-09-23)
 
 **MINOR** — the researcher is yours, and grows with what you believe. `RESEARCHER.md` offers its

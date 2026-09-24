@@ -60,7 +60,7 @@ going. A proposal the owner picks is theirs; one they did not pick is never writ
    - **Otherwise stop:** the researcher is already initialised. Say so, and suggest editing
      `RESEARCHER.md` by hand.
 2. Confirm the folders exist — `Sources/` with `Books/`, `Papers/` and `Clippings/`, `Knowledge/`,
-   `Philosophy/`, `Projects/` — and the two files `Knowledge/INDEX.md` and `Knowledge/LOG.md`.
+   `Philosophy/` — and the two files `Knowledge/INDEX.md` and `Knowledge/LOG.md`.
    Create any folder that is missing. A missing `INDEX.md` or `LOG.md` is a file of the home
    template, blockquote and all, so it is brought from the package by the script in the
    `init-strategy` skill's folder, run from the home's root — never written from memory. The script
@@ -336,7 +336,7 @@ library, then the sources themselves only if the library is thin. Cite every cla
 Where sources disagree, show both. Name a gap as a gap and say which source would close it. If you
 fall back on general knowledge, say that is what you did.
 
-**You never write.** Not in `Knowledge/`, not in `Philosophy/`, not in `Projects/`, not in a
+**You never write.** Not in `Knowledge/`, not in `Philosophy/`, not in `Lessons/`, not in a
 strategy — not even when asked directly. This is structural, not a preference: every skill or
 command that writes here presents a plan and waits for the owner's go, and a subagent cannot ask
 for one. When an answer needs a write, name what the owner should run — `read` to read a source

@@ -1,5 +1,5 @@
 ---
-description: A multi-session tutor grounded in Knowledge/ — interview first, then one lesson per session with a retrieval quiz; state in Projects/Teach/<topic>/. Only when the owner runs it by name, on a topic they give.
+description: A multi-session tutor grounded in Knowledge/ — interview first, then one lesson per session with a retrieval quiz; state in Lessons/<topic>/. Only when the owner runs it by name, on a topic they give.
 input:
   - topic: "The topic to teach"
 ---
@@ -10,9 +10,10 @@ Every path below is relative to the researcher's home — the folder that holds 
 it first and read its `RESEARCHER.md` and `AGENTS.md`. This command works at home only.
 
 Teach `${input:topic}` from what the owner has read, one lesson per session. Running this command
-names `Projects/Teach/<topic-slug>/` as the only place it may write — the place, not the go: every
-write still waits for a plan and an explicit go, as `AGENTS.md` requires of every command that
-writes.
+names `Lessons/<topic-slug>/`, at the home's root, as the only place it may write — the place, not
+the go: every write still waits for a plan and an explicit go, as `AGENTS.md` requires of every
+command that writes. The home ships no `Lessons/`: the first topic taught creates it, and each new
+topic its own folder in it.
 
 **A new topic** (no `progress.md` yet): interview the owner first — why this topic, what for, what
 they already know, how they like to learn. Two to four questions. Then show the plan in chat — the
@@ -23,6 +24,13 @@ existing topic unless the owner says the mission has changed.
 
 **An existing topic**: read `progress.md` — mission, track, preferences — and pick the next lesson
 just beyond what stuck last time.
+
+**A topic still in `Projects/Teach/<topic-slug>/`**, from a home made before template 0.10.0:
+never start it afresh in `Lessons/`. Say so and point at `update`, which offers to move it to
+`Lessons/<topic-slug>/` on the owner's go, as often as a `Projects/` remains — or at the one line
+that does it by hand, `git mv Projects/Teach/<topic-slug> Lessons/<topic-slug>`, after
+`mkdir -p Lessons`. When a `Lessons/<topic-slug>/` exists as well, the owner merges the two by
+hand; teach the topic from `Lessons/` once it is there.
 
 **Every lesson:**
 
@@ -38,4 +46,4 @@ just beyond what stuck last time.
 4. Append one row to the track in `progress.md`: date, lesson, what stuck, what did not. That row
    is part of the same run, on the same go, the way a `LOG.md` entry is; it needs no second go.
 
-Never edit a past session file. Never write outside `Projects/Teach/<topic-slug>/`.
+Never edit a past session file. Never write outside `Lessons/<topic-slug>/`.

@@ -8,14 +8,16 @@ read where they are, in the desk's own names and headers -- nobody renames or re
 Leave it empty, and the same files, dropped unchanged into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`, are read from there.
 
-The desk's layout, which is the only one read:
+The desk's layout, its folders read under the Analytics Factory's names first and under the
+older ones, `Benchmarks/` and `Factors/`, where those are absent.  The files keep the same names and
+headers in both, and the drop-in folders keep the older names:
 
-    Benchmarks/KN_US_Equity_Benchmark_Holdings.csv   m_date, ISO dates; one column per listing,
-                                                     its weight in the index that day
-    Benchmarks/KN_US_Equity_Benchmark_Returns.csv    m_date, day-first dates; kn600, the index's
-                                                     daily return
-    Factors/<Name>.csv                               dates down in an unnamed first column, ISO;
-                                                     listings across
+    Benchmark Portfolios/KN_US_Equity_Benchmark_Holdings.csv
+        m_date, ISO dates; one column per listing, its weight in the index that day
+    Benchmark Portfolios/KN_US_Equity_Benchmark_Returns.csv
+        m_date, day-first dates; kn600, the index's daily return
+    Factor Models/<Name>.csv
+        dates down in an unnamed first column, ISO; listings across
 
 Four of the factor files are the model's own series rather than factors, and the attribution
 library knows them by reserved lower-case names: `Market.csv` is `f_market`, and `Idyo_Returns`,

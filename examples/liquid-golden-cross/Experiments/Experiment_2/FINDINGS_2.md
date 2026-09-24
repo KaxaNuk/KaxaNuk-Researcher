@@ -1,8 +1,8 @@
-# Findings — Experiment N
+# Findings — Experiment 2
 
 > **Latest valuable results only.** This file is rewritten when a result changes, not appended to —
-> the running history is in [`JOURNAL_N.md`](JOURNAL_N.md), and the hypothesis this tested is in
-> [`BLUEPRINT_N.md`](BLUEPRINT_N.md).
+> the running history is in [`JOURNAL_2.md`](JOURNAL_2.md), and the hypothesis this tested is in
+> [`BLUEPRINT_2.md`](BLUEPRINT_2.md).
 >
 > **[`../../RESULTS.md`](../../RESULTS.md) is compiled from this file.** When a finding here
 > changes, change it here first, then update the summary.

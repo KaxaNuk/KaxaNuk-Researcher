@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.7.1
+  version: 0.7.2
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -271,7 +271,7 @@ Then say: review the diff and commit.
 
 - Read a PDF page by page when the script can extract it. The table-of-contents pages of a PDF with
   no outline are the one exception.
-- Write to the sources, `Philosophy/` or `Projects/`. The extracts folder is the one place outside
+- Write to the sources, `Philosophy/` or `Lessons/`. The extracts folder is the one place outside
   the library this skill writes, and only the script writes there.
 - Write at home while reading in a strategy — no note, no index line, no log entry, no question in
   `RESEARCHER.md`, no extract. A strategy's source enters the home library only when the owner puts

@@ -8,14 +8,16 @@ read where they are, in the desk's own names and headers -- nobody renames or re
 Leave it empty, and the same files, dropped unchanged into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`, are read from there.
 
-The desk's layout, which is the only one read:
+The desk's layout, its folders read under the Analytics Factory's names first and under the
+older ones, `Benchmarks/` and `Factors/`, where those are absent.  The files keep the same names and
+headers in both, and the drop-in folders keep the older names:
 
-    Benchmarks/KN_US_Equity_Benchmark_Holdings.csv   m_date, ISO dates; one column per listing,
-                                                     its weight in the index that day
-    Benchmarks/KN_US_Equity_Benchmark_Returns.csv    m_date, day-first dates; kn600, the index's
-                                                     daily return
-    Factors/<Name>.csv                               dates down in an unnamed first column, ISO;
-                                                     listings across
+    Benchmark Portfolios/KN_US_Equity_Benchmark_Holdings.csv
+        m_date, ISO dates; one column per listing, its weight in the index that day
+    Benchmark Portfolios/KN_US_Equity_Benchmark_Returns.csv
+        m_date, day-first dates; kn600, the index's daily return
+    Factor Models/<Name>.csv
+        dates down in an unnamed first column, ISO; listings across
 
 Four of the factor files are the model's own series rather than factors, and the attribution
 library knows them by reserved lower-case names: `Market.csv` is `f_market`, and `Idyo_Returns`,
@@ -53,10 +55,19 @@ __all__ = [
 ]
 
 ANALYTICS_PATH_KEY = "KN_ANALYTICS_PATH"
+# The desk's folder names, newest first: the Analytics Factory's layout, then the one it replaced.
+BENCHMARK_FOLDER_NAMES = (
+    "Benchmark Portfolios",
+    "Benchmarks",
+)
 BENCHMARK_HOLDINGS_NAME = "KN_US_Equity_Benchmark_Holdings.csv"
 BENCHMARK_RETURNS_NAME = "KN_US_Equity_Benchmark_Returns.csv"
 DROP_IN_DIRECTORY = pathlib.Path(__file__).parent / "Curator"
 ENVIRONMENT_PATH = pathlib.Path(__file__).parent.parent / "Config" / ".env"
+FACTOR_FOLDER_NAMES = (
+    "Factor Models",
+    "Factors",
+)
 
 # The desk writes `m_date` in both benchmark files, ISO in one and day first in the other; the
 # attribution library wants every frame's dates under one header of its own.
@@ -86,7 +97,10 @@ def benchmark_directory() -> "pathlib.Path":
 
         return DROP_IN_DIRECTORY / "Benchmarks"
 
-    return analytics / "Benchmarks"
+    return _first_existing(
+        analytics,
+        BENCHMARK_FOLDER_NAMES,
+    )
 
 
 def factor_directory() -> "pathlib.Path":
@@ -99,7 +113,10 @@ def factor_directory() -> "pathlib.Path":
 
         return DROP_IN_DIRECTORY / "Factors"
 
-    return analytics / "Factors"
+    return _first_existing(
+        analytics,
+        FACTOR_FOLDER_NAMES,
+    )
 
 
 def read_benchmark_holdings() -> "pandas.DataFrame":
@@ -230,5 +247,26 @@ def _analytics_directory() -> "pathlib.Path | None":
         raise FileNotFoundError(message)
 
     return directory
+
+
+def _first_existing(
+    parent: "pathlib.Path",
+    names: tuple[str, ...],
+) -> "pathlib.Path":
+    """
+    The first of the names that is a folder under the parent, or the first name when none is.
+
+    The desk renamed its folders once; reading both layouts keeps a strategy running across the
+    change, and a missing folder is reported under the newest name.
+    """
+    for name in names:
+        candidate = parent / name
+
+        if candidate.is_dir():
+
+            return candidate
+
+    return parent / names[0]
+
 
 # --- example: end ---

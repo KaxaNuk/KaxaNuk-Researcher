@@ -7,7 +7,7 @@ operating manual.
 ## The researcher's home
 
 The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills —
-`Sources/`, `Knowledge/`, `Philosophy/`, `Projects/` — is relative to the home, never to wherever
+`Sources/`, `Knowledge/`, `Philosophy/`, `Lessons/` — is relative to the home, never to wherever
 the session happened to open. There are two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
@@ -53,7 +53,13 @@ a skill its rules.
 | `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh, and of every synthesis page kept | **append one entry** at the end of those runs, and from `query` when a page is kept; never edit past entries |
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first — save `interview`'s one write: the owner's typed answers into `Philosophy/HOW-I-INVEST.md`, verbatim, on their go, added to what is there and never restructured |
-| `Projects/` | what the owner asked for at home: lessons from `teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
+| `Lessons/` | `teach`'s lessons, one folder per topic — its `progress.md` and `sessions/`. The template ships none: `teach` creates it the first time it runs | **write, through `teach` only**, after its plan and the owner's go |
+
+**Anything else the owner asks for at home is answered in chat**, or as a page they can share where
+the assistant offers one, and is never written as a file: the home holds the library, the owner's
+voice and the lessons. Strategy work lives in the strategy, and work on any other project in that
+project, where the owner invites the researcher — *Working in a strategy* and *Joining other
+projects* below say how.
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from
 the interview; `read`, at home, may add a question under *What you are reading for* — in the
@@ -64,10 +70,11 @@ like: to teach the researcher how to behave, they add a line by hand under *How 
 its angle-bracketed prompt says nothing yet, and the researcher never cites a prompt as the owner's
 view.
 
-**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Projects/`. Notes are born from sources,
-never from `Philosophy/` alone; `Philosophy/` is cited from notes, never compiled into them. That
-wall is what keeps the owner's judgement recognisably theirs. Between repositories the valve is
-one-way as well: home → strategy, never back.
+**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Lessons/`. Notes are born from sources,
+never from `Philosophy/` alone, and lessons are built from the notes; `Philosophy/` is cited from
+notes and lessons, never compiled into them. That wall is what keeps the owner's judgement
+recognisably theirs. Between repositories the valve is one-way as well: home → strategy, never
+back.
 
 **Inside `Sources/`** the owner files by kind — `Sources/Books/`, `Sources/Papers/`,
 `Sources/Clippings/` — and may add more. The taxonomy is theirs; a read walks all of it. Note that
@@ -150,7 +157,7 @@ from another template keeps or maps them in its own `AGENTS.md`.
 | `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads, and `LOG.md` empty. |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
-| `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md` |
+| what the owner asks for at home — `Lessons/` from `teach`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md`; `teach` works at home only |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, nothing may be read into the strategy — `objective` comes first, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
