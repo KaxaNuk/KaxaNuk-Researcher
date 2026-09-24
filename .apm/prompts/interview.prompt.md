@@ -53,8 +53,18 @@ going. A proposal the owner picks is theirs; one they did not pick is never writ
    - **Otherwise stop:** the researcher is already initialised. Say so, and suggest editing
      `RESEARCHER.md` by hand.
 2. Confirm the folders exist — `Sources/` with `Books/`, `Papers/` and `Clippings/`, `Knowledge/`,
-   `Philosophy/`, `Projects/`, and `Knowledge/INDEX.md` and `Knowledge/LOG.md`. Create any that are
-   missing; never overwrite an existing `INDEX.md` or `LOG.md`.
+   `Philosophy/`, `Projects/` — and the two files `Knowledge/INDEX.md` and `Knowledge/LOG.md`.
+   Create any folder that is missing. A missing `INDEX.md` or `LOG.md` is a file of the home
+   template, blockquote and all, so it is brought from the package by the script in the
+   `init-strategy` skill's folder, run from the home's root — never written from memory. The script
+   copies the one file and never overwrites:
+
+   ```bash
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/INDEX.md
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/LOG.md
+   ```
+
+   An existing `INDEX.md` or `LOG.md` is never overwritten, by the script or by you.
 3. Confirm the researcher's skills are installed for the user: the `read` skill, which carries
    `scripts/extract.py`, `references/note.md` and `references/reading-map.md` in its own folder,
    under `~/.claude/skills/` or the user's folder for the agent in use. If it is missing, say so and

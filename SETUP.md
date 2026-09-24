@@ -33,44 +33,62 @@ git config --global user.email "you@example.com"
 ## Step 1 — Install the package, once per machine
 
 ```bash
-uv tool install apm-cli
+uv tool install apm-cli==0.29.0
 ```
 
-If `apm --version` then says *command not found*, run `uv tool update-shell` and open a new
-terminal. Then, with the target being the assistant you actually use — `claude`, `codex`, `cursor`,
+`apm --version` should say `0.29.0`. If it says *command not found*, run `uv tool update-shell` and
+open a new terminal. That puts the pinned `apm` on your path, for the commands the skills name.
+Then, with the target being the assistant you actually use — `claude`, `codex`, `cursor`,
 `copilot`, `gemini`, `opencode` or `windsurf`:
 
 ```bash
-apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
-That installs the researcher's skills and commands and, with them, every KaxaNuk Investment Lab
-skill, for your user: every folder you open has them, and no folder installs anything of its own.
+Every command in this file that runs APM names `apm-cli==0.29.0` itself, so it runs that version
+whatever `apm` your path holds.
 
-**Claude Code receives all of it:** the skills, the commands and the four instructions — Bloom
-Code, PEP 8, test writing and filesystem boundaries. The instructions land in `~/.claude/rules/`,
-so they apply to every Python project you open on that machine, not only a strategy. Copilot
-receives the same, its instructions merged into `~/.copilot/copilot-instructions.md`. Cursor,
-Gemini, OpenCode and Windsurf get the skills and the commands but not the instructions. Codex gets
-the skills only: no instructions and no commands, so there a command is run by naming its file in
-the package. For `interview` in step 2, ask Codex to *follow
+That installs the researcher's skills and commands and, with them, every KaxaNuk Investment Lab
+skill and the one agent, `blueprint-critic`, for your user: every folder you open has them, and no
+folder installs anything of its own.
+
+**Claude Code receives all of it:** the skills, the commands, the agent and the four instructions —
+Bloom Code, PEP 8, test writing and filesystem boundaries. The instructions land in
+`~/.claude/rules/`, so they apply to every Python project you open on that machine, not only a
+strategy. Copilot receives the same, its instructions merged into
+`~/.copilot/copilot-instructions.md`. Cursor, Gemini, OpenCode and Windsurf get the skills and the
+commands but not the instructions, and Gemini, OpenCode and Windsurf take no agent, as step 2 says.
+Codex gets the skills only: no instructions and no commands, so there a command is run by naming
+its file in the package. For `interview` in step 2, ask Codex to *follow
 `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/interview.prompt.md`*.
 
-**On Windows, if the install fails with *checkout failed* or `WinError 3`,** a path went past
-Windows' 260-character limit. Let git use long paths, once, then install again:
+**Why APM is pinned at 0.29.0.** APM 0.29.0 installs this package cleanly. From 0.29.1 on, APM
+stages every package it installs under about 148 more characters of folders —
+`apm_modules/.apm-resolution-staging/` and two long hashes — and on Windows the worked example's
+longest paths then pass the 260-character limit: the install fails with `WinError 3` or
+`WinError 206`, at project scope and with `-g` alike. No setting of git's fixes that. Hence the pin,
+written into every command that runs APM. `uv tool upgrade` keeps it.
+**Never run `apm self-update`**, nor a bare `apm update` outside an APM project, which forwards to
+it: both bring the newest APM back. A machine already on a newer APM runs the same
+`uv tool install apm-cli==0.29.0` over it.
+
+**On Windows, if the install on 0.29.0 fails with *checkout failed*,** git itself went past the
+260-character limit. Let git use long paths, once, then install again:
 
 ```bash
 git config --global core.longpaths true
 ```
 
-> **For the agent.** Run both without asking: installing is what you were asked to do. The target
-> is the assistant you are. It may be run from any folder — `-g` writes to the user's home, never to
+> **For the agent.** Run both without asking: installing is what you were asked to do. If
+> `apm --version` says anything but 0.29.0, install 0.29.0 over it first. The target is the
+> assistant you are. It may be run from any folder — `-g` writes to the user's home, never to
 > the folder you are in. Then say the one thing that matters: **the skills appear in a new session,
 > not this one.** The remaining steps happen there.
 
 **What "done" looks like:** for Claude Code, `~/.claude/skills/` holds `init-researcher`,
-`init-strategy`, `init-example`, `read` and `query` among others, and `~/.claude/commands/` holds
-`interview.md` and `next.md`.
+`init-strategy`, `init-example`, `read` and `query` among others, `~/.claude/commands/` holds
+`interview.md` and `next.md`, `~/.claude/rules/` holds `python-bloom-code.md`, and
+`~/.claude/agents/` holds `blueprint-critic.md`.
 
 ---
 
@@ -91,9 +109,14 @@ interview
 ```
 
 a short interview — seven questions, in your language — that writes `RESEARCHER.md` and the agent
-that makes your researcher callable by name. Then `apm install --target claude` in that folder,
-once — `codex`, `cursor` or `copilot` in its place; Gemini, OpenCode and Windsurf take no agent,
-and the researcher there is its skills and commands — deploys the agent.
+that makes your researcher callable by name. Then, once, in that folder:
+
+```bash
+uvx --from apm-cli==0.29.0 apm install --target claude
+```
+
+deploys the agent — `codex`, `cursor` or `copilot` in place of `claude`; Gemini, OpenCode and
+Windsurf take no agent, and the researcher there is its skills and commands.
 
 > **For the agent.** If a commit fails for want of a git identity, ask the user for the name and
 > email — never invent them — and set them in that repository only. One researcher per person: if a
@@ -133,10 +156,11 @@ init-example
 ## Updating
 
 ```bash
-apm update -g
+uvx --from apm-cli==0.29.0 apm update -g
 ```
 
 brings every new version — of the researcher and of the Lab's skills — to every folder at once.
-Then open a new session.
+Then open a new session. Always with `-g`: a bare `apm update` outside an APM project updates APM
+itself, past the 0.29.0 this package is installed with.
 
 APM's own reference, for any error it prints: <https://microsoft.github.io/apm/llms.txt>.

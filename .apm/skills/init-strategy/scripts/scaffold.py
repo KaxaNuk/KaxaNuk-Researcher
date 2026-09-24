@@ -17,15 +17,26 @@ Without `--only`, the destination must not exist or must be an empty folder; the
 a git repository on branch `main` with one first commit, unless `--no-git`.  With `--only`, one
 path of the starting point is copied into an existing folder: a file already there with the same
 content is skipped, and one with other content stops the run before anything is written, so
-nothing is overwritten.
+nothing is overwritten.  The path is relative and stays inside both the starting point and the
+folder: one that is absolute, or that leads outside either through `..`, is refused before anything
+is read.
 
 The package is found beside this script when it runs from a checkout of KaxaNuk-Researcher, then
 under `apm_modules/` in the folder it runs from or any folder above it, then under `~/.apm/`, where
 `apm install -g` puts it.  `--package` names it outright.
 
-Exit code 0 when the copy was made, 1 when nothing was written.  Console output is ASCII only.
+On Windows, unless long paths are enabled, a path stops at 259 characters and a folder at 247.  A
+copy whose longest path would reach 260 characters, or whose deepest folder would reach 248, is
+refused before anything is written, exit code 1: the message names that path and how short a
+destination would do.  Where the platform allows long paths, or is not Windows, there is no check.
+
+Exit code 0 when the copy was made, 1 when nothing was written.  A git step that fails — git not
+installed, no identity for the commit — leaves the copy in place and the exit code 0, and is
+reported with every command that finishes the repository by hand, from the failed step on.  git's
+output is decoded as UTF-8 and printed as ASCII; the script's own messages are ASCII, paths aside.
 """
 import argparse
+import ctypes
 import dataclasses
 import pathlib
 import shutil
@@ -65,6 +76,12 @@ INSTALLED_PACKAGE_PATHS = [
 SCRIPT_PATH = pathlib.Path(__file__).resolve()
 SOURCE_PACKAGE = SCRIPT_PATH.parents[4]
 USER_SCOPE_MODULES = pathlib.Path.home() / '.apm' / 'apm_modules'
+# What is said when git cannot be run at all.
+GIT_NOT_FOUND = 'git was not found on this computer; install it first'
+# Windows without long paths: a path of 260 characters, its terminating null included, is too long,
+# and a folder takes 12 fewer, room for a short file name inside it.
+WINDOWS_MAX_PATH = 260
+WINDOWS_FOLDER_MARGIN = 12
 MISSING_PACKAGE = ' '.join([
     'The researcher package was not found. Install it with',
     '`apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, or pass --package.',
@@ -167,6 +184,16 @@ def main(
         source_root,
         destination,
     )
+    too_long = _long_path_problem(
+        plan,
+        destination,
+    )
+
+    if too_long is not None:
+        print(too_long)
+
+        return 1
+
     copy_files(plan)
     print(f'Copied {len(plan.files)} files from {source_root} to {destination}')
 
@@ -215,6 +242,37 @@ def plan_copy(
     return plan
 
 
+def _as_ascii(
+    text: str,
+) -> str:
+    """
+    Text as the console gets it: stripped, every character outside ASCII a question mark.
+    """
+    encoded = text.encode(
+        'ascii',
+        errors='replace',
+    )
+    ascii_text = encoded.decode('ascii').strip()
+
+    return ascii_text
+
+
+def _as_typed(
+    command: list[str],
+) -> str:
+    """
+    A command as a person types it: an argument holding a space inside double quotes.
+    """
+    words = [
+        f'"{word}"' if ' ' in word else word
+        for word
+        in command
+    ]
+    typed = ' '.join(words)
+
+    return typed
+
+
 def _build_parser() -> argparse.ArgumentParser:
     """
     The command line: which starting point, where to, and the three options.
@@ -260,12 +318,33 @@ def _copy_one_path(
 ) -> int:
     """
     Copy one file or folder of the starting point into an existing folder, overwriting nothing.
+
+    A path that is absolute, or that leads outside the starting point or the folder once `..` and
+    links are resolved, is refused before anything is read.
     """
     source = source_root / only
     target = destination / only
 
     if not destination.is_dir():
         print(f'{destination} is not an existing folder; --only copies into one')
+
+        return 1
+
+    is_absolute = pathlib.PurePath(only).anchor != ''
+    leads_outside = (
+        is_absolute
+        or _leads_outside(
+            source_root,
+            source,
+        )
+        or _leads_outside(
+            destination,
+            target,
+        )
+    )
+
+    if leads_outside:
+        print(f'{only} leads outside the starting point or the folder; nothing was copied')
 
         return 1
 
@@ -315,6 +394,16 @@ def _copy_one_path(
         destination_root=plan.destination_root,
         files=missing,
     )
+    too_long = _long_path_problem(
+        missing_plan,
+        destination,
+    )
+
+    if too_long is not None:
+        print(too_long)
+
+        return 1
+
     copy_files(missing_plan)
     already_there = len(plan.files) - len(missing)
     print(f'Copied {len(missing)} files into {target}; {already_there} were already there, identical')
@@ -418,6 +507,72 @@ def _is_package(
     return holds_all
 
 
+def _leads_outside(
+    root: pathlib.Path,
+    path: pathlib.Path,
+) -> bool:
+    """
+    Whether a path lands outside the folder it must stay under, once `..` and links are resolved.
+    """
+    resolved_root = root.resolve()
+    resolved_path = path.resolve()
+    inside = resolved_path.is_relative_to(resolved_root)
+
+    return not inside
+
+
+def _long_path_problem(
+    plan: CopyPlan,
+    destination: pathlib.Path,
+) -> str | None:
+    """
+    Why the plan's paths are too long for this machine, or None when they fit.
+
+    Only Windows without long paths has a limit: a path reaching `WINDOWS_MAX_PATH` characters, or
+    a folder reaching `WINDOWS_MAX_PATH` less `WINDOWS_FOLDER_MARGIN`, cannot be written.  The
+    message names the path that goes furthest past it and the longest destination that would fit.
+    """
+    if not plan.files or not _path_limit_applies():
+
+        return None
+
+    targets = [
+        target
+        for _, target
+        in plan.files
+    ]
+    longest = max(
+        targets,
+        key=_windows_reach,
+    )
+    excess = _windows_reach(longest) - WINDOWS_MAX_PATH + 1
+
+    if excess <= 0:
+
+        return None
+
+    room = len(str(destination)) - excess
+    shorter = pathlib.Path(destination.anchor) / destination.name
+    place = (
+        f'such as {shorter}'
+        if len(str(shorter)) <= room
+        else 'nearer the root of a drive'
+    )
+    path_limit = WINDOWS_MAX_PATH - 1
+    folder_limit = WINDOWS_MAX_PATH - WINDOWS_FOLDER_MARGIN - 1
+    path_length = len(str(longest))
+    folder_length = len(str(longest.parent))
+    problem = '\n'.join([
+        f'Nothing was copied: on Windows, without long paths, a path stops at {path_limit} characters',
+        f'and a folder at {folder_limit}, and this copy would write',
+        f'  {longest}',
+        f'({path_length} characters, its folder {folder_length}).',
+        f'Choose a destination of at most {room} characters, {place}.',
+    ])
+
+    return problem
+
+
 def _make_repository(
     destination: pathlib.Path,
     first_commit: str,
@@ -425,7 +580,8 @@ def _make_repository(
     """
     Make the copy a git repository on branch `main` with one first commit, and say so.
 
-    A failed step is reported; a failed commit also with the command that finishes it.
+    A failed step — git not installed, no identity for the commit — is reported with every
+    command that finishes the repository by hand, from the failed step on.
     """
     commands = [
         [
@@ -448,25 +604,98 @@ def _make_repository(
         ],
     ]
 
-    for command in commands:
-        completed = subprocess.run(
+    for position, command in enumerate(commands):
+        failure = _run_git(
             command,
-            cwd=destination,
-            capture_output=True,
-            text=True,
-            check=False,
+            destination,
         )
 
-        if completed.returncode != 0:
-            print(f'`{" ".join(command[:2])}` failed; the files are copied, the repository is not finished:')
-            print(completed.stderr.strip())
+        if failure is not None:
+            step = ' '.join(command[:2])
+            remaining = [
+                _as_typed(still_to_run)
+                for still_to_run
+                in commands[position:]
+            ]
+            print(f'`{step}` failed; the files are copied, the repository is not finished:')
+            print(failure)
+            print('Finish it in that folder with:')
 
-            if command[1] == 'commit':
-                print(f'Finish it in that folder with: git commit -m "{first_commit}"')
+            for typed in remaining:
+                print(f'  {typed}')
 
             return
 
     print(f'Made it a git repository, first commit: "{first_commit}"')
+
+
+def _path_limit_applies() -> bool:
+    """
+    Whether this process stops a path at `WINDOWS_MAX_PATH`: on Windows, unless long paths are enabled.
+
+    Windows answers for the process itself, so the registry setting and Python's own manifest both
+    count; a Windows too old to answer has the limit.
+    """
+    if sys.platform != 'win32':
+
+        return False
+
+    try:
+        long_paths = ctypes.windll.ntdll.RtlAreLongPathsEnabled()
+    except (AttributeError, OSError):
+
+        return True
+
+    applies = not long_paths
+
+    return applies
+
+
+def _run_git(
+    command: list[str],
+    destination: pathlib.Path,
+) -> str | None:
+    """
+    Run one git command in the copy: None when it succeeded, otherwise what went wrong, in ASCII.
+
+    The output is decoded as UTF-8 with replacement, so a localised or undecodable message cannot
+    raise; a git that writes nothing to its error stream is quoted from its output instead.
+    """
+    try:
+        completed = subprocess.run(
+            command,
+            cwd=destination,
+            capture_output=True,
+            encoding='utf-8',
+            errors='replace',
+            check=False,
+        )
+    except FileNotFoundError:
+
+        return GIT_NOT_FOUND
+
+    if completed.returncode == 0:
+
+        return None
+
+    message = completed.stderr or completed.stdout
+    failure = _as_ascii(message)
+
+    return failure
+
+
+def _windows_reach(
+    target: pathlib.Path,
+) -> int:
+    """
+    How far a target goes against Windows' limit: its own length, or its folder's plus the margin.
+    """
+    reach = max(
+        len(str(target)),
+        len(str(target.parent)) + WINDOWS_FOLDER_MARGIN,
+    )
+
+    return reach
 
 
 if __name__ == '__main__':

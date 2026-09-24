@@ -1,5 +1,5 @@
 ---
-description: Draft a strategy's OBJECTIVE.md in place — the main idea and its claims — first from the owner's words before any paper is read, then fine-tuned from the strategy's Bibliotheca notes as reading for each claim comes in; every claim cites a note or names the question that would settle it; plan first, the owner's go, then write. Only when the owner runs it by name, on a strategy they name or are working in.
+description: Draft a strategy's OBJECTIVE.md in place — the main idea and its claims — first from the owner's words before any paper is read, then fine-tuned from the strategy's Bibliotheca notes as reading for each claim comes in; every claim cites a note, RESULTS.md or a FINDINGS file once measured, is true by construction, or names the question that would settle it; plan first, the owner's go, then write. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
   - strategy: "Optional: path to the strategy repository, if not the one the session is in"
 ---
@@ -19,6 +19,11 @@ ones as the notes for each claim arrive — so every claim ends up pointing back
 having been written to fit one. `${input:strategy}` is the strategy's path, left out when the
 session is open in it.
 
+**Never in the worked example.** When the folder is the worked example — its `README.md` is titled
+*Liquid Golden-Cross*, or `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`,
+the test `next` uses — say so and stop: the example is for reading and running, never built on; a
+strategy of the owner's own is `init-strategy <name>`.
+
 ## Step 1: Read the strategy's own material, and name the pass
 
 - `OBJECTIVE.md` as it stands: the slots, and anything the owner already wrote. **The template says
@@ -28,13 +33,17 @@ session is open in it.
 - Every note in `Bibliotheca/Papers/` and `Bibliotheca/Books/`, and `BIBLIOGRAPHY.md` — which
   sources have notes, which claim each serves, and which are only leads.
 - `AGENTS.md` in that repository, for the bar any new signal must clear.
+- `RESULTS.md`, section *Before any experiment*, for what the analyzer has already measured about a
+  claim's column, and, once an experiment has reported, the `FINDINGS_N.md` that moved a claim. A
+  claim the analyzer has measured is not an untested one.
 
 **The first pass** is the one where the claims table is empty or no note serves a claim yet: the
 claims come from the owner's idea, never from a source. **A fine-tuning pass** is any later one: the
-evidence under each claim is rewritten from the notes that serve it, and a claim the reading
-sharpened is proposed as a change for the owner to take or leave — never changed silently. Once a
-blueprint is written, a change to a claim's wording is not fine-tuning but a different strategy or
-a new experiment; say so rather than draft it.
+evidence under each claim is rewritten from the notes that serve it, or from `RESULTS.md` and the
+findings where it has been measured, and a claim the reading sharpened is proposed as a change for
+the owner to take or leave — never changed silently. Once a blueprint is written, a change to a
+claim's wording is not fine-tuning but a different strategy or a new experiment; say so rather than
+draft it.
 
 ## Step 2: Contrast with the researcher's library
 
@@ -55,12 +64,16 @@ the rest of that list as the reading and the runs move a claim along; what is no
 invent a status word, and never write **untested** over a status the template or the owner already
 set. Rules:
 
-- **Every claim cites a note** in the strategy's `Bibliotheca/`, by relative path. **In the first
-  pass there are none, and that is the order working, not a gap:** each claim's evidence is the
-  question that would settle it — *does the effect survive inside the screened universe?* — marked
-  as a lead, with the sources worth reading for it named as leads for `BIBLIOGRAPHY.md`. A claim
-  that rests only on a home note is written with no link **and marked as a lead**: *write the note
-  for X before this claim stands.*
+- **Every claim cites its evidence**, of one of three kinds, as the template's `OBJECTIVE.md` and
+  the worked example use them: a note in the strategy's `Bibliotheca/`, by relative path; once
+  something is measured, `RESULTS.md` or the `FINDINGS_N.md` that moved the claim, which a later
+  pass leaves standing rather than swapping for a note; or nothing, for a claim that is **true by
+  construction**.
+  **In the first pass there are none, and that is the order working, not a gap:** each claim's
+  evidence is the question that would settle it — *does the effect survive inside the screened
+  universe?* — marked as a lead, with the sources worth reading for it named as leads for
+  `BIBLIOGRAPHY.md`. A claim that rests only on a home note is written with no link **and marked
+  as a lead**: *write the note for X before this claim stands.*
 - **Name the columns.** Each claim says which `c_*` or `r_*` column will carry it, if the owner
   already knows; otherwise a slot.
 - **Include the source that argues against the idea** if the library holds one — in the first pass

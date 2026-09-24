@@ -13,7 +13,8 @@ description: >
   earned (use `alpha-decomposition`), or the documents around the experiment (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.2.3
+  version: 0.2.4
+  library_version: 1.28.0
 ---
 
 # Portfolio construction — the library inside one signature, and one cut
@@ -23,9 +24,12 @@ metadata:
 **It prevents** a good signal in a portfolio nobody could hold — and a weighting difference that
 reads as a signal difference because each notebook invented its own sizing.
 
-Written against **KaxaNuk Portfolio Construction 1.28.0**. The library keeps three questions apart —
-*who plays* (selection), *how much* (sizing), *when* (timing) — and deliberately leaves a fourth to
-its caller: *what was known on the day*. That fourth question is most of this skill.
+Written against **KaxaNuk Portfolio Construction 1.28.0**. That build is the frontmatter's
+`library_version`: compare it with the installed build `uv pip list` shows, and on a newer minor or
+major version treat every trap here as unproven until it is checked again. The library keeps three
+questions apart — *who plays* (selection), *how much* (sizing), *when* (timing) — and deliberately
+leaves a fourth to its caller: *what was known on the day*. That fourth question is most of this
+skill.
 
 ## 1. Install it, and keep it installed
 

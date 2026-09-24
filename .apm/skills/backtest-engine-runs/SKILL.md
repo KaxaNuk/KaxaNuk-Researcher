@@ -13,7 +13,8 @@ description: >
   `attribution-analysis-runs`), reading attribution output (use `alpha-decomposition`), or authoring
   Data Curator `c_*` columns (use `data-curator-custom-calculations`).
 metadata:
-  version: 0.1.5
+  version: 0.1.6
+  library_version: 0.66.0
 ---
 
 # Running the KaxaNuk Backtest Engine
@@ -21,7 +22,10 @@ metadata:
 Step 5 of the KaxaNuk Investment Lab: the rules are run over history, with costs and no look-ahead,
 and a track record comes back. The engine is **licensed** and closed-source — it is not on public
 PyPI, and it is deliberately absent from the KaxaNuk Strategy Template's `pyproject.toml` so its
-index URL and key never enter version control.
+index URL and key never enter version control. This skill was verified on build **0.66.0** of the
+engine, the frontmatter's `library_version`: compare it with the installed build `uv pip list`
+shows, and on a newer minor or major version treat every trap here as unproven until it is checked
+again.
 
 **Every performance figure in a KaxaNuk strategy comes from this engine.** There is deliberately no
 second, lighter simulator: one that disagreed would only let a reader pick the number they
@@ -175,7 +179,11 @@ series rather than copied out of a cell: `sharpe_ratio`, `sortino_ratio`, `annua
 **Read the run before believing it.** A truncated run — one that stopped valuing the book partway —
 still produces a clean-looking summary over the stub. Check the last valued date against the window
 that was asked for, and when they differ the variant is excluded **by name, with its reason**, never
-quietly dropped.
+quietly dropped. In a KaxaNuk Strategy Template repository the check is the experiment notebook's
+section 8, Verify, which raises rather than prints: it counts the days each engine run valued
+against the trading days of the window it was asked for, never against a fixed floor, which a run
+that stopped years early can clear. The worked example holds each run to at least 99% of those days
+valued and no more than five unvalued at the end — a rule of its own, not a sourced figure.
 
 **What a truncated run looks like, reproduced on 0.66.0.** A book whose weights sum to exactly 1.0
 run with `cash_reserve_percentage = 0` cannot pay commission at a rebalance. The engine prints one

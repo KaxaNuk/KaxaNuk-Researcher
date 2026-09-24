@@ -52,7 +52,7 @@ a skill its rules.
 | `Knowledge/` | what the researcher read — one note per paper, one folder per book with a note per chapter read — and its wiki: one concept page per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
 | `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh, and of every synthesis page kept | **append one entry** at the end of those runs, and from `query` when a page is kept; never edit past entries |
-| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first |
+| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first — save `interview`'s one write: the owner's typed answers into `Philosophy/HOW-I-INVEST.md`, verbatim, on their go, added to what is there and never restructured |
 | `Projects/` | what the owner asked for at home: lessons from `teach`, and anything else they ask for in chat. Strategy work is not here; it lives in the strategy | write, only when asked — a skill the owner runs, or a request in chat, counts as asking |
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from
@@ -151,7 +151,7 @@ from another template keeps or maps them in its own `AGENTS.md`.
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
 | `Projects/` | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md` |
-| *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, whatever the owner says they are reading for, and the file is theirs to fill |
+| *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, nothing may be read into the strategy — `objective` comes first, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
   and the owner's go — a note into `Bibliotheca/Papers/` or `Books/` with its row in
@@ -246,7 +246,9 @@ project's material stays a private repository.
 Every skill or command that writes a file presents a plan in chat — what will be written, where,
 and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing
 anything. Never write on a rejected or unanswered plan. Never write a plan or a report as a file;
-the chat and the `LOG.md` entry are the record.
+the chat and the `LOG.md` entry are the record. **One write is made without a go:** the single line
+`audit` appends to the library's `LOG.md` when it reports. Running `audit` by name is the go for
+that line, and it writes nothing else.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool
 — Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
@@ -293,9 +295,10 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
-| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
-| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs |
+| **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
+| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — `interview`, `next`, `objective`, `blueprint`, `brainstorm`, `challenge`, `audit`, `refine`, `refresh-index`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
+| **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the four house instructions — Bloom Code, PEP 8, test writing, filesystem boundaries — which apply to every Python project on the machine where the assistant receives them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as the package's `SETUP.md` says. The home adds none |
 
 - **`apm install -g --target <agent>` deploys the package once per machine**, into the user's
   folders — `~/.claude/skills/` and `~/.claude/commands/` for Claude Code, the matching folders
@@ -315,7 +318,8 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
   with `description` and its `input` list, no `name` and no `metadata`: APM keeps only
   `description`, `input`, `allowed-tools`, `model` and `argument-hint` for a command, and warns on
   install for each key it drops. The body reads its inputs as `${input:name}`, and APM turns them
-  into the arguments each harness takes.
+  into the arguments each harness takes. A command's required input comes first in its list and
+  the optional ones after it, because an assistant binds the arguments by position.
 - **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
   says which on install, and a dropped key is a rule that is not enforced. Anything that must hold
   everywhere is written in the body or the description, not only in a key. A folded
@@ -329,14 +333,16 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
   and Windsurf have no agent primitive at all. That is why the read-only rule is written into the
   agent's own body as well as its frontmatter: a harness that drops the boundary still reads the
   instruction.
-- **Nothing goes in `.apm/instructions/`.** `apm compile` would render it over this file, which is
+- **Nothing goes in `.apm/instructions/`.** The house instructions are the package's, and arrive
+  with `apm install -g`; one here would be rendered by `apm compile` over this file, which is
   written by hand. With only skills, prompts and agents, `apm compile` leaves `AGENTS.md` and
   `CLAUDE.md` alone and writes a `GEMINI.md` that imports them, which git ignores.
 - **A skill or a command is discoverable in a new session,** never in the one that installed it.
 
 ## Hard don'ts
 
-- Don't write into `Sources/`, or into `Philosophy/` outside `refine`.
+- Don't write into `Sources/`, or into `Philosophy/` outside `refine` — save `interview`'s one
+  write, the owner's typed answers into `Philosophy/HOW-I-INVEST.md`, verbatim, on their go.
 - Don't write at home while working in a strategy, unless the owner asks for that write by name.
   Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
 - Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder. Change the

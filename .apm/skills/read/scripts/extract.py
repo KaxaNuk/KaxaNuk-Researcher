@@ -18,7 +18,9 @@ and the note is the researcher's. Extracts are a cache — regenerable, gitignor
                                                         yours, with --chapters or --all among them
 
 Options
-    --out DIR       where extracts go (default ./Extracts); this PDF's land in DIR/<pdf stem>/
+    --out DIR       where extracts go (default ./Extracts); this PDF's land in DIR/<slug>/, the
+                    slug its name without .pdf, ASCII words joined by underscores as the notes
+                    are named, with OUTLINE.md, every chapter the run knows of, beside them
     --depth N       the outline depth that counts as a chapter (default 1; use 2 when depth 1 is parts)
     --engine E      auto | pdftotext | pypdf (default auto: pdftotext when on PATH, else pypdf).
                     pdftotext reflows a page's lines into paragraphs; pypdf keeps the line breaks,
@@ -26,7 +28,8 @@ Options
     --min-chars N   fewer characters per page than this, on average, means no text layer (default 40)
 
 Exit codes: 0 done · 1 usage · 2 no text layer or a password needed, no chapter written ·
-3 no outline for --chapters
+3 no outline for --chapters. A command line argparse itself rejects — no mode, an unknown option,
+a --depth that is not a number — exits 2 as well.
 Without uv: pip install "pypdf[crypto]", then python extract.py ...
 """
 import argparse

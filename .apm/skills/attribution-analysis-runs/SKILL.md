@@ -13,7 +13,8 @@ description: >
   does NOT cover what the numbers mean for a strategy (use `alpha-decomposition`) or running the
   backtest that produced the book (use `backtest-engine-runs`).
 metadata:
-  version: 0.2.6
+  version: 0.2.7
+  library_version: 0.2.0
 ---
 
 # Running the KaxaNuk Attribution Analysis
@@ -24,7 +25,9 @@ KaxaNuk Strategy Template's `pyproject.toml` so its index URL and key never ente
 Its documentation is public, at
 `https://kaxanuk-attribution-analysis.readthedocs-hosted.com/en/latest/`, and this skill is written
 against the **0.2.0** build of it. Go there for anything this file does not cover; this file keeps
-what the documentation does not say, and what a KaxaNuk repository adds.
+what the documentation does not say, and what a KaxaNuk repository adds. Build 0.2.0 is the
+frontmatter's `library_version`: compare it with the installed build `uv pip list` shows, and on a
+newer minor or major version treat every trap here as unproven until it is checked again.
 
 **This skill gets the numbers out. It does not read them.** What allocation, selection and the
 idiosyncratic residual mean for a strategy — and the counterfactual books that turn the residual

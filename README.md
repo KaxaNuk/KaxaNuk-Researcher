@@ -23,13 +23,18 @@ It follows [`SETUP.md`](SETUP.md): it checks that git and [`uv`](https://docs.as
 there, and installs the package once, for your user. By hand, it is:
 
 ```bash
-uv tool install apm-cli
-apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uv tool install apm-cli==0.29.0
+uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 `--target codex`, `cursor` or another agent in place of `claude`; Claude Code receives everything,
 and [`SETUP.md`](SETUP.md) says what the others miss. The skills are then in every folder you open,
-so **a strategy installs nothing of its own**; `apm update -g` brings every new version.
+so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.29.0 apm update -g` brings
+every new version. **APM stays at 0.29.0, and every command that runs it names that version.**
+0.29.0 installs this package cleanly; from 0.29.1 on, APM stages a package under about 148 more
+characters of folders, the worked example's longest paths pass Windows' path limit, and the install
+fails with `WinError 3` or `WinError 206`. [`SETUP.md`](SETUP.md) says more. Never run
+`apm self-update`.
 
 ## The path
 
@@ -40,7 +45,7 @@ in the folder, and it says which move is done and what comes next.
 | --- | --- | --- | --- |
 | 1 | anywhere | `init-researcher Ada` | your researcher's home, with the name you choose |
 | 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md` and the agent file |
-| 3 | the home | `apm install --target claude` | the researcher as an agent you call by name |
+| 3 | the home | `uvx --from apm-cli==0.29.0 apm install --target claude` | the researcher as an agent you call by name |
 | 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
 | 5 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
 
@@ -90,7 +95,7 @@ Every one that writes shows its plan first and waits for your go.
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
 | `teach <topic>` | tutors you on a topic from your library, one lesson per session |
-| `update [check]` | brings a new version into your home — `apm update -g`, and what changed in the home's own files, shown as a diff |
+| `update [check]` | brings a new version into your home — `uvx --from apm-cli==0.29.0 apm update -g`, and what changed in the home's own files, shown as a diff |
 
 How a researcher grows beyond the Lab — a tool, a project, a field of its own — is *Growing your
 researcher* in the home's README: four moves, each with the file it changes.
@@ -115,6 +120,31 @@ with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions,
 every Python project on the machine where the agent receives them (`SETUP.md` step 1).
 `bloom-code-lint` is the check to run by hand.
 
+**One agent**, deployed for your user with the skills: `blueprint-critic` reads a drafted
+`BLUEPRINT_N.md` cold, before your go, against the strategy's `AGENTS.md`, `OBJECTIVE.md`, the
+notes the draft cites and what the analyzer measured, and returns objections only — each with the
+line and the evidence. It never writes and never proposes a thesis; you decide what stands.
+`blueprint` hands it the draft before asking for your go, and you can ask for it by name.
+
+---
+
+## What it will not do
+
+The researcher's part is **the hypothesis**, and it stops where the numbers start.
+
+- **It computes no number.** Not a return, a Sharpe, a drawdown or an attribution: every number
+  about a book comes from the engines the project names — in a strategy, the KaxaNuk Backtest
+  Engine and Attribution Analysis. It quotes those numbers from `FINDINGS_N.md` and `RESULTS.md`,
+  naming the file.
+- **It does not write the record.** `JOURNAL_N.md`, `FINDINGS_N.md`, `RESULTS.md` and
+  `CHANGELOG.md` belong to whoever ran the experiment; `challenge` may append one entry to
+  `JOURNAL_N.md`, on your go, and nothing more.
+- **It does not write `OBJECTIVE.md` before your words.** `objective` drafts the idea and its
+  claims from what you tell it, before any paper is read; with nothing from you, there is nothing
+  to draft.
+- **It cites no source that has no note.** A source in a `BIBLIOGRAPHY.md` without a note is a lead,
+  and nothing is claimed on its authority.
+
 ---
 
 ## What is in here
@@ -123,6 +153,7 @@ every Python project on the machine where the agent receives them (`SETUP.md` st
 .apm/skills/          every skill: the researcher's, the Investment Lab's and the house rules'
 .apm/prompts/         the commands
 .apm/instructions/    the house style: Bloom Code, PEP 8, test writing, filesystem boundaries
+.apm/agents/          the one agent, blueprint-critic
 templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folders; its README is the
                       process, and the order of work a strategy follows
 templates/researcher/ the researcher's home, empty
@@ -140,7 +171,7 @@ LICENSE               MIT
 **What this repository owns, and what a copy owns.** This repository owns what is written once and
 copied or installed everywhere; a copy owns what its owner writes in it. A strategy made from the
 template is its owner's from the first commit and never merges back; the skills keep updating with
-`apm update -g`.
+`uvx --from apm-cli==0.29.0 apm update -g`.
 
 ---
 
@@ -156,10 +187,28 @@ uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.
 Ruff lints the skills' scripts, the worked example with its own settings, and the last command
 checks the Bloom Code style of both. Each runs through `uv` alone: no Python of your own is needed.
 They run on your machine before a commit; there is no CI, so nothing runs them for you. Nothing else
-is automated: the template and the example are kept in step by hand, as `AGENTS.md` says, and
-before a release that changes a skill, a command or a script, walk the newcomer's path by hand in a
-scratch folder — `init-researcher`, `interview`, `next`, `init-strategy`, and `read` on one
-clipping.
+is automated: the template and the example are kept in step by hand, as `AGENTS.md` says.
+
+To try a change to a skill, a command, an instruction or the agent, install the working tree at
+project scope, from a short scratch folder, with the APM the package is pinned to — never `-g` of
+the working tree:
+
+```bash
+mkdir -p D:/tmp/check
+cd D:/tmp/check
+uvx --from apm-cli==0.29.0 apm install "<path to this repository>" --target claude
+```
+
+with the path to your clone in place of the placeholder, and any short folder of your own in place
+of `D:/tmp/check`. Open a new session in that folder. If the working tree carries ignored folders
+deep enough to fail the install, copy the files `git ls-files` lists to a short folder and install
+that instead.
+
+**Before a release, do the same with the commit to be tagged.** It should deploy exactly 16 skills,
+11 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
+or a script, walk the newcomer's path by hand in that folder — `init-researcher`, `interview`,
+`next`, `init-strategy`, and `read` on one clipping. Delete the folder afterwards. A newer APM is
+adopted only when this install passes with it, on Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.

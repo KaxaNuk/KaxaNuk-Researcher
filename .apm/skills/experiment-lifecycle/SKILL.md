@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.8.3
+  version: 0.9.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -81,8 +81,8 @@ them.
 
 | Document | Holds | Changes when |
 | --- | --- | --- |
-| `OBJECTIVE.md` | the main idea, the objective, the claims inside it with their status | the idea and the claims' wording almost never — a change there is a different strategy; each claim's evidence and status move as notes arrive (B) and as findings report (H) |
-| `RESULTS.md` | the executive summary of every experiment, **compiled from the `FINDINGS_N.md` files and citing each** | a `FINDINGS_N.md` changes |
+| `OBJECTIVE.md` | the main idea, the objective, the claims inside it with their status | the idea and the claims' wording almost never — a change there is a different strategy; each claim's evidence and status move as notes arrive (B) and as findings report (H), each `FINDINGS_N.md` naming the claim it moved |
+| `RESULTS.md` | the executive summary of every experiment, **compiled from the `FINDINGS_N.md` files and citing each**, each experiment's row naming the claim it moved | a `FINDINGS_N.md` changes |
 | `CHANGELOG.md` | every version, newest first, in the form `how-we-work` section 3 gives: `## X.Y.Z (YYYY-MM-DD)` and its five headings | any change-set lands |
 | `AGENTS.md` | how work is done: workflow, who writes each document, restrictions, the bar, the five ways a backtest lies | the process changes |
 
@@ -101,10 +101,10 @@ output folders (`Portfolio/`, `Backtest/`, `Attribution/`, each kept by a `.gitk
 
 | File | Holds | Who writes it | Changes when | Template |
 | --- | --- | --- | --- | --- |
-| `BLUEPRINT_N.md` | **the hypothesis** — thesis, rules, predictions, success criteria, risks | a person, or with the AI | **never, once written** | `references/blueprint-template.md` |
+| `BLUEPRINT_N.md` | **the hypothesis** — thesis, the claim it moves, rules with the control, predictions, success criteria, the one condition that would falsify it and the changes that may not rescue it, risks | a person, or with the AI | **never, once written** | `references/blueprint-template.md` |
 | `BRAINSTORMING_N.md` | **planning** — ideas, what to try, what was dropped | a person, or with the AI | thinking happens, before the work | `references/brainstorming-template.md` |
 | `JOURNAL_N.md` | **the running log**, dated, oldest first | the AI, as work proceeds | append only; a correction is a new entry | `references/journal-template.md` |
-| `FINDINGS_N.md` | **the latest results worth keeping** | the AI, from the journal | rewritten when a result changes; feeds `RESULTS.md` | `references/findings-template.md` |
+| `FINDINGS_N.md` | **the latest results worth keeping**, and the claim they moved | the AI, from the journal | rewritten when a result changes; feeds `RESULTS.md` | `references/findings-template.md` |
 
 `BLUEPRINT` is fixed so a result cannot reshape the question it was meant to answer. `JOURNAL` is
 append-only so the path is recoverable. `FINDINGS` is rewritten so there is one current answer.
@@ -136,6 +136,12 @@ section saying what that section computes — and is the file to copy.
 | 6 · Counterfactuals | the arms that price who earned the idiosyncratic share: the same book with one choice removed, priced by the same engine |
 | 7 · Verdict | what it concluded, in words |
 | Handoff · Open items | what the next stage consumes; what this one left open |
+| 8 · Verify | assertions that raise when the output is wrong: the invariants, the weight file read back, each engine run's valued days against its window's trading days — skipped where the engine is absent |
+
+**Every notebook of the pipeline ends in a Verify section** — `Universe/universe.ipynb`,
+`Data/analyzer.ipynb` and each experiment's — that reads back what the notebook wrote and raises
+when it is wrong. It is where a strategy's tests live; `AGENTS.md` says why it counts against the
+window rather than a fixed floor.
 
 **Two look-aheads are stated plainly and nowhere else:** the signal used on rebalance date *t* is
 the one observed at *t-1* (the lag), and a delisting exit needs one day of hindsight, because a
@@ -204,8 +210,9 @@ its path: `--only Universe` stops over the seed, which is already the strategy's
 1. Create `Experiments/Experiment_N/` with `Portfolio/`, `Backtest/`, `Attribution/`, each holding a
    `.gitkeep`. The template's `.gitignore` already covers them.
 2. Copy the four templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
-   code**, stating the economic mechanism and citing every prediction's source. The blueprint
-   template is the benchmark's; delete the sentences that only apply to Experiment 1.
+   code**, stating the economic mechanism, the claim it moves, its control and the one condition
+   that would falsify it, and citing every prediction's source. The blueprint template is the
+   benchmark's; delete the sentences that only apply to Experiment 1.
 3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`. It too is the benchmark's:
    retitle it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that
    only apply to Experiment 1. Then declare the experiment's columns in section 0; import the
@@ -224,7 +231,7 @@ is two rules, and the copies drift. Read them where they are.
 | One experiment at a time, and its exceptions | `AGENTS.md`, *One experiment at a time* |
 | The bar any new signal must clear | `AGENTS.md`, *The bar any new signal must clear* |
 | Committed results, bad runs, binaries, Production, `Config/.env`, example markers | `AGENTS.md`, *Other standing rules* |
-| The five ways a backtest lies, and what look-ahead costs a fitted signal | `AGENTS.md`, *Research integrity — the five ways a backtest lies* |
+| The five ways a backtest lies, what look-ahead costs a fitted signal, and the Verify section every notebook ends in | `AGENTS.md`, *Research integrity — the five ways a backtest lies* |
 | What attribution must report | `AGENTS.md`, *What attribution must report*; reading it is `alpha-decomposition` |
 | The graduation gate and its five criteria | `Paper_Trading/BITACORA.md`, in the template |
 | What a version number means | `CHANGELOG.md`, *What a version number means here* |

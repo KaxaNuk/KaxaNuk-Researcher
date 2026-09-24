@@ -34,10 +34,17 @@ own capitals: `Ilmanen_2011_Expected_Returns`, `DeMiguel_Garlappi_Uppal_2009_Opt
 `03_The_Equity_Premium.md`; a long chapter title may be shortened to its first distinctive words,
 to keep the path short.
 
+A source with no author, such as a tool's README clipping, takes the organisation or the project
+that published it as its author; one with no year printed takes `ND`, for *no date*, in the year's
+place: `Grinold_Kahn_ND_Active_Portfolio_Management`, as the worked example names a copy that
+prints no year. Its `citation` says *n.d.* and that no year is printed. Neither is guessed.
+
 At home, a book folder is the only kind of subfolder a domain has, and its `INDEX.md` the only
 per-folder index. A clipping or a transcript — `Sources/Clippings/` at home, `Bibliotheca/Notes/`
 in a strategy — is a paper for these purposes; in a strategy its note goes in `Papers/`. In a
-strategy the PDF sits beside its note, gitignored; at home it stays in `Sources/`.
+strategy the PDF sits beside its note, gitignored; at home it stays in `Sources/`. A clipping in
+markdown or plain text is not ignored: in a strategy it is committed with the notes unless the
+owner ignores it, and `read` says so in its plan.
 
 ## Frontmatter — the template's four fields, and `tags`
 
@@ -114,6 +121,11 @@ Four rules, the template's:
 4. **Never invent a URL or a page number.** A page is the extract's marker, a PDF page; where the
    book's printed numbers differ, its `INDEX.md` says by how much, once, checked against a printed
    page. A reference the chapter gives without a page is quoted without one.
+
+A figure the source reports — a return, a Sharpe ratio, a drawdown — is the source's, on its data
+and its period, and the note says whose it is. It never enters a note, in a bullet or a blockquote,
+as though it were the strategy's; the strategy's own figures live in its `FINDINGS_N.md` and
+`RESULTS.md`.
 
 Links to other notes are standard markdown links, relative, inside the same repository — never
 across. In a strategy, a home note is named in prose. Match the voice of the notes already there.

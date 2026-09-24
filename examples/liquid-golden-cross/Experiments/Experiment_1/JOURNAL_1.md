@@ -334,4 +334,22 @@ leaves open.
   flag, not the price files, and only the caveat table cites it. The random arm's sensitivity to the
   pool is one more reason for the first open lead, far more draws.
 
+## 2026-09-23 — the template's new blueprint sections, left unfilled here
+
+- **Idea / question:** the template's blueprint gained three sections after this one was written —
+  the claim an experiment moves, the control named in its rules, and one condition that would
+  falsify the whole experiment with the changes that may not rescue it. The findings now name the
+  claim they moved; `RESULTS.md` gains a column for it, and one for the share of dates on which a
+  coefficient had the expected sign; and every notebook ends in a Verify section.
+- **What we tried / considered:** filling the three sections of `BLUEPRINT_1.md` from what the run
+  showed, which would be a hypothesis written after its test.
+- **Outcome / decision:** each new section carries the template's text and, inside the markers, a
+  note that it was not written on 2026-09-19 and where the answer lives instead. The change only
+  adds lines: the hypothesis inside the markers is what it was, and only the blockquote at the top,
+  which is template text, changed. `FINDINGS_1.md`'s status names claim 1, the signal, moved to
+  falsified, as `OBJECTIVE.md` already records. The sign share was not measured on 2026-09-19, and
+  `RESULTS.md` says so rather than supplying one. No figure changes.
+- **Open threads:** the next run of the analyzer fills the sign column. The next run of the
+  experiment is the first to reach its Verify section, and what it prints is recorded then.
+
 <!-- example: end -->

@@ -11,7 +11,8 @@
 
 **Not yet run.** When it has: one line saying whether the benchmark is adopted, and the reminder
 that the benchmark is not a graduation candidate — its job is to be the thing others are measured
-against.
+against. Then **the claim it moved**: the claim of `OBJECTIVE.md` the blueprint named, and the
+status it reached — or why it reached none.
 
 <!-- example: begin -->
 
@@ -20,6 +21,10 @@ and stable yardstick, and that is the whole of its job. The benchmark is not a g
 candidate, and it would not be one on these numbers: **the filter costs 1.12 points a year against
 the control that differs from it in exactly one thing**, and what it buys is a shallower drawdown
 rather than a higher return.
+
+**The claim it moved: claim 1 of `OBJECTIVE.md`, the signal, to falsified.** The filter-off
+comparison of prediction 2, put on the rule's own dates, is what moved it. Claim 3 keeps its
+status, true by construction, and gains a measurement from the counterfactuals below.
 
 **The four criteria `BLUEPRINT_1.md` set, each answered.**
 
@@ -69,8 +74,9 @@ recorded as *split* until the challenge of 2026-09-20 read it back against the b
 ## The book, priced by the engine
 
 Record the date of the last full re-run from a wiped working copy, the engine version, and the
-window. Then the book against every benchmark it reports against: CAGR, volatility, Sharpe, Sortino,
-maximum drawdown.
+window. Then the book against every benchmark it reports against, and against the control its
+blueprint names, on the rule's own rebalance dates: CAGR, volatility, Sharpe, Sortino, maximum
+drawdown.
 
 <!-- example: begin -->
 

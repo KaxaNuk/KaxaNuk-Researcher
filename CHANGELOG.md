@@ -6,6 +6,133 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.15.0] - 2026-09-23
+A blueprint now meets a critic before the go, and the bar it is held to asks for more: a control
+that differs in exactly one thing, one falsification condition fixed before the rule, and the
+horizon and overlap beside every ratio. Each experiment names the claim it moves, every notebook
+ends in a Verify section that raises, a figure is quoted only from the file that owns it, and APM
+is pinned at 0.29.0. Home template 0.8.2, strategy template 0.11.0, example 0.11.0.
+
+**What to do differently:** run `apm --version`; on anything but 0.29.0, run
+`uv tool install apm-cli==0.29.0` first, as `SETUP.md` now pins it, and never `apm self-update`.
+Then `uvx --from apm-cli==0.29.0 apm update -g` and a new session, which brings the new agent,
+`blueprint-critic`. In a home, run `update`: it brings `AGENTS.md` and `.gitignore` across; change
+the second non-negotiable in `RESEARCHER.md` by hand, as the home's changelog shows, and
+`git rm --cached` any PDF already committed outside `Sources/`. In a strategy, the next
+`BLUEPRINT_N.md` names the claim it moves, a *Control* line in *Rules* and *What would falsify it*,
+with the changes that may not rescue it; its `FINDINGS_N.md` and the *Claim moved* column of
+`RESULTS.md` say which claim moved; a coefficient or ratio carries its horizon, its overlap and the
+share of dates with the expected sign; and each notebook ends in a Verify section. A strategy made
+from an earlier template takes the new sections by hand, as the template's 0.11.0 entry lists them.
+### Added
+- **`blueprint-critic`, the package's first agent**, in `.apm/agents/`. It reads a draft blueprint
+  cold, with the strategy's bar, `OBJECTIVE.md`, the notes cited and *Before any experiment*, and
+  returns objections only, each with the line and the evidence; it writes nothing and the owner
+  decides. `blueprint` hands it the draft before the go, and reviews the draft itself against the
+  same seven items where no subagent can be called. `SETUP.md`'s done check looks for it, and the
+  README and `AGENTS.md` name it.
+- **Three items at the end of a strategy's bar**, so the first eight keep their numbers: a control
+  on the rule's own rebalance dates, one falsification condition and the changes that may not
+  rescue it, and the horizon and overlap beside the share of dates with the expected sign. The
+  blueprint gains *The claim this moves*, a *Control* line and *What would falsify it*; the
+  findings and `RESULTS.md` say which claim moved (`experiment-lifecycle` 0.9.0,
+  `paper-trading-gate` 0.1.1).
+- **A Verify section at the end of every notebook**, which reads back what the notebook wrote and
+  raises, and counts the days the engine valued against the window's trading days, never a fixed
+  floor. In the example it is code, and skips where no licensed engine is installed; nothing has
+  run it end to end yet. The example's analyzer writes `overlap_days` and `share_expected_sign`,
+  and its README says, stage by stage, what a correct run shows, from recorded figures only.
+- **`query`'s *Numbers*** (0.6.0): a performance figure is quoted only from `FINDINGS_N.md`,
+  `RESULTS.md` or the analyzer section it cites, named beside it, never recomputed, rounded,
+  combined or carried to another strategy. `read` (0.7.0) and its `note.md` keep a paper's figure
+  the paper's.
+- **Four more checks in `audit`**: a note whose `read` field does not say what was read, a claim
+  status outside the template's vocabulary, a strategy's own performance figure found in neither
+  its findings nor `RESULTS.md`, and, under `deep`, a part of `BIBLIOGRAPHY.md` whose sources only
+  agree.
+- **`library_version`** in the frontmatter of `backtest-engine-runs` 0.1.6,
+  `attribution-analysis-runs` 0.2.7 and `portfolio-construction-runs` 0.2.4: the build each was
+  written against, to compare with the installed one before trusting a trap. `references/api.md`
+  lists the `portfolio_stats` keys the example reads, and says their risk-free rate and
+  annualisation are not verified.
+### Changed
+- **APM is pinned at 0.29.0** in the README, `SETUP.md`, `update` and the strategy template's
+  `SETUP.md`, and every command in the README, `SETUP.md` and `update` that runs APM names
+  `apm-cli==0.29.0` itself, `uvx --from apm-cli==0.29.0 apm ...`, so a newer `apm` on the path
+  cannot run it. Measured on Windows: 0.29.0 installs this package cleanly; from 0.29.1 on, APM
+  stages a package under about 148 more characters of folders, the worked example's longest paths
+  pass the 260-character limit, and the install fails with `WinError 3` or `WinError 206`. `update`
+  checks the version first and installs 0.29.0 before the update.
+- **A change to the package is tried by a project-scope install** of the working tree from a short
+  scratch folder with the pinned APM, the `git ls-files` copy the fallback; before a release, 16
+  skills, 11 commands, 4 rules and 1 agent install with no warning. `AGENTS.md` names the lines the
+  100-column rule exempts, forbids a literal tab, says what a second package with a same-named
+  skill or command does, and points to the home's and a strategy's own rules. The README says what
+  the researcher will not do. `.gitignore` ignores what the copilot target writes in `.github/`.
+- **The commands follow the template more closely.** `objective`, `audit` and `next` accept a
+  note, `RESULTS.md` or the findings that measured a claim, or nothing for a claim true by
+  construction; `blueprint` reads the strategy's bar and lists what the draft lacks before the go;
+  `challenge` always checks the trial count the findings owe, and quotes the git log as the
+  evidence the blueprint came first; `next` recognises the worked example and sends the owner to
+  `init-strategy`; `interview` and `update` copy a missing home file with `scaffold.py --only`.
+- **The home** (template 0.8.2): interview's one write to `Philosophy/HOW-I-INVEST.md` is named; a
+  strategy with no claims reads nothing in; the hypothesis non-negotiable matches `AGENTS.md`;
+  `read` proposes questions when *What you are reading for* is empty; the primitives table names
+  all 16 skills, 11 commands, the agent and the house instructions; `.gitignore` ignores every PDF
+  and `.env` files.
+- **`data-analyzer-runs`** (0.2.0) matches the notebook: its section table ends in *7 · Verify*,
+  with what that section reads back and raises on, and section 4 reports the share of dates with the
+  expected sign and the overlap, *h − 1* days, beside the IR.
+- **The writing commands refuse the worked example**: `objective`, `blueprint`, `brainstorm` and
+  `challenge` stop in it, and `audit` reports there without appending to its log, each with the
+  test `next` uses and naming `init-strategy` for a strategy of one's own.
+- **A blueprint is filled when it carries its *Written* line.** `blueprint`, `challenge` and
+  `next`'s part E test for the `**Written YYYY-MM-DD, before any rule was coded.**` line
+  `blueprint` writes, where each had its own test; `blueprint`'s draft replaces each heading's
+  guidance paragraph. `blueprint-critic` objects only to what the draft wrote, not to the
+  template's guidance or, in the worked example, to anything outside the example's own lines.
+- **`next` and `challenge` follow the claim the blueprint names.** `next`'s part H and `challenge`'s
+  closure check read the claim under *The claim this moves* and the status `FINDINGS_N.md` says it
+  reached, against `OBJECTIVE.md` and the *Claim moved* column of `RESULTS.md`; a blueprint that
+  names none falls back to the statuses in `OBJECTIVE.md`. `backtest-engine-runs`' *Read the run
+  before believing it* points to the experiment notebook's Verify section, and the worked example's
+  99% and five-day rule.
+- **`read`** documents what `extract.py` reports — the extract folder's slug, `OUTLINE.md`, a
+  chapter *not written* or *thin*, exit 1 as a mistake in the command — and warns that a text
+  clipping in a strategy is committed. The three `init-*` skills (0.2.0) say what to do when a git
+  step fails.
+### Fixed
+- **`scaffold.py` refuses a copy too deep for Windows** without long paths: a plan whose longest
+  path would reach 260 characters, or whose deepest folder 248, exits 1 with nothing written,
+  naming the path and the longest destination that fits, where it failed partway with a traceback.
+  `init-researcher`, `init-strategy` and `init-example` say so.
+- **`next`** leaves an untracked source under `Sources/` to its own row, sends a home that is not a
+  git repository to the commands that finish it, and names a worked example one level down as the
+  example, for reading.
+- **`read`** counts a section of angle-bracketed slots as empty, stops with `interview` in a home
+  not yet interviewed, and never takes a `.gitkeep` for a source; `note.md` names a source with no
+  author or no printed year by its organisation or project and `ND`, as the worked example does.
+- **`audit`** exempts a paper's figure quoted in any of the strategy's documents through a note it
+  cites, matches a figure at the precision quoted, takes a *No note yet* row for a lead, reports
+  missing local copies once, *on this machine*, and audits a strategy alone when no home is in the
+  session. Its one log line is named as the one write made without a go, there and in the home's
+  `AGENTS.md`.
+- **`update`'s `check`** reports a dirty tree as a line instead of stopping, and a home at or
+  ahead of the template's version is current, with nothing proposed for removal.
+- **`init-researcher`'s plan** names every file the script copies. The worked example's README
+  says it is for reading and running, not copying.
+- **`scaffold.py --only`** refuses an absolute path, or one that leads outside the starting point
+  or the destination, and writes nothing.
+- **`scaffold.py` without git** keeps the copy, exits 0 and prints the git commands left to run,
+  where it ended in a traceback; git's output is decoded as UTF-8 and printed safely, and a failed
+  `git init` or `git add` prints the commands that finish the job.
+- **`extract.py`'s help** named the extract folder by the PDF's stem, where the script writes a
+  slug, and did not say that a command argparse rejects exits 2.
+
+### Removed
+- **The worked example's `uv.lock`.** The example resolves its library versions when `uv sync`
+  runs; a strategy made from the template still commits its own lock, as its `SETUP.md` says.
+
 ## [0.14.4] - 2026-09-23
 The package's own `.gitattributes` leaves it.
 

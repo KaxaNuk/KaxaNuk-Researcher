@@ -35,12 +35,26 @@ how a notebook keeps the key out of its own source. `BacktestResult` carries `su
 | `Financing_df`, `Total_financing_costs`, `Risk_free_rate` | borrow, margin and cash interest |
 | `Forced_liquidations_df` | positions the engine had to exit, with the reason |
 | `benchmark`, `benchmarks`, `benchmark_stats`, `benchmarks_stats` | the comparison arm |
-| `portfolio_stats` | `Start Balance`, `End Balance`, `Net Return`, `PnL`, `Annualized Return (CAGR)`, `Annualized Volatility` and the rest |
+| `portfolio_stats` | `Start Balance`, `End Balance`, `Net Return`, `PnL`, `Annualized Return (CAGR)`, `Annualized Volatility` and the rest; the keys a strategy quotes are below |
 | `start_date`, `end_date`, `years`, `initial_portfolio_value`, `final_total_portfolio_value` | **the window actually valued**, and the balances |
 
 `start_date`, `end_date` and `years` describe what was valued, not what was configured. Compare them
 with the configured window before quoting a metric: a run that stopped partway still returns
 `success=True` with `error=None` (see `SKILL.md`, section 6).
+
+**The keys a strategy quotes**, as the worked example's
+`Experiments/Experiment_1/experiment_1.ipynb` reads them from `portfolio_stats`:
+`Annualized Return (CAGR)`, `Annualized Volatility`, `Portfolio Sharpe Ratio`, `Max Drawdown`,
+`Total Commissions` and `Total Slippage Costs` by subscript, and `Alpha` and `Information Ratio`
+with `.get`, so it does not rely on those two being there. It reads `benchmark_stats` under the
+same first four names, for the index over the same window.
+
+**What those figures are defined as is not verified here.** Which risk-free rate the Sharpe ratio
+subtracts, and how many periods a year each annualised figure assumes, are not established by any
+run or page this file was taken from. `compute_portfolio_statistics`, in *The `metrics` module*
+below, defaults to `risk_free_rate=0.0` and `periods_per_year=252`, but nothing here shows that it
+is what fills `portfolio_stats` or the Excel report. Do not state a definition for a quoted figure
+until one is read from the engine's documentation or checked against a run.
 
 ## `entities.Configuration` and the input handlers, as the worked example calls them
 

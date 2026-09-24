@@ -6,6 +6,54 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.8.2 (2026-09-23)
+
+**PATCH** — a new home's rules agree with each other and with the skills: `AGENTS.md` names the one
+write `interview` makes to `Philosophy/`, says nothing is read into a strategy before its objective
+has claims, and names every primitive the package carries; `RESEARCHER.md` states the citation rule
+as `AGENTS.md` does; the `.gitignore` keeps every PDF and every `.env` file out of git.
+
+**What to do differently:** run `update` in your home, which brings `AGENTS.md` and `.gitignore`
+across. Then by hand, in `RESEARCHER.md`, which is yours: the second non-negotiable in the new
+wording, if you kept KaxaNuk's. A PDF you had committed outside `Sources/` stays tracked until you
+`git rm --cached` it.
+
+### Added
+
+* **`.gitignore` ignores `.env` and `*.env`**, under a comment saying why: a key kept in a `.env`
+  file never reaches a push. `AGENTS.md` already said a value from one is never printed.
+* **`AGENTS.md`'s primitives table names everything the package carries**: every skill — the
+  researcher's, the process's and each Lab library's, the house rules' — every command by name, the
+  package's one agent, `blueprint-critic`, a read-only reviewer `blueprint` calls on its draft
+  before the go, and an *Instruction* row for the four house instructions, which the home adds
+  none of. An owner naming a skill, a command or an agent of the home's own can now see every name
+  the package uses.
+* **`AGENTS.md` says a command's required input comes first**, the optional ones after it, because
+  an assistant binds the arguments by position.
+
+### Changed
+
+* **`.gitignore` ignores `*.pdf` anywhere in the home**, not only under `Sources/`, as the
+  strategy template already does, so a PDF filed in `Knowledge/` or `Projects/` by mistake is never
+  pushed. Its comment says so.
+
+### Fixed
+
+* **`interview`'s write to `Philosophy/HOW-I-INVEST.md`** — the owner's typed answers, verbatim,
+  on their go — is named in `AGENTS.md`'s folder table and its hard don'ts, which allowed writes to
+  `Philosophy/` only through `refine`.
+* **The in-strategy row for *What you are reading for*** said the researcher reads for whatever
+  the owner says while `OBJECTIVE.md` has no claims; it now says nothing may be read into the
+  strategy and `objective` comes first, as the out-of-order rule and the `read` skill say.
+* **`RESEARCHER.md`'s second non-negotiable** said a prediction cites a source; it now cites a note
+  or an analyzer measurement, one with neither is a lead, and a source without a note cannot be
+  cited, as `AGENTS.md` says.
+* **The *What you are reading for* prompt** said `read` asks for the questions when the section is
+  empty; it proposes candidate questions from what is already in `Sources/` and asks you to pick,
+  as the skill does.
+* **`AGENTS.md`'s *Plan first, then write*** said every write waits for a go, while `audit` appends
+  its line to `LOG.md` without one; it now names that line as the one write made without a go.
+
 ## 0.8.1 (2026-09-23)
 
 **PATCH** — a new home's own files agree with its rules: the blockquotes of `Knowledge/INDEX.md`
