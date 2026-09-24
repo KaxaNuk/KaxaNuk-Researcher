@@ -10,6 +10,9 @@ paragraph that replaces this one, on your go.
 
 ## Working with it
 
+**The researcher is yours:** it grows with what you believe, and the package brings only hints,
+offered as options, that make a complex idea simple — never a position to adopt.
+
 **First, once.** Open your assistant in this folder, in a new session, and run `interview`: a
 short interview that writes `RESEARCHER.md` and the agent file that makes your researcher callable
 by name. Then deploy the agent for the assistant you use — `codex`, `cursor` or `copilot` in place

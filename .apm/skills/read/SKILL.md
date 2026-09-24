@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.7.0
+  version: 0.7.1
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -301,8 +301,10 @@ Then say: review the diff and commit.
 - `references/note.md`, in this skill's folder: the shape of every note — paths and
   names, frontmatter, the chapter note, the paper note, the book's `INDEX.md`, what the indexes
   show, how a home note travels into a strategy — and of the concept page and the synthesis page.
-- `references/reading-map.md`, in this skill's folder: the evolution of investment research,
-  distilled from Section 01 of the KaxaNuk bootcamp's *Intro to Investment Research* — the ten
-  papers of the two timelines, where each belief sits and its other side, the six acts with the
-  arc's 21 questions and their works, and who argues with whom. The one list a work to read may be
-  proposed from besides the owner's library; a work in it is a lead, never a citation.
+- `references/reading-map.md`, in this skill's folder: the evolution of investment research and
+  where alpha comes from, distilled from Sections 01 and 02 of the KaxaNuk bootcamp's *Intro to
+  Investment Research* — the ten papers of the two timelines, where each belief sits and its other
+  side, the six acts with the arc's 21 questions and their works, who argues with whom, and, as
+  hints, the five sources of edge, where ideas come from, seven questions before any backtest and
+  an idea's anatomy. The one list a work to read may be proposed from besides the owner's library;
+  a work in it is a lead, never a citation.
