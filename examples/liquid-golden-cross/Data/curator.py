@@ -19,6 +19,10 @@ What is expected here is a short driver, not a framework:
   -- the provider's `m_*` columns plus the `c_*` columns defined in
   `Data/Curator/custom_calculations.py`.  Fix the end date rather than using today, so two people
   running a week apart get comparable files.
+- Take a later end date as an argument, `--end-date`, for the one caller that needs today's data:
+  `Paper_Trading/daily_update.py`.  A refresh refetches each file whole, because a fresh pull
+  rebases every adjusted column from the present, and remembers the date each file was fetched
+  through, so a run that stops half way resumes where it stopped.
 - Call the public library once -- `kaxanuk-data-curator`, already installed by `uv sync` from
   `pyproject.toml`, imported as `kaxanuk.data_curator`.  It loops over the identifiers, skips one
   that fails and says why, and writes `<identifier>.csv` for each.
@@ -38,10 +42,11 @@ three: an unused column costs bytes, a missing one costs a refetch of every iden
     split-adjusted        traded value, which is liquidity in today's share terms
     dividend-and-split    the total-return series a signal and the backtest P&L run on
 
-Two folders beside the time series are drop zones, not outputs: `Benchmarks/` for an index's daily
-holdings and returns, `Factors/` for a factor model's returns.  No price provider sells them; the
-backtest's benchmark and the attribution read them.  Without them this script still downloads
-every price and says the index was not staged; the notebooks stop where they first read it.
+An index's daily holdings and returns, and a factor model's returns, are not sold by any price
+provider: they arrive from the desk that builds them, and `Data/hand_supplied.py` reads them -- in
+place, from the folder `KN_ANALYTICS_PATH` names, or from the drop zones `Benchmarks/` and
+`Factors/` beside the time series.  Without them this script still downloads every price and says
+the index was not staged; the notebooks stop where they first read it.
 
 Credentials come from `Config/.env` and are never printed -- not into a log line, a notebook
 output or a commit.  An exposed key is rotated, not edited out.
@@ -55,13 +60,17 @@ rebuild.
 
 # --- example: begin ---
 
+import argparse
 import csv
 import datetime
 import importlib.util
+import json
 import logging
 import os
 import pathlib
+import socket
 import sys
+import time
 import types
 
 import pandas
@@ -76,21 +85,36 @@ __all__ = [
     "download_identifier",
     "extend_history",
     "load_custom_calculations",
+    "load_hand_supplied",
     "main",
+    "read_fetched_through",
     "read_identifiers",
     "read_provider_key",
     "stage_index_price_series",
 ]
 
 # The benchmark the book is reported against, and a short-Treasury proxy for the cash it holds when
-# fewer than thirty stocks qualify.  They ride in the same folder as the universe because the
-# backtest engine prices every identifier from one directory; neither enters the cross-section,
+# fewer names qualify than the book holds.  They ride in the same folder as the universe because
+# the backtest engine prices every identifier from one directory; neither enters the cross-section,
 # because the refinery takes membership from the seed and neither is in it.
 BENCHMARK_AND_CASH_IDENTIFIERS = (
     "SHY",
     "SPY",
 )
 CUSTOM_CALCULATIONS_PATH = pathlib.Path(__file__).parent / "Curator" / "custom_calculations.py"
+# An identifier the provider did not answer for is asked again, twice, after a pause: the stalls
+# seen here were a DNS failure followed by a request that never returned.
+DOWNLOAD_ATTEMPTS = 3
+# Fixed, not `today`, so two people running a week apart get the same files.  It is the last date
+# of the experiment's window.  `--end-date` moves it for a paper-trading refresh.
+END_DATE = datetime.date(
+    2026,
+    6,
+    1,
+)
+# The date each file was last fetched through, so a refresh knows what it has already done.
+FETCHED_THROUGH_PATH = pathlib.Path(__file__).parent / "Curator" / "fetched_through.json"
+HAND_SUPPLIED_PATH = pathlib.Path(__file__).parent / "hand_supplied.py"
 # The provider answers at most this many rows per request, so a longer history arrives in windows.
 # The earlier window overlaps the one already on file by enough days for the longest rolling column
 # to be warm where the two are joined: a window's own first rows are null by construction, and
@@ -99,24 +123,18 @@ HISTORY_OVERLAP_DAYS = 150
 # A file that starts within a fortnight of the window asked for has everything the provider holds:
 # the first trading day of a year is never the first of January.
 HISTORY_TOLERANCE_DAYS = 14
-# Fixed, not `today`, so two people running a week apart get the same files.  It is the last date
-# the hand-supplied index holdings cover.
-END_DATE = datetime.date(
-    2026,
-    6,
-    1,
-)
 IDENTIFIER_COLUMN = "main_identifier"
 # The index the book is reported against. No price provider sells it, so it arrives by hand as a
 # daily return series and is rebuilt here as a level the engine can price like any other file.
 INDEX_IDENTIFIER = "KN600"
-INDEX_RETURNS_PATH = (
-    pathlib.Path(__file__).parent / "Curator" / "Benchmarks" / "KN_US_Equity_Returns.csv"
-)
 # Prices are the only block this strategy reads, and they also set the calendar every other column
 # is aligned to.
 MARKET_DATA_BLOCK = kaxanuk.data_curator.data_blocks.market_daily.MarketDailyDataBlock
 OUTPUT_DIRECTORY = pathlib.Path(__file__).parent / "Curator" / "Time_Series"
+# The library opens its connections with no timeout of its own, so one that hangs would hang the
+# run; this makes it raise instead, and the attempt is made again.
+REQUEST_TIMEOUT_SECONDS = 120
+RETRY_PAUSE_SECONDS = 30
 SEED_PATH = pathlib.Path(__file__).parent.parent / "Universe" / "Investable_Universe.csv"
 # A year before the backtest starts, so the 200-day average is warm on the first day that counts.
 START_DATE = datetime.date(
@@ -159,13 +177,17 @@ OUTPUT_COLUMNS = (
 def download_identifier(
     identifier: str,
     custom_calculations: "types.ModuleType",
+    end_date: "datetime.date",
+    fetched_through: dict[str, str],
 ) -> str:
     """
-    Fetch one identifier and say what happened, in one word a caller can count.
+    Fetch one identifier through the end date and say what happened, in one word a caller counts.
 
     One call per identifier is what makes a long run resumable and keeps one bad ticker from
-    costing the whole batch.  A file whose header already matches is left alone; a header that does
-    not match is refetched, so the folder can never hold two schemas at once.
+    costing the whole batch.  A file with the right header already fetched through this end date
+    is left alone.  A file from before the date was remembered was fetched through `END_DATE`, the
+    only date there was.  A header that does not match is refetched, so the folder can never hold
+    two schemas at once.
     """
     output_path = OUTPUT_DIRECTORY / f"{identifier}.csv"
 
@@ -173,13 +195,18 @@ def download_identifier(
         with output_path.open(encoding="utf-8-sig", newline="") as handle:
             header = next(csv.reader(handle), [])
 
-        if tuple(header) == OUTPUT_COLUMNS:
+        remembered = fetched_through.get(
+            identifier,
+            END_DATE.isoformat(),
+        )
+
+        if tuple(header) == OUTPUT_COLUMNS and remembered == end_date.isoformat():
 
             return "skipped"
 
     configuration = kaxanuk.data_curator.entities.Configuration(
         start_date=START_DATE,
-        end_date=END_DATE,
+        end_date=end_date,
         period="quarterly",
         identifiers=(identifier,),
         columns=OUTPUT_COLUMNS,
@@ -190,18 +217,30 @@ def download_identifier(
     output_handler = kaxanuk.data_curator.output_handlers.CsvOutput(
         output_base_dir=str(OUTPUT_DIRECTORY),
     )
-    kaxanuk.data_curator.main(
-        configuration=configuration,
-        output_handlers=[output_handler],
-        custom_calculation_modules=[custom_calculations],
-        data_block_providers={MARKET_DATA_BLOCK: provider},
-        master_clock_data_block=MARKET_DATA_BLOCK,
-        logger_level=logging.WARNING,
-    )
+    before = output_path.stat().st_mtime if output_path.is_file() else None
 
-    if output_path.is_file():
+    for attempt in range(1, DOWNLOAD_ATTEMPTS + 1):
+        try:
+            kaxanuk.data_curator.main(
+                configuration=configuration,
+                output_handlers=[output_handler],
+                custom_calculation_modules=[custom_calculations],
+                data_block_providers={MARKET_DATA_BLOCK: provider},
+                master_clock_data_block=MARKET_DATA_BLOCK,
+                logger_level=logging.WARNING,
+            )
+        except OSError as error:
+            print(f"{identifier}: attempt {attempt} failed ({type(error).__name__})", flush=True)
 
-        return "downloaded"
+        written = output_path.is_file() and output_path.stat().st_mtime != before
+
+        if written:
+            fetched_through[identifier] = end_date.isoformat()
+
+            return "downloaded"
+
+        if attempt < DOWNLOAD_ATTEMPTS:
+            time.sleep(RETRY_PAUSE_SECONDS)
 
     return "missing"
 
@@ -255,14 +294,19 @@ def extend_history(
     output_handler = kaxanuk.data_curator.output_handlers.CsvOutput(
         output_base_dir=str(history_directory),
     )
-    kaxanuk.data_curator.main(
-        configuration=configuration,
-        output_handlers=[output_handler],
-        custom_calculation_modules=[custom_calculations],
-        data_block_providers={MARKET_DATA_BLOCK: provider},
-        master_clock_data_block=MARKET_DATA_BLOCK,
-        logger_level=logging.WARNING,
-    )
+
+    try:
+        kaxanuk.data_curator.main(
+            configuration=configuration,
+            output_handlers=[output_handler],
+            custom_calculation_modules=[custom_calculations],
+            data_block_providers={MARKET_DATA_BLOCK: provider},
+            master_clock_data_block=MARKET_DATA_BLOCK,
+            logger_level=logging.WARNING,
+        )
+    except OSError as error:
+        print(f"{identifier}: earlier history failed ({type(error).__name__})", flush=True)
+
     earlier_path = history_directory / f"{identifier}.csv"
 
     if not earlier_path.is_file():
@@ -309,39 +353,91 @@ def load_custom_calculations() -> "types.ModuleType":
     return module
 
 
+def load_hand_supplied() -> "types.ModuleType":
+    """
+    Import the reader of the desk's files by path, for the same reason.
+    """
+    specification = importlib.util.spec_from_file_location(
+        "hand_supplied",
+        HAND_SUPPLIED_PATH,
+    )
+    module = importlib.util.module_from_spec(specification)
+    specification.loader.exec_module(module)
+
+    return module
+
+
 def main() -> int:
     """
     Download every identifier in the seed, then the benchmark and the cash proxy, and report.
 
     Failures are named rather than counted: an identifier the provider does not carry is a hole in
-    the panel, and the universe notebook writes it into `Universe/Data_Issues.csv` from here.
+    the panel, and the universe notebook writes it into `Universe/Data_Issues.csv` from here.  The
+    history pass runs only for what this run fetched, so a resumed refresh does not ask again for
+    history it already joined.
     """
+    parser = argparse.ArgumentParser(description="Download the seed's time series.")
+    parser.add_argument(
+        "--end-date",
+        default=END_DATE.isoformat(),
+        help="the last date to fetch through, ISO; the experiment's end date when omitted",
+    )
+    parser.add_argument(
+        "--identifiers",
+        default="",
+        help="a comma-separated subset of the seed, for a quick check",
+    )
+    arguments = parser.parse_args()
+    end_date = datetime.date.fromisoformat(arguments.end_date)
     kaxanuk.data_curator.load_config_env()
+    socket.setdefaulttimeout(REQUEST_TIMEOUT_SECONDS)
     OUTPUT_DIRECTORY.mkdir(
         parents=True,
         exist_ok=True,
     )
     custom_calculations = load_custom_calculations()
-    identifiers = read_identifiers() + BENCHMARK_AND_CASH_IDENTIFIERS
+    requested = tuple(
+        identifier.strip()
+        for identifier in arguments.identifiers.split(",")
+        if identifier.strip()
+    )
+    everything = read_identifiers() + BENCHMARK_AND_CASH_IDENTIFIERS
+    identifiers = requested if len(requested) > 0 else everything
+    fetched_through = read_fetched_through()
     outcomes = {
         "downloaded": 0,
         "missing": 0,
         "skipped": 0,
     }
     missing_identifiers = []
+    downloaded_identifiers = []
 
     for position, identifier in enumerate(identifiers, start=1):
         outcome = download_identifier(
             identifier,
             custom_calculations,
+            end_date,
+            fetched_through,
         )
         outcomes[outcome] += 1
 
         if outcome == "missing":
             missing_identifiers.append(identifier)
 
+        if outcome == "downloaded":
+            downloaded_identifiers.append(identifier)
+            remembered_dates = json.dumps(
+                fetched_through,
+                indent=1,
+                sort_keys=True,
+            )
+            FETCHED_THROUGH_PATH.write_text(
+                remembered_dates,
+                encoding="utf-8",
+            )
+
         if position % 25 == 0 or position == len(identifiers):
-            print(f"{position}/{len(identifiers)}: {outcomes}", flush=True)
+            print(f"{position}/{len(identifiers)} through {end_date}: {outcomes}", flush=True)
 
     if len(missing_identifiers) > 0:
         names = ", ".join(missing_identifiers)
@@ -356,25 +452,47 @@ def main() -> int:
         "no earlier history": 0,
     }
 
-    for history_position, history_identifier in enumerate(identifiers, start=1):
+    for history_position, history_identifier in enumerate(downloaded_identifiers, start=1):
         extension = extend_history(
             history_identifier,
             custom_calculations,
         )
         extensions[extension] += 1
 
-        if history_position % 25 == 0 or history_position == len(identifiers):
-            print(f"history {history_position}/{len(identifiers)}: {extensions}", flush=True)
+        if history_position % 25 == 0 or history_position == len(downloaded_identifiers):
+            print(
+                f"history {history_position}/{len(downloaded_identifiers)}: {extensions}",
+                flush=True,
+            )
 
     # The index is KaxaNuk's own and arrives by hand, so a copy without it is told what it lacks
     # rather than handed a traceback after every price has downloaded.
-    if INDEX_RETURNS_PATH.is_file():
-        index_path = stage_index_price_series()
+    hand_supplied = load_hand_supplied()
+    missing_inputs = hand_supplied.report_missing()
+    returns_missing = [
+        line
+        for line in missing_inputs
+        if "index returns" in line
+    ]
+
+    if len(returns_missing) == 0:
+        index_path = stage_index_price_series(hand_supplied)
         print(f"staged the index as {index_path.name}, rebuilt from its own daily returns")
     else:
-        print(f"{INDEX_IDENTIFIER} not staged: {INDEX_RETURNS_PATH.name} is not in Benchmarks/")
+        print(f"{INDEX_IDENTIFIER} not staged: {returns_missing[0]}")
 
     return 0
+
+
+def read_fetched_through() -> dict[str, str]:
+    """
+    The date each file was last fetched through, empty before the first refresh.
+    """
+    if not FETCHED_THROUGH_PATH.is_file():
+
+        return {}
+
+    return json.loads(FETCHED_THROUGH_PATH.read_text(encoding="utf-8"))
 
 
 def read_identifiers() -> tuple[str, ...]:
@@ -417,7 +535,9 @@ def read_provider_key() -> str:
     return api_key
 
 
-def stage_index_price_series() -> "pathlib.Path":
+def stage_index_price_series(
+    hand_supplied: "types.ModuleType",
+) -> "pathlib.Path":
     """
     Rebuild the index as a price level from its own daily returns, beside the securities.
 
@@ -426,21 +546,15 @@ def stage_index_price_series() -> "pathlib.Path":
     on its own: only its returns are ever read.  A benchmark is never traded, so the two VWAP
     columns the engine asks for by name are the level itself.
     """
-    returns = pandas.read_csv(
-        INDEX_RETURNS_PATH,
-        parse_dates=["date_column"],
-        dayfirst=True,
-    )
-    return_column = returns.columns[1]
-    ordered = returns.sort_values("date_column")
-    growth = 1 + ordered[return_column].fillna(0.0)
+    returns = hand_supplied.read_benchmark_returns()
+    growth = 1 + returns.fillna(0.0)
     level = growth.cumprod() * 100
     staged = pandas.DataFrame({
-        "m_date": ordered["date_column"].dt.date,
-        "m_close": level,
-        "m_close_dividend_and_split_adjusted": level,
-        "c_vwap": level,
-        "c_vwap_dividend_and_split_adjusted": level,
+        "m_date": returns.index.date,
+        "m_close": level.to_numpy(),
+        "m_close_dividend_and_split_adjusted": level.to_numpy(),
+        "c_vwap": level.to_numpy(),
+        "c_vwap_dividend_and_split_adjusted": level.to_numpy(),
     })
     path = OUTPUT_DIRECTORY / f"{INDEX_IDENTIFIER}.csv"
     staged.to_csv(

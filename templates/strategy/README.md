@@ -119,11 +119,13 @@ condition, and a claim written after the reading is an observation wearing a hyp
   notebook sits *between* the two Data commands, because it profiles what the curator downloaded
   and writes the master the refinery joins. The analyzer's measurements go straight into
   `RESULTS.md`.
-- **E. The blueprint.** Choose the benchmark, then write `BLUEPRINT_1.md` before the rule.
-  Experiment 1 is the benchmark, a real strategy with a real return, so choosing it is the first
-  entry of `BRAINSTORMING_1.md`. Every prediction in the blueprint cites a `Bibliotheca/` note from
-  B, or an analyzer measurement from D, and the blueprint names the claim it moves, its control and
-  what would falsify it; a hypothesis edited after its test is not a hypothesis.
+- **E. The blueprint.** Name the benchmark, then write `BLUEPRINT_1.md` before the rule. The
+  benchmark is what "beat" means — an index, an ETF or an equal-weight book of the universe — and
+  naming it is the first entry of `BRAINSTORMING_1.md`; Experiment 1 is the first rule tested
+  against it, a real strategy with a real return. Every prediction in the blueprint cites a
+  `Bibliotheca/` note from B, or an analyzer measurement from D, and the blueprint names the claim
+  it moves, its control and what would falsify it; a hypothesis edited after its test is not a
+  hypothesis.
 - **F. The broad reading.** Search for papers and brainstorm — the reading for what the blueprint
   left open, and `BRAINSTORMING_1.md` for what to try next.
 - **G. The cycle.** Portfolio construction, backtest, attribution — until it is finished and the
@@ -185,10 +187,10 @@ to keep current:
 | --- | --- | --- | --- |
 | `Bibliotheca/` | 1 | `BIBLIOGRAPHY.md`, the index of sources and the leads. `Papers/`, one note per paper, and `Books/`, one folder per book — its `INDEX.md` of chapters and one note per chapter somebody chose to read — each beside the PDF it came from. `LOG.md`, what was read here and when. `Notes/` for clippings and transcripts | the notes and the indexes — they are the reasoning. The PDFs and `Extracts/` are ignored: licensed material, and the extracts regenerate |
 | `Universe/` | 2 | `Investable_Universe.csv`, **the seed**: one row per security, `main_identifier` the only required column, every other column yours. `universe.ipynb`, which profiles what the curator downloaded and writes `Security_Master.csv` and `Data_Issues.csv` | the seed and the notebook; the two outputs and `Provider_Cache/` are regenerated, so ignored |
-| `Data/` | 3 | `curator.py`, `refinery.py`, `analyzer.ipynb` — the three drivers. `Curator/custom_calculations.py` for `c_*` columns and `Refinery/custom_calculations.py` for `r_*`. `Curator/Time_Series/`, `Benchmarks/`, `Factors/` and `Refinery/Time_Series/` for what is downloaded or dropped in by hand; `Analyzer/` for charts and the signal table | code only. **Every data file is ignored** — downloaded, derived or dropped in, all of it regenerable |
+| `Data/` | 3 | `curator.py`, `refinery.py`, `analyzer.ipynb` — the three drivers — and `hand_supplied.py`, the one reader of the index and factor files the desk ships, in place from `KN_ANALYTICS_PATH` or from the drop zones. `Curator/custom_calculations.py` for `c_*` columns and `Refinery/custom_calculations.py` for `r_*`. `Curator/Time_Series/`, `Benchmarks/`, `Factors/` and `Refinery/Time_Series/` for what is downloaded or dropped in by hand; `Analyzer/` for charts and the signal table | code only. **Every data file is ignored** — downloaded, derived or dropped in, all of it regenerable |
 | `Experiments/` | 4–6 | The four shared modules — `securities_panel.py`, `portfolio_construction.py`, `backtest_engine.py`, `attribution_analysis.py`. One `Experiment_N/` per idea: `BLUEPRINT_N.md`, `BRAINSTORMING_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, the notebook, and its `Portfolio/`, `Backtest/` and `Attribution/` output folders | the documents, the notebook with outputs stripped, the modules. The output folders are rebuilt by the notebook, so ignored |
-| `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `daily_update.py`. `Paper_Trading_N/paper_trading_N.py`, the frozen rule of anything that passed | everything |
-| `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key and the two engine licences | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
+| `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `promote.py`, which freezes a graduated experiment into `Paper_Trading_N/`; `daily_update.py`, which runs every frozen book each day; `record.py`, which keeps the record in files, a DuckDB database or both. `Paper_Trading_N/`, one frozen book: its `paper_trading_N.py`, the files it needs in the strategy's own layout, and `FREEZE.json` | the scripts, `BITACORA.md` and every frozen book. Each day's raw files, logs and record are ignored, and the record cannot be fetched again: keep it in the database or back it up |
+| `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key, the two engine licences, the desk's folder and the paper-trading settings | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
 
 **Every one of those files is in this template**, except `Bibliotheca/Papers/`, `Books/` and
 `Notes/`, which appear with their first note: each as a description of what is expected in it — a

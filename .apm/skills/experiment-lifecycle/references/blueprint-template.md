@@ -16,10 +16,11 @@
 
 ### Thesis
 
-One paragraph: what book this rule produces, and why it is a fair yardstick — sensible, liquid,
-low-complexity — for judging whether any later idea adds value. **Be modest on purpose.** The
-benchmark does not assert its signal is the best of its kind, only that it is simple enough to be
-understood, liquid enough to be traded, and stable enough to measure other things against.
+One paragraph: what book this rule produces, why it should beat the benchmark
+`BRAINSTORMING_1.md` names, and why it is also a fair yardstick — sensible, liquid, low-complexity
+— for judging whether any later idea adds value. **Be modest on purpose.** A first rule does not
+assert its signal is the best of its kind, only that it is simple enough to be understood, liquid
+enough to be traded, and stable enough to measure other things against.
 
 ### The claim this moves
 
@@ -56,22 +57,23 @@ Costs usually belong here.
 
 ### Success criteria
 
-As the benchmark, Experiment 1 does not need to win. It needs to be a **fair, stable yardstick**:
+What the experiment has to show to count as a success, fixed now. At the least:
 
-1. Reproducible from a clean clone, through the pipeline, with no manual step.
-2. A tradeable trigger frequency — not a rule that fires every day.
-3. Net-of-cost results reported against every benchmark it declares.
+1. It beats the benchmark `BRAINSTORMING_1.md` names **and its own control** on risk-adjusted
+   return, net, over the same window — criterion 1 of the gate in `Paper_Trading/BITACORA.md`.
+2. Reproducible from a clean clone, through the pipeline, with no manual step.
+3. A tradeable trigger frequency — not a rule that fires every day.
 4. Every prediction above evaluated explicitly in `FINDINGS_N.md`, **including the ones that turn
    out wrong.**
 
-**Graduation: not applicable.** The benchmark's job is to be the thing others are measured against,
-so it stays in the Lab even if it scores well.
+**Success is necessary for graduation, not sufficient.** The gate's five criteria in
+`Paper_Trading/BITACORA.md` decide it, and a person signs it.
 
 ### What would falsify it
 
 **One condition for the whole experiment, fixed now.** Each prediction above has its own falsifier;
-this is the result under which the experiment as a whole has failed — for a later experiment,
-usually a margin against its control; for the benchmark, a success criterion it misses. Then **the
+this is the result under which the experiment as a whole has failed — usually a margin against its
+control, or a result that holds in one sub-period and not in the others. Then **the
 changes that may not rescue it**: every setting that could be moved once the result is in — a
 holding count, a trigger, a window, a threshold — by name. Moving one after the result is a new
 experiment, and one more trial in the count.
@@ -80,8 +82,8 @@ experiment, and one more trial in the count.
 
 - **Survivorship and point-in-time integrity.** The universe must include delisted names; step 2
   quantifies how many.
-- **The signal's known weakness** — slow exits, whipsaw, regime dependence — accepted here on
-  simplicity grounds and attacked in a later experiment.
+- **The signal's known weakness** — slow exits, whipsaw, regime dependence — named here, and either
+  handled by the rules above or accepted on simplicity grounds and left to a later experiment.
 - **Concentration.** How the weighting concentrates, and which diagnostics measure it.
 - **The signal may not be what earns the return.** If the book beats its benchmarks because of a
   factor exposure rather than the signal, the honest product is a cheaper factor fund. That is what

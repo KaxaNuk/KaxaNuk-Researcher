@@ -9,8 +9,9 @@ Runs inside an experiment notebook, section 5, after the backtest.
 What is expected here:
 
 - Say what is present.  The library needs four inputs: an index's daily holdings and its daily
-  returns in `Data/Curator/Benchmarks/`, one or more factor-return files in
-  `Data/Curator/Factors/`, and the book from step 5.  Check for them first and report the gap in a
+  returns, one or more factor-return files, and the book from step 5.  The first three are the
+  desk's, read in place by `Data/hand_supplied.py` from the folder `KN_ANALYTICS_PATH` names, or
+  from the drop zones under `Data/Curator/`.  Check for them first and report the gap in a
   sentence, so a clone with no licence and no index files pays nothing to find out.
 - Take the book as a daily series, from `Backtest/`, never from `Portfolio/portfolio_weights.csv`.
   The library rejects a weight file that is not daily once it spans a year, and the rebalance-date
@@ -31,12 +32,13 @@ What is expected here:
   holdings and the benchmark's return series, and none of them may carry nulls.  That is why the
   shaping lives here and not in a notebook.
 - Say what the factor directory has to look like, because every entry in it is read as a factor
-  file: one CSV per factor, its name taken from the file name up to the first dot, a date column
-  first -- its header may be empty -- and one column per security after it.  Four names are
-  reserved, matched exactly and in lower case, and dropped from the percentage decomposition:
-  `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and `f_idyo_returns`.  A file
-  capitalised differently is attributed as an ordinary factor, which is a quiet way to double-count
-  the market.
+  file: one CSV per factor, a date column first -- its header may be empty -- and one column per
+  security after it.  Four names are reserved by the library and dropped from the percentage
+  decomposition: `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and
+  `f_idyo_returns`.  The desk ships them as `Market`, `Total_Factor_Returns`,
+  `Total_Excess_Returns` and `Idyo_Returns`; `Data/hand_supplied.py` gives them the library's names,
+  because a reserved file attributed as an ordinary factor is a quiet way to double-count the
+  market.
 - Name the two output files and the date convention once, so switching to a different index is an
   edit here and no notebook names a file.
 - Capture the library's figures.  It shows them and returns nothing, so this module has to catch
@@ -63,18 +65,17 @@ a header carries the name a provider gave it rather than the one the loader expe
 
 import importlib.util
 import pathlib
+import types
 
 import pandas
 import pyarrow
 
 __all__ = [
-    "BENCHMARK_HOLDINGS_PATH",
-    "BENCHMARK_RETURNS_PATH",
     "DATE_HEADER",
-    "FACTOR_DIRECTORY",
     "LIBRARY_INSTALLED",
     "RESERVED_FACTOR_NAMES",
     "load_asset_returns",
+    "load_benchmark_holdings",
     "load_benchmark_weights",
     "load_factor_returns",
     "report_missing_inputs",
@@ -82,21 +83,13 @@ __all__ = [
     "widen_to_benchmark",
 ]
 
-BENCHMARK_HOLDINGS_PATH = (
-    pathlib.Path(__file__).parent.parent
-    / "Data" / "Curator" / "Benchmarks" / "KN_US_Equity_Benchmark.csv"
-)
-BENCHMARK_RETURNS_PATH = (
-    pathlib.Path(__file__).parent.parent
-    / "Data" / "Curator" / "Benchmarks" / "KN_US_Equity_Returns.csv"
-)
 # The one cell that decides whether a file loads: dates down, securities across.  `date`, `m_date`
 # or whatever a provider used raises before a number is read.
 DATE_HEADER = "date_column"
-FACTOR_DIRECTORY = pathlib.Path(__file__).parent.parent / "Data" / "Curator" / "Factors"
+HAND_SUPPLIED_PATH = pathlib.Path(__file__).parent.parent / "Data" / "hand_supplied.py"
 LIBRARY_INSTALLED = importlib.util.find_spec("kaxanuk.attribution_analysis") is not None
-# Matched exactly, in lower case, and dropped from the percentage decomposition.  A file
-# capitalised differently is attributed as an ordinary factor, which double-counts the market.
+# The library's names for the model's own series, which are totals rather than factors and are
+# dropped from its percentage decomposition; `Data/hand_supplied.py` gives the desk's files them.
 RESERVED_FACTOR_NAMES = (
     "f_idyo_returns",
     "f_market",
@@ -145,6 +138,18 @@ def load_asset_returns(
     return returns.fillna(0.0)
 
 
+def load_benchmark_holdings() -> "pandas.DataFrame":
+    """
+    The index's daily holdings as the desk ships them: dates down, listings across, zero for absent.
+
+    Membership in the rule and the benchmark half of the first cut read the same file, so both read
+    it through here.
+    """
+    hand_supplied = _load_hand_supplied()
+
+    return hand_supplied.read_benchmark_holdings()
+
+
 def load_benchmark_weights(
     dates: "pandas.DatetimeIndex",
 ) -> "pandas.DataFrame":
@@ -154,13 +159,8 @@ def load_benchmark_weights(
     The holdings file is the benchmark half of the first cut, and it follows the same header rule
     as the book: a security absent on a date weighs zero, never null.
     """
-    holdings = pandas.read_csv(
-        BENCHMARK_HOLDINGS_PATH,
-        parse_dates=[DATE_HEADER],
-        dayfirst=True,
-    )
-    indexed = holdings.set_index(DATE_HEADER)
-    on_dates = indexed.reindex(dates)
+    holdings = load_benchmark_holdings()
+    on_dates = holdings.reindex(dates)
     forward_filled = on_dates.ffill()
 
     return forward_filled.fillna(0.0)
@@ -168,37 +168,11 @@ def load_benchmark_weights(
 
 def load_factor_returns() -> dict[str, "pandas.DataFrame"]:
     """
-    Read every file in the factor drop zone, each one a factor named by its file name.
-
-    Every entry in the directory is read as a factor, so a stray file is a stray factor.  The four
-    reserved names are checked for capitalisation here rather than discovered in a decomposition
-    that quietly counted the market twice.
+    Read every factor file, each one named for the library, with its dates parsed.
     """
-    factors = {}
-    miscapitalised = []
+    hand_supplied = _load_hand_supplied()
 
-    for path in sorted(FACTOR_DIRECTORY.glob("*.csv")):
-        name = path.name.split(".")[0]
-
-        if name.lower() in RESERVED_FACTOR_NAMES and name not in RESERVED_FACTOR_NAMES:
-            miscapitalised.append(name)
-
-        frame = pandas.read_csv(path)
-        # The date column's header is empty in these files, and its values are strings. Every other
-        # input to the library carries timestamps, and a string date silently aligns with nothing:
-        # the factor attribution comes back with zero rows rather than an error.
-        dates = pandas.to_datetime(frame[frame.columns[0]])
-        dated = frame.drop(columns=[frame.columns[0]])
-        dated.index = dates
-        dated.index.name = DATE_HEADER
-        factors[name] = dated
-
-    if len(miscapitalised) > 0:
-        capitalisation_message = f"reserved factor files must be lower case: {miscapitalised}"
-
-        raise ValueError(capitalisation_message)
-
-    return factors
+    return hand_supplied.read_factor_returns()
 
 
 def report_missing_inputs() -> list[str]:
@@ -213,16 +187,8 @@ def report_missing_inputs() -> list[str]:
     if not LIBRARY_INSTALLED:
         missing.append("the KaxaNuk Attribution Analysis library is not installed")
 
-    if not BENCHMARK_HOLDINGS_PATH.is_file():
-        missing.append(f"no index holdings at {BENCHMARK_HOLDINGS_PATH}")
-
-    if not BENCHMARK_RETURNS_PATH.is_file():
-        missing.append(f"no index returns at {BENCHMARK_RETURNS_PATH}")
-
-    factor_files = sorted(FACTOR_DIRECTORY.glob("*.csv"))
-
-    if len(factor_files) == 0:
-        missing.append(f"no factor files in {FACTOR_DIRECTORY}")
+    hand_supplied = _load_hand_supplied()
+    missing.extend(hand_supplied.report_missing())
 
     return missing
 
@@ -274,6 +240,20 @@ def widen_to_benchmark(
     )
 
     return widened.fillna(0.0)
+
+
+def _load_hand_supplied() -> "types.ModuleType":
+    """
+    Import the reader of the desk's files by path: `Data/` is a folder rather than a package.
+    """
+    specification = importlib.util.spec_from_file_location(
+        "hand_supplied",
+        HAND_SUPPLIED_PATH,
+    )
+    module = importlib.util.module_from_spec(specification)
+    specification.loader.exec_module(module)
+
+    return module
 
 
 # --- example: end ---

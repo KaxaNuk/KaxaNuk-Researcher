@@ -14,8 +14,8 @@
 entry is left alone — it was correct on its date.
 
 **Repository-level history belongs here** — choosing the benchmark, the data step, the architecture.
-Experiment 1 is the declared benchmark and therefore the shared context; later experiments' journals
-point here rather than copying it.
+Experiment 1 is the first rule tested against the benchmark and therefore the shared context; later
+experiments' journals point here rather than copying it.
 
 **Entry format:**
 

@@ -13,7 +13,7 @@ description: >
   does NOT cover what the numbers mean for a strategy (use `alpha-decomposition`) or running the
   backtest that produced the book (use `backtest-engine-runs`).
 metadata:
-  version: 0.2.7
+  version: 0.2.8
   library_version: 0.2.0
 ---
 
@@ -337,6 +337,12 @@ Step 6 reads what step 5 produced, and `Experiments/attribution_analysis.py` sha
 - **The benchmark's daily weights and its daily returns** belong to the experiment, not to the
   library's defaults, with the same density rule. A benchmark chosen after seeing the result is not
   a benchmark.
+- **The desk's files are read as the desk ships them**, by `Data/hand_supplied.py`: the index's
+  holdings and returns under `Benchmarks/`, the factor model under `Factors/`, in place from the
+  folder `KN_ANALYTICS_PATH` names or from the drop zones under `Data/Curator/`. It parses the
+  desk's `m_date` headers — ISO in the holdings, day first in the returns — and gives the model's
+  own series their reserved names, `Market.csv` as `f_market` and so on. Never rename or re-head a
+  desk file by hand: a renamed copy drifts from the one the desk refreshes.
 - `Experiments/Experiment_N/Attribution/` is where output lands, and **nothing in it is committed**:
   no workbooks, no charts, no dashboards. The numbers reach `FINDINGS_N.md`, and `RESULTS.md` is
   compiled from those.

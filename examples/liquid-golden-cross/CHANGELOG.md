@@ -41,6 +41,37 @@ for somebody who was not in the room:
 
 ---
 
+## 0.12.0 (2026-09-23)
+
+**MINOR** — template 0.12.0, and Experiment 1's second design, fixed before any rule: the owner
+rewrites it to sell a broken cross the day after it breaks. The first design's results stand until
+the second reports, and stay at tag `v0.15.0` and as a row of `RESULTS.md` after it does.
+
+**What to do differently:** set `KN_ANALYTICS_PATH` to the desk's folder. Nothing to re-derive yet:
+the rule, the run and the findings follow this blueprint's commit.
+
+### Added
+
+- **The paper-trading machinery as code**: `promote.py`, `daily_update.py` and `record.py`, with
+  `Data/hand_supplied.py` and `Data/curator.py --end-date`, as template 0.12.0 describes them.
+- **The cross as a 0/1 state, and what a broken cross costs**, in section 5 of the analyzer, and in
+  `RESULTS.md` rows 10 to 18, measured on the panel that ended on 2026-06-01; the rows 2 to 5 of
+  2026-09-19 reproduce and now carry their signs. The analyzer stops at 2026-06-01: the months
+  after it are held out.
+- **Experiment 1's second design**: a `BRAINSTORMING_1.md` entry with the first design's delay —
+  9.6% of its held name-days in a stock already below its cross, a median of 19 days after a break
+  — and the owner's decision; a `JOURNAL_1.md` entry on the rewrite and on the band the first
+  design's code applied; and a new `BLUEPRINT_1.md`, reviewed cold and revised before any rule:
+  twenty names, sold the day after the cross breaks, a buffer of thirty and monthly
+  re-equalisation, against the index and the same rule without the cross, with margins, a kill
+  switch over three sub-periods, fifteen perturbation cells and a trial count of thirty-one.
+
+### Changed
+
+- **The universe notebook reads the desk's holdings** through `Data/hand_supplied.py`, and dates the
+  point-in-time start by where the seed covers the index rather than by the file's first row.
+- **`Experiments/attribution_analysis.py`** reads the desk's files through the same module.
+
 ## 0.11.0 (2026-09-23)
 
 **MINOR** — template 0.11.0: the bar's three new items, the claim each experiment moves, and a

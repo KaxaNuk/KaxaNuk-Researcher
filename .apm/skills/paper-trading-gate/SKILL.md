@@ -2,17 +2,18 @@
 name: paper-trading-gate
 description: >
   Load this skill whenever a KaxaNuk Strategy Template repository asks whether an experiment
-  graduates to paper trading, step 7 — `Paper_Trading/BITACORA.md`, `daily_update.py` and
-  `Paper_Trading_N/paper_trading_N.py`. Use it when the user asks what the graduation gate is, how
-  each of its five criteria is evidenced, whether a `FINDINGS_N.md` clears it, what a paper-trading
-  run may and may not do, why the parameters are frozen, what a promoted experiment's folder is
-  named, or what the gate's status section should hold. It covers the five criteria and the
-  usual ways each fails, the promotion, the contract of the two scripts, and what the assistant
-  never decides. It does NOT cover the cycle that produces the findings (use
-  `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`), the documents of an
-  experiment (use `experiment-lifecycle`), or step 8, Production, which is outside the repository.
+  graduates to paper trading, step 7 — `Paper_Trading/BITACORA.md`, `promote.py`, `daily_update.py`,
+  `record.py` and `Paper_Trading_N/paper_trading_N.py`. Use it when the user asks what the
+  graduation gate is, how each of its five criteria is evidenced, whether a `FINDINGS_N.md` clears
+  it, how a graduated book is frozen, what the daily run does and where it writes, what is
+  registered before day one, why the parameters are frozen, what a promoted experiment's folder is
+  named, or what the gate's status section should hold. It covers the five criteria and the usual
+  ways each fails, the freeze, the daily run, and what the assistant never decides. It does NOT
+  cover the cycle that produces the findings (use `backtest-engine-runs`,
+  `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
+  `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.1.1
+  version: 0.2.0
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -60,38 +61,62 @@ here there is no substitute to name, which means there is also no excuse.
 An experiment is **promoted, not copied.** `Paper_Trading/Paper_Trading_N/` mirrors the
 `Experiment_N` it came from, so the lineage of a paper-traded book is never in question; the
 experiment's notebook stays where it is, as the record of how the rule was chosen. The template
-ships `Paper_Trading_1/` as a placeholder named for the experiment it would mirror: Experiment 1 is
-the benchmark, whose graduation is not applicable, so the folder is renamed for the experiment that
-actually graduates.
+ships `Paper_Trading_1/` as the contract of a frozen book, named for the experiment it would
+mirror: it becomes Experiment 1's book if Experiment 1 graduates, and a later experiment that
+graduates takes its own number.
 
 A strategy's first graduation is its `1.0.0`: the changelog reserves it for the first strategy that
 reaches paper trading with its results reproduced from a clean clone.
 
+## The freeze
+
+A graduated book is the strategy, frozen. After the sign-off, the rule is written into
+`Paper_Trading_N/paper_trading_N.py` from the experiment's cells and committed; then
+`Paper_Trading/promote.py N`, on a clean tree, copies byte for byte from that commit every file the
+book needs — the refinery and its calculations, the reader of the desk's files, the shared modules
+the rule calls, the seed and the security master — into `Paper_Trading_N/` in the strategy's own
+layout, and writes `FREEZE.json`: the commit, the freeze date, the hash of every file, the library
+versions, and the hash of what it cannot copy, the Curator's calculations. Every module resolves its
+paths from its own folder, so the copies read and write inside the book's folder: an experiment
+under construction can change the shared modules and the book never moves. A frozen book is never
+frozen again; a new freeze is a new book, with its own number.
+
 ## What a paper-trading run is
 
-Not a notebook: a script that can run on a schedule, because the question is no longer *what would
-this have done* but *what does it hold today, and how is it doing*. `daily_update.py` is the
-scheduler over every graduated book; `Paper_Trading_N/paper_trading_N.py` is one graduated rule,
-frozen. The template ships both as their contract in a docstring and **no logic**: agreeing what
-the stage may and may not do is worth more than code written before there is a book to run. When
-there is one, the script:
+Not a notebook: `daily_update.py`, run on a schedule after the close, because the question is no
+longer *what would this have done* but *what does it hold today, and how is it doing*. It refreshes
+the shared raw prices once, or reads what another machine published; checks the newest day and
+stops every book on a close with no fill price or a move no price can make; runs each book in
+`BOOKS` — its frozen refinery, its frozen rule from the experiment's first day, and the engine
+twice, over the whole history and since the freeze; writes the record through `record.py` to local
+CSV files, a DuckDB database or both, as `Config/.env` says; and exits 0, 1 or 2 — clean, flagged,
+failed. A shared input that no longer matches `FREEZE.json` stops the book with `unfrozen-input`.
 
-- reads the same refined panel the experiment did, refreshed to the newest date;
-- applies the graduated rule with **no re-fitting** — the parameters are frozen at graduation;
-- writes the target book for the date and appends to a running performance record;
-- flags divergence from the backtest's expected behaviour: turnover, holdings count, exposure.
+The record has six tables — runs, books, performance, statistics, diagnostics, flags — keyed so a
+second run of a day replaces that day's rows. A past value the engine now prices differently is a
+**restatement**: flagged, never overwritten. The template ships these files as their contract in a
+docstring; the worked example carries them working.
 
 **A paper-trading script re-fits nothing.** A run that tunes anything is a backtest wearing a
 costume, and it re-introduces exactly the search that produces negative out-of-sample performance.
+And **months on paper cannot show skill**: the daily record is read for whether the book behaves
+like its backtest — turnover, holdings, exposure, costs — never for a good month.
+
+## Before a book's first day
+
+`BITACORA.md` gets a section for the book, committed before its first run and never edited: the
+experiment, variant, commit and freeze date; the gate row by row with the sign-off; the bands for
+each diagnostic, from `FINDINGS_N.md`'s structural table and carried as `BANDS` in the book; the
+kill switch; the review dates and the period to watch before production; and what the record
+cannot show.
 
 ## The status section
 
 *Current status* in `BITACORA.md` is the gate's record. Until something graduates it says so —
 *nothing has graduated, nothing has been tested*. When a candidate arrives, record which
 experiment, which variant, which criteria it clears and, above all, **which it does not and why:
-the blocking items are the content of this section, not the passing ones.** The worked example runs
-the gate against its own benchmark, which was never going to pass, because a gate nobody has run
-against a real book is a gate nobody knows how to apply; its verdict table is the shape to follow.
+the blocking items are the content of this section, not the passing ones.** The worked example's
+verdict table, criterion by criterion with its evidence, is the shape to follow.
 
 ## What the assistant never does here
 
@@ -103,6 +128,9 @@ against a real book is a gate nobody knows how to apply; its verdict table is th
 - **Read a criterion as met on a number the findings do not carry.** Capacity not modelled is
   *not met*, not *probably fine*.
 - **Re-fit, re-tune or widen a rule** in a paper-trading script, whatever the reason offered.
+- **Freeze a book before the sign-off, or freeze one twice.**
+- **Register the scheduled task.** It changes the machine: the command is given, the user runs it.
+- **Read the record's figures back as its own.** They are the engine's, quoted with their file.
 - **Touch step 8.** Nothing here deploys, executes or moves money.
 
 ## References

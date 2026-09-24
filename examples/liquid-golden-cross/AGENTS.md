@@ -102,8 +102,8 @@ same book start to circulate. **One deliberate exception:** findings from step 3
 in a cell output does not survive the commit.
 
 Repository-level history — the benchmark once `BRAINSTORMING_1.md` has chosen it, the data step,
-the architecture — belongs in `JOURNAL_1.md`. Experiment 1 is the declared benchmark and therefore
-the shared context; later journals point there rather than copying it.
+the architecture — belongs in `JOURNAL_1.md`. Experiment 1 is the first rule tested against the
+benchmark and therefore the shared context; later journals point there rather than copying it.
 
 ---
 
@@ -118,10 +118,15 @@ become one experiment reported three times.
 
 Two standing exceptions, and one that has to be asked for:
 
-- **Experiment 1 is the declared benchmark**, so its rules and published numbers are shared
-  context. It is not a null: it is a real strategy with a real return. **Its rules freeze once
-  `FINDINGS_1.md` reports** — a change invalidates every comparison in `RESULTS.md`, so
-  improvements go into a new experiment.
+- **Experiment 1 is the first rule tested against the benchmark** that `BRAINSTORMING_1.md`
+  names — an index, an ETF or an equal-weight book of the universe — so its rules and published
+  numbers are shared context, and the yardstick every later experiment is also measured against.
+  It is not a null: it is a real strategy with a real return, and it can graduate like any other.
+  **Its rules freeze once `FINDINGS_1.md` reports** — a change invalidates every comparison in
+  `RESULTS.md`, so an improvement goes into a new experiment, unless the owner decides to rewrite
+  Experiment 1. A rewrite is written down as one: a `JOURNAL_1.md` entry, a new `BLUEPRINT_1.md`
+  that names the one it replaces, the earlier version kept at a tag and as a row of `RESULTS.md`,
+  and its runs counted in the trials.
 - **`RESULTS.md` is the shared record.** Comparing *final* results across experiments is the whole
   point of having several. What is forbidden is borrowing another experiment's *choices* before your
   own are made.
