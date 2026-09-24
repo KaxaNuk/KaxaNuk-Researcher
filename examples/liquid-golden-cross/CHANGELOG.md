@@ -41,6 +41,38 @@ for somebody who was not in the room:
 
 ---
 
+## 0.14.0 (2026-09-24)
+
+**MINOR, and it changes the universe** — Experiment 2 run and reported, on a seed widened to 1,500
+identifiers. Experiment 1's figures stand at the KaxaNuk Researcher's `v0.18.0`, where this example
+is 0.13.0, on the 788-name seed; a re-run of Experiment 1 now draws from the widened seed, and its
+figures will differ.
+
+**What to do differently:** quote Experiment 1's figures from `v0.18.0`, on the 788-name seed,
+never from a re-run on the widened one. To fetch Experiment 2's names, set `KNDC_API_KEY_SHARADAR`
+and run `Data/curator.py --provider sharadar` with a Data Curator that carries the Sharadar
+provider, as `SETUP.md` says.
+
+### Added
+
+- **Experiment 2, run and reported.** `BLUEPRINT_2.md`, revised once, to a 5% cash reserve, after
+  its first run could not be priced; `JOURNAL_2.md`'s later entries, `experiment_2.ipynb` and
+  `FINDINGS_2.md`. On 2002-07-30 to 2016-12-30 the rule earns 4.23% a year at a Sharpe of 0.234,
+  against its control's 5.87% and 0.256, and trips its kill switch; the gate's rows are in
+  `Paper_Trading/BITACORA.md`, and nothing graduates. It has not been reproduced from a wiped
+  working copy. The trial count is forty-three.
+
+### Changed
+
+- **The seed is widened** to every listing the index held since 2000: 1,500 identifiers, 712 of
+  them marked `sharadar` in its `provider` column. Experiment 1's figures are on the 788-name seed,
+  at `v0.18.0`, and a re-run of it now draws from the widened one.
+- **`SETUP.md` says what Experiment 2's names need**: a Sharadar key, and a Data Curator with the
+  Sharadar provider.
+- **`RESULTS.md`, `OBJECTIVE.md`, the README and `AGENTS.md`** are compiled from both findings:
+  claim 1 stays falsified, now on two windows. The README's rows for Experiment 1 name the seed of
+  788, at `v0.18.0`.
+
 ## 0.13.0 (2026-09-24)
 
 **MINOR** — template 0.13.0; Experiment 1's second design run, reported and reproduced from a wiped

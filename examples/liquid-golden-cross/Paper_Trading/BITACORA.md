@@ -114,11 +114,11 @@ arrives when an experiment's `FINDINGS_N.md` can evidence criterion 1.
 
 <!-- example: begin -->
 
-**In this example the gate has been tested**, against both designs of Experiment 1, and neither
-graduated: the rows for the second are below. No book is on paper, and `Paper_Trading_1/` holds more
-than the contract, as *Nothing is frozen here* below says. The daily machinery has been run outside
-this repository, on a candidate frozen only to test it: *The machinery, tested* below says what that
-showed, and why none of its figures is read.
+**In this example the gate has been tested**, against both designs of Experiment 1 and against
+Experiment 2, and none graduated: the rows are below. No book is on paper, and `Paper_Trading_1/`
+holds more than the contract, as *Nothing is frozen here* below says. The daily machinery has been
+run outside this repository, on a candidate frozen only to test it: *The machinery, tested* below
+says what that showed, and why none of its figures is read.
 
 <!-- example: end -->
 
@@ -148,6 +148,29 @@ row. Every row is evidenced from
 | 3 | Survives perturbation; trial count published | **Passes, on its own rule** | 12 of 15 cells keep the sign of the rule's Sharpe margin over its control, where the blueprint asked for twelve. The trial count is published: thirty-one, as the blueprint fixed it, with this design's 45 engine runs listed by role. What passes is a Sharpe margin of +0.031 that comes with a CAGR margin below zero, and the deflated figure was not computed |
 | 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 1.99 times the book a year, and 6.0% one-way per trade date on average. Costs are charged on the unadjusted price at two rows, the blueprint's commission setting of 0.1 and a realistic 0.005, with 5 basis points of slippage, and reported net: $76,911.00 of commission and $37,862.98 of slippage at the headline row. Capacity is stated from the book, as the largest book at which a trade takes no more than a share of the name's 63-day average traded value. At 1%: $91,546,647 for the worst trade, $146,012,883 at the first percentile of trades, $16,231,104,636 at the median. At 5%: $457,733,236, $730,064,416 and $81,155,523,178. The turnover and capacity figures are the reproduction's of 2026-09-24: the run of 2026-09-23 printed 2.9 times the book a year and $2,018,972 for the worst trade at 1%, read from the slot book's rows out of date order. It is a bound on participation, not a model of market impact, and which trade is the worst was not traced |
 | 5 | Explicit sign-off | **Not sought** | Criteria 1 and 2 block it, and the kill switch had already tripped |
+
+### In this example: the gate run on Experiment 2, and the answer is no
+
+**Experiment 2 does not graduate either.** It is Experiment 1's diagnostic arm, its rules
+unchanged at a 5% cash reserve: the twenty most traded members of the index above their 50/200
+cross, the whole set re-equalised only on a day it moves by three names or more, tested on
+2002-07-30 to 2016-12-30, years it was not found on, with the seed widened to every listing the
+index held since 2000. It was written to reach paper trading only by passing this gate, and it
+failed its own kill switch first: ahead of its control on both Sharpe and CAGR in none of three
+sub-periods. Every row is evidenced from
+[`../Experiments/Experiment_2/FINDINGS_2.md`](../Experiments/Experiment_2/FINDINGS_2.md) and
+[`../RESULTS.md`](../RESULTS.md).
+
+| # | Criterion | Verdict | Evidence |
+| --- | --- | --- | --- |
+| 1 | Beats the benchmarks **and its own control** | **Fails** | Sharpe 0.2340 against the index's 0.4383 and the control's 0.2556; CAGR 4.23% against 8.57% and 5.87%. It trails both, on both measures, and the verdict is the same with every name filled at the close |
+| 2 | Idiosyncratic alpha in **both** layers | **Fails** | Over 2008-01-14 to 2016-12-30 the factor model leaves the rule −7.93 idiosyncratic points and its control +30.24: the cross's share is −38.17. The first cut's alpha against the index is −42.29 points, of which selection +6.33 and interaction −48.84, per asset. The third pass has not been run, and 2002 to 2007 are not attributed |
+| 3 | Survives perturbation; trial count published | **Fails** | The rule is ahead of its control on both Sharpe and CAGR in 1 of 10 cells, where the blueprint asked for eight. The trial count is published: forty-three, with this experiment's 34 engine runs listed by role. The deflated figure was not computed |
+| 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 1.84 times the book a year, and 24.3% one-way per rebalance on average. Costs are charged on the unadjusted price at two rows, the blueprint's setting 0.1 and a realistic 0.005, with 5 basis points of slippage, and reported net: $265,535.20 of commission and $32,182.15 of slippage at the headline row. Capacity, from the book, measured as Experiment 1's was: at 1%, $3,851,439 for the worst trade, $7,019,368 at the first percentile of trades, $106,111,907 at the median; at 5%, $19,257,197, $35,096,840 and $530,559,534. It bounds participation and does not model market impact, and which trade is the worst was not traced |
+| 5 | Explicit sign-off | **Not sought** | Criteria 1 to 3 block it, and the kill switch had already tripped |
+
+Its blueprint also asked for a run from a wiped working copy, which is not shown. No book of
+Experiment 2 is frozen.
 
 ### Nothing is frozen here
 
@@ -186,19 +209,20 @@ count: the book was frozen to test the plumbing, not to start a paper record.
 
 ### What comes next
 
-**The arm, on years it was not found on, is Experiment 2.** The diagnostic arm, twenty names on the
-first design's rebalancing at a 15% band, reproduced the first design's delay and earned 1.65 points
-a year more than Experiment 1's rule. The owner chose on 2026-09-24 to take its design to years
-before 2017, which it was not found on, and set it against the same names without the cross, as
-Experiment 2. It reaches paper trading only by passing this gate on its own; its blueprint is
-committed before its rule, and none of its results is reported here. Nothing is a candidate now.
+**The arm, on years it was not found on, failed too.** The diagnostic arm, twenty names on the
+first design's rebalancing at a 15% band, reproduced the first design's delay and earned 1.65
+points a year more than Experiment 1's rule. Experiment 2 took its design to 2002 to 2016 and set
+it against the same names without the cross for the first time: it trails them there by 1.64
+points a year, and on the years it was found on by 1.46. Nothing is a candidate now, and no
+decision of the owner's on what follows is recorded.
 
 **The first design's gate run**, thirty names on a 10% band, failed criteria 1 and 3 and met 2 and
 4 only in part. It is kept at tag `v0.15.0` of the KaxaNuk Researcher.
 
 **What the exercise is worth teaching.** A rule rewritten to fix the mechanism the first run blamed
-failed its own test, and the arm built to confirm the blame beat it. The kill switch, the arm and
-the control were all written down before the run, which is what makes each a result rather than a
-reason to tune the rule until it passes.
+failed its own test, and the arm built to confirm the blame beat it. Taken to years it was not
+found on, and set against a control it had never faced, the arm failed its own test in turn. The
+kill switches, the arm and the controls were all written down before the runs, which is what makes
+each a result rather than a reason to tune the rule until it passes.
 
 <!-- example: end -->

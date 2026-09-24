@@ -29,6 +29,13 @@ strategy runs in, and so a person can read it in two minutes.
 > `Universe/universe.ipynb` writes `Security_Master.csv` and `Data_Issues.csv`, then stops at the
 > cell that reads the index's holdings; and `Experiments/Experiment_1/experiment_1.ipynb` stops in
 > its first cell. Every number the example measured is in `RESULTS.md`.
+>
+> **Experiment 2's names need a second provider.** The seed marks 712 names `sharadar`, fetched by
+> `Data/curator.py --provider sharadar`, which needs `KNDC_API_KEY_SHARADAR` in `Config/.env` and a
+> Data Curator with the Sharadar provider: the library's `issues/31` branch, at commit `8b54c2f`,
+> until a release carries it. That branch still takes the Curator's 0.49 call where
+> `Data/curator.py` makes 0.50's; `Experiments/Experiment_2/JOURNAL_2.md` records how Experiment 2
+> bridged the two.
 
 <!-- example: end -->
 
