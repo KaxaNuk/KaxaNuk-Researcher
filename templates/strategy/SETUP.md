@@ -139,8 +139,8 @@ results are the same with or without them.
 
 > **For the agent.** Do not install skills into this repository. If they are missing, give the user
 > the command above, with the assistant you are as the target — it installs for their user, not
-> here, with `uvx --from apm-cli` in front if `apm` is not on the path — and say that they appear
-> in a **new** session.
+> here, with `uvx --from apm-cli==0.29.0` in front if `apm` is not on the path — and say that they
+> appear in a **new** session.
 
 ---
 

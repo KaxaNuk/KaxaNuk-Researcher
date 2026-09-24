@@ -1,5 +1,6 @@
 # Sources: copyrighted files stay out of git
-Sources/**/*.pdf
+# A PDF is ignored wherever it sits, so one filed outside Sources/ by mistake is never pushed.
+*.pdf
 Sources/**/*.epub
 Sources/**/*.docx
 Sources/**/*.pptx
@@ -28,6 +29,10 @@ apm_modules/
 apm.lock.yaml
 .mcp.json
 GEMINI.md
+
+# Secrets: a key kept in a .env file stays on this machine and never reaches a push
+.env
+*.env
 
 # Regenerable: extracts and Python caches
 Extracts/

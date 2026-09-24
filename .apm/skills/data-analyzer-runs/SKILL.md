@@ -13,7 +13,7 @@ description: >
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.1.1
+  version: 0.2.0
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -49,10 +49,11 @@ signal built on it carries anything. It builds no book, runs no engine and sizes
 
 ## The notebook, section by section
 
-The template ships `Data/analyzer.ipynb` as its markdown cells — each section says what is
-expected in it — and the worked example, `examples/liquid-golden-cross/` in the KaxaNuk Researcher
-package, fills every one. Read the example's copy before writing a cell; `init-example` puts it in
-a folder of its own. Sections 0 to 4 are what any strategy needs; 5 depends on the signal.
+The template ships `Data/analyzer.ipynb` as its markdown cells — each section says what is expected
+in it — and the worked example, `examples/liquid-golden-cross/` in the KaxaNuk Researcher package,
+fills every one. Read the example's copy before writing a cell; `init-example` puts it in a folder
+of its own. Sections 0 to 4 are what any strategy needs; 5 depends on the signal; 7, Verify, ends
+every one.
 
 | Section | Measures | The trap it catches |
 | --- | --- | --- |
@@ -60,9 +61,10 @@ a folder of its own. Sections 0 to 4 are what any strategy needs; 5 depends on t
 | 1 · What each stage contributed | the refined file is the curator file plus columns, same rows; then **coverage per column** | a column at 60% coverage quietly averaged over the 60%; say whether the gap is a warm-up, a late listing or a broken input |
 | 2 · What diversification is available | buy-and-hold return, volatility and worst day per security; the correlation matrix, its mean off-diagonal and the extreme pairs | **if everything is one trade, choosing between securities is theatre** — this is the measurement that says how much a selection rule can possibly add |
 | 3 · Are the cross-sectional columns what they claim | that every rank is a percentile **inside a single date**, checked as an identity: a per-date percentile over *n* untied values has mean exactly `(n + 1) / (2n)` | a rank pooled across dates drifts as the universe changes and raises no error; testing against 0.5 fails on every date of a narrow universe and passes on a wide one |
-| 4 · Information coefficient | for each feature and horizon, the cross-sectional **rank** correlation between the feature at *t* and the forward return *t* to *t+h*, **per date, then averaged**; the IC, and the IR as IC over its standard deviation; on the whole panel and, separately, on the **eligible pool** the rule selects from | a correlation pooled over dates compares securities that were never observable together; a feature that behaves on the panel and not inside the filtered pool |
+| 4 · Information coefficient | for each feature and horizon, the cross-sectional **rank** correlation between the feature at *t* and the forward return *t* to *t+h*, **per date, then averaged**; the IC, and the IR as IC over its standard deviation; beside it the share of dates with the expected sign, and the overlap, *h − 1* days, that consecutive windows share; on the whole panel and, separately, on the **eligible pool** the rule selects from | a correlation pooled over dates compares securities that were never observable together; a feature that behaves on the panel and not inside the filtered pool; an IR over overlapping windows read as if every date were an independent observation |
 | 5 · The two questions any signal owes an answer to | **does the signal separate anything** — forward return *and* forward volatility split by the state the rule reads; **if the signal is fitted, what look-ahead is worth** — the same model read causally and smoothed, and the gap | a signal worth trading on volatility alone mistaken for a return signal; a fitted signal whose in-sample fit is the whole edge |
 | 6 · Handoff | what each output feeds: the refined panel to `Experiments/`, the IC table to feature selection, the charts to `FINDINGS_N.md` | a measurement living only in a cell output |
+| 7 · Verify | reads back `Data/Analyzer/information_coefficient.csv` and **raises**: a row for every pool and horizon; a finite coefficient, ratio and share of dates with the expected sign on each, the share between 0 and 1; every row averaged over at least one date and over no more dates than have a forward return at its horizon; the eligible pool never counting more dates than the whole panel | a notebook that stopped partway still looks executed; a check that prints *PASS* is one somebody has to read |
 
 ## Rules
 

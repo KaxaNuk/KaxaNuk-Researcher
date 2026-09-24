@@ -8,7 +8,7 @@ description: >
   there. It walks the index and the links between notes before reading anything, and cites every
   claim. It does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.5.0
+  version: 0.6.0
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -68,6 +68,17 @@ are the library's value.
    source is the whole suggestion. Do not answer from memory without saying you did, and never
    write it into the library during a query.
 
+## Numbers
+
+A performance figure — a return, a Sharpe ratio, a drawdown, a turnover, an information
+coefficient, an attribution — is quoted **only from the file that owns it**: an experiment's
+`FINDINGS_N.md`, the strategy's `RESULTS.md`, or, for a measurement of step 3, *Before any
+experiment* in `RESULTS.md` and the `Data/analyzer.ipynb` section it cites. Name that file beside
+the figure. Never recompute it, round it, combine two figures into a third, or carry one from one
+strategy to another as though the window, the universe and the costs were the same. A figure in a
+source is the source's — the answer says whose it is, and never lets a paper's number stand as the
+strategy's.
+
 ## What this skill will not let you do
 
 - Invent a source, a page or a URL. If it is not in the library, `Philosophy/` or the sources, the
@@ -76,4 +87,5 @@ are the library's value.
 - Modify the library, `Philosophy/` or the sources while answering, beyond what step 7 offers and
   the owner approves — the synthesis page, its one line in `INDEX.md` and its one entry in
   `LOG.md`, never a note — and in a strategy, write anything at home.
-- Quote a performance number that did not come from the engines the project names.
+- Quote a performance number that did not come from the engines the project names, or from
+  anywhere but the file that owns it — *Numbers*, above.

@@ -41,6 +41,58 @@ for somebody who was not in the room:
 
 ---
 
+## 0.11.0 (2026-09-23)
+
+**MINOR** — the bar asks for a control on the rule's own rebalance dates, one falsification
+condition fixed before the rule, and the horizon and overlap beside every ratio; each experiment
+names the claim it moves; and every notebook ends in a Verify section that raises. Nothing about
+any result changes.
+
+**What to do differently:** in `BLUEPRINT_N.md`, name the claim the experiment moves, its control
+in *Rules*, and the one condition that would falsify it with the changes that may not rescue it. In
+`FINDINGS_N.md` and `RESULTS.md`, say which claim moved. Beside any coefficient, t statistic or
+ratio, state the horizon and the overlap and report the share of dates with the expected sign. End
+each notebook in a Verify section that reads back what it wrote and raises. A trap found in a Lab
+library goes to that library's skill in the KaxaNuk Researcher, as an issue there.
+
+### Added
+
+- **Three items at the end of the bar in `AGENTS.md`**, so the first eight keep their numbers: 9, a
+  control that differs in exactly one thing, named in the blueprint's *Rules* and trading on the
+  rule's own rebalance dates; 10, one falsification condition for the whole experiment, and the
+  changes that may not rescue it, each a new experiment and a trial; 11, the horizon and the overlap
+  stated, and the share of dates with the expected sign beside any t statistic or ratio.
+- **A Verify section at the end of `Universe/universe.ipynb`, `Data/analyzer.ipynb` and
+  `experiment_1.ipynb`**, saying what each reads back and raises on, and a row for it in the
+  experiment's section contract. `AGENTS.md` says every notebook ends in one, that it is where a
+  strategy's tests live, and that the days the engine valued are counted against the window's
+  trading days, never a fixed floor, which a run that stopped years early can clear.
+- **Three sections of `BLUEPRINT_1.md`**: *The claim this moves*, a *Control* line in *Rules*, and
+  *What would falsify it*.
+- **A table under *Before any experiment* in `RESULTS.md`**, with a column for the share of dates
+  with the expected sign and the overlap stated above it; and a *Claim moved* column in the
+  experiments table.
+
+### Changed
+
+- **`FINDINGS_1.md`'s status** ends with the claim the experiment moved and the status it reached,
+  and *The book, priced by the engine* sets the book against the control its blueprint names.
+- **Criterion 1 of `Paper_Trading/BITACORA.md`** says which control: the one the blueprint names,
+  trading on the rule's own rebalance dates.
+- **`AGENTS.md`** sends a trap found in a Lab library to that library's skill in the package, as an
+  issue there; commits a result once every notebook has reached the end of its Verify section; and
+  row 5 of the five ways a backtest lies says the experiment's Verify section catches a truncated
+  run.
+- **Limitation 2 of `RESULTS.md`** says what a control differing in exactly one thing is, and is
+  written as a condition that holds in any strategy: an experiment that claims a margin without one
+  has inferred which lever earned it, not measured it.
+- **Section 4 of `Data/analyzer.ipynb`** asks for the share of dates with the expected sign beside
+  the IR, and says why: consecutive windows overlap.
+- **The README's parts E, G and H** name the claim, the control and the falsification condition in
+  the blueprint, the Verify section in the cycle, and the claim moved in the results.
+- **`SETUP.md`'s note for the agent and the README's install line** pin
+  `uvx --from apm-cli==0.29.0`, the APM the KaxaNuk Researcher's own `SETUP.md` installs.
+
 ## 0.10.5 (2026-09-23)
 
 **PATCH** — the README no longer says the template's files are generated from the example: the

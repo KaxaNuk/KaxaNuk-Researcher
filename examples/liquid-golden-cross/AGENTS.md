@@ -55,7 +55,9 @@ repository.
 **The template and the worked example, `liquid-golden-cross`, live in the
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package. The example is for
 reading, never for building on: nothing in a strategy is brought across from it. Issues and pull
-requests about the process land there; a strategy of your own stays in your own repository.
+requests about the process land there, and so does a trap found in a Lab library while running a
+strategy: it goes into that library's skill in the package, as an issue there, so the next strategy
+does not find it again. A strategy of your own stays in your own repository.
 What the template ships, and why, is *What is in here* in its README.
 
 ### The blueprint is committed before the rule
@@ -72,7 +74,8 @@ answer, so the two never share a commit.
   record.
 - The `CHANGELOG.md` entry is part of the change-set, not a follow-up. If you cannot write the
   entry, the change-set is not finished.
-- **A result is committed once the pipeline has re-run end to end from a wiped working copy.**
+- **A result is committed once the pipeline has re-run end to end from a wiped working copy**, and
+  every notebook has reached the end of its Verify section.
 - **If a published number moved, the commit message says which** — and `FINDINGS_N.md` changed
   before `RESULTS.md`, never the other way round.
 
@@ -146,6 +149,28 @@ Two standing exceptions, and one that has to be asked for:
    and each addition must beat the simpler baseline to earn its place.
 8. **Report the rejected result as loudly as the promising one.** A negative result costs real work
    and stops the next person repeating it.
+9. **Run a control that differs in exactly one thing.** The same rule with one ingredient removed,
+   named in the blueprint's *Rules* before the run, and **trading on the rule's own rebalance
+   dates**: a control left to choose its own dates also differs in when it trades, and the gap
+   between the two books is then two effects read as one. Beating the index says the book worked;
+   only the control says which part did.
+10. **Pre-register what would falsify the experiment.** One condition for the whole experiment, in
+    `BLUEPRINT_N.md` before the rule, and the changes that may not rescue it — a holding count, a
+    trigger, a window. A change on that list made after the result is a new experiment, and a trial
+    in the count of item 3.
+11. **State the horizon and the overlap.** Forward returns over overlapping windows are not
+    independent observations, and neither are the days of two books holding the same names: a
+    t statistic or an information ratio counted as if they were overstates the evidence. Say the
+    horizon and how many days consecutive windows share, and report the share of dates with the
+    expected sign beside any t statistic or ratio.
+
+<!-- example: begin -->
+
+**In this example, item 9 was learned after the run.** The first control chose its own rebalance
+dates, and so understated what the trend filter cost; *What stands* in `RESULTS.md` has the figure
+before and after the dates were matched.
+
+<!-- example: end -->
 
 ## Other standing rules
 
@@ -184,7 +209,16 @@ The part of the process that has nothing to do with Python.
 | 2 | **Look-ahead.** A signal computed from information that did not exist yet always works | every rule is struck on **shifted** data and fills at the next available price; a fitted signal is used in its causal form, and the smoothed form only where it is labelled as not tradable | remove the one stated leak: a delisting exit needs one day of hindsight, because a position is sold on the last day it still has a fill price |
 | 3 | **Overfitting.** Try enough rules and one looks brilliant. The Sharpe of the best of *N* trials is the maximum of *N* draws | economic reason first, sweeps read as curves, parameters never chosen on the metric they are judged by, **the trial count published beside the winner** | compute the deflated figure. Publishing the count is the minimum, not the answer |
 | 4 | **Costs and capacity.** A backtest with no costs describes a market that does not exist | commission on the **unadjusted** price, integer share counts, a cash reserve, turnover reported, results accepted **net** | model capacity, anywhere. Borrow cost, short rebate and margin are a headline caveat on any long/short book, not a footnote |
-| 5 | **Dirty data presented as a finding.** An unadjusted split, a stale price, a reused identifier — each produces a plausible number and no error | coverage checked before conclusions; a truncated engine run is flagged and the variant excluded **by name** | catch what nobody thought to check. The instructive case was a run that stopped valuing a book partway and still summarised cleanly over the stub |
+| 5 | **Dirty data presented as a finding.** An unadjusted split, a stale price, a reused identifier — each produces a plausible number and no error | coverage checked before conclusions; a truncated engine run is caught by the experiment's Verify section, which counts the days the engine valued against the window's trading days, and the variant is excluded **by name** | catch what nobody thought to check. The instructive case was a run that stopped valuing a book partway and still summarised cleanly over the stub |
+
+**Every notebook ends in a Verify section, and that is where a strategy's tests live.** A strategy
+has no test suite: what it adds is a pipeline, and each stage is checked where it produces its
+output. Verify reads back what the notebook wrote and **raises** when it is wrong — a check that
+prints *PASS* or *FAIL* is one somebody has to read, and a run nobody watches reads none of them.
+**Check against the window, not against a fixed floor.** A floor a full run clears is cleared too by
+a run that stopped years early, so count the days the engine valued against the trading days in the
+window it was asked for. Where a licensed engine is absent, Verify skips its checks the way the
+sections that call it do.
 
 **The one deliberate look-ahead is named in its own column prefix.** A `current_*` column comes from
 today's security master, so any period before a reclassification is misattributed. That is why the
@@ -248,7 +282,7 @@ than committed here. One-line summary: *optimise for the reader who has never se
   *why*.
 
 What is committed is the style check, and the whole repository passes it. Nothing checks the process
-itself; its rules rest on review.
+itself: its rules rest on review, and each stage's output on its notebook's Verify section.
 
 ```bash
 uvx ruff check .

@@ -1,7 +1,7 @@
 # Blueprint — Experiment N
 
-> **The hypothesis, fixed once written.** Thesis, rules, predictions, success criteria and key
-> risks, recorded *before* any code runs.
+> **The hypothesis, fixed once written.** Thesis, the claim it moves, rules, predictions, success
+> criteria, what would falsify it and key risks, recorded *before* any code runs.
 >
 > **This file does not change when results arrive.** A hypothesis edited after its test is no longer
 > a hypothesis — that is the whole reason it is kept apart from the result. What the experiment
@@ -21,6 +21,12 @@ low-complexity — for judging whether any later idea adds value. **Be modest on
 benchmark does not assert its signal is the best of its kind, only that it is simple enough to be
 understood, liquid enough to be traded, and stable enough to measure other things against.
 
+### The claim this moves
+
+Which claim of `OBJECTIVE.md`, by number, this experiment exists to move, the status it reaches if
+the predictions below hold, and the one it reaches if they fail. **One claim.** An experiment that
+could beat every benchmark and settle nothing is a measurement, not a test.
+
 ### Rules
 
 - **Selection:** the eligibility condition, naming the column it reads.
@@ -30,6 +36,9 @@ understood, liquid enough to be traded, and stable enough to measure other thing
   weight file has no cash row.
 - **Timing:** calendar, or event-driven on a stated trigger. Say what happens between triggers.
 - **Lag:** how many days between the signal and the fill, and what the engine adds on top.
+- **Control:** the same rule with exactly one ingredient removed — name which — trading on this
+  rule's own rebalance dates, so that the ingredient is the only difference. A control left to find
+  its own dates differs in when it trades as well.
 - **Screens deliberately absent**, and why each is redundant under the rules above.
 
 ### What this experiment should show
@@ -57,6 +66,15 @@ As the benchmark, Experiment 1 does not need to win. It needs to be a **fair, st
 
 **Graduation: not applicable.** The benchmark's job is to be the thing others are measured against,
 so it stays in the Lab even if it scores well.
+
+### What would falsify it
+
+**One condition for the whole experiment, fixed now.** Each prediction above has its own falsifier;
+this is the result under which the experiment as a whole has failed — for a later experiment,
+usually a margin against its control; for the benchmark, a success criterion it misses. Then **the
+changes that may not rescue it**: every setting that could be moved once the result is in — a
+holding count, a trigger, a window, a threshold — by name. Moving one after the result is a new
+experiment, and one more trial in the count.
 
 ### Key risks
 

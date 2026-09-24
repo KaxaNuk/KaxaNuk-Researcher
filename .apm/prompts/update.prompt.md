@@ -39,8 +39,11 @@ changing nothing.
 
 ## Step 1: Pre-flight
 
-1. **The working tree must be clean.** `git status --short`. Anything uncommitted — stop, say so,
-   and tell the owner to commit or stash first.
+1. **The working tree must be clean, for the update.** `git status --short`. Anything uncommitted
+   — stop, say so, and tell the owner to commit or stash first. In `check` mode, which changes
+   nothing, a dirty tree does not stop the check: report it as one line and go on. A home with no
+   `.git/` is not a repository yet: the update stops and the check reports it, naming the commands
+   `next` gives to finish it.
 2. **A home from before the user-scope install.** Any of these means the home predates it, and this
    update is the migration, which *Step 4* carries out:
    - `.apm/skills/` or `.apm/prompts/` holding `read`, `query` or the researcher's commands;
@@ -50,12 +53,26 @@ changing nothing.
    Edits the owner made to those skill copies are named in the plan, one line each —
    `git log --oneline -- .apm/skills .apm/prompts scripts references` shows whether there are any —
    because the package's version replaces them.
+3. **APM is the version this package is installed with.** APM 0.29.0 installs this package
+   cleanly. From 0.29.1 on, APM stages each package under about 148 more characters of folders, the
+   worked example's longest paths pass Windows' 260-character limit, and the install fails with
+   `WinError 3` or `WinError 206`. So every command below that runs APM names
+   `apm-cli==0.29.0` itself. `apm --version` should also say `0.29.0`, since the skills name the
+   `apm` on the path; any other version: say so, and put the pinned install first in the plan,
+   ahead of the update —
+
+   ```bash
+   uv tool install apm-cli==0.29.0
+   ```
+
+   Never `apm self-update`, which brings the newest APM back.
 
 ## Step 2: What is new
 
-- **The package.** `apm outdated -g` says whether a newer commit is out, and `apm deps list -g`
-  names the installed version. The copy under `~/.apm/apm_modules/` stays at that version until
-  *Step 4*, so read the newest from GitHub instead: the `main` that `apm update -g` brings, under
+- **The package.** `uvx --from apm-cli==0.29.0 apm outdated -g` says whether a newer commit is
+  out, and `uvx --from apm-cli==0.29.0 apm deps list -g` names the installed version. The copy
+  under `~/.apm/apm_modules/` stays at that version until *Step 4*, so read the newest from GitHub
+  instead: the `main` that `apm update -g` brings, under
   `https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/`, with `curl -fsSL` or the
   agent's web fetch. Read `CHANGELOG.md` there and take every entry above the installed version.
 - **The home's files.** The home's `CHANGELOG.md` names the template version it is at — its newest
@@ -70,6 +87,10 @@ changing nothing.
   wording, and its `README.md` opens with a paragraph of its own, so report what changed in
   substance, not in names. In `apm.yml` compare `includes` and `dependencies` as well as the
   comments.
+- **A home at or ahead of the template.** When the home's template version is at or above the one
+  `templates/researcher/CHANGELOG.md` names on GitHub — a home made from a checkout with
+  `--package`, or from a release not yet pushed — the home is current: say so. Nothing it has is
+  proposed for removal, because what the GitHub copy lacks may be what a newer template added.
 - **The owner's files, read and never written.** The template's `RESEARCHER.md` headings — not its
   slots, nor the blockquote the interview deletes — the headings of `Philosophy/HOW-I-INVEST.md`,
   and the blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md`, each against the home's.
@@ -82,42 +103,51 @@ changing nothing.
 
 ## Step 3: Show the plan, wait for the go
 
-In chat: the package versions before and after; for each home file, the sections to bring across,
-quoted, in the home's own names; what a migration removes; and what the owner will have to do by
-hand afterwards, one line for each heading or blockquote of their own files that the template
-changed. Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and
-update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
+In chat: the pinned APM install, when *Step 1* asked for it; the package versions before and after;
+for each home file, the sections to bring across, quoted, in the home's own names, and each file
+the home lacks, to bring across whole; what a migration removes; and what the owner will have to
+do by hand afterwards, one line for each heading or blockquote of their own files that the
+template changed. Then ask for the go through the question tool — *Go*, *Change something*,
+*Stop* — and update on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
 ## Step 4: Update
 
-1. **The package:**
+1. **The package**, after `uv tool install apm-cli==0.29.0` when *Step 1* found another APM:
 
    ```bash
-   apm update -g --yes
+   uvx --from apm-cli==0.29.0 apm update -g --yes
    ```
 
    The owner's go in *Step 3* is the confirmation, so `--yes` skips APM's own `[y/N]` prompt,
    which an agent's shell cannot answer; without it the update stops with an error. Then check
-   `apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new version; a package it still
-   marks orphaned deploys nothing any more. The old `KaxaNuk-Agent-Skills` packages deployed skills
-   under the same names as the package's, so if any of the package's skills or commands is missing
-   afterwards, deploy it again with
-   `apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>`.
+   `uvx --from apm-cli==0.29.0 apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new
+   version; a package it still marks orphaned deploys nothing any more. The old
+   `KaxaNuk-Agent-Skills` packages deployed skills under the same names as the package's, so if any
+   of the package's skills or commands is missing afterwards, deploy it again with the command
+   below.
 
    For a migration, install it instead — it is new at user scope:
 
    ```bash
-   apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>
+   uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>
    ```
 
 2. **The migration, for a home from before the user-scope install.** `git rm -r` the researcher's
    own skill and command copies under `.apm/skills/` and `.apm/prompts/`, and `scripts/` and
    `references/` at the root; empty `dependencies.apm` in `apm.yml` to `[]`; keep `.apm/agents/`,
    and any skill or command the owner wrote themselves, which the package does not carry. Then
-   `apm install --target <the owner's agent>` in the home, which deploys the agent and removes the
-   copies it deployed before.
-3. **The home's files**, the sections the owner approved, edited in place in the home's own names.
-   Nothing else in them changes.
+   `uvx --from apm-cli==0.29.0 apm install --target <the owner's agent>` in the home, which deploys
+   the agent and removes the copies it deployed before.
+3. **The home's files**, the sections the owner approved. A file the home has is edited in place,
+   in the home's own names, and nothing else in it changes. A file the home lacks — one a later
+   template added, such as `.gitattributes` — is brought across whole by the script in the
+   `init-strategy` skill's folder, run from the home's root, never written from memory. It copies
+   the one path and never overwrites:
+
+   ```bash
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only <path>
+   ```
+
 4. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
    *Brought to template X.Y.Z*, and a line for each section brought across or declined — whatever
    the owner declined, so the file names the version the home is now at and the next `update`

@@ -9,7 +9,7 @@ description: >
   script with `--only` does), and never builds on the example: it is a worked strategy to read,
   not a template to fill.
 metadata:
-  version: 0.1.4
+  version: 0.2.0
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -58,8 +58,16 @@ belongs in each file. It is also readable without installing anything, in
    ```
 
    The whole example becomes a git repository with its first commit; one piece is only copied, into
-   a folder that must exist — make it, empty, when it does not. A fork of the package, or a clone
-   in a folder of another name, is not found on its own: pass `--package <its install folder>`.
+   a folder that must exist — make it, empty, when it does not. On Windows without long paths, the
+   script refuses a destination so deep that a copied path would pass 259 characters, names that
+   path and the longest destination that fits, and writes nothing; choose a shorter place. A fork of
+   the package, or a clone in a folder of another name, is not found on its own: pass
+   `--package <its install folder>`. A git step that fails leaves the copy in place — the script
+   still exits 0 — and prints every command that finishes the repository from that step on. If git
+   is missing, install it on the owner's go, then run the printed commands in the new folder. If the
+   first commit fails for want of a git identity, ask for the name and email — never invent them —
+   set them in that repository only, `git config user.name "<name>"` and
+   `git config user.email "<email>"`, then run the printed commands there.
 
 4. **For one piece, say what it shows.** Everything between the markers in what was copied is
    `liquid-golden-cross`'s own work; around it is the template's description, which the strategy's

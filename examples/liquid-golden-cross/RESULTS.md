@@ -60,23 +60,36 @@ Findings from step 3, `Data/analyzer.ipynb`: whether a candidate feature carries
 what horizon, and with which sign — and anything measured about the signal that does not need a
 book. Cite the section each number came from.
 
+**State the horizon and the overlap.** A coefficient over *h* days, measured every day, shares
+*h − 1* days with the next one, so its dates are not independent observations. Beside any
+coefficient or ratio, report the share of dates on which it had the sign the hypothesis expects.
+
+| # | Measurement | Value | Dates with the expected sign | Section |
+| --- | --- | ---: | ---: | --- |
+| 1 | what was measured, over which horizon, on which pool | the number | for a coefficient or a ratio, the share of dates with the sign the hypothesis expects | the analyzer section |
+
 <!-- example: begin -->
 
 **Measured 2026-09-19 on 4,252,848 rows: 787 securities, 2001-01-02 to 2026-06-01.** The eligible
 pool is the most traded five percent of each day's cross-section, which is where the rule selects
 from.
 
-| # | Measurement | Value | Section |
-| --- | --- | ---: | --- |
-| 1 | Mean pairwise correlation of daily returns | 0.303 | 2 |
-| 2 | Information coefficient of `r_trend_50_200`, 21 days, eligible pool | 0.0112 | 4 |
-| 3 | The same, 63 days | 0.0027 | 4 |
-| 4 | The same, 252 days | −0.0060 | 4 |
-| 5 | Information ratio at 21 days, eligible pool | 0.038 | 4 |
-| 6 | Forward 21-day return, 50-day average above the 200-day | 1.20% | 5 |
-| 7 | Forward 21-day return, 50-day average below the 200-day | 1.03% | 5 |
-| 8 | Forward 21-day volatility, above | 28.7% | 5 |
-| 9 | Forward 21-day volatility, below | 36.7% | 5 |
+| # | Measurement | Value | Dates with the expected sign | Section |
+| --- | --- | ---: | ---: | --- |
+| 1 | Mean pairwise correlation of daily returns | 0.303 | — | 2 |
+| 2 | Information coefficient of `r_trend_50_200`, 21 days, eligible pool | 0.0112 | not measured | 4 |
+| 3 | The same, 63 days | 0.0027 | not measured | 4 |
+| 4 | The same, 252 days | −0.0060 | not measured | 4 |
+| 5 | Information ratio at 21 days, eligible pool | 0.038 | not measured | 4 |
+| 6 | Forward 21-day return, 50-day average above the 200-day | 1.20% | — | 5 |
+| 7 | Forward 21-day return, 50-day average below the 200-day | 1.03% | — | 5 |
+| 8 | Forward 21-day volatility, above | 28.7% | — | 5 |
+| 9 | Forward 21-day volatility, below | 36.7% | — | 5 |
+
+**The sign column arrived after this was measured.** Section 4 of the analyzer now writes the share
+of dates on which the coefficient was positive, the sign the rule expects; the run of 2026-09-19
+did not, so rows 2 to 5 carry none until the analyzer runs again. The windows overlap: consecutive
+dates share 20 of 21 days at a month and 251 of 252 at a year.
 
 **What it says.** The trend signal barely predicts return and strongly predicts volatility. An
 information coefficient of 0.011 at one month is noise beside the 0.02 to 0.03 a working signal
@@ -107,15 +120,19 @@ differ between experiments.
 > experiments, so a winner is comparable to its own control row, not to another experiment's
 > headline; `vs control` is the column to compare across experiments.
 
-| Exp | Book | CAGR | Sharpe | Max DD | Control Sharpe | vs control | Status | Findings |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| **1** | the benchmark rule, in five words | | | | — | — | **the benchmark** | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
+**Each row names the claim it moved**: the claim of `OBJECTIVE.md` its blueprint set out to move,
+and the status it reached. A row that beats its benchmarks and moves no claim is a number, not a
+finding.
+
+| Exp | Book | CAGR | Sharpe | Max DD | Control Sharpe | vs control | Status | Claim moved | Findings |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
+| **1** | the benchmark rule, in five words | | | | — | — | **the benchmark** | the claim's number, and its new status | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
 
 <!-- example: begin -->
 
-| Exp | Book | CAGR | Sharpe | Max DD | Control Sharpe | vs control | Status | Findings |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
-| **1** | thirty most traded, in an uptrend | **17.85%** | **0.861** | −30.5% | 0.831 | **+0.030** | **the benchmark** | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
+| Exp | Book | CAGR | Sharpe | Max DD | Control Sharpe | vs control | Status | Claim moved | Findings |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
+| **1** | thirty most traded, in an uptrend | **17.85%** | **0.861** | −30.5% | 0.831 | **+0.030** | **the benchmark** | 1, the signal: **falsified** | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
 
 The control column is the **equalised** control — the same names with the filter off, trading on the
 rule's own dates — because that is the arm differing in exactly one thing. Against the plain
@@ -271,7 +288,7 @@ name with a reason is how that stays honest.
 | # | Limitation | Effect |
 | --- | --- | --- |
 | 1 | **Nothing is out of sample.** No experiment has reached step 7 | Every number here is in-sample, and in-sample selection is what the deflation literature warns about |
-| 2 | **No experiment has a control arm** differing in exactly one thing | Which lever earned a margin is inferred from per-lever rows, not measured |
+| 2 | **A control arm differing in exactly one thing** — the same rule with one ingredient removed, on the rule's own rebalance dates — is missing from any experiment that claims a margin | Which lever earned that margin is inferred from per-lever rows, not measured |
 | 3 | Classification buckets use today's labels, not point-in-time | Anything reclassified mid-window is misattributed before its move — the `current_*` prefix marks exactly this |
 | 4 | Delisting exits use one day of hindsight | A position is sold on the last day it still has a fill price, knowable only the day after |
 | 5 | Curator output is not reproducible across download dates | Dividend adjustment is computed from the present, so a re-pull rebases every adjusted column |

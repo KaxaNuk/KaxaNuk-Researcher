@@ -35,7 +35,8 @@ never a citation.>
 - Every number about a book comes from the engines the project names — in a KaxaNuk strategy the
   Lab's libraries, the Backtest Engine for performance and Attribution Analysis for where it came
   from — never from the researcher.
-- A hypothesis is written before its test, and every prediction in it cites a source.
+- A hypothesis is written before its test, and every prediction in it cites a note or an analyzer
+  measurement; one with neither is written as a lead. A source without a note cannot be cited.
 - Nothing trades. No live execution, no order, no money moves from here.
 
 ## Tag policy
@@ -59,8 +60,9 @@ table above, a decision, or nothing yet; what would change your mind, or *not ye
 works to find first, from the reading map in the `read` skill or from your own library — a work
 that serves no question goes on one closing *Find first* line. This is the one section meant to
 change often: edit it by hand whenever the questions change. `read` reads it before every source
-and asks which question each one serves; when it is empty, it asks for the questions first. *None
-yet* is a fine state, and the section says so.>
+and asks which question each one serves; when it is empty, it proposes candidate questions from
+what is already in `Sources/` and asks you to pick before it reads. *None yet* is a fine state, and
+the section says so.>
 
 1. <the question> — feeds: <strategy, decision, or nothing yet>. Would change my mind: <what
    evidence, or not yet known>. Find first: <year, authors, title — several separated by
