@@ -6,6 +6,36 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.9.0 (2026-09-23)
+
+**MINOR** — the researcher is yours, and grows with what you believe. `RESEARCHER.md` offers its
+three starting non-negotiables as rules many researchers start with, to keep, change or add to, and
+offers a fourth; `README.md` says in one line what the researcher is. The interview that fills them
+— `interview`, in the package — now also asks what pulls you to markets, how you like to invest,
+your view as one testable sentence and how long you would give its edge, and the smallest test that
+could kill it.
+
+**What to do differently:** run `update` in your home, which brings the new line of `README.md`
+across. Then by hand, in `RESEARCHER.md`, which is yours: the fourth non-negotiable, if you want it,
+as a line under *Non-negotiables* — *A strategy graduates only against criteria written down
+beforehand, never on a good month.* To be asked the new questions, run `interview force`: every
+answer you keep is written back verbatim.
+
+### Added
+
+* **`README.md` says what the researcher is**, at the top of *Working with it*: yours, growing with
+  what you believe, the package bringing only hints, offered as options, that make a complex idea
+  simple — never a position to adopt.
+* **A fourth non-negotiable is offered** in the guidance under *Non-negotiables* in `RESEARCHER.md`,
+  to keep or leave: a strategy graduates only against criteria written down beforehand, never on a
+  good month. `interview` writes it when you pick it.
+
+### Changed
+
+* **The guidance under *Non-negotiables*** calls the three the rules many researchers start with,
+  to keep, change or add to, where it called them KaxaNuk's defaults. The three are unchanged: the
+  first still says that in a KaxaNuk strategy the numbers come from the Lab's libraries.
+
 ## 0.8.2 (2026-09-23)
 
 **PATCH** — a new home's rules agree with each other and with the skills: `AGENTS.md` names the one

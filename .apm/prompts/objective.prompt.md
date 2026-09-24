@@ -76,6 +76,17 @@ set. Rules:
   as a lead**: *write the note for X before this claim stands.*
 - **Name the columns.** Each claim says which `c_*` or `r_*` column will carry it, if the owner
   already knows; otherwise a slot.
+- **Offer each claim its anatomy, never require it.** The reading map, `references/reading-map.md`
+  in the `read` skill's folder, gives an idea's anatomy (page 59 of the deck): beside the claim, its
+  **source of edge** — which of the five, and why that door is still open; **the other side** — who
+  sells, and what keeps them selling; **the test** — the measurement that would settle it, chosen
+  before looking; and **the kill switch** — the result that would end the idea rather than send it
+  back for tuning. In the first pass, ask them in chat, once for all the claims, as questions the
+  owner may answer, skip or refuse; the five sources may be offered as options, and a claim may be
+  proposed in the anatomy's shape — one sentence, present tense, about something measurable — for
+  them to edit or refuse. What they answer goes in the claim's short section, in their words; what
+  they skip is left out, never filled in for them, and is not a gap. In a fine-tuning pass, an
+  answer the reading bears on is proposed as a change, as a claim is.
 - **Include the source that argues against the idea** if the library holds one — in the first pass
   as a lead to read, in a fine-tuning pass as a note. An objective that cites only agreement is a
   pitch.
@@ -85,7 +96,8 @@ set. Rules:
 ## Step 4: Show, wait, then write
 
 Show the draft in chat and list the leads it depends on — the questions to read for, the notes to
-write with `read` — and the claims the owner should sharpen. After a first pass, say what comes next
+write with `read` — and the claims the owner should sharpen, with any part of a claim's anatomy
+they skipped and may still want to answer. After a first pass, say what comes next
 in the order of work: `read` for those questions, then this command again, then the investable
 universe. Wait for the go. Then write it into the strategy's `OBJECTIVE.md`, keeping every line the
 owner wrote. The owner reviews the diff and commits; that commit is what makes the objective theirs.

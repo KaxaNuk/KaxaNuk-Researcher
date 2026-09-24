@@ -6,6 +6,51 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.17.0] - 2026-09-23
+The researcher is its owner's, and grows with what they believe. The interview asks what pulls the
+owner to markets and how they like to invest, puts the view that leads as one testable sentence
+with a shelf life, and asks the smallest test that could kill it; its rules are offered as ones
+many researchers start with, to keep, change or add to, with a fourth to keep or leave. The reading
+map gains Section 02 of the bootcamp deck, *Where Alpha Comes From*, as hints that `interview`,
+`objective` and `blueprint` offer as questions, never as a position to adopt. Home template 0.9.0,
+`read` 0.7.1.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g` and open a new session.
+In a home, run `update`: it brings the new line of `README.md` across; then, by hand in
+`RESEARCHER.md`, add the fourth non-negotiable if you want it. To be asked the new questions, run
+`interview force`: every answer you keep is written back verbatim. In a strategy, `objective` now
+offers each claim its source of edge, other side, test and kill switch, and `blueprint` asks the
+seven questions before any backtest and the kill switch; answer what you like and skip the rest.
+### Added
+- **Section 02 in the reading map** (`read` 0.7.1), pages 55 to 60 of the deck, as hints: the five
+  sources of edge and the question each asks, the six places ideas come from and how each fools
+  you, seven questions before any backtest, an idea's anatomy — the claim, the source of edge, the
+  other side, the test, the kill switch — and the three discussion questions.
+- **`interview` asks how the owner likes to invest**: `Your method`, a fourth question in question
+  4 — rules I can write down and test; judgment, case by case; judgment designs it, rules run it;
+  not sure yet. It places nothing on the map and never leads.
+- **Question 5 proposes the view as one testable sentence** — if this holds, I would measure that,
+  because of this source of edge — for the owner to edit or refuse, and asks how long they would
+  give the edge; question 6 asks the smallest test that could kill the belief beside what they
+  would see if they were wrong. What they keep is written verbatim.
+- **A fourth rule, offered**: a strategy graduates only against criteria written down beforehand,
+  never on a good month. `interview` writes it when picked; the home's `RESEARCHER.md` offers it.
+- **`objective` offers each claim its anatomy**, and **`blueprint` asks the seven questions before
+  any backtest and names the kill switch in the falsifying condition** — asked, never required.
+### Changed
+- **The interview's rules are the owner's**: question 3 states three rules many researchers start
+  with, never "KaxaNuk's three", keeps the fact that in a KaxaNuk strategy the numbers come from
+  the Lab's libraries, and is multi-select — keep the three, add the fourth, add one of mine,
+  change or drop one.
+- **`Edge from?` takes the deck's five sources of edge** in four options — paid for a risk others
+  avoid; a mistake others repeat; others cannot take the other side; something I see or do better
+  — with *not sure yet* typed under Other, which counts as *Not sure yet*.
+- **Question 2 asks what about markets pulls the owner in**, the puzzle they most want to
+  understand, which question 6 can take as a reading question.
+- **The home** (template 0.9.0): `RESEARCHER.md`'s non-negotiables guidance offers the three as a
+  start and the fourth to add; `README.md` says in one line that the researcher is yours, growing
+  with what you believe, with the package's hints to make complex ideas simple.
+
 ## [0.16.0] - 2026-09-23
 Paper trading gets its machinery, and Experiment 1 can graduate. A graduated book is the strategy
 frozen: `promote.py` copies every file it needs, byte for byte, into `Paper_Trading_N/`, and
