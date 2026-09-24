@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.19.0] - 2026-09-24
+The worked example runs and reports Experiment 2, on a seed widened to every listing the index held
+since 2000. Experiment 1's diagnostic arm, its design taken to 2002-07-30 to 2016-12-30 with the
+names that left the market fetched from Sharadar, trails the same names without its cross by 1.64
+points a year and fails its kill switch, so nothing graduates and claim 1 stays falsified, now on
+two windows. The example's universe changed: Experiment 1's figures stand at `v0.18.0`, on the
+788-name seed. Example 0.14.0; no skill, command, rule, agent or template changed.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, so that `init-example`
+copies the new example. Quote Experiment 1's figures from `v0.18.0`, on the 788-name seed: a copy
+made now holds the widened seed, and no recorded run gives what Experiment 1 prints on it. To fetch
+Experiment 2's names, a copy needs a Sharadar key and a Data Curator with the Sharadar provider, as
+the example's `SETUP.md` says.
+### Added
+- **Experiment 2's run and findings**: its blueprint revised once, to a 5% cash reserve, after its
+  first run could not be priced; its journal's later entries, its notebook and `FINDINGS_2.md`; and
+  the gate's rows in `BITACORA.md`. It has not been reproduced from a wiped working copy.
+### Changed
+- **The example's seed is widened** to every listing the index held since 2000: 1,500 identifiers,
+  712 of them marked `sharadar` in its `provider` column.
+- **The example's `RESULTS.md`, `OBJECTIVE.md`, README and `AGENTS.md`** are compiled from both
+  experiments' findings, and the README names Experiment 1's rows as the 788-name seed's, at
+  `v0.18.0`.
+
 ## [0.18.0] - 2026-09-24
 The worked example reports Experiment 1's second design and opens Experiment 2, and a researcher's
 home keeps its lessons in `Lessons/`. Experiment 1's second design is run, reported and reproduced
