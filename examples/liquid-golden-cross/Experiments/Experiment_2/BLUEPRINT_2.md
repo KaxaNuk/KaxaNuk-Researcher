@@ -30,6 +30,14 @@ cash through December 2008 and January 2009 (`RESULTS.md`; `FINDINGS_1.md` at ta
 analyzer's rows 1 to 18 were measured on 2001 to 2026, these years included. What they have not
 seen is this design at twenty names, point in time, against its own control.
 
+**Revised 2026-09-24, after the first run and before any figure from it was read as a result, on
+the owner's decision: the cash reserve is 5%, where this blueprint first fixed 2%.** The run at 2%
+could not be priced. On 2009-05-18 a full re-equalisation on a rising day overdrew the reserve —
+the engine's cash error, −$4,939.68 — and the engine stopped valuing the book; every run that
+crossed that date stopped there, and the notebook's Verify section raised. Nothing else in this
+blueprint changed. The first version's cost line read "5 basis points of slippage and a 2% cash
+reserve, on $1,000,000"; the revision is recorded in `JOURNAL_2.md` and counts as one more trial.
+
 <!-- example: end -->
 
 ### Thesis
@@ -122,8 +130,9 @@ switch is silent, it moves to **confirmed as a book, for this design, on the tes
   conventions, the experiment does not pass: its result would depend on how the dead names are
   filled.
 - **Costs:** the engine's commission setting 0.1, which it charges as about eight cents a share,
-  5 basis points of slippage and a 2% cash reserve, on $1,000,000, as Experiment 1's arm ran: the
-  cost row every verdict is read at. The setting 0.005 is reported beside it.
+  5 basis points of slippage and a 5% cash reserve, on $1,000,000 — the arm ran at 2%, and the
+  revision above says why this does not: the cost row every verdict is read at. The setting 0.005
+  is reported beside it.
 - **Control:** the same twenty most traded members without the cross, re-equalised on the rule's
   own rebalance dates, so the cross is the one difference.
 - **Window — the test:** 2002-07-30, when the cash proxy starts, to 2016-12-30. Coverage on a date
@@ -153,7 +162,8 @@ trails its control on either counts against it, whatever the test's own sign.
 
 **The trial count:** the thirty-one `BLUEPRINT_1.md` fixed, which already hold the owner's earlier
 test and the arm, then this experiment's rule, counted again because it meets new years, and its
-ten cells. Every control, sub-period, fill-convention and description run is listed by name in
+ten cells, and the revision that raised the cash reserve, one more. Every control, sub-period,
+fill-convention and description run is listed by name in
 `FINDINGS_2.md` as a diagnostic, and Experiment 1's forty-five engine runs are quoted beside the
 count, never as it.
 
@@ -235,7 +245,7 @@ rebalance dates.
 **The changes that may not rescue it:** the twenty names, the 15% band, the 50 and 200-day pair,
 the 63-day ranking window, the one-day lag, the test window, its coverage rule and its 95%, the
 sub-periods, the exclusions and their tests, which provider serves each name and how its fill is
-made, the two Curator versions, the costs and the 2% cash reserve, and the perturbation's cells
+made, the two Curator versions, the costs and the 5% cash reserve, and the perturbation's cells
 and its threshold.
 
 <!-- example: end -->
