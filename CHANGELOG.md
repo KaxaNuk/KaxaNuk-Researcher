@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.22.0] - 2026-09-25
+The worked example opens and reports Experiment 4, claim 5's second design: the same momentum
+ranking held only outside bear markets, a negative two-year return of the index, after which Daniel
+and Moskowitz find every one of momentum's fifteen worst months. It earns 11.61% a year at a Sharpe
+of 0.478 over 2002-07-30 to 2026-06-01, 1.08 points a year ahead of the same pool's twenty most
+traded and ahead of the ranking held in every month, but 0.0084 of Sharpe ahead where 0.03 was
+required: it fails its kill switch, and nothing graduates. It was run from a wiped working copy.
+Example 0.17.0; no skill, command, rule, agent or template changed.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, so that `init-example`
+copies the example with Experiment 4. Its analyzer's new rows read the desk's index returns, as the
+experiments' membership already does.
+### Added
+- **Experiment 4 in the example**, from brainstorming to findings, with its blueprint committed
+  before any rule, reviewed cold by the blueprint critic and revised on every point; a check that
+  ends a listing at its last distinct bar, so that no run was refused; and a diagnostic arm the
+  rule has to beat, so that the state earns its place against its simpler baseline.
+- **Daniel & Moskowitz (2013)** in the example's `Bibliotheca/`, carried from a researcher's
+  library, with the warning its home note carried above the Paleologo chapter it contradicts.
+- **Momentum by market state** in the example's analyzer.
+### Fixed
+- **Experiment 3's notebook** names its own blueprint and reserve in the comment above its costs.
+
 ## [0.21.0] - 2026-09-25
 The worked example reports Experiment 3. Momentum proper on the same liquid names — of the hundred
 most traded members of the index, the twenty that rose most over the twelve months before the latest

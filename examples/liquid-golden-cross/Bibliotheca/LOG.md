@@ -34,4 +34,10 @@
 ## [2026-09-22] audit | three chapter notes renamed: their paths ran past the 120 characters the package's check allows once the example sits under a home folder
 - updated: `Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs_Turnover_and_Trading.md` is now `Books/Grinold_Kahn_ND_Active_Portfolio_Management/19_Transactions_Costs.md`; `Books/Paleologo_2021_Advanced_Portfolio_Management/10_Use_Effective_Heuristics_for_Alpha_Sizing.md` is now `Books/Paleologo_2021_Advanced_Portfolio_Management/10_Alpha_Sizing.md`; `Books/Paleologo_2021_Advanced_Portfolio_Management/12_Understand_Your_Performance.md` is now `Books/Paleologo_2021_Advanced_Portfolio_Management/12_Your_Performance.md`; every link to the three rewritten, in the two book indexes, the notes that cross-link them and `OBJECTIVE.md`. The entries above keep the names they were written with
 
+## [2026-09-25] read | claim 5: Daniel & Moskowitz (2013) carried from Luna's library for Experiment 4 — the PDF not read again
+- wrote: `Papers/Daniel_Moskowitz_2013_Momentum_Crashes.md`
+- updated: `BIBLIOGRAPHY.md` — a row in Part 1; `Books/Paleologo_2021_Advanced_Portfolio_Management/09_Understand_Factors.md` — a callout above its risk-based-explanations claim
+- flagged: `Books/Paleologo_2021_Advanced_Portfolio_Management/09_Understand_Factors.md` contradicted on risk explaining momentum's crashes by `Papers/Daniel_Moskowitz_2013_Momentum_Crashes.md`
+- read: Luna's library, not the PDF — eight of the paper's thirteen sections carried for claim 5; hedging with betas, variance risk and the factors in panic states, momentum's own volatility, and the other markets and asset classes skipped. Carried after Experiment 3 reported. Cooper, Gutierrez & Hameed (2004), which the paper cites, offered as a lead and not written
+
 <!-- example: end -->

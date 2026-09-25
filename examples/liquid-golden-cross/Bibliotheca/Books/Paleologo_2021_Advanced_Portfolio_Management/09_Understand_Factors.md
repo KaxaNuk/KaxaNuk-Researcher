@@ -71,6 +71,14 @@ objective as the source on why a trend rule is not a momentum rule.
 - The author is candid about the explanations: "Even a cursory read of the research on momentum
   will convince you that we don't understand the origins of momentum. We have complex,
   hard-to-falsify theories based on observational data" (p. 75).
+> [!WARNING]
+> [Daniel & Moskowitz (2013)](../../Papers/Daniel_Moskowitz_2013_Momentum_Crashes.md), the work
+> this claim cites in a 2016 version, confirm the heavy left tail but examine explanations "ranging
+> from compensation for crash risk to volatility risk, to other factor risks such as the Fama and
+> French (1993) factors" and find that "none of these explanations can account fully for our
+> findings" (their p. 46). The chapter cites a 2016 date, and whether that version differs from the
+> 2013 one read is not known here. The chapter's claim stays as it states it.
+
 - Risk-based explanations have emerged. A quantile plot of medium-term momentum returns, z-scored
   by trailing three-month volatility, shows a left tail heavier than normal, and this is extended by
   [Daniel and Moskowitz, 2016] (p. 76, Figure 5.10).
