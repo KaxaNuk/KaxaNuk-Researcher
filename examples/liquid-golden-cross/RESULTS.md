@@ -22,9 +22,9 @@
 > **In this example, everything below is `liquid-golden-cross`, measured.** Steps 1 to 6 are run,
 > and the numbers are real: Experiment 1's second design, run 2026-09-23 and reproduced from a
 > wiped working copy on 2026-09-24, with its first design kept as a row; Experiment 2, run
-> 2026-09-24 and reproduced from a wiped working copy the same day; and Experiment 3, run
-> 2026-09-24 from a wiped working copy.
-> Step 7's gate has been *evaluated* against all three and none passes. No book is on paper, so
+> 2026-09-24 and reproduced from a wiped working copy the same day; and Experiments 3 and 4, run
+> on 2026-09-24 and 2026-09-25 from a wiped working copy.
+> Step 7's gate has been *evaluated* against all four and none passes. No book is on paper, so
 > **nothing here is out of sample**. Which criteria each fails and why is in
 > [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md).
 
@@ -67,7 +67,17 @@ re-struck monthly, over 2002-07-30 to 2026-06-01: **10.81% a year at a Sharpe of
 control's 11.03% and 0.465** and the index's 10.99% and 0.568, ahead of its control on both
 measures in one sub-period of three, 2017 to 2026. Attribution finds the ranking a momentum tilt,
 44.78 points of the factor against the control's 16.77, that takes 5.59 idiosyncratic points away.
-Claim 5 is falsified for that design, and nothing graduates.
+
+**Momentum held only outside bear markets comes closest, and still misses.** Experiment 4 keeps
+Experiment 3's ranking except in a month that opens after a negative two-year return of the index,
+when it holds the most traded twenty instead, the state Daniel and Moskowitz find before every one
+of momentum's fifteen worst months: **11.61% a year at a Sharpe of 0.478, against its control's
+10.53% and 0.469** and the index's 10.99% and 0.568. It leads its control by 1.08 points a year, in
+two sub-periods of three, and beats the same ranking held in every month on both measures, and its
+ranking now adds 8.84 idiosyncratic points where Experiment 3's took 5.59 away; but its Sharpe
+margin, 0.0084, is short of the 0.03 every experiment here has been judged by, and five of its
+twelve perturbation cells lead on both where ten were asked for. Claim 5 stays falsified, now for
+two designs, and nothing graduates.
 
 <!-- example: end -->
 
@@ -216,6 +226,43 @@ pays its costs, and a signal that does not last a quarter on those years. It for
 book's result on either window as the signal out of sample: both were measured here before the
 book was designed.
 
+**Measured a fifth time on 2026-09-25, for Experiment 4, by market state**, after the owner chose
+that experiment's design and fixed its state in `BRAINSTORMING_4.md`, and before its blueprint was
+written. The state is Daniel & Moskowitz's bear market: the KN US Equity 600's own return over the
+prior 504 trading days below zero, read from the desk's daily returns at each date's close. On
+2002-07-30 to 2026-06-01, 42 month starts fall in it: August 2002 to September 2003 and December
+2003, fifteen; October 2008 to September 2010, twenty-four; and April 2020, May 2023 and November
+2023. The pool is rows 19 to 28's, and rows 35 to 38 set the twenty with the highest momentum
+against the pool's twenty most traded, the control Experiments 3 and 4 name, rather than against its
+mean. Each coefficient is read on the state's dates that have a 21-day forward return. The
+analyzer's Verify section ran its 11 checks; rows 1 to 30 are unchanged.
+
+| # | Measurement | Value | Dates with the expected sign | Section |
+| --- | --- | ---: | ---: | --- |
+| 31 | Information coefficient of `r_momentum_12_1`, 21 days, the hundred most traded, 2002 to 2016, in a bear state, 839 dates | −0.0362 | 45.2% | 5 |
+| 32 | The same outside one, 2,794 dates | 0.0284 | 57.6% | 5 |
+| 33 | The same, 2017 to 2026, in a bear state, 77 dates | 0.0442 | 55.8% | 5 |
+| 34 | The same outside one, 2,288 dates | 0.0299 | 56.1% | 5 |
+| 35 | The twenty of the hundred with the highest `r_momentum_12_1`, against the hundred's twenty most traded over the next 21 days, on the 39 bear month starts of 2002 to 2016: mean, median | −0.49%, −0.20% | 48.7% above | 5 |
+| 36 | The same on the 134 month starts of 2002 to 2016 outside one | +0.24%, +0.48% | 56.7% above | 5 |
+| 37 | The same on the 3 bear month starts of 2017 to 2026 | −1.26%, −2.28% | 33.3% above | 5 |
+| 38 | The same on the 109 month starts of 2017 to 2026 outside one | +0.12%, +0.04% | 51.4% above | 5 |
+
+**What it says.** On 2002 to 2016 the signal turns with the state: below zero in bear months,
+−0.0362, and 0.0284 outside them, where rows 19 and 22 read 0.0134 and 0.0140 across both. Against
+the twenty most traded the twenty highest trail by 0.49% a month in bear months and lead by 0.24%
+outside them; against the pool's mean they read −0.32% and +0.27%. On 2017 to 2026 the state barely
+occurs, three month starts, and outside it the lead over the twenty most traded is 0.12% a month, in
+just over half the months.
+
+**What it licenses, and what it forbids.** It licenses a prediction that momentum's twenty, held
+only outside bear months and the twenty most traded inside them, beat the twenty most traded on the
+same dates, net, with the evidence against it beside it: an edge before costs of 0.24% a month on
+2002 to 2016 and 0.12% on 2017 to 2026, against which a monthly re-strike pays its costs, as
+Experiment 3's did. It forbids reading the result as the state out of sample: the state was chosen
+after Experiment 3's book lost the 2009 rebound, and it is measured here on the same years the book
+will be tested on.
+
 <!-- example: end -->
 
 ---
@@ -245,6 +292,7 @@ finding.
 | 1, first design | thirty most traded, in an uptrend, on a 10% band | 17.85% | 0.861 | −30.54% | 0.831 | +0.030 | superseded, kept at tag `v0.15.0` | 1, the signal: **falsified** | `FINDINGS_1.md` at tag `v0.15.0` |
 | **2** | the arm's design: twenty most traded above the cross, re-equalised when three names move, 2002–2016 | **4.23%** | **0.2340** | −53.32% | 0.2556 | **−0.0216** | **fails its kill switch**; does not graduate | 1, the signal: stays **falsified**, now on two windows | [`FINDINGS_2.md`](Experiments/Experiment_2/FINDINGS_2.md) |
 | **3** | momentum among the most traded: the twenty of the hundred with the highest twelve-month return, re-struck monthly, 2002–2026 | **10.81%** | **0.4358** | −65.57% | 0.4647 | **−0.0289** | **fails its kill switch**; does not graduate | 5, momentum: **falsified**, for this design, on this window | [`FINDINGS_3.md`](Experiments/Experiment_3/FINDINGS_3.md) |
+| **4** | the same ranking held only outside bear markets, the most traded twenty inside them, 2002–2026, at a 10% reserve | **11.61%** | **0.4779** | −67.13% | 0.4694 | **+0.0084** | **fails its kill switch**, on its Sharpe margin alone; does not graduate | 5, momentum: stays **falsified**, now for two designs | [`FINDINGS_4.md`](Experiments/Experiment_4/FINDINGS_4.md) |
 
 **Three windows.** Experiment 1's two designs both run 2017-01-03 to 2026-06-01, net of costs. The
 panel was refreshed on 2026-09-23 before the second ran, which rebases every adjusted column, so
@@ -252,12 +300,16 @@ compare each design with its own control and index row; the second design's repr
 fresh download through 2026-06-01, returned every engine figure to the digit. Experiment 2 runs
 2002-07-30 to 2016-12-30, net of costs, on the seed widened to 1,500 identifiers and at a 5% cash
 reserve where Experiment 1 held 2%: compare it with its own control row, never with Experiment 1's
-headline. Experiment 3 runs 2002-07-30 to 2026-06-01 on Experiment 2's panel and reserve. In
+headline. Experiment 3 runs 2002-07-30 to 2026-06-01 on Experiment 2's panel and reserve, and
+Experiment 4 on the same window and panel at a 10% reserve, with a check that ends a listing at its
+last distinct bar. In
 Experiments 1 and 2 the control is the same book without the trend condition, trading on the rule's
 own dates: in the first design, the equalised control; in Experiment 3 it is the same pool's twenty
-most traded, without the momentum ranking, on the rule's dates. **`vs control` is a Sharpe
-difference, and it hides the CAGR**: each book earns less than its control, by 0.86 points a year
-in the second design, 1.12 in the first, 1.64 in Experiment 2 and 0.22 in Experiment 3.
+most traded, without the momentum ranking, on the rule's dates, and in Experiment 4 the same.
+**`vs control` is a Sharpe difference, and it hides the CAGR**: the first four books each earn less
+than their control, by 0.86 points a year in the second design, 1.12 in the first, 1.64 in
+Experiment 2 and 0.22 in Experiment 3; Experiment 4's earns 1.08 points more, at a Sharpe margin of
+0.0084.
 
 ### The counterfactuals
 
@@ -439,7 +491,58 @@ priced. Two earlier runs stopped before the end and are superseded: the first at
 over `WCOEQ`, and the second at the pool 150 cell, where the notebook raised at a refusal it now
 records; `JOURNAL_3.md` has both.
 
+### Experiment 4: momentum outside bear markets, on 2002 to 2026
+
+Claim 5's second design: Experiment 3's ranking — of the hundred most traded members, the twenty
+with the highest twelve-month return, re-struck monthly — held only outside a bear month, one that
+opens after the KN US Equity 600's return over the prior 504 trading days below zero, and the pool's
+twenty most traded inside one. The control is Experiment 3's; the diagnostic arm is Experiment 3's
+rule, the ranking in every month, which the kill switch asks the rule to beat. The reserve is 10%,
+and a check ends nine listings at their last distinct bar, both chosen after Experiment 3's run; the
+state was chosen after Experiment 3's book lost the 2009 rebound, and the blueprint says so. Run
+2026-09-25, from 07:41 to 09:26, from a wiped working copy, with the working copy printing every
+figure the same but one line of the first cut; net of costs.
+
+| Book, 2002-07-30 to 2026-06-01 | CAGR | Volatility | Sharpe | Max drawdown |
+| --- | ---: | ---: | ---: | ---: |
+| The rule | 11.61% | 24.29% | 0.4779 | −67.13% |
+| The rule, realistic costs | 13.52% | 24.23% | 0.5578 | −66.43% |
+| The rule, every fill at the close | 11.57% | 24.30% | 0.4763 | −67.08% |
+| The control, without the ranking | 10.53% | 22.43% | 0.4694 | −64.42% |
+| The control, realistic costs | 11.23% | 22.42% | 0.5007 | −63.58% |
+| The control, every fill at the close | 10.61% | 22.43% | 0.4729 | −63.90% |
+| The arm, momentum in every month | 10.34% | 23.43% | 0.4414 | −63.33% |
+| The KN600 index | 10.99% | 19.34% | 0.5682 | −55.37% |
+| The null, the whole pool | 8.94% | 19.06% | 0.4692 | −59.44% |
+
+**It leads its control on return and misses on Sharpe.** The rule minus its control: Sharpe +0.0084,
+CAGR +1.08 points, where prediction 1 asked for +0.03 and +0.5; with every name filled at the close,
++0.0034 and +0.97, the same verdict; at the realistic cost row, +0.0571 and +2.29, both margins
+cleared, with the rule's Sharpe still below the index's. Beta to the index: the rule 1.097, the
+control 1.115, the arm 1.023. **The kill switch trips on that one limb**: the rule is ahead of its
+control on both measures in two sub-periods of three, 2002–2008 and 2017–2026, and ahead of the arm
+on both, +0.0364 and +1.26 points. The perturbation fails: ahead on both in 5 of 12 cells, where the
+blueprint asked for ten; every cell priced. Over the 2009 rebound, all bear months, the rule gained
+61.74%, the control 61.72% and the arm 27.23%; on 2002-07-30 to 2016-12-30 alone, as description,
+the rule trails its control by 0.65 points a year.
+
+**Attribution, over 2008-01-14 to 2026-06-01**, with 1,350 of the 1,351 identifiers the books and
+the index name priced. The conditioned ranking adds 8.84 idiosyncratic points over the control,
+92.55 against 83.71, and the state 13.49 over the arm's 79.06; the rule's momentum line is 52.02
+against the control's 15.94, and of the 32.05 points of excess return it earns over its control,
+36.08 are that line's. The Brinson-Fachler alpha against the index is +125.59 points, of which
+selection +26.49 and interaction +100.32, per asset.
+
+**Does it reproduce? Yes: the record is the run from a wiped working copy**, and the working copy
+printed every figure the same but the first cut's interaction, +100.31, where the wiped copy drops
+`MIC` from the index. The notebook reached the end of its Verify section: 41 checks on the books and
+the weight file, and 82 on the runs, 80 of them window checks on its 40 engine runs, every one
+priced.
+
 ### The trial count
+
+**Sixty-eight trials**, the count `BLUEPRINT_4.md` fixed: Experiment 4's rule, its diagnostic arm
+and its twelve cells, after the fifty-four that follow.
 
 **Fifty-four trials**, the count `BLUEPRINT_3.md` fixed: Experiment 3's rule and its ten cells,
 after the forty-three that follow.
@@ -458,9 +561,12 @@ fill at the close, six sub-period runs, the two runs on the window the design wa
 twenty for ten cells and their controls. **Experiment 3 ran 36**, thirty-two priced and four not:
 the rule, the control, the control with young listings and the null; the rule and the control on
 2002 to 2016 alone; both again at realistic costs and with every fill at the close; six sub-period
-runs; and twenty for ten cells and their controls. Every run that is not the rule, the arm or a
-cell is a diagnostic, except Experiment 2's two runs on the window the design was found on and
-Experiment 3's null and its two runs on 2002 to 2016, which are description. Further runs are
+runs; and twenty for ten cells and their controls. **Experiment 4 ran 40**, every one priced: the
+rule, the control, the arm and the null; the rule and the control on 2002 to 2016 alone; both again
+at realistic costs and with every fill at the close; six sub-period runs; and twenty-four for twelve
+cells and their controls. Every run that is not the rule, an arm or a cell is a diagnostic, except
+Experiment 2's two runs on the window the design was found on, and Experiments 3's and 4's nulls
+and their runs on 2002 to 2016, which are description. Further runs are
 excluded by name, below. The deflated Sharpe was not computed.
 
 <!-- example: end -->
@@ -513,10 +619,17 @@ with its number.
   engine's reason, and counts it against the rule as its blueprint fixed; its Verify section checks
   each is named. Four of its cells' rules were such runs: two overdrew the 5% reserve in 2003, and
   two held `VMW` into a month start its file has no price for.
+- **A check that ends a listing at its last distinct bar.** Experiment 4's notebook cuts every price
+  file at the window's end, finds each listing's last bar whose unadjusted open, high, low and close
+  differ from the bar before, and reads any rows after it that repeat those four values as no price,
+  for its panel and for the engine's staged copy of the files. It ended nine listings, and the
+  engine refused none of Experiment 4's 40 runs, where it refused two of Experiment 3's over `VMW`.
+  It uses hindsight up to the window's end, which its blueprint names.
 - **Capacity, read from the book.** Each trade against its name's 63-day average traded value: at 1%
   of a day's traded value the worst trade limits Experiment 1's second design to $91,546,647 and its
-  median trade to $16,231,104,636, Experiment 2's rule to $3,851,439 and $106,111,907, and
-  Experiment 3's to $6,933,709 and $92,928,116. The worst trade binds. The second design's run of
+  median trade to $16,231,104,636, Experiment 2's rule to $3,851,439 and $106,111,907,
+  Experiment 3's to $6,933,709 and $92,928,116, and Experiment 4's to $6,933,709 and $107,323,816.
+  The worst trade binds. The second design's run of
   2026-09-23 printed $2,018,972 and $14,574,799,654, read from rows out of date order; the
   reproduction's figures replace them.
 
@@ -542,13 +655,15 @@ the next person repeating it; this list is where that value is stored.
   shortfall against its control, −0.543 and −0.496 points against −0.86, rather than widening it,
   though both late books targeted `TWTR` after its last price and the engine held that weight in
   cash. Do not re-propose a faster exit on the 50/200 cross without a new argument.
-- **Momentum among the most traded, as a long-only book re-struck monthly, at the blueprint's
-  cost row.** Closed for that design by Experiment 3: 0.22 points a year less than the same pool's
-  twenty most traded over 2002 to 2026, ahead of them on both measures in one sub-period of three
-  and in 3 of 10 cells, and a ranking that adds the momentum factor and takes idiosyncratic return
-  away. Not closed by it: the same ranking at a measured cost row, where the realistic one reverses
-  the CAGR margin to +1.23 points, and a quarterly re-strike, the cell that led on both. Either is a
-  new experiment with its own blueprint, never a rescue of this one.
+- **Momentum among the most traded, as a long-only book re-struck monthly, at the blueprint's cost
+  row.** Closed for two designs. Experiment 3's, the ranking in every month: 0.22 points a year less
+  than the same pool's twenty most traded over 2002 to 2026, ahead of them on both measures in one
+  sub-period of three and in 3 of 10 cells, with a ranking that takes idiosyncratic return away.
+  Experiment 4's, the ranking only outside bear markets: 1.08 points a year more, in two sub-periods
+  of three and ahead of the ranking in every month, but 0.0084 of Sharpe where 0.03 was required,
+  and 5 of 12 cells. Not closed by either: the same design at a measured cost row, where the
+  realistic one clears both of prediction 1's margins in Experiment 4, +0.0571 and +2.29 points.
+  That is a new experiment with its own blueprint, never a rescue of this one.
 - **The filter as protection against fast crashes.** Closed by 2020 in the first design: no cash
   held at all through a 23-day fall. It steps aside from slow declines only.
 - **This book as a defensive position.** Closed on 2017 to 2026 by a beta of **1.028** in the
@@ -582,38 +697,41 @@ The single highest-value run outstanding, and what it would settle.
 how the books are read. What followed Experiment 2 the owner decided on 2026-09-24: Experiment 3,
 momentum proper on the same liquid names, under a claim of its own, claim 5
 ([`BRAINSTORMING_3.md`](Experiments/Experiment_3/BRAINSTORMING_3.md)). It ran the same day and
-tripped its kill switch; what follows it is the owner's to decide.
+tripped its kill switch. On 2026-09-25 the owner chose Experiment 4, claim 5's second design: the
+ranking held only outside bear markets
+([`BRAINSTORMING_4.md`](Experiments/Experiment_4/BRAINSTORMING_4.md)). It ran the next day and
+tripped its kill switch on its Sharpe margin alone; what follows it is the owner's to decide.
 
-1. **Repeated bars, a data check nobody wrote.** Nine FMP files end in a run of bars repeating their
+1. **The cost row, measured.** The verdict on prediction 1 turns on it in two experiments in a row:
+   Experiment 3's CAGR margin is −0.22 points at the commission setting 0.1 and +1.23 at 0.005, and
+   Experiment 4 clears both margins at 0.005, +0.0571 and +2.29 points, and neither setting was
+   measured from an executable schedule for these trades. A blueprint that fixes its cost row from
+   one, before its run, would settle which describes the book. Highest value.
+2. **Repeated bars, a data check nobody wrote.** Nine FMP files end in a run of bars repeating their
    last distinct one inside 2002 to 2026: `CSC`, `ABMD`, `ATVI`, `VMW`, `SGEN`, `SRCL`, `ZIONO`,
    `CMA` and `SNCR`, `CSC`'s from 2017-04-03 to 2021-09-10. `VMW`'s left two of Experiment 3's cells
-   unpriced. A check at the curator or the universe stage, fixed in a later blueprint before its
-   run, would end each at its last distinct bar.
-2. **The check for names held on their last priced day.** In Experiment 2 it printed none, where the
+   unpriced. Experiment 4's notebook ends each at its last distinct bar, and none of its runs was
+   refused; a check at the curator or the universe stage would give every experiment the same.
+3. **The check for names held on their last priced day.** In Experiment 2 it printed none, where the
    engine's log names six in the rule's run, `BR1`, `PD1`, `BUD1`, `NFS`, `UST1` and `DNA1`, each
    sold at its last price, all of them Sharadar names. In Experiment 3 it read the window's last day
-   as a last price and listed the names held there, where the log names thirty-one. The check is
-   what should read it.
-3. **Daniel & Moskowitz (2013), before any further momentum experiment.** The researcher's library
-   holds it, and a warning on its Paleologo chapter 5 note that the strategy's copy lacks: all
-   fifteen of the worst momentum months followed a negative two-year market return. Experiment 3's
-   blueprint named neither the paper nor that market state.
-4. **The cost row, measured.** Experiment 3's CAGR margin is −0.22 points at the commission setting
-   0.1 and +1.23 at 0.005, and neither was measured from an executable schedule for its trades.
-5. **The third pass, Brinson-Fachler on the residual.** Not run for any experiment; criterion 2 of
+   as a last price and listed the names held there, where the log names thirty-one; in Experiment 4
+   it read the day of the engine's sale, where the weight is already zero, and printed none where
+   the log names twenty-three. The check is what should read it, on the day before.
+4. **The third pass, Brinson-Fachler on the residual.** Not run for any experiment; criterion 2 of
    the gate cannot pass without it.
-6. **Attribution before 2008.** Factor files reaching back to 2002 would attribute Experiment 2's
+5. **Attribution before 2008.** Factor files reaching back to 2002 would attribute Experiment 2's
    first sub-period, where the rule trailed its control most, and Experiment 3's years before 2008.
-7. **Sector factor files with data.** The desk's eleven are empty, so the sector lines read zero in
+6. **Sector factor files with data.** The desk's eleven are empty, so the sector lines read zero in
    every experiment and no sector claim stands.
-8. **What survivorship costs**: the same rule on FMP's survivors alone, against Experiment 2's run,
+7. **What survivorship costs**: the same rule on FMP's survivors alone, against Experiment 2's run,
    would price it, and both sets of files now exist.
-9. **Far more random books, and the percentile.** Five seeds span −11.78 to 35.31 points in
+8. **Far more random books, and the percentile.** Five seeds span −11.78 to 35.31 points in
    Experiment 1, and the rule sits just above their top; Experiments 2 and 3 priced none.
-10. **The band read as a curve**, claim 4's full test: Experiment 1's arm measured one setting of it
-    net of costs, and Experiment 2 four settings against the control at twenty names, the rule's 15%
-    and its cells at 10%, 30% and 40%, with no direction. Choose the band on turnover and
-    persistence, never on the metric it will be judged by. A new experiment, not an edit to either.
+9. **The band read as a curve**, claim 4's full test: Experiment 1's arm measured one setting of it
+   net of costs, and Experiment 2 four settings against the control at twenty names, the rule's 15%
+   and its cells at 10%, 30% and 40%, with no direction. Choose the band on turnover and
+   persistence, never on the metric it will be judged by. A new experiment, not an edit to either.
 
 <!-- example: end -->
 
@@ -683,7 +801,7 @@ Five more, specific to this example:
 | 8 | **Limitation 5, met: the refresh of 2026-09-23 rebased the adjusted prices** the first design ran on | The two designs sit on two downloads; compare each with its own control and index row. The index row moved too, 14.63% against 14.71% at `v0.15.0`, but not with the refresh: it is staged from the desk's own returns, and the second design's own two downloads, refreshed and fresh, gave the same engine figures, the index's included. A different first valued day, or a change in the desk's index files, may explain it; neither was traced |
 | 9 | **Experiments 2 and 3 have two providers and two Curator versions.** The 712 names added fill at the close, from Sharadar through the Data Curator's `issues/31` branch at `8b54c2f`, built as 0.49.1; every other name at the day's VWAP, from FMP through 0.50.0 | The fill check prices the difference and the verdict does not change. To fetch those names a copy of this example needs a Sharadar key and a Data Curator with the Sharadar provider; the branch was the only version with it when Experiment 2 ran, and `JOURNAL_2.md` records how it was called |
 | 10 | **Experiments 2 and 3 were reproduced from a wiped working copy that kept its raw downloads**: FMP files downloaded fresh through 2026-06-01 in that clone the same morning, and Sharadar names re-curated from the bulk tables that morning's fetch had cached | Every figure matched the working copy's. A reproduction that also fetches afresh would meet limitation 5: a later download rebases every adjusted column |
-| 11 | **Nine FMP files end in bars that repeat their last distinct one**, `VMW`'s after a gap across a month start | No check catches them, and none was written after Experiment 3's run. The engine refuses a book that holds such a name on a date its file skips, as it refused two of Experiment 3's cells, and values one held across the repeated bars at a flat price |
+| 11 | **Nine FMP files end in bars that repeat their last distinct one**, `VMW`'s after a gap across a month start | Experiment 4's notebook ends each at its last distinct bar; no other stage or experiment does. Elsewhere the engine refuses a book that holds such a name on a date its file skips, as it refused two of Experiment 3's cells, and values one held across the repeated bars at a flat price |
 
 <!-- example: end -->
 

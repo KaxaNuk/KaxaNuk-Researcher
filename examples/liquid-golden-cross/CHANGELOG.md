@@ -41,6 +41,47 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.0 (2026-09-25)
+
+**MINOR** — Experiment 4 opened and reported, from a wiped working copy: claim 5's second design,
+momentum held only outside bear markets. It leads its control by 1.08 points a year and fails its
+kill switch on its Sharpe margin, 0.0084 where 0.03 was required; claim 5 stays falsified, now for
+two designs. No published number of an earlier experiment moves.
+
+**What to do differently:** run `Data/analyzer.ipynb` for rows 31 to 38, which read the desk's index
+returns, before Experiment 4's notebook. Quote Experiment 4 from `FINDINGS_4.md`: the rule earns
+11.61% at a Sharpe of 0.4779 over 2002-07-30 to 2026-06-01, against its control's 10.53% and
+0.4694, the ranking in every month's 10.34% and 0.4414, and the index's 10.99% and 0.5682.
+
+### Added
+
+- **Experiment 4**: its brainstorming entry, its blueprint — committed before any rule, reviewed
+  cold by the blueprint critic and revised — its journal, its notebook and `FINDINGS_4.md`. The
+  twenty of the hundred most traded members with the highest twelve-month return, re-struck
+  monthly, except in a month that opens after a negative two-year return of the KN US Equity 600,
+  when the book holds the pool's twenty most traded; against the pool's twenty most traded, and
+  required to beat the same ranking held in every month; at a 10% reserve, with a check that ends
+  a listing at its last distinct bar, twelve perturbation cells and a trial count of sixty-eight.
+- **Daniel & Moskowitz (2013)** in `Bibliotheca/Papers/`, carried from the researcher's library for
+  claim 5, with its row in `BIBLIOGRAPHY.md`, a warning above the Paleologo chapter 5 note's
+  risk-based-explanations claim, and the log's entry.
+- **Momentum by market state** in `Data/analyzer.ipynb`, in `RESULTS.md` rows 31 to 38.
+- **The gate's rows for Experiment 4** in `Paper_Trading/BITACORA.md`: it does not graduate.
+
+### Changed
+
+- **Claim 5 in `OBJECTIVE.md`**: falsified for two designs, with Experiment 4's evidence; its
+  wording is unchanged.
+- **`RESULTS.md`**: Experiment 4's row, section and runs; the stale-bars check under *What stands*;
+  momentum closed for two designs at the blueprint's cost row; the cost row first among the open
+  leads.
+- **The status lines** of `README.md` and `AGENTS.md`: four experiments, none graduated.
+
+### Fixed
+
+- **Experiment 3's notebook**: the comment above its costs names `BLUEPRINT_3.md` and the 5%
+  reserve the code uses, where it named Experiment 2's blueprint and a 2% reserve.
+
 ## 0.16.0 (2026-09-24)
 
 **MINOR** — Experiment 3 reported, from a wiped working copy: momentum proper among the most traded

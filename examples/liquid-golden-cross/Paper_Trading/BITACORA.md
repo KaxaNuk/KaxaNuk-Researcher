@@ -114,10 +114,10 @@ arrives when an experiment's `FINDINGS_N.md` can evidence criterion 1.
 
 <!-- example: begin -->
 
-**In this example the gate has been tested**, against both designs of Experiment 1, against
-Experiment 2 and against Experiment 3, and none graduated: the rows are below. No book is on paper,
-and `Paper_Trading_1/` holds more than the contract, as *Nothing is frozen here* below says. The
-daily machinery has been run outside this repository, on a candidate frozen only to test it: *The
+**In this example the gate has been tested**, against both designs of Experiment 1 and against
+Experiments 2, 3 and 4, and none graduated: the rows are below. No book is on paper, and
+`Paper_Trading_1/` holds more than the contract, as *Nothing is frozen here* below says. The daily
+machinery has been run outside this repository, on a candidate frozen only to test it: *The
 machinery, tested* below says what that showed, and why none of its figures is read.
 
 <!-- example: end -->
@@ -200,6 +200,29 @@ CAGR in one sub-period of three. Every row is evidenced from
 Its run was made from a wiped working copy, as its blueprint asked, and the working copy printed
 every figure the same. No book of Experiment 3 is frozen, and `Paper_Trading_3/` does not exist.
 
+### In this example: the gate run on Experiment 4, and the answer is no
+
+**Experiment 4 does not graduate either, and it came closest.** It is claim 5's second design:
+Experiment 3's ranking held only outside bear markets, the most traded twenty inside them, at a 10%
+reserve, with a check that ends a listing at its last distinct bar, tested on 2002-07-30 to
+2026-06-01 against the pool's twenty most traded and required to beat the ranking held in every
+month. It was written to reach paper trading, as `Paper_Trading_4`, only by passing this gate, and
+it failed its own kill switch first, on one limb: its Sharpe margin over its control, 0.0084 where
+0.03 was required. Every row is evidenced from
+[`../Experiments/Experiment_4/FINDINGS_4.md`](../Experiments/Experiment_4/FINDINGS_4.md) and
+[`../RESULTS.md`](../RESULTS.md).
+
+| # | Criterion | Verdict | Evidence |
+| --- | --- | --- | --- |
+| 1 | Beats the benchmarks **and its own control** | **Fails** | CAGR 11.61% against the index's 10.99% and the control's 10.53%: ahead of both. Sharpe 0.4779 against the index's 0.5682 and the control's 0.4694: behind the index, and ahead of the control by 0.0084, short of the 0.03 the blueprint required. The verdict is the same with every name filled at the close |
+| 2 | Idiosyncratic alpha in **both** layers | **Partly** | Over 2008-01-14 to 2026-06-01 the factor model leaves the rule 92.55 idiosyncratic points and its control 83.71: the ranking's share is +8.84, and the state's, against the arm, +13.49. The first cut's alpha against the index is +125.59 points, of which selection +26.49 and interaction +100.32, per asset. The third pass has not been run, no random books were priced, and 2002 to 2007 are not attributed |
+| 3 | Survives perturbation; trial count published | **Fails** | Ahead of its control on both Sharpe and CAGR in 5 of 12 cells, where the blueprint asked for ten; every cell priced. The trial count is published: sixty-eight, with this experiment's 40 engine runs listed by role. The deflated figure was not computed |
+| 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 3.06 times the book a year, 25.3% one-way per rebalance, 77.7% where the state turns. $882,137.50 of commission and $216,577.57 of slippage at the headline row; the realistic row, 0.005, reported beside it. Capacity at 1%: $6,933,709 for the worst trade, $29,839,031 at the first percentile, $107,323,816 at the median; at 5%, $34,668,547, $149,195,153 and $536,619,080. It bounds participation and does not model market impact |
+| 5 | Explicit sign-off | **Not sought** | Criteria 1 and 3 block it, and the kill switch had already tripped |
+
+Its run was made from a wiped working copy, as its blueprint asked. No book of Experiment 4 is
+frozen, and `Paper_Trading_4/` does not exist.
+
 ### Nothing is frozen here
 
 `promote.py` has not run in this repository and no `FREEZE.json` exists in it.
@@ -246,8 +269,14 @@ points a year, and on the years it was found on by 1.46.
 **Momentum proper, on the same names, failed as well.** Experiment 3 ranked the hundred most traded
 by their twelve-month return and held the top twenty: 0.22 points a year behind the same pool's
 twenty most traded over 2002 to 2026, ahead of them in one sub-period of three, with a ranking that
-adds the momentum factor and takes idiosyncratic return away. Nothing is a candidate now, and no
-decision of the owner's on what follows is recorded.
+adds the momentum factor and takes idiosyncratic return away.
+
+**Held only outside bear markets, it came within one margin.** Experiment 4 led the same control by
+1.08 points a year, in two sub-periods of three, and beat the ranking held in every month on both
+measures, with a ranking that now adds idiosyncratic return; its Sharpe margin, 0.0084, is short of
+the 0.03 the gate's first criterion was read against, and its perturbation reads five cells of
+twelve. At the realistic commission both margins clear, and the verdict is read at the blueprint's.
+Nothing is a candidate now, and no decision of the owner's on what follows is recorded.
 
 **The first design's gate run**, thirty names on a 10% band, failed criteria 1 and 3 and met 2 and
 4 only in part. It is kept at tag `v0.15.0` of the KaxaNuk Researcher.
