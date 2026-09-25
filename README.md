@@ -1,13 +1,32 @@
 # KaxaNuk Researcher
 
-**A research companion you name and teach.** It keeps a library of what you have read, knows the
-KaxaNuk Investment Lab and the KaxaNuk Strategy Template, and helps you write the hypothesis of
-every strategy you build — with every claim pointing back to something you actually read. One
-researcher per person, not per strategy; one repository per strategy.
+**A research companion you name and teach.** It keeps a library of what you have read, works out
+your ideas and decisions from it, knows the KaxaNuk Investment Lab and the KaxaNuk Strategy
+Template, and helps you write the hypothesis of every strategy you build — with every claim
+pointing back to something you actually read. One researcher per person, not per strategy; one
+repository per strategy.
 
 This repository is one package: every KaxaNuk skill — the researcher's, the process's and each
 Investment Lab library's — the strategy template, a strategy worked through it, and the
 researcher's home.
+
+## What you can use it for
+
+With a strategy or without one: the library and your studies stand on their own.
+
+| You want to | Run | You get |
+| --- | --- | --- |
+| keep what you read, and ask it later | `read`, then `query <question>` | a note for each paper or chapter you chose, read against your own questions; answers that cite them and name what is missing |
+| work out an idea, a plan or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, what you decide and what to check next — for an idea that is not a strategy yet, or work with no repository of its own |
+| build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a repository of its own on the KaxaNuk Strategy Template: the claims before any paper, the hypothesis before the test, every number from the Lab's engines |
+| learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
+| bring your library into other work | your home added to any project's session | a second pair of eyes that objects on evidence, under that project's own rules |
+| see the process worked end to end | `init-example` | `liquid-golden-cross`, one strategy through every step, to read or run |
+
+**It grows with you.** It reads for your questions, speaks in your voice, keeps your rules and
+learns the tools and projects you give it, and it takes skills and commands of your own. Each is a
+line or a file in your home: *Growing your researcher* in the home's README says the four moves.
+The package brings only hints, offered as options — never a position to adopt.
 
 ---
 
@@ -94,6 +113,7 @@ Every one that writes shows its plan first and waits for your go.
 | `audit [deep]` | reviews the library — links, duplicates, index, orphans, frontmatter, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
+| `study [subject]` | works out an idea, a plan or a decision from your library and keeps it in `Studies/` — every claim linked to its note, anything from outside it marked as not checked; with no subject, lists your studies |
 | `teach <topic>` | tutors you on a topic from your library, one lesson per session |
 | `update [check]` | brings a new version into your home — `uvx --from apm-cli==0.29.0 apm update -g`, and what changed in the home's own files, shown as a diff |
 
@@ -205,7 +225,7 @@ deep enough to fail the install, copy the files `git ls-files` lists to a short 
 that instead.
 
 **Before a release, do the same with the commit to be tagged.** It should deploy exactly 16 skills,
-11 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
+12 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
 or a script, walk the newcomer's path by hand in that folder — `init-researcher`, `interview`,
 `next`, `init-strategy`, and `read` on one clipping. Delete the folder afterwards. A newer APM is
 adopted only when this install passes with it, on Windows.
