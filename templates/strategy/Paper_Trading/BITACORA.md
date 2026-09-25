@@ -62,7 +62,9 @@ how is it doing".
 **A graduated book is the strategy, frozen.** `promote.py N` runs once, after the sign-off: it
 copies byte for byte, from the commit that graduated, every file the book needs to go from raw
 prices to a priced book into `Paper_Trading_N/`, in the strategy's own layout, and writes
-`FREEZE.json` with the commit, the date and the hash of each file. The rule itself goes into
+`FREEZE.json` with the commit, the date and the hash of each file. The security master is the one
+file not taken from the commit: the provider's data, it is copied from disk, hashed like the rest
+and kept out of git, on the machine that froze the book. The rule itself goes into
 `paper_trading_N.py`, copied from the experiment's cells and committed first. Every module resolves
 its paths from its own folder, so the copies read and write inside the book's folder alone: the
 experiments under construction can change the shared modules, and a graduated book never moves.
