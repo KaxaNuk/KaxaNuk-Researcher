@@ -1,5 +1,5 @@
 ---
-description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs, non-negotiables, what they are reading for and the first works to find — scaffold the folders, and write the agent file that makes the researcher callable by name. Only when the owner runs it by name; never on its own.
+description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs, non-negotiables, what they are reading for and the first works to find — scaffold the folders, write the agent file that makes the researcher callable by name, deploy it for the assistant in use and commit what was written, all on one go. Only when the owner runs it by name; never on its own.
 input:
   - mode: "Optional: force, to start over when RESEARCHER.md is already filled"
 ---
@@ -330,12 +330,14 @@ line stays as it is. On a re-run, a paragraph already written by the owner is ke
 Show in chat the filled `RESEARCHER.md`, section by section; the agent file and the `apm.yml`
 lines of *Step 4*; the README's opening paragraph; and what `Philosophy/HOW-I-INVEST.md` would
 take, or *nothing typed, left as it is* — marking which answers were typed and which were picked
-from a proposal. Then ask for the go through the question tool, header `Go?` (`¿Escribo?`) —
-*Go*, *Change something*, *Stop* — and write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes*
-is the go. On *Change something*, offer the changes the preview admits as options. Then write
-`RESEARCHER.md`, the agent file, the `apm.yml` lines, the README's opening paragraph and, when it
-takes anything, `Philosophy/HOW-I-INVEST.md`, and remove the instruction blockquote at the top of
-`RESEARCHER.md`.
+from a proposal — and say, in one line, that on *Go* the researcher also deploys the agent and
+commits what it wrote, and that the assistant may ask to allow those two commands. Then ask for the
+go through the question tool, header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and
+write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go. On *Change something*, offer
+the changes the preview admits as options. Then write `RESEARCHER.md`, the agent file, the
+`apm.yml` lines, the README's opening paragraph and, when it takes anything,
+`Philosophy/HOW-I-INVEST.md`, and remove the instruction blockquote at the top of `RESEARCHER.md`;
+*Step 5* deploys and commits them on the same go.
 
 ## Step 4: The agent
 
@@ -394,30 +396,49 @@ home's own version is the owner's: `interview` sets it to 0.1.0, the owner bumps
 entry they add to `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never
 this field. Nothing else in it changes.
 
-## Step 5: Install it
+## Step 5: Deploy it, and commit
 
-The agent is a file until APM deploys it. Tell the owner to run, in this folder — the target being
-the assistant they use, `claude`, `codex`, `cursor` or `copilot`; the skills themselves are already
-installed for the user:
+The agent is a file until APM deploys it, and the owner may have no idea what either command
+means. So on the same go, once the files are written, run both yourself — the owner types nothing:
 
-```bash
-apm install --target <the owner's agent>
-```
+1. **Deploy the agent** in this folder, for the assistant running this interview — `claude` in
+   Claude Code; `codex`, `cursor` or `copilot` in those:
 
-Never a bare `apm install`: it deploys to every target the home's `apm.yml` lists. Then say that
-the agent, like a skill, is available in a **new** session, and where the boundary holds. Claude
-Code, Copilot and Cursor enforce the tool list. Codex takes the agent but drops the list, which is
-why the read-only rule is written into the body as well. OpenCode rejects the agent, because it
-wants the tool list as a mapping of tool name to boolean; Gemini and Windsurf have no agent
-primitive at all. On those three the researcher is its skills and commands, exactly as before.
+   ```bash
+   uvx --from apm-cli==0.29.0 apm install --target <this assistant>
+   ```
+
+   Never a bare `apm install`: it deploys to every target the home's `apm.yml` lists. On Gemini,
+   OpenCode or Windsurf, which take no agent, skip it and say why in one line. If it fails, say so
+   in one plain line, give the owner that command to run later, and go on.
+2. **Commit what the interview wrote**, by name and nothing else in the folder — `RESEARCHER.md`,
+   `README.md`, `apm.yml`, the agent file and, when it took anything, `Philosophy/HOW-I-INVEST.md`:
+
+   ```bash
+   git add RESEARCHER.md README.md apm.yml .apm/agents/<slug>.agent.md Philosophy/HOW-I-INVEST.md
+   git commit -m "Interview: <Name>, <owner>'s research companion"
+   ```
+
+   The owner's go on the preview is their review, and the commit records it, so `next` starts from
+   a clean tree. If the commit fails for want of a git identity, ask for the name and email —
+   never invent them — set them in this repository only, `git config user.name "<name>"` and
+   `git config user.email "<email>"`, and commit again.
+
+Then say, in one line, that the agent, like a skill, is available in a **new** session. Where its
+boundary holds: Claude Code, Copilot and Cursor enforce the tool list. Codex takes the agent but
+drops the list, which is why the read-only rule is written into the body as well. OpenCode rejects
+the agent, because it wants the tool list as a mapping of tool name to boolean; Gemini and Windsurf
+have no agent primitive at all. On those three the researcher is its skills and commands, exactly
+as before.
 
 ## Step 6: Core knowledge
 
-Beyond `apm install --target <agent>` here, which deploys this home's own agent and any skill or
-command of the home's own in `.apm/skills/` or `.apm/prompts/`, there is nothing to install:
-`apm.yml` declares no dependency. Every KaxaNuk skill and command — the researcher's, the
-process's and each Lab library's — comes in one package, installed once for the user with
-`apm install -g`, and every folder has them: this home, and every strategy, which installs nothing.
+Beyond the agent *Step 5* deployed — `apm install --target <agent>` here deploys it, and any skill
+or command of the home's own in `.apm/skills/` or `.apm/prompts/`, again on a new machine — there
+is nothing to install: `apm.yml` declares no dependency. Every KaxaNuk skill and command — the
+researcher's, the process's and each Lab library's — comes in one package, installed once for the
+user with `apm install -g`, and every folder has them: this home, and every strategy, which
+installs nothing.
 If the owner asks about KaxaNuk's core knowledge, say where it lives: `KaxaNuk/KaxaNuk-Researcher`,
 whose `experiment-lifecycle` skill carries the process and whose skills for each Lab library carry
 the modules. The library at home is built the ordinary way: a source into `Sources/`, then `read`.
@@ -430,21 +451,22 @@ the owner's: they put themselves there, or choose another licence.
 One sentence on who the researcher is now, in the voice and the language the owner chose, then
 **what happens next as a numbered list**, each line one action and the command that does it:
 
-1. Review the diff and commit, then `apm install --target <the owner's agent>` here, then a new
-   session — the agent by name.
+1. A **new** session here — everything is written, committed and deployed — and there,
+   *ask <name> what we know about X*: the researcher answers by name, from the library.
 2. `read` on each *Find first* work already in `Sources/`; the others found by their titles and
    authors, put in `Sources/Papers/` or `Sources/Books/`, then `read`. With none picked, any
    source dropped into `Sources/` and `read`.
-3. *ask <name> what we know about X* — the researcher as an agent, once installed, in a new
-   session.
-4. `study <subject>` for an idea that is not a strategy yet, or a plan or a decision with no
+3. `study <subject>` for an idea that is not a strategy yet, or a plan or a decision with no
    repository of its own — worked out from what you have read and kept in `Studies/`.
-5. `init-strategy <name>` when a strategy is ready to start, with the home invited in by
+4. `init-strategy <name>` when a strategy is ready to start, with the home invited in by
    `--add-dir`; `objective` is where its claims begin.
-6. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
+5. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
    comes next.
-7. Anything else you work on: invite me with `--add-dir`; to teach me a tool, put its documentation
+6. Anything else you work on: invite me with `--add-dir`; to teach me a tool, put its documentation
    in `Sources/Clippings/` and run `read` — *Growing your researcher* in this folder's `README.md`
    says the four moves.
+
+When *Step 5* could not deploy or commit, the first line says so, with the one command the owner
+runs.
 
 The rules live in `AGENTS.md`. Nothing more: the list is the whole hand-over.

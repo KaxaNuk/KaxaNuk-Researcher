@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.25.0] - 2026-09-25
+The first two moves need nothing typed but answers and a go. `init-researcher` brings the package
+to its newest version with `apm update -g` before it copies, so a home is always made from the
+newest template with every command current, and hands over in two plain steps. `interview` deploys
+the agent for the assistant it runs in and commits what it wrote, on the one go it already asks
+for: the owner's go on its preview is their review, and the commit records it. The newcomer's path
+in the README is four moves where it was five, and `SETUP.md` says the same. Home template 0.13.0;
+`init-researcher` 0.3.0.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home for the new paragraph of its README. A home whose interview already ran needs nothing else.
+### Changed
+- **`init-researcher`** runs `uvx --from apm-cli==0.29.0 apm update -g --yes` on the go, before the
+  copy, and says the version installed; when the update fails it goes on with the version
+  installed, naming it. Its plan says the assistant may ask to allow two commands, and it hands
+  over as two numbered steps: open the folder in a new session, type `/interview`.
+- **`interview`** deploys the agent with `apm install --target <this assistant>` and commits the
+  files it wrote, by name, on the same go — asking for a git identity when the commit needs one,
+  never inventing it — and its hand-over opens with the new session where the agent answers by
+  name.
+- **The README's path** is four moves; **`SETUP.md`**'s step 2 deploys the agent by hand only on a
+  new machine or for another assistant.
+
 ## [0.24.0] - 2026-09-25
 A researcher's home has `Studies/`, and a command to write in it: `study`. A study is the owner's
 own work from the library — an idea that is not a strategy yet, or a decision, a plan or a brief

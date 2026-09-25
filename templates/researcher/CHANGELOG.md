@@ -6,6 +6,22 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.13.0 (2026-09-25)
+
+**MINOR** — nothing to type but your answers: `interview`, in the package, now deploys the agent
+for the assistant you are using and commits what it wrote, on the one go it asks for, and
+`init-researcher` brings the package up to date before it makes a home. `README.md` says so under
+*First, once*, and keeps the one command for a new machine or another assistant.
+
+**What to do differently:** run `update` in your home, which brings the new paragraph of
+`README.md` across. Nothing else: your interview has run, and your agent is deployed wherever you
+ran `apm install --target <agent>`.
+
+### Changed
+
+* **`README.md`'s *First, once***: the interview deploys the agent and commits what it wrote; the
+  command that deploys it by hand stays, for a new machine or another assistant.
+
 ## 0.12.0 (2026-09-25)
 
 **MINOR** — the home has `Studies/`: your own work from the library — an idea that is not a
