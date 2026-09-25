@@ -24,9 +24,10 @@
 > wiped working copy on 2026-09-24, with its first design kept as a row; Experiment 2, run
 > 2026-09-24 and reproduced from a wiped working copy the same day; and Experiments 3 and 4, run
 > on 2026-09-24 and 2026-09-25 from a wiped working copy.
-> Step 7's gate has been *evaluated* against all four and none passes. No book is on paper, so
-> **nothing here is out of sample**. Which criteria each fails and why is in
-> [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md).
+> Step 7's gate has been *evaluated* against all four and none passes. One book is on paper
+> without graduation, Experiment 4's, a candidate by the owner's decision since 2026-09-25, and
+> apart from its days **nothing here is out of sample**. Which criteria each fails and why, and the
+> book's registration, are in [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md).
 
 <!-- example: end -->
 
@@ -776,13 +777,16 @@ among Experiment 2's thirty-four; the revision it led to counts as a trial.
 
 <!-- example: begin -->
 
-**Limitation 1 holds here with two qualifications.** Step 7's gate has been evaluated, against both
-designs of Experiment 1, against Experiment 2 and against Experiment 3, and none graduated, so no
-experiment has reached paper trading and nothing here is out of sample. And the daily machinery has
-run: on 2026-09-24, in the working copy Experiment 1's second design ran in, on that design frozen
-there as a candidate only to test the plumbing, never committed. Those runs priced days after
+**Limitation 1 holds here with three qualifications.** Step 7's gate has been evaluated, against
+both designs of Experiment 1, against Experiment 2 and against Experiment 3, and none graduated, so
+no experiment has reached paper trading and nothing here is out of sample. And the daily machinery
+has run: on 2026-09-24, in the working copy Experiment 1's second design ran in, on that design
+frozen there as a candidate only to test the plumbing, never committed. Those runs priced days after
 2026-06-01, and no figure from them is read here;
-[`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) says what they showed.
+[`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) says what they showed. And one book is on
+paper without graduation: Experiment 4's, frozen on 2026-09-25 as a candidate by the owner's
+decision, whose months after 2026-06-01 are the first this example prices unseen;
+`Paper_Trading/BITACORA.md` registers it, and nothing its record shows can graduate it.
 
 **Limitation 2 no longer holds in this example.** Every experiment has a control arm differing in
 exactly one thing, on the rule's own trade dates: the trend condition in Experiments 1 and 2, the
