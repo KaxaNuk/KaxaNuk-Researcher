@@ -41,6 +41,51 @@ for somebody who was not in the room:
 
 ---
 
+## 0.16.0 (2026-09-24)
+
+**MINOR** — Experiment 3 reported, from a wiped working copy: momentum proper among the most traded
+fails its kill switch, and claim 5 is falsified for its design. Experiment 2 reproduced from a wiped
+working copy, every figure the same; Experiment 1's notebook described on the seed of 1,500. No
+published number moves.
+
+**What to do differently:** quote Experiment 3 from `FINDINGS_3.md`: the rule earns 10.81% at a
+Sharpe of 0.436 over 2002-07-30 to 2026-06-01, against its control's 11.03% and 0.465 and the
+index's 10.99% and 0.568. Quote Experiment 1 from its record on the seed of 788; a copy made now
+prints the figures `FINDINGS_1.md` describes on the seed of 1,500.
+
+### Added
+
+- **`FINDINGS_3.md`**: the predictions — the first two failed, the third held — the kill switch,
+  one sub-period of three; the book priced by the engine; its structure and capacity; the
+  perturbation read as curves, 3 of 10 cells, four of them not priced; the trial count of
+  fifty-four; the attribution, a ranking that adds the momentum factor and takes 5.59 idiosyncratic
+  points away; what is open; and the caveats. The gate's rows for Experiment 3 in
+  `Paper_Trading/BITACORA.md`: it does not graduate.
+- **`JOURNAL_3.md`'s entries after the rule**: the null refused over a name with no price in its
+  window, the two runs the engine could not price, and how each is handled as the blueprint fixed.
+- **Experiment 3 in `RESULTS.md`**: its row, its section, its runs in the trial count, lines under
+  *What stands*, *What is closed*, *Excluded runs* and *Known limitations*, and open leads for
+  repeated bars in nine FMP files, Daniel & Moskowitz (2013) before any further momentum
+  experiment, and a measured cost row.
+- **`FINDINGS_1.md`, *On the seed of 1,500, described***: Experiment 1's notebook run once on the
+  widened seed — the same verdict, with criterion 3 at 11 of 15 cells, where the seed of 788 gave
+  twelve.
+
+### Changed
+
+- **Claim 5 in `OBJECTIVE.md`**: from measured to falsified, for Experiment 3's design, on
+  2002-07-30 to 2026-06-01. Its wording is unchanged.
+- **Experiment 2 reproduced**: `JOURNAL_2.md` records the run from a wiped working copy, and
+  `FINDINGS_2.md`, `RESULTS.md` and the gate record its blueprint's fifth criterion as met.
+- **The status lines** of `README.md` and `AGENTS.md`: three experiments, none graduated.
+
+### Fixed
+
+- **Experiment 3's notebook** records a run the engine refuses, or one that stops valuing the book
+  before its window ends, by name with the engine's reason, and counts it against the rule as the
+  blueprint fixed; it drops from a run's weight file a name held with no price anywhere in that
+  run's window; its verdict cell names claim 5 and `FINDINGS_3.md`.
+
 ## 0.15.0 (2026-09-24)
 
 **MINOR** — Experiment 3 opened, before its rule: momentum proper among the most traded members, as

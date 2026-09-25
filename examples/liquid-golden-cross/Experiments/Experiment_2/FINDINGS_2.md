@@ -43,7 +43,7 @@ design lost 1.12 points a year to its control, and the second design 0.86
 | 2 | The kill switch is silent | **Not met.** Both of its limbs fire: the whole-window margins, and none of three sub-periods |
 | 3 | The same verdict under both fill conventions | **Met.** With every name filled at the close the margins are −0.0202 and −1.63 points: not met either way |
 | 4 | The rule beats the index on Sharpe | **Not met.** 0.2340 against 0.4383 |
-| 5 | A run reproduced from a wiped working copy, with the Curator branch at its recorded commit | **Not shown.** The run was made in the working copy the widened data and the rule were built in; no run of this experiment from a wiped copy is recorded |
+| 5 | A run reproduced from a wiped working copy, with the Curator branch at its recorded commit | **Met, with the downloads kept.** A wiped working copy, run on 2026-09-24 from 21:49 to 22:28, printed every figure of the run of 12:38; it kept the morning's raw downloads, caveat 5 |
 | 6 | Trades on fewer days than it does not | **Met.** 109 rebalances in 3,633 trading days, and the invariant passed |
 | 7 | Every prediction evaluated in this file | **Met.** Three rows below: two failed, one held narrowly |
 
@@ -131,14 +131,15 @@ drawdown.
 **Run 2026-09-24, from 12:38 to 13:34**, with KaxaNuk Backtest Engine 0.66.0 and Attribution
 Analysis 0.2.0, the FMP names from Data Curator 0.50.0 and the Sharadar names from its `issues/31`
 branch at commit `8b54c2f`, built as 0.49.1. It ran in the working copy the widened data and the
-rule were built in: **no run of this experiment from a wiped working copy is recorded.** The
-notebook reached the end of its Verify section. The window asked of the engine is **2002-07-30 to
-2016-12-30**, 3,633 trading days, and every run over it valued at least 99% of them. The rule's
-first rebalance, on 2002-07-30, holds only cash: the one-day lag leaves it no set on the window's
-first day. Costs are the revised blueprint's: the commission setting 0.1, which the engine charged
-at $0.10 a share — $73.40 on 734 shares of `BR1`, sold at its last price in the rule's run — with
-5 basis points of slippage and a **5% cash reserve**, on $1,000,000. The blueprint's "about eight
-cents a share" is the first design's figure, and this run did not re-measure it. Results are net.
+rule were built in, and **was reproduced from a wiped working copy the same day, from 21:49 to
+22:28**, every figure the same. The notebook reached the end of its Verify section in both. The
+window asked of the engine is **2002-07-30 to 2016-12-30**, 3,633 trading days, and every run over
+it valued at least 99% of them. The rule's first rebalance, on 2002-07-30, holds only cash: the
+one-day lag leaves it no set on the window's first day. Costs are the revised blueprint's: the
+commission setting 0.1, which the engine charged at $0.10 a share — $73.40 on 734 shares of `BR1`,
+sold at its last price in the rule's run — with 5 basis points of slippage and a **5% cash
+reserve**, on $1,000,000. The blueprint's "about eight cents a share" is the first design's figure,
+and this run did not re-measure it. Results are net.
 
 | Book | CAGR | Volatility | Sharpe | Max drawdown | Alpha | Commissions | Slippage | Rebalances |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -455,18 +456,15 @@ The single highest-value run outstanding, and what it would settle.
 **None of these can turn the verdict**: the rule trails its control on both windows and trips its
 kill switch. They bear on how it is read. What follows it is the owner's to decide.
 
-1. **A run of this experiment from a wiped working copy**, with the Curator branch at `8b54c2f`.
-   The blueprint's success criteria ask for it, and `AGENTS.md` asks it of a result before the
-   result is committed. Highest value.
-2. **The check for names held on their last priced day.** It printed none where the engine's log
+1. **The check for names held on their last priced day.** It printed none where the engine's log
    names six in the rule's run. The blueprint's key risk is read from the log here; the check is
    what should read it.
-3. **Attribution before 2008.** Factor files reaching back to 2002 would attribute sub-period 1,
+2. **Attribution before 2008.** Factor files reaching back to 2002 would attribute sub-period 1,
    where the rule trailed its control most.
-4. **The third pass, Brinson-Fachler on the residual**, not run for either experiment.
-5. **The engine's order of sales and purchases on a rebalance day**, which overdrew the 2% reserve.
+3. **The third pass, Brinson-Fachler on the residual**, not run for either experiment.
+4. **The engine's order of sales and purchases on a rebalance day**, which overdrew the 2% reserve.
    The library's maintainers can say whether a day's sales settle before its purchases.
-6. **What survivorship costs**, the blueprint's third open question: the same rule on FMP's
+5. **What survivorship costs**, the blueprint's third open question: the same rule on FMP's
    survivors alone, against this run, would price it, and both sets of files now exist.
 
 <!-- example: end -->
@@ -485,7 +483,7 @@ kill switch. They bear on how it is read. What follows it is the owner's to deci
 | 2 | **`m_volume` is empty in the Sharadar files**, and no file from either provider carries the unadjusted VWAP, `m_vwap`. The Curator's `c_*` columns, which the rule and the engine read, are populated: its traded value falls back to the split-adjusted VWAP and volume where the unadjusted pair is missing | Nothing priced here reads the unadjusted volume. A reader who wants a dead name's unadjusted volume does not have it in these files |
 | 3 | **Two Curator versions.** The Sharadar names come from the Data Curator's `issues/31` branch at commit `8b54c2f`, built as 0.49.1, the only version with the Sharadar provider; every other name from 0.50.0. Twenty names both providers carry, `A` to `AES`, were fetched from both and compared, daily returns, 2002-07-30 to 2026-06-01 | The mark agrees: a median daily gap of 0.00 to 2.82 basis points, a correlation of 0.9978 or more. The fill does not, as expected of a close against a VWAP: a median gap of 45.9 to 80.0 basis points, a correlation of 0.74 to 0.88. Caveat 1's check prices that difference |
 | 4 | **Coverage.** The priced members hold 99.59% of the index's weight or more on every date from 2001 to 2017, the years the run printed, and 99.71% at the lowest inside the test. The rest is in members without a price and a fill price that day, the fifty-one excluded names counted among them | The index's return, the desk's own, includes them and no book here can hold them, so the gap bears on the comparison with the index more than on the one with the control |
-| 5 | **Not reproduced from a wiped working copy.** The run was made in the working copy the widened data and the rule were built in | The blueprint's fifth success criterion is not shown, and `AGENTS.md` asks it of a result before it is committed. Experiment 1's second design was reproduced from a wiped copy on 2026-09-24; this experiment was not |
+| 5 | **Reproduced from a wiped working copy that kept its raw downloads.** Its FMP files had been downloaded fresh through 2026-06-01, in the same clone, earlier on 2026-09-24 for Experiment 1's reproduction; its Sharadar names were re-curated through the branch from the bulk tables that morning's fetch had cached. That download lacks `MIC` | Every figure is the same in both runs. `MIC` has no price inside either window in the working copy and is excluded by name in the wiped one, so neither book could hold it |
 | 6 | **Delisting exits use one day of hindsight, and the rule held six names to their last priced day**: `BR1`, `PD1`, `BUD1`, `NFS`, `UST1` and `DNA1`, which the engine sold at that price. It ignored the rule's targets in `BRL` and `HK1` on their last priced day and left the capital in cash. The control's run names none, and the notebook's own check printed none for either book | The engine's exit at the last price spares whichever book holds a failing name to the end, here the rule alone. Whether each of the eight left the market by failure or by acquisition was not checked, so the direction of the effect on the rule's figures was not measured |
 | 7 | **The delay cell targeted names after their last price**: `BUD1` on 2008-11-20, `BRL` on 2008-12-30, `NFS` on 2009-01-05, `UST1` on 2009-01-09 and `HK1` on 2011-09-01, each at 0.05, besides `NFS` and `UST1` on their last day | The engine ignored those weights and left the capital in cash, so the delay cell, which the reading of exit speed leans on, carries a data artefact, as it did in Experiment 1 |
 | 8 | **Costs are the blueprint's row**, the commission setting 0.1, charged at $0.10 a share: $265,535.20 on the rule over the window, against the control's $135,357.30, with 5 basis points of slippage and a 5% cash reserve | Every verdict is read there. The realistic row, 0.005, reads 5.86% and 0.3251 against the headline's 4.23% and 0.2340, and leaves the rule 0.69 points a year behind its control |

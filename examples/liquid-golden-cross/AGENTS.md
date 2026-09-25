@@ -8,18 +8,21 @@ survive before anyone believes it.
 
 <!-- example: begin -->
 
-> **Status: steps 1 to 6 run end to end on two experiments, and step 7's gate evaluated against
-> both on 2026-09-24; claim 1 stays falsified, now on two windows.** Experiment 1's second design,
-> the twenty most traded names above their cross, sold the day after it breaks, beats the index on
-> Sharpe, 0.806 against 0.770, earns 0.86 points a year less than the same names without the cross
-> and **fails its kill switch**; reproduced from a wiped working copy on 2026-09-24, it returned
-> every engine figure to the digit. Its diagnostic arm, the first design's band at twenty names,
-> earned 1.65 points a year more than it, and Experiment 2 took that arm's design to 2002 to 2016:
-> 4.23% a year at a Sharpe of 0.234, against its control's 5.87% and 0.256 and the index's 8.57%
-> and 0.438, ahead of its control on both Sharpe and CAGR in none of three sub-periods, so it
-> **fails its kill switch** too. Every number is in `RESULTS.md`. **Nothing has graduated, no book
-> is on paper, and nothing here is out of sample**; Experiment 2 has not been reproduced from a
-> wiped working copy.
+> **Status: steps 1 to 6 run end to end on three experiments, and step 7's gate evaluated against
+> each on 2026-09-24; claim 1 stays falsified, now on two windows, and claim 5 is falsified.**
+> Experiment 1's second design, the twenty most traded names above their cross, sold the day after
+> it breaks, beats the index on Sharpe, 0.806 against 0.770, earns 0.86 points a year less than the
+> same names without the cross and **fails its kill switch**; reproduced from a wiped working copy
+> on 2026-09-24, it returned every engine figure to the digit. Its diagnostic arm, the first
+> design's band at twenty names, earned 1.65 points a year more than it, and Experiment 2 took that
+> arm's design to 2002 to 2016: 4.23% a year at a Sharpe of 0.234, against its control's 5.87% and
+> 0.256 and the index's 8.57% and 0.438, so it **fails its kill switch** too. Experiment 3, momentum
+> proper on the same names, the twenty of the hundred most traded with the best twelve-month
+> return, earns 10.81% at 0.436 over 2002 to 2026, against its control's 11.03% and 0.465 and the
+> index's 10.99% and 0.568, ahead of its control in one sub-period of three: it **fails its kill
+> switch**, run from a wiped working copy. Every number is in `RESULTS.md`. **Nothing
+> has graduated, no book is on paper, and nothing here is out of sample**; Experiments 2 and 3 were
+> each run from a wiped working copy on 2026-09-24, every figure the same as in the working copy.
 > Replace this line as the strategy moves, and the banner at the top of the README with it.
 
 <!-- example: end -->

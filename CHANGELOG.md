@@ -6,6 +6,34 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.21.0] - 2026-09-25
+The worked example reports Experiment 3. Momentum proper on the same liquid names — of the hundred
+most traded members of the index, the twenty that rose most over the twelve months before the latest
+one, re-struck monthly — earns 10.81% a year at a Sharpe of 0.436 over 2002-07-30 to 2026-06-01,
+against the same pool's twenty most traded at 11.03% and 0.465, and fails its kill switch; claim 5
+is falsified for that design, and nothing graduates. It was run from a wiped working copy, and
+Experiment 2 was reproduced from one, every figure the same. Example 0.16.0; no skill, command,
+rule, agent or template changed.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, so that `init-example`
+copies the reported example. Quote Experiment 1 from its record on the seed of 788, at `v0.18.0`:
+the example's `FINDINGS_1.md` now describes what its notebook prints on the widened seed, the same
+verdict with one perturbation cell fewer keeping its sign.
+### Added
+- **Experiment 3's findings**, in the example: the predictions, the kill switch, the book, its
+  capacity, the perturbation with four cells the engine could not price, each counted against the
+  rule as the blueprint fixed, the trial count of fifty-four, and an attribution that finds the
+  ranking a momentum tilt with less idiosyncratic return than its control. The gate's rows, the
+  results record and the objective's claim 5 follow from them.
+- **Experiment 1 on the seed of 1,500, described**, in the example's `FINDINGS_1.md`, so the
+  figures a copy made now prints are on record.
+### Changed
+- **Experiment 2's reproduction** from a wiped working copy is recorded, and its blueprint's fifth
+  success criterion met.
+### Fixed
+- **Experiment 3's notebook** names a run the engine cannot price instead of stopping at it, and
+  its verdict cell names claim 5.
+
 ## [0.20.0] - 2026-09-24
 The worked example opens Experiment 3 before its rule, and the interview offers three more hints.
 Experiment 3 tests momentum proper on the same liquid names — of the hundred most traded members of

@@ -6,18 +6,21 @@ Invest in the most traded US stocks in an uptrend, meaning the 50-day simple mov
 average is above the 200-day, hold the top 30, and rebalance only when that top 30 differs from the
 current portfolio by 10%, to avoid rebalancing too often.
 
-> **Status: steps 1 to 6 run end to end on two experiments, and step 7's gate evaluated against
-> both on 2026-09-24; claim 1 stays falsified, now on two windows.** Experiment 1's second design,
-> the twenty most traded names above their cross, sold the day after it breaks, beats the index on
-> Sharpe, 0.806 against 0.770, earns 0.86 points a year less than the same names without the cross
-> and **fails its kill switch**; reproduced from a wiped working copy on 2026-09-24, it returned
-> every engine figure to the digit. Its diagnostic arm, the first design's band at twenty names,
-> earned 1.65 points a year more than it, and Experiment 2 took that arm's design to 2002 to 2016:
-> 4.23% a year at a Sharpe of 0.234, against its control's 5.87% and 0.256 and the index's 8.57%
-> and 0.438, ahead of its control on both Sharpe and CAGR in none of three sub-periods, so it
-> **fails its kill switch** too. Every number is in [`RESULTS.md`](RESULTS.md). **Nothing has
-> graduated, no book is on paper, and nothing here is out of sample**; Experiment 2 has not been
-> reproduced from a wiped working copy.
+> **Status: steps 1 to 6 run end to end on three experiments, and step 7's gate evaluated against
+> each on 2026-09-24; claim 1 stays falsified, now on two windows, and claim 5 is falsified.**
+> Experiment 1's second design, the twenty most traded names above their cross, sold the day after
+> it breaks, beats the index on Sharpe, 0.806 against 0.770, earns 0.86 points a year less than the
+> same names without the cross and **fails its kill switch**; reproduced from a wiped working copy
+> on 2026-09-24, it returned every engine figure to the digit. Its diagnostic arm, the first
+> design's band at twenty names, earned 1.65 points a year more than it, and Experiment 2 took that
+> arm's design to 2002 to 2016: 4.23% a year at a Sharpe of 0.234, against its control's 5.87% and
+> 0.256 and the index's 8.57% and 0.438, so it **fails its kill switch** too. Experiment 3, momentum
+> proper on the same names, the twenty of the hundred most traded with the best twelve-month
+> return, earns 10.81% at 0.436 over 2002 to 2026, against its control's 11.03% and 0.465 and the
+> index's 10.99% and 0.568, ahead of its control in one sub-period of three: it **fails its kill
+> switch**, run from a wiped working copy. Every number is in [`RESULTS.md`](RESULTS.md). **Nothing
+> has graduated, no book is on paper, and nothing here is out of sample**; Experiments 2 and 3 were
+> each run from a wiped working copy on 2026-09-24, every figure the same as in the working copy.
 > Replace this line as the strategy moves, and the banner at the top of `AGENTS.md` with it.
 
 This is the worked example of the KaxaNuk Strategy Template: one strategy worked through the
@@ -46,18 +49,21 @@ the 788 Experiment 1 ran on, and 712 marked `sharadar` in its `provider` column,
 Sharadar through the Data Curator's `issues/31` branch at `8b54c2f`, the only version with that
 provider when Experiment 2 ran. **Every row from `Data/curator.py` to Experiment 1's Verify section
 was recorded on the seed of 788**, as it stands at tag `v0.18.0` of the KaxaNuk Researcher, and says
-so: a copy made now holds the seed of 1,500, and no run recorded here gives what its universe,
-refinery, analyzer and Experiment 1 print on it. The data stages' rows are from the runs of
-2026-09-19 to 2026-09-22, on a download that ended 2026-06-01, with the re-run from a wiped working
-copy's own figures in brackets where they moved; the universe's and the refinery's rows add their
-re-run of 2026-09-23, on the refreshed download the experiment first read, and each row names what
-the reproduction of 2026-09-24 printed, on a fresh download through 2026-06-01. The experiment's
-rows are from Experiment 1's second design, run on 2026-09-23 and reproduced on 2026-09-24, every
-engine figure to the digit; the first design's figures are at tag `v0.15.0`. Experiment 2's rows are
-from its run of 2026-09-24, on the widened seed. A fresh download rebases the adjusted columns, so a
-run of your own lands near these figures rather than on them. Clock times were recorded only on
-2026-09-24: the reproduction's FMP download of 789 files from 07:48 to 10:30 and Experiment 1's
-notebook from 10:47 to 12:38, and Experiment 2's notebook from 12:38 to 13:34.
+so: a copy made now holds the seed of 1,500, and no row below gives what its universe, refinery and
+analyzer print on it. Experiment 1's notebook was run on it once, from a wiped working copy on
+2026-09-24 and 25, and `FINDINGS_1.md` describes what it printed: the same verdict, with criterion 3
+at 11 of 15 cells. The data stages' rows are from the runs of 2026-09-19 to 2026-09-22, on a
+download that ended 2026-06-01, with the re-run from a wiped working copy's own figures in brackets
+where they moved; the universe's and the refinery's rows add their re-run of 2026-09-23, on the
+refreshed download the experiment first read, and each row names what the reproduction of 2026-09-24
+printed, on a fresh download through 2026-06-01. The experiment's rows are from Experiment 1's
+second design, run on 2026-09-23 and reproduced on 2026-09-24, every engine figure to the digit; the
+first design's figures are at tag `v0.15.0`. Experiment 2's rows are from its run of 2026-09-24, on
+the widened seed. A fresh download rebases the adjusted columns, so a run of your own lands near
+these figures rather than on them. Clock times were recorded only on 2026-09-24 and 25: the
+reproduction's FMP download of 789 files from 07:48 to 10:30 and Experiment 1's notebook from 10:47
+to 12:38, and Experiment 2's notebook from 12:38 to 13:34; the wiped working copy's Experiment 3, 2
+and 1 notebooks from 20:16 to 00:04.
 
 | Stage | A correct run shows | Recorded in |
 | --- | --- | --- |

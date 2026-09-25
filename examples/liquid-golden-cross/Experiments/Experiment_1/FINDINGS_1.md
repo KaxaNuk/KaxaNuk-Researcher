@@ -177,6 +177,34 @@ figures, as that tag records them:
 The filter cost 1.12 points a year against the equalised control. The rule's beta was 1.028, and
 of its 45.52 idiosyncratic points about 5 belonged to the filter. Claim 1 was falsified on them.
 
+### On the seed of 1,500, described
+
+**Description, never evidence, and not the design's record.** This notebook reads the whole seed,
+and a copy made after `v0.18.0` holds the 1,500 identifiers Experiment 2 widened it to. It was run
+on them once, from a wiped working copy, from 22:28 on 2026-09-24 to 00:04 on 2026-09-25, to the end
+of its Verify section: 14 checks on the book and 92 on its 45 engine runs. The panel holds 6,390
+dates by 1,436 positions. Over the same window:
+
+| Book, the seed of 1,500 | CAGR | Volatility | Sharpe | Max drawdown | Trade dates |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| The rule | 19.18% | 22.00% | 0.8720 | −32.20% | 306 |
+| The control, without the cross | 19.71% | 24.02% | 0.8204 | −41.43% | 114 |
+| The diagnostic arm | 19.68% | 22.26% | 0.8840 | −32.09% | 42 |
+| The rule, realistic costs | 19.66% | 22.00% | 0.8938 | −32.15% | 306 |
+| The KN600 index | 14.63% | 19.01% | 0.7699 | −33.75% | — |
+
+**The verdict does not change, and one row of the gate reads differently.** The rule minus its
+control: Sharpe +0.052 and CAGR −0.52 points, against +0.031 and −0.86 on the seed of 788, so
+prediction 1's margins are not met; the rule is ahead of its control on both measures in one
+sub-period of three, the second, and the kill switch trips. The perturbation reads 11 of 15 cells
+keeping the sign of the rule's Sharpe margin, where the blueprint asked for twelve and the seed of
+788 gave twelve. The arm earns 0.50 points a year more than the rule, against 1.65. The factor
+model, over 2017-01-04 to 2026-06-01 with 1,351 of the 1,399 identifiers the books name priced,
+leaves the rule 44.07 idiosyncratic points and its control 50.75, against five random books' −4.42
+to 23.22, mean 13.9; the rule's momentum line is 15.38 against the control's 5.19, and the betas are
+1.062 and 1.232. The rows above this section stand as the design's, at `v0.18.0`; these are what a
+copy made now prints.
+
 <!-- example: end -->
 
 ## What the benchmark actually is, structurally
