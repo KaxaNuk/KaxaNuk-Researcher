@@ -8,7 +8,7 @@
 #
 # and `apm update -g` brings every new version to every folder.
 name: kaxanuk-researcher
-version: 0.20.0
+version: 0.21.0
 description: The KaxaNuk Researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read and drafts the hypothesis of every strategy you build; with every Investment Lab skill, init-researcher, init-strategy and init-example, and the template, worked example and home they copy.
 author: Arturo Aguilar
 license: MIT

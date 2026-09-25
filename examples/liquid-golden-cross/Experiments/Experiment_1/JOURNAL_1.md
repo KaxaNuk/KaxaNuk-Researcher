@@ -597,3 +597,22 @@ leaves open.
   first invested date, so the next run records them.
 
 <!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-25 — the notebook on the seed of 1,500, described
+
+- **Idea / question:** a copy made after `v0.18.0` holds the seed Experiment 2 widened, and this
+  notebook reads the whole seed. What does it print there? No recorded run said.
+- **What we tried / considered:** the notebook ran from a wiped working copy after Experiments 3 and
+  2, from 22:28 on 2026-09-24 to 00:04 on 2026-09-25: a clone with every output of the pipeline
+  wiped, its FMP files the fresh download made in it that morning through 2026-06-01, its Sharadar
+  names re-curated from the bulk tables that morning's fetch had cached. It reached the end of its
+  Verify section, 14 checks on the book and 92 on its 45 engine runs.
+- **Outcome / decision:** description, never evidence: the design's record stays the seed of 788's,
+  at `v0.18.0`. The verdict is the same — the rule minus its control, Sharpe +0.052 and CAGR −0.52
+  points, and the kill switch trips, one sub-period of three — and criterion 3 reads 11 of 15 cells
+  where the seed of 788 gave twelve. `FINDINGS_1.md` describes the rows.
+- **Open threads:** none.
+
+<!-- example: end -->

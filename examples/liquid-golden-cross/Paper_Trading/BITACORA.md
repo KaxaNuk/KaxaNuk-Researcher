@@ -114,11 +114,11 @@ arrives when an experiment's `FINDINGS_N.md` can evidence criterion 1.
 
 <!-- example: begin -->
 
-**In this example the gate has been tested**, against both designs of Experiment 1 and against
-Experiment 2, and none graduated: the rows are below. No book is on paper, and `Paper_Trading_1/`
-holds more than the contract, as *Nothing is frozen here* below says. The daily machinery has been
-run outside this repository, on a candidate frozen only to test it: *The machinery, tested* below
-says what that showed, and why none of its figures is read.
+**In this example the gate has been tested**, against both designs of Experiment 1, against
+Experiment 2 and against Experiment 3, and none graduated: the rows are below. No book is on paper,
+and `Paper_Trading_1/` holds more than the contract, as *Nothing is frozen here* below says. The
+daily machinery has been run outside this repository, on a candidate frozen only to test it: *The
+machinery, tested* below says what that showed, and why none of its figures is read.
 
 <!-- example: end -->
 
@@ -149,6 +149,11 @@ row. Every row is evidenced from
 | 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 1.99 times the book a year, and 6.0% one-way per trade date on average. Costs are charged on the unadjusted price at two rows, the blueprint's commission setting of 0.1 and a realistic 0.005, with 5 basis points of slippage, and reported net: $76,911.00 of commission and $37,862.98 of slippage at the headline row. Capacity is stated from the book, as the largest book at which a trade takes no more than a share of the name's 63-day average traded value. At 1%: $91,546,647 for the worst trade, $146,012,883 at the first percentile of trades, $16,231,104,636 at the median. At 5%: $457,733,236, $730,064,416 and $81,155,523,178. The turnover and capacity figures are the reproduction's of 2026-09-24: the run of 2026-09-23 printed 2.9 times the book a year and $2,018,972 for the worst trade at 1%, read from the slot book's rows out of date order. It is a bound on participation, not a model of market impact, and which trade is the worst was not traced |
 | 5 | Explicit sign-off | **Not sought** | Criteria 1 and 2 block it, and the kill switch had already tripped |
 
+**On the seed of 1,500, described.** The notebook reads the whole seed, and run once on the seed
+Experiment 2 widened it prints the same verdict, the rule 0.52 points a year behind its control and
+ahead in one sub-period of three, with criterion 3 at 11 of 15 cells, one short of the twelve. The
+rows above are the design's record, on the seed of 788.
+
 ### In this example: the gate run on Experiment 2, and the answer is no
 
 **Experiment 2 does not graduate either.** It is Experiment 1's diagnostic arm, its rules
@@ -169,8 +174,31 @@ sub-periods. Every row is evidenced from
 | 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 1.84 times the book a year, and 24.3% one-way per rebalance on average. Costs are charged on the unadjusted price at two rows, the blueprint's setting 0.1 and a realistic 0.005, with 5 basis points of slippage, and reported net: $265,535.20 of commission and $32,182.15 of slippage at the headline row. Capacity, from the book, measured as Experiment 1's was: at 1%, $3,851,439 for the worst trade, $7,019,368 at the first percentile of trades, $106,111,907 at the median; at 5%, $19,257,197, $35,096,840 and $530,559,534. It bounds participation and does not model market impact, and which trade is the worst was not traced |
 | 5 | Explicit sign-off | **Not sought** | Criteria 1 to 3 block it, and the kill switch had already tripped |
 
-Its blueprint also asked for a run from a wiped working copy, which is not shown. No book of
-Experiment 2 is frozen.
+Its blueprint also asked for a run from a wiped working copy: made on 2026-09-24, it printed every
+figure the same. No book of Experiment 2 is frozen.
+
+### In this example: the gate run on Experiment 3, and the answer is no
+
+**Experiment 3 does not graduate either.** It is momentum proper on the same liquid names, claim 5
+of `OBJECTIVE.md`: of the hundred most traded members of the index, the twenty with the highest
+return over the twelve months before the latest one, equally weighted, re-struck on the first
+trading day of each month, tested on 2002-07-30 to 2026-06-01 against the same pool's twenty most
+traded on the same dates. It was written to reach paper trading, as `Paper_Trading_3`, only by
+passing this gate, and it failed its own kill switch first: ahead of its control on both Sharpe and
+CAGR in one sub-period of three. Every row is evidenced from
+[`../Experiments/Experiment_3/FINDINGS_3.md`](../Experiments/Experiment_3/FINDINGS_3.md) and
+[`../RESULTS.md`](../RESULTS.md).
+
+| # | Criterion | Verdict | Evidence |
+| --- | --- | --- | --- |
+| 1 | Beats the benchmarks **and its own control** | **Fails** | Sharpe 0.4358 against the index's 0.5682 and the control's 0.4647; CAGR 10.81% against 10.99% and 11.03%. It trails both, on both measures, and the verdict is the same with every name filled at the close |
+| 2 | Idiosyncratic alpha in **both** layers | **Fails** | Over 2008-01-14 to 2026-06-01 the factor model leaves the rule 82.30 idiosyncratic points and its control 87.88: the ranking's share is −5.59, and what it adds is the momentum line, 44.78 points against 16.77. The first cut's alpha against the index is +121.27 points, of which selection +27.74 and interaction +95.22, per asset. The third pass has not been run, and 2002 to 2007 are not attributed |
+| 3 | Survives perturbation; trial count published | **Fails** | The rule is ahead of its control on both Sharpe and CAGR in 3 of 10 cells, where the blueprint asked for eight; four cells' rules could not be priced and count against it. The trial count is published: fifty-four, with this experiment's 36 engine runs listed by role. The deflated figure was not computed |
+| 4 | Costs and capacity modelled and stated | **Met, capacity as a participation bound** | Turnover, target to target: 3.25 times the book a year, and 26.9% one-way per rebalance on average. Costs are charged on the unadjusted price at two rows, the blueprint's setting 0.1 and a realistic 0.005, with 5 basis points of slippage, and reported net: $780,587.10 of commission and $180,071.26 of slippage at the headline row. Capacity, from the book: at 1%, $6,933,709 for the worst trade, $27,864,836 at the first percentile of trades, $92,928,116 at the median; at 5%, $34,668,547, $139,324,178 and $464,640,582. It bounds participation and does not model market impact, and which trade is the worst was not traced |
+| 5 | Explicit sign-off | **Not sought** | Criteria 1 to 3 block it, and the kill switch had already tripped |
+
+Its run was made from a wiped working copy, as its blueprint asked, and the working copy printed
+every figure the same. No book of Experiment 3 is frozen, and `Paper_Trading_3/` does not exist.
 
 ### Nothing is frozen here
 
@@ -213,7 +241,12 @@ count: the book was frozen to test the plumbing, not to start a paper record.
 first design's rebalancing at a 15% band, reproduced the first design's delay and earned 1.65
 points a year more than Experiment 1's rule. Experiment 2 took its design to 2002 to 2016 and set
 it against the same names without the cross for the first time: it trails them there by 1.64
-points a year, and on the years it was found on by 1.46. Nothing is a candidate now, and no
+points a year, and on the years it was found on by 1.46.
+
+**Momentum proper, on the same names, failed as well.** Experiment 3 ranked the hundred most traded
+by their twelve-month return and held the top twenty: 0.22 points a year behind the same pool's
+twenty most traded over 2002 to 2026, ahead of them in one sub-period of three, with a ranking that
+adds the momentum factor and takes idiosyncratic return away. Nothing is a candidate now, and no
 decision of the owner's on what follows is recorded.
 
 **The first design's gate run**, thirty names on a 10% band, failed criteria 1 and 3 and met 2 and
@@ -223,6 +256,8 @@ decision of the owner's on what follows is recorded.
 failed its own test, and the arm built to confirm the blame beat it. Taken to years it was not
 found on, and set against a control it had never faced, the arm failed its own test in turn. The
 kill switches, the arm and the controls were all written down before the runs, which is what makes
-each a result rather than a reason to tune the rule until it passes.
+each a result rather than a reason to tune the rule until it passes. A new signal on the same
+names, chosen after all of it, failed the same way: a signal the analyzer can measure is not yet a
+book that beats the same names without it, net.
 
 <!-- example: end -->
