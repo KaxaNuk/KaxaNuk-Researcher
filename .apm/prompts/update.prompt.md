@@ -33,10 +33,12 @@ The researcher arrives in two parts, and each updates its own way:
   line there, never this field."
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/`, `Sources/`,
-`Lessons/`, the agent file in `.apm/agents/`, and any skill or command of the home's own in
-`.apm/skills/` or `.apm/prompts/`. The one exception is the `Projects/` a home made before template
-0.10.0 still has, which *Step 2* reads and *Step 4* moves or removes on the owner's go.
-`${input:mode}` set to `check` reports what is new and stops, changing nothing.
+`Studies/`, `Lessons/`, the agent file in `.apm/agents/`, and any skill or command of the home's
+own in `.apm/skills/` or `.apm/prompts/`. The exceptions are two, each on the owner's go: the
+`Projects/` a home made before template 0.10.0 still has, which *Step 2* reads and *Step 4* moves
+or removes, and the empty `Studies/` a home made before template 0.12.0 lacks, whose `.gitkeep`
+*Step 4* brings from the template. `${input:mode}` set to `check` reports what is new and stops,
+changing nothing.
 
 ## Step 1: Pre-flight
 
@@ -100,27 +102,32 @@ The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/
   those files are the owner's.
 - **`Projects/`, whenever the home still has one**, whatever template version it is at, so a
   move the owner declined once is offered again. Until 0.10.0 the template shipped an
-  empty `Projects/`; from 0.10.0 a new home has none, `teach` keeps its lessons in
-  `Lessons/<topic>/`, and anything else the owner asks for at home is answered in chat. List what
-  the home's `Projects/` holds, sorted three ways: each `Projects/Teach/<topic>/` is to move to
-  `Lessons/<topic>/` — unless a `Lessons/<topic>/` exists already, which is listed instead and
-  nothing moves; anything else is listed, one line per path, and stays where it is, the owner's to
-  keep, move or delete by hand; and when nothing is left but `Projects/.gitkeep`, it is to be
-  removed, and the folder with it. The list goes in the report. A home with no `Projects/` has
-  nothing to do here.
+  empty `Projects/`; from 0.10.0 `teach` keeps its lessons in `Lessons/<topic>/`, and from 0.12.0
+  the owner's own work from the library is a study in `Studies/`. List what the home's `Projects/`
+  holds, sorted three ways: each `Projects/Teach/<topic>/` is to move to `Lessons/<topic>/`; every
+  other file or folder at the top of `Projects/` is to move to `Studies/` under the same name —
+  `Projects/GPU_Compute.md` to `Studies/GPU_Compute.md` — at the same depth, so its links into
+  `Knowledge/` still resolve; and when nothing is left but `Projects/.gitkeep`, it is to be
+  removed, and the folder with it. A destination that exists already is listed instead, and
+  nothing moves onto it. A file that moves is a study from then on: say that its first line may
+  want a state, the owner's to add by hand or with `study`. The list goes in the report. A home
+  with no `Projects/` has nothing to do here.
+- **`Studies/`, when the home lacks it** — a home made before template 0.12.0: its `.gitkeep` is
+  to come from the template, so the folder is there to see.
 - **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
   **What to do differently** instruction that applies to this home, in full. Those instructions are
   the point of the update; never summarise them away.
-- **All current?** Say so and stop — unless the home still has a `Projects/`, which goes on to the
-  plan as the item above lists it. **`check` mode?** Stop here.
+- **All current?** Say so and stop — unless the home still has a `Projects/` or lacks `Studies/`,
+  which go on to the plan as the items above list them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
 In chat: the pinned APM install, when *Step 1* asked for it; the package versions before and after;
 for each home file, the sections to bring across, quoted, in the home's own names, and each file
-the home lacks, to bring across whole; what a migration removes; each move out of `Projects/` and
-its removal, path by path, and what stays there; and what the owner will have to do by hand
-afterwards, one line for each heading or blockquote of their own files that the template changed.
+the home lacks, to bring across whole — `Studies/.gitkeep` among them, when the folder is
+missing; what a migration removes; each move out of `Projects/` and its removal, path by path, and
+what stays there; and what the owner will have to do by hand afterwards, one line for each heading
+or blockquote of their own files that the template changed.
 Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and update on
 *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
@@ -154,34 +161,35 @@ Then ask for the go through the question tool — *Go*, *Change something*, *Sto
    the agent and removes the copies it deployed before.
 3. **The home's files**, the sections the owner approved. A file the home has is edited in place,
    in the home's own names, and nothing else in it changes. A file the home lacks — one a later
-   template added, such as `.gitattributes` — is brought across whole by the script in the
-   `init-strategy` skill's folder, run from the home's root, never written from memory. It copies
-   the one path and never overwrites:
+   template added, such as `.gitattributes` or `Studies/.gitkeep` — is brought across whole by the
+   script in the `init-strategy` skill's folder, run from the home's root, never written from
+   memory. It copies the one path and never overwrites:
 
    ```bash
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only <path>
    ```
 
 4. **`Projects/`**, the moves and the removal the owner approved, by git, so each file keeps its
-   history:
+   history — once `Studies/.gitkeep` has come across in the item above:
 
    ```bash
    mkdir -p Lessons
    git mv Projects/Teach/<topic> Lessons/<topic>
    rmdir Projects/Teach
+   git mv Projects/<name> Studies/<name>
    git rm Projects/.gitkeep
    ```
 
-   `mkdir` and `git mv` only when a topic moves: a home with none gets no `Lessons/`, which the
-   first `teach` makes. One `git mv` per topic, never onto a `Lessons/<topic>/` that exists, which
-   would nest one topic inside the other. `rmdir` once `Projects/Teach/` is empty, and `git rm` only
-   when nothing but `Projects/.gitkeep` is left, which removes the folder with it. What else
-   `Projects/` holds stays where it is.
+   `mkdir` and the first `git mv` only when a topic moves: a home with none gets no `Lessons/`,
+   which the first `teach` makes. One `git mv` per topic and per other file or folder, never onto a
+   destination that exists, which would nest one inside the other. `rmdir` once `Projects/Teach/`
+   is empty, and `git rm` only when nothing but `Projects/.gitkeep` is left, which removes the
+   folder with it. What the owner chose to keep in `Projects/` stays where it is.
 5. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
-   *Brought to template X.Y.Z*, a line for each section brought across or declined, and one for
-   what left `Projects/` and what stayed — whatever the owner declined, so the file names the
-   version the home is now at and the next `update` reports only the versions after it. Nothing
-   else in the file changes: it is the home's history.
+   *Brought to template X.Y.Z*, a line for each section brought across or declined, one for what
+   left `Projects/` and what stayed, and one for `Studies/` when it came — whatever the owner
+   declined, so the file names the version the home is now at and the next `update` reports only
+   the versions after it. Nothing else in the file changes: it is the home's history.
 
 ## Step 5: Report
 
@@ -194,7 +202,8 @@ In chat and nowhere else:
 - the *by hand* lines: each heading or blockquote of the owner's files that the template changed,
   for the owner to carry across or leave;
 - for a migration, what was removed, and that the skills now live at user scope;
-- what left `Projects/` — each move and the removal — and each path left there for the owner;
+- what left `Projects/` — each move and the removal — and each path left there for the owner, and
+  that a file moved into `Studies/` may want a state on its first line;
 - the sections of the home's files brought across, and those the owner declined;
 - that the new skills and commands appear in a **new** session, not this one.
 

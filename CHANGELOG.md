@@ -6,6 +6,52 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.24.0] - 2026-09-25
+A researcher's home has `Studies/`, and a command to write in it: `study`. A study is the owner's
+own work from the library — an idea that is not a strategy yet, or a decision, a plan or a brief
+with no repository of its own — drafted from the owner's words, with every claim from the library
+linked to its note and anything from outside it marked as not checked. A synthesis page says what
+the library holds; a study says what the owner will do about it. The `Projects/` that 0.18.0
+removed had no rule but *anything you ask for*; a study has a contract: one way from the notes,
+words only, and it moves out, staying as the record, when it needs code or data or becomes a
+strategy. The README opens with what the researcher is for, with a strategy or without one, and how
+it grows with its owner. Home template 0.12.0; `read` 0.7.3, `query` 0.6.1, `init-researcher`
+0.2.2; no strategy template, example or Lab skill changed.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home: it brings `AGENTS.md`, `README.md` and the empty `Studies/` across and, on your go, moves what
+a `Projects/` still holds into `Studies/`, at the same depth, so its links into `Knowledge/` still
+resolve. Then by hand, if you like: `Studies/` among the places your agent never writes, `study`
+among what it names, and a state on the first line of each file that moved. `study` appears in a
+new session.
+### Added
+- **`study [subject]`**, the twelfth command: asks what you want to work out, walks the library for
+  what supports it, what argues against it and the simpler rival, names the gaps as leads, and on
+  your go writes one study in `Studies/`, whose first line gives its state — *idea*, *active*,
+  *parked*, *closed* or *moved to `<path>`*. With no subject it lists the studies and offers the
+  open ones and the reading questions that feed a decision no study works out yet. A revision
+  starts from the notes written since the study's date and keeps every line you wrote. Home only.
+- **`Studies/` in the home template**, empty, with its row in `AGENTS.md`'s folder table and a
+  section *Studies* that is its contract.
+- **What you can use it for**, at the top of the README and of the home's *Working with it*: a
+  library you can ask, your studies, lessons, strategies, any other project, and a researcher that
+  grows with you, each with the command that does it.
+### Changed
+- **`update`** moves what a home's `Projects/` holds beyond its lessons into `Studies/`, one
+  `git mv` per file or folder, never onto one that exists, where it left it for the owner; and
+  brings `Studies/.gitkeep` to a home without the folder.
+- **`interview`**'s agent never writes in `Studies/` and names `study` for a write; its hand-over
+  offers `study`.
+- **`read`** never writes in `Studies/`, and its report names an open study a new note bears on,
+  with the `study` that would revise it.
+- **`query`** names a study that bears on a question as the owner's work, never as evidence, and
+  never modifies one.
+- **`audit`** reports a study's broken links, a link into `Extracts/` or to a PDF, and a first line
+  with no state, and never touches `Studies/`.
+- **`next`** offers `study` at home once its checklist is done; **`init-researcher`** names the
+  empty `Studies/` in its plan.
+- **The release check** deploys 12 commands.
+
 ## [0.23.0] - 2026-09-25
 The worked example puts a book on paper for the first time: Experiment 4's, momentum held only
 outside bear markets, as a candidate the owner chose to track without graduation, so that the

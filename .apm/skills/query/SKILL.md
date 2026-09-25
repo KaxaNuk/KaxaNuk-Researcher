@@ -8,7 +8,7 @@ description: >
   there. It walks the index and the links between notes before reading anything, and cites every
   claim. It does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.6.0
+  version: 0.6.1
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -39,7 +39,9 @@ are the library's value.
    each other are one argument; read both. Quote the source's terms where they matter.
 3. **Then the owner's voice.** Read the relevant files in `Philosophy/` at home when the owner's
    own synthesis is more specific than the library, and cite them as the owner's view, distinct
-   from the sources' — in a strategy, by name in prose, never by link.
+   from the sources' — in a strategy, by name in prose, never by link. A study in `Studies/` that
+   bears on the question is the owner's work in the same way: name it as theirs, never as
+   evidence — its claims rest on the notes it links, and those are what the answer cites.
 4. **In a strategy, then the home library.** Walk `Knowledge/INDEX.md` at home for what the
    researcher has read that the strategy has not. Report it as the researcher's library, not the
    strategy's, and say that the strategy cannot cite it until the source has a note in its
@@ -84,8 +86,8 @@ strategy's.
 - Invent a source, a page or a URL. If it is not in the library, `Philosophy/` or the sources, the
   honest answer is that the library does not know, followed by what the researcher would read to
   find out.
-- Modify the library, `Philosophy/` or the sources while answering, beyond what step 7 offers and
-  the owner approves — the synthesis page, its one line in `INDEX.md` and its one entry in
-  `LOG.md`, never a note — and in a strategy, write anything at home.
+- Modify the library, `Philosophy/`, `Studies/` or the sources while answering, beyond what step 7
+  offers and the owner approves — the synthesis page, its one line in `INDEX.md` and its one entry
+  in `LOG.md`, never a note — and in a strategy, write anything at home.
 - Quote a performance number that did not come from the engines the project names, or from
   anywhere but the file that owns it — *Numbers*, above.

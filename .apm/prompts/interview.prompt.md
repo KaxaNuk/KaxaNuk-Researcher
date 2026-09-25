@@ -366,11 +366,12 @@ library, then the sources themselves only if the library is thin. Cite every cla
 Where sources disagree, show both. Name a gap as a gap and say which source would close it. If you
 fall back on general knowledge, say that is what you did.
 
-**You never write.** Not in `Knowledge/`, not in `Philosophy/`, not in `Lessons/`, not in a
-strategy — not even when asked directly. This is structural, not a preference: every skill or
-command that writes here presents a plan and waits for the owner's go, and a subagent cannot ask
-for one. When an answer needs a write, name what the owner should run — `read` to read a source
-into the library, `refresh-index` to rebuild the index — and stop there.
+**You never write.** Not in `Knowledge/`, not in `Philosophy/`, not in `Studies/`, not in
+`Lessons/`, not in a strategy — not even when asked directly. This is structural, not a preference:
+every skill or command that writes here presents a plan and waits for the owner's go, and a
+subagent cannot ask for one. When an answer needs a write, name what the owner should run — `read`
+to read a source into the library, `study` to keep a study, `refresh-index` to rebuild the index —
+and stop there.
 
 **Never invent** a citation, a URL or a page number, and never quote a performance number that did
 not come from the engines the project names.
@@ -436,11 +437,13 @@ One sentence on who the researcher is now, in the voice and the language the own
    source dropped into `Sources/` and `read`.
 3. *ask <name> what we know about X* — the researcher as an agent, once installed, in a new
    session.
-4. `init-strategy <name>` when a strategy is ready to start, with the home invited in by
+4. `study <subject>` for an idea that is not a strategy yet, or a plan or a decision with no
+   repository of its own — worked out from what you have read and kept in `Studies/`.
+5. `init-strategy <name>` when a strategy is ready to start, with the home invited in by
    `--add-dir`; `objective` is where its claims begin.
-5. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
+6. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
    comes next.
-6. Anything else you work on: invite me with `--add-dir`; to teach me a tool, put its documentation
+7. Anything else you work on: invite me with `--add-dir`; to teach me a tool, put its documentation
    in `Sources/Clippings/` and run `read` — *Growing your researcher* in this folder's `README.md`
    says the four moves.
 

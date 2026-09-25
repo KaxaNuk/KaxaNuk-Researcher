@@ -48,6 +48,9 @@ for reading and running, never built on; a strategy of the owner's own is `init-
   extract; a page missing `type`, `updated` or `sources`; two pages that contradict each other with
   no `> [!WARNING]` callout; a chapter note none of whose claims reached any concept page; and an
   idea a page names that no page defines.
+- Studies, at home: a link that does not resolve — a note renamed or removed since the study was
+  written — a link into `Extracts/` or to a PDF, and a first line that gives no state. The owner's
+  words in a study are theirs, never a finding.
 - An installed copy missing or out of step with its source — the package under
   `~/.apm/apm_modules/` for the skills and commands, the home's own `.apm/` for the agent and for
   any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`: a skill under
@@ -108,4 +111,5 @@ from `read`, `audit` and `refresh-index`, and from `query` when the owner keeps 
 whose index line `query` adds on the same go — so a page whose line `query` added is not a
 stale-index finding.
 
-Never touch `Philosophy/` or the sources. Never fix silently. In a strategy, never write at home.
+Never touch `Philosophy/`, `Studies/` or the sources. Never fix silently. In a strategy, never write
+at home.

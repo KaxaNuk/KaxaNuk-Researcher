@@ -7,8 +7,8 @@ operating manual.
 ## The researcher's home
 
 The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills —
-`Sources/`, `Knowledge/`, `Philosophy/`, `Lessons/` — is relative to the home, never to wherever
-the session happened to open. There are two ways to work:
+`Sources/`, `Knowledge/`, `Philosophy/`, `Studies/`, `Lessons/` — is relative to the home, never
+to wherever the session happened to open. There are two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
   path: `blueprint 1 D:\Research\fcf-yield-quality`.
@@ -53,13 +53,14 @@ a skill its rules.
 | `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh, and of every synthesis page kept | **append one entry** at the end of those runs, and from `query` when a page is kept; never edit past entries |
 | `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first — save `interview`'s one write: the owner's typed answers into `Philosophy/HOW-I-INVEST.md`, verbatim, on their go, added to what is there and never restructured |
+| `Studies/` | the owner's own work from the library — an idea that is not a strategy yet, or a decision, a plan or a brief with no repository of its own — one file each, or a folder once it needs more; *Studies* below says what one holds. The template ships it empty | **write, through `study` only**, after its plan and the owner's go |
 | `Lessons/` | `teach`'s lessons, one folder per topic — its `progress.md` and `sessions/`. The template ships none: `teach` creates it the first time it runs | **write, through `teach` only**, after its plan and the owner's go |
 
 **Anything else the owner asks for at home is answered in chat**, or as a page they can share where
-the assistant offers one, and is never written as a file: the home holds the library, the owner's
-voice and the lessons. Strategy work lives in the strategy, and work on any other project in that
-project, where the owner invites the researcher — *Working in a strategy* and *Joining other
-projects* below say how.
+the assistant offers one, and is never written as a file unless they keep it as a study, through
+`study`: the home holds the library, the owner's voice, their studies and the lessons. Strategy
+work lives in the strategy, and work on any other project in that project, where the owner invites
+the researcher — *Working in a strategy* and *Joining other projects* below say how.
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from
 the interview; `read`, at home, may add a question under *What you are reading for* — in the
@@ -70,11 +71,11 @@ like: to teach the researcher how to behave, they add a line by hand under *How 
 its angle-bracketed prompt says nothing yet, and the researcher never cites a prompt as the owner's
 view.
 
-**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Lessons/`. Notes are born from sources,
-never from `Philosophy/` alone, and lessons are built from the notes; `Philosophy/` is cited from
-notes and lessons, never compiled into them. That wall is what keeps the owner's judgement
-recognisably theirs. Between repositories the valve is one-way as well: home → strategy, never
-back.
+**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`. Notes are born from
+sources, never from `Philosophy/` alone and never from a study, and studies and lessons are built
+from the notes; `Philosophy/` is cited from notes, studies and lessons, never compiled into them.
+That wall is what keeps the owner's judgement recognisably theirs. Between repositories the valve
+is one-way as well: home → strategy, never back.
 
 **Inside `Sources/`** the owner files by kind — `Sources/Books/`, `Sources/Papers/`,
 `Sources/Clippings/` — and may add more. The taxonomy is theirs; a read walks all of it. Note that
@@ -137,6 +138,32 @@ Name files by path in backticks, never as links. Record file-level actions on `K
 never query content, never answers. Read the last few entries at the start of a read or an audit to
 know what happened recently.
 
+## Studies
+
+A study is the owner's own work from the library: an idea that is not a strategy yet, or a
+decision, a plan or a brief with no repository of its own. A synthesis page says what the library
+holds; a study says what the owner will do about it. `study` writes it, after its plan and the
+owner's go, and nothing else writes in `Studies/`.
+
+- **One file per study**, named by its subject the way a concept page is —
+  `Local_GPU_Compute.md` — or a folder of that name, the study in its `README.md`, once it needs
+  more than one file. Its first line, in italics, gives its state — *idea*, *active*, *parked*,
+  *closed* or *moved to `<path>`* — and its date, what it works out, and the question under *What
+  you are reading for* it serves, by number, or none.
+- **The library is linked; the rest is marked.** Every claim from the library links its note, as
+  anywhere at home. Material from outside it — a chat, a page, a figure — says where it came from
+  and that it was not checked, and is never cited as evidence; it enters the library the ordinary
+  way, a source in `Sources/` and then `read`.
+- **One way.** Studies are built from the notes: no note is written from a study, and nothing — a
+  note, a page, a strategy — cites one as a source. `query` names a study as the owner's work, as
+  it names `Philosophy/`, never as evidence.
+- **Words only.** Code, data and notebooks live in a repository of their own. A study that needs
+  them, or an idea ready to be a strategy, moves out — to `init-strategy <name>`, where the study
+  is the owner's words for `objective`'s first pass, named in prose, or to a repository the owner
+  invites the researcher into — and stays behind as the record, its state *moved to `<path>`*.
+- **Committed with the home**, like every file here: a study that holds a private project's
+  material keeps the home a private repository, as a clipping does.
+
 ## Working in a strategy
 
 A strategy is a separate repository copied from the KaxaNuk Strategy Template. Its
@@ -157,7 +184,7 @@ from another template keeps or maps them in its own `AGENTS.md`.
 | `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads, and `LOG.md` empty. |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
-| what the owner asks for at home — `Lessons/` from `teach`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md`; `teach` works at home only |
+| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md`; `study` and `teach` work at home only |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, nothing may be read into the strategy — `objective` comes first, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
@@ -252,10 +279,10 @@ project's material stays a private repository.
 
 Every skill or command that writes a file presents a plan in chat — what will be written, where,
 and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing
-anything. Never write on a rejected or unanswered plan. Never write a plan or a report as a file;
-the chat and the `LOG.md` entry are the record. **One write is made without a go:** the single line
-`audit` appends to the library's `LOG.md` when it reports. Running `audit` by name is the go for
-that line, and it writes nothing else.
+anything. Never write on a rejected or unanswered plan. Never write a command's plan or its report
+as a file; the chat and the `LOG.md` entry are the record. **One write is made without a go:** the
+single line `audit` appends to the library's `LOG.md` when it reports. Running `audit` by name is
+the go for that line, and it writes nothing else.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool
 — Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
@@ -303,7 +330,7 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 | Primitive | Where | What it is |
 | --- | --- | --- |
 | **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
-| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — `interview`, `next`, `objective`, `blueprint`, `brainstorm`, `challenge`, `audit`, `refine`, `refresh-index`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other twelve — `interview`, `next`, `objective`, `blueprint`, `brainstorm`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
 | **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the four house instructions — Bloom Code, PEP 8, test writing, filesystem boundaries — which apply to every Python project on the machine where the assistant receives them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as the package's `SETUP.md` says. The home adds none |
 
@@ -357,6 +384,8 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 - Don't write anything while running as the agent, and don't copy `RESEARCHER.md` into its file.
   The agent reads the real one at the start of every run.
 - Don't invent a citation. Don't cite a source that has no note.
+- Don't write a note from a study, or cite a study as a source. Studies are built from the notes,
+  never the other way.
 - Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
   regenerated. A concept page cites notes, never a PDF, and is never built from memory.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the engines

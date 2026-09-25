@@ -7,7 +7,7 @@ input:
 # Next — where you stand, and what to do next
 
 The process has eight steps, an order of work with eight parts, three commands that make folders
-and eleven commands, this one among them. This command is the map: it reads the folder, says which
+and twelve commands, this one among them. This command is the map: it reads the folder, says which
 parts are done, and names **the one thing to do next** with the command that does it. It writes
 nothing, runs nothing, and never starts the next thing itself — doing it is a different request,
 by the name this command gives.
@@ -44,10 +44,11 @@ Check in this order and stop at the first that fails; that is the next thing.
 | 6 | `Knowledge/INDEX.md` lists every note and page on disk | `refresh-index` |
 
 All seven done: say so, and that the next thing is the owner's — a new source into `Sources/`, a
-question added under *What you are reading for*, or `init-strategy <name>` for the first strategy,
-with the home invited in by `--add-dir`; or invite the researcher into any other project with
-`--add-dir`, or teach it a tool: its documentation into `Sources/Clippings/`, then `read` —
-*Growing your researcher* in the home's README.
+question added under *What you are reading for*, `study <subject>` to work out an idea, a plan or a
+decision from the library — `study` alone lists the studies already in `Studies/` — or
+`init-strategy <name>` for the first strategy, with the home invited in by `--add-dir`; or invite
+the researcher into any other project with `--add-dir`, or teach it a tool: its documentation into
+`Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README.
 
 ## Step 3: In a strategy
 

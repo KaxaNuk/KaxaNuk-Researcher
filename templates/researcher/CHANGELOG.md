@@ -6,6 +6,47 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.12.0 (2026-09-25)
+
+**MINOR** — the home has `Studies/`: your own work from the library — an idea that is not a
+strategy yet, or a decision, a plan or a brief with no repository of its own — written by `study`,
+a new command in the package, after its plan and your go. A synthesis page says what the library
+holds; a study says what you will do about it. Every claim from the library links its note;
+anything from outside it — a chat, a page, a figure — says where it came from and that it was not
+checked; and a study that needs code or data, or an idea ready to be a strategy, moves out and
+stays behind as the record. The directionality is `Sources/ → Extracts/ → Knowledge/ → Studies/,
+Lessons/`: no note is ever written from a study. `README.md` opens with what you can use the
+researcher for, with a strategy or without one.
+
+**What to do differently:** run `update` in your home. It brings `AGENTS.md`, `README.md` and the
+empty `Studies/` across and, on your go, moves what a `Projects/` still holds into `Studies/`, at
+the same place below it, so its links into `Knowledge/` still resolve — a lesson under
+`Projects/Teach/` into `Lessons/`, as before. Then by hand, if you like: in your agent in
+`.apm/agents/`, `Studies/` among the places it never writes and `study` among what it names for a
+write; and a state on the first line of each file that moved — *idea*, *active*, *parked*,
+*closed* or *moved to `<path>`* — or run `study <its name>`, which proposes one.
+
+### Added
+
+* **`Studies/`**, empty, with its `.gitkeep`, and its row in `AGENTS.md`'s folder table: written
+  through `study` only, after its plan and your go.
+* **A section *Studies* in `AGENTS.md`**: what a study is and what it is not, its first line and
+  its state, the library linked and the rest marked, one way from the notes, words only, and
+  committed with the home.
+* **`README.md` opens with what you can use it for** — a library you can ask, your studies,
+  lessons, strategies, any other project and a researcher that fits you — each with the command
+  that does it.
+
+### Changed
+
+* **`AGENTS.md`**: the paragraph under the folder table says anything else asked for at home is
+  answered in chat unless you keep it as a study; the directionality, the paths the skills resolve
+  and the in-strategy table name `Studies/`, and `study` works at home only, as `teach` does; the
+  primitives table names twelve commands; a command's plan or report is never written as a file;
+  a hard don't: no note is written from a study, and none cites one as a source.
+* **`README.md`**: the opening names your studies; the file tree and the directionality name
+  `Studies/`; *Growing your researcher* names `study` beside `teach`.
+
 ## 0.11.0 (2026-09-24)
 
 **MINOR** — `RESEARCHER.md` offers a second rule beside the fourth, to add or leave: *every design

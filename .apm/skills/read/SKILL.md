@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.7.2
+  version: 0.7.3
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -263,7 +263,9 @@ In chat: what was written, updated and flagged; any gap the source exposed — a
 leans on with no source behind it — as a suggestion for the sources, naming the work the reading
 map gives as this one's other side when it names one, as a lead; whether the source changes a
 belief in `Philosophy/`, as a question for the owner to answer there in their words; and, at home,
-the strategy a note could serve, with the `read <strategy> <source>` that would carry it there.
+the strategy a note could serve, with the `read <strategy> <source>` that would carry it there, and
+a study in `Studies/`, still *idea* or *active*, that the note bears on, with the `study <its name>`
+that would revise it.
 
 Then say: review the diff and commit.
 
@@ -271,8 +273,8 @@ Then say: review the diff and commit.
 
 - Read a PDF page by page when the script can extract it. The table-of-contents pages of a PDF with
   no outline are the one exception.
-- Write to the sources, `Philosophy/` or `Lessons/`. The extracts folder is the one place outside
-  the library this skill writes, and only the script writes there.
+- Write to the sources, `Philosophy/`, `Studies/` or `Lessons/`. The extracts folder is the one
+  place outside the library this skill writes, and only the script writes there.
 - Write at home while reading in a strategy — no note, no index line, no log entry, no question in
   `RESEARCHER.md`, no extract. A strategy's source enters the home library only when the owner puts
   it in `Sources/` at home and runs `read` there.
