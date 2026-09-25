@@ -213,3 +213,23 @@ leaves open.
 - **Open threads:** none new. `FINDINGS_2.md` carries each correction.
 
 <!-- example: end -->
+
+<!-- example: begin -->
+
+## 2026-09-24 — reproduced from a wiped working copy
+
+- **Idea / question:** the blueprint's fifth success criterion, and `AGENTS.md`'s rule for a
+  result before it is committed: does the run of 12:38 reproduce from a wiped working copy?
+- **What we tried / considered:** a clone of the working copy, every output of the pipeline wiped
+  and rebuilt from the curator on, ran this notebook from 21:49 to 22:28, after Experiment 3's. It
+  kept the raw FMP files downloaded fresh in the same clone that morning for Experiment 1's
+  reproduction, through 2026-06-01, and re-curated the Sharadar names through the Data Curator's
+  branch at `8b54c2f` from the bulk tables that morning's fetch had cached.
+- **Outcome / decision:** every figure the notebook printed equals the run of 12:38, the engine's
+  and the attribution's, and its Verify section raised nothing. The two differ only where the
+  download does: the panel holds 1,436 positions, not 1,437, and excludes fifty-two names, `MIC`
+  among them, because the fresh download lacks `MIC`, which the working copy's refreshed download
+  carries from 2026-06-26, after the window. `FINDINGS_2.md` records the criterion as met.
+- **Open threads:** none.
+
+<!-- example: end -->
