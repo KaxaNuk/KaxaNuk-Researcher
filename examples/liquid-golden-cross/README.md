@@ -17,7 +17,8 @@ current portfolio by 10%, to avoid rebalancing too often.
 > 10.53% and 0.469 and the index's 10.99% and 0.568 — ahead of its control on return, in two
 > sub-periods of three and against momentum in every month, and 0.0084 of Sharpe ahead where its
 > blueprint asked for 0.03, so it **fails its kill switch** too. Every number is in
-> [`RESULTS.md`](RESULTS.md). **No book is on paper, and nothing here is out of sample**; each
+> [`RESULTS.md`](RESULTS.md). **One book is on paper, Experiment 4's, as a candidate the owner chose
+> to track without graduation, from 2026-09-25**; nothing else here is out of sample, and each
 > experiment was run or reproduced from a wiped working copy.
 > Replace this line as the strategy moves, and the banner at the top of `AGENTS.md` with it.
 

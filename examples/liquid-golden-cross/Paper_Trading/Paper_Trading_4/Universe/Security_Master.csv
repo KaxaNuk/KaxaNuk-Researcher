@@ -1,0 +1,1501 @@
+main_identifier,name,instrument_type,exchange,currency,inception,isin,is_actively_trading,sector,industry
+A,"Agilent Technologies, Inc.",equity,NYSE,USD,1999-11-18,US00846U1016,True,Healthcare,Medical - Diagnostics & Research
+AAL,American Airlines Group Inc.,equity,NASDAQ,USD,2005-09-27,US02376R1023,True,Industrials,"Airlines, Airports & Air Services"
+AAP,"Advance Auto Parts, Inc.",equity,NYSE,USD,2001-11-29,US00751Y1064,True,Consumer Cyclical,Specialty Retail
+AAPL,Apple Inc.,equity,NASDAQ,USD,1980-12-12,US0378331005,True,Technology,Consumer Electronics
+ABBV,AbbVie Inc.,equity,NYSE,USD,2013-01-02,US00287Y1091,True,Healthcare,Drug Manufacturers - General
+ABMD,"Abiomed, Inc.",equity,NASDAQ,USD,1987-07-29,US0036541003,False,Healthcare,Medical - Devices
+ABNB,"Airbnb, Inc.",equity,NASDAQ,USD,2020-12-10,US0090661010,True,Consumer Cyclical,Travel Services
+ABT,Abbott Laboratories,equity,NYSE,USD,1980-03-17,US0028241000,True,Healthcare,Medical - Devices
+ACGL,Arch Capital Group Ltd.,equity,NASDAQ,USD,1995-09-14,BMG0450A1053,True,Financial Services,Insurance - Diversified
+ACI,"Albertsons Companies, Inc.",equity,NYSE,USD,2020-06-26,US0130911037,True,Consumer Defensive,Grocery Stores
+ACN,Accenture plc,equity,NYSE,USD,2001-07-19,IE00B4BNMY34,True,Technology,Information Technology Services
+ADBE,Adobe Inc.,equity,NASDAQ,USD,1986-08-13,US00724F1012,True,Technology,Software - Application
+ADI,"Analog Devices, Inc.",equity,NASDAQ,USD,1980-03-17,US0326541051,True,Technology,Semiconductors
+ADM,Archer-Daniels-Midland Company,equity,NYSE,USD,1980-03-17,US0394831020,True,Consumer Defensive,Agricultural Farm Products
+ADP,"Automatic Data Processing, Inc.",equity,NASDAQ,USD,1980-03-17,US0530151036,True,Technology,Software - Application
+ADS,"Bread Financial Holdings, Inc.",equity,NYSE,USD,2001-06-08,US0185811082,False,Financial Services,Financial - Credit Services
+ADSK,"Autodesk, Inc.",equity,NASDAQ,USD,1985-06-28,US0527691069,True,Technology,Software - Application
+AEE,Ameren Corporation,equity,NYSE,USD,1998-01-02,US0236081024,True,Utilities,Regulated Electric
+AEP,"American Electric Power Company, Inc.",equity,NASDAQ,USD,1962-01-02,US0255371017,True,Utilities,Regulated Electric
+AER,AerCap Holdings N.V.,equity,NYSE,USD,2006-11-21,NL0000687663,True,Industrials,Rental & Leasing Services
+AES,The AES Corporation,equity,NYSE,USD,1991-06-26,US00130H1059,True,Utilities,Diversified Utilities
+AFG,"American Financial Group, Inc.",equity,NYSE,USD,1980-03-17,US0259321042,True,Financial Services,Insurance - Property & Casualty
+AFL,Aflac Incorporated,equity,NYSE,USD,1980-03-17,US0010551028,True,Financial Services,Insurance - Life
+AFRM,"Affirm Holdings, Inc.",equity,NASDAQ,USD,2021-01-13,US00827B1061,True,Financial Services,Financial - Credit Services
+AIG,"American International Group, Inc.",equity,NYSE,USD,1973-01-02,US0268747849,True,Financial Services,Insurance - Diversified
+AIZ,"Assurant, Inc.",equity,NYSE,USD,2004-02-05,US04621X1081,True,Financial Services,Insurance - Property & Casualty
+AJG,Arthur J. Gallagher & Co.,equity,NYSE,USD,1984-06-20,US3635761097,True,Financial Services,Insurance - Brokers
+AKAM,"Akamai Technologies, Inc.",equity,NASDAQ,USD,1999-10-29,US00971T1016,True,Technology,Software - Infrastructure
+ALAB,"Astera Labs, Inc. Common Stock",equity,NASDAQ,USD,2024-03-20,US04626A1034,True,Technology,Semiconductors
+ALB,Albemarle Corporation,equity,NYSE,USD,1994-02-22,US0126531013,True,Basic Materials,Chemicals - Specialty
+ALC,Alcon Inc.,equity,NYSE,USD,2019-04-09,CH0432492467,True,Healthcare,Medical - Specialties
+ALGN,"Align Technology, Inc.",equity,NASDAQ,USD,2001-01-30,US0162551016,True,Healthcare,Medical - Devices
+ALK,"Alaska Air Group, Inc.",equity,NYSE,USD,1980-03-17,US0116591092,True,Industrials,"Airlines, Airports & Air Services"
+ALL,The Allstate Corporation,equity,NYSE,USD,1993-06-03,US0200021014,True,Financial Services,Insurance - Property & Casualty
+ALLE,Allegion plc,equity,NYSE,USD,2013-11-18,IE00BFRT3W74,True,Industrials,Security & Protection Services
+ALLY,Ally Financial Inc.,equity,NYSE,USD,2014-01-28,US02005N1000,True,Financial Services,Financial - Credit Services
+ALNY,"Alnylam Pharmaceuticals, Inc.",equity,NASDAQ,USD,2004-06-01,US02043Q1076,True,Healthcare,Biotechnology
+ALSN,"Allison Transmission Holdings, Inc.",equity,NYSE,USD,2012-03-15,US01973R1014,True,Consumer Cyclical,Auto - Parts
+AMAT,"Applied Materials, Inc.",equity,NASDAQ,USD,1980-03-17,US0382221051,True,Technology,Semiconductors
+AMC,"AMC Entertainment Holdings, Inc.",equity,NYSE,USD,2013-12-18,US00165C3025,True,Communication Services,Entertainment
+AMCR,Amcor plc,equity,NYSE,USD,2012-05-15,JE00BV7DQ550,True,Consumer Cyclical,Packaging & Containers
+AMD,"Advanced Micro Devices, Inc.",equity,NASDAQ,USD,1972-09-07,US0079031078,True,Technology,Semiconductors
+AME,"AMETEK, Inc.",equity,NYSE,USD,1984-07-19,US0311001004,True,Industrials,Electrical Equipment & Parts
+AMG,"Affiliated Managers Group, Inc.",equity,NYSE,USD,1997-11-21,US0082521081,True,Financial Services,Asset Management
+AMGN,Amgen Inc.,equity,NASDAQ,USD,1983-06-17,US0311621009,True,Healthcare,Drug Manufacturers - General
+AMP,"Ameriprise Financial, Inc.",equity,NYSE,USD,2005-09-15,US03076C1062,True,Financial Services,Asset Management
+AMT,American Tower Corporation,equity,NYSE,USD,1998-02-27,US03027X1000,True,Real Estate,REIT - Specialty
+AMZN,"Amazon.com, Inc.",equity,NASDAQ,USD,1997-05-15,US0231351067,True,Consumer Cyclical,Specialty Retail
+AN,"AutoNation, Inc.",equity,NYSE,USD,1990-05-11,US05329W1027,True,Consumer Cyclical,Auto - Dealerships
+ANET,"Arista Networks, Inc.",equity,NYSE,USD,2014-06-06,US0404132054,True,Technology,Computer Hardware
+ANSS,"ANSYS, Inc.",equity,NASDAQ,USD,1996-06-20,US03662Q1058,False,Technology,Software - Application
+ANTM,Elevance Health Inc.,equity,NYSE,USD,2001-10-30,US0367521038,False,Healthcare,Medical - Healthcare Plans
+AON,Aon plc,equity,NYSE,USD,1980-06-01,IE00BLP1HW54,True,Financial Services,Insurance - Brokers
+AOS,A. O. Smith Corporation,equity,NYSE,USD,1983-09-30,US8318652091,True,Industrials,Industrial - Machinery
+APA,APA Corporation,equity,NASDAQ,USD,1979-05-15,US03743Q1085,True,Energy,Oil & Gas Exploration & Production
+APD,"Air Products and Chemicals, Inc.",equity,NYSE,USD,1980-03-17,US0091581068,True,Basic Materials,Chemicals - Specialty
+APH,Amphenol Corporation,equity,NYSE,USD,1991-11-08,US0320951017,True,Technology,"Hardware, Equipment & Parts"
+APP,AppLovin Corporation,equity,NASDAQ,USD,2021-04-15,US03831W1080,True,Technology,Software - Application
+APTV,Aptiv PLC,equity,NYSE,USD,2011-11-17,JE00BTDN8H13,True,Consumer Cyclical,Auto - Parts
+ARCC,Ares Capital Corporation,equity,NASDAQ,USD,2004-10-05,US04010L1035,True,Financial Services,Asset Management
+ARE,"Alexandria Real Estate Equities, Inc.",equity,NYSE,USD,1997-05-28,US0152711091,True,Real Estate,REIT - Office
+ARES,Ares Management Corporation,equity,NYSE,USD,2014-05-02,US03990B1017,True,Financial Services,Asset Management
+ARMK,Aramark,equity,NYSE,USD,2013-12-12,US03852U1060,True,Industrials,Specialty Business Services
+ARW,"Arrow Electronics, Inc.",equity,NYSE,USD,1980-03-17,US0427351004,True,Technology,Technology Distributors
+ATO,Atmos Energy Corporation,equity,NYSE,USD,1983-12-28,US0495601058,True,Utilities,Regulated Gas
+ATUS,"Altice USA, Inc.",equity,NYSE,USD,2017-06-22,US02156K1034,False,Communication Services,Telecommunications Services
+ATVI,"Activision Blizzard, Inc.",equity,NASDAQ,USD,1993-10-25,US00507V1098,False,Technology,Electronic Gaming & Multimedia
+AU,AngloGold Ashanti plc,equity,NYSE,USD,1998-08-05,GB00BRXH2664,True,Basic Materials,Gold
+AVB,"AvalonBay Communities, Inc.",equity,NYSE,USD,1994-03-11,US0534841012,False,Real Estate,REIT - Residential
+AVGO,Broadcom Inc.,equity,NASDAQ,USD,2009-08-06,US11135F1012,True,Technology,Semiconductors
+AVT,"Avnet, Inc.",equity,NASDAQ,USD,1973-05-03,US0538071038,True,Technology,Technology Distributors
+AVTR,"Avantor, Inc.",equity,NYSE,USD,2019-05-17,US05352A1007,True,Healthcare,Medical - Instruments & Supplies
+AVY,Avery Dennison Corporation,equity,NYSE,USD,1973-02-21,US0536111091,True,Consumer Cyclical,Packaging & Containers
+AWK,"American Water Works Company, Inc.",equity,NYSE,USD,2008-04-23,US0304201033,True,Utilities,Regulated Water
+AXON,"Axon Enterprise, Inc.",equity,NASDAQ,USD,2001-06-07,US05464C1018,True,Industrials,Aerospace & Defense
+AXP,American Express Company,equity,NYSE,USD,1972-06-01,US0258161092,True,Financial Services,Financial - Credit Services
+AXS,AXIS Capital Holdings Limited,equity,NYSE,USD,2003-07-01,BMG0692U1099,True,Financial Services,Insurance - Diversified
+AYI,"Acuity Brands, Inc.",equity,NYSE,USD,2001-12-03,US00508Y1029,True,Industrials,Electrical Equipment & Parts
+AZPN,"Aspen Technology, Inc.",equity,NASDAQ,USD,1994-10-26,US29109X1063,False,Technology,Software - Application
+BA,The Boeing Company,equity,NYSE,USD,1962-01-02,US0970231058,True,Industrials,Aerospace & Defense
+BAC,Bank of America Corporation,equity,NYSE,USD,1973-02-21,US0605051046,True,Financial Services,Banks - Diversified
+BAH,Booz Allen Hamilton Holding Corporation,equity,NYSE,USD,2010-11-18,US0995021062,True,Industrials,Consulting Services
+BALL,Ball Corporation,equity,NYSE,USD,1972-07-13,US0584981064,True,Consumer Cyclical,Packaging & Containers
+BAX,Baxter International Inc.,equity,NYSE,USD,1981-10-27,US0718131099,True,Healthcare,Medical - Instruments & Supplies
+BBWI,"Bath & Body Works, Inc.",equity,NYSE,USD,1982-04-01,US0708301041,True,Consumer Cyclical,Specialty Retail
+BBY,"Best Buy Co., Inc.",equity,NYSE,USD,1985-04-18,US0865161014,True,Consumer Cyclical,Specialty Retail
+BDX,"Becton, Dickinson and Company",equity,NYSE,USD,1973-02-21,US0758871091,True,Healthcare,Medical - Instruments & Supplies
+BEN,"Franklin Resources, Inc.",equity,NYSE,USD,1983-09-23,US3546131018,True,Financial Services,Asset Management
+BF-A,Brown-Forman Corporation,equity,NYSE,USD,1973-05-03,US1156371007,True,Consumer Defensive,Beverages - Wineries & Distilleries
+BF-B,Brown-Forman Corporation,equity,NYSE,USD,1980-03-17,US1156372096,True,Consumer Defensive,Beverages - Wineries & Distilleries
+BFH,"Bread Financial Holdings, Inc.",equity,NYSE,USD,2001-06-07,US0185811082,True,Financial Services,Financial - Credit Services
+BG,Bunge Global S.A.,equity,NYSE,USD,2001-08-02,CH1300646267,True,Consumer Defensive,Agricultural Farm Products
+BIIB,Biogen Inc.,equity,NASDAQ,USD,1991-09-17,US09062X1037,True,Healthcare,Drug Manufacturers - General
+BIO,"Bio-Rad Laboratories, Inc.",equity,NYSE,USD,1980-02-27,US0905722072,True,Healthcare,Medical - Devices
+BK,The Bank of New York Mellon Corporation,equity,NYSE,USD,1973-05-03,US0640581007,False,Financial Services,Investment - Banking & Investment Services
+BKI,"Black Knight, Inc.",equity,NYSE,USD,2015-05-20,US09215C1053,False,Technology,Software - Application
+BKNG,Booking Holdings Inc.,equity,NASDAQ,USD,1999-03-31,US09857L1089,True,Consumer Cyclical,Travel Services
+BKR,Baker Hughes Company,equity,NASDAQ,USD,1987-04-06,US05722G1004,True,Energy,Oil & Gas Equipment & Services
+BLDR,"Builders FirstSource, Inc.",equity,NYSE,USD,2005-06-28,US12008R1077,True,Basic Materials,Construction Materials
+BLK,"BlackRock, Inc.",equity,NYSE,USD,1999-10-01,US09290D1019,True,Financial Services,Asset Management
+BLL,Ball Corporation,equity,NYSE,USD,1973-12-17,US0584981064,False,Consumer Cyclical,Packaging & Containers
+BMRN,BioMarin Pharmaceutical Inc.,equity,NASDAQ,USD,1999-07-26,US09061G1013,True,Healthcare,Biotechnology
+BMY,Bristol-Myers Squibb Company,equity,NYSE,USD,1972-06-01,US1101221083,True,Healthcare,Drug Manufacturers - General
+BR,"Broadridge Financial Solutions, Inc.",equity,NYSE,USD,2007-03-22,US11133T1034,True,Technology,Information Technology Services
+BRK-B,Berkshire Hathaway Inc.,equity,NYSE,USD,1996-05-09,US0846707026,True,Financial Services,Insurance - Diversified
+BRO,"Brown & Brown, Inc.",equity,NYSE,USD,1981-02-11,US1152361010,True,Financial Services,Insurance - Brokers
+BRX,Brixmor Property Group Inc.,equity,NYSE,USD,2013-10-30,US11120U1051,True,Real Estate,REIT - Retail
+BSX,Boston Scientific Corporation,equity,NYSE,USD,1992-05-19,US1011371077,True,Healthcare,Medical - Devices
+BURL,"Burlington Stores, Inc.",equity,NYSE,USD,2013-10-02,US1220171060,True,Consumer Cyclical,Apparel - Retail
+BWA,BorgWarner Inc.,equity,NYSE,USD,1993-08-13,US0997241064,True,Consumer Cyclical,Auto - Parts
+BX,Blackstone Inc.,equity,NYSE,USD,2007-06-22,US09260D1072,True,Financial Services,Asset Management
+BXP,"BXP, Inc.",equity,NYSE,USD,1997-06-18,US1011211018,True,Real Estate,REIT - Office
+C,Citigroup Inc.,equity,NYSE,USD,1977-01-03,US1729674242,True,Financial Services,Banks - Diversified
+CABO,"Cable One, Inc.",equity,NYSE,USD,2015-06-11,US12685J1051,True,Communication Services,Telecommunications Services
+CAG,"Conagra Brands, Inc.",equity,NYSE,USD,1980-03-17,US2058871029,True,Consumer Defensive,Packaged Foods
+CAH,"Cardinal Health, Inc.",equity,NYSE,USD,1983-08-04,US14149Y1082,True,Healthcare,Medical - Distribution
+CAR,"Avis Budget Group, Inc.",equity,NASDAQ,USD,1983-09-14,US0537741052,True,Industrials,Rental & Leasing Services
+CARR,Carrier Global Corporation,equity,NYSE,USD,2020-03-19,US14448C1045,True,Industrials,Industrial - Machinery
+CASY,"Casey's General Stores, Inc.",equity,NASDAQ,USD,1983-10-20,US1475281036,True,Consumer Cyclical,Specialty Retail
+CAT,Caterpillar Inc.,equity,NYSE,USD,1929-12-02,US1491231015,True,Industrials,Agricultural - Machinery
+CB,Chubb Limited,equity,NYSE,USD,1993-03-25,CH0044328745,True,Financial Services,Insurance - Property & Casualty
+CBRE,"CBRE Group, Inc.",equity,NYSE,USD,2004-06-10,US12504L1098,True,Real Estate,Real Estate - Services
+CCEP,Coca-Cola Europacific Partners PLC,equity,NASDAQ,USD,1986-11-24,GB00BDCPN049,True,Consumer Defensive,Beverages - Non-Alcoholic
+CCI,Crown Castle Inc.,equity,NYSE,USD,1998-08-18,US22822V1017,True,Real Estate,REIT - Specialty
+CCK,"Crown Holdings, Inc.",equity,NYSE,USD,1980-03-17,US2283681060,True,Consumer Cyclical,Packaging & Containers
+CCL,Carnival Corporation & plc,equity,NYSE,USD,1987-07-24,BMG2004J1036,True,Consumer Cyclical,Travel Services
+CDAY,Dayforce Inc.,equity,NYSE,USD,2018-04-26,US15677J1088,False,Technology,Software - Application
+CDNS,"Cadence Design Systems, Inc.",equity,NASDAQ,USD,1987-06-10,US1273871087,True,Technology,Software - Application
+CDW,CDW Corporation,equity,NASDAQ,USD,2013-06-27,US12514G1085,True,Technology,Information Technology Services
+CE,Celanese Corporation,equity,NYSE,USD,2005-01-21,US1508701034,True,Basic Materials,Chemicals
+CEG,Constellation Energy Corporation,equity,NASDAQ,USD,2022-01-19,US21037T1097,True,Utilities,Independent Power Producers
+CELG,,equity,,,,,,,
+CF,"CF Industries Holdings, Inc.",equity,NYSE,USD,2005-08-11,US1252691001,True,Basic Materials,Agricultural Inputs
+CFG,"Citizens Financial Group, Inc.",equity,NYSE,USD,2014-09-24,US1746101054,True,Financial Services,Banks - Regional
+CG,The Carlyle Group Inc.,equity,NASDAQ,USD,2012-05-03,US14316J1088,True,Financial Services,Asset Management
+CGNX,Cognex Corporation,equity,NASDAQ,USD,1989-07-20,US1924221039,True,Technology,"Hardware, Equipment & Parts"
+CHD,"Church & Dwight Co., Inc.",equity,NYSE,USD,1980-03-17,US1713401024,True,Consumer Defensive,Household & Personal Products
+CHRW,"C.H. Robinson Worldwide, Inc.",equity,NASDAQ,USD,1997-10-16,US12541W2098,True,Industrials,Integrated Freight & Logistics
+CHTR,"Charter Communications, Inc.",equity,NASDAQ,USD,2010-01-05,US16119P1084,True,Communication Services,Telecommunications Services
+CHWY,"Chewy, Inc.",equity,NYSE,USD,2019-06-14,US16679L1098,True,Consumer Cyclical,Specialty Retail
+CI,Cigna Corporation,equity,NYSE,USD,1982-03-31,US1255231003,True,Healthcare,Medical - Healthcare Plans
+CIEN,Ciena Corporation,equity,NYSE,USD,1997-02-07,US1717793095,True,Technology,Communication Equipment
+CINF,Cincinnati Financial Corporation,equity,NASDAQ,USD,1980-03-17,US1720621010,True,Financial Services,Insurance - Property & Casualty
+CIT,CIT Group Inc.,equity,NYSE,USD,2002-07-01,US1255818015,False,Financial Services,Banks - Regional
+CL,Colgate-Palmolive Company,equity,NYSE,USD,1973-05-02,US1941621039,True,Consumer Defensive,Household & Personal Products
+CLR,"Continental Resources, Inc.",equity,NYSE,USD,2007-05-15,US2120151012,False,Energy,Oil & Gas Exploration & Production
+CLX,The Clorox Company,equity,NYSE,USD,1983-03-21,US1890541097,True,Consumer Defensive,Household & Personal Products
+CMA,Comerica Incorporated,equity,NYSE,USD,1980-03-17,US2003401070,False,Financial Services,Banks - Regional
+CMCSA,Comcast Corporation,equity,NASDAQ,USD,1980-03-17,US20030N1019,True,Communication Services,Telecommunications Services
+CME,CME Group Inc.,equity,NASDAQ,USD,2002-12-06,US12572Q1058,True,Financial Services,Financial - Data & Stock Exchanges
+CMG,"Chipotle Mexican Grill, Inc.",equity,NYSE,USD,2006-01-26,US1696561059,True,Consumer Cyclical,Restaurants
+CMI,Cummins Inc.,equity,NYSE,USD,1947-10-03,US2310211063,True,Industrials,Industrial - Machinery
+CMS,CMS Energy Corporation,equity,NYSE,USD,1973-02-21,US1258961002,True,Utilities,Regulated Electric
+CNA,CNA Financial Corporation,equity,NYSE,USD,1969-02-03,US1261171003,True,Financial Services,Insurance - Property & Casualty
+CNC,Centene Corp.,equity,NYSE,USD,2001-12-13,US15135B1017,True,Healthcare,Medical - Healthcare Plans
+CNH,CNH Industrial N.V.,equity,NYSE,USD,1996-11-01,NL0010545661,True,Industrials,Agricultural - Machinery
+CNHI,CNH Industrial N.V.,equity,NYSE,USD,2013-09-30,NL0010545661,False,Industrials,Agricultural - Machinery
+CNP,"CenterPoint Energy, Inc.",equity,NYSE,USD,1970-01-02,US15189T1079,True,Utilities,Regulated Electric
+COF,Capital One Financial Corporation,equity,NYSE,USD,1994-11-16,US14040H1059,True,Financial Services,Financial - Credit Services
+COG,Cabot Oil & Gas Corporation,equity,NYSE,USD,1990-08-02,US1270971039,False,Energy,Oil & Gas Exploration & Production
+COHR,"Coherent, Inc.",equity,NYSE,USD,1987-10-02,US19247G1076,True,Technology,"Hardware, Equipment & Parts"
+COIN,"Coinbase Global, Inc.",equity,NASDAQ,USD,2021-04-14,US19260Q1076,True,Financial Services,Financial - Data & Stock Exchanges
+COLB,"Columbia Banking System, Inc.",equity,NASDAQ,USD,1992-06-16,US1972361026,True,Financial Services,Banks - Regional
+COO,"The Cooper Companies, Inc.",equity,NASDAQ,USD,1983-01-21,US2166485019,True,Healthcare,Medical - Instruments & Supplies
+COP,ConocoPhillips,equity,NYSE,USD,1981-12-31,US20825C1045,True,Energy,Oil & Gas Exploration & Production
+COR,"Cencora, Inc.",equity,NYSE,USD,1995-04-04,US03073E1055,True,Healthcare,Medical - Distribution
+COST,Costco Wholesale Corporation,equity,NASDAQ,USD,1986-07-09,US22160K1051,True,Consumer Defensive,Discount Stores
+CPAY,"Corpay, Inc.",equity,NYSE,USD,2010-12-15,US2199481068,True,Technology,Software - Infrastructure
+CPB,Campbell Soup Company,equity,NASDAQ,USD,1954-12-13,US1344291091,True,Consumer Defensive,Packaged Foods
+CPRI,Capri Holdings Limited,equity,NYSE,USD,2011-12-15,VGG1890L1076,True,Consumer Cyclical,Apparel - Footwear & Accessories
+CPRT,"Copart, Inc.",equity,NASDAQ,USD,1994-03-17,US2172041061,True,Industrials,Specialty Business Services
+CPT,Camden Property Trust,equity,NYSE,USD,1993-07-22,US1331311027,True,Real Estate,REIT - Residential
+CRDO,Credo Technology Group Holding Ltd,equity,NASDAQ,USD,2022-01-27,KYG254571055,True,Technology,Semiconductors
+CRH,CRH plc,equity,NYSE,USD,1989-07-13,IE0001827041,True,Basic Materials,Construction Materials
+CRM,"Salesforce, Inc.",equity,NYSE,USD,2004-06-23,US79466L3024,True,Technology,Software - Application
+CRWD,"CrowdStrike Holdings, Inc.",equity,NASDAQ,USD,2019-06-12,US22788C1053,True,Technology,Software - Infrastructure
+CSC,Computer Sciences Corp.,equity,NYSE,USD,2008-03-07,US2053631048,False,Technology,Software - Services
+CSCO,"Cisco Systems, Inc.",equity,NASDAQ,USD,1990-02-16,US17275R1023,True,Technology,Communication Equipment
+CSGP,"CoStar Group, Inc.",equity,NASDAQ,USD,1998-07-01,US22160N1090,True,Real Estate,Real Estate - Services
+CSL,Carlisle Companies Incorporated,equity,NYSE,USD,1973-02-21,US1423391002,True,Basic Materials,Construction Materials
+CSX,CSX Corporation,equity,NASDAQ,USD,1980-11-03,US1264081035,True,Industrials,Railroads
+CTAS,Cintas Corporation,equity,NASDAQ,USD,1983-08-19,US1729081059,True,Industrials,Specialty Business Services
+CTLT,"Catalent, Inc.",equity,NYSE,USD,2014-07-31,US1488061029,False,Healthcare,Drug Manufacturers - Specialty & Generic
+CTRA,Coterra Energy Inc.,equity,NYSE,USD,1990-02-08,US1270971039,False,Energy,Oil & Gas Exploration & Production
+CTSH,Cognizant Technology Solutions Corporation,equity,NASDAQ,USD,1998-06-19,US1924461023,True,Technology,Information Technology Services
+CTVA,"Corteva, Inc.",equity,NYSE,USD,2019-05-24,US22052L1044,True,Basic Materials,Agricultural Inputs
+CTXS,"Citrix Systems, Inc.",equity,NASDAQ,USD,1995-12-01,US1773761002,False,Technology,Software - Application
+CVNA,Carvana Co.,equity,NYSE,USD,2017-04-28,US1468691027,True,Consumer Cyclical,Auto - Dealerships
+CVS,CVS Health Corp.,equity,NYSE,USD,1973-02-21,US1266501006,True,Healthcare,Medical - Healthcare Plans
+CVX,Chevron Corporation,equity,NYSE,USD,1921-06-24,US1667641005,True,Energy,Oil & Gas Integrated
+CW,Curtiss-Wright Corporation,equity,NYSE,USD,1980-03-17,US2315611010,True,Industrials,Aerospace & Defense
+D,"Dominion Energy, Inc.",equity,NYSE,USD,1980-03-17,US25746U1097,True,Utilities,Regulated Electric
+DAL,"Delta Air Lines, Inc.",equity,NYSE,USD,2007-05-03,US2473617023,True,Industrials,"Airlines, Airports & Air Services"
+DASH,"DoorDash, Inc.",equity,NASDAQ,USD,2020-12-09,US25809K1051,True,Communication Services,Internet Content & Information
+DAY,Dayforce Inc,equity,NYSE,USD,2018-04-26,US15677J1088,False,Technology,Software - Application
+DCI,"Donaldson Company, Inc.",equity,NYSE,USD,1980-03-17,US2576511099,True,Industrials,Industrial - Machinery
+DCP,"DCP Midstream, LP",equity,NYSE,USD,2005-12-06,US23311P1003,False,Energy,Oil & Gas Midstream
+DD,"DuPont de Nemours, Inc.",equity,NYSE,USD,1972-06-01,US26614N2018,True,Basic Materials,Chemicals
+DDOG,"Datadog, Inc.",equity,NASDAQ,USD,2019-09-19,US23804L1035,True,Technology,Software - Application
+DE,Deere & Company,equity,NYSE,USD,1972-06-01,US2441991054,True,Industrials,Agricultural - Machinery
+DECK,Deckers Outdoor Corporation,equity,NYSE,USD,1993-10-15,US2435371073,True,Consumer Cyclical,Apparel - Footwear & Accessories
+DELL,Dell Technologies Inc.,equity,NYSE,USD,2016-08-17,US24703L2025,True,Technology,Computer Hardware
+DFS,Discover Financial Services,equity,NYSE,USD,2007-06-14,US2547091080,False,Financial Services,Financial - Credit Services
+DG,Dollar General Corporation,equity,NYSE,USD,2009-11-13,US2566771059,True,Consumer Defensive,Discount Stores
+DGX,Quest Diagnostics Incorporated,equity,NYSE,USD,1996-12-17,US74834L1008,True,Healthcare,Medical - Diagnostics & Research
+DHI,"D.R. Horton, Inc.",equity,NYSE,USD,1992-06-05,US23331A1097,True,Consumer Cyclical,Residential Construction
+DHR,Danaher Corporation,equity,NYSE,USD,1978-12-29,US2358511028,True,Healthcare,Medical - Diagnostics & Research
+DINO,HF Sinclair Corporation,equity,NYSE,USD,1980-03-17,US4039491000,True,Energy,Oil & Gas Refining & Marketing
+DIS,The Walt Disney Company,equity,NYSE,USD,1957-11-12,US2546871060,True,Communication Services,Entertainment
+DISCA,"Warner Bros. Discovery, Inc.",equity,NASDAQ,USD,2005-06-30,US25470F1049,False,Communication Services,Broadcasting
+DISH,DISH Network Corporation,equity,NASDAQ,USD,1995-06-21,US25470M1099,False,Communication Services,Telecommunications Services
+DKS,"DICK'S Sporting Goods, Inc.",equity,NYSE,USD,2002-10-16,US2533931026,True,Consumer Cyclical,Specialty Retail
+DLR,"Digital Realty Trust, Inc.",equity,NYSE,USD,2004-10-29,US2538681030,True,Real Estate,REIT - Specialty
+DLTR,"Dollar Tree, Inc.",equity,NASDAQ,USD,1995-03-07,US2567461080,True,Consumer Defensive,Discount Stores
+DOC,"Healthpeak Properties, Inc.",equity,NYSE,USD,1985-05-23,US42250P1030,True,Real Estate,REIT - Healthcare Facilities
+DOV,Dover Corporation,equity,NYSE,USD,1980-03-17,US2600031080,True,Industrials,Industrial - Machinery
+DOW,Dow Inc.,equity,NYSE,USD,2019-03-20,US2605571031,True,Basic Materials,Chemicals
+DOX,Amdocs Limited,equity,NASDAQ,USD,1998-06-19,GB0022569080,True,Technology,Software - Infrastructure
+DPZ,"Domino's Pizza, Inc.",equity,NASDAQ,USD,2004-07-13,US25754A2015,True,Consumer Cyclical,Restaurants
+DRE,Duke Realty Corporation,equity,NYSE,USD,1986-02-06,US2644115055,False,Real Estate,REIT - Industrial
+DRI,"Darden Restaurants, Inc.",equity,NYSE,USD,1995-05-09,US2371941053,True,Consumer Cyclical,Restaurants
+DT,"Dynatrace, Inc.",equity,NYSE,USD,2019-08-01,US2681501092,True,Technology,Software - Application
+DTE,DTE Energy Company,equity,NYSE,USD,1970-01-02,US2333311072,True,Utilities,Regulated Electric
+DUK,Duke Energy Corporation,equity,NYSE,USD,1980-03-17,US26441C2044,True,Utilities,Regulated Electric
+DUOL,"Duolingo, Inc.",equity,NASDAQ,USD,2021-07-28,US26603R1068,True,Technology,Software - Application
+DVA,DaVita Inc.,equity,NYSE,USD,1995-10-31,US23918K1088,True,Healthcare,Medical - Care Facilities
+DVN,Devon Energy Corporation,equity,NYSE,USD,1985-07-22,US25179M1036,True,Energy,Oil & Gas Exploration & Production
+DXC,DXC Technology Company,equity,NYSE,USD,1981-12-31,US23355L1061,True,Technology,Information Technology Services
+DXCM,"DexCom, Inc.",equity,NASDAQ,USD,2005-04-14,US2521311074,True,Healthcare,Medical - Devices
+EA,Electronic Arts Inc.,equity,NASDAQ,USD,1989-09-20,US2855121099,False,Technology,Electronic Gaming & Multimedia
+EBAY,eBay Inc.,equity,NASDAQ,USD,1998-09-24,US2786421030,True,Consumer Cyclical,Specialty Retail
+ECL,Ecolab Inc.,equity,NYSE,USD,1973-02-21,US2788651006,True,Basic Materials,Chemicals - Specialty
+ED,"Consolidated Edison, Inc.",equity,NYSE,USD,2001-02-15,US2091151041,True,Utilities,Regulated Electric
+EFX,Equifax Inc.,equity,NYSE,USD,1980-03-17,US2944291051,True,Industrials,Consulting Services
+EG,"Everest Group, Ltd.",equity,NYSE,USD,1995-10-06,BMG3223R1088,True,Financial Services,Insurance - Reinsurance
+EIX,Edison International,equity,NYSE,USD,1973-05-03,US2810201077,True,Utilities,Regulated Electric
+EL,The Estée Lauder Companies Inc.,equity,NYSE,USD,1995-11-17,US5184391044,True,Consumer Defensive,Household & Personal Products
+ELS,"Equity LifeStyle Properties, Inc.",equity,NYSE,USD,1993-02-25,US29472R1086,True,Real Estate,REIT - Residential
+ELV,Elevance Health Inc.,equity,NYSE,USD,2001-10-30,US0367521038,True,Healthcare,Medical - Healthcare Plans
+EME,"EMCOR Group, Inc.",equity,NYSE,USD,1995-01-10,US29084Q1004,True,Industrials,Engineering & Construction
+EMN,Eastman Chemical Company,equity,NYSE,USD,1993-12-14,US2774321002,True,Basic Materials,Chemicals - Specialty
+EMR,Emerson Electric Co.,equity,NYSE,USD,1972-06-01,US2910111044,True,Industrials,Industrial - Machinery
+ENBL,"Enable Midstream Partners, LP",equity,NYSE,USD,2014-04-11,US2924801002,False,Energy,Oil & Gas Midstream
+ENPH,"Enphase Energy, Inc.",equity,NASDAQ,USD,2012-03-30,US29355A1079,True,Energy,Solar
+ENTG,"Entegris, Inc.",equity,NASDAQ,USD,2000-07-11,US29362U1043,True,Technology,Semiconductors
+EOG,"EOG Resources, Inc.",equity,NYSE,USD,1989-10-04,US26875P1012,True,Energy,Oil & Gas Exploration & Production
+EPAM,"EPAM Systems, Inc.",equity,NYSE,USD,2012-02-08,US29414B1044,True,Technology,Information Technology Services
+EPC,Edgewell Personal Care Company,equity,NYSE,USD,2000-03-27,US28035Q1022,True,Consumer Defensive,Household & Personal Products
+EQIX,"Equinix, Inc.",equity,NASDAQ,USD,2000-08-11,US29444U7000,True,Real Estate,REIT - Specialty
+EQR,Equity Residential,equity,NYSE,USD,1993-08-12,US29476L1070,False,Real Estate,REIT - Residential
+EQT,EQT Corporation,equity,NYSE,USD,1980-03-17,US26884L1098,True,Energy,Oil & Gas Exploration & Production
+ERIE,Erie Indemnity Company,equity,NASDAQ,USD,1995-10-02,US29530P1021,True,Financial Services,Insurance - Property & Casualty
+ES,Eversource Energy,equity,NYSE,USD,1973-02-21,US30040W1080,True,Utilities,Regulated Electric
+ESRX,Express Scripts Holding Company,equity,NASDAQ,USD,1992-06-09,,False,Healthcare,Medical - Pharmaceuticals
+ESS,"Essex Property Trust, Inc.",equity,NYSE,USD,1994-06-07,US2971781057,True,Real Estate,REIT - Residential
+ET,Energy Transfer LP,equity,NYSE,USD,2006-02-03,US29273V1008,True,Energy,Oil & Gas Midstream
+ETN,Eaton Corporation plc,equity,NYSE,USD,1972-06-01,IE00B8KQN827,True,Industrials,Electrical Equipment & Parts
+ETR,Entergy Corporation,equity,NYSE,USD,1972-06-01,US29364G1031,True,Utilities,Regulated Electric
+ETSY,"Etsy, Inc.",equity,NYSE,USD,2015-04-16,US29786A1060,True,Consumer Cyclical,Specialty Retail
+EVRG,"Evergy, Inc.",equity,NASDAQ,USD,2018-06-04,US30034W1062,True,Utilities,Regulated Electric
+EW,Edwards Lifesciences Corporation,equity,NYSE,USD,2000-03-27,US28176E1082,True,Healthcare,Medical - Devices
+EWBC,"East West Bancorp, Inc.",equity,NASDAQ,USD,1999-02-03,US27579R1041,True,Financial Services,Banks - Regional
+EXC,Exelon Corporation,equity,NASDAQ,USD,1973-05-02,US30161N1019,True,Utilities,Regulated Electric
+EXE,Expand Energy Corporation,equity,NASDAQ,USD,2021-02-10,US1651677353,True,Energy,Oil & Gas Exploration & Production
+EXPD,"Expeditors International of Washington, Inc.",equity,NYSE,USD,1984-09-26,US3021301094,True,Industrials,Integrated Freight & Logistics
+EXPE,"Expedia Group, Inc.",equity,NASDAQ,USD,2005-07-21,US30212P3038,True,Consumer Cyclical,Travel Services
+EXR,Extra Space Storage Inc.,equity,NYSE,USD,2004-08-16,US30225T1025,True,Real Estate,REIT - Industrial
+F,Ford Motor Company,equity,NYSE,USD,1972-06-01,US3453708600,True,Consumer Cyclical,Auto - Manufacturers
+FANG,"Diamondback Energy, Inc.",equity,NASDAQ,USD,2012-10-12,US25278X1090,True,Energy,Oil & Gas Exploration & Production
+FAST,Fastenal Company,equity,NASDAQ,USD,1987-08-20,US3119001044,True,Industrials,Industrial - Distribution
+FBHS,"Fortune Brands Home & Security, Inc.",equity,NYSE,USD,2011-09-16,US34964C1062,False,Industrials,Construction
+FBIN,"Fortune Brands Innovations, Inc.",equity,NYSE,USD,2011-09-16,US34964C1062,True,Basic Materials,Construction Materials
+FCNCA,"First Citizens BancShares, Inc.",equity,NASDAQ,USD,1986-10-22,US31946M1036,True,Financial Services,Banks - Regional
+FCX,Freeport-McMoRan Inc.,equity,NYSE,USD,1995-07-10,US35671D8570,True,Basic Materials,Copper
+FDS,FactSet Research Systems Inc.,equity,NYSE,USD,1996-06-28,US3030751057,True,Financial Services,Financial - Data & Stock Exchanges
+FDX,FedEx Corporation,equity,NYSE,USD,1978-04-12,US31428X1063,True,Industrials,Integrated Freight & Logistics
+FE,FirstEnergy Corp.,equity,NYSE,USD,1997-11-10,US3379321074,True,Utilities,Regulated Electric
+FERG,Ferguson plc,equity,NYSE,USD,2010-01-05,US31488V1070,True,Industrials,Industrial - Distribution
+FFIV,"F5, Inc.",equity,NASDAQ,USD,1999-06-04,US3156161024,True,Technology,Software - Infrastructure
+FHN,First Horizon Corporation,equity,NYSE,USD,1980-03-17,US3205171057,True,Financial Services,Banks - Regional
+FI,"Fiserv, Inc.",equity,NYSE,USD,1986-09-25,US3377381088,False,Technology,Information Technology Services
+FICO,Fair Isaac Corporation,equity,NYSE,USD,1987-07-22,US3032501047,True,Technology,Software - Application
+FIS,"Fidelity National Information Services, Inc.",equity,NYSE,USD,2001-06-20,US31620M1062,True,Technology,Information Technology Services
+FISV,"Fiserv, Inc.",equity,NASDAQ,USD,1986-09-25,US3377381088,True,Technology,Information Technology Services
+FITB,Fifth Third Bancorp,equity,NYSE,USD,1980-03-17,US3167731005,True,Financial Services,Banks - Regional
+FITBI,Fifth Third Bancorp,equity,NASDAQ,USD,2013-12-06,US3167736053,True,Financial Services,Banks - Regional
+FIX,"Comfort Systems USA, Inc.",equity,NYSE,USD,1997-06-27,US1999081045,True,Industrials,Engineering & Construction
+FL,"Foot Locker, Inc.",equity,NYSE,USD,1912-06-26,US3448491049,False,Consumer Cyclical,Apparel - Retail
+FLG,"Flagstar Financial, Inc.",equity,NYSE,USD,1993-11-23,US6494454001,True,Financial Services,Banks - Regional
+FLR,Fluor Corporation,equity,NYSE,USD,2000-11-30,US3434121022,True,Industrials,Engineering & Construction
+FLS,Flowserve Corporation,equity,NYSE,USD,1980-03-17,US34354P1057,True,Industrials,Industrial - Machinery
+FLUT,Flutter Entertainment plc,equity,NYSE,USD,2002-10-04,IE00BWT6H894,True,Consumer Cyclical,"Gambling, Resorts & Casinos"
+FMC,FMC Corporation,equity,NYSE,USD,1980-03-17,US3024913036,True,Basic Materials,Agricultural Inputs
+FNF,"Fidelity National Financial, Inc.",equity,NYSE,USD,2005-10-14,US31620R3030,True,Financial Services,Insurance - Specialty
+FOX,Fox Corporation,equity,NASDAQ,USD,2019-03-13,US35137L2043,True,Communication Services,Entertainment
+FOXA,Fox Corporation,equity,NASDAQ,USD,2019-03-12,US35137L1052,True,Communication Services,Entertainment
+FRC,First Republic Bank,equity,NYSE,USD,2010-12-09,US33616C1009,False,Financial Services,Banks - Regional
+FRT,Federal Realty Investment Trust,equity,NYSE,USD,1973-05-03,US3137451015,True,Real Estate,REIT - Retail
+FSLR,"First Solar, Inc.",equity,NASDAQ,USD,2006-11-17,US3364331070,True,Energy,Solar
+FTI,TechnipFMC plc,equity,NYSE,USD,2001-06-15,GB00BDSFG982,True,Energy,Oil & Gas Equipment & Services
+FTNT,"Fortinet, Inc.",equity,NASDAQ,USD,2009-11-18,US34959E1091,True,Technology,Software - Infrastructure
+FTV,Fortive Corporation,equity,NYSE,USD,2016-07-05,US34959J1088,True,Technology,"Hardware, Equipment & Parts"
+FWONA,Formula One Group,equity,NASDAQ,USD,2013-01-10,US5312297717,True,Communication Services,Entertainment
+FWONK,Liberty Media Corporation,equity,NASDAQ,USD,2014-07-08,US5312297550,True,Communication Services,Entertainment
+GAP,"The Gap, Inc.",equity,NYSE,USD,1980-03-17,US3647601083,True,Consumer Cyclical,Apparel - Retail
+GD,General Dynamics Corporation,equity,NYSE,USD,1978-01-13,US3695501086,True,Industrials,Aerospace & Defense
+GDDY,GoDaddy Inc.,equity,NYSE,USD,2015-03-31,US3802371076,True,Technology,Software - Infrastructure
+GE,GE Aerospace,equity,NYSE,USD,1962-01-02,US3696043013,True,Industrials,Aerospace & Defense
+GEHC,GE HealthCare Technologies Inc.,equity,NASDAQ,USD,2022-12-15,US36266G1076,True,Healthcare,Medical - Devices
+GEN,Gen Digital Inc.,equity,NASDAQ,USD,1989-06-23,US6687711084,True,Technology,Software - Infrastructure
+GEV,GE Vernova Inc.,equity,NYSE,USD,2024-03-27,US36828A1016,True,Industrials,Industrial - Machinery
+GFS,GLOBALFOUNDRIES Inc.,equity,NASDAQ,USD,2021-10-28,KYG393871085,True,Technology,Semiconductors
+GGG,Graco Inc.,equity,NYSE,USD,1980-03-17,US3841091040,True,Industrials,Industrial - Machinery
+GILD,"Gilead Sciences, Inc.",equity,NASDAQ,USD,1992-01-22,US3755581036,True,Healthcare,Drug Manufacturers - General
+GIS,"General Mills, Inc.",equity,NYSE,USD,1980-03-17,US3703341046,True,Consumer Defensive,Packaged Foods
+GL,Globe Life Inc.,equity,NYSE,USD,1980-10-01,US37959E1029,True,Financial Services,Insurance - Life
+GLPI,"Gaming and Leisure Properties, Inc.",equity,NASDAQ,USD,2013-10-14,US36467J1088,True,Real Estate,REIT - Specialty
+GLT,Glatfelter Corporation,equity,NYSE,USD,1980-03-17,US3773201062,False,Basic Materials,"Paper, Lumber & Forest Products"
+GLW,Corning Inc,equity,NYSE,USD,1981-12-31,US2193501051,True,Technology,"Hardware, Equipment & Parts"
+GM,General Motors Company,equity,NYSE,USD,2010-11-18,US37045V1008,True,Consumer Cyclical,Auto - Manufacturers
+GNRC,Generac Holdings Inc.,equity,NYSE,USD,2010-02-11,US3687361044,True,Industrials,Industrial - Machinery
+GNTX,Gentex Corporation,equity,NASDAQ,USD,1981-12-22,US3719011096,True,Consumer Cyclical,Auto - Parts
+GOOG,Alphabet Inc.,equity,NASDAQ,USD,2004-08-19,US02079K1079,True,Communication Services,Internet Content & Information
+GOOGL,Alphabet Inc.,equity,NASDAQ,USD,2004-08-19,US02079K3059,True,Communication Services,Internet Content & Information
+GPC,Genuine Parts Company,equity,NYSE,USD,1980-03-17,US3724601055,True,Consumer Cyclical,Auto - Parts
+GPN,Global Payments Inc.,equity,NYSE,USD,2001-01-16,US37940X1028,True,Financial Services,Financial - Credit Services
+GPS,"The Gap, Inc.",equity,NYSE,USD,1980-03-17,US3647601083,False,Consumer Cyclical,Apparel - Retail
+GRA,,equity,,,,,,,
+GRMN,Garmin Ltd.,equity,NYSE,USD,2000-12-08,CH0114405324,True,Technology,"Hardware, Equipment & Parts"
+GS,"The Goldman Sachs Group, Inc.",equity,NYSE,USD,1999-05-04,US38141G1040,True,Financial Services,Financial - Capital Markets
+GT,The Goodyear Tire & Rubber Company,equity,NASDAQ,USD,1927-08-05,US3825501014,True,Consumer Cyclical,Auto - Parts
+GTM,ZoomInfo Technologies Inc.,equity,NASDAQ,USD,2020-06-04,US98980F1049,True,Technology,Software - Application
+GWRE,"Guidewire Software, Inc.",equity,NYSE,USD,2012-01-25,US40171V1008,True,Technology,Software - Application
+GWW,"W.W. Grainger, Inc.",equity,NYSE,USD,1973-02-21,US3848021040,True,Industrials,Industrial - Distribution
+H,Hyatt Hotels Corporation,equity,NYSE,USD,2009-11-05,US4485791028,True,Consumer Cyclical,Travel Lodging
+HAIN,"The Hain Celestial Group, Inc.",equity,NASDAQ,USD,1994-01-20,US4052171000,True,Consumer Defensive,Packaged Foods
+HAL,Halliburton Company,equity,NYSE,USD,1972-06-01,US4062161017,True,Energy,Oil & Gas Equipment & Services
+HAS,"Hasbro, Inc.",equity,NASDAQ,USD,1980-03-17,US4180561072,True,Consumer Cyclical,Leisure
+HBAN,Huntington Bancshares Incorporated,equity,NASDAQ,USD,1980-03-17,US4461501045,True,Financial Services,Banks - Regional
+HBI,Hanesbrands Inc.,equity,NYSE,USD,2006-09-06,US4103451021,False,Consumer Cyclical,Apparel - Manufacturers
+HCA,"HCA Healthcare, Inc.",equity,NYSE,USD,2011-03-10,US40412C1018,True,Healthcare,Medical - Care Facilities
+HD,"The Home Depot, Inc.",equity,NYSE,USD,1981-09-22,US4370761029,True,Consumer Cyclical,Home Improvement
+HEI,HEICO Corporation,equity,NYSE,USD,1980-03-17,US4228061093,True,Industrials,Aerospace & Defense
+HEI-A,HEICO Corporation,equity,NYSE,USD,1998-04-27,US4228062083,True,Industrials,Aerospace & Defense
+HES,Hess Corporation,equity,NYSE,USD,1980-03-17,US42809H1077,False,Energy,Oil & Gas Exploration & Production
+HFC,HF Sinclair Corporation,equity,NYSE,USD,2004-04-26,US4361061082,False,Energy,Oil & Gas Refining & Marketing
+HIG,"The Hartford Insurance Group, Inc.",equity,NYSE,USD,1995-12-15,US4165151048,True,Financial Services,Insurance - Diversified
+HII,"Huntington Ingalls Industries, Inc.",equity,NYSE,USD,2011-03-22,US4464131063,True,Industrials,Aerospace & Defense
+HLT,Hilton Worldwide Holdings Inc.,equity,NYSE,USD,2013-12-12,US43300A2033,True,Consumer Cyclical,Travel Lodging
+HOG,"Harley-Davidson, Inc.",equity,NYSE,USD,1986-07-08,US4128221086,True,Consumer Cyclical,Auto - Manufacturers
+HOLX,"Hologic, Inc.",equity,NASDAQ,USD,1990-03-01,US4364401012,False,Healthcare,Medical - Instruments & Supplies
+HON,Honeywell International Inc.,equity,NASDAQ,USD,2001-02-21,US4385162056,True,Industrials,Conglomerates
+HOOD,"Robinhood Markets, Inc.",equity,NASDAQ,USD,2021-07-29,US7707001027,True,Financial Services,Financial - Capital Markets
+HOUS,Anywhere Real Estate Inc.,equity,NYSE,USD,2012-10-11,US75605Y1064,False,Real Estate,Real Estate - Services
+HP,"Helmerich & Payne, Inc.",equity,NYSE,USD,1980-10-15,US4234521015,True,Energy,Oil & Gas Drilling
+HPE,Hewlett Packard Enterprise Company,equity,NYSE,USD,2015-10-19,US42824C1099,True,Technology,Computer Hardware
+HPQ,HP Inc.,equity,NYSE,USD,1957-11-06,US40434L1052,True,Technology,Computer Hardware
+HRB,"H&R Block, Inc.",equity,NYSE,USD,1973-02-21,US0936711052,True,Consumer Cyclical,Personal Products & Services
+HRL,Hormel Foods Corporation,equity,NYSE,USD,1980-03-17,US4404521001,True,Consumer Defensive,Packaged Foods
+HSIC,"Henry Schein, Inc.",equity,NASDAQ,USD,1995-11-03,US8064071025,True,Healthcare,Medical - Distribution
+HST,"Host Hotels & Resorts, Inc.",equity,NASDAQ,USD,1980-03-17,US44107P1049,True,Real Estate,REIT - Hotel & Motel
+HSY,The Hershey Company,equity,NYSE,USD,1980-03-17,US4278661081,True,Consumer Defensive,Food Confectioners
+HUBB,Hubbell Incorporated,equity,NYSE,USD,1972-06-05,US4435106079,True,Industrials,Electrical Equipment & Parts
+HUBS,"HubSpot, Inc.",equity,NYSE,USD,2014-10-09,US4435731009,True,Technology,Software - Application
+HUM,Humana Inc.,equity,NYSE,USD,1981-12-31,US4448591028,True,Healthcare,Medical - Healthcare Plans
+HUN,Huntsman Corporation,equity,NYSE,USD,2005-02-14,US4470111075,True,Basic Materials,Chemicals
+HWM,Howmet Aerospace Inc.,equity,NYSE,USD,2016-11-01,US4432011082,True,Industrials,Aerospace & Defense
+IBKR,"Interactive Brokers Group, Inc.",equity,NASDAQ,USD,2007-05-04,US45841N1072,True,Financial Services,Investment - Banking & Investment Services
+IBM,International Business Machines Corporation,equity,NYSE,USD,1915-09-24,US4592001014,True,Technology,Information Technology Services
+ICE,"Intercontinental Exchange, Inc.",equity,NYSE,USD,2005-11-16,US45866F1049,True,Financial Services,Financial - Data & Stock Exchanges
+ICLR,ICON Public Limited Company,equity,NASDAQ,USD,1998-05-15,IE0005711209,True,Healthcare,Medical - Diagnostics & Research
+IDXX,"IDEXX Laboratories, Inc.",equity,NASDAQ,USD,1991-06-21,US45168D1046,True,Healthcare,Medical - Diagnostics & Research
+IEX,IDEX Corporation,equity,NYSE,USD,1989-06-02,US45167R1041,True,Industrials,Industrial - Machinery
+IFF,International Flavors & Fragrances Inc.,equity,NYSE,USD,1974-12-17,US4595061015,True,Basic Materials,Chemicals - Specialty
+ILMN,"Illumina, Inc.",equity,NASDAQ,USD,2000-07-28,US4523271090,True,Healthcare,Medical - Diagnostics & Research
+INCY,Incyte Corporation,equity,NASDAQ,USD,1993-11-04,US45337C1027,True,Healthcare,Biotechnology
+INGR,Ingredion Incorporated,equity,NYSE,USD,1997-12-11,US4571871023,True,Consumer Defensive,Packaged Foods
+INTC,Intel Corp.,equity,NASDAQ,USD,1980-03-17,US4581401001,True,Technology,Semiconductors
+INTU,Intuit Inc.,equity,NASDAQ,USD,1993-03-12,US4612021034,True,Technology,Software - Application
+INVH,Invitation Homes Inc.,equity,NYSE,USD,2017-02-01,US46187W1071,True,Real Estate,REIT - Residential
+IP,International Paper Company,equity,NYSE,USD,1970-01-02,US4601461035,True,Basic Materials,"Paper, Lumber & Forest Products"
+IPG,"The Interpublic Group of Companies, Inc.",equity,NYSE,USD,1980-03-17,US4606901001,False,Communication Services,Advertising Agencies
+IPGP,IPG Photonics Corporation,equity,NASDAQ,USD,2006-12-13,US44980X1090,True,Technology,Semiconductors
+IQV,IQVIA Holdings Inc.,equity,NYSE,USD,2013-05-09,US46266C1053,True,Healthcare,Medical - Diagnostics & Research
+IR,Ingersoll Rand Inc.,equity,NYSE,USD,2017-05-12,US45687V1061,True,Industrials,Industrial - Machinery
+IRM,Iron Mountain Incorporated,equity,NYSE,USD,1996-02-01,US46284V1017,True,Real Estate,REIT - Specialty
+ISRG,"Intuitive Surgical, Inc.",equity,NASDAQ,USD,2000-06-16,US46120E6023,True,Healthcare,Medical - Instruments & Supplies
+IT,"Gartner, Inc.",equity,NYSE,USD,1993-10-05,US3666511072,True,Technology,Information Technology Services
+ITW,Illinois Tool Works Inc.,equity,NYSE,USD,1973-03-13,US4523081093,True,Industrials,Industrial - Machinery
+IVZ,Invesco Ltd.,equity,NYSE,USD,1995-08-24,BMG491BT1088,True,Financial Services,Asset Management
+J,Jacobs Solutions Inc.,equity,NYSE,USD,1980-03-17,US46982L1089,True,Industrials,Engineering & Construction
+JAZZ,Jazz Pharmaceuticals plc,equity,NASDAQ,USD,2007-06-01,IE00B4Q5ZN47,True,Healthcare,Biotechnology
+JBHT,"J.B. Hunt Transport Services, Inc.",equity,NASDAQ,USD,1983-11-22,US4456581077,True,Industrials,Integrated Freight & Logistics
+JBL,Jabil Inc.,equity,NYSE,USD,1993-05-03,US4663131039,True,Technology,"Hardware, Equipment & Parts"
+JBLU,JetBlue Airways Corporation,equity,NASDAQ,USD,2002-04-12,US4771431016,True,Industrials,"Airlines, Airports & Air Services"
+JCI,Johnson Controls International plc,equity,NYSE,USD,1987-09-28,IE00BY7QL619,True,Basic Materials,Construction Materials
+JEF,Jefferies Financial Group Inc.,equity,NYSE,USD,1980-03-17,US47233W1099,True,Financial Services,Financial - Capital Markets
+JKHY,"Jack Henry & Associates, Inc.",equity,NASDAQ,USD,1985-11-20,US4262811015,True,Technology,Information Technology Services
+JLL,Jones Lang LaSalle Incorporated,equity,NYSE,USD,1997-07-17,US48020Q1076,True,Real Estate,Real Estate - Services
+JNJ,Johnson & Johnson,equity,NYSE,USD,1962-01-02,US4781601046,True,Healthcare,Drug Manufacturers - General
+JNPR,"Juniper Networks, Inc.",equity,NYSE,USD,1999-06-25,US48203R1041,False,Technology,Communication Equipment
+JPM,JPMorgan Chase & Co.,equity,NYSE,USD,1980-03-17,US46625H1005,True,Financial Services,Banks - Diversified
+JSM,Navient Corporation SR NT 6% 121543,equity,NASDAQ,USD,2003-12-30,US63938C4050,True,Financial Services,Financial - Credit Services
+KDP,Keurig Dr Pepper Inc.,equity,NASDAQ,USD,2008-05-07,US49271V1008,True,Consumer Defensive,Beverages - Non-Alcoholic
+KEY,KeyCorp,equity,NYSE,USD,1987-11-05,US4932671088,True,Financial Services,Banks - Regional
+KEYS,"Keysight Technologies, Inc.",equity,NYSE,USD,2014-10-20,US49338L1035,True,Technology,"Hardware, Equipment & Parts"
+KHC,The Kraft Heinz Company,equity,NYSE,USD,2015-07-06,US5007541064,True,Consumer Defensive,Packaged Foods
+KIM,Kimco Realty Corporation,equity,NYSE,USD,1991-11-22,US49446R1095,True,Real Estate,REIT - Retail
+KKR,KKR & Co. Inc.,equity,NYSE,USD,2010-07-15,US48251W1045,True,Financial Services,Asset Management
+KLAC,KLA Corporation,equity,NASDAQ,USD,1980-10-08,US4824801009,True,Technology,Semiconductors
+KMB,Kimberly-Clark Corporation,equity,NASDAQ,USD,1980-03-17,US4943681035,True,Consumer Defensive,Household & Personal Products
+KMI,"Kinder Morgan, Inc.",equity,NYSE,USD,2011-02-11,US49456B1017,True,Energy,Oil & Gas Midstream
+KMX,"CarMax, Inc.",equity,NYSE,USD,1997-02-04,US1431301027,True,Consumer Cyclical,Auto - Dealerships
+KO,The Coca-Cola Company,equity,NYSE,USD,1962-01-02,US1912161007,True,Consumer Defensive,Beverages - Non-Alcoholic
+KR,The Kroger Co.,equity,NYSE,USD,1977-01-02,US5010441013,True,Consumer Defensive,Grocery Stores
+KRC,Kilroy Realty Corporation,equity,NYSE,USD,1997-01-29,US49427F1084,True,Real Estate,REIT - Office
+KSS,Kohl's Corporation,equity,NYSE,USD,1992-05-19,US5002551043,True,Consumer Cyclical,Department Stores
+KSU,Kansas City Southern,equity,NYSE,USD,2000-07-07,US4851703029,False,Industrials,Railroads
+KVUE,Kenvue Inc.,equity,NYSE,USD,2023-05-04,US49177J1025,True,Consumer Defensive,Household & Personal Products
+L,Loews Corporation,equity,NYSE,USD,1980-03-17,US5404241086,True,Financial Services,Insurance - Property & Casualty
+LAMR,Lamar Advertising Company,equity,NASDAQ,USD,1996-08-02,US5128161099,True,Real Estate,REIT - Specialty
+LAZ,Lazard Inc,equity,NYSE,USD,2005-05-05,US52110M1099,True,Financial Services,Financial - Capital Markets
+LBRDK,Liberty Broadband Corporation,equity,NASDAQ,USD,2014-11-05,US5303073051,False,Communication Services,Telecommunications Services
+LBTYA,Liberty Global plc,equity,NASDAQ,USD,2004-06-03,BMG611881019,True,Communication Services,Telecommunications Services
+LBTYK,Liberty Global plc,equity,NASDAQ,USD,2005-09-08,BMG611881274,True,Communication Services,Telecommunications Services
+LCI,"Lannett Company, Inc.",equity,NYSE,USD,2013-12-13,US5160121019,False,Healthcare,Drug Manufacturers - Specialty & Generic
+LDOS,"Leidos Holdings, Inc.",equity,NYSE,USD,2006-10-17,US5253271028,True,Technology,Information Technology Services
+LEA,Lear Corporation,equity,NYSE,USD,2009-11-09,US5218652049,True,Consumer Cyclical,Auto - Parts
+LECO,"Lincoln Electric Holdings, Inc.",equity,NASDAQ,USD,1994-04-07,US5339001068,True,Industrials,Manufacturing - Tools & Accessories
+LEG,"Leggett & Platt, Incorporated",equity,NYSE,USD,1980-03-17,US5246601075,False,Consumer Cyclical,"Furnishings, Fixtures & Appliances"
+LEN,Lennar Corporation,equity,NYSE,USD,1980-03-17,US5260571048,True,Consumer Cyclical,Residential Construction
+LEN-B,Lennar Corporation,equity,NYSE,USD,2003-04-23,US5260573028,True,Consumer Cyclical,Residential Construction
+LH,Labcorp Holdings Inc.,equity,NYSE,USD,1990-03-29,US5049221055,True,Healthcare,Medical - Diagnostics & Research
+LHX,"L3Harris Technologies, Inc.",equity,NYSE,USD,1981-12-31,US5024311095,True,Industrials,Aerospace & Defense
+LII,Lennox International Inc.,equity,NYSE,USD,1999-07-29,US5261071071,True,Industrials,Industrial - Machinery
+LIN,Linde plc,equity,NASDAQ,USD,1992-06-17,IE000S9YS762,True,Basic Materials,Chemicals - Specialty
+LITE,Lumentum Holdings Inc.,equity,NASDAQ,USD,2015-07-23,US55024U1097,True,Technology,Communication Equipment
+LKQ,LKQ Corporation,equity,NASDAQ,USD,2003-10-06,US5018892084,True,Consumer Cyclical,Auto - Parts
+LLTC,Linear Technology Corp.,equity,NASDAQ,USD,2016-01-04,US5356781063,False,Technology,Semiconductors
+LLY,Eli Lilly and Company,equity,NYSE,USD,1972-06-01,US5324571083,True,Healthcare,Drug Manufacturers - General
+LMT,Lockheed Martin Corporation,equity,NYSE,USD,1977-01-03,US5398301094,True,Industrials,Aerospace & Defense
+LNC,Lincoln National Corporation,equity,NYSE,USD,1980-03-17,US5341871094,True,Financial Services,Insurance - Life
+LNG,"Cheniere Energy, Inc.",equity,NYSE,USD,1994-04-04,US16411R2085,True,Energy,Oil & Gas Midstream
+LNT,Alliant Energy Corporation,equity,NASDAQ,USD,1988-01-05,US0188021085,True,Utilities,Regulated Electric
+LOW,"Lowe's Companies, Inc.",equity,NYSE,USD,1980-03-17,US5486611073,True,Consumer Cyclical,Home Improvement
+LPLA,LPL Financial Holdings Inc.,equity,NASDAQ,USD,2010-11-18,US50212V1008,True,Financial Services,Financial - Capital Markets
+LRCX,Lam Research Corporation,equity,NASDAQ,USD,1984-05-04,US5128073062,True,Technology,Semiconductors
+LSCC,Lattice Semiconductor Corporation,equity,NASDAQ,USD,1989-11-09,US5184151042,True,Technology,Semiconductors
+LUMN,"Lumen Technologies, Inc.",equity,NYSE,USD,1980-03-17,US5502411037,True,Communication Services,Telecommunications Services
+LUV,Southwest Airlines Co.,equity,NYSE,USD,1980-01-02,US8447411088,True,Industrials,"Airlines, Airports & Air Services"
+LVS,Las Vegas Sands Corp.,equity,NYSE,USD,2004-12-15,US5178341070,True,Consumer Cyclical,"Gambling, Resorts & Casinos"
+LW,"Lamb Weston Holdings, Inc.",equity,NYSE,USD,2016-11-10,US5132721045,True,Consumer Defensive,Packaged Foods
+LYB,LyondellBasell Industries N.V.,equity,NYSE,USD,2010-04-28,NL0009434992,True,Basic Materials,Chemicals - Specialty
+LYV,"Live Nation Entertainment, Inc.",equity,NYSE,USD,2005-12-21,US5380341090,True,Communication Services,Entertainment
+M,"Macy's, Inc.",equity,NYSE,USD,1992-02-05,US55616P1049,True,Consumer Cyclical,Department Stores
+MA,Mastercard Incorporated,equity,NYSE,USD,2006-05-25,US57636Q1040,True,Financial Services,Financial - Credit Services
+MAA,"Mid-America Apartment Communities, Inc.",equity,NYSE,USD,1994-01-28,US59522J1034,True,Real Estate,REIT - Residential
+MAC,The Macerich Company,equity,NYSE,USD,1994-03-10,US5543821012,True,Real Estate,REIT - Retail
+MAGN,Magnera Corp,equity,NYSE,USD,1980-03-17,US55939A1079,True,Consumer Defensive,Household & Personal Products
+MAN,ManpowerGroup Inc.,equity,NYSE,USD,1988-10-05,US56418H1005,True,Industrials,Staffing & Employment Services
+MAR,"Marriott International, Inc.",equity,NASDAQ,USD,1998-03-23,US5719032022,True,Consumer Cyclical,Travel Lodging
+MAS,Masco Corporation,equity,NYSE,USD,1980-03-17,US5745991068,True,Basic Materials,Construction Materials
+MASI,Masimo Corporation,equity,NASDAQ,USD,2007-08-08,US5747951003,False,Healthcare,Medical - Devices
+MAT,"Mattel, Inc.",equity,NASDAQ,USD,1976-06-17,US5770811025,True,Consumer Cyclical,Leisure
+MCD,McDonald's Corporation,equity,NYSE,USD,1965-04-21,US5801351017,True,Consumer Cyclical,Restaurants
+MCHP,Microchip Technology Incorporated,equity,NASDAQ,USD,1993-03-19,US5950171042,True,Technology,Semiconductors
+MCK,McKesson Corporation,equity,NYSE,USD,1994-11-10,US58155Q1031,True,Healthcare,Medical - Distribution
+MCO,Moody's Corporation,equity,NYSE,USD,1994-10-31,US6153691059,True,Financial Services,Financial - Data & Stock Exchanges
+MD,"Pediatrix Medical Group, Inc.",equity,NYSE,USD,1995-09-20,US58502B1061,True,Healthcare,Medical - Care Facilities
+MDLZ,"Mondelez International, Inc.",equity,NASDAQ,USD,2001-06-13,US6092071058,True,Consumer Defensive,Food Confectioners
+MDT,Medtronic plc,equity,NYSE,USD,1973-05-02,IE00BTN1Y115,True,Healthcare,Medical - Devices
+MET,"MetLife, Inc.",equity,NYSE,USD,2000-04-05,US59156R1086,True,Financial Services,Insurance - Life
+META,"Meta Platforms, Inc.",equity,NASDAQ,USD,2012-05-18,US30303M1027,True,Communication Services,Internet Content & Information
+MGM,MGM Resorts International,equity,NYSE,USD,1988-05-02,US5529531015,True,Consumer Cyclical,"Gambling, Resorts & Casinos"
+MHK,"Mohawk Industries, Inc.",equity,NYSE,USD,1992-04-01,US6081901042,True,Consumer Cyclical,"Furnishings, Fixtures & Appliances"
+MIC,Corgi MU 2x Daily ETF,etf,CBOE,USD,2026-06-26,US21874J7357,True,Financial Services,Asset Management
+MIDD,The Middleby Corporation,equity,NASDAQ,USD,1987-08-10,US5962781010,True,Industrials,Industrial - Machinery
+MKC,"McCormick & Company, Incorporated",equity,NYSE,USD,1999-04-26,US5797802064,True,Consumer Defensive,Packaged Foods
+MKC-V,"McCormick & Company, Incorporated",equity,NYSE,USD,2003-10-07,US5797801074,True,Consumer Defensive,Packaged Foods
+MKL,Markel Corporation,equity,NYSE,USD,1986-12-12,US5705351048,True,Financial Services,Insurance - Property & Casualty
+MKTX,MarketAxess Holdings Inc.,equity,NASDAQ,USD,2004-11-05,US57060D1081,True,Financial Services,Financial - Capital Markets
+MLM,"Martin Marietta Materials, Inc.",equity,NYSE,USD,1994-02-17,US5732841060,True,Basic Materials,Construction Materials
+MMC,"Marsh & McLennan Companies, Inc.",equity,NYSE,USD,1987-12-30,US5717481023,False,Financial Services,Insurance - Brokers
+MMM,3M Company,equity,NYSE,USD,1946-01-14,US88579Y1010,True,Industrials,Conglomerates
+MNST,Monster Beverage Corporation,equity,NASDAQ,USD,1985-12-09,US61174X1090,True,Consumer Defensive,Beverages - Non-Alcoholic
+MO,"Altria Group, Inc.",equity,NYSE,USD,1985-07-01,US02209S1033,True,Consumer Defensive,Tobacco
+MOH,"Molina Healthcare, Inc.",equity,NYSE,USD,2003-07-02,US60855R1005,True,Healthcare,Medical - Healthcare Plans
+MOS,The Mosaic Company,equity,NYSE,USD,1988-01-26,US61945C1036,True,Basic Materials,Agricultural Inputs
+MPC,Marathon Petroleum Corporation,equity,NYSE,USD,2011-06-24,US56585A1025,True,Energy,Oil & Gas Refining & Marketing
+MPLX,MPLX Lp,equity,NYSE,USD,2012-10-26,US55336V1008,True,Energy,Oil & Gas Midstream
+MPWR,"Monolithic Power Systems, Inc.",equity,NASDAQ,USD,2004-11-19,US6098391054,True,Technology,Semiconductors
+MRK,"Merck & Co., Inc.",equity,NYSE,USD,1978-01-13,US58933Y1055,True,Healthcare,Drug Manufacturers - General
+MRNA,"Moderna, Inc.",equity,NASDAQ,USD,2018-12-07,US60770K1079,True,Healthcare,Biotechnology
+MRO,Marathon Oil Corporation,equity,NYSE,USD,1962-01-02,US5658491064,False,Energy,Oil & Gas Exploration & Production
+MRSH,"Marsh & McLennan Companies, Inc.",equity,NYSE,USD,1987-12-30,US5717481023,True,Financial Services,Insurance - Brokers
+MRVL,"Marvell Technology, Inc.",equity,NASDAQ,USD,2000-06-27,US5738741041,True,Technology,Semiconductors
+MS,Morgan Stanley,equity,NYSE,USD,1993-02-23,US6174464486,True,Financial Services,Financial - Capital Markets
+MSCI,MSCI Inc.,equity,NYSE,USD,2007-11-15,US55354G1004,True,Financial Services,Financial - Data & Stock Exchanges
+MSFT,Microsoft Corporation,equity,NASDAQ,USD,1986-03-13,US5949181045,True,Technology,Software - Infrastructure
+MSI,"Motorola Solutions, Inc.",equity,NYSE,USD,1980-03-17,US6200763075,True,Technology,Communication Equipment
+MSM,"MSC Industrial Direct Co., Inc.",equity,NYSE,USD,1995-12-15,US5535301064,True,Industrials,Industrial - Distribution
+MSTR,Strategy Inc,equity,NASDAQ,USD,1998-06-11,US5949724083,True,Technology,Software - Application
+MTB,M&T Bank Corporation,equity,NYSE,USD,1980-03-17,US55261F1049,True,Financial Services,Banks - Regional
+MTCH,"Match Group, Inc.",equity,NASDAQ,USD,2015-11-19,US57667L1070,True,Communication Services,Internet Content & Information
+MTD,Mettler-Toledo International Inc.,equity,NYSE,USD,1997-11-14,US5926881054,True,Healthcare,Medical - Diagnostics & Research
+MU,"Micron Technology, Inc.",equity,NASDAQ,USD,1984-06-01,US5951121038,True,Technology,Semiconductors
+MUR,Murphy Oil Corporation,equity,NYSE,USD,1980-03-17,US6267171022,True,Energy,Oil & Gas Exploration & Production
+NAVI,Navient Corporation,equity,NASDAQ,USD,2014-04-17,US63938C1080,True,Financial Services,Financial - Credit Services
+NBIX,"Neurocrine Biosciences, Inc.",equity,NASDAQ,USD,1996-05-23,US64125C1099,True,Healthcare,Biotechnology
+NCLH,Norwegian Cruise Line Holdings Ltd.,equity,NYSE,USD,2013-01-18,BMG667211046,True,Consumer Cyclical,Travel Services
+NCR,NCR Corporation,equity,NYSE,USD,1996-12-11,US62886E1082,False,Technology,Information Technology Services
+NDAQ,"Nasdaq, Inc.",equity,NASDAQ,USD,2002-07-01,US6311031081,True,Financial Services,Financial - Data & Stock Exchanges
+NDSN,Nordson Corporation,equity,NASDAQ,USD,1980-03-18,US6556631025,True,Industrials,Industrial - Machinery
+NEE,"NextEra Energy, Inc.",equity,NYSE,USD,2014-06-19,US65339F1012,True,Utilities,Regulated Electric
+NEGG,"Newegg Commerce, Inc.",equity,NASDAQ,USD,2010-04-22,VGG6483G2099,True,Consumer Cyclical,Specialty Retail
+NEM,Newmont Corporation,equity,NYSE,USD,1980-03-17,US6516391066,True,Basic Materials,Gold
+NEU,NewMarket Corporation,equity,NYSE,USD,1980-03-17,US6515871076,True,Basic Materials,Chemicals - Specialty
+NFG,National Fuel Gas Company,equity,NYSE,USD,1973-05-03,US6361801011,True,Energy,Oil & Gas Integrated
+NFLX,"Netflix, Inc.",equity,NASDAQ,USD,2002-05-23,US64110L1061,True,Communication Services,Entertainment
+NI,NiSource Inc,equity,NYSE,USD,1973-02-21,US65473P1057,True,Utilities,Regulated Gas
+NKE,"NIKE, Inc.",equity,NYSE,USD,1980-12-02,US6541061031,True,Consumer Cyclical,Apparel - Footwear & Accessories
+NLSN,Nielsen Holdings plc,equity,NYSE,USD,2015-08-31,GB00BWFY5505,False,Industrials,Consulting Services
+NNN,"NNN REIT, Inc.",equity,NYSE,USD,1984-10-09,US6374171063,True,Real Estate,REIT - Retail
+NOC,Northrop Grumman Corporation,equity,NYSE,USD,1981-12-31,US6668071029,True,Industrials,Aerospace & Defense
+NOV,NOV Inc.,equity,NYSE,USD,1996-10-29,US62955J1034,True,Energy,Oil & Gas Equipment & Services
+NOW,"ServiceNow, Inc.",equity,NYSE,USD,2012-06-29,US81762P1021,True,Technology,Software - Application
+NRG,"NRG Energy, Inc.",equity,NYSE,USD,2003-12-02,US6293775085,True,Utilities,Independent Power Producers
+NSC,Norfolk Southern Corporation,equity,NYSE,USD,1982-06-02,US6558441084,True,Industrials,Railroads
+NTAP,"NetApp, Inc.",equity,NASDAQ,USD,1995-11-21,US64110D1046,True,Technology,Computer Hardware
+NTNX,"Nutanix, Inc.",equity,NASDAQ,USD,2016-09-30,US67059N1081,True,Technology,Software - Infrastructure
+NUE,Nucor Corporation,equity,NYSE,USD,1980-03-17,US6703461052,True,Basic Materials,Steel
+NVCR,Novocure Ltd,equity,NASDAQ,USD,2015-10-02,JE00BYSS4X48,True,Healthcare,Medical - Devices
+NVDA,NVIDIA Corporation,equity,NASDAQ,USD,1999-01-22,US67066G1040,True,Technology,Semiconductors
+NVR,"NVR, Inc.",equity,NYSE,USD,1985-07-22,US62944T1051,True,Consumer Cyclical,Residential Construction
+NWL,Newell Brands Inc.,equity,NASDAQ,USD,1980-03-17,US6512291062,True,Consumer Defensive,Household & Personal Products
+NWS,News Corporation,equity,NASDAQ,USD,2013-06-19,US65249B2088,True,Communication Services,Publishing
+NWSA,News Corporation,equity,NASDAQ,USD,2013-06-19,US65249B1098,True,Communication Services,Publishing
+NYCB,"New York Community Bancorp, Inc.",equity,NYSE,USD,1993-11-23,US6494451031,False,Financial Services,Banks - Regional
+O,Realty Income Corporation,equity,NYSE,USD,1994-10-18,US7561091049,True,Real Estate,REIT - Retail
+ODFL,"Old Dominion Freight Line, Inc.",equity,NASDAQ,USD,1991-10-24,US6795801009,True,Industrials,Trucking
+OGE,OGE Energy Corp.,equity,NYSE,USD,1950-09-27,US6708371033,True,Utilities,Regulated Electric
+OHI,"Omega Healthcare Investors, Inc.",equity,NYSE,USD,1992-08-07,US6819361006,True,Real Estate,REIT - Healthcare Facilities
+OKE,"ONEOK, Inc.",equity,NYSE,USD,1980-10-01,US30609A1097,True,Energy,Oil & Gas Midstream
+OMC,Omnicom Group Inc.,equity,NYSE,USD,1980-03-17,US6819191064,True,Communication Services,Advertising Agencies
+ON,ON Semiconductor Corporation,equity,NASDAQ,USD,2000-05-02,US6821891057,True,Technology,Semiconductors
+OPTU,"Optimum Communications, Inc.",equity,NYSE,USD,2017-06-22,US02156K1034,True,Communication Services,Telecommunications Services
+ORCL,Oracle Corporation,equity,NYSE,USD,1986-03-12,US68389X1054,True,Technology,Software - Infrastructure
+ORLY,"O'Reilly Automotive, Inc.",equity,NASDAQ,USD,1993-04-23,US67103H1077,True,Consumer Cyclical,Specialty Retail
+OTIS,Otis Worldwide Corporation,equity,NYSE,USD,2020-03-19,US68902V1070,True,Industrials,Industrial - Machinery
+OVV,Ovintiv Inc.,equity,NYSE,USD,2002-04-08,US69047Q1022,True,Energy,Oil & Gas Exploration & Production
+OXY,Occidental Petroleum Corporation,equity,NYSE,USD,1981-12-31,US6745991058,True,Energy,Oil & Gas Exploration & Production
+PANW,"Palo Alto Networks, Inc.",equity,NASDAQ,USD,2012-07-20,US6974351057,True,Technology,Software - Infrastructure
+PARA,"Banzai International, Inc. Class A",equity,NASDAQ,USD,2021-02-12,US06682J6055,True,Technology,Software - Application
+PAYC,"Paycom Software, Inc.",equity,NYSE,USD,2014-04-15,US70432V1026,True,Technology,Software - Application
+PAYX,"Paychex, Inc.",equity,NASDAQ,USD,1983-08-26,US7043261079,True,Industrials,Staffing & Employment Services
+PCAR,PACCAR Inc,equity,NASDAQ,USD,1980-03-17,US6937181088,True,Industrials,Industrial - Machinery
+PCG,PG&E Corporation,equity,NYSE,USD,1972-06-01,US69331C1080,True,Utilities,Regulated Electric
+PCTY,Paylocity Holding Corporation,equity,NASDAQ,USD,2014-03-19,US70438V1061,True,Technology,Software - Application
+PEAK,"Healthpeak Properties, Inc.",equity,NYSE,USD,1985-05-23,US42250P1030,False,Real Estate,REIT - Healthcare Facilities
+PEG,Public Service Enterprise Group Incorporated,equity,NYSE,USD,1980-01-02,US7445731067,True,Utilities,Regulated Electric
+PEP,"PepsiCo, Inc.",equity,NASDAQ,USD,1972-06-01,US7134481081,True,Consumer Defensive,Beverages - Non-Alcoholic
+PFE,Pfizer Inc.,equity,NYSE,USD,1972-06-01,US7170811035,True,Healthcare,Drug Manufacturers - General
+PFG,"Principal Financial Group, Inc.",equity,NASDAQ,USD,2001-10-23,US74251V1026,True,Financial Services,Asset Management
+PG,The Procter & Gamble Company,equity,NYSE,USD,1978-01-13,US7427181091,True,Consumer Defensive,Household & Personal Products
+PGR,The Progressive Corporation,equity,NYSE,USD,1980-03-17,US7433151039,True,Financial Services,Insurance - Property & Casualty
+PH,Parker-Hannifin Corporation,equity,NYSE,USD,1980-03-17,US7010941042,True,Industrials,Industrial - Machinery
+PHM,"PulteGroup, Inc.",equity,NYSE,USD,1980-03-17,US7458671010,True,Consumer Cyclical,Residential Construction
+PII,Polaris Inc.,equity,NYSE,USD,1987-09-16,US7310681025,True,Consumer Cyclical,Auto - Recreational Vehicles
+PINS,"Pinterest, Inc.",equity,NYSE,USD,2019-04-18,US72352L1061,True,Communication Services,Internet Content & Information
+PKG,Packaging Corporation of America,equity,NYSE,USD,2000-01-28,US6951561090,True,Consumer Cyclical,Packaging & Containers
+PLD,"Prologis, Inc.",equity,NYSE,USD,1997-11-21,US74340W1036,True,Real Estate,REIT - Industrial
+PLTR,Palantir Technologies Inc.,equity,NASDAQ,USD,2020-09-30,US69608A1088,True,Technology,Software - Infrastructure
+PM,Philip Morris International Inc.,equity,NYSE,USD,2008-03-17,US7181721090,True,Consumer Defensive,Tobacco
+PNC,"The PNC Financial Services Group, Inc.",equity,NYSE,USD,1975-11-17,US6934751057,True,Financial Services,Banks - Regional
+PNR,Pentair plc,equity,NYSE,USD,1973-05-03,IE00BLS09M33,True,Industrials,Industrial - Machinery
+PNW,Pinnacle West Capital Corporation,equity,NYSE,USD,1961-08-28,US7234841010,True,Utilities,Regulated Electric
+PODD,Insulet Corp.,equity,NASDAQ,USD,2007-05-15,US45784P1012,True,Healthcare,Medical - Devices
+POOL,Pool Corporation,equity,NASDAQ,USD,1995-10-13,US73278L1052,True,Industrials,Industrial - Distribution
+PPC,Pilgrim's Pride Corporation,equity,NASDAQ,USD,1987-12-30,US72147K1088,True,Consumer Defensive,Packaged Foods
+PPG,"PPG Industries, Inc.",equity,NYSE,USD,1980-03-17,US6935061076,True,Basic Materials,Chemicals - Specialty
+PPL,PPL Corporation,equity,NYSE,USD,1980-03-17,US69351T1060,True,Utilities,Regulated Electric
+PRGO,Perrigo Company plc,equity,NYSE,USD,1991-12-17,IE00BGH1M568,True,Healthcare,Drug Manufacturers - Specialty & Generic
+PRU,"Prudential Financial, Inc.",equity,NYSE,USD,2001-12-13,US7443201022,True,Financial Services,Insurance - Life
+PSA,Public Storage,equity,NYSE,USD,1980-11-18,US74460D1090,True,Real Estate,REIT - Industrial
+PSTG,Pure Storage Inc.,equity,NYSE,USD,2015-10-06,US74624M1027,False,Technology,Computer Hardware
+PSX,Phillips 66,equity,NYSE,USD,2012-04-12,US7185461040,True,Energy,Oil & Gas Refining & Marketing
+PSXP,Phillips 66 Partners LP,equity,NYSE,USD,2013-07-23,US7185492078,False,Energy,Oil & Gas Midstream
+PTC,PTC Inc.,equity,NASDAQ,USD,1989-12-08,US69370C1009,True,Technology,Software - Application
+PTON,"Peloton Interactive, Inc.",equity,NASDAQ,USD,2019-09-26,US70614W1009,True,Consumer Cyclical,Leisure
+PVH,PVH Corp.,equity,NYSE,USD,1980-03-17,US6936561009,True,Consumer Cyclical,Apparel - Manufacturers
+PWR,"Quanta Services, Inc.",equity,NYSE,USD,1998-02-12,US74762E1029,True,Industrials,Engineering & Construction
+PXD,Pioneer Natural Resources Company,equity,NYSE,USD,1997-08-08,US7237871071,False,Energy,Oil & Gas Exploration & Production
+PYPL,"PayPal Holdings, Inc.",equity,NASDAQ,USD,2015-07-06,US70450Y1038,True,Financial Services,Financial - Credit Services
+QCOM,QUALCOMM Incorporated,equity,NASDAQ,USD,1991-12-13,US7475251036,True,Technology,Semiconductors
+QRTEA,"Qurate Retail, Inc.",equity,NASDAQ,USD,2006-05-10,US74915M1009,False,Consumer Cyclical,Specialty Retail
+QRVO,"Qorvo, Inc.",equity,NASDAQ,USD,2015-01-02,US74736K1016,True,Technology,Semiconductors
+R,"Ryder System, Inc.",equity,NYSE,USD,1980-01-02,US7835491082,True,Industrials,Rental & Leasing Services
+RAD,Rite Aid Corporation,equity,NYSE,USD,1980-03-17,US7677548726,False,Healthcare,Medical - Pharmaceuticals
+RBA,"RB Global, Inc.",equity,NYSE,USD,1998-03-10,CA74935Q1072,True,Industrials,Specialty Business Services
+RCL,Royal Caribbean Cruises Ltd.,equity,NYSE,USD,1993-04-28,LR0008862868,True,Consumer Cyclical,Travel Services
+RDDT,"Reddit, Inc.",equity,NYSE,USD,2024-03-21,US75734B1008,True,Communication Services,Internet Content & Information
+RE,"Everest Re Group, Ltd.",equity,NYSE,USD,1995-10-03,BMG3223R1088,False,Financial Services,Insurance - Property & Casualty
+REG,Regency Centers Corporation,equity,NASDAQ,USD,1993-10-29,US7588491032,True,Real Estate,REIT - Retail
+REGN,"Regeneron Pharmaceuticals, Inc.",equity,NASDAQ,USD,1991-04-02,US75886F1075,True,Healthcare,Biotechnology
+RF,Regions Financial Corporation,equity,NYSE,USD,1980-03-17,US7591EP1005,True,Financial Services,Banks - Regional
+RGA,"Reinsurance Group of America, Incorporated",equity,NYSE,USD,2008-09-12,US7593516047,True,Financial Services,Insurance - Reinsurance
+RHI,Robert Half Inc.,equity,NYSE,USD,1980-03-17,US7703231032,True,Industrials,Staffing & Employment Services
+RJF,"Raymond James Financial, Inc.",equity,NYSE,USD,1983-07-01,US7547301090,True,Financial Services,Asset Management
+RKT,"Rocket Companies, Inc.",equity,NYSE,USD,2020-08-06,US77311W1018,True,Financial Services,Financial - Mortgages
+RL,Ralph Lauren Corporation,equity,NYSE,USD,1997-06-12,US7512121010,True,Consumer Cyclical,Apparel - Manufacturers
+RLGY,Realogy Holdings Corp.,equity,NYSE,USD,2012-10-11,US75605Y1064,False,Real Estate,Real Estate - Services
+RMD,ResMed Inc.,equity,NYSE,USD,1995-06-02,US7611521078,True,Healthcare,Medical - Instruments & Supplies
+ROK,"Rockwell Automation, Inc.",equity,NYSE,USD,1981-12-31,US7739031091,True,Industrials,Industrial - Machinery
+ROKU,"Roku, Inc.",equity,NASDAQ,USD,2017-09-28,US77543R1023,True,Communication Services,Entertainment
+ROL,"Rollins, Inc.",equity,NYSE,USD,1980-03-17,US7757111049,True,Industrials,Specialty Business Services
+ROP,"Roper Technologies, Inc.",equity,NASDAQ,USD,1992-02-13,US7766961061,True,Technology,Software - Application
+ROST,"Ross Stores, Inc.",equity,NASDAQ,USD,1985-08-08,US7782961038,True,Consumer Cyclical,Apparel - Retail
+RPM,RPM International Inc.,equity,NYSE,USD,1980-03-17,US7496851038,True,Basic Materials,Chemicals - Specialty
+RPRX,Royalty Pharma plc,equity,NASDAQ,USD,2020-06-16,GB00BMVP7Y09,True,Healthcare,Medical - Pharmaceuticals
+RRC,Range Resources Corporation,equity,NYSE,USD,1980-06-19,US75281A1097,True,Energy,Oil & Gas Exploration & Production
+RS,Reliance Steel & Aluminum Co.,equity,NYSE,USD,1994-09-16,US7595091023,True,Basic Materials,Steel
+RSG,"Republic Services, Inc.",equity,NYSE,USD,1998-07-01,US7607591002,True,Industrials,Waste Management
+RTX,RTX Corporation,equity,NYSE,USD,1952-09-15,US75513E1010,True,Industrials,Aerospace & Defense
+RVTY,"Revvity, Inc.",equity,NYSE,USD,1965-07-06,US7140461093,True,Healthcare,Medical - Diagnostics & Research
+SABR,Sabre Corporation,equity,NASDAQ,USD,2014-04-17,US78573M1045,True,Technology,Software - Infrastructure
+SBAC,SBA Communications Corporation,equity,NASDAQ,USD,1999-06-16,US78410G1040,True,Real Estate,REIT - Specialty
+SBUX,Starbucks Corporation,equity,NASDAQ,USD,1992-06-26,US8552441094,True,Consumer Cyclical,Restaurants
+SC,Santander Consumer USA Holdings Inc.,equity,NYSE,USD,2014-01-23,US80283M1018,False,Financial Services,Financial - Credit Services
+SCCO,Southern Copper Corporation,equity,NYSE,USD,1996-01-02,US84265V1052,True,Basic Materials,Copper
+SCHW,The Charles Schwab Corporation,equity,NYSE,USD,1987-09-22,US8085131055,True,Financial Services,Financial - Capital Markets
+SEE,Sealed Air Corporation,equity,NYSE,USD,1980-03-17,US81211K1007,False,Consumer Cyclical,Packaging & Containers
+SEIC,SEI Investments Company,equity,NASDAQ,USD,1981-03-25,US7841171033,True,Financial Services,Asset Management
+SFM,"Sprouts Farmers Market, Inc.",equity,NASDAQ,USD,2013-08-01,US85208M1027,True,Consumer Defensive,Grocery Stores
+SGEN,Seagen Inc.,equity,NASDAQ,USD,2001-03-09,US81181C1045,False,Healthcare,Biotechnology
+SHW,The Sherwin-Williams Company,equity,NYSE,USD,1980-03-17,US8243481061,True,Basic Materials,Chemicals - Specialty
+SIG,Signet Jewelers Limited,equity,NYSE,USD,1988-07-14,BMG812761002,True,Consumer Cyclical,Luxury Goods
+SIRI,Sirius XM Holdings Inc.,equity,NASDAQ,USD,1994-09-13,US8299331004,True,Communication Services,Broadcasting
+SITC,SITE Centers Corp.,equity,NYSE,USD,1993-02-02,US82981J8514,True,Real Estate,REIT - Retail
+SIVB,SVB Financial Group,equity,NASDAQ,USD,1987-10-26,US78486Q1013,False,Financial Services,Banks - Regional
+SJM,The J. M. Smucker Company,equity,NYSE,USD,1994-10-31,US8326964058,True,Consumer Defensive,Packaged Foods
+SLB,Slb N.V.,equity,NYSE,USD,1981-12-31,AN8068571086,True,Energy,Oil & Gas Equipment & Services
+SLG,SL Green Realty Corp.,equity,NYSE,USD,1997-08-15,US78440X8873,True,Real Estate,REIT - Office
+SMCI,"Super Micro Computer, Inc.",equity,NASDAQ,USD,2007-03-28,US86800U3023,True,Technology,Computer Hardware
+SNA,Snap-on Incorporated,equity,NYSE,USD,2017-03-02,US8330341012,True,Industrials,Manufacturing - Tools & Accessories
+SNCR,"Synchronoss Technologies, Inc.",equity,NASDAQ,USD,2006-06-15,US87157B4005,False,Technology,Software - Infrastructure
+SNPS,"Synopsys, Inc.",equity,NASDAQ,USD,1992-02-26,US8716071076,True,Technology,Software - Infrastructure
+SO,The Southern Company,equity,NYSE,USD,1981-12-31,US8425871071,True,Utilities,Regulated Electric
+SOFI,"SoFi Technologies, Inc.",equity,NASDAQ,USD,2021-01-04,US83406F1021,True,Financial Services,Financial - Credit Services
+SPG,"Simon Property Group, Inc.",equity,NYSE,USD,1993-12-14,US8288061091,True,Real Estate,REIT - Retail
+SPGI,S&P Global Inc.,equity,NYSE,USD,1973-02-21,US78409V1044,True,Financial Services,Financial - Data & Stock Exchanges
+SPLK,Splunk Inc.,equity,NASDAQ,USD,2012-04-19,US8486371045,False,Technology,Software - Infrastructure
+SPOT,Spotify Technology S.A.,equity,NYSE,USD,2018-04-03,LU1778762911,True,Communication Services,Internet Content & Information
+SQ,"Block, Inc.",equity,NYSE,USD,2015-11-19,US8522341036,False,Technology,Software - Infrastructure
+SRCL,"Stericycle, Inc.",equity,NASDAQ,USD,1996-08-23,US8589121081,False,Industrials,Waste Management
+SRE,Sempra,equity,NYSE,USD,1998-06-29,US8168511090,True,Utilities,Diversified Utilities
+SSNC,"SS&C Technologies Holdings, Inc.",equity,NASDAQ,USD,2010-03-31,US78467J1007,True,Technology,Software - Application
+ST,Sensata Technologies Holding plc,equity,NYSE,USD,2010-03-11,GB00BFMBMT84,True,Technology,"Hardware, Equipment & Parts"
+STE,STERIS plc,equity,NYSE,USD,1992-06-01,IE00BFY8C754,True,Healthcare,Medical - Specialties
+STLD,"Steel Dynamics, Inc.",equity,NASDAQ,USD,1996-11-22,US8581191009,True,Basic Materials,Steel
+STNE,StoneCo Ltd.,equity,NASDAQ,USD,2018-10-25,KYG851581069,True,Technology,Software - Infrastructure
+STT,State Street Corporation,equity,NYSE,USD,1980-03-17,US8574771031,True,Financial Services,Asset Management
+STZ,"Constellation Brands, Inc.",equity,NYSE,USD,1992-03-17,US21036P1084,True,Consumer Defensive,Beverages - Alcoholic
+SUI,"Sun Communities, Inc.",equity,NYSE,USD,1993-12-09,US8666741041,True,Real Estate,REIT - Residential
+SW,Smurfit Westrock plc,equity,NYSE,USD,2008-06-17,IE00028FXN24,True,Consumer Cyclical,Packaging & Containers
+SWK,"Stanley Black & Decker, Inc.",equity,NYSE,USD,1980-03-17,US8545021011,True,Industrials,Manufacturing - Tools & Accessories
+SWKS,"Skyworks Solutions, Inc.",equity,NASDAQ,USD,1984-09-07,US83088M1027,True,Technology,Semiconductors
+SYF,Synchrony Financial,equity,NYSE,USD,2014-07-31,US87165B1035,True,Financial Services,Financial - Credit Services
+SYK,Stryker Corporation,equity,NYSE,USD,1980-03-17,US8636671013,True,Healthcare,Medical - Devices
+SYY,Sysco Corporation,equity,NYSE,USD,1973-05-08,US8718291078,True,Consumer Defensive,Food Distribution
+T,AT&T Inc.,equity,NYSE,USD,1983-11-21,US00206R1023,True,Communication Services,Telecommunications Services
+TAP,Molson Coors Beverage Company,equity,NYSE,USD,1975-06-12,US60871R2094,True,Consumer Defensive,Beverages - Alcoholic
+TAP-A,Molson Coors Beverage Company,equity,NYSE,USD,2006-02-27,US60871R1005,True,Consumer Defensive,Beverages - Alcoholic
+TDC,Teradata Corporation,equity,NYSE,USD,2007-10-01,US88076W1036,True,Technology,Software - Infrastructure
+TDG,TransDigm Group Incorporated,equity,NYSE,USD,2006-03-15,US8936411003,True,Industrials,Aerospace & Defense
+TDW,Tidewater Inc.,equity,NYSE,USD,1980-03-17,US88642R1095,True,Energy,Oil & Gas Equipment & Services
+TDY,Teledyne Technologies Incorporated,equity,NYSE,USD,1999-11-23,US8793601050,True,Technology,"Hardware, Equipment & Parts"
+TECH,Bio-Techne Corporation,equity,NASDAQ,USD,1989-02-09,US09073M1045,True,Healthcare,Biotechnology
+TEL,TE Connectivity plc,equity,NYSE,USD,2007-06-14,IE000IVNQZ81,True,Technology,Semiconductors
+TER,"Teradyne, Inc.",equity,NASDAQ,USD,1970-09-14,US8807701029,True,Technology,Semiconductors
+TFC,Truist Financial Corporation,equity,NYSE,USD,1980-03-18,US89832Q1094,True,Financial Services,Banks - Regional
+TFX,Teleflex Incorporated,equity,NYSE,USD,1980-03-17,US8793691069,True,Healthcare,Medical - Instruments & Supplies
+TGT,Target Corporation,equity,NYSE,USD,1967-10-18,US87612E1064,True,Consumer Defensive,Discount Stores
+TJX,"The TJX Companies, Inc.",equity,NYSE,USD,1987-06-26,US8725401090,True,Consumer Cyclical,Apparel - Retail
+TKO,"TKO Group Holdings, Inc.",equity,NYSE,USD,2023-09-12,US87256C1018,True,Communication Services,Entertainment
+TMO,Thermo Fisher Scientific Inc.,equity,NYSE,USD,1980-03-17,US8835561023,True,Healthcare,Medical - Diagnostics & Research
+TMUS,"T-Mobile US, Inc.",equity,NASDAQ,USD,2007-04-19,US8725901040,True,Communication Services,Telecommunications Services
+TOL,"Toll Brothers, Inc.",equity,NYSE,USD,1986-07-08,US8894781033,True,Consumer Cyclical,Residential Construction
+TOST,"Toast, Inc.",equity,NYSE,USD,2021-09-22,US8887871080,True,Technology,Software - Infrastructure
+TPL,Texas Pacific Land Corporation,equity,NYSE,USD,1980-03-17,US88262P1021,True,Energy,Oil & Gas Exploration & Production
+TPR,"Tapestry, Inc.",equity,NYSE,USD,2000-10-06,US8760301072,True,Consumer Cyclical,Luxury Goods
+TRGP,Targa Resources Corp.,equity,NYSE,USD,2010-12-07,US87612G1013,True,Energy,Oil & Gas Midstream
+TRIP,"Tripadvisor, Inc.",equity,NASDAQ,USD,2011-12-07,US8969452015,True,Consumer Cyclical,Travel Services
+TRMB,Trimble Inc.,equity,NASDAQ,USD,1990-07-20,US8962391004,True,Technology,"Hardware, Equipment & Parts"
+TROW,"T. Rowe Price Group, Inc.",equity,NASDAQ,USD,1986-04-02,US74144T1088,True,Financial Services,Asset Management
+TRU,TransUnion,equity,NYSE,USD,2015-06-25,US89400J1079,True,Financial Services,Financial - Data & Stock Exchanges
+TRV,"The Travelers Companies, Inc.",equity,NYSE,USD,1975-11-17,US89417E1091,True,Financial Services,Insurance - Property & Casualty
+TSCO,Tractor Supply Company,equity,NASDAQ,USD,1994-02-17,US8923561067,True,Consumer Cyclical,Specialty Retail
+TSLA,"Tesla, Inc.",equity,NASDAQ,USD,2010-06-29,US88160R1014,True,Consumer Cyclical,Auto - Manufacturers
+TSN,"Tyson Foods, Inc.",equity,NYSE,USD,1980-03-17,US9024941034,True,Consumer Defensive,Agricultural Farm Products
+TT,Trane Technologies plc,equity,NYSE,USD,1980-03-17,IE00BK9ZQ967,True,Industrials,Industrial - Machinery
+TTD,"The Trade Desk, Inc.",equity,NASDAQ,USD,2016-09-21,US88339J1051,True,Communication Services,Advertising Agencies
+TTWO,"Take-Two Interactive Software, Inc.",equity,NASDAQ,USD,1997-04-15,US8740541094,True,Technology,Electronic Gaming & Multimedia
+TW,Tradeweb Markets Inc.,equity,NASDAQ,USD,2019-04-04,US8926721064,True,Financial Services,Financial - Capital Markets
+TWTR,"Twitter, Inc. (delisted)",equity,NYSE,USD,2013-11-07,US90184L1026,False,Communication Services,Internet Content & Information
+TXN,Texas Instruments Incorporated,equity,NASDAQ,USD,1972-06-01,US8825081040,True,Technology,Semiconductors
+TXT,Textron Inc.,equity,NYSE,USD,1947-12-22,US8832031012,True,Industrials,Aerospace & Defense
+TYL,"Tyler Technologies, Inc.",equity,NYSE,USD,1980-03-17,US9022521051,True,Technology,Software - Application
+UAA,"Under Armour, Inc.",equity,NYSE,USD,2005-11-18,US9043111072,True,Consumer Cyclical,Apparel - Manufacturers
+UAL,"United Airlines Holdings, Inc.",equity,NASDAQ,USD,2006-02-06,US9100471096,True,Industrials,"Airlines, Airports & Air Services"
+UBER,"Uber Technologies, Inc.",equity,NYSE,USD,2019-05-10,US90353T1007,True,Technology,Software - Application
+UDR,"UDR, Inc.",equity,NYSE,USD,1980-03-17,US9026531049,True,Real Estate,REIT - Residential
+UGI,UGI Corporation,equity,NYSE,USD,1929-03-01,US9026811052,True,Utilities,Regulated Gas
+UHAL,U-Haul Holding Company,equity,NYSE,USD,1994-11-04,US0235861004,True,Industrials,Rental & Leasing Services
+UHS,"Universal Health Services, Inc.",equity,NYSE,USD,1981-07-09,US9139031002,True,Healthcare,Medical - Care Facilities
+UI,Ubiquiti Inc.,equity,NYSE,USD,2011-10-14,US90353W1036,True,Technology,Communication Equipment
+ULTA,"Ulta Beauty, Inc.",equity,NASDAQ,USD,2007-10-25,US90384S3031,True,Consumer Cyclical,Specialty Retail
+UNH,UnitedHealth Group Incorporated,equity,NYSE,USD,1984-10-17,US91324P1021,True,Healthcare,Medical - Healthcare Plans
+UNM,Unum Group,equity,NYSE,USD,1986-11-06,US91529Y1064,True,Financial Services,Insurance - Life
+UNP,Union Pacific Corporation,equity,NYSE,USD,1980-01-02,US9078181081,True,Industrials,Railroads
+UPS,"United Parcel Service, Inc.",equity,NYSE,USD,1999-11-10,US9113121068,True,Industrials,Integrated Freight & Logistics
+URI,"United Rentals, Inc.",equity,NYSE,USD,1997-12-18,US9113631090,True,Industrials,Rental & Leasing Services
+USB,U.S. Bancorp,equity,NYSE,USD,1973-05-03,US9029733048,True,Financial Services,Banks - Diversified
+UTHR,United Therapeutics Corporation,equity,NASDAQ,USD,1999-06-17,US91307C1027,True,Healthcare,Biotechnology
+V,Visa Inc.,equity,NYSE,USD,2008-03-19,US92826C8394,True,Financial Services,Financial - Credit Services
+VEEV,Veeva Systems Inc.,equity,NYSE,USD,2013-10-16,US9224751084,True,Technology,Software - Application
+VFC,V.F. Corporation,equity,NYSE,USD,1980-03-17,US9182041080,True,Consumer Cyclical,Apparel - Manufacturers
+VICI,VICI Properties Inc.,equity,NYSE,USD,2018-01-02,US9256521090,True,Real Estate,REIT - Diversified
+VIK,Viking Holdings Ltd,equity,NYSE,USD,2024-05-01,BMG93A5A1010,True,Consumer Cyclical,Travel Services
+VLO,Valero Energy Corporation,equity,NYSE,USD,1982-01-04,US91913Y1001,True,Energy,Oil & Gas Refining & Marketing
+VLTO,Veralto Corporation,equity,NYSE,USD,2023-10-04,US92338C1036,True,Industrials,Industrial - Pollution & Treatment Controls
+VMC,Vulcan Materials Company,equity,NYSE,USD,1957-01-02,US9291601097,True,Basic Materials,Construction Materials
+VMW,"VMware, Inc.",equity,NYSE,USD,2007-08-15,US9285634021,False,Technology,Software - Infrastructure
+VNO,Vornado Realty Trust,equity,NYSE,USD,1980-03-17,US9290421091,True,Real Estate,REIT - Office
+VRSK,"Verisk Analytics, Inc.",equity,NASDAQ,USD,2009-10-07,US92345Y1064,True,Technology,Software - Services
+VRSN,"VeriSign, Inc.",equity,NASDAQ,USD,1998-01-30,US92343E1029,True,Technology,Software - Infrastructure
+VRT,Vertiv Holdings Co,equity,NYSE,USD,2018-08-02,US92537N1081,True,Industrials,Electrical Equipment & Parts
+VRTX,Vertex Pharmaceuticals Incorporated,equity,NASDAQ,USD,1991-07-24,US92532F1003,True,Healthcare,Biotechnology
+VST,Vistra Corp.,equity,NYSE,USD,2016-10-05,US92840M1027,True,Utilities,Independent Power Producers
+VTR,"Ventas, Inc.",equity,NYSE,USD,1997-05-05,US92276F1003,True,Real Estate,REIT - Healthcare Facilities
+VTRS,Viatris Inc.,equity,NASDAQ,USD,1980-03-17,US92556V1061,True,Healthcare,Drug Manufacturers - Specialty & Generic
+VZ,Verizon Communications Inc.,equity,NYSE,USD,1983-11-21,US92343V1044,True,Communication Services,Telecommunications Services
+W,Wayfair Inc.,equity,NYSE,USD,2014-10-02,US94419L1017,True,Consumer Cyclical,Specialty Retail
+WAB,Westinghouse Air Brake Technologies Corporation,equity,NYSE,USD,1995-06-16,US9297401088,True,Industrials,Railroads
+WAT,Waters Corporation,equity,NYSE,USD,1995-11-17,US9418481035,True,Healthcare,Medical - Diagnostics & Research
+WBA,"Walgreens Boots Alliance, Inc.",equity,NASDAQ,USD,1980-03-17,US9314271084,False,Healthcare,Medical - Pharmaceuticals
+WBD,"Warner Bros. Discovery, Inc.",equity,NASDAQ,USD,2005-07-08,US9344231041,True,Communication Services,Entertainment
+WDAY,"Workday, Inc.",equity,NASDAQ,USD,2012-10-12,US98138H1014,True,Technology,Software - Application
+WDC,Western Digital Corporation,equity,NASDAQ,USD,1978-10-31,US9581021055,True,Technology,Computer Hardware
+WEC,"WEC Energy Group, Inc.",equity,NYSE,USD,1980-03-17,US92939U1060,True,Utilities,Regulated Electric
+WELL,Welltower Inc.,equity,NYSE,USD,1980-03-19,US95040Q1040,True,Real Estate,REIT - Healthcare Facilities
+WES,"Western Midstream Partners, LP",equity,NYSE,USD,2012-12-10,US9586691035,True,Energy,Oil & Gas Midstream
+WFC,Wells Fargo & Company,equity,NYSE,USD,1972-06-01,US9497461015,True,Financial Services,Banks - Diversified
+WHR,Whirlpool Corporation,equity,NYSE,USD,1955-09-15,US9633201069,True,Consumer Cyclical,"Furnishings, Fixtures & Appliances"
+WLK,Westlake Corporation,equity,NYSE,USD,2004-08-12,US9604131022,True,Basic Materials,Chemicals - Specialty
+WM,"Waste Management, Inc.",equity,NYSE,USD,1988-06-22,US94106L1098,True,Industrials,Waste Management
+WMB,"The Williams Companies, Inc.",equity,NYSE,USD,1981-12-31,US9694571004,True,Energy,Oil & Gas Midstream
+WMT,Walmart Inc.,equity,NASDAQ,USD,1972-08-25,US9311421039,True,Consumer Defensive,Discount Stores
+WPC,W. P. Carey Inc.,equity,NYSE,USD,1998-01-21,US92936U1097,True,Real Estate,REIT - Diversified
+WRB,W. R. Berkley Corporation,equity,NYSE,USD,1973-10-23,US0844231029,True,Financial Services,Insurance - Property & Casualty
+WRK,WestRock Company,equity,NYSE,USD,2015-06-24,US96145D1054,False,Consumer Cyclical,Packaging & Containers
+WSM,"Williams-Sonoma, Inc.",equity,NYSE,USD,1983-07-07,US9699041011,True,Consumer Cyclical,Specialty Retail
+WSO,"Watsco, Inc.",equity,NYSE,USD,1984-06-07,US9426222009,True,Industrials,Industrial - Distribution
+WST,"West Pharmaceutical Services, Inc.",equity,NYSE,USD,1980-03-17,US9553061055,True,Healthcare,Medical - Instruments & Supplies
+WTRG,"Essential Utilities, Inc.",equity,NYSE,USD,1980-03-17,US29670G1022,True,Utilities,Regulated Water
+WTW,Willis Towers Watson Public Limited Company,equity,NASDAQ,USD,2001-06-12,IE00BDB6Q211,True,Financial Services,Insurance - Brokers
+WU,The Western Union Company,equity,NYSE,USD,2006-10-02,US9598021098,True,Financial Services,Financial - Credit Services
+WW,"WW International, Inc.",equity,NASDAQ,USD,2001-11-15,US98262P2002,True,Consumer Cyclical,Personal Products & Services
+WY,Weyerhaeuser Company,equity,NYSE,USD,1973-05-03,US9621661043,True,Real Estate,REIT - Specialty
+WYNN,"Wynn Resorts, Limited",equity,NASDAQ,USD,2002-10-25,US9831341071,True,Consumer Cyclical,"Gambling, Resorts & Casinos"
+XEC,,equity,,,,,,,
+XEL,Xcel Energy Inc.,equity,NASDAQ,USD,2001-03-13,US98389B1008,True,Utilities,Regulated Electric
+XOM,Exxon Mobil Corporation,equity,NYSE,USD,1978-01-13,US30233Q1085,True,Energy,Oil & Gas Integrated
+XPRO,Expro Group Holdings N.V.,equity,NYSE,USD,2013-08-09,KYG3314M1096,True,Energy,Oil & Gas Equipment & Services
+XRAY,DENTSPLY SIRONA Inc.,equity,NASDAQ,USD,1987-08-12,US24906P1093,True,Healthcare,Medical - Instruments & Supplies
+XRX,Xerox Holdings Corporation,equity,NASDAQ,USD,1936-04-17,US98421M1062,True,Industrials,Business Equipment & Supplies
+XYL,Xylem Inc.,equity,NYSE,USD,2011-10-13,US98419M1009,True,Industrials,Industrial - Machinery
+XYZ,"Block, Inc.",equity,NYSE,USD,2015-11-19,US8522341036,True,Technology,Software - Infrastructure
+Y,Alleghany Corporation,equity,NYSE,USD,1980-03-05,US0171751003,False,Financial Services,Insurance - Property & Casualty
+YUM,"Yum! Brands, Inc.",equity,NYSE,USD,1997-09-17,US9884981013,True,Consumer Cyclical,Restaurants
+Z,"Zillow Group, Inc. Class C",equity,NASDAQ,USD,2015-08-03,US98954M2008,True,Communication Services,Internet Content & Information
+ZBH,"Zimmer Biomet Holdings, Inc.",equity,NYSE,USD,2001-07-25,US98956P1021,True,Healthcare,Medical - Devices
+ZBRA,Zebra Technologies Corporation,equity,NASDAQ,USD,1991-08-15,US9892071054,True,Technology,Communication Equipment
+ZI,ZoomInfo Technologies Inc.,equity,NASDAQ,USD,2020-06-04,US98980F1049,False,Technology,Software - Application
+ZION,"Zions Bancorporation, National Association",equity,NASDAQ,USD,1980-03-17,US9897011071,True,Financial Services,Banks - Regional
+ZIONL,Zions Bancorporation N.A. - 6.9,equity,NASDAQ,USD,2013-09-19,US9897018183,False,Financial Services,Banks
+ZIONO,"Zions Bancorporation, National Association",equity,NASDAQ,USD,2013-02-04,US9897018597,False,Financial Services,Banks - Regional
+ZM,"Zoom Communications, Inc.",equity,NASDAQ,USD,2019-04-18,US98980L1017,True,Technology,Software - Application
+ZTS,Zoetis Inc.,equity,NYSE,USD,2013-02-01,US98978V1035,True,Healthcare,Drug Manufacturers - Specialty & Generic
+AAMRQ,,equity,,,,,,,
+ABI1,,equity,,,,,,,
+ABKFQ,,equity,,,,,,,
+ABS,,equity,,,,,,,
+ABWTQ,,equity,,,,,,,
+ACAS,,equity,,,,,,,
+ACF,,equity,,,,,,,
+ACIIQ,,equity,,,,,,,
+ACM,,equity,,,,,,,
+ACS,,equity,,,,,,,
+ACTA,,equity,,,,,,,
+ACV1,,equity,,,,,,,
+AD,,equity,,,,,,,
+ADCT1,,equity,,,,,,,
+ADRX,,equity,,,,,,,
+ADVP,,equity,,,,,,,
+AEO,,equity,,,,,,,
+AET,,equity,,,,,,,
+AFCI,,equity,,,,,,,
+AFS.A,,equity,,,,,,,
+AGC1,,equity,,,,,,,
+AGCO,,equity,,,,,,,
+AGE1,,equity,,,,,,,
+AGN,,equity,,,,,,,
+AGN1,,equity,,,,,,,
+AIV,,equity,,,,,,,
+AKS,,equity,,,,,,,
+AL1,,equity,,,,,,,
+ALTR1,,equity,,,,,,,
+ALV,,equity,,,,,,,
+ALXN,,equity,,,,,,,
+AMCC,,equity,,,,,,,
+AMH,,equity,,,,,,,
+AMKR,,equity,,,,,,,
+AMTD1,,equity,,,,,,,
+ANDV,,equity,,,,,,,
+ANF,,equity,,,,,,,
+ANRZQ,,equity,,,,,,,
+APC1,,equity,,,,,,,
+APCC,,equity,,,,,,,
+APO,,equity,,,,,,,
+APOL,,equity,,,,,,,
+AR,,equity,,,,,,,
+ARC1,,equity,,,,,,,
+ARG,,equity,,,,,,,
+ASDV,,equity,,,,,,,
+ASH,,equity,,,,,,,
+ASN,,equity,,,,,,,
+ASO1,,equity,,,,,,,
+AT1,,equity,,,,,,,
+ATI,,equity,,,,,,,
+ATML,,equity,,,,,,,
+AV1,,equity,,,,,,,
+AVP,,equity,,,,,,,
+AVX1,,equity,,,,,,,
+AW,,equity,,,,,,,
+AWE,,equity,,,,,,,
+AWK1,,equity,,,,,,,
+AXF,,equity,,,,,,,
+AYE,,equity,,,,,,,
+AYX,,equity,,,,,,,
+AZA.A,,equity,,,,,,,
+AZO,,equity,,,,,,,
+BBBYQ,,equity,,,,,,,
+BCR,,equity,,,,,,,
+BDK,,equity,,,,,,,
+BE,,equity,,,,,,,
+BEAM2,,equity,,,,,,,
+BEAS,,equity,,,,,,,
+BEAV,,equity,,,,,,,
+BEC1,,equity,,,,,,,
+BF.B,,equity,,,,,,,
+BFO1,,equity,,,,,,,
+BGEN,,equity,,,,,,,
+BGPTQ,,equity,,,,,,,
+BHC,,equity,,,,,,,
+BHI,,equity,,,,,,,
+BJ1,,equity,,,,,,,
+BJS,,equity,,,,,,,
+BKC1,,equity,,,,,,,
+BLC,,equity,,,,,,,
+BLS,,equity,,,,,,,
+BMC,,equity,,,,,,,
+BMET,,equity,,,,,,,
+BMS,,equity,,,,,,,
+BNI,,equity,,,,,,,
+BNK1,,equity,,,,,,,
+BNK2,,equity,,,,,,,
+BNY,,equity,,,,,,,
+BOBJY,,equity,,,,,,,
+BOL,,equity,,,,,,,
+BOT1,,equity,,,,,,,
+BPOP,,equity,,,,,,,
+BR1,,equity,,,,,,,
+BRCD,,equity,,,,,,,
+BRCM,,equity,,,,,,,
+BRK.B,,equity,,,,,,,
+BRL,,equity,,,,,,,
+BSC1,,equity,,,,,,,
+BSG,,equity,,,,,,,
+BUCY,,equity,,,,,,,
+BUD1,,equity,,,,,,,
+BVSN,,equity,,,,,,,
+BWE,,equity,,,,,,,
+CA1,,equity,,,,,,,
+CAL1,,equity,,,,,,,
+CAM2,,equity,,,,,,,
+CB1,,equity,,,,,,,
+CBB,,equity,,,,,,,
+CBE,,equity,,,,,,,
+CBH1,,equity,,,,,,,
+CBI,,equity,,,,,,,
+CBS1,,equity,,,,,,,
+CBSH,,equity,,,,,,,
+CBSS,,equity,,,,,,,
+CC,,equity,,,,,,,
+CCE1,,equity,,,,,,,
+CCN1,,equity,,,,,,,
+CCTYQ,,equity,,,,,,,
+CCU1,,equity,,,,,,,
+CDK,,equity,,,,,,,
+CDO,,equity,,,,,,,
+CDP1,,equity,,,,,,,
+CDWC,,equity,,,,,,,
+CE1,,equity,,,,,,,
+CEG1,,equity,,,,,,,
+CEN1,,equity,,,,,,,
+CEPH,,equity,,,,,,,
+CERN,,equity,,,,,,,
+CF1,,equity,,,,,,,
+CFC,,equity,,,,,,,
+CFN,,equity,,,,,,,
+CFR,,equity,,,,,,,
+CG1,,equity,,,,,,,
+CGP,,equity,,,,,,,
+CHA1,,equity,,,,,,,
+CHIR1,,equity,,,,,,,
+CHKAQ,,equity,,,,,,,
+CHS,,equity,,,,,,,
+CIN,,equity,,,,,,,
+CKFR,,equity,,,,,,,
+CLB,,equity,,,,,,,
+CLF,,equity,,,,,,,
+CLFY,,equity,,,,,,,
+CMVT,,equity,,,,,,,
+CMX,,equity,,,,,,,
+CNCEQ,,equity,,,,,,,
+CNET1,,equity,,,,,,,
+CNG,,equity,,,,,,,
+CNX,,equity,,,,,,,
+CNXT1,,equity,,,,,,,
+COC,,equity,,,,,,,
+COL,,equity,,,,,,,
+COMR,,equity,,,,,,,
+COMS1,,equity,,,,,,,
+COTY,,equity,,,,,,,
+COV,,equity,,,,,,,
+COX,,equity,,,,,,,
+CPN,,equity,,,,,,,
+CPNG,,equity,,,,,,,
+CPNLQ,,equity,,,,,,,
+CPPRQ,,equity,,,,,,,
+CPQ,,equity,,,,,,,
+CPS1,,equity,,,,,,,
+CPWR,,equity,,,,,,,
+CRL,,equity,,,,,,,
+CRS,,equity,,,,,,,
+CSGS,,equity,,,,,,,
+CSR1,,equity,,,,,,,
+CTRX,,equity,,,,,,,
+CTX1,,equity,,,,,,,
+CVA,,equity,,,,,,,
+CVC,,equity,,,,,,,
+CVD,,equity,,,,,,,
+CVG,,equity,,,,,,,
+CVH,,equity,,,,,,,
+CVSA,,equity,,,,,,,
+CXO,,equity,,,,,,,
+CXR,,equity,,,,,,,
+CY,,equity,,,,,,,
+CYTC,,equity,,,,,,,
+CZR1,,equity,,,,,,,
+DALRQ,,equity,,,,,,,
+DBDQQ,,equity,,,,,,,
+DCNAQ,,equity,,,,,,,
+DD1,,equity,,,,,,,
+DDD,,equity,,,,,,,
+DELL1,,equity,,,,,,,
+DFODQ,,equity,,,,,,,
+DG1,,equity,,,,,,,
+DIAL1,,equity,,,,,,,
+DJ,,equity,,,,,,,
+DL1,,equity,,,,,,,
+DLB,,equity,,,,,,,
+DLJ,,equity,,,,,,,
+DLX,,equity,,,,,,,
+DME,,equity,,,,,,,
+DNA1,,equity,,,,,,,
+DNB1,,equity,,,,,,,
+DNB3,,equity,,,,,,,
+DNRCQ,,equity,,,,,,,
+DOCU,,equity,,,,,,,
+DOFSQ,,equity,,,,,,,
+DPHIQ,,equity,,,,,,,
+DPL,,equity,,,,,,,
+DQE,,equity,,,,,,,
+DRLCQ,,equity,,,,,,,
+DST,,equity,,,,,,,
+DTV1,,equity,,,,,,,
+DYNIQ,,equity,,,,,,,
+DZA,,equity,,,,,,,
+EAS,,equity,,,,,,,
+EAT,,equity,,,,,,,
+EC1,,equity,,,,,,,
+EDS,,equity,,,,,,,
+EFII,,equity,,,,,,,
+EHC,,equity,,,,,,,
+EKDKQ,,equity,,,,,,,
+ELX,,equity,,,,,,,
+EMC1,,equity,,,,,,,
+ENRNQ,,equity,,,,,,,
+ENTU,,equity,,,,,,,
+EOP,,equity,,,,,,,
+EP1,,equity,,,,,,,
+EQ1,,equity,,,,,,,
+EQH,,equity,,,,,,,
+ESINQ,,equity,,,,,,,
+ETEK1,,equity,,,,,,,
+ETFC,,equity,,,,,,,
+ETS1,,equity,,,,,,,
+EV1,,equity,,,,,,,
+EVHC,,equity,,,,,,,
+EXPEA,,equity,,,,,,,
+EXTR,,equity,,,,,,,
+EYE1,,equity,,,,,,,
+FBF,,equity,,,,,,,
+FDC,,equity,,,,,,,
+FDC1,,equity,,,,,,,
+FDO,,equity,,,,,,,
+FDRY,,equity,,,,,,,
+FHCC,,equity,,,,,,,
+FHI,,equity,,,,,,,
+FJ,,equity,,,,,,,
+FLEX,,equity,,,,,,,
+FLIR,,equity,,,,,,,
+FNF1,,equity,,,,,,,
+FOSL,,equity,,,,,,,
+FOX1,,equity,,,,,,,
+FPC,,equity,,,,,,,
+FRX1,,equity,,,,,,,
+FSH,,equity,,,,,,,
+FSL,,equity,,,,,,,
+FSL.B,,equity,,,,,,,
+FTI1,,equity,,,,,,,
+FVB,,equity,,,,,,,
+FWLT,,equity,,,,,,,
+G1,,equity,,,,,,,
+GAS,,equity,,,,,,,
+GDT1,,equity,,,,,,,
+GDW,,equity,,,,,,,
+GEN1,,equity,,,,,,,
+GENZ1,,equity,,,,,,,
+GGP,,equity,,,,,,,
+GHC,,equity,,,,,,,
+GIC1,,equity,,,,,,,
+GLC,,equity,,,,,,,
+GLM,,equity,,,,,,,
+GMCR,,equity,,,,,,,
+GME,,equity,,,,,,,
+GMIL,,equity,,,,,,,
+GMST,,equity,,,,,,,
+GMXRQ,,equity,,,,,,,
+GNW,,equity,,,,,,,
+GPT1,,equity,,,,,,,
+GPU,,equity,,,,,,,
+GR,,equity,,,,,,,
+GRP1,,equity,,,,,,,
+GSB1,,equity,,,,,,,
+GSF1,,equity,,,,,,,
+GTE1,,equity,,,,,,,
+GTW,,equity,,,,,,,
+GX,,equity,,,,,,,
+H2,,equity,,,,,,,
+HAR,,equity,,,,,,,
+HCA1,,equity,,,,,,,
+HCC1,,equity,,,,,,,
+HDS,,equity,,,,,,,
+HET,,equity,,,,,,,
+HEW,,equity,,,,,,,
+HF.A,,equity,,,,,,,
+HGSI,,equity,,,,,,,
+HI1,,equity,,,,,,,
+HIB,,equity,,,,,,,
+HK1,,equity,,,,,,,
+HLF,,equity,,,,,,,
+HLI.A,,equity,,,,,,,
+HLIT,,equity,,,,,,,
+HLT1,,equity,,,,,,,
+HMA1,,equity,,,,,,,
+HNT,,equity,,,,,,,
+HNZ,,equity,,,,,,,
+HOT,,equity,,,,,,,
+HRC,,equity,,,,,,,
+HRD1,,equity,,,,,,,
+HSH,,equity,,,,,,,
+HSP,,equity,,,,,,,
+HSP1,,equity,,,,,,,
+HTV,,equity,,,,,,,
+HTZGQ,,equity,,,,,,,
+HZNP,,equity,,,,,,,
+IBI.A,,equity,,,,,,,
+IDCC,,equity,,,,,,,
+IDTI,,equity,,,,,,,
+IGT1,,equity,,,,,,,
+IHS2,,equity,,,,,,,
+ILA,,equity,,,,,,,
+IMNX,,equity,,,,,,,
+IMS,,equity,,,,,,,
+INCLF,,equity,,,,,,,
+INF.A,,equity,,,,,,,
+INFO1,,equity,,,,,,,
+ISCA,,equity,,,,,,,
+ISIL,,equity,,,,,,,
+ISSX,,equity,,,,,,,
+ITT,,equity,,,,,,,
+ITWO1,,equity,,,,,,,
+JAH,,equity,,,,,,,
+JAVA1,,equity,,,,,,,
+JEF1,,equity,,,,,,,
+JHF,,equity,,,,,,,
+JNS,,equity,,,,,,,
+JNY,,equity,,,,,,,
+JOY,,equity,,,,,,,
+JP1,,equity,,,,,,,
+JPM1,,equity,,,,,,,
+JWN,,equity,,,,,,,
+K,,equity,,,,,,,
+KATE,,equity,,,,,,,
+KBL,,equity,,,,,,,
+KBR,,equity,,,,,,,
+KCG1,,equity,,,,,,,
+KEA,,equity,,,,,,,
+KG1,,equity,,,,,,,
+KM,,equity,,,,,,,
+KMG1,,equity,,,,,,,
+KMI1,,equity,,,,,,,
+KMPR,,equity,,,,,,,
+KRB,,equity,,,,,,,
+KRFT,,equity,,,,,,,
+KRI,,equity,,,,,,,
+KSE,,equity,,,,,,,
+L1,,equity,,,,,,,
+LCOS,,equity,,,,,,,
+LEARQ,,equity,,,,,,,
+LEHMQ,,equity,,,,,,,
+LGE,,equity,,,,,,,
+LGTO1,,equity,,,,,,,
+LIFE2,,equity,,,,,,,
+LIT1,,equity,,,,,,,
+LLL1,,equity,,,,,,,
+LM,,equity,,,,,,,
+LNCR,,equity,,,,,,,
+LNKD,,equity,,,,,,,
+LO,,equity,,,,,,,
+LPS,,equity,,,,,,,
+LSI1,,equity,,,,,,,
+LU1,,equity,,,,,,,
+LULU,,equity,,,,,,,
+LVLT,,equity,,,,,,,
+LXK,,equity,,,,,,,
+LYO,,equity,,,,,,,
+LZ1,,equity,,,,,,,
+MACR1,,equity,,,,,,,
+MANH,,equity,,,,,,,
+MBG1,,equity,,,,,,,
+MBI,,equity,,,,,,,
+MCIP,,equity,,,,,,,
+MCRL,,equity,,,,,,,
+MDRIQ,,equity,,,,,,,
+MDU,,equity,,,,,,,
+MDVN,,equity,,,,,,,
+MEA1,,equity,,,,,,,
+MEDI1,,equity,,,,,,,
+MEE,,equity,,,,,,,
+MEL,,equity,,,,,,,
+MER,,equity,,,,,,,
+MERQ,,equity,,,,,,,
+MFE,,equity,,,,,,,
+MGM1,,equity,,,,,,,
+MHS,,equity,,,,,,,
+MI2,,equity,,,,,,,
+MIK1,,equity,,,,,,,
+MIL1,,equity,,,,,,,
+MIR1,,equity,,,,,,,
+MIR2,,equity,,,,,,,
+MJN,,equity,,,,,,,
+MLNM,,equity,,,,,,,
+MND,,equity,,,,,,,
+MNKKQ,,equity,,,,,,,
+MNMD1,,equity,,,,,,,
+MOLX,,equity,,,,,,,
+MON2,,equity,,,,,,,
+MPT,,equity,,,,,,,
+MRBK1,,equity,,,,,,,
+MRCHQ,,equity,,,,,,,
+MRVC,,equity,,,,,,,
+MTCH2,,equity,,,,,,,
+MTG,,equity,,,,,,,
+MTLQQ,,equity,,,,,,,
+MTN,,equity,,,,,,,
+MTSI,,equity,,,,,,,
+MTW,,equity,,,,,,,
+MTZ,,equity,,,,,,,
+MV,,equity,,,,,,,
+MVL,,equity,,,,,,,
+MWV,,equity,,,,,,,
+MWW,,equity,,,,,,,
+MXIM,,equity,,,,,,,
+MYG1,,equity,,,,,,,
+MYGN,,equity,,,,,,,
+NA.A,,equity,,,,,,,
+NAV,,equity,,,,,,,
+NBL,,equity,,,,,,,
+NBR,,equity,,,,,,,
+NCC,,equity,,,,,,,
+NCE,,equity,,,,,,,
+NCF,,equity,,,,,,,
+NEBLQ,,equity,,,,,,,
+NEU1,,equity,,,,,,,
+NEWP1,,equity,,,,,,,
+NFB,,equity,,,,,,,
+NFS,,equity,,,,,,,
+NFX1,,equity,,,,,,,
+NGH,,equity,,,,,,,
+NIHDQ,,equity,,,,,,,
+NMX,,equity,,,,,,,
+NN1,,equity,,,,,,,
+NOVL,,equity,,,,,,,
+NRG1,,equity,,,,,,,
+NRTLQ,,equity,,,,,,,
+NSM1,,equity,,,,,,,
+NSOL,,equity,,,,,,,
+NST,,equity,,,,,,,
+NTRS,,equity,,,,,,,
+NUAN,,equity,,,,,,,
+NVLS1,,equity,,,,,,,
+NXPI,,equity,,,,,,,
+NXTL,,equity,,,,,,,
+NXTP1,,equity,,,,,,,
+NYT,,equity,,,,,,,
+NYX1,,equity,,,,,,,
+OA,,equity,,,,,,,
+OAT,,equity,,,,,,,
+OC,,equity,,,,,,,
+OCLI,,equity,,,,,,,
+OCR,,equity,,,,,,,
+ODP,,equity,,,,,,,
+OEI2,,equity,,,,,,,
+OHP,,equity,,,,,,,
+OI,,equity,,,,,,,
+OII,,equity,,,,,,,
+OK,,equity,,,,,,,
+OMX,,equity,,,,,,,
+ONE1,,equity,,,,,,,
+ORI,,equity,,,,,,,
+P,,equity,,,,,,,
+PALM,,equity,,,,,,,
+PBCT,,equity,,,,,,,
+PBG,,equity,,,,,,,
+PBI,,equity,,,,,,,
+PCL1,,equity,,,,,,,
+PCO1,,equity,,,,,,,
+PCP,,equity,,,,,,,
+PCYC,,equity,,,,,,,
+PD1,,equity,,,,,,,
+PDCO,,equity,,,,,,,
+PDE,,equity,,,,,,,
+PDLI,,equity,,,,,,,
+PEN,,equity,,,,,,,
+PETM,,equity,,,,,,,
+PGN1,,equity,,,,,,,
+PHA,,equity,,,,,,,
+PHS,,equity,,,,,,,
+PIXR,,equity,,,,,,,
+PLCM,,equity,,,,,,,
+PLD1,,equity,,,,,,,
+PLL1,,equity,,,,,,,
+PMCS,,equity,,,,,,,
+PNU1,,equity,,,,,,,
+POM1,,equity,,,,,,,
+POT,,equity,,,,,,,
+PPDI,,equity,,,,,,,
+PPMIQ,,equity,,,,,,,
+PRDO,,equity,,,,,,,
+PRE1,,equity,,,,,,,
+PRSF,,equity,,,,,,,
+PSFT,,equity,,,,,,,
+PSKY,,equity,,,,,,,
+PTV,,equity,,,,,,,
+PVN,,equity,,,,,,,
+PWAVQ,,equity,,,,,,,
+PWER1,,equity,,,,,,,
+PWJ1,,equity,,,,,,,
+PX1,,equity,,,,,,,
+PXP,,equity,,,,,,,
+Q1,,equity,,,,,,,
+QEP,,equity,,,,,,,
+QLGC,,equity,,,,,,,
+QSR,,equity,,,,,,,
+QVCAQ,,equity,,,,,,,
+RADCQ,,equity,,,,,,,
+RAH,,equity,,,,,,,
+RAI,,equity,,,,,,,
+RAL1,,equity,,,,,,,
+RAMP,,equity,,,,,,,
+RATL,,equity,,,,,,,
+RAX,,equity,,,,,,,
+RDA1,,equity,,,,,,,
+RDC,,equity,,,,,,,
+RDN,,equity,,,,,,,
+RFMD,,equity,,,,,,,
+RHT,,equity,,,,,,,
+RIG,,equity,,,,,,,
+RKT1,,equity,,,,,,,
+RLM1,,equity,,,,,,,
+RLR,,equity,,,,,,,
+RMBS,,equity,,,,,,,
+RMK,,equity,,,,,,,
+RNR,,equity,,,,,,,
+RNWK,,equity,,,,,,,
+ROH,,equity,,,,,,,
+ROOM,,equity,,,,,,,
+RRD,,equity,,,,,,,
+RSAS,,equity,,,,,,,
+RSE1,,equity,,,,,,,
+RSHCQ,,equity,,,,,,,
+RTN,,equity,,,,,,,
+RVBD,,equity,,,,,,,
+RX,,equity,,,,,,,
+RYN,,equity,,,,,,,
+S1,,equity,,,,,,,
+S2,,equity,,,,,,,
+SAF2,,equity,,,,,,,
+SAFE,,equity,,,,,,,
+SANM,,equity,,,,,,,
+SAPE,,equity,,,,,,,
+SAWS1,,equity,,,,,,,
+SBL,,equity,,,,,,,
+SCG,,equity,,,,,,,
+SCI1,,equity,,,,,,,
+SCMR,,equity,,,,,,,
+SCZ.B,,equity,,,,,,,
+SDLI,,equity,,,,,,,
+SDS1,,equity,,,,,,,
+SE1,,equity,,,,,,,
+SE2,,equity,,,,,,,
+SEBL,,equity,,,,,,,
+SEDG,,equity,,,,,,,
+SEG1,,equity,,,,,,,
+SFA,,equity,,,,,,,
+SGP1,,equity,,,,,,,
+SHLDQ,,equity,,,,,,,
+SHPG,,equity,,,,,,,
+SIAL,,equity,,,,,,,
+SII1,,equity,,,,,,,
+SIVBQ,,equity,,,,,,,
+SLM,,equity,,,,,,,
+SLR,,equity,,,,,,,
+SNDK,,equity,,,,,,,
+SNDK1,,equity,,,,,,,
+SNI,,equity,,,,,,,
+SNV,,equity,,,,,,,
+SON,,equity,,,,,,,
+SOTR,,equity,,,,,,,
+SOV,,equity,,,,,,,
+SPB1,,equity,,,,,,,
+SPLS1,,equity,,,,,,,
+SPOT1,,equity,,,,,,,
+SPR,,equity,,,,,,,
+SPWRQ,,equity,,,,,,,
+SPXC,,equity,,,,,,,
+SSCCQ,,equity,,,,,,,
+SSP,,equity,,,,,,,
+STCN,,equity,,,,,,,
+STI1,,equity,,,,,,,
+STJ,,equity,,,,,,,
+STR1,,equity,,,,,,,
+STRZA,,equity,,,,,,,
+STX,,equity,,,,,,,
+SUB1,,equity,,,,,,,
+SUG,,equity,,,,,,,
+SUN1,,equity,,,,,,,
+SUNEQ,,equity,,,,,,,
+SVELY,,equity,,,,,,,
+SVM1,,equity,,,,,,,
+SVU,,equity,,,,,,,
+SWN,,equity,,,,,,,
+SWY,,equity,,,,,,,
+SXCL,,equity,,,,,,,
+SY2,,equity,,,,,,,
+T1,,equity,,,,,,,
+TAP.B,,equity,,,,,,,
+TAP1,,equity,,,,,,,
+TCF1,,equity,,,,,,,
+TCM1,,equity,,,,,,,
+TDS,,equity,,,,,,,
+TE1,,equity,,,,,,,
+TEG,,equity,,,,,,,
+TEVA,,equity,,,,,,,
+TEX,,equity,,,,,,,
+TFCF,,equity,,,,,,,
+TGH.A,,equity,,,,,,,
+TGNA,,equity,,,,,,,
+THC,,equity,,,,,,,
+THG,,equity,,,,,,,
+TIBB,,equity,,,,,,,
+TIF,,equity,,,,,,,
+TIN,,equity,,,,,,,
+TIVO,,equity,,,,,,,
+TLAB,,equity,,,,,,,
+TMC.A,,equity,,,,,,,
+TNL,,equity,,,,,,,
+TOS1,,equity,,,,,,,
+TOY,,equity,,,,,,,
+TQNT,,equity,,,,,,,
+TRA,,equity,,,,,,,
+TRB,,equity,,,,,,,
+TRH,,equity,,,,,,,
+TRI1,,equity,,,,,,,
+TRW,,equity,,,,,,,
+TRW1,,equity,,,,,,,
+TSG1,,equity,,,,,,,
+TSS,,equity,,,,,,,
+TT2,,equity,,,,,,,
+TVGIA,,equity,,,,,,,
+TW2,,equity,,,,,,,
+TWC,,equity,,,,,,,
+TWE,,equity,,,,,,,
+TWTC,,equity,,,,,,,
+TWX,,equity,,,,,,,
+TWX1,,equity,,,,,,,
+TX1,,equity,,,,,,,
+TXCCQ,,equity,,,,,,,
+TXU,,equity,,,,,,,
+TYC,,equity,,,,,,,
+UALAQ,,equity,,,,,,,
+UAWGQ,,equity,,,,,,,
+UB,,equity,,,,,,,
+UCL1,,equity,,,,,,,
+UCM,,equity,,,,,,,
+UCOMA,,equity,,,,,,,
+UDS,,equity,,,,,,,
+UIS,,equity,,,,,,,
+UK1,,equity,,,,,,,
+ULTI1,,equity,,,,,,,
+UPC1,,equity,,,,,,,
+UPLMQ,,equity,,,,,,,
+UPR,,equity,,,,,,,
+URBN,,equity,,,,,,,
+URS,,equity,,,,,,,
+USB1,,equity,,,,,,,
+USG1,,equity,,,,,,,
+UST1,,equity,,,,,,,
+USW,,equity,,,,,,,
+UVN,,equity,,,,,,,
+VAL1,,equity,,,,,,,
+VALPQ,,equity,,,,,,,
+VAR,,equity,,,,,,,
+VCI,,equity,,,,,,,
+VIAB,,equity,,,,,,,
+VMED,,equity,,,,,,,
+VO1,,equity,,,,,,,
+VOYA,,equity,,,,,,,
+VRI,,equity,,,,,,,
+VRTS1,,equity,,,,,,,
+VRX1,,equity,,,,,,,
+VSH,,equity,,,,,,,
+VTSS,,equity,,,,,,,
+VYX,,equity,,,,,,,
+WAMUQ,,equity,,,,,,,
+WB1,,equity,,,,,,,
+WB2,,equity,,,,,,,
+WC,,equity,,,,,,,
+WCG,,equity,,,,,,,
+WCN,,equity,,,,,,,
+WCOEQ,,equity,,,,,,,
+WCRX,,equity,,,,,,,
+WEN1,,equity,,,,,,,
+WFM,,equity,,,,,,,
+WFTIQ,,equity,,,,,,,
+WGHTQ,,equity,,,,,,,
+WLA,,equity,,,,,,,
+WLL1,,equity,,,,,,,
+WLL2,,equity,,,,,,,
+WLP1,,equity,,,,,,,
+WLTGQ,,equity,,,,,,,
+WNDXQ,,equity,,,,,,,
+WOLF2,,equity,,,,,,,
+WP,,equity,,,,,,,
+WR1,,equity,,,,,,,
+WWAV,,equity,,,,,,,
+WWY,,equity,,,,,,,
+WYE,,equity,,,,,,,
+X,,equity,,,,,,,
+XL1,,equity,,,,,,,
+XLNX,,equity,,,,,,,
+XPO,,equity,,,,,,,
+XTO,,equity,,,,,,,
+YHOO,,equity,,,,,,,
+YNR,,equity,,,,,,,
+YUMC,,equity,,,,,,,
+ZAYO,,equity,,,,,,,

@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.23.0] - 2026-09-25
+The worked example puts a book on paper for the first time: Experiment 4's, momentum held only
+outside bear markets, as a candidate the owner chose to track without graduation, so that the
+months after its test window become the unseen test its blueprint named. The exception is recorded
+by name in the example's gate document, with the book's bands, kill switch, review dates and what
+its record cannot show registered before its first day; `promote.py 4` froze it, and
+`daily_update.py` runs it every day, to local files, a DuckDB database or both. Example 0.18.0; no
+skill, command, rule, agent or template changed.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, so that `init-example`
+copies the example with its paper book; in a copy, schedule `Paper_Trading/daily_update.py` as its
+`SETUP.md` says.
+### Added
+- **The example's first paper book**, `Paper_Trading/Paper_Trading_4/`: the frozen rule, its
+  control, the frozen modules and `FREEZE.json`, run daily by `daily_update.py`.
+- **Its registration** in the example's `Paper_Trading/BITACORA.md`, written before its first day:
+  the exception to graduation, the bands, a kill switch on behaviour, quarterly reviews, and what a
+  year of paper cannot show.
+
 ## [0.22.0] - 2026-09-25
 The worked example opens and reports Experiment 4, claim 5's second design: the same momentum
 ranking held only outside bear markets, a negative two-year return of the index, after which Daniel

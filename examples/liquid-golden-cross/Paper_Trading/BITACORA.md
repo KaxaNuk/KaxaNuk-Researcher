@@ -115,10 +115,12 @@ arrives when an experiment's `FINDINGS_N.md` can evidence criterion 1.
 <!-- example: begin -->
 
 **In this example the gate has been tested**, against both designs of Experiment 1 and against
-Experiments 2, 3 and 4, and none graduated: the rows are below. No book is on paper, and
-`Paper_Trading_1/` holds more than the contract, as *Nothing is frozen here* below says. The daily
-machinery has been run outside this repository, on a candidate frozen only to test it: *The
-machinery, tested* below says what that showed, and why none of its figures is read.
+Experiments 2, 3 and 4, and none graduated: the rows are below. One book is on paper,
+`Paper_Trading_4/`, Experiment 4's, as a candidate the owner chose to track without graduation: its
+section below registers it before its first day, and *What is frozen here* says what else this
+folder holds. The daily machinery has been run outside this repository, on a candidate frozen only
+to test it: *The machinery, tested* below says what that showed, and why none of its figures is
+read.
 
 <!-- example: end -->
 
@@ -223,13 +225,57 @@ it failed its own kill switch first, on one limb: its Sharpe margin over its con
 Its run was made from a wiped working copy, as its blueprint asked. No book of Experiment 4 is
 frozen, and `Paper_Trading_4/` does not exist.
 
-### Nothing is frozen here
+### Paper_Trading_4 — Experiment 4, on paper as a candidate, not graduated
 
-`promote.py` has not run in this repository and no `FREEZE.json` exists in it.
-`Paper_Trading_1/paper_trading_1.py` carries Experiment 1's second design's rule in the form a
-frozen book takes, to show that form: nothing here froze it, its `BANDS` are not registered here,
-and it has never run from this repository. The data stages processed the months after 2026-06-01
-when Experiment 1's download was refreshed through 2026-09-23.
+**Registered on 2026-09-25, before `daily_update.py` first ran the book, and never edited
+afterwards: a later observation is a new line under it, dated.**
+
+- **What it mirrors.** Experiment 4's rule as `experiment_4.ipynb` ran it, from `BLUEPRINT_4.md`: of
+  the hundred most traded members of the KN US Equity 600, the twenty with the highest return over
+  the twelve months before the latest one, re-struck on the first trading day of each month, and in
+  a month that opens after a negative two-year return of the index, the pool's twenty most traded
+  instead; the stale-bars check; and its control, the pool's twenty most traded, beside it every
+  day. Its costs are the blueprint's: the commission setting 0.1, 5 basis points of slippage and a
+  10% reserve, on $1,000,000. `Paper_Trading_4/paper_trading_4.py` carries the rule;
+  `Paper_Trading_4/FREEZE.json` names the commit it was frozen at, the freeze date, 2026-09-25, and
+  the hash of every frozen file.
+- **The gate, and the exception.** It did not pass: criteria 1 and 3 fail, and 2 is partly met, as
+  the rows above say, and no sign-off graduates it. **The owner decided on 2026-09-25 to track it on
+  paper as a candidate**, from the options put to him — *"Paper-track Exp 4 as a candidate
+  (Recommended)"* — so that the months after its test window become the unseen test its blueprint
+  named. That is an exception to *What graduation means*, recorded here by name: this book is not a
+  production candidate, nothing its record shows can graduate it, and a book reaches production only
+  through an experiment that passes this gate.
+- **The bands**, which `BANDS` in `paper_trading_4.py` carries: holdings at 20.0 on every day, as
+  `FINDINGS_4.md` measured over the backtest; the invested share of the targets from 0.95 to 1.0,
+  where the findings measured 100.0% on every day — the floor is a choice. The record keeps, with no
+  band: effective names, the largest sector's share, the bear state at the prior close, the number
+  of listings the stale-bars check ends, the trade dates in the last 63 days, and whether the book
+  traded that day.
+- **The kill switch: behaviour, never a month's return.** The book is retired, never tuned, if in
+  any calendar month a data check or a frozen-input check stops it on more than five trading days,
+  or its holdings leave their band on more than five. No performance figure alone retires it or
+  promotes it: at each review the owner reads the record and writes a dated decision here.
+- **The review dates:** 2026-12-31, 2027-03-31, 2027-06-30 and 2027-09-30. Each adds a dated line
+  under this section: the book and its control since 2026-06-02, the first day the experiment never
+  read, and since the freeze, from the record; the quarter's flags; and whether any month opened in
+  a bear state. **The period before production:** none applies; this book is not a candidate for it.
+- **What the record cannot show.** Skill: a year of paper cannot show an information ratio, as *What
+  a paper-trading run is* says. Whether the state works: it was bear on 43 of the 288 entries of the
+  backtest, and on none since November 2023, and a record with no bear month says nothing about it.
+  What the backtest already priced: every figure before 2026-06-02 is the experiment's own window.
+  And the index as it is: the desk's files end on 2026-08-14, so until they are refreshed membership
+  and the state are held at that date and the book is priced against `SPY`, each day flagged.
+
+### What is frozen here
+
+`Paper_Trading_4/` is the one book frozen here, by `promote.py 4` on 2026-09-25, and the one
+`daily_update.py` runs: its section is above, and its `FREEZE.json` names the commit, the date and
+the hash of every file it froze. `Paper_Trading_1/paper_trading_1.py` still carries Experiment 1's
+second design's rule in the form a frozen book takes, to show that form: nothing here froze it, its
+`BANDS` are not registered here, and `daily_update.py` does not run it. The data stages processed
+the months after 2026-06-01 when Experiment 1's download was refreshed through 2026-09-23; no rule
+or engine run of Experiment 4 read them before the freeze.
 
 ### The machinery, tested
 

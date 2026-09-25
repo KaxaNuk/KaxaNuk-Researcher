@@ -1,0 +1,25 @@
+{
+ "book": 4,
+ "commit": "7a4a248e7dae609c7ab8195c09eba9700b584f27",
+ "files": {
+  "Data/Refinery/custom_calculations.py": "33fa6407b5199226b484bb121c3e05dd02ff299d52acbd11f6d1287bcf34dd5b",
+  "Data/hand_supplied.py": "818292b55ac74fa5bdca6396a2eeeb2841f9b63d69c70d4be8ff966511515ff9",
+  "Data/refinery.py": "31411d7e4f4441ea29d6621368f7086ab78e10e369749b9d0828ae5230ca639a",
+  "Experiments/backtest_engine.py": "b3846bb7751271ba362c3f9d1d6dca917a871ddd15bb649052f4f549d04c5349",
+  "Experiments/portfolio_construction.py": "85abce62d5ca2e8ea037cdb8973a479ad0f16bf5bec9abb5af6d6f35dc0c290c",
+  "Experiments/securities_panel.py": "9e2eaa690defe08961b2b63ad23e9c3d7b8a4ee3c0c407542d88e13ea5a2f670",
+  "Universe/Investable_Universe.csv": "ff7e37ef515baba4b0aa96e62c213b4ff49b77b93c8445ae350019cdc8d34af9",
+  "Universe/Security_Master.csv": "20a9e3de47995d4b81030991d95757d3fc113d09e8de94d71d32d17c50864106"
+ },
+ "freeze_date": "2026-09-25",
+ "libraries": {
+  "kaxanuk-backtest-engine": "0.66.0",
+  "kaxanuk-data-curator": "0.50.0",
+  "numpy": "2.5.3",
+  "pandas": "2.3.3"
+ },
+ "shared_inputs": {
+  "Data/Curator/custom_calculations.py": "ba331f7fd154d04bb306891ae67e2cd8b3516f0e06aad7faae83601e8e61e7e1",
+  "kaxanuk-data-curator": "0.50.0"
+ }
+}
