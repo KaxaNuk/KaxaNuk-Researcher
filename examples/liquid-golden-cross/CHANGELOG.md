@@ -41,6 +41,35 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.0 (2026-09-25)
+
+**MINOR** — Experiment 4's book on paper, as a candidate, not graduated: the owner's decision,
+recorded as an exception to the gate in `Paper_Trading/BITACORA.md`, with the book's bands, kill
+switch, review dates and what its record cannot show registered before its first day, and the book
+frozen by `promote.py 4`. `daily_update.py` runs it and no other book. No published number moves.
+
+**What to do differently:** schedule `Paper_Trading/daily_update.py` after the US close, as
+`SETUP.md` says, with `PAPER_TRADING_SINKS` set to `local`, `database` or both; it runs
+`Paper_Trading_4`. The commit `Paper_Trading_4/FREEZE.json` names is the one the example was run and
+frozen at, in the run folder that produced these files; the files it hashes are the ones here.
+
+### Added
+
+- **`Paper_Trading/Paper_Trading_4/`**: `paper_trading_4.py`, Experiment 4's rule in the form a
+  frozen book takes — the state, the stale-bars check on the files to the day, and the control
+  beside it, priced by the frozen engine module over the whole history, the months after the test
+  window and since the freeze — and the frozen copies of the refinery, the desk reader, the shared
+  modules, the seed and the security master, with `FREEZE.json`.
+- **Paper_Trading_4's section in `Paper_Trading/BITACORA.md`**, and *What is frozen here* in place of
+  *Nothing is frozen here*.
+
+### Changed
+
+- **`BOOKS` in `Paper_Trading/daily_update.py`**: `Paper_Trading_4`, where it named
+  `Paper_Trading_1`, which carries Experiment 1's rule only to show the form and was never frozen.
+- **The status lines** of `README.md`, `AGENTS.md` and `RESULTS.md`: one book on paper, as a
+  candidate.
+
 ## 0.17.0 (2026-09-25)
 
 **MINOR** — Experiment 4 opened and reported, from a wiped working copy: claim 5's second design,

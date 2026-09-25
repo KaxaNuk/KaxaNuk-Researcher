@@ -67,9 +67,10 @@ __all__ = [
 ]
 
 # The graduated books, by folder name.  A book is added here in the commit that freezes it, and
-# removed in the commit that sends it to production or retires it.
+# removed in the commit that sends it to production or retires it.  In this example the one book is
+# Experiment 4's, on paper as a candidate by the owner's decision: `BITACORA.md` records it.
 BOOKS = (
-    "Paper_Trading_1",
+    "Paper_Trading_4",
 )
 
 PAPER_TRADING_DIRECTORY = pathlib.Path(__file__).parent
