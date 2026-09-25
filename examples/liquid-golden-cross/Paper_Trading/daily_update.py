@@ -22,10 +22,12 @@ What one run does, in order:
 3. Checks the newest day before any book reads it: a close with no fill price, a move no price can
    make, a cash or benchmark file behind the day, an index file behind it.  A check that fails
    stops every book before anything is written: a book on broken data is worse than none.
-4. For each book in `BOOKS`: compares the Curator's calculations with the ones frozen, links the
-   raw files into the book's folder, and calls `paper_trading_N.run(as_of)`, which runs the frozen
-   refinery and rule and prices the book and its control twice -- over the whole history and
-   since the freeze.
+4. For each book in `BOOKS`: compares every frozen file with its hash in `FREEZE.json` -- the
+   security master, which is never committed, among them -- and the Curator's calculations with
+   the ones frozen, links the raw files into the book's folder, and calls
+   `paper_trading_N.run(as_of)`, which runs the frozen refinery and rule and prices the book and
+   its control twice -- over the whole history and since the freeze.  A frozen file missing or
+   changed stops the book, as a changed calculation does.
 5. Writes the record through `record.py`: the book in force, the engine's daily values and
    statistics, the diagnostics, and a flag for each diagnostic outside the band the book's
    section of `BITACORA.md` registered before its first day, each failed check and each
@@ -439,17 +441,29 @@ def _frozen_differences(
     book_directory: "pathlib.Path",
 ) -> list[str]:
     """
-    What the book cannot copy and must find unchanged: the Curator's calculations and its version.
+    What the book must find unchanged: its frozen files, and what it cannot copy.
 
-    The raw files are shared by every book, so the calculations that produce their `c_*` columns
-    cannot be frozen per book.  A difference means today's inputs are not the ones the book was
-    frozen on, and the book is not run until a person decides what that means.
+    Every file `FREEZE.json` hashes is checked on disk.  The security master is among them and is
+    never committed -- it is the provider's data -- so a copy of the strategy on another machine
+    lacks it until it is brought across from the one that froze the book.  The raw files are shared
+    by every book, so the calculations that produce their `c_*` columns cannot be frozen per book;
+    they are checked with the Curator's version.  A difference means today's inputs are not the
+    ones the book was frozen on, and the book is not run until a person decides what that means.
     """
     freeze_text = (book_directory / "FREEZE.json").read_text(encoding="utf-8")
     freeze = json.loads(freeze_text)
+    differences = []
+
+    for relative, frozen_hash in freeze["files"].items():
+        frozen_path = book_directory / relative
+
+        if not frozen_path.is_file():
+            differences.append(f"{relative} is not on this machine: bring the frozen copy across")
+        elif _hash_file(frozen_path) != frozen_hash:
+            differences.append(f"{relative} is not the copy frozen on {freeze['freeze_date']}")
+
     shared = freeze["shared_inputs"]
     frozen_version = shared["kaxanuk-data-curator"]
-    differences = []
     calculations_hash = _hash_file(CURATOR_CALCULATIONS_PATH)
     curator_version = importlib.metadata.version("kaxanuk-data-curator")
 

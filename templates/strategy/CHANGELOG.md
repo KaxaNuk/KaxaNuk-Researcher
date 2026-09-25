@@ -41,6 +41,24 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.1 (2026-09-25)
+
+**PATCH** — a frozen book's security master stays out of git. `.gitignore` keeps
+`Paper_Trading/*/Universe/Security_Master.csv` out, as it keeps the one in `Universe/`: it is the
+provider's data. The docstrings of `promote.py` and `daily_update.py`, `SETUP.md` and
+`Paper_Trading/BITACORA.md` say that the master is copied from disk, stays on the machine that froze
+the book and is brought across by hand, and that the daily run checks every frozen file against its
+hash in `FREEZE.json`. Nothing about any result changes.
+
+**What to do differently:** in a strategy made from 0.13.0, add the `.gitignore` line; if a book's
+frozen master is already committed, `git rm --cached` it — the file stays on disk — and back it up
+with the record.
+
+### Changed
+
+- **`.gitignore`, `SETUP.md`, `Paper_Trading/BITACORA.md`, and the docstrings of
+  `Paper_Trading/promote.py` and `Paper_Trading/daily_update.py`**, as above.
+
 ## 0.13.0 (2026-09-24)
 
 **MINOR** — the template describes a second price provider and the desk's new folders, and

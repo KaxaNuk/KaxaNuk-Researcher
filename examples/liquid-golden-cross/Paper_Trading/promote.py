@@ -19,7 +19,13 @@ calculations the Curator runs while it writes them.  `FREEZE.json` records the h
 calculations and the Curator's version, and `daily_update.py` refuses to run a book whose shared
 inputs no longer match.
 
-It produces `Paper_Trading_N/` with its frozen files and `FREEZE.json`, committed by a person.
+One frozen file is not in the commit: the security master, which the universe notebook writes from
+the provider's data.  It is copied from disk and hashed like the rest, and `.gitignore` keeps the
+book's copy out of git, as it keeps the one in `Universe/`: it stays on the machine that froze the
+book, backed up with the record.
+
+It produces `Paper_Trading_N/` with its frozen files and `FREEZE.json`, committed by a person, all
+but the security master.
 
 It prevents a graduated book changing because somebody improved the code it was frozen on.
 """
@@ -54,8 +60,8 @@ FROZEN_FILES = (
     "Experiments/securities_panel.py",
     "Universe/Investable_Universe.csv",
 )
-# Written by the universe notebook, so not in the commit: copied from disk, and hashed so the copy
-# can be told from a later one.
+# Written by the universe notebook from the provider's data, so never in a commit: copied from
+# disk, hashed so the copy can be told from a later one, and kept out of git by `.gitignore`.
 GENERATED_FILES = (
     "Universe/Security_Master.csv",
 )
@@ -160,6 +166,8 @@ def main() -> int:
     print(f"on paper from {arguments.freeze_date}")
     relative_book = book_directory.relative_to(REPOSITORY_ROOT)
     print(f"commit it: git add {relative_book.as_posix()}")
+    generated_names = ", ".join(GENERATED_FILES)
+    print(f"{generated_names} stays on this machine, out of git: back it up with the record")
 
     return 0
 

@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -74,12 +74,15 @@ A graduated book is the strategy, frozen. After the sign-off, the rule is writte
 `Paper_Trading_N/paper_trading_N.py` from the experiment's cells and committed; then
 `Paper_Trading/promote.py N`, on a clean tree, copies byte for byte from that commit every file the
 book needs — the refinery and its calculations, the reader of the desk's files, the shared modules
-the rule calls, the seed and the security master — into `Paper_Trading_N/` in the strategy's own
-layout, and writes `FREEZE.json`: the commit, the freeze date, the hash of every file, the library
-versions, and the hash of what it cannot copy, the Curator's calculations. Every module resolves its
-paths from its own folder, so the copies read and write inside the book's folder: an experiment
-under construction can change the shared modules and the book never moves. A frozen book is never
-frozen again; a new freeze is a new book, with its own number.
+the rule calls and the seed — into `Paper_Trading_N/` in the strategy's own layout, with the
+security master from disk, and writes `FREEZE.json`: the commit, the freeze date, the hash of every
+file, the library versions, and the hash of what it cannot copy, the Curator's calculations. The
+security master is the provider's data, so `.gitignore` keeps the book's copy out of git: it stays
+on the machine that froze the book, backed up with the record, and is brought across by hand to any
+other machine that runs it. Every module resolves its paths from its own folder, so the copies read
+and write inside the book's folder: an experiment under construction can change the shared modules
+and the book never moves. A frozen book is never frozen again; a new freeze is a new book, with its
+own number.
 
 ## What a paper-trading run is
 
@@ -90,7 +93,8 @@ stops every book on a close with no fill price or a move no price can make; runs
 `BOOKS` — its frozen refinery, its frozen rule from the experiment's first day, and the engine
 twice, over the whole history and since the freeze; writes the record through `record.py` to local
 CSV files, a DuckDB database or both, as `Config/.env` says; and exits 0, 1 or 2 — clean, flagged,
-failed. A shared input that no longer matches `FREEZE.json` stops the book with `unfrozen-input`.
+failed. A frozen file missing or changed, or a shared input that no longer matches `FREEZE.json`,
+stops the book with `unfrozen-input`.
 
 The record has six tables — runs, books, performance, statistics, diagnostics, flags — keyed so a
 second run of a day replaces that day's rows. A past value the engine now prices differently is a

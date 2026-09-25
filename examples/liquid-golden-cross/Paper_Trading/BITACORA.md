@@ -62,7 +62,9 @@ how is it doing".
 **A graduated book is the strategy, frozen.** `promote.py N` runs once, after the sign-off: it
 copies byte for byte, from the commit that graduated, every file the book needs to go from raw
 prices to a priced book into `Paper_Trading_N/`, in the strategy's own layout, and writes
-`FREEZE.json` with the commit, the date and the hash of each file. The rule itself goes into
+`FREEZE.json` with the commit, the date and the hash of each file. The security master is the one
+file not taken from the commit: the provider's data, it is copied from disk, hashed like the rest
+and kept out of git, on the machine that froze the book. The rule itself goes into
 `paper_trading_N.py`, copied from the experiment's cells and committed first. Every module resolves
 its paths from its own folder, so the copies read and write inside the book's folder alone: the
 experiments under construction can change the shared modules, and a graduated book never moves.
@@ -271,11 +273,13 @@ afterwards: a later observation is a new line under it, dated.**
 
 `Paper_Trading_4/` is the one book frozen here, by `promote.py 4` on 2026-09-25, and the one
 `daily_update.py` runs: its section is above, and its `FREEZE.json` names the commit, the date and
-the hash of every file it froze. `Paper_Trading_1/paper_trading_1.py` still carries Experiment 1's
-second design's rule in the form a frozen book takes, to show that form: nothing here froze it, its
-`BANDS` are not registered here, and `daily_update.py` does not run it. The data stages processed
-the months after 2026-06-01 when Experiment 1's download was refreshed through 2026-09-23; no rule
-or engine run of Experiment 4 read them before the freeze.
+the hash of every file it froze. Its frozen security master is the provider's data and is not in
+the repository: it is kept on the machine that froze the book, and that hash names the copy.
+`Paper_Trading_1/paper_trading_1.py` still carries Experiment 1's second design's rule in the form
+a frozen book takes, to show that form: nothing here froze it, its `BANDS` are not registered here,
+and `daily_update.py` does not run it. The data stages processed the months after 2026-06-01 when
+Experiment 1's download was refreshed through 2026-09-23; no rule or engine run of Experiment 4
+read them before the freeze.
 
 ### The machinery, tested
 
