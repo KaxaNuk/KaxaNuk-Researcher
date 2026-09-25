@@ -8,21 +8,19 @@ survive before anyone believes it.
 
 <!-- example: begin -->
 
-> **Status: steps 1 to 6 run end to end on three experiments, and step 7's gate evaluated against
-> each on 2026-09-24; claim 1 stays falsified, now on two windows, and claim 5 is falsified.**
-> Experiment 1's second design, the twenty most traded names above their cross, sold the day after
-> it breaks, beats the index on Sharpe, 0.806 against 0.770, earns 0.86 points a year less than the
-> same names without the cross and **fails its kill switch**; reproduced from a wiped working copy
-> on 2026-09-24, it returned every engine figure to the digit. Its diagnostic arm, the first
-> design's band at twenty names, earned 1.65 points a year more than it, and Experiment 2 took that
-> arm's design to 2002 to 2016: 4.23% a year at a Sharpe of 0.234, against its control's 5.87% and
-> 0.256 and the index's 8.57% and 0.438, so it **fails its kill switch** too. Experiment 3, momentum
-> proper on the same names, the twenty of the hundred most traded with the best twelve-month
-> return, earns 10.81% at 0.436 over 2002 to 2026, against its control's 11.03% and 0.465 and the
-> index's 10.99% and 0.568, ahead of its control in one sub-period of three: it **fails its kill
-> switch**, run from a wiped working copy. Every number is in `RESULTS.md`. **Nothing
-> has graduated, no book is on paper, and nothing here is out of sample**; Experiments 2 and 3 were
-> each run from a wiped working copy on 2026-09-24, every figure the same as in the working copy.
+> **Status: steps 1 to 6 run end to end on four experiments, and step 7's gate evaluated against
+> each on 2026-09-24 and 2026-09-25; claims 1 and 5 stay falsified, and nothing has graduated.**
+> Experiment 1's second design, the twenty most traded names above their 50/200 cross, sold the day
+> after it breaks, beats the index on Sharpe, 0.806 against 0.770, earns 0.86 points a year less
+> than the same names without the cross and **fails its kill switch**; Experiment 2 took its
+> diagnostic arm to 2002 to 2016 and failed the same way. Experiment 3, momentum proper on the same
+> names, earned 0.22 points a year less than its control over 2002 to 2026. Experiment 4 holds that
+> momentum only outside bear markets: 11.61% a year at a Sharpe of 0.478, against its control's
+> 10.53% and 0.469 and the index's 10.99% and 0.568 — ahead of its control on return, in two
+> sub-periods of three and against momentum in every month, and 0.0084 of Sharpe ahead where its
+> blueprint asked for 0.03, so it **fails its kill switch** too. Every number is in `RESULTS.md`.
+> **No book is on paper, and nothing here is out of sample**; each experiment was run or reproduced
+> from a wiped working copy.
 > Replace this line as the strategy moves, and the banner at the top of the README with it.
 
 <!-- example: end -->

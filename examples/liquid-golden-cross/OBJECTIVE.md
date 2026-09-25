@@ -26,8 +26,8 @@
 > table and a section of its own below. He chose it before the analyzer measured it; it was
 > written after, once its notes had been read and step 6 had charged Experiment 1's books with
 > momentum, as its section says. The main idea, claims 1 to 4 and every other line are unchanged,
-> and the diff shows it. Its status moved on 2026-09-24, once `FINDINGS_3.md` reported; its
-> wording did not.
+> and the diff shows it. Its status moved on 2026-09-24, once `FINDINGS_3.md` reported, and its
+> evidence on 2026-09-25, once `FINDINGS_4.md` did; its wording did not.
 
 ## The main idea
 
@@ -64,7 +64,7 @@ reader sees which parts of the idea have survived contact with the data, so keep
 | **2. The sizing** | equal weight across the 30 captures that without a risk model | **untested** — the book is equal weighted and works, but no other weighting has been run against it |
 | **3. The construction** | ranking by trading volume keeps every position in a stock that trades heavily enough to be exited in a day | **true by construction**, and **measured as the book's largest idiosyncratic source** in the first design, at tag `v0.15.0`: about 28 of its 45.5 points, against random books of the same shape. It was expected to cost return and it did not. The second design's findings do not break its 36.19 points down this way |
 | **4. The rebalancing** | trading only when the book is 10% away from its target keeps most of the return at a fraction of the turnover | **measured** — in the first design the band fired 87 times in 9.4 years at 17.8% turnover each; in the second, at twenty names, a 15% band earned 1.65 points a year more, net, than selling each broken name the next day ([`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md)). The claim names a 10% band, and this evidence is at 15%, the setting that keeps the first design's behaviour at twenty names. *Measured* is the status `BLUEPRINT_1.md` fixed for that arm, reached on an engine-priced book rather than on the analyzer the vocabulary below names |
-| **5. Momentum** | *"the 20 most-traded members ranked by their own 12-month return, the momentum proper"*, the owner's words of 2026-09-24, read, with the latest month left out as in the standard definition (Baltussen et al., p. 5), as: among the most traded US stocks, those with the highest return over the twelve months before the latest one go on to earn more than the most traded chosen without that ranking | **falsified, for Experiment 3's design, on 2002 to 2026** — added 2026-09-24, beside the main idea rather than inside it, and chosen before the analyzer measured it. Among the hundred most traded securities, its information coefficient at 21 days is 0.0134 on 2002 to 2016 and 0.0304 on 2017 to 2026, and on 2002 to 2016 it is below zero at 63 and 252 days ([`RESULTS.md`](RESULTS.md), rows 19 to 28). As a book, the twenty of the hundred most traded members with the highest return, re-struck monthly, earns **0.22 points a year less** than the pool's twenty most traded on the same dates over 2002-07-30 to 2026-06-01, net, and is ahead of them on both Sharpe and CAGR in one sub-period of three, 2017 to 2026; step 6 finds the ranking adds 28.01 points of the momentum factor and takes 5.59 idiosyncratic points away ([`FINDINGS_3.md`](Experiments/Experiment_3/FINDINGS_3.md)) |
+| **5. Momentum** | *"the 20 most-traded members ranked by their own 12-month return, the momentum proper"*, the owner's words of 2026-09-24, read, with the latest month left out as in the standard definition (Baltussen et al., p. 5), as: among the most traded US stocks, those with the highest return over the twelve months before the latest one go on to earn more than the most traded chosen without that ranking | **falsified, for Experiments 3's and 4's designs, on 2002 to 2026** — added 2026-09-24, beside the main idea rather than inside it, and chosen before the analyzer measured it. Among the hundred most traded securities, its information coefficient at 21 days is 0.0134 on 2002 to 2016 and 0.0304 on 2017 to 2026, and on 2002 to 2016 it is below zero at 63 and 252 days, and below zero in bear months, −0.0362 ([`RESULTS.md`](RESULTS.md), rows 19 to 38). As a book, the twenty of the hundred most traded members with the highest return, re-struck monthly, earns **0.22 points a year less** than the pool's twenty most traded on the same dates over 2002-07-30 to 2026-06-01, net, and is ahead of them on both Sharpe and CAGR in one sub-period of three ([`FINDINGS_3.md`](Experiments/Experiment_3/FINDINGS_3.md)). Held only outside bear markets, a design chosen after that result, it earns **1.08 points a year more**, in two sub-periods of three, but leads on Sharpe by 0.0084 where 0.03 was required, and in 5 of 12 perturbation cells where ten were ([`FINDINGS_4.md`](Experiments/Experiment_4/FINDINGS_4.md)) |
 
 Status vocabulary, so it means the same across strategies: **untested** · **measured** (the analyzer
 says something; no book has been run) · **falsified** · **confirmed as a book** (it beats its
@@ -272,6 +272,10 @@ twenty with the highest twelve-month return, the latest month left out, earn mor
 than the twenty most traded of the same hundred on the same dates? That is Experiment 3,
 [`BLUEPRINT_3.md`](Experiments/Experiment_3/BLUEPRINT_3.md), with its margins and its kill switch
 fixed before the rule. It ran on 2026-09-24, and the claims table above has what it found.
+Experiment 4 tests a second design,
+[`BLUEPRINT_4.md`](Experiments/Experiment_4/BLUEPRINT_4.md): the same ranking held only outside a
+bear market, the index's return over the prior 24 months below zero, and the most traded twenty
+inside one. It ran on 2026-09-25, and the claims table has what it found.
 
 **Worth reading for it — leads, no note yet.** **Against it:** Lee & Swaminathan (2000), already a
 lead under claim 3, on heavily traded stocks' past winners reversing sooner — this claim's own
