@@ -2,12 +2,13 @@
 name: init-researcher
 description: >
   Create a KaxaNuk researcher's home in a new folder — the library's folders, RESEARCHER.md to be
-  filled, AGENTS.md with the library's rules — from the template that ships inside the researcher
-  package, copied by a script and made a git repository, then hand over to `interview` for
-  the interview. Only when the owner runs it by name; once per person, never per strategy. It does
-  NOT run the interview itself and does NOT create a strategy (use `init-strategy`).
+  filled, AGENTS.md with the library's rules — after bringing the researcher package to its newest
+  version with apm update -g, from the template that ships inside it, copied by a script and made a
+  git repository; then hand over to `interview` in two plain steps. Only when the owner runs it by
+  name; once per person, never per strategy. It does NOT run the interview itself and does NOT
+  create a strategy (use `init-strategy`).
 metadata:
-  version: 0.2.2
+  version: 0.3.0
 ---
 
 # Init researcher — a home for the library, once
@@ -30,17 +31,35 @@ in a session of its own, or adds it to a strategy's session to bring the library
    researcher's name, which names the folder, and the parent folder — short on Windows,
    `D:\Research\Ada`, never a deep synced path. Say the full path you will create.
 
-2. **The plan.** In chat: the path; that it will hold the researcher's home at this package's
-   version — `RESEARCHER.md` and `Philosophy/HOW-I-INVEST.md` as blanks for the interview,
-   `Sources/` with its empty `Books/`, `Papers/` and `Clippings/`, `Knowledge/` with an empty
-   `INDEX.md` and `LOG.md`, the empty `Studies/`, where `study` keeps the owner's studies,
-   `AGENTS.md`, and the template's `README.md`, `CHANGELOG.md`, `LICENSE`, `CLAUDE.md`, `apm.yml`,
-   `.gitignore` and `.gitattributes` — every file the script copies, the empty folders' `.gitkeep`
-   files aside; that it becomes a git repository with the first commit
-   *Start from the KaxaNuk Researcher template*. Ask for the go — *Go*, *Change something*, *Stop*
-   — and run on *Go* only.
+2. **The plan.** In chat, in plain words: the path; that it first brings the researcher package to
+   its newest version for the user, so the home is made from the newest template and every skill
+   and command is current; that it then makes the researcher's home — `RESEARCHER.md` and
+   `Philosophy/HOW-I-INVEST.md` as blanks for the interview, `Sources/` with its empty `Books/`,
+   `Papers/` and `Clippings/`, `Knowledge/` with an empty `INDEX.md` and `LOG.md`, the empty
+   `Studies/`, where `study` keeps the owner's studies, `AGENTS.md`, and the template's
+   `README.md`, `CHANGELOG.md`, `LICENSE`, `CLAUDE.md`, `apm.yml`, `.gitignore` and
+   `.gitattributes` — every file the script copies, the empty folders' `.gitkeep` files aside; and
+   that it becomes a git repository with the first commit *Start from the KaxaNuk Researcher
+   template*. Say that the assistant may ask to allow two commands, the update and the copy, and
+   that allowing them is all the owner has to do. Ask for the go — *Go*, *Change something*,
+   *Stop* — and run on *Go* only.
 
-3. **Copy.** The script is in the `init-strategy` skill's folder, beside this one:
+3. **Bring the package up to date**, on the same go, before anything is copied — the owner types
+   nothing:
+
+   ```bash
+   uvx --from apm-cli==0.29.0 apm update -g --yes
+   ```
+
+   The go is the confirmation, so `--yes` answers APM's own prompt, which an agent's shell cannot.
+   Then `uvx --from apm-cli==0.29.0 apm deps list -g` names the version now installed: say it in
+   one line. Old `KaxaNuk-Agent-Skills` packages it may list as orphaned are harmless; leave them
+   unmentioned. If the update fails — no network, GitHub out of reach — say so in one plain line,
+   name the version still installed, and go on: the home is made from that version, and `update`
+   brings it forward later. What the update brings is there in the owner's next session, which is
+   where the interview runs.
+
+4. **Copy.** The script is in the `init-strategy` skill's folder, beside this one:
 
    ```bash
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher "<full path>"
@@ -57,13 +76,20 @@ in a session of its own, or adds it to a strategy's session to bring the library
    set them in that repository only, `git config user.name "<name>"` and
    `git config user.email "<email>"`, then run the printed commands there.
 
-4. **Hand over.** Tell the owner to open the new folder in a **new** session and run
-   `interview` there: the interview that writes `RESEARCHER.md` and the agent file. Then
-   `apm install --target <their agent>` in that folder, once, to deploy the agent; the skills are
-   already installed for the user. Say that the library is private: nothing in `Sources/` is
-   pushed anywhere public, and the `.gitignore` keeps PDFs out.
+5. **Hand over, as a short numbered list in plain words** — the owner may read nothing else:
+
+   1. Open `<full path>` in a **new** session — in the desktop app, choose that folder for the
+      session; in a terminal, `cd` into it and start the assistant, `claude` for Claude Code.
+   2. Type `/interview` there — elsewhere, ask for the interview by name — and answer its seven
+      questions, about ten minutes. It deploys the agent and commits what it writes: there is
+      nothing to install and nothing to type but the answers.
+
+   Then one line: the library is private — nothing in `Sources/` is pushed anywhere public, and
+   the `.gitignore` keeps PDFs out.
 
 ## References
 
+- `apm update -g`, with the APM the package is pinned to, 0.29.0 — the update its `SETUP.md` and
+  the `update` command run.
 - `scripts/scaffold.py`, in the `init-strategy` skill's folder — copies `templates/researcher/`
   from the KaxaNuk Researcher package.

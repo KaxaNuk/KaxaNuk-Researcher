@@ -28,10 +28,12 @@ offered as options, that make a complex idea simple — never a position to adop
 - **A researcher that fits you.** Its questions, its voice, its rules, the tools it knows and
   commands of your own — *Growing your researcher* below says the four moves.
 
-**First, once.** Open your assistant in this folder, in a new session, and run `interview`: a
-short interview that writes `RESEARCHER.md` and the agent file that makes your researcher callable
-by name. Then deploy the agent for the assistant you use — `codex`, `cursor` or `copilot` in place
-of `claude` — and open a new session:
+**First, once.** Open your assistant in this folder, in a new session, and run `interview`: seven
+questions, about ten minutes. It writes `RESEARCHER.md` and the agent that makes your researcher
+callable by name, deploys the agent for the assistant you are using and commits what it wrote — you
+answer, give your go, and allow the commands your assistant asks about. Then open a new session.
+On a new machine, or for another assistant, deploy the agent yourself — `codex`, `cursor` or
+`copilot` in place of `claude`:
 
 ```bash
 apm install --target claude
