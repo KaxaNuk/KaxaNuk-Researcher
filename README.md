@@ -57,16 +57,17 @@ fails with `WinError 3` or `WinError 206`. [`SETUP.md`](SETUP.md) says more. Nev
 
 ## The path
 
-Five moves, each in a **new session**, in the folder the line names. Lost at any point: run `next`
-in the folder, and it says which move is done and what comes next.
+Four moves, each in a **new session**, in the folder the line names. The first two ask for nothing
+but your answers and your go: they run their own commands, and your assistant may ask you to allow
+them. Lost at any point: run `next` in the folder, and it says which move is done and what comes
+next.
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Ada` | your researcher's home, with the name you choose |
-| 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md` and the agent file |
-| 3 | the home | `uvx --from apm-cli==0.29.0 apm install --target claude` | the researcher as an agent you call by name |
-| 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
-| 5 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
+| 1 | anywhere | `init-researcher Ada` | brings the package up to date, then makes your researcher's home, with the name you choose |
+| 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md` and the agent, deploys the agent so you can call it by name, and commits |
+| 3 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
+| 4 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
 
 The interview's questions on markets and the reading map cover investment research; a researcher
 for another field answers *not sure yet* where it must and grows by reading.

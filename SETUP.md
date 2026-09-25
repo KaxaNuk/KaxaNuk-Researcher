@@ -101,32 +101,35 @@ Windows, `D:\Research`, never a deep synced path such as `C:\Users\<you>\OneDriv
 init-researcher Ada
 ```
 
-with the name you will call it. It shows a plan, waits for your go, and makes `Ada/` — the
-researcher's home — as a git repository. Open **that folder** in a new session and run:
+with the name you will call it. It shows a plan, waits for your go, brings the package up to date
+and makes `Ada/` — the researcher's home — as a git repository. Open **that folder** in a new
+session and run:
 
 ```text
 interview
 ```
 
 a short interview — seven questions, in your language — that writes `RESEARCHER.md` and the agent
-that makes your researcher callable by name. Then, once, in that folder:
+that makes your researcher callable by name, deploys the agent for the assistant you are using and
+commits what it wrote: you answer and give your go, and it runs the commands. On a new machine, or
+for another assistant, deploy the agent yourself, once, in that folder:
 
 ```bash
 uvx --from apm-cli==0.29.0 apm install --target claude
 ```
 
-deploys the agent — `codex`, `cursor` or `copilot` in place of `claude`; Gemini, OpenCode and
-Windsurf take no agent, and the researcher there is its skills and commands.
+`codex`, `cursor` or `copilot` in place of `claude`; Gemini, OpenCode and Windsurf take no agent,
+and the researcher there is its skills and commands.
 
 > **For the agent.** If a commit fails for want of a git identity, ask the user for the name and
 > email — never invent them — and set them in that repository only. One researcher per person: if a
 > home already exists, say where it is and do not make a second.
 
 **What "done" looks like:** `RESEARCHER.md` with no angle-bracketed slot left,
-`.apm/agents/<slug>.agent.md`, `.claude/agents/<slug>.md` after the install, a clean `git status`,
-and a private remote if you want a backup. On Windows, `git diff` prints a CRLF warning for the
-files the researcher wrote; it is expected and harmless — `.gitattributes` normalises them on
-commit.
+`.apm/agents/<slug>.agent.md`, `.claude/agents/<slug>.md` deployed by the interview, a clean
+`git status`, and a private remote if you want a backup. On Windows, `git diff` prints a CRLF
+warning for the files the researcher wrote; it is expected and harmless — `.gitattributes`
+normalises them on commit.
 
 ---
 
