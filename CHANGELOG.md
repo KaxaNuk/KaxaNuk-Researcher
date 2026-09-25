@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.25.1] - 2026-09-25
+The worked example stops publishing provider data: the security master `promote.py 4` froze into
+`Paper_Trading_4/` — company names, ISINs, sectors and industries from FMP's profiles — left the
+repository, as the master in `Universe/` never entered it. `.gitignore` keeps every book's copy
+out, in the template and the example; the copy stays where the book was frozen, unchanged, its hash
+in `FREEZE.json` still matching; and the example's `daily_update.py` checks every frozen file
+against that hash and stops a book whose files are missing or changed. Strategy template 0.13.1,
+example 0.18.1, `paper-trading-gate` 0.2.1; no frozen byte, rule or number moved. Earlier commits
+still hold the file.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`. A copy of the example
+made from now on has no frozen master: bring it across by hand from the machine that froze the book
+before its daily run there. In a strategy of your own, add the template's `.gitignore` line, and
+`git rm --cached` a frozen master already committed.
+### Changed
+- **`.gitignore`**, in the template and the example, keeps
+  `Paper_Trading/*/Universe/Security_Master.csv` out of git.
+- **The example's `daily_update.py`** checks each file `FREEZE.json` hashes before a book runs, and
+  stops a book with `unfrozen-input` when one is missing or not the copy frozen; `promote.py` says
+  the master stays on the machine when it freezes a book.
+- **`paper-trading-gate`**, `SETUP.md` and `Paper_Trading/BITACORA.md` in the template and the
+  example, and the docstrings of `promote.py` and `daily_update.py`, say the master is copied from
+  disk, stays out of git and travels by hand.
+### Removed
+- **`examples/liquid-golden-cross/Paper_Trading/Paper_Trading_4/Universe/Security_Master.csv`**
+  from the repository.
+
 ## [0.25.0] - 2026-09-25
 The first two moves need nothing typed but answers and a go. `init-researcher` brings the package
 to its newest version with `apm update -g` before it copies, so a home is always made from the

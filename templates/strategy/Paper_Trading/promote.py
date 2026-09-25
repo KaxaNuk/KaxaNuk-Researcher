@@ -19,7 +19,13 @@ calculations the Curator runs while it writes them.  `FREEZE.json` records the h
 calculations and the Curator's version, and `daily_update.py` refuses to run a book whose shared
 inputs no longer match.
 
-It produces `Paper_Trading_N/` with its frozen files and `FREEZE.json`, committed by a person.
+One frozen file is not in the commit: the security master, which the universe notebook writes from
+the provider's data.  It is copied from disk and hashed like the rest, and `.gitignore` keeps the
+book's copy out of git, as it keeps the one in `Universe/`: it stays on the machine that froze the
+book, backed up with the record.
+
+It produces `Paper_Trading_N/` with its frozen files and `FREEZE.json`, committed by a person, all
+but the security master.
 
 It prevents a graduated book changing because somebody improved the code it was frozen on.
 """

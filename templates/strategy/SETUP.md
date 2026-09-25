@@ -266,6 +266,12 @@ Each has a flag that overrides it for one run: `--input`, `--sinks`; `--as-of` r
 day's inputs cannot be fetched again as they were. Keep the database sink on, or back the folder
 up.
 
+**A book's frozen security master travels by hand.** It is the provider's data, so `.gitignore`
+keeps it out of git, as it keeps the one in `Universe/`: it stays on the machine that froze the
+book. Back it up with the record, and bring it across before the first run anywhere else — the run
+checks every frozen file against its hash in `FREEZE.json`, and stops a book whose files are
+missing or changed.
+
 **Schedule it** after the US close, once the provider has the day. On Windows, from the strategy's
 folder, once:
 

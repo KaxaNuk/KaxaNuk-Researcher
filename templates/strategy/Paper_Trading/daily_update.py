@@ -22,10 +22,12 @@ What one run does, in order:
 3. Checks the newest day before any book reads it: a close with no fill price, a move no price can
    make, a cash or benchmark file behind the day, an index file behind it.  A check that fails
    stops every book before anything is written: a book on broken data is worse than none.
-4. For each book in `BOOKS`: compares the Curator's calculations with the ones frozen, links the
-   raw files into the book's folder, and calls `paper_trading_N.run(as_of)`, which runs the frozen
-   refinery and rule and prices the book and its control twice -- over the whole history and
-   since the freeze.
+4. For each book in `BOOKS`: compares every frozen file with its hash in `FREEZE.json` -- the
+   security master, which is never committed, among them -- and the Curator's calculations with
+   the ones frozen, links the raw files into the book's folder, and calls
+   `paper_trading_N.run(as_of)`, which runs the frozen refinery and rule and prices the book and
+   its control twice -- over the whole history and since the freeze.  A frozen file missing or
+   changed stops the book, as a changed calculation does.
 5. Writes the record through `record.py`: the book in force, the engine's daily values and
    statistics, the diagnostics, and a flag for each diagnostic outside the band the book's
    section of `BITACORA.md` registered before its first day, each failed check and each

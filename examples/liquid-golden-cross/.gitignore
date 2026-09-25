@@ -77,7 +77,10 @@ Experiments/*/Attribution/*
 # A frozen book's code and FREEZE.json are committed: they are the book. What each day's run writes
 # is not: the raw files linked into a book's folder, what its frozen refinery and engine write, the
 # logs, and the record. The record is evidence that cannot be fetched again, so keep it in the
-# database sink or back the folder up - see SETUP.md.
+# database sink or back the folder up - see SETUP.md. Nor is a book's frozen security master: it
+# is the provider's data, as the one in Universe/ is, so it stays on the machine that froze the
+# book, known by its hash in FREEZE.json - back it up with the record.
+Paper_Trading/*/Universe/Security_Master.csv
 Paper_Trading/*/Data/Curator/Time_Series/
 Paper_Trading/*/Data/Refinery/Time_Series/
 Paper_Trading/*/Portfolio/

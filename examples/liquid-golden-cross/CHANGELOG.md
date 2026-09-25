@@ -41,6 +41,34 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.1 (2026-09-25)
+
+**PATCH** — the frozen security master leaves git. It is the provider's data, as the master in
+`Universe/` is, which `.gitignore` already kept out; the copy `promote.py 4` froze into
+`Paper_Trading_4/` was committed with the book. `.gitignore` now keeps every book's copy out, the
+copy stays on the machine that froze the book, unchanged — its hash in `FREEZE.json` still
+matches — and `daily_update.py` checks every frozen file against that hash and stops a book whose
+files are missing or changed. No frozen byte, no rule and no number moves.
+
+**What to do differently:** back up `Paper_Trading/Paper_Trading_4/Universe/Security_Master.csv`
+with the record, and bring it across by hand before the first run on another machine: a copy made
+by `init-example` from now on lacks it, and the daily run says so. Earlier commits still hold the
+file.
+
+### Changed
+
+- **`.gitignore`** keeps `Paper_Trading/*/Universe/Security_Master.csv` out of git, with the
+  reason.
+- **`Paper_Trading/daily_update.py`** checks each file `FREEZE.json` hashes before a book runs:
+  one missing, or not the copy frozen, stops the book with `unfrozen-input`, as a changed Curator
+  calculation already did. `promote.py` says the master stays on the machine when it freezes a
+  book. Their docstrings, `SETUP.md` and `Paper_Trading/BITACORA.md` say the same.
+
+### Removed
+
+- **`Paper_Trading/Paper_Trading_4/Universe/Security_Master.csv`** from the repository; the file
+  itself is where it was frozen, unchanged.
+
 ## 0.18.0 (2026-09-25)
 
 **MINOR** — Experiment 4's book on paper, as a candidate, not graduated: the owner's decision,
