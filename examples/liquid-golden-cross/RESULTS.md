@@ -127,8 +127,9 @@ a break can lose, and it is small — half a point a month, on barely more than 
 **Measured a third time on 2026-09-24**, in Experiment 1's reproduction from a wiped working copy,
 on a fresh download through 2026-06-01 from which the refinery read 787 securities and 4,252,838
 rows. Rows 1, 2 and 4 to 18 came back as printed, and row 3 at 0.0026, as on 2026-09-23; the
-analyzer's Verify section ran its 8 checks. **Every row here describes the seed of 788 names.** No
-analyzer run on the seed Experiment 2 widened is recorded.
+analyzer's Verify section ran its 8 checks. **Every row here describes the seed of 788 names.** The
+one analyzer run on the seed Experiment 2 widened, for Experiment 3, is below; it does not replace
+them.
 
 **What it says.** The trend signal barely predicts return and strongly predicts volatility. An
 information coefficient of 0.011 at one month is noise beside the 0.02 to 0.03 a working signal
@@ -145,6 +146,65 @@ on it has to be judged against the same thirty names without the filter, not aga
 `LCI`, `PARA` — carry adjusted prices that multiply by more than six in a day, which is a bad print
 rather than a return, and are excluded by name in the rule. 265 of the 788 have no prices when the
 long window opens in 2002, and 76 series end early, every one of them a real delisting.
+
+**Measured a fourth time on 2026-09-24, for Experiment 3, on the seed Experiment 2 widened**, after
+the owner chose that experiment's signal and before its blueprint was written. The refinery wrote
+1,453 files, 6,348,870 rows, with a new column, `r_momentum_12_1`: the price 21 trading days before
+over the price 252 trading days before, less one, on the dividend-and-split-adjusted close, from
+`Data/Refinery/custom_calculations.py`. The analyzer read 6,390 dates by 1,437 securities,
+2001-01-02 to 2026-06-01 and nothing later, and its Verify section ran its 10 checks. **Rows 1 to
+18 are not replaced:** the same run printed their measurements again on the widened panel, and they
+differ — a mean pairwise correlation of 0.271 against row 1's 0.303, and, in the eligible pool of
+a wider cross-section, `r_trend_50_200` at 21, 63 and 252 days at 0.0195, 0.0186 and 0.0086,
+positive on 54.9%, 52.9% and 47.9% of dates, against rows 10 to 12's 0.0112, 0.0026 and −0.0060.
+Those rows describe the 788-name seed and stand as they are at the KaxaNuk Researcher's `v0.18.0`;
+*What is closed* cites them, and on the widened panel the same measurement is higher at every
+horizon.
+
+The pool below is the hundred securities with the highest `r_liquidity_rank` on each date, less any
+without a momentum value. The rank is a percentile across every security present, index member or
+not, so this pool is a neighbour of the one Experiment 3 selects from, the hundred most traded
+members, and not the same. The sign the signal expects is positive. The two windows are the two
+the experiments have used, 2002-07-30 to 2016-12-30 and 2017-01-03 to 2026-06-01. Consecutive
+windows share 20 of 21 days at a month, 62 of 63 at a quarter and 251 of 252 at a year; on the
+first trading day of each month alone, 21-day windows share only the days by which a month falls
+short of 21 trading days.
+
+| # | Measurement | Value | Dates with the expected sign | Section |
+| --- | --- | ---: | ---: | --- |
+| 19 | Information coefficient of `r_momentum_12_1`, 21 days, the hundred most traded, 2002 to 2016, on 3,633 dates | 0.0134 | 54.7% | 5 |
+| 20 | The same, 63 days, on 3,633 dates | −0.0018 | 48.0% | 5 |
+| 21 | The same, 252 days, on 3,633 dates | −0.0025 | 52.5% | 5 |
+| 22 | Row 19 on the window's 173 month starts alone | 0.0140 | 56.1% | 5 |
+| 23 | Information coefficient of `r_momentum_12_1`, 21 days, the hundred most traded, 2017 to 2026, on 2,344 dates | 0.0304 | 56.1% | 5 |
+| 24 | The same, 63 days, on 2,302 dates | 0.0234 | 54.9% | 5 |
+| 25 | The same, 252 days, on 2,113 dates | 0.0309 | 58.6% | 5 |
+| 26 | Row 23 on the window's 112 month starts alone | 0.0170 | 50.9% | 5 |
+| 27 | The twenty of the hundred with the highest `r_momentum_12_1`, against the hundred's mean over the next 21 days, on 173 month starts, 2002 to 2016: mean, median | +0.14%, +0.34% | 56.6% above the pool | 5 |
+| 28 | The same on 112 month starts, 2017 to 2026 | +0.83%, +0.55% | 55.4% above the pool | 5 |
+| 29 | Information coefficient of `r_momentum_12_1`, whole panel, 2002 to 2016, at 21, 63 and 252 days, on 3,633 dates each | 0.0163, 0.0075, 0.0078 | 57.1%, 56.0%, 62.6% | 5 |
+| 30 | The same, 2017 to 2026, on 2,344, 2,302 and 2,113 dates | 0.0250, 0.0343, 0.0364 | 59.0%, 61.0%, 62.9% | 5 |
+
+**What rows 27 and 28 measure, and what they do not.** On each month start, the twenty names of the
+pool with the highest momentum, against the pool's equal average over the next 21 days, from that
+day's close. No lag, no costs, no sizing: a measurement of the signal, never a return a book earned,
+and set against the pool's mean rather than against its twenty most traded, the control Experiment
+3 names.
+
+**What it says.** Among the most traded, momentum at a month carries 0.0134 on 2002 to 2016, below
+the 0.02 to 0.03 a working signal shows, and 0.0304 on 2017 to 2026, at its top; on month starts
+alone, where the windows barely overlap, 0.0140 and 0.0170, the second positive in just over half
+of 112 months. On 2002 to 2016 it is below zero at a quarter and at a year in this pool, where
+across the whole panel it stays positive at every horizon in both windows. In the pool, at 63 and
+252 days, the month-start readings are within 0.004 of the daily ones, with the same sign, and
+still overlap.
+
+**What it licenses, and what it forbids.** It licenses a prediction that the twenty with the
+highest momentum beat the most traded twenty on the same dates, net, with the evidence against it
+beside it: an edge of 0.14% a month before costs on 2002 to 2016, against which a monthly re-strike
+pays its costs, and a signal that does not last a quarter on those years. It forbids reading a
+book's result on either window as the signal out of sample: both were measured here before the
+book was designed.
 
 <!-- example: end -->
 
@@ -426,8 +486,9 @@ to 1.64 points a year less return.
 The single highest-value run outstanding, and what it would settle.
 
 **None of these can turn a verdict**: every book tested earns less than its control. They bear on
-how the books are read. What follows Experiment 2 is the owner's to decide, and no decision is
-recorded.
+how the books are read. What follows Experiment 2 the owner decided on 2026-09-24: Experiment 3,
+momentum proper on the same liquid names, under a claim of its own, claim 5
+([`BRAINSTORMING_3.md`](Experiments/Experiment_3/BRAINSTORMING_3.md)).
 
 1. **Experiment 2 from a wiped working copy**, with the Data Curator's branch at its recorded
    commit, `8b54c2f`. Its blueprint's success criteria ask for it, and `AGENTS.md` asks it of a

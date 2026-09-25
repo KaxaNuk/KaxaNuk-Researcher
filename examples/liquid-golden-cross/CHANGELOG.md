@@ -41,6 +41,28 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.0 (2026-09-24)
+
+**MINOR** — Experiment 3 opened, before its rule: momentum proper among the most traded members, as
+claim 5 of `OBJECTIVE.md`, added for it. Nothing published changes.
+
+**What to do differently:** run `Data/refinery.py` to add `r_momentum_12_1` to the refined panel,
+then `Data/analyzer.ipynb` for its measurement, before Experiment 3's notebook.
+
+### Added
+
+- **Experiment 3's blueprint, brainstorming entry and first journal entry**, committed before any
+  rule, reviewed cold by the blueprint critic and revised: the twenty of the hundred most traded
+  members with the highest twelve-month return before the latest month, equal weight, re-struck on
+  the first trading day of each month, against the same pool's twenty most traded members with a
+  momentum value, on 2002-07-30 to 2026-06-01.
+- **Claim 5 of `OBJECTIVE.md`**, momentum among the most traded, status measured; claims 1 to 4 and
+  the main idea are unchanged.
+- **`r_momentum_12_1`** in `Data/Refinery/custom_calculations.py`, the price a month ago over the
+  price a year ago, less one, and its measurement in `Data/analyzer.ipynb`, in `RESULTS.md` rows 19
+  to 30: in the hundred most traded, a 21-day information coefficient of 0.0134 on 2002 to 2016 and
+  0.0304 on 2017 to 2026.
+
 ## 0.14.0 (2026-09-24)
 
 **MINOR, and it changes the universe** — Experiment 2 run and reported, on a seed widened to 1,500
