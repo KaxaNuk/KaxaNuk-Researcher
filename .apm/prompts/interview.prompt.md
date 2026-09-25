@@ -15,10 +15,10 @@ answer is in.
 
 **The researcher is the owner's.** It reflects them and grows with what they believe. Ask as
 someone who wants to know what pulls them to markets, what they think is true and how *they* like
-to invest. What the package brings are hints — the reading map's — offered as options that turn a
-complex idea into simple logic. No question asks them to adopt a position, and none asks how
-KaxaNuk invests; where the map records KaxaNuk's own view, that is a fact about the deck, never a
-reason offered for a pick.
+to invest. What the package brings are hints — the reading map's, and a few of its own — offered
+as options that turn a complex idea into simple logic. No question asks them to adopt a position,
+and none asks how KaxaNuk invests; where the map records KaxaNuk's own view, that is a fact about
+the deck, never a reason offered for a pick.
 
 **The interview at a glance.** Seven questions, about ten minutes, and this is what each one is
 for; say so in one line before question 1, and open every question with its number, *3 of 7*, so
@@ -28,7 +28,7 @@ the owner always knows how much is left.
 | --- | --- | --- | --- |
 | 1 | the language, and the owner's name | every later question is asked in it | *Works for*, *How it speaks* |
 | 2 | what the owner does, invests in and wants to learn, and the puzzle about markets that pulls them in | the researcher's brief, in their words | *Works for*, *What you believe*, *Out of scope for now* |
-| 3 | the researcher's name, its domains, its voice, its rules — three many researchers start with, and a fourth offered | who it is, how it speaks, what never bends | *Name*, *Domains*, *How it speaks*, *Non-negotiables* |
+| 3 | the researcher's name, its domains, its voice, its rules — three many researchers start with, and two more offered | who it is, how it speaks, what never bends | *Name*, *Domains*, *How it speaks*, *Non-negotiables* |
 | 4 | how the owner sees markets, three stances, and how they like to invest | places their view in the evolution of investment research, and says how they work | *What you believe* |
 | 5 | where that view sits, the view as one testable sentence and its shelf life, and a decision it led to | the works that hold, tested and argue with it, and the view put in terms a test could answer | *What you believe*, *Where it sits*, `Philosophy/HOW-I-INVEST.md` |
 | 6 | what the reading should answer, and what would kill the belief | the questions every note will be filed against | *What you are reading for* |
@@ -91,8 +91,8 @@ like to invest, what they are reading for and which works to find first. **No st
 they come later, when the researcher is invited into one, and `objective` and `blueprint` do that
 work. Do not ask about a strategy, a benchmark, a holding horizon, a stop, or when an idea earns
 real money. A belief's shelf life, in question 5, is how long its edge might last, not a strategy's
-horizon; and question 3 offers the fourth rule as a rule to keep or leave, not a question about
-when an idea earns money.
+horizon; and question 3 offers two more rules to keep or leave, not questions about a strategy or
+about when an idea earns money.
 
 **Ask in their language.** Question 1 picks it; from question 2 on, every question, option and
 draft is in it, and every header is the one given below for that language — the English one for
@@ -153,11 +153,15 @@ question 7; and say why.
      comes from the engines the project names — in a KaxaNuk strategy the numbers come from the
      Lab's libraries — never from me; a hypothesis is written before its test, and every
      prediction cites a source; nothing trades from here. Then it offers a fourth: *a strategy
-     graduates only against criteria written down beforehand, never on a good month.* *Keep the
-     three*, *Add the fourth*, *Add one of mine*, *Change or drop one*. Whatever is not changed or
-     dropped is kept, so an add alone keeps the three. On *Add one of mine* or *Change or drop
-     one*, one line in chat, in their words — *a mistake you have seen made, and never want me to
-     let you repeat* is a good place to start.
+     graduates only against criteria written down beforehand, never on a good month.* Four
+     options, the tool's limit: *Keep the three*; *Add the fourth*; *Add, change or drop one*;
+     and *Challenge my design before it runs, and count every idea I try*, its description a plain
+     gloss — a design argued with before its rule is coded, and every idea tried counted, because
+     the more ideas tried, the likelier one looks good by luck alone. Whatever is not changed or
+     dropped is kept, so an add alone keeps the three. On *Add, change or drop one*, one line in
+     chat, in their words — a rule of their own, or which of the three to change or drop and how;
+     *a mistake you have seen made, and never want me to let you repeat* is a good place to start.
+     A rule typed under *Other* is that line.
 4. **How you see markets** — *tool, one call, four multi-select questions:* three on markets, then
    one on how they like to invest. Say first, in one line, that no answer is right and picking
    several is expected: in the map's *Nothing is discarded*, every view keeps its job. In the three
@@ -200,13 +204,35 @@ question 7; and say why.
      hint for them to edit or refuse: *if this holds, I would measure that, because of this source
      of edge*. The source is their `Edge from?` pick, or a gap for them to fill; the shape is the
      map's *An idea's anatomy* — present tense, something that can be measured. It proposes no
-     number.
-   - **Its shelf life** — "If the edge decays, how long would you give it?"
+     number. After it, one clause they may add or leave, its blanks theirs to fill: *…and ___
+     keeps taking the other side because ___*. In the anatomy the other side is who sells to you,
+     and what keeps them doing it — the counterparty to the trade, not the paper that argues
+     against the view, which *Where it sits* names. The blanks are never filled for them, and a
+     clause left blank is left out.
+   - **Its shelf life** — "If the edge decays, how long would you give it?", with four options
+     listed in the message for them to pick, edit or refuse, and their own words — a time, or
+     anything else — as welcome as any of them:
+     - *Outlasts publication* — a risk someone is paid to carry: knowing about it does not remove
+       the risk, so the pay can last once everyone knows.
+     - *Shrinks as others learn it* — a mistake others repeat, or something seen or done better:
+       once others learn it too, they trade it away.
+     - *Lasts while the obstacle does* — others cannot take the other side: it lasts as long as
+       what stops them — capital, rules, horizon — and ends when that goes.
+     - *Comes and goes* — it works, stops and comes back, as others crowd in and leave.
+
+     The option that follows from their `Edge from?` pick comes first, saying which pick it follows
+     from: *Paid for a risk others avoid*, the first; *A mistake others repeat* or *Something I see
+     or do better*, the second; *Others cannot take the other side*, the third. With several picks,
+     each option a pick keys comes first, in this order; with none, the four keep their order and
+     none is marked. *Comes and goes* follows from no pick. These four are the package's own hint,
+     not the deck's — the deck asks whether an edge is paid risk or mispricing, and how long edges
+     last, but ties no shelf life to a source of edge — so no option names a work.
    - **A decision** — the last one where they acted on this view, or a rule they always follow.
 
    With no view — *Not sure yet* throughout and no belief typed — ask only *a rule you already
-   follow with money, if any*. What they keep of each is written verbatim; a sentence refused, or
-   an ask skipped, writes nothing. If an answer cuts against a pick, say so once, in their words.
+   follow with money, if any*. What they keep of each is written verbatim, a shelf life picked by
+   its label; a sentence refused, a clause left blank, or an ask skipped, writes nothing. If an
+   answer cuts against a pick, say so once, in their words.
 6. **What are you reading for?** — *tool, `Reading for` (`Leer para`), multi-select, then chat.* Up
    to four candidate questions: the one from question 2, in their words — the question they want
    their reading to answer, else the puzzle that pulls them in; one for an unread PDF in
@@ -249,27 +275,30 @@ question 7; and say why.
 The owner's words go in their language, and so do the fixed lines below. The headings and the
 labels the skills find by name stay in English, as the template has them: *Name*, *Works for*,
 *Domains*, *Where it sits*, *feeds*, *Would change my mind*, *Find first* and *Out of scope for
-now*, with the three non-negotiables as the template words them, the fourth as question 3 words it,
-and *How it cites*.
+now*, with the three non-negotiables as the template words them, the fourth and the design rule as
+*Non-negotiables* below words them, and *How it cites*.
 
 - **The title** — the researcher's name, in place of *Researcher*.
 - **Name** and **Domains** — question 3's picks. **Works for** — the owner's name and question 2 in
   one line.
 - **How it speaks** — the language and the voice, in one paragraph.
 - **What you believe** — two or three sentences from the owner's own words first, then question 4's
-  picks — how they see markets, and how they like to invest — with question 5's testable sentence
-  and shelf life as they kept them, verbatim, the decision or rule of question 5, and any conviction
-  from question 6. Then *Where it sits:* the view that leads — the act, the work, who tested it, its
-  other side — and the other picks by their works, from question 5: a lead from the reading map,
-  never a citation. With *Not sure yet* throughout and no belief typed, the section is the line
-  *Not formed yet — I start from the works under Find first.*, the `Your method` pick after it
-  unless that is *Not sure yet*, and the template's closing sentence.
+  picks — how they see markets, and how they like to invest — with question 5's testable sentence,
+  its other side's clause when they filled it, and its shelf life as they kept them, verbatim, a
+  shelf life picked by its label and any words they added; the decision or rule of question 5; and
+  any conviction from question 6. Then *Where it sits:* the view that leads — the act, the work, who
+  tested it, its other side — and the other picks by their works, from question 5: a lead from the
+  reading map, never a citation. With *Not sure yet* throughout and no belief typed, the section is
+  the line *Not formed yet — I start from the works under Find first.*, the `Your method` pick after
+  it unless that is *Not sure yet*, and the template's closing sentence.
 - **Non-negotiables** — the rules as they stand in the file — on a first run the template's three —
-  with the fourth when question 3 added it, and the rule question 3 added, changed or dropped, in
-  their words. The first of the three reads: *Every number about a book comes from the engines the
-  project names — in a KaxaNuk strategy the Lab's libraries, the Backtest Engine for performance
-  and Attribution Analysis for where it came from — never from the researcher.* The fourth reads:
-  *A strategy graduates only against criteria written down beforehand, never on a good month.*
+  with the fourth and the design rule when question 3 added them, and the rule question 3 added,
+  changed or dropped, in their words. The first of the three reads: *Every number about a book
+  comes from the engines the project names — in a KaxaNuk strategy the Lab's libraries, the
+  Backtest Engine for performance and Attribution Analysis for where it came from — never from the
+  researcher.* The fourth reads: *A strategy graduates only against criteria written down
+  beforehand, never on a good month.* The design rule reads: *Every design is challenged before it
+  runs, and every idea tried is counted.*
 - **Tag policy** — loose: the researcher proposes tags as it reads, the owner prunes at audit. On
   a re-run, the policy the file already states is kept.
 - **The strategies and projects it works on** — as the template ships it: one row,
@@ -283,9 +312,10 @@ and *How it cites*.
 - **How it cites** — the template's text, unchanged.
 
 No angle-bracketed slot is left. **`Philosophy/HOW-I-INVEST.md` takes only what the owner typed**,
-never a pick, verbatim: a belief, and question 5's testable sentence when they wrote or edited it,
-under *What I believe about markets*; the mistake from question 3 under *What I have learned*; a
-`Your method` answer typed under *Other*, question 5's shelf life and its decision or rule under
+never a pick, verbatim: a belief, and question 5's testable sentence when they wrote or edited it —
+filling the other side's blanks is writing it — under *What I believe about markets*; the mistake
+from question 3 under *What I have learned*; a `Your method` answer typed under *Other*, question
+5's shelf life in their own words, never an option's label alone, and its decision or rule under
 *How I decide*; and each *would change my mind*, with the smallest test that could kill the belief,
 under *What would change my mind* — skipping any line the file already holds. A heading they said
 nothing for keeps its prompt. A file they have already written is added to, never restructured:

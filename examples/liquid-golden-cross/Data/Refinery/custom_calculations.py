@@ -45,6 +45,7 @@ __all__ = [
     "CLASSIFICATION_DEPENDENT_COLUMNS",
     "REFINERY_COLUMNS",
     "r_liquidity_rank",
+    "r_momentum_12_1",
     "r_trend_50_200",
     "r_universe_size",
 ]
@@ -52,6 +53,10 @@ __all__ = [
 # Both windows live here rather than in the Curator because a later experiment sweeps them, and a
 # sweep must never cost a download.
 LONG_WINDOW_DAYS = 200
+# The twelve-month return skips the most recent month, which reverses rather than persists; both
+# lags are trading days, and a later experiment sweeps them.
+MOMENTUM_SKIP_DAYS = 21
+MOMENTUM_WINDOW_DAYS = 252
 SHORT_WINDOW_DAYS = 50
 # The columns this module produces, in the order the driver builds them.  A column may read any
 # column built before it.
@@ -59,6 +64,7 @@ REFINERY_COLUMNS = (
     "r_universe_size",
     "r_liquidity_rank",
     "r_trend_50_200",
+    "r_momentum_12_1",
 )
 # The subset that needs `Universe/Security_Master.csv`, so the refinery still runs before the
 # universe notebook has written one.  This strategy groups by nothing, so the subset is empty.
@@ -83,6 +89,29 @@ def r_liquidity_rank(
         pct=True,
         ascending=True,
     )
+
+
+def r_momentum_12_1(
+    main_identifier: "pandas.Series",
+    m_close_dividend_and_split_adjusted: "pandas.Series",
+) -> "pandas.Series":
+    """
+    Measure each security's total return over the twelve months before the most recent one.
+
+    The price a month ago over the price a year ago, less one, on the total-return series: both
+    look strictly backward, so the column on date t knows nothing after t - 21.  The most recent
+    month is left out because over that horizon returns reverse rather than persist.  The first 252
+    rows of every security are null, the warm-up, never a zero return.
+    """
+    panel = pandas.DataFrame({
+        "identifier": main_identifier,
+        "price": m_close_dividend_and_split_adjusted,
+    })
+    prices_by_security = panel.groupby("identifier")["price"]
+    month_ago = prices_by_security.shift(MOMENTUM_SKIP_DAYS)
+    year_ago = prices_by_security.shift(MOMENTUM_WINDOW_DAYS)
+
+    return month_ago / year_ago - 1
 
 
 def r_trend_50_200(

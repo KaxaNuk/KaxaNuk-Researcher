@@ -6,6 +6,54 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.20.0] - 2026-09-24
+The worked example opens Experiment 3 before its rule, and the interview offers three more hints.
+Experiment 3 tests momentum proper on the same liquid names — of the hundred most traded members of
+the index, the twenty that rose most over the twelve months before the latest one — against the same
+pool's twenty most traded, as claim 5 of the example's objective, added for it. Its blueprint is
+committed, reviewed cold and revised, before any rule; the refinery gains the twelve-month return,
+and the analyzer measures it. The interview offers three more hints and asks no more questions:
+question 5 offers a clause naming who keeps taking the other side of the trade, and four ways an
+edge's shelf life might run, the one that follows from where the owner says the edge comes from
+listed first; question 3 folds *Add one of mine* and *Change or drop one* into one option and offers
+a rule in the slot it frees. Home template 0.11.0. Example 0.15.0.
+
+**What to do differently:** in a home, run `update`; then, by hand in `RESEARCHER.md`, add the rule
+*Every design is challenged before it runs, and every idea tried is counted* if you want it. To be
+offered the new hints, run `interview force`: every answer you keep is written back verbatim. To
+study Experiment 3 before its result, run `init-example` after `uvx --from apm-cli==0.29.0 apm
+update -g`.
+### Added
+- **Experiment 3's blueprint, brainstorming entry and first journal entry**, in the example,
+  before any rule: the twenty of the hundred most traded members with the highest twelve-month
+  return before the latest month, re-struck monthly, against the pool's twenty most traded with a
+  momentum value, on 2002-07-30 to 2026-06-01, with a kill switch over three sub-periods, ten
+  perturbation cells and a trial count of fifty-four.
+- **Claim 5 in the example's objective**, momentum among the most traded, in the owner's words, with
+  the note that it was chosen before the analyzer measured it and written after.
+- **`r_momentum_12_1` in the example's refinery**, and its measurement in the analyzer: rows 19 to
+  30 of `RESULTS.md`, on the widened panel.
+- **Question 5 offers the other side of the trade**: after the testable sentence, a clause the owner
+  may fill or leave — *…and ___ keeps taking the other side because ___* — the other side as the
+  reading map's anatomy of an idea gives it, who sells to you and what keeps them doing it. Its
+  blanks are never filled for the owner, and a clause left blank is left out.
+- **Question 5 offers the shelf life as four options**, in its one message, the owner's own words
+  as welcome: outlasts publication, a risk someone is paid to carry; shrinks as others learn it, a
+  mistake others repeat or information; lasts while the obstacle does, others cannot take the other
+  side; comes and goes. The option that follows from the `Edge from?` pick comes first. They are
+  the package's own hint, not the deck's, which asks only whether an edge is paid risk or
+  mispricing: no option names a work, and the reading map is unchanged.
+- **A rule offered in question 3**: *Challenge my design before it runs, and count every idea I
+  try*, written under *Non-negotiables* as *Every design is challenged before it runs, and every
+  idea tried is counted*. The home's `RESEARCHER.md` offers it beside the fourth (home template
+  0.11.0), never as a default.
+### Changed
+- **Question 3's rules keep four options**, the question tool's limit: *Add one of mine* and
+  *Change or drop one* are one option, *Add, change or drop one*, and a rule typed under *Other* is
+  its line.
+- **A shelf life picked from the options** is written to `RESEARCHER.md` by its label, with any
+  words the owner added; `Philosophy/HOW-I-INVEST.md` takes only their own words, as before.
+
 ## [0.19.0] - 2026-09-24
 The worked example runs and reports Experiment 2, on a seed widened to every listing the index held
 since 2000. Experiment 1's diagnostic arm, its design taken to 2002-07-30 to 2016-12-30 with the
