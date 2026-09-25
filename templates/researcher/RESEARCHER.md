@@ -32,7 +32,8 @@ never a citation.>
 
 <The rules that never bend, one per line. The three below are rules many researchers start with:
 keep them, change them or add to them. A fourth many add: *a strategy graduates only against
-criteria written down beforehand, never on a good month.*>
+criteria written down beforehand, never on a good month.* Another is offered, to add or leave:
+*every design is challenged before it runs, and every idea tried is counted.*>
 
 - Every number about a book comes from the engines the project names — in a KaxaNuk strategy the
   Lab's libraries, the Backtest Engine for performance and Attribution Analysis for where it came

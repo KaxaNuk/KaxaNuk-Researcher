@@ -22,6 +22,11 @@
 > **The status column was updated on 2026-09-20, once `FINDINGS_1.md` reported; no claim's wording
 > changed, and the diff shows it** — a claim edited after its test is not a claim. A strategy of
 > your own starts from `init-strategy`, never from here.
+> **Claim 5 was added on 2026-09-24**, in the owner's words, for Experiment 3: a row in the claims
+> table and a section of its own below. He chose it before the analyzer measured it; it was
+> written after, once its notes had been read and step 6 had charged Experiment 1's books with
+> momentum, as its section says. The main idea, claims 1 to 4 and every other line are unchanged,
+> and the diff shows it.
 
 ## The main idea
 
@@ -58,6 +63,7 @@ reader sees which parts of the idea have survived contact with the data, so keep
 | **2. The sizing** | equal weight across the 30 captures that without a risk model | **untested** — the book is equal weighted and works, but no other weighting has been run against it |
 | **3. The construction** | ranking by trading volume keeps every position in a stock that trades heavily enough to be exited in a day | **true by construction**, and **measured as the book's largest idiosyncratic source** in the first design, at tag `v0.15.0`: about 28 of its 45.5 points, against random books of the same shape. It was expected to cost return and it did not. The second design's findings do not break its 36.19 points down this way |
 | **4. The rebalancing** | trading only when the book is 10% away from its target keeps most of the return at a fraction of the turnover | **measured** — in the first design the band fired 87 times in 9.4 years at 17.8% turnover each; in the second, at twenty names, a 15% band earned 1.65 points a year more, net, than selling each broken name the next day ([`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md)). The claim names a 10% band, and this evidence is at 15%, the setting that keeps the first design's behaviour at twenty names. *Measured* is the status `BLUEPRINT_1.md` fixed for that arm, reached on an engine-priced book rather than on the analyzer the vocabulary below names |
+| **5. Momentum** | *"the 20 most-traded members ranked by their own 12-month return, the momentum proper"*, the owner's words of 2026-09-24, read, with the latest month left out as in the standard definition (Baltussen et al., p. 5), as: among the most traded US stocks, those with the highest return over the twelve months before the latest one go on to earn more than the most traded chosen without that ranking | **measured** — added 2026-09-24, beside the main idea rather than inside it, and chosen before the analyzer measured it. Among the hundred most traded securities, its information coefficient at 21 days is 0.0134 on 2002 to 2016 and 0.0304 on 2017 to 2026, and on 2002 to 2016 it is below zero at 63 and 252 days; the twenty highest beat the hundred's mean over the next month by 0.14% on 2002 to 2016 and 0.83% on 2017 to 2026, with no lag and no costs ([`RESULTS.md`](RESULTS.md), rows 19 to 28). No book has been run: Experiment 3 is its test |
 
 Status vocabulary, so it means the same across strategies: **untested** · **measured** (the analyzer
 says something; no book has been run) · **falsified** · **confirmed as a book** (it beats its
@@ -200,6 +206,76 @@ twenty-one days late — run before any band is chosen. A new experiment, not an
 
 **Worth reading for it — a lead, no note yet.** Novy-Marx & Velikov (2016), already a lead in
 Parts 4 and 5, on which cost-saving rules keep an anomaly's return after costs.
+
+### 5. Momentum — the twelve-month return, the latest month left out
+
+**Added on 2026-09-24, in the owner's words, and chosen before the analyzer measured it** — not
+before step 6 had measured the momentum of Experiment 1's books, as the next paragraph says. After
+Experiment 1's two designs and Experiment 2 had failed their kill switches, he chose, from the
+options put to him: *"Experiment 3, then paper (Recommended) — A new idea on the same liquid names:
+the 20 most-traded members ranked by their own 12-month return, the momentum proper. Blueprint and
+critic first, then tested on 2002–2016 and 2017–2026. If it passes the gate and you sign, it's
+frozen as Paper_Trading_1 and tracked daily."* A paper book takes its experiment's number, so it
+would be `Paper_Trading_3`. The analyzer measured the signal after that choice, and this claim was
+written after it ran. **It needs a claim of its own** because the main idea is the cross, and this
+file says momentum is relative and trend following absolute, so the momentum literature is context
+for claim 1 rather than evidence: a momentum book cannot move claim 1, and the literature that is
+only context there is this claim's evidence. The main idea's sentence is not reworded, and this
+claim is not inside it: it sits beside it, on the same liquid names. The line *not that this is
+momentum*, under *What is not claimed*, is about the cross and stands.
+[`BRAINSTORMING_3.md`](Experiments/Experiment_3/BRAINSTORMING_3.md) has what else was considered, a
+new name and a new strategy among them.
+
+**It was not chosen blind.** Step 6 had already charged Experiment 1's books with momentum on 2017
+to 2026 — 12.75 points in the first design, 15.44 in the second's rule against its control's 5.99
+— and the note on [Baltussen, Dom, Van Vliet & Vidojevic
+(2025)](Bibliotheca/Papers/Baltussen_Dom_VanVliet_Vidojevic_2025_Momentum_Factor_Investing.md)
+reads those years as momentum's strongest since its 2009 crash (p. 8). So the claim was written
+after results, step 6's and the analyzer's, though before any book of its own: the book that tests
+it runs on years whose momentum has been seen, and the published record is its out-of-sample
+evidence.
+
+**The evidence read for it.** Baltussen et al. give the standard definition, the past twelve months
+less the latest one, held for a month (p. 5), and find it paying after its publication: 7.89
+percent a year value-weighted in the United States over 1990–2024, t 2.07 (p. 8), positive in all
+31 countries with data since 1990 (p. 10), and in 61 years before CRSP that nobody had tuned it to
+(pp. 10–11). [Paleologo (2021), chapter
+5](Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/09_Understand_Factors.md) gives
+the term structure the skipped month rests on: the latest month reverts, one month to a year
+continues (pp. 74–75). **Against it, in the same sources:** the paper's figures are long-short
+spreads, its headline ones gross of costs (p. 11), and it does not study transaction costs
+(pp. 26–27), whereas a book of the most traded names holds a long leg alone, net, and sits nearer
+the paper's value-weighted column, the weaker, 7.89 percent against 10.00 equally weighted (p. 8);
+and the premium crashes at market reversals, 1929 and 2009 in its series (p. 8), when the previous
+year's losers rally (Paleologo, p. 77), and Paleologo names another crash in early 2016 (p. 77).
+**Nor does the one note on momentum among the largest companies support it:**
+[Sarkar, Du & Vafai (2019)](Bibliotheca/Papers/Sarkar_Du_Vafai_2019_Impacts_Of_Sector_And_Company_Size.md)
+find a large-company portfolio's momentum coefficient negative in every specification they print
+(pp. 29, 30, 33 and 36), which ties such a book's return to the factor and is no evidence that it
+earns the premium.
+
+**What the analyzer measured, after the choice.** On the seed Experiment 2 widened, among the
+hundred most traded securities on each date ([`RESULTS.md`](RESULTS.md), rows 19 to 30): at 21
+days, a coefficient of 0.0134 on 2002 to 2016, positive on 54.7% of 3,633 dates, and 0.0304 on 2017
+to 2026, on 56.1% of 2,344 — the first below the 0.02 to 0.03 `RESULTS.md` reads as a working
+signal's, the second at its top. On 2002 to 2016 it is below zero at 63 and 252 days, −0.0018 and
+−0.0025; on 2017 to 2026 it holds, 0.0234 and 0.0309. On the first trading day of each month, the
+twenty with the highest return beat the hundred's mean over the next 21 days by 0.14% on 2002 to
+2016, median 0.34%, in 56.6% of 173 months, and by 0.83% on 2017 to 2026, median 0.55%, in 55.4%
+of 112 — with no lag, no costs, and against the pool rather than against its twenty most traded.
+The pool ranks every security present, index member or not, so it is a neighbour of the pool a
+rule selects from, not the same one.
+
+**What would settle it.** Among the hundred most traded members of the index, does a book of the
+twenty with the highest twelve-month return, the latest month left out, earn more, net of costs,
+than the twenty most traded of the same hundred on the same dates? That is Experiment 3,
+[`BLUEPRINT_3.md`](Experiments/Experiment_3/BLUEPRINT_3.md), with its margins and its kill switch
+fixed before the rule.
+
+**Worth reading for it — leads, no note yet.** **Against it:** Lee & Swaminathan (2000), already a
+lead under claim 3, on heavily traded stocks' past winners reversing sooner — this claim's own
+names. **For it, on costs:** Korajczyk & Sadka (2004), also there, on momentum profits after
+trading costs; and Novy-Marx & Velikov (2016).
 
 ## What is not claimed
 

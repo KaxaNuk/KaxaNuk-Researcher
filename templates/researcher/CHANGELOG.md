@@ -6,6 +6,30 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.11.0 (2026-09-24)
+
+**MINOR** — `RESEARCHER.md` offers a second rule beside the fourth, to add or leave: *every design
+is challenged before it runs, and every idea tried is counted.* The three you start with are
+unchanged, and neither offered rule is a default. The interview that fills the file — `interview`,
+in the package — offers it in its rules question, where *Add one of mine* and *Change or drop one*
+are now one option, and in question 5 offers two more hints, each yours to take, edit or leave: a
+clause naming who keeps taking the other side of your trade, and four ways your edge's shelf life
+might run, the one that follows from where you said the edge comes from listed first. The interview
+is still seven questions.
+
+**What to do differently:** run `update` in your home, which brings the new `interview` with the
+package; none of the home's own files changed, so nothing else comes across. Then by hand, in
+`RESEARCHER.md`, which is yours: the rule, if you want it, as a line under *Non-negotiables* —
+*Every design is challenged before it runs, and every idea tried is counted.* To be offered the new
+hints, run `interview force`: every answer you keep is written back verbatim.
+
+### Added
+
+* **A second rule is offered** in the guidance under *Non-negotiables* in `RESEARCHER.md`, after
+  the fourth, to add or leave: every design is challenged before it runs, and every idea tried is
+  counted. `interview` writes it only when you pick *Challenge my design before it runs, and count
+  every idea I try* in its rules question.
+
 ## 0.10.0 (2026-09-24)
 
 **MINOR** — the home has no `Projects/`. The researcher is invited into the projects it works on,
