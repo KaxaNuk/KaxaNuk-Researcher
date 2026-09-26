@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.26.1] - 2026-09-26
+The README's command table says what `interview` writes since 0.26.0: `RESEARCHER.md`, the agent
+and the researcher's skill, installed for the owner's user and committed. The row had kept the
+earlier wording, `RESEARCHER.md` and the agent only, while *The path* above it already said the
+rest. Nothing the researcher writes changes.
+
+**What to do differently:** nothing.
+### Fixed
+- **The `interview` row** of the README's command table.
+
 ## [0.26.0] - 2026-09-26
 The researcher is in every session, in every folder, on every assistant APM deploys to — no longer
 only where the owner opens the home or adds it by hand. `interview` writes a second file of the

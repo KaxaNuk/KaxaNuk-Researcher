@@ -107,7 +107,7 @@ Every one that writes shows its plan first and waits for your go.
 | Command | What it does |
 | --- | --- |
 | `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
-| `interview` | seven questions that make the researcher yours; writes `RESEARCHER.md` and the agent that makes it callable by name. `interview force` starts over |
+| `interview` | seven questions that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, and commits. `interview force` starts over |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
 | `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
 | `brainstorm <N> ["idea"] [strategy]` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
