@@ -65,9 +65,9 @@ next.
 | | In | Run | It makes |
 | --- | --- | --- | --- |
 | 1 | anywhere | `init-researcher Ada` | brings the package up to date, then makes your researcher's home, with the name you choose |
-| 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md` and the agent, deploys the agent so you can call it by name, and commits |
+| 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md`, the agent and the researcher's skill, installs them for your user so the researcher is in every folder and you can call it by name, and commits |
 | 3 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
-| 4 | the strategy, with the home added by `--add-dir` | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
+| 4 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
 
 The interview's questions on markets and the reading map cover investment research; a researcher
 for another field answers *not sure yet* where it must and grows by reading.
@@ -86,9 +86,10 @@ in the strategy's `Config/.env`, which only you fill in and nobody commits; the 
 In Claude Code, type a skill or a command with a slash, as `/init-strategy fcf-yield-quality`;
 elsewhere, ask for it by name.
 
-**Invite the researcher into a strategy** by opening your assistant in the strategy's folder and
-adding the home to the session — `claude --add-dir <the home>`, `/add-dir`, or the desktop app's
-add-folder button. The skills are already there; the invitation brings the library. The home's
+**The researcher is in every folder** once the interview has run: open your assistant in a
+strategy's folder, or any other project's, and it is there, by name, on whichever assistant APM
+deploys to. Add the home to the session — `claude --add-dir <the home>`, `/add-dir`, or the desktop
+app's add-folder button — for it to read the library without asking each time. The home's
 `AGENTS.md` says how, and what loads.
 
 ---

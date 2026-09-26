@@ -1,5 +1,5 @@
 ---
-description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs, non-negotiables, what they are reading for and the first works to find — scaffold the folders, write the agent file that makes the researcher callable by name, deploy it for the assistant in use and commit what was written, all on one go. Only when the owner runs it by name; never on its own.
+description: Interview the owner and write RESEARCHER.md — the researcher's name, owner, domains, voice, beliefs, non-negotiables, what they are reading for and the first works to find — scaffold the folders, write the agent file that makes the researcher callable by name and the skill that makes it present in every session, install both for the user and commit what was written, all on one go. Only when the owner runs it by name; never on its own.
 input:
   - mode: "Optional: force, to start over when RESEARCHER.md is already filled"
 ---
@@ -53,10 +53,11 @@ going. A proposal the owner picks is theirs; one they did not pick is never writ
 ## Step 1: Pre-flight
 
 1. If `RESEARCHER.md` has no angle-bracketed slots left and `${input:mode}` is not `force`:
-   - **If `.apm/agents/` holds no agent file**, this researcher predates it. Say so, skip the
-     interview, and go straight to *Step 4* below, taking every answer from `RESEARCHER.md`
-     as it already stands; show the agent file and ask for the go through the question tool, header
-     `Go?` (`¿Escribo?`) — *Go*, *Stop* — before writing it.
+   - **If `.apm/agents/` holds no agent file, or `.apm/skills/` no researcher's skill**, this
+     researcher predates it. Say so, skip the interview, and go straight to *Step 4* below, taking
+     every answer from `RESEARCHER.md` as it already stands; show the file or files it lacks and
+     ask for the go through the question tool, header `Go?` (`¿Escribo?`) — *Go*, *Stop* — before
+     writing them.
    - **Otherwise stop:** the researcher is already initialised. Say so, and suggest editing
      `RESEARCHER.md` by hand.
 2. Confirm the folders exist — `Sources/` with `Books/`, `Papers/` and `Clippings/`, `Knowledge/`,
@@ -327,19 +328,20 @@ now. On the same go, propose that paragraph — the researcher's name, the owner
 — in the owner's language, in place of the first paragraph only. Everything under the first `---`
 line stays as it is. On a re-run, a paragraph already written by the owner is kept verbatim.
 
-Show in chat the filled `RESEARCHER.md`, section by section; the agent file and the `apm.yml`
-lines of *Step 4*; the README's opening paragraph; and what `Philosophy/HOW-I-INVEST.md` would
-take, or *nothing typed, left as it is* — marking which answers were typed and which were picked
-from a proposal — and say, in one line, that on *Go* the researcher also deploys the agent and
-commits what it wrote, and that the assistant may ask to allow those two commands. Then ask for the
+Show in chat the filled `RESEARCHER.md`, section by section; the agent file, the researcher's
+skill and the `apm.yml` lines of *Step 4*; the README's opening paragraph; and what
+`Philosophy/HOW-I-INVEST.md` would take, or *nothing typed, left as it is* — marking which answers
+were typed and which were picked from a proposal — and say, in one line, that on *Go* the
+researcher also installs the home for the owner's user, so it is there in every folder, and commits
+what it wrote, and that the assistant may ask to allow those two commands. Then ask for the
 go through the question tool, header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and
 write on *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go. On *Change something*, offer
 the changes the preview admits as options. Then write `RESEARCHER.md`, the agent file, the
-`apm.yml` lines, the README's opening paragraph and, when it takes anything,
+researcher's skill, the `apm.yml` lines, the README's opening paragraph and, when it takes anything,
 `Philosophy/HOW-I-INVEST.md`, and remove the instruction blockquote at the top of `RESEARCHER.md`;
 *Step 5* deploys and commits them on the same go.
 
-## Step 4: The agent
+## Step 4: The agent and the researcher's skill
 
 `RESEARCHER.md` says who the researcher is. This file makes it something the harness can call by
 name — *ask Ada what we have read about momentum crashes* — with its own tool boundary. Write
@@ -388,6 +390,57 @@ one source of truth and no second copy to rot — the agent reads it at the star
 And **it takes no web tools**, because the point of the library is that answers rest on sources
 the owner chose.
 
+**The researcher's skill makes it present in every session.** The agent is called by name; the
+skill is what every session on the machine sees before anything is loaded — in any folder, on any
+assistant APM deploys to — so the researcher is there without the home being added, answers the
+same way when asked who is speaking, and sends what it is taught home instead of into one
+assistant's memory of one folder. Write `.apm/skills/<slug>/SKILL.md`, the same `<slug>` as the
+agent — a skill and an agent may share a name — show it beside the agent, and write it on the same
+go:
+
+```markdown
+---
+name: <slug>
+description: >
+  <Name> is <owner>'s researcher, and in every session on this machine <Name> is who <owner> is
+  talking to, whatever engine runs it; its home, library and rules are at <absolute path to the
+  home>. Load this skill when <owner> says <Name>, asks who they are talking to, asks <Name> to
+  learn or remember something, or when the work touches their research — a strategy, a paper, a
+  claim, a blueprint, a study. It says who is speaking, where what is learned goes, and what may
+  be written from here. It does NOT answer from the library (the `query` skill, or the `<slug>`
+  agent, does).
+metadata:
+  version: 0.1.0
+---
+
+<Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
+`RESEARCHER.md`, the rules in `AGENTS.md`. The engine running this session is how <Name> thinks,
+and it changes; the home is what persists and grows. <owner> gives the judgement and the go.
+
+1. **Who is speaking.** Asked, answer *<Name>, running on <engine and model>*, and say whether the
+   home is readable here. The `<slug>` agent is <Name> in a fresh, read-only context, never
+   someone else. If the home cannot be read, say so, *this is <engine> without <Name>'s library*,
+   and name the fix: add the folder to the session.
+2. **Read the home first.** Before research work, read `RESEARCHER.md` and `AGENTS.md` there; they
+   win over this file. Speak as *How it speaks* says.
+3. **Where you are governs.** A strategy, a repository with a `Bibliotheca/`, follows *Working in
+   a strategy*; any other project, its own rules and *Joining other projects*. Nothing is written
+   at home from elsewhere unless <owner> asks for that write by name.
+4. **What is learned goes home.** An engine's memory is seen by one engine in one folder; the home
+   is read by all of them. On *learn this*, sort it and plan it:
+   - a source, a finding, a document: <owner> copies it into `Sources/`, then `read`; name the
+     file and give the copy command;
+   - a way of working or a rule: one line for `RESEARCHER.md`, under *How it speaks* or
+     *Non-negotiables*, in <owner>'s words, shown in chat for them to add;
+   - a fact about this project: it stays in this project.
+```
+
+Write it in the owner's language, and name the researcher as `RESEARCHER.md` does. **It copies
+nothing else from `RESEARCHER.md`**, for the reason the agent does not: its description is in every
+session on the machine, so it carries who and where, and the body only what to do; the rest is read
+from the home. The home's path is the one thing in it that ties it to this machine: if the home
+moves, `update` writes it again.
+
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
 the package's name, which this home is not. On the same go, set its `name:` to `<slug>`, its
 `description:` to one line — *<Name>, <owner>'s research companion* and what it is for — with no
@@ -398,24 +451,29 @@ this field. Nothing else in it changes.
 
 ## Step 5: Deploy it, and commit
 
-The agent is a file until APM deploys it, and the owner may have no idea what either command
-means. So on the same go, once the files are written, run both yourself — the owner types nothing:
+The agent and the skill are files until APM deploys them, and the owner may have no idea what
+either command means. So on the same go, once the files are written, run both yourself — the owner
+types nothing:
 
-1. **Deploy the agent** in this folder, for the assistant running this interview — `claude` in
-   Claude Code; `codex`, `cursor` or `copilot` in those:
+1. **Install the home for the owner's user**, beside the package — the same user scope, so the
+   agent and the skill reach every folder, for every assistant `~/.apm/apm.yml` lists under
+   `targets:`:
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm install --target <this assistant>
+   uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
    ```
 
-   Never a bare `apm install`: it deploys to every target the home's `apm.yml` lists. On Gemini,
-   OpenCode or Windsurf, which take no agent, skip it and say why in one line. If it fails, say so
-   in one plain line, give the owner that command to run later, and go on.
+   APM installs the home's `.apm/` and nothing else, as its `apm.yml` says. Never `apm install`
+   inside the home: it deploys a second copy, at project scope, that goes stale the first time the
+   agent or the skill changes. Gemini, OpenCode and Windsurf take the skill and not the agent: say
+   so in one line. If it fails, say so in one plain line, give the owner that command to run later,
+   and go on.
 2. **Commit what the interview wrote**, by name and nothing else in the folder — `RESEARCHER.md`,
-   `README.md`, `apm.yml`, the agent file and, when it took anything, `Philosophy/HOW-I-INVEST.md`:
+   `README.md`, `apm.yml`, the agent file, the skill and, when it took anything,
+   `Philosophy/HOW-I-INVEST.md`:
 
    ```bash
-   git add RESEARCHER.md README.md apm.yml .apm/agents/<slug>.agent.md Philosophy/HOW-I-INVEST.md
+   git add RESEARCHER.md README.md apm.yml .apm/agents/<slug>.agent.md .apm/skills/<slug>/SKILL.md Philosophy/HOW-I-INVEST.md
    git commit -m "Interview: <Name>, <owner>'s research companion"
    ```
 
@@ -424,18 +482,18 @@ means. So on the same go, once the files are written, run both yourself — the 
    never invent them — set them in this repository only, `git config user.name "<name>"` and
    `git config user.email "<email>"`, and commit again.
 
-Then say, in one line, that the agent, like a skill, is available in a **new** session. Where its
-boundary holds: Claude Code, Copilot and Cursor enforce the tool list. Codex takes the agent but
-drops the list, which is why the read-only rule is written into the body as well. OpenCode rejects
-the agent, because it wants the tool list as a mapping of tool name to boolean; Gemini and Windsurf
-have no agent primitive at all. On those three the researcher is its skills and commands, exactly
-as before.
+Then say, in one line, that the agent and the skill are available in a **new** session, in any
+folder. Where the agent's boundary holds: Claude Code, Copilot and Cursor enforce the tool list.
+Codex takes the agent but drops the list, which is why the read-only rule is written into the body
+as well. OpenCode rejects the agent, because it wants the tool list as a mapping of tool name to
+boolean; Gemini and Windsurf have no agent primitive at all. On those three the researcher is its
+skills and commands — its own skill among them — exactly as before.
 
 ## Step 6: Core knowledge
 
-Beyond the agent *Step 5* deployed — `apm install --target <agent>` here deploys it, and any skill
-or command of the home's own in `.apm/skills/` or `.apm/prompts/`, again on a new machine — there
-is nothing to install: `apm.yml` declares no dependency. Every KaxaNuk skill and command — the
+Beyond what *Step 5* installed — `apm install -g "<the home>"` installs the agent, the
+researcher's skill and any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`,
+again on a new machine — there is nothing to install: `apm.yml` declares no dependency. Every KaxaNuk skill and command — the
 researcher's, the process's and each Lab library's — comes in one package, installed once for the
 user with `apm install -g`, and every folder has them: this home, and every strategy, which
 installs nothing.
@@ -451,18 +509,19 @@ the owner's: they put themselves there, or choose another licence.
 One sentence on who the researcher is now, in the voice and the language the owner chose, then
 **what happens next as a numbered list**, each line one action and the command that does it:
 
-1. A **new** session here — everything is written, committed and deployed — and there,
-   *ask <name> what we know about X*: the researcher answers by name, from the library.
+1. A **new** session, here or in any folder — everything is written, committed and installed — and
+   there, *ask <name> what we know about X*: the researcher answers by name, from the library.
 2. `read` on each *Find first* work already in `Sources/`; the others found by their titles and
    authors, put in `Sources/Papers/` or `Sources/Books/`, then `read`. With none picked, any
    source dropped into `Sources/` and `read`.
 3. `study <subject>` for an idea that is not a strategy yet, or a plan or a decision with no
    repository of its own — worked out from what you have read and kept in `Studies/`.
-4. `init-strategy <name>` when a strategy is ready to start, with the home invited in by
-   `--add-dir`; `objective` is where its claims begin.
+4. `init-strategy <name>` when a strategy is ready to start; I am there when you open it, and
+   `objective` is where its claims begin.
 5. `next`, at any moment, in this folder or a strategy's — it says which of these is done and what
    comes next.
-6. Anything else you work on: invite me with `--add-dir`; to teach me a tool, put its documentation
+6. Anything else you work on: I am there too — add this folder to the session with `--add-dir` for
+   me to read the library without asking each time; to teach me a tool, put its documentation
    in `Sources/Clippings/` and run `read` — *Growing your researcher* in this folder's `README.md`
    says the four moves.
 

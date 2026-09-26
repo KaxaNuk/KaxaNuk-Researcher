@@ -6,6 +6,32 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.14.0 (2026-09-26)
+
+**MINOR** — your researcher is in every folder: `interview`, in the package, writes the researcher's
+skill beside the agent and installs the home for your user, so every session, on every assistant
+APM deploys to, knows who it is talking to and where the library lives. `AGENTS.md` says who is
+speaking and where what the researcher learns goes, and the READMEs say that adding the home to a
+session is for reading the library, not for bringing the researcher.
+
+**What to do differently:** run `update` in your home. It brings the new sections of `AGENTS.md`,
+`README.md` and `apm.yml` across, writes `.apm/skills/<slug>/SKILL.md` and installs the home with
+`apm install -g "<the home>"`, on your go. Never `apm install` inside the home from now on.
+
+### Added
+
+* **`AGENTS.md`, *Who is speaking***: the researcher is the home, the engine is how it thinks, the
+  agent is the researcher read-only; and what is learned anywhere goes home.
+
+### Changed
+
+* **`AGENTS.md`, *The researcher's home***: the install for the user makes the researcher present;
+  `--add-dir` gives access to the library; the `CLAUDE.md` variable and `CLAUDE.local.md` load the
+  whole file from the first line. *Joining other projects* and *Where the skills, the commands and
+  the agent live* follow, with a row for the researcher's skill.
+* **`README.md`** and **`apm.yml`**: `apm install -g "<this folder>"` in place of an install inside
+  the home.
+
 ## 0.13.0 (2026-09-25)
 
 **MINOR** — nothing to type but your answers: `interview`, in the package, now deploys the agent

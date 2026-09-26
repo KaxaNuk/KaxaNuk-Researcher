@@ -1,5 +1,5 @@
 name: kaxanuk-researcher
-version: 0.13.0
+version: 0.14.0
 description: A KaxaNuk researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read, works out your ideas and decisions from it and drafts the hypothesis of every strategy you build
 author: KaxaNuk
 license: MIT
@@ -7,16 +7,17 @@ license: MIT
 # The researcher's skills and commands are installed once for the user, not here:
 # `apm install -g KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill itself,
 # and `apm update -g` brings new versions. Every folder — this home, and every strategy —
-# then has them, and a strategy installs nothing. `apm install --target <agent>` here deploys
-# this home's own agent, from `.apm/agents/`, which `interview` writes, and any skill or command
-# of this home's own in `.apm/skills/` or `.apm/prompts/`.
+# then has them, and a strategy installs nothing. `apm install -g "<this folder>"` installs this
+# home's own for the user, beside the package — the agent in `.apm/agents/` and the researcher's
+# skill in `.apm/skills/`, which `interview` writes, and any skill or command of this home's own —
+# so the researcher is in every folder, for every target in `~/.apm/apm.yml`.
 dependencies:
   apm: []
   mcp: []
 
-# A bare `apm install` deploys to every target below; `--target <one>` deploys to just yours.
-# These four are the ones that take an agent; the rest have no agent primitive or reject its
-# tool list.
+# The targets below serve only an install inside this folder, which the home no longer needs: a
+# copy there goes stale the first time the agent or a skill changes. These four are the ones that
+# take an agent; the rest have no agent primitive or reject its tool list.
 targets:
   - claude
   - copilot

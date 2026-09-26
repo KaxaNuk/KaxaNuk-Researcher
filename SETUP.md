@@ -109,24 +109,26 @@ session and run:
 interview
 ```
 
-a short interview — seven questions, in your language — that writes `RESEARCHER.md` and the agent
-that makes your researcher callable by name, deploys the agent for the assistant you are using and
-commits what it wrote: you answer and give your go, and it runs the commands. On a new machine, or
-for another assistant, deploy the agent yourself, once, in that folder:
+a short interview — seven questions, in your language — that writes `RESEARCHER.md`, the agent
+that makes your researcher callable by name and the skill that makes it present in every session,
+installs the home for your user and commits what it wrote: you answer and give your go, and it runs
+the commands. From then on the researcher is in every folder you open, for every assistant
+`~/.apm/apm.yml` lists under `targets:`. On a new machine, or after adding an assistant there,
+install the home yourself, once:
 
 ```bash
-uvx --from apm-cli==0.29.0 apm install --target claude
+uvx --from apm-cli==0.29.0 apm install -g "<the home>"
 ```
 
-`codex`, `cursor` or `copilot` in place of `claude`; Gemini, OpenCode and Windsurf take no agent,
-and the researcher there is its skills and commands.
+Gemini, OpenCode and Windsurf take the skill and not the agent.
 
 > **For the agent.** If a commit fails for want of a git identity, ask the user for the name and
 > email — never invent them — and set them in that repository only. One researcher per person: if a
 > home already exists, say where it is and do not make a second.
 
 **What "done" looks like:** `RESEARCHER.md` with no angle-bracketed slot left,
-`.apm/agents/<slug>.agent.md`, `.claude/agents/<slug>.md` deployed by the interview, a clean
+`.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, both deployed for your user by
+the interview — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` — a clean
 `git status`, and a private remote if you want a backup. On Windows, `git diff` prints a CRLF
 warning for the files the researcher wrote; it is expected and harmless — `.gitattributes`
 normalises them on commit.
@@ -144,9 +146,9 @@ init-strategy fcf-yield-quality
 It makes `fcf-yield-quality/` beside the home — `D:\Research\fcf-yield-quality`, for example — from
 the KaxaNuk Strategy Template, as a git repository with its first commit. Open that folder in a new
 session; its own `SETUP.md` builds the environment and the keys, and its `README.md` says what to
-fill in, in order — `OBJECTIVE.md` first. To bring your researcher's library along, add its home to
-the session: `claude --add-dir <the home>`; for its identity to load with it, follow *In a strategy
-or another project* in the home's README.
+fill in, in order — `OBJECTIVE.md` first. Your researcher is already there. For it to read the
+library without asking each time, add its home to the session: `claude --add-dir <the home>`; *In a
+strategy or another project* in the home's README says more.
 
 To see a finished strategy first:
 
