@@ -55,19 +55,24 @@ for reading and running, never built on; a strategy of the owner's own is `init-
   `~/.apm/apm_modules/` for the skills and commands, the home's own `.apm/` for the agent and for
   any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`: a skill under
   `~/.claude/skills/` or the user's folder for another agent, a command under
-  `~/.claude/commands/`, the agent under `.claude/agents/` here, and the home's own skills and
-  commands under `.claude/skills/` and `.claude/commands/` here, or the folder another agent
-  takes. A copy of a KaxaNuk skill still deployed inside the home, in `.claude/skills/`, is a home
-  from before the user-scope install: the fix is `update`. **Compare what APM does not rewrite**:
+  `~/.claude/commands/`, and the home's own — the agent, the researcher's skill, and any skill or
+  command of its own — under `~/.claude/agents/`, `~/.claude/skills/` and `~/.claude/commands/`,
+  or the user's folder another agent takes. A copy of a KaxaNuk skill still deployed inside the
+  home, in `.claude/skills/`, or the agent in `.claude/agents/` here, is a home from before the
+  user-scope install: the fix is `update`. **Compare what APM does not rewrite**:
   the body below the frontmatter, and in it the section headings and the prose. APM translates a
   command's input placeholders into the form each harness takes, and rewrites the frontmatter keys
   it knows, so those differences are the install working, not a stale copy. Report a stale install
   and give the fix: `apm update -g` for a skill or a command of the package,
-  `apm install --target <the owner's agent>` here for the agent or a skill or command of the home's
-  own, then a new session.
+  `apm install -g "<the home>"` for the agent, the researcher's skill, or a skill or command of
+  the home's own, then a new session.
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
   rather than reading it. The fix for the first is `interview`, which writes it.
+- The researcher's skill: missing from `.apm/skills/<slug>/` when the agent is there, naming a
+  home other than this folder — the home has moved — or carrying a copy of `RESEARCHER.md` beyond
+  the name, the owner and the path. The fix for the first is `interview`, for the second
+  `update`, which writes it again.
 
 ## Step 2: In a strategy, also
 
