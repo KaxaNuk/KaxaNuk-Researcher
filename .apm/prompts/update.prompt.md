@@ -1,5 +1,5 @@
 ---
-description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are; plan first, the owner's go, then update. Home only. Only when the owner runs it by name.
+description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, and writing the researcher's skill for a home that lacks it; plan first, the owner's go, then update. Home only. Only when the owner runs it by name.
 input:
   - mode: "Optional: check, to report what is new without changing anything"
 ---
@@ -34,11 +34,13 @@ The researcher arrives in two parts, and each updates its own way:
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/`, `Sources/`,
 `Studies/`, `Lessons/`, the agent file in `.apm/agents/`, and any skill or command of the home's
-own in `.apm/skills/` or `.apm/prompts/`. The exceptions are two, each on the owner's go: the
+own in `.apm/skills/` or `.apm/prompts/`. The exceptions are three, each on the owner's go: the
 `Projects/` a home made before template 0.10.0 still has, which *Step 2* reads and *Step 4* moves
-or removes, and the empty `Studies/` a home made before template 0.12.0 lacks, whose `.gitkeep`
-*Step 4* brings from the template. `${input:mode}` set to `check` reports what is new and stops,
-changing nothing.
+or removes; the empty `Studies/` a home made before template 0.12.0 lacks, whose `.gitkeep`
+*Step 4* brings from the template; and the researcher's skill, `.apm/skills/<slug>/SKILL.md`, which
+a home made before template 0.14.0 lacks, or which names a folder the home has left, and which
+*Step 4* writes as `interview` gives it. `${input:mode}` set to `check` reports what is new and
+stops, changing nothing.
 
 ## Step 1: Pre-flight
 
@@ -114,11 +116,21 @@ changing nothing.
   with no `Projects/` has nothing to do here.
 - **`Studies/`, when the home lacks it** — a home made before template 0.12.0: its `.gitkeep` is
   to come from the template, so the folder is there to see.
+- **The researcher's skill and the install for the user**, whatever template version the home is
+  at. A home with an agent in `.apm/agents/` and no `.apm/skills/<slug>/SKILL.md` — one made
+  before template 0.14.0 — or whose skill names a folder other than this one: the skill is to be
+  written as `interview`'s *Step 4* gives it, from `RESEARCHER.md` and this folder's absolute path.
+  When `uvx --from apm-cli==0.29.0 apm deps list -g` does not name this folder, the home is to be
+  installed for the user. And an agent an install inside the home deployed there —
+  `.claude/agents/<slug>.md`, or the agent's file in another assistant's folder inside the home —
+  is to be deleted: it is git-ignored, it shadows the user's copy in every session at home, and it
+  goes stale the first time the agent changes.
 - **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
   **What to do differently** instruction that applies to this home, in full. Those instructions are
   the point of the update; never summarise them away.
-- **All current?** Say so and stop — unless the home still has a `Projects/` or lacks `Studies/`,
-  which go on to the plan as the items above list them. **`check` mode?** Stop here.
+- **All current?** Say so and stop — unless the home still has a `Projects/`, lacks `Studies/`,
+  or lacks the researcher's skill or the install for the user, which go on to the plan as the items
+  above list them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
@@ -126,7 +138,8 @@ In chat: the pinned APM install, when *Step 1* asked for it; the package version
 for each home file, the sections to bring across, quoted, in the home's own names, and each file
 the home lacks, to bring across whole — `Studies/.gitkeep` among them, when the folder is
 missing; what a migration removes; each move out of `Projects/` and its removal, path by path, and
-what stays there; and what the owner will have to do by hand afterwards, one line for each heading
+what stays there; the researcher's skill, shown whole, the install for the user and each copy of
+the agent inside the home to delete; and what the owner will have to do by hand afterwards, one line for each heading
 or blockquote of their own files that the template changed.
 Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and update on
 *Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
@@ -157,8 +170,9 @@ Then ask for the go through the question tool — *Go*, *Change something*, *Sto
    own skill and command copies under `.apm/skills/` and `.apm/prompts/`, and `scripts/` and
    `references/` at the root; empty `dependencies.apm` in `apm.yml` to `[]`; keep `.apm/agents/`,
    and any skill or command the owner wrote themselves, which the package does not carry. Then
-   `uvx --from apm-cli==0.29.0 apm install --target <the owner's agent>` in the home, which deploys
-   the agent and removes the copies it deployed before.
+   `uvx --from apm-cli==0.29.0 apm install --target <the owner's agent>` in the home, which removes
+   the copies it deployed before; the agent it deploys there is deleted in item 5, once the home is
+   installed for the user.
 3. **The home's files**, the sections the owner approved. A file the home has is edited in place,
    in the home's own names, and nothing else in it changes. A file the home lacks — one a later
    template added, such as `.gitattributes` or `Studies/.gitkeep` — is brought across whole by the
@@ -185,9 +199,20 @@ Then ask for the go through the question tool — *Go*, *Change something*, *Sto
    destination that exists, which would nest one inside the other. `rmdir` once `Projects/Teach/`
    is empty, and `git rm` only when nothing but `Projects/.gitkeep` is left, which removes the
    folder with it. What the owner chose to keep in `Projects/` stays where it is.
-5. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
+5. **The researcher's skill and the install for the user**, as the owner approved. Write
+   `.apm/skills/<slug>/SKILL.md`; install the home beside the package, so the agent and the skill
+   reach every folder —
+
+   ```bash
+   uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
+   ```
+
+   — and delete each copy of the agent an install inside the home deployed there. Commit the skill
+   with the entry below; the deleted copies are git-ignored and leave nothing to commit.
+6. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
    *Brought to template X.Y.Z*, a line for each section brought across or declined, one for what
-   left `Projects/` and what stayed, and one for `Studies/` when it came — whatever the owner
+   left `Projects/` and what stayed, one for `Studies/` when it came, and one for the researcher's
+   skill when it was written — whatever the owner
    declined, so the file names the version the home is now at and the next `update` reports only
    the versions after it. Nothing else in the file changes: it is the home's history.
 
@@ -205,6 +230,8 @@ In chat and nowhere else:
 - what left `Projects/` — each move and the removal — and each path left there for the owner, and
   that a file moved into `Studies/` may want a state on its first line;
 - the sections of the home's files brought across, and those the owner declined;
+- the researcher's skill, when it was written, and that the home is now installed for the user, so
+  the researcher is in every folder;
 - that the new skills and commands appear in a **new** session, not this one.
 
 Nothing is appended to `Knowledge/LOG.md`: that log records reads, audits, index refreshes and kept

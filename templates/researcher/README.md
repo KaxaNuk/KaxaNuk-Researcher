@@ -22,21 +22,21 @@ offered as options, that make a complex idea simple — never a position to adop
   `study` alone lists them.
 - **Lessons.** `teach <topic>` tutors you from your library, one lesson a session.
 - **Strategies.** `init-strategy <name>` starts one from the KaxaNuk Strategy Template, a
-  repository of its own, with this home invited in.
-- **Any other project.** Invite the researcher in, as *In a strategy or another project* below
-  says: it objects on evidence from your library, under that project's own rules.
+  repository of its own, where the researcher is present as everywhere.
+- **Any other project.** Open it, and the researcher is there, as *In a strategy or another project*
+  below says: it objects on evidence from your library, under that project's own rules.
 - **A researcher that fits you.** Its questions, its voice, its rules, the tools it knows and
   commands of your own — *Growing your researcher* below says the four moves.
 
 **First, once.** Open your assistant in this folder, in a new session, and run `interview`: seven
-questions, about ten minutes. It writes `RESEARCHER.md` and the agent that makes your researcher
-callable by name, deploys the agent for the assistant you are using and commits what it wrote — you
-answer, give your go, and allow the commands your assistant asks about. Then open a new session.
-On a new machine, or for another assistant, deploy the agent yourself — `codex`, `cursor` or
-`copilot` in place of `claude`:
+questions, about ten minutes. It writes `RESEARCHER.md`, the agent that makes your researcher
+callable by name and the skill that makes it present in every session, installs both for your user
+and commits what it wrote — you answer, give your go, and allow the commands your assistant asks
+about. Then open a new session, here or in any folder. On a new machine, or after adding an
+assistant under `targets:` in `~/.apm/apm.yml`, install this home yourself:
 
 ```bash
-apm install --target claude
+apm install -g "<this folder>"
 ```
 
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
@@ -50,16 +50,18 @@ the table of contents and asks which chapters serve which of your questions; it 
 shows the plan, waits for your go, and writes one note per chapter into `Knowledge/` — and the
 concept pages those chapters argue, every claim citing its note. `query` answers from what is here.
 
-**In a strategy or another project.** Open your assistant in the project's folder and add this one
-to the session — `claude --add-dir <this folder>`, `/add-dir` once inside, or the desktop app's
-add-folder button — so the researcher brings its library. For `CLAUDE.md`, `AGENTS.md` and
-`RESEARCHER.md` to load with it, set this once per machine and reopen the assistant:
+**In a strategy or another project.** Open your assistant in the project's folder: the researcher
+is there, and reads this home when the work needs it. Add this folder to the session —
+`claude --add-dir <this folder>`, `/add-dir` once inside, or the desktop app's add-folder button —
+for it to read the library without asking each time. For `CLAUDE.md`, `AGENTS.md` and
+`RESEARCHER.md` to load in full from the first line, set this once per machine and reopen the
+assistant:
 
 ```bash
 setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
 ```
 
-`export` it in your shell profile outside Windows. *Checking an invitation* in `AGENTS.md` says how
+`export` it in your shell profile outside Windows. *The researcher's home* in `AGENTS.md` says how
 to confirm it loaded. Work on a strategy lands in the strategy; nothing comes back here unless you
 ask, and then as a source in `Sources/` that `read` files.
 
@@ -79,7 +81,7 @@ The researcher grows four ways, each governed by a section of `AGENTS.md`:
    `read`, with a reading question that names it. *Joining other projects* says how a project's
    files reach `Sources/` and how they are cited.
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
-   `.apm/prompts/`, then `apm install --target <agent>` and a new session. *Where the skills, the
+   `.apm/prompts/`, then `apm install -g "<this folder>"` and a new session. *Where the skills, the
    commands and the agent live* says how one is written and where it deploys.
 3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`. The
    paragraph after the folder table in *What each folder is, and who may write in it* says who
