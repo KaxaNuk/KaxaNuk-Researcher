@@ -109,7 +109,15 @@ as the example's.
   already carries in `OBJECTIVE.md`; the condition names it, in their words. With none given, the
   drafted condition stands, labelled as the kill switch for them to confirm, change or refuse.
 - Add one line under the experiment's heading, with today's date, as the example's blueprint does:
-  `**Written YYYY-MM-DD, before any rule was coded.**` Leave the template's blockquote at the top,
+  `**Written YYYY-MM-DD, before any rule was coded.**` — and after it, on the same line, the
+  package the draft was made with: `Drafted with KaxaNuk-Researcher X.Y.Z, commit abc1234.` Read
+  both from `~/.apm/apm.lock.yaml`, the entry named `kaxanuk-researcher`: its `version`, and the
+  first seven characters of its `resolved_commit`. Installed from a local path, the entry has no
+  commit: write `local` in its place. With no such entry, read `version:` in
+  `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/apm.yml` and write no commit; with neither,
+  write `version unknown` and say so in *Step 5*. Never a version from memory: the stamp is how
+  `challenge` tells whether the process changed between the blueprint and its run. Leave the
+  template's blockquote at the top,
   whole, its last line included: *delete this blockquote* is addressed to the owner, who deletes it
   when they commit — never you, before or after the go.
 

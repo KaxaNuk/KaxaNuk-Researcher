@@ -37,7 +37,9 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 
 1. `Experiments/Experiment_N/BLUEPRINT_N.md` — every prediction with its falsifier, the declared
    window, universe, rules, costs and success criteria, and the claim it names under *The claim this
-   moves* where it has that section. This is the fixed side of the comparison.
+   moves* where it has that section, and the package it was drafted with, after the *Written*
+   line: `Drafted with KaxaNuk-Researcher X.Y.Z`. A blueprint written before 0.27.0 has none.
+   This is the fixed side of the comparison.
 2. `FINDINGS_N.md` — the verdicts, the tally, the trial count, the caveats, and the claim it says
    the experiment moved.
 3. `JOURNAL_N.md` — what happened during the run, and what was already disclosed.
@@ -100,6 +102,16 @@ commit that brought `BLUEPRINT_N.md` in, and whether it came before the one that
 `experiment_N.ipynb`. A blueprint that arrived in the same commit as its rule, or after it, cannot
 be told from one written afterwards; say so. The log is read, never changed.
 
+The process can move under an experiment too: `blueprint`, `blueprint-critic` and this command
+come from one package, updated for every strategy at once. Read the version this run uses as
+`blueprint` does — `~/.apm/apm.lock.yaml`, the entry named `kaxanuk-researcher` — and compare it
+with the blueprint's stamp. The same version is one line of the report. A different one names
+both, and the entries of the package's `CHANGELOG.md`, beside that `apm.yml`, between them that
+touch `blueprint`, `blueprint-critic` or `challenge` — so the owner sees what changed in the
+checks, not only that something did. No stamp: say the blueprint predates it, and that the
+question cannot be answered from the files. A mismatch is disclosed, never a failure: the
+verdicts stand or fall on the blueprint as written.
+
 ## Step 4: Report, and offer the one line it may write
 
 **In chat:** what held, what failed and by which falsifier, what the findings do not say, and the
@@ -108,7 +120,9 @@ consider next. Name every file and every note by path.
 
 **Then offer one appended entry in `JOURNAL_N.md`**, dated, in the template's format, and write it
 only on the owner's go. It is the one file this command may touch, because the journal is appended
-and never edited, and a look-across is already recorded there.
+and never edited, and a look-across is already recorded there. Its *What we tried / considered*
+names both packages: *`challenge` with KaxaNuk-Researcher X.Y.Z, against a blueprint drafted with
+W.W.W*, or *with no stamp*.
 
 **What it never does, whatever the argument:**
 
