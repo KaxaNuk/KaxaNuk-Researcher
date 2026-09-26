@@ -23,11 +23,11 @@ given when the session is not open in it; otherwise the folder the session is op
 | `Bibliotheca/`, `Universe/` and `Experiments/` | a strategy | *Step 3* |
 | `RESEARCHER.md` | a researcher's home | *Step 2* |
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
-| none of those, and `RESEARCHER.md` is in the session through `--add-dir` | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, and the project's own rules apply; the next things are `query` for what the library holds and, to learn from the project, a source into `Sources/` then `read` at home. No `init-*` command is suggested |
+| none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, and the project's own rules apply; the next things are `query` for what the library holds and, to learn from the project, a source into `Sources/` then `read` at home. No `init-*` command is suggested |
 | none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which of the three commands makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-example` to read the worked example — and stop |
 
-When both a strategy and a home are in the session, read the strategy: the home is the library it
-brought along.
+When both a strategy and a home are in the session — added to it, or named by the researcher's
+skill — read the strategy: the home is the library it brought along.
 
 ## Step 2: At home
 
@@ -37,8 +37,8 @@ Check in this order and stop at the first that fails; that is the next thing.
 | --- | --- | --- |
 | 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise commit what is there, with a message saying what came in |
 | 1 | `RESEARCHER.md` has no angle-bracketed slot left | `interview` — the interview |
-| 2 | `.apm/agents/` holds an agent file named for the researcher | `interview` again: it writes the agent from `RESEARCHER.md` without repeating the interview |
-| 3 | the agent is deployed: `.claude/agents/<slug>.md`, or the folder of the assistant in use | `apm install --target <the assistant>` in this folder, then a new session |
+| 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved |
+| 3 | the home is installed for the user: `uvx --from apm-cli==0.29.0 apm deps list -g` names this folder, and the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code | `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
 | 4 | every source under `Sources/` — a PDF, a document or a clipping, not a `.gitkeep` — has a note: match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves |
 | 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/`, or the owner took it off the line, which is theirs to edit by hand | find it by its title and authors, put it in `Sources/Papers/` or `Sources/Books/`, then `read`; or, when it cannot be found, take it off the *Find first* line in `RESEARCHER.md` |
 | 6 | `Knowledge/INDEX.md` lists every note and page on disk | `refresh-index` |
@@ -46,8 +46,8 @@ Check in this order and stop at the first that fails; that is the next thing.
 All seven done: say so, and that the next thing is the owner's — a new source into `Sources/`, a
 question added under *What you are reading for*, `study <subject>` to work out an idea, a plan or a
 decision from the library — `study` alone lists the studies already in `Studies/` — or
-`init-strategy <name>` for the first strategy, with the home invited in by `--add-dir`; or invite
-the researcher into any other project with `--add-dir`, or teach it a tool: its documentation into
+`init-strategy <name>` for the first strategy, where the researcher is already present; or work
+with it in any other project, where it is present too, or teach it a tool: its documentation into
 `Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README.
 
 ## Step 3: In a strategy
