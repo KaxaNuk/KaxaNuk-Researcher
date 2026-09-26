@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.27.0] - 2026-09-26
+A blueprint now records the package that drafted it, and `challenge` checks it against the package
+that challenges the run. `blueprint`, `blueprint-critic` and `challenge` come from one package,
+updated for every strategy at once by `apm update -g`, so the checks an experiment was designed
+under could change before it was challenged, and nothing said so. A strategy pins its Python
+libraries in `uv.lock`; the research tooling was pinned nowhere. The version is read from
+`~/.apm/apm.lock.yaml`, never from memory. Issue #18.
+
+**What to do differently:** run `apm update -g` between experiments, not during one. A blueprint
+written before 0.27.0 keeps its line as it is, and `challenge` reports that it has no stamp.
+### Added
+- **The stamp in `blueprint`**: after the `**Written YYYY-MM-DD, before any rule was coded.**`
+  line, on the same line, `Drafted with KaxaNuk-Researcher X.Y.Z, commit abc1234.` — the `version`
+  and `resolved_commit` of the `kaxanuk-researcher` entry in `~/.apm/apm.lock.yaml`, `local` for a
+  package installed from a path, `version unknown` when neither the lock nor the package's
+  `apm.yml` can be read. On the same line, so the tests `next` and `challenge` make for the
+  *Written* line still hold.
+- **The comparison in `challenge`**: the version this run uses against the blueprint's stamp. A
+  different version names both, and the package's changelog entries between them that touch
+  `blueprint`, `blueprint-critic` or `challenge`. A mismatch is disclosed, never a failure. The
+  journal entry names both packages.
+
 ## [0.26.1] - 2026-09-26
 The README's command table says what `interview` writes since 0.26.0: `RESEARCHER.md`, the agent
 and the researcher's skill, installed for the owner's user and committed. The row had kept the
