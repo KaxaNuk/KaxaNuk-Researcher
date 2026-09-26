@@ -6,6 +6,45 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.26.0] - 2026-09-26
+The researcher is in every session, in every folder, on every assistant APM deploys to — no longer
+only where the owner opens the home or adds it by hand. `interview` writes a second file of the
+home's own beside the agent, the researcher's skill in `.apm/skills/<slug>/`, and installs the home
+for the owner's user with `apm install -g "<the home>"`, beside the package, so the agent is
+callable by name from any folder and the skill's description tells every session who the researcher
+is and where its home lives. The home's `AGENTS.md` says who is speaking — the researcher is the
+home, the engine is how it thinks, the agent is the researcher read-only — so a session asked *who
+am I talking to?* answers the same way everywhere, and says so plainly when the home cannot be read.
+What the owner teaches it anywhere goes home, by the routes that already exist, instead of into one
+engine's memory of one folder. Home template 0.14.0. Issue #16.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home: it writes the researcher's skill, installs the home for your user and deletes the agent an
+install inside the home left there, on your go. From then on, never `apm install` inside the home;
+after changing the agent or a skill of the home's own, `apm install -g "<the home>"`. Adding the
+home to a session is optional: it lets the researcher read the library without asking each time.
+### Added
+- **The researcher's skill**, `.apm/skills/<slug>/SKILL.md` in the home, written by `interview`
+  beside the agent and under its name: who is speaking, where what is learned goes — a source to
+  `Sources/` then `read`, a way of working to a line for `RESEARCHER.md`, a project's fact to that
+  project — and what may be written from where the session is. Its description is the one piece of
+  the researcher every session carries; it copies nothing else from `RESEARCHER.md`.
+- **`update`** writes the skill for a home that lacks it or has moved, installs the home for the
+  user when `apm deps list -g` does not name it, and deletes the agent's copies an install inside
+  the home deployed there, which shadow the user's copy at home and go stale.
+### Changed
+- **`interview`** installs the home with `apm install -g "<the home>"` instead of deploying the
+  agent inside it, commits the skill with the rest, and hands over with the researcher present in
+  every folder; the `--add-dir` it asked for becomes access to the library, not presence.
+- **The home's `AGENTS.md`**: *The researcher's home* says presence comes from the install for the
+  user, and keeps the `CLAUDE.md` variable and `CLAUDE.local.md` as the way to load the whole file
+  from the first line; a new *Who is speaking* section; *Joining other projects* and *Where the
+  skills, the commands and the agent live* follow, with a row for the researcher's skill.
+- **`next`** checks the skill and the install for the user; **`audit`** looks for the home's own
+  deployed under the user's folders and reports a skill that names another folder.
+- **The README, `SETUP.md`, the home's README and `apm.yml`** say the same: one command,
+  `apm install -g "<the home>"`, on a new machine or for a new assistant.
+
 ## [0.25.1] - 2026-09-25
 The worked example stops publishing provider data: the security master `promote.py 4` froze into
 `Paper_Trading_4/` — company names, ISINs, sectors and industries from FMP's profiles — left the

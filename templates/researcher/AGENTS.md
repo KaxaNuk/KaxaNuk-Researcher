@@ -8,40 +8,61 @@ operating manual.
 
 The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills —
 `Sources/`, `Knowledge/`, `Philosophy/`, `Studies/`, `Lessons/` — is relative to the home, never
-to wherever the session happened to open. There are two ways to work:
+to wherever the session happened to open.
+
+**The researcher is in every session, in every folder.** `interview` writes two files of the home's
+own, the agent in `.apm/agents/` and the researcher's skill in `.apm/skills/<slug>/`, and installs
+the home for the owner's user with `apm install -g "<the home>"`, beside the package. The skill's
+description names the researcher, the owner and the home by path, so every session on the machine,
+in any folder and on any assistant `~/.apm/apm.yml` lists under `targets:`, knows who it is before
+anything is loaded, and the agent is callable by name from any folder. Add an assistant to
+`targets:`, run the same command again, and the researcher follows. There are two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
   path: `blueprint 1 D:\Research\fcf-yield-quality`.
-- **Invited into a strategy.** Open the assistant in the strategy's folder and add the
-  researcher's folder to the session — `claude --add-dir D:\Research\Ada`, `/add-dir` once
-  inside, or the desktop app's add-folder button. The skills and the commands are there already —
-  one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user with `apm install -g` —
-  so **the strategy installs nothing of its own**, and one `apm update -g` keeps every strategy
-  current. The agent loads from this folder, provided `apm install --target <agent>` has been run
-  here once on this machine.
-  **`CLAUDE.md` does not**, unless `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is in the
-  environment before the assistant starts — and it imports this file and `RESEARCHER.md`, so that
-  one variable is what makes the researcher arrive whole. Set it once per machine as a user
-  environment variable — `setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1` on Windows, an
-  `export` in the shell profile elsewhere — then quit and reopen the assistant; an `env` entry in
-  `settings.json` is applied too late for it. The strategy's own `AGENTS.md` still governs that
-  repository.
+- **In a strategy.** Open the assistant in the strategy's folder. The skills and the commands are
+  there already — one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user with
+  `apm install -g` — and so are the researcher's skill and its agent, so **the strategy installs
+  nothing of its own**, and one `apm update -g` keeps every strategy current. Adding the home to
+  the session — `claude --add-dir D:\Research\Ada`, `/add-dir` once inside, or the desktop app's
+  add-folder button — lets the researcher read the library without asking each time; it is not
+  what makes the researcher present. The strategy's own `AGENTS.md` still governs that repository.
 
 Either way, work on a strategy lands in the strategy — see *Working in a strategy* below — and
 nothing lands at home. The researcher is one per person and shared by every strategy; what it
 learns in one experiment must not leak into the next through its own library.
 
-**Checking an invitation.** In the first session after inviting the researcher, confirm that
-`CLAUDE.md`, `AGENTS.md` and `RESEARCHER.md` from home are in context — `/context` lists them under
-*Memory files*, and the researcher can say which instruction files it was started with, by path. If
-they are missing, the variable is not set or the assistant does not honour it; the desktop app does
-not document it. The fallback is a `CLAUDE.local.md` at the strategy's root holding one line, the
-researcher's `CLAUDE.md` by absolute path — `@D:/Research/Ada/CLAUDE.md` — which then loads with
-the strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md` to the
-strategy's `.gitignore`, and approve the external import the first time the assistant asks, because
-declined it stays off. Whatever loads, every skill and command still begins by reading
-`RESEARCHER.md` and this file from home, so a missing load costs the conversation its context, never
-a skill its rules.
+**The whole of this file in context, from the first line.** The skill points at this file and at
+`RESEARCHER.md`, and every skill and command begins by reading them, so a session that has not
+loaded them costs the conversation its context, never a skill its rules. To have them loaded from
+the start in a strategy, Claude Code reads `CLAUDE.md` from an added folder only when
+`CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD=1` is in the environment before the assistant starts
+— and it imports this file and `RESEARCHER.md`. Set it once per machine as a user environment
+variable — `setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1` on Windows, an `export` in the
+shell profile elsewhere — then quit and reopen the assistant; an `env` entry in `settings.json` is
+applied too late for it. `/context` lists what loaded under *Memory files*. Where the variable is
+not honoured — the desktop app does not document it — a `CLAUDE.local.md` at the strategy's root
+holding one line, the researcher's `CLAUDE.md` by absolute path — `@D:/Research/Ada/CLAUDE.md` —
+loads it with the strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md`
+to the strategy's `.gitignore`, and approve the external import the first time the assistant asks,
+because declined it stays off.
+
+## Who is speaking
+
+The researcher is the home — the library, the owner's voice and questions in `RESEARCHER.md`, the
+rules in this file. The engine running a session — Claude, Codex, Gemini or another — is how it
+thinks, and it changes from one session to the next; the home is what persists and grows. The owner
+gives the judgement and the go. The agent is the researcher in a fresh, read-only context, never a
+second one. Asked who the owner is talking to, the answer is the researcher's name, running on the
+engine and model of that session, and whether the home is readable there; where it is not, say so —
+*this is the engine without the researcher's library* — rather than improvise.
+
+**What is learned goes home.** An engine's own memory is read by one engine in one folder; the home
+is read by all of them. When the owner says *learn this* or *remember this*, anywhere, sort it and
+plan it: a source, a finding or a document enters as a copy in `Sources/`, made by the owner, and
+then `read`; a way of working or a rule is one line for `RESEARCHER.md`, under *How it speaks* or
+*Non-negotiables*, in the owner's words, shown in chat for them to add; a fact about one project
+stays in that project, in the file its rules give it.
 
 ## What each folder is, and who may write in it
 
@@ -252,8 +273,9 @@ and Experiment 1 *is* the benchmark, so the choice cannot wait for the blueprint
 
 ## Joining other projects
 
-The owner invites the researcher by hand — into a strategy, or into any other project: a Lab
-library, a data pipeline, a pitch, a workshop. Outside a strategy there is no order of work to
+The researcher is in every folder once the home is installed for the user, and joins whatever the
+owner works on there — a strategy, or any other project: a Lab library, a data pipeline, a pitch, a
+workshop. Outside a strategy there is no order of work to
 follow, and the rules are the ones that keep the library honest:
 
 - **The researcher challenges on evidence.** It reads the home library and `Philosophy/`, names the
@@ -322,8 +344,10 @@ The researcher arrives in two parts. **The skills and the commands are one packa
 for the user** — `KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill with the
 researcher's own — with `apm install -g`: written once for every home, never committed here,
 available in every folder the owner opens, and brought to their next version by `apm update -g`.
-**The agent is this home's own**, in `.apm/agents/`, because it is written from `RESEARCHER.md`,
-and `apm install --target <agent>` here deploys it. The home's own version in `apm.yml` is the
+**The agent and the researcher's skill are this home's own**, in `.apm/agents/` and
+`.apm/skills/<slug>/`, because they are written from `RESEARCHER.md`, and `apm install -g "<the
+home>"` installs them for the user, beside the package, so every folder has them too. The home's
+own version in `apm.yml` is the
 owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to `CHANGELOG.md`, and
 `update` reads the *Brought to template* line there, never this field.
 
@@ -332,18 +356,22 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 | **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other twelve — `interview`, `next`, `objective`, `blueprint`, `brainstorm`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
+| **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, or whose home has moved |
 | **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the four house instructions — Bloom Code, PEP 8, test writing, filesystem boundaries — which apply to every Python project on the machine where the assistant receives them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as the package's `SETUP.md` says. The home adds none |
 
 - **`apm install -g --target <agent>` deploys the package once per machine**, into the user's
   folders — `~/.claude/skills/` and `~/.claude/commands/` for Claude Code, the matching folders
-  for the rest — and keeps it in `~/.apm/apm_modules/`. **`apm install --target <agent>` here
-  deploys the agent** into `.claude/agents/` or that agent's own folder; a bare `apm install`
-  deploys to every target in `apm.yml`. Git ignores all of it.
+  for the rest — and keeps it in `~/.apm/apm_modules/`. **`apm install -g "<the home>"` deploys
+  this home's own** — the agent, the researcher's skill and any skill or command of its own — into
+  the same user folders, `~/.claude/agents/` and `~/.claude/skills/` for Claude Code, for every
+  target `~/.apm/apm.yml` lists; the `targets:` in this folder's `apm.yml` serve an install inside
+  it, which the home no longer needs — a copy there goes stale the first time the agent or a skill
+  changes. Git ignores all of it.
 - **Change a skill at its source, never in a deployed copy.** A fix every home needs is a pull
   request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with `apm update -g`. A
   skill or command of this home's own goes in `.apm/skills/` or `.apm/prompts/` here, and deploys
-  beside the package's — under a name the package does not use. Then install again and open a new
-  session. A copy that differs from its source is a stale install; `audit` reports it.
+  beside the package's — under a name the package does not use. Then `apm install -g "<the
+  home>"` again and open a new session. A copy that differs from its source is a stale install; `audit` reports it.
 - **A skill is written the way KaxaNuk's own APM packages write theirs** — frontmatter `name`,
   matching the folder, a folded `description` that says when to use it and what it does not
   cover, and `metadata.version`; a body that says when it applies, then numbered steps, as `read`
