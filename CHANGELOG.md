@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.28.0] - 2026-09-29
+`BRAINSTORMING_N.md` and the `brainstorm` command are retired. A brainstorming entry had the
+journal's own four fields, the thinking before a blueprint is what a dated journal entry already
+holds, and each entry's open threads keep planning apart from history; a strategy worked without
+the file lost nothing. The one job only the file did, choosing the benchmark before Experiment 1's
+blueprint, is now an entry of `JOURNAL_1.md`. Issue #20.
+
+**What to do differently:** write the benchmark's choice as a dated entry of `JOURNAL_1.md`, before
+the blueprint, and what to try next as a journal entry's open threads. A strategy that already keeps
+`BRAINSTORMING_1.md` needs nothing: `next` and `blueprint` still read the benchmark there.
+### Removed
+- **The `brainstorm` command**, and the lifecycle skill's `references/brainstorming-template.md`.
+  An install deploys 11 commands.
+- **`BRAINSTORMING_1.md` from the strategy template** (0.13.2), and the worked example's four
+  (0.18.2), their five entries moved into each experiment's journal at their dates, word for word.
+### Changed
+- **`next`**: part E is done when `JOURNAL_1.md` has the entry choosing the benchmark, or a
+  `BRAINSTORMING_1.md` a strategy still keeps has its first; part F asks for the broad reading
+  alone.
+- **`blueprint`** reads the benchmark from `JOURNAL_1.md`, or from that older file.
+- **`challenge` and `study`** name the journal's open threads where they named `brainstorm`.
+- **`experiment-lifecycle`** (0.11.0): three documents in every experiment, the benchmark's choice
+  in `JOURNAL_1.md`.
+- **The home template** (0.14.1): the order of work's parts E and F, and eleven commands.
+
 ## [0.27.0] - 2026-09-26
 A blueprint now records the package that drafted it, and `challenge` checks it against the package
 that challenges the run. `blueprint`, `blueprint-critic` and `challenge` come from one package,

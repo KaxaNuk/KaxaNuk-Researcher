@@ -282,7 +282,7 @@ its companions on the rule itself are
 > protection at a similar return, where the filter cut 2.2 points of volatility and 9.3 of drawdown
 > against the plain control at a cost of 1.12 points a year against the equalised one. It also
 > reads a 126-day variance, which can move inside the 23 trading days of the 2020 fall a 200-day
-> average slept through — a lead for the next brainstorming entry, and the variance side is the one
+> average slept through — a lead for the journal's open threads, and the variance side is the one
 > LeBaron found stable.
 
 ## Risk-based explanations fail; the authors lean to underreaction, and conclude momentum is eternal
@@ -334,7 +334,7 @@ its companions on the rule itself are
 - The filter's trade — 1.12 points a year for 2.2 points of volatility and 9.3 of drawdown — now
   has a benchmark: stock-level variance scaling cut momentum's drawdown from −88.41 to −54.64
   percent and its volatility from 21.21 to 15.33 at a similar return (p. 26), on a 126-day signal
-  that can turn inside a 2020-sized fall. A lead for `BRAINSTORMING_1.md`, not a change to this
+  that can turn inside a 2020-sized fall. A lead for `JOURNAL_1.md`, not a change to this
   experiment.
 - Any sweep of the 50 and 200 publishes its distribution, as the paper publishes 4,096 Sharpe
   ratios with a median and a range and no winner (p. 15); the turnover band is one of its twelve
