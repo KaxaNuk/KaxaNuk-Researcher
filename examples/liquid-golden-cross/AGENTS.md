@@ -70,7 +70,7 @@ What the template ships, and why, is *What is in here* in its README.
 ### The blueprint is committed before the rule
 
 For an experiment, `BLUEPRINT_N.md` is committed in a commit of its own before the rule cell of
-`experiment_N.ipynb` holds code; for Experiment 1 only the `BRAINSTORMING_1.md` entry choosing the
+`experiment_N.ipynb` holds code; for Experiment 1 only the `JOURNAL_1.md` entry choosing the
 benchmark comes before it. The commit order is what shows the hypothesis was written before the
 answer, so the two never share a commit.
 
@@ -98,8 +98,7 @@ answer, so the two never share a commit.
 | `CHANGELOG.md` | whoever lands a change-set | any change-set lands |
 | `AGENTS.md` | anyone | the process changes |
 | `BLUEPRINT_N.md` | a person, or with the AI | **never, once written.** A hypothesis edited after its test is not a hypothesis |
-| `BRAINSTORMING_N.md` | a person, or with the AI | thinking happens — **before** the work |
-| `JOURNAL_N.md` | the AI, as work proceeds | append only. Earlier entries are corrected by new entries, never edited |
+| `JOURNAL_N.md` | the AI, as work proceeds, the thinking before a blueprint included | append only. Earlier entries are corrected by new entries, never edited |
 | `FINDINGS_N.md` | the AI, from the journal | a result changes. It is rewritten, so there is exactly one current answer |
 
 **`RESULTS.md` is compiled from the findings files and cites each one.** When a number changes,
@@ -108,7 +107,7 @@ same book start to circulate. **One deliberate exception:** findings from step 3
 `RESULTS.md`, because notebook outputs are stripped before committing and a measurement living only
 in a cell output does not survive the commit.
 
-Repository-level history — the benchmark once `BRAINSTORMING_1.md` has chosen it, the data step,
+Repository-level history — the benchmark and the choice of it, the data step,
 the architecture — belongs in `JOURNAL_1.md`. Experiment 1 is the first rule tested against the
 benchmark and therefore the shared context; later journals point there rather than copying it.
 
@@ -125,8 +124,8 @@ become one experiment reported three times.
 
 Two standing exceptions, and one that has to be asked for:
 
-- **Experiment 1 is the first rule tested against the benchmark** that `BRAINSTORMING_1.md`
-  names — an index, an ETF or an equal-weight book of the universe — so its rules and published
+- **Experiment 1 is the first rule tested against the benchmark** that `JOURNAL_1.md`
+  chose — an index, an ETF or an equal-weight book of the universe — so its rules and published
   numbers are shared context, and the yardstick every later experiment is also measured against.
   It is not a null: it is a real strategy with a real return, and it can graduate like any other.
   **Its rules freeze once `FINDINGS_1.md` reports** — a change invalidates every comparison in

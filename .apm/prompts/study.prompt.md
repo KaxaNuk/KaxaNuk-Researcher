@@ -9,7 +9,7 @@ input:
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`: *Studies* there is the contract this command
 writes to. This command works at home only, in a session open in the home. In a strategy, the next
-thing to try is `brainstorm`'s and a claim is `objective`'s; in another project the owner invited
+thing to try is the journal's and a claim is `objective`'s; in another project the owner invited
 the researcher into, the work lives in that project. Say so and stop.
 
 A study is the owner's own work from the library: an idea that is not a strategy yet, or a

@@ -224,8 +224,8 @@ for claim 1 rather than evidence: a momentum book cannot move claim 1, and the l
 only context there is this claim's evidence. The main idea's sentence is not reworded, and this
 claim is not inside it: it sits beside it, on the same liquid names. The line *not that this is
 momentum*, under *What is not claimed*, is about the cross and stands.
-[`BRAINSTORMING_3.md`](Experiments/Experiment_3/BRAINSTORMING_3.md) has what else was considered, a
-new name and a new strategy among them.
+[`JOURNAL_3.md`](Experiments/Experiment_3/JOURNAL_3.md), in its entry of 2026-09-24 on momentum
+proper, has what else was considered, a new name and a new strategy among them.
 
 **It was not chosen blind.** Step 6 had already charged Experiment 1's books with momentum on 2017
 to 2026 — 12.75 points in the first design, 15.44 in the second's rule against its control's 5.99

@@ -5,8 +5,8 @@
 >
 > **This file does not change when results arrive.** A hypothesis edited after its test is no longer
 > a hypothesis — that is the whole reason it is kept apart from the result. What the experiment
-> actually produced is in [`FINDINGS_3.md`](FINDINGS_3.md); planning lives in
-> [`BRAINSTORMING_3.md`](BRAINSTORMING_3.md), the running log in [`JOURNAL_3.md`](JOURNAL_3.md).
+> actually produced is in [`FINDINGS_3.md`](FINDINGS_3.md); the running log, the thinking
+> before this blueprint included, in [`JOURNAL_3.md`](JOURNAL_3.md).
 >
 > Record the date it was written, and delete this blockquote.
 
@@ -21,7 +21,7 @@
 A new signal on the same names. After Experiment 1's two designs and Experiment 2 had failed their
 kill switches, and claim 1 stood falsified on two windows, the owner chose momentum proper, in his
 words "the 20 most-traded members ranked by their own 12-month return". This blueprint reads it,
-as `BRAINSTORMING_3.md` records, as the twenty of the hundred most traded members that rose most
+as `JOURNAL_3.md` records, as the twenty of the hundred most traded members that rose most
 over the twelve months before the latest one: the skipped month and the hundred are the reading's,
 not his. It moves claim 5 of `OBJECTIVE.md`, added the same day for it; the cross is in neither
 the rule nor its control.
@@ -42,7 +42,7 @@ record, not this run.
 ### Thesis
 
 One paragraph: what book this rule produces, why it should beat the benchmark
-`BRAINSTORMING_1.md` names, and why it is also a fair yardstick — sensible, liquid, low-complexity
+`JOURNAL_1.md` chose, and why it is also a fair yardstick — sensible, liquid, low-complexity
 — for judging whether any later idea adds value. **Be modest on purpose.** A first rule does not
 assert its signal is the best of its kind, only that it is simple enough to be understood, liquid
 enough to be traded, and stable enough to measure other things against.
@@ -268,7 +268,7 @@ costs, so both cost rows are reported.
 
 What the experiment has to show to count as a success, fixed now. At the least:
 
-1. It beats the benchmark `BRAINSTORMING_1.md` names **and its own control** on risk-adjusted
+1. It beats the benchmark `JOURNAL_1.md` chose **and its own control** on risk-adjusted
    return, net, over the same window — criterion 1 of the gate in `Paper_Trading/BITACORA.md`.
 2. Reproducible from a clean clone, through the pipeline, with no manual step.
 3. A tradeable trigger frequency — not a rule that fires every day.

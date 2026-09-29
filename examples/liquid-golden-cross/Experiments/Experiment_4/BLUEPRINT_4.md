@@ -5,8 +5,8 @@
 >
 > **This file does not change when results arrive.** A hypothesis edited after its test is no longer
 > a hypothesis — that is the whole reason it is kept apart from the result. What the experiment
-> actually produced is in [`FINDINGS_4.md`](FINDINGS_4.md); planning lives in
-> [`BRAINSTORMING_4.md`](BRAINSTORMING_4.md), the running log in [`JOURNAL_4.md`](JOURNAL_4.md).
+> actually produced is in [`FINDINGS_4.md`](FINDINGS_4.md); the running log, the thinking
+> before this blueprint included, in [`JOURNAL_4.md`](JOURNAL_4.md).
 >
 > Record the date it was written, and delete this blockquote.
 
@@ -22,7 +22,7 @@ blueprint critic, before its commit.** `liquid-golden-cross`.
 Claim 5's second design. Experiment 3's book of the twenty of the hundred most traded members with
 the highest twelve-month return trailed the pool's twenty most traded by 0.22 points a year over
 2002-07-30 to 2026-06-01, ahead of them in one sub-period of three, and failed its kill switch
-(`RESULTS.md`). The owner chose on 2026-09-25, as `BRAINSTORMING_4.md` records, to hold momentum's
+(`RESULTS.md`). The owner chose on 2026-09-25, as `JOURNAL_4.md` records, to hold momentum's
 twenty only outside a bear market — the KN US Equity 600's return over the prior 24 months below
 zero — and the pool's twenty most traded inside one; and, as `JOURNAL_4.md` records, a 10% cash
 reserve, a check that ends a listing at its last distinct bar, twelve perturbation cells, and a
@@ -51,7 +51,7 @@ paper trading, if it passes.
 ### Thesis
 
 One paragraph: what book this rule produces, why it should beat the benchmark
-`BRAINSTORMING_1.md` names, and why it is also a fair yardstick — sensible, liquid, low-complexity
+`JOURNAL_1.md` chose, and why it is also a fair yardstick — sensible, liquid, low-complexity
 — for judging whether any later idea adds value. **Be modest on purpose.** A first rule does not
 assert its signal is the best of its kind, only that it is simple enough to be understood, liquid
 enough to be traded, and stable enough to measure other things against.
@@ -276,7 +276,7 @@ monthly re-strike costs, so both cost rows are reported.
 
 What the experiment has to show to count as a success, fixed now. At the least:
 
-1. It beats the benchmark `BRAINSTORMING_1.md` names **and its own control** on risk-adjusted
+1. It beats the benchmark `JOURNAL_1.md` chose **and its own control** on risk-adjusted
    return, net, over the same window — criterion 1 of the gate in `Paper_Trading/BITACORA.md`.
 2. Reproducible from a clean clone, through the pipeline, with no manual step.
 3. A tradeable trigger frequency — not a rule that fires every day.

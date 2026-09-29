@@ -5,8 +5,8 @@
 >
 > **This file does not change when results arrive.** A hypothesis edited after its test is no longer
 > a hypothesis — that is the whole reason it is kept apart from the result. What the experiment
-> actually produced is in [`FINDINGS_1.md`](FINDINGS_1.md); planning lives in
-> [`BRAINSTORMING_1.md`](BRAINSTORMING_1.md), the running log in [`JOURNAL_1.md`](JOURNAL_1.md).
+> actually produced is in [`FINDINGS_1.md`](FINDINGS_1.md); the running log, the thinking
+> before this blueprint included, in [`JOURNAL_1.md`](JOURNAL_1.md).
 >
 > Record the date it was written, and delete this blockquote.
 
@@ -30,7 +30,7 @@ the first**, and every run of the first counts in the trials below.
 ### Thesis
 
 One paragraph: what book this rule produces, why it should beat the benchmark
-`BRAINSTORMING_1.md` names, and why it is also a fair yardstick — sensible, liquid, low-complexity
+`JOURNAL_1.md` chose, and why it is also a fair yardstick — sensible, liquid, low-complexity
 — for judging whether any later idea adds value. **Be modest on purpose.** A first rule does not
 assert its signal is the best of its kind, only that it is simple enough to be understood, liquid
 enough to be traded, and stable enough to measure other things against.
@@ -41,7 +41,7 @@ Own the twenty most traded US stocks in the KN US Equity 600 whose fifty-day ave
 their two-hundred-day average, equally weighted, and **sell a name the day after its cross breaks**
 instead of waiting for the rest of the book to move. The first design held a broken name for a
 median of 19 trading days, and 9.6% of its name-days were in a stock already below its cross
-(`BRAINSTORMING_1.md`, 2026-09-23).
+(`JOURNAL_1.md`, 2026-09-23).
 
 **The economic reason offered is under-reaction.** Holders who trade on a calendar or a band — as
 the first design did — sell a broken trend late, so its price keeps adjusting after the break; the
@@ -137,7 +137,7 @@ as `OBJECTIVE.md` says.
 - **Diagnostic arm:** twenty names with the first design's code, `select_rebalance_dates`, at a band
   of **15%**: at twenty names one swapped name is a tenth and two are a fifth, so 15% keeps the
   first design's behaviour — one swap waits, two trade. **It must reproduce the delay** measured in
-  `BRAINSTORMING_1.md` — broken names held for days, not the rule's one — or its verdict on exit
+  `JOURNAL_1.md` — broken names held for days, not the rule's one — or its verdict on exit
   speed is void. A trial in the count, not a candidate.
 - **Screens deliberately absent:** no market-cap screen, because ranking on traded value already
   selects large companies; no sector cap, because the concentration is measured in step 6; no
@@ -211,7 +211,7 @@ in `FINDINGS_1.md` whatever it is, with the cost drag.
 
 What the experiment has to show to count as a success, fixed now. At the least:
 
-1. It beats the benchmark `BRAINSTORMING_1.md` names **and its own control** on risk-adjusted
+1. It beats the benchmark `JOURNAL_1.md` chose **and its own control** on risk-adjusted
    return, net, over the same window — criterion 1 of the gate in `Paper_Trading/BITACORA.md`.
 2. Reproducible from a clean clone, through the pipeline, with no manual step.
 3. A tradeable trigger frequency — not a rule that fires every day.

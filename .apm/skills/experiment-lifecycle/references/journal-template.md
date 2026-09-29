@@ -6,9 +6,8 @@
 > **Earlier entries are never edited.** The one exception is correcting an error, and the correction
 > is written as a new entry saying what was wrong — not by rewriting the original.
 >
-> The hypothesis is in [`BLUEPRINT_N.md`](BLUEPRINT_N.md); what to try next is in
-> [`BRAINSTORMING_N.md`](BRAINSTORMING_N.md); the results that survive are in
-> [`FINDINGS_N.md`](FINDINGS_N.md).
+> The hypothesis is in [`BLUEPRINT_N.md`](BLUEPRINT_N.md); the results that survive are in
+> [`FINDINGS_N.md`](FINDINGS_N.md); what to try next is in each entry's open threads.
 
 **Paths and figures inside entries are as they were written.** Where a path has since moved the
 entry is left alone — it was correct on its date.
@@ -33,3 +32,8 @@ experiments' journals point here rather than copying it.
 The first entry is usually *repository instantiated from the template*: what this repository is for,
 which template version it was created from, the strategy name, and everything `OBJECTIVE.md` still
 leaves open.
+
+The entry before `BLUEPRINT_1.md` is *choosing the benchmark*: what every experiment will be
+measured against, which candidates were considered, and the one property that decided between
+them — a benchmark is chosen for being transparent, liquid and stable, not for being clever.
+`blueprint` reads the benchmark from it.
