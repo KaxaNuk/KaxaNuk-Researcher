@@ -4,7 +4,7 @@ description: >
   Load this skill whenever you start, structure, run or document a KaxaNuk Investment Lab strategy
   repository or one of its experiments. Use it when the user asks to start a strategy from the
   KaxaNuk Strategy Template, scaffold an Experiments/Experiment_N/ folder, write a blueprint,
-  journal, brainstorming or findings file, update RESULTS.md or the changelog, or move a strategy
+  journal or findings file, update RESULTS.md or the changelog, or move a strategy
   through the order of work and the eight steps. It defines the document architecture, each file's
   contract, the notebook section contract and where each kind of logic goes, and points to the
   restrictions, the bar a new signal must clear and the graduation gate. It does NOT cover what
@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.10.0
+  version: 0.11.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -94,31 +94,31 @@ named `JOURNAL`, because a journal here is an append-only dated log.
 findings from step 3 go straight into `RESULTS.md`, because notebook outputs are stripped before
 committing and a measurement living only in a cell output does not survive the commit.
 
-## 3. The four files in every experiment
+## 3. The three files in every experiment
 
-Each `Experiments/Experiment_N/` is one idea: four markdown files, a notebook, and three gitignored
+Each `Experiments/Experiment_N/` is one idea: three markdown files, a notebook, and three gitignored
 output folders (`Portfolio/`, `Backtest/`, `Attribution/`, each kept by a `.gitkeep`).
 
 | File | Holds | Who writes it | Changes when | Template |
 | --- | --- | --- | --- | --- |
 | `BLUEPRINT_N.md` | **the hypothesis** — thesis, the claim it moves, rules with the control, predictions, success criteria, the one condition that would falsify it and the changes that may not rescue it, risks | a person, or with the AI | **never, once written** | `references/blueprint-template.md` |
-| `BRAINSTORMING_N.md` | **planning** — ideas, what to try, what was dropped | a person, or with the AI | thinking happens, before the work | `references/brainstorming-template.md` |
-| `JOURNAL_N.md` | **the running log**, dated, oldest first | the AI, as work proceeds | append only; a correction is a new entry | `references/journal-template.md` |
+| `JOURNAL_N.md` | **the running log**, dated, oldest first, the thinking before a blueprint included | the AI, as work proceeds | append only; a correction is a new entry | `references/journal-template.md` |
 | `FINDINGS_N.md` | **the latest results worth keeping**, and the claim they moved | the AI, from the journal | rewritten when a result changes; feeds `RESULTS.md` | `references/findings-template.md` |
 
 `BLUEPRINT` is fixed so a result cannot reshape the question it was meant to answer. `JOURNAL` is
-append-only so the path is recoverable. `FINDINGS` is rewritten so there is one current answer.
-`BRAINSTORMING` looks forward so planning is never mistaken for history. **Every prediction in a
-blueprint cites where it comes from** — a note in `Bibliotheca/` or a section of the analyzer — and
-a prediction with no source is a lead to read first, not a prediction.
+append-only so the path is recoverable, and each entry's open threads look forward, so planning is
+never mistaken for history. `FINDINGS` is rewritten so there is one current answer. **Every
+prediction in a blueprint cites where it comes from** — a note in `Bibliotheca/` or a section of
+the analyzer — and a prediction with no source is a lead to read first, not a prediction.
 
-Repository-level history — the benchmark once the first entry of `BRAINSTORMING_1.md` has named it,
-the data step, the architecture — belongs in `JOURNAL_1.md`, Experiment 1 being the first rule
-tested against that benchmark and the yardstick for every later one. Later journals point there.
-That brainstorming entry is the one step allowed before `BLUEPRINT_1.md`: the blueprint states what
-"beat" means, so the benchmark cannot wait for it. Experiment 1 can graduate like any other; its
-rules freeze once its findings report, and a rewrite the owner decides is written down as one, as
-the strategy's `AGENTS.md` says.
+Repository-level history — the benchmark and the choice of it, the data step, the architecture —
+belongs in `JOURNAL_1.md`, Experiment 1 being the first rule tested against that benchmark and the
+yardstick for every later one. Later journals point there. The journal's entry choosing the
+benchmark is the one step allowed before `BLUEPRINT_1.md`: the blueprint states what "beat" means,
+so the benchmark cannot wait for it. A strategy made from a template before 0.13.2 may keep that
+choice in `BRAINSTORMING_1.md`, which the Researcher's commands still read. Experiment 1 can
+graduate like any other; its rules freeze once its findings report, and a rewrite the owner decides
+is written down as one, as the strategy's `AGENTS.md` says.
 
 ## 4. The notebook — one section contract, one cell that is the strategy
 
@@ -192,8 +192,8 @@ Researcher's `next` command reads a strategy against this list and names the par
 | B | The reading, for each claim; then the objective fine-tuned from the notes | `Bibliotheca/`, then `OBJECTIVE.md` | the Researcher, `read`, then `objective` |
 | C | The investable universe, delisted names included | `Universe/Investable_Universe.csv` | `universe-point-in-time` |
 | D | The data — curator, universe notebook, refinery, analyzer, in that order | `Data/`, and `RESULTS.md` for the analyzer's measurements | `data-curator-custom-calculations`, `universe-point-in-time`, `data-analyzer-runs` |
-| E | The benchmark, then `BLUEPRINT_1.md` **before the rule** | `Experiments/Experiment_1/` | this skill; the Researcher, `brainstorm` and `blueprint` |
-| F | The broad reading, and brainstorming | `Bibliotheca/`, `BRAINSTORMING_1.md` | the Researcher, `read` and `brainstorm` |
+| E | The benchmark, chosen in `JOURNAL_1.md`, then `BLUEPRINT_1.md` **before the rule** | `Experiments/Experiment_1/` | this skill; the Researcher, `blueprint` |
+| F | The broad reading, for what the blueprint left open | `Bibliotheca/` | the Researcher, `read` |
 | G | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
 | H | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
 
@@ -211,7 +211,7 @@ its path: `--only Universe` stops over the seed, which is already the strategy's
 
 1. Create `Experiments/Experiment_N/` with `Portfolio/`, `Backtest/`, `Attribution/`, each holding a
    `.gitkeep`. The template's `.gitignore` already covers them.
-2. Copy the four templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
+2. Copy the three templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
    code**, stating the economic mechanism, the claim it moves, its control and the one condition
    that would falsify it, and citing every prediction's source. The blueprint template is the
    first experiment's; delete the sentences that only apply to Experiment 1.
@@ -241,13 +241,13 @@ is two rules, and the copies drift. Read them where they are.
 ## References
 
 - `references/structure.md` — the template's tree, what is committed, and the steps to fill it in.
-- `references/blueprint-template.md`, `brainstorming-template.md`, `journal-template.md`,
-  `findings-template.md` — the four documents of an experiment, the blanks for Experiment N > 1;
+- `references/blueprint-template.md`, `journal-template.md`, `findings-template.md` — the three
+  documents of an experiment, the blanks for Experiment N > 1;
   the template ships Experiment 1's, the same files under `Experiments/Experiment_1/`.
 - `references/experiment-notebook.ipynb` — Experiment 1's notebook, markdown only, the blank for
   `experiment_N.ipynb`.
 
-The four documents and the notebook are copies of Experiment 1's files in the worked example,
+The three documents and the notebook are copies of Experiment 1's files in the worked example,
 `examples/liquid-golden-cross/` in KaxaNuk-Researcher, with the example's own lines stripped — what
 the template ships as Experiment 1, kept here for every experiment after it. They change by hand
 with the example's, in the same commit, and so does `references/structure.md`.

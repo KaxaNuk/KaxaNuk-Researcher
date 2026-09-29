@@ -6,6 +6,20 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.14.1 (2026-09-29)
+
+**PATCH** — the order of work chooses the benchmark in an entry of `JOURNAL_1.md`, and the
+`brainstorm` command is gone from the package: part E names the journal, part F is the broad reading
+alone, and the commands' row counts eleven. A strategy that keeps `BRAINSTORMING_1.md` still works.
+
+**What to do differently:** run `update` in your home. It brings the changed rows of `AGENTS.md`
+across, on your go.
+
+### Changed
+
+* **`AGENTS.md`**: *Where things are, in a strategy*, *The order of work* and the commands' row, as
+  above.
+
 ## 0.14.0 (2026-09-26)
 
 **MINOR** — your researcher is in every folder: `interview`, in the package, writes the researcher's

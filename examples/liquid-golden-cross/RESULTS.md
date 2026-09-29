@@ -228,7 +228,7 @@ book's result on either window as the signal out of sample: both were measured h
 book was designed.
 
 **Measured a fifth time on 2026-09-25, for Experiment 4, by market state**, after the owner chose
-that experiment's design and fixed its state in `BRAINSTORMING_4.md`, and before its blueprint was
+that experiment's design and fixed its state in `JOURNAL_4.md`, and before its blueprint was
 written. The state is Daniel & Moskowitz's bear market: the KN US Equity 600's own return over the
 prior 504 trading days below zero, read from the desk's daily returns at each date's close. On
 2002-07-30 to 2026-06-01, 42 month starts fall in it: August 2002 to September 2003 and December
@@ -697,10 +697,10 @@ The single highest-value run outstanding, and what it would settle.
 **None of these can turn a verdict**: every book tested earns less than its control. They bear on
 how the books are read. What followed Experiment 2 the owner decided on 2026-09-24: Experiment 3,
 momentum proper on the same liquid names, under a claim of its own, claim 5
-([`BRAINSTORMING_3.md`](Experiments/Experiment_3/BRAINSTORMING_3.md)). It ran the same day and
+([`JOURNAL_3.md`](Experiments/Experiment_3/JOURNAL_3.md)). It ran the same day and
 tripped its kill switch. On 2026-09-25 the owner chose Experiment 4, claim 5's second design: the
 ranking held only outside bear markets
-([`BRAINSTORMING_4.md`](Experiments/Experiment_4/BRAINSTORMING_4.md)). It ran the next day and
+([`JOURNAL_4.md`](Experiments/Experiment_4/JOURNAL_4.md)). It ran the next day and
 tripped its kill switch on its Sharpe margin alone; what follows it is the owner's to decide.
 
 1. **The cost row, measured.** The verdict on prediction 1 turns on it in two experiments in a row:

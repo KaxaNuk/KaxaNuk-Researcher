@@ -110,7 +110,6 @@ Every one that writes shows its plan first and waits for your go.
 | `interview` | seven questions that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, and commits. `interview force` starts over |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
 | `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
-| `brainstorm <N> ["idea"] [strategy]` | appends a dated entry to `BRAINSTORMING_N.md` for the next thing to try |
 | `challenge <N> [strategy]` | checks a finished experiment against its own blueprint |
 | `audit [deep]` | reviews the library — links, duplicates, index, orphans, frontmatter, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
@@ -227,7 +226,7 @@ deep enough to fail the install, copy the files `git ls-files` lists to a short 
 that instead.
 
 **Before a release, do the same with the commit to be tagged.** It should deploy exactly 16 skills,
-12 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
+11 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
 or a script, walk the newcomer's path by hand in that folder — `init-researcher`, `interview`,
 `next`, `init-strategy`, and `read` on one clipping. Delete the folder afterwards. A newer APM is
 adopted only when this install passes with it, on Windows.
