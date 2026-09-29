@@ -12,7 +12,7 @@ by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy wor
 | Path | What it is | Changed how |
 | --- | --- | --- |
 | `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of the working tree from a short scratch folder, with the pinned APM — `uvx --from apm-cli==0.29.0 apm install <path to this repository> --target claude`, as the README's *Development* shows — and a new session there; before a release, that install deploys exactly 16 skills, 11 commands, 4 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME; when ignored folders make the scratch install fail too, copy the files `git ls-files` lists to a short folder and install that |
-| the skills' `scripts/` | `scaffold.py`, `extract.py`, `bloom_code_check.py`: what `init-*`, `read` and `bloom-code-lint` run for every user | nothing tests them: a change is tried by running the skill that uses it in a scratch folder before the commit |
+| the skills' `scripts/` | `scaffold.py`, `extract.py`, `check_numbers.py`, `bloom_code_check.py`: what `init-*`, `read`, `audit deep` and `bloom-code-lint` run for every user | pytest tests the first three from `tests/` — `uv run --group dev pytest`, as the README's *Development* shows — on PDFs and folders the tests build as they run, never a committed binary: a change keeps them passing and adds a test for what it adds, then is tried by running the skill that uses it in a scratch folder before the commit. `bloom_code_check.py` has no tests of its own: it is tried on the scripts and tests it checks |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `pyproject.toml`, which declares its version, and `CHANGELOG.md` move together |
@@ -42,8 +42,8 @@ the same in both copies. A marker stands alone on its line, at column 0.
   researcher package on its user's machine. Two packages with skills or commands of the same names
   do not share a user: a `-g` install of the second replaces a same-named skill of the first, with
   a warning, and overwrites a same-named command silently. The last install wins.
-- **Ruff and the Bloom Code check pass before any commit,** run as the README's *Development*
-  section shows. There is no CI: nothing runs them for you.
+- **Ruff, the Bloom Code check and the tests pass before any commit,** run as the README's
+  *Development* section shows. There is no CI: nothing runs them for you.
 - **Markdown you write or change is wrapped at 100 columns**, with no literal tab and LF line
   endings. A line inside a fenced code block, a table row, a line carrying a URL and the YAML
   frontmatter at the top of a file may run longer. Never use the section symbol; write "section".

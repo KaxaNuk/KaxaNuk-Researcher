@@ -202,13 +202,17 @@ template is its owner's from the first commit and never merges back; the skills 
 uvx ruff check .
 (cd examples/liquid-golden-cross && uvx ruff check .)
 uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py \
-  .apm/skills/*/scripts examples/liquid-golden-cross
+  .apm/skills/*/scripts tests examples/liquid-golden-cross
+uv run --group dev pytest
 ```
 
-Ruff lints the skills' scripts, the worked example with its own settings, and the last command
-checks the Bloom Code style of both. Each runs through `uv` alone: no Python of your own is needed.
-They run on your machine before a commit; there is no CI, so nothing runs them for you. Nothing else
-is automated: the template and the example are kept in step by hand, as `AGENTS.md` says.
+Ruff lints the skills' scripts and their tests, and the worked example with its own settings; the
+third command checks the Bloom Code style of all three, and pytest runs `tests/`: `extract.py`,
+`check_numbers.py` and `scaffold.py` on PDFs and folders the tests build as they run, so no binary
+is committed. Each runs through `uv` alone: no Python of your own is needed, and the tests' pytest
+and pypdf come from the `dev` group in `pyproject.toml`. They run on your machine before a commit;
+there is no CI, so nothing runs them for you. Nothing else is automated: the template and the
+example are kept in step by hand, as `AGENTS.md` says.
 
 To try a change to a skill, a command, an instruction or the agent, install the working tree at
 project scope, from a short scratch folder, with the APM the package is pinned to — never `-g` of

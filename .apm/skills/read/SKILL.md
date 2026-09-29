@@ -10,7 +10,7 @@ description: >
   contradictions are flagged, never overwritten. It does NOT answer questions from the library
   (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.7.3
+  version: 0.8.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -300,6 +300,9 @@ Then say: review the diff and commit.
 
 - `scripts/extract.py`, in this skill's folder: the PDF's table of contents, and its chapters as
   text, one file per chapter. `--help` has every option.
+- `scripts/check_numbers.py`, in this skill's folder: each figure a note states beside a page
+  citation, looked up in the extract on the cited page, elsewhere, or nowhere; `audit deep` runs it,
+  and it edits nothing. `--help` has every option.
 - `references/note.md`, in this skill's folder: the shape of every note — paths and
   names, frontmatter, the chapter note, the paper note, the book's `INDEX.md`, what the indexes
   show, how a home note travels into a strategy — and of the concept page and the synthesis page.
