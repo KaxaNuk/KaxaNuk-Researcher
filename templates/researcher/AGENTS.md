@@ -205,16 +205,16 @@ from another template keeps or maps them in its own `AGENTS.md`.
 | `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads, and `LOG.md` empty. |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
-| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md`, `BRAINSTORMING_N.md` and `JOURNAL_N.md` (`challenge`'s entry), the notes, `BIBLIOGRAPHY.md`; `study` and `teach` work at home only |
+| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `JOURNAL_N.md` (`challenge`'s entry, and the benchmark's in `JOURNAL_1.md`), the notes, `BIBLIOGRAPHY.md`; `study` and `teach` work at home only |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, nothing may be read into the strategy — `objective` comes first, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
   and the owner's go — a note into `Bibliotheca/Papers/` or `Books/` with its row in
-  `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`,
-  an entry appended to `BRAINSTORMING_N.md`, a line in `Bibliotheca/LOG.md` from `read` and
-  `audit`, and one dated entry appended to `JOURNAL_N.md` by `challenge`. The owner reviews the
-  diff and commits; the commit is the human act, and for a blueprint it is a commit of its own,
-  before the rule.
+  `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`, a line
+  in `Bibliotheca/LOG.md` from `read` and `audit`, and a dated entry appended to `JOURNAL_N.md` —
+  the benchmark's choice in `JOURNAL_1.md`, or `challenge`'s. The owner reviews the diff and
+  commits; the commit is the human act, and for a blueprint it is a commit of its own, before the
+  rule.
 - **Nothing flows back.** While it works on a strategy the researcher writes nothing at home — no
   note, no index line, no log entry, no extract — unless the owner asks for that write by name in
   chat. A strategy's source enters the home library only when the owner puts it in `Sources/` at
@@ -253,8 +253,8 @@ narrow, per claim, before the blueprint; broad, after it, for what the blueprint
 | B | **The reading**, for each claim | `Bibliotheca/`, then `OBJECTIVE.md` | `read`, one note per paper or chapter naming the claim it serves; then `objective` again, the evidence rewritten from the notes |
 | C | **The universe**, delisted names included | `Universe/Investable_Universe.csv` | contrast from the library — survivorship, point-in-time membership — never a number |
 | D | **The data** — curator, universe notebook, refinery, analyzer | `Data/` — the analyzer's measurements go straight into `RESULTS.md`, *Before any experiment* | contrast from the library — what the data can do to a signal — never a number |
-| E | **The blueprint**, after the benchmark is chosen and before the rule | `Experiments/Experiment_N/BLUEPRINT_N.md` | `brainstorm 1` for the benchmark entry, then `blueprint`: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
-| F | **The broad reading**, and brainstorming | `Bibliotheca/`, `BRAINSTORMING_N.md` | `read` for what the blueprint left open; `brainstorm` for what to try next |
+| E | **The blueprint**, after the benchmark is chosen and before the rule | `JOURNAL_1.md` for the benchmark, then `Experiments/Experiment_N/BLUEPRINT_N.md` | the benchmark's entry, drafted in chat and appended on the owner's go, then `blueprint`: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
+| F | **The broad reading** | `Bibliotheca/` | `read` for what the blueprint left open; what to try next goes in the journal's open threads |
 | G | **The cycle** — portfolio, backtest, attribution | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | `challenge`: each run checked against the blueprint's predictions and the notes; every number comes from the engines the project names — in a KaxaNuk strategy the Lab's libraries — never from here |
 | H | **The results**, kept or rejected | `RESULTS.md`, compiled from `FINDINGS_N.md` | a rejected cycle is reported as loudly as a kept one: *What is closed* is what stops the next person repeating it |
 
@@ -267,9 +267,10 @@ strategy whose `OBJECTIVE.md` has no claims points at `objective`; `blueprint` w
 with no investable universe, points at the part that is missing. Going back is how A to D are meant
 to work — a claim sharpened by a paper, a universe widened — until the blueprint is written; after
 it, a change to the claims or the rules is a new experiment, not an edit. One part may come early:
-the first entry of `BRAINSTORMING_1.md`, choosing the benchmark, is thinking done before Experiment
-1's blueprint — the example's `BRAINSTORMING_1.md` says that entry is usually the benchmark choice,
-and Experiment 1 *is* the benchmark, so the choice cannot wait for the blueprint that depends on it.
+the entry of `JOURNAL_1.md` choosing the benchmark is thinking done before Experiment 1's blueprint:
+the blueprint states what "beat" means, so the choice cannot wait for it. A strategy made from a
+template before 0.13.2 may keep that choice in `BRAINSTORMING_1.md`, and the commands still read it
+there.
 
 ## Joining other projects
 
@@ -354,7 +355,7 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 | Primitive | Where | What it is |
 | --- | --- | --- |
 | **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
-| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other twelve — `interview`, `next`, `objective`, `blueprint`, `brainstorm`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — `interview`, `next`, `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, or whose home has moved |
 | **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the four house instructions — Bloom Code, PEP 8, test writing, filesystem boundaries — which apply to every Python project on the machine where the assistant receives them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as the package's `SETUP.md` says. The home adds none |
