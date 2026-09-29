@@ -1,10 +1,20 @@
-# This repository's ruff settings, for the skills' scripts. The worked example in `examples/`
-# carries its own `pyproject.toml`, which governs it alone.
+# This repository's ruff and pytest settings, for the skills' scripts and their tests. The worked
+# example in `examples/` carries its own `pyproject.toml`, which governs it alone.
 [project]
 name = "kaxanuk-researcher"
 version = "0.19.0"
 requires-python = ">=3.12"
 dependencies = []
+
+# The tests' own dependencies: `uv run --group dev pytest` installs them.
+[dependency-groups]
+dev = [
+    "pypdf[crypto]>=4.0",
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 120
