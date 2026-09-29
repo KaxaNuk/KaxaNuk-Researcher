@@ -102,6 +102,16 @@ for reading and running, never built on; a strategy of the owner's own is `init-
 - Contradictory claims between notes.
 - A claim superseded by a newer note without a `> [!WARNING]` callout above it.
 - Gaps: things the library assumes that no source supports.
+- Figures a note states that its source does not: run `scripts/check_numbers.py`, in the `read`
+  skill's folder wherever the harness installed it, over the library's notes — at home
+  `uv run "<the read skill's directory>/scripts/check_numbers.py" Knowledge --extracts Extracts`,
+  in a strategy `Bibliotheca/Papers Bibliotheca/Books --extracts Bibliotheca/Extracts` — from the
+  library's root. It looks each figure written beside a page citation up in the extract. Report
+  every figure *not found* as a finding, with its note, line and cited pages; a note whose figures
+  sit at a consistent offset as a note, since it may cite printed pages; and the unchecked notes as
+  a count, with the `extract.py` command the script prints to regenerate their extracts. A figure
+  not found may be the note's own arithmetic or quoted from another source: say which, where the
+  note says so. The script reads and edits nothing, and this pass fixes nothing either.
 - In a strategy, a part of `BIBLIOGRAPHY.md` whose sources only agree with the claims — above all
   *Part 1 — The core idea*, which the template says holds the sources that argue against them. A
   bibliography with no source against the idea is a pitch.

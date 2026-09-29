@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.29.0] - 2026-09-29
+Two checks a researcher cannot make by reading alone. `challenge` read the git log for the order
+blueprint, then rule, but not for the order reading, then blueprint: a prediction citing a note read
+after the blueprint's commit is look-ahead in the research itself. Nothing checked a note's figures
+against the pages it cites, and a number that is not in the source is the main risk of a note an
+LLM writes; `audit deep` read for contradictions, not for invented numbers. The patterns come from
+the companion code of Noguer i Alonso, *Large Language Models in Finance* (Packt 2026),
+`PacktPublishing/LLMs-in-Finance` at 3a61db3: an availability audit that fails closed on a missing
+timestamp, and numeric agreement between an answer and its evidence. Issue #22.
+
+**What to do differently:** open every note's `read` field with its date, as `references/note.md`
+already asks, and commit a note before the blueprint that cites it. Keep the extracts of the PDFs
+you read, or regenerate them with the command `audit deep` prints, so their notes can be checked.
+### Added
+- **`check_numbers.py`**, in the `read` skill's `scripts/` (0.8.0): each figure a note states
+  beside a page citation, looked up in the extract's page markers — on the cited page, elsewhere
+  in the extract, with an offset reported when most of those lines sit at one distance from the
+  page cited, or not found. Notes whose extracts are not on disk are listed as unchecked, with the
+  `extract.py` command that regenerates them. The slug is `extract.py`'s own `slugify`, imported.
+  It reads and edits nothing; exit code 2 when a figure is not found.
+- **Check 10 in `challenge`, the reading before the blueprint**: every note a prediction cites
+  entered git before the commit that brought `BLUEPRINT_N.md` in, and its `read` date falls on or
+  before that commit's date. A later note, or a `read` field with no date that parses, is a
+  finding; a note read again since is disclosed, and read at the blueprint's commit.
+### Changed
+- **`audit deep`** runs `check_numbers.py` over the library's notes and reports every figure not
+  found as a finding, an offset as a note and the unchecked notes as a count. It fixes nothing,
+  and its one write is still the log line.
+- **`AGENTS.md`** names `check_numbers.py` among the scripts every user runs.
+
 ## [0.28.0] - 2026-09-29
 `BRAINSTORMING_N.md` and the `brainstorm` command are retired. A brainstorming entry had the
 journal's own four fields, the thinking before a blueprint is what a dated journal entry already
