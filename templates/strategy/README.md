@@ -75,10 +75,9 @@ A researcher is a separate project, made once with `init-researcher`, a skill of
 teach, one per person rather than per strategy, with its own library of what you have read. Its
 commands serve the parts below: `objective` drafts the claims in `OBJECTIVE.md` and rewrites their
 evidence from the notes (A, B), `read` writes the notes in `Bibliotheca/` (B, F), `blueprint`
-drafts each `BLUEPRINT_N.md`, every prediction citing a note (E), `brainstorm` drafts the entries
-of `BRAINSTORMING_N.md` (E, F), `challenge` checks a finished cycle against its blueprint (G), and
-`next` says at any moment which part comes next. [`SETUP.md`](SETUP.md) step 4 says how to invite
-it.
+drafts each `BLUEPRINT_N.md`, every prediction citing a note (E), `challenge` checks a finished
+cycle against its blueprint (G), and `next` says at any moment which part comes next.
+[`SETUP.md`](SETUP.md) step 4 says how to invite it.
 
 ---
 
@@ -121,13 +120,13 @@ condition, and a claim written after the reading is an observation wearing a hyp
   `RESULTS.md`.
 - **E. The blueprint.** Name the benchmark, then write `BLUEPRINT_1.md` before the rule. The
   benchmark is what "beat" means — an index, an ETF or an equal-weight book of the universe — and
-  naming it is the first entry of `BRAINSTORMING_1.md`; Experiment 1 is the first rule tested
-  against it, a real strategy with a real return. Every prediction in the blueprint cites a
-  `Bibliotheca/` note from B, or an analyzer measurement from D, and the blueprint names the claim
-  it moves, its control and what would falsify it; a hypothesis edited after its test is not a
-  hypothesis.
-- **F. The broad reading.** Search for papers and brainstorm — the reading for what the blueprint
-  left open, and `BRAINSTORMING_1.md` for what to try next.
+  naming it, with the candidates set aside, is an entry of `JOURNAL_1.md` before the blueprint;
+  Experiment 1 is the first rule tested against it, a real strategy with a real return. Every
+  prediction in the blueprint cites a `Bibliotheca/` note from B, or an analyzer measurement from
+  D, and the blueprint names the claim it moves, its control and what would falsify it; a
+  hypothesis edited after its test is not a hypothesis.
+- **F. The broad reading.** Search for papers — the reading for what the blueprint left open.
+  What to try next is written in the journal, as each entry's open threads.
 - **G. The cycle.** Portfolio construction, backtest, attribution — until it is finished and the
   notebook's last section, Verify, passes, rewriting `FINDINGS_1.md` as its results change.
 - **H. The results.** Send every finished cycle to `RESULTS.md`, kept or rejected, with the claim it
@@ -151,11 +150,12 @@ trying to do, [`RESULTS.md`](RESULTS.md) says how far we got and what it cost.
 | [`CHANGELOG.md`](CHANGELOG.md) | every version, newest first, and what a version number means here |
 | [`AGENTS.md`](AGENTS.md) | **how work is done** — the workflow, the restrictions, and the bar a result has to clear |
 
-Four documents inside every `Experiments/Experiment_N/`, and the split between them is the whole
+Three documents inside every `Experiments/Experiment_N/`, and the split between them is the whole
 point: `BLUEPRINT` is frozen so a result cannot quietly reshape the question it was meant to answer,
-`JOURNAL` is append-only so the path is recoverable, `FINDINGS` is rewritten so there is one current
-answer, and `BRAINSTORMING` looks forward so planning is never mistaken for history. `Bibliotheca/`
-has its index in `BIBLIOGRAPHY.md` and `Paper_Trading/` its gate in `BITACORA.md`.
+`JOURNAL` is append-only so the path is recoverable, and `FINDINGS` is rewritten so there is one
+current answer. The journal also keeps the thinking before a blueprint, and each entry's open
+threads look forward, so planning is never mistaken for history. `Bibliotheca/` has its index in
+`BIBLIOGRAPHY.md` and `Paper_Trading/` its gate in `BITACORA.md`.
 
 ---
 
@@ -188,7 +188,7 @@ to keep current:
 | `Bibliotheca/` | 1 | `BIBLIOGRAPHY.md`, the index of sources and the leads. `Papers/`, one note per paper, and `Books/`, one folder per book — its `INDEX.md` of chapters and one note per chapter somebody chose to read — each beside the PDF it came from. `LOG.md`, what was read here and when. `Notes/` for clippings and transcripts | the notes and the indexes — they are the reasoning. The PDFs and `Extracts/` are ignored: licensed material, and the extracts regenerate |
 | `Universe/` | 2 | `Investable_Universe.csv`, **the seed**: one row per security, `main_identifier` the only required column, every other column yours. `universe.ipynb`, which profiles what the curator downloaded and writes `Security_Master.csv` and `Data_Issues.csv` | the seed and the notebook; the two outputs and `Provider_Cache/` are regenerated, so ignored |
 | `Data/` | 3 | `curator.py`, `refinery.py`, `analyzer.ipynb` — the three drivers — and `hand_supplied.py`, the one reader of the index and factor files the desk ships, in place from `KN_ANALYTICS_PATH` or from the drop zones. `Curator/custom_calculations.py` for `c_*` columns and `Refinery/custom_calculations.py` for `r_*`. `Curator/Time_Series/`, `Benchmarks/`, `Factors/` and `Refinery/Time_Series/` for what is downloaded or dropped in by hand; `Analyzer/` for charts and the signal table | code only. **Every data file is ignored** — downloaded, derived or dropped in, all of it regenerable |
-| `Experiments/` | 4–6 | The four shared modules — `securities_panel.py`, `portfolio_construction.py`, `backtest_engine.py`, `attribution_analysis.py`. One `Experiment_N/` per idea: `BLUEPRINT_N.md`, `BRAINSTORMING_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, the notebook, and its `Portfolio/`, `Backtest/` and `Attribution/` output folders | the documents, the notebook with outputs stripped, the modules. The output folders are rebuilt by the notebook, so ignored |
+| `Experiments/` | 4–6 | The four shared modules — `securities_panel.py`, `portfolio_construction.py`, `backtest_engine.py`, `attribution_analysis.py`. One `Experiment_N/` per idea: `BLUEPRINT_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, the notebook, and its `Portfolio/`, `Backtest/` and `Attribution/` output folders | the documents, the notebook with outputs stripped, the modules. The output folders are rebuilt by the notebook, so ignored |
 | `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `promote.py`, which freezes a graduated experiment into `Paper_Trading_N/`; `daily_update.py`, which runs every frozen book each day; `record.py`, which keeps the record in files, a DuckDB database or both. `Paper_Trading_N/`, one frozen book: its `paper_trading_N.py`, the files it needs in the strategy's own layout, and `FREEZE.json` | the scripts, `BITACORA.md` and every frozen book. Each day's raw files, logs and record are ignored, and the record cannot be fetched again: keep it in the database or back it up |
 | `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key, the two engine licences, the desk's folder and the paper-trading settings | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
 
@@ -282,7 +282,7 @@ Two rules follow, and one exception worth knowing:
 | `Universe/Data_Issues.csv` | what is wrong with the downloaded files, written by step 2 |
 | `Data/Curator/Time_Series/` | one file per identifier: `m_*` and `c_*` |
 | `Data/Refinery/Time_Series/` | the same rows plus `r_*` and `current_*` — **the panel every experiment reads** |
-| `Experiments/Experiment_N/` | one folder per idea: `BLUEPRINT_N.md`, `BRAINSTORMING_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, and the notebook |
+| `Experiments/Experiment_N/` | one folder per idea: `BLUEPRINT_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, and the notebook |
 | `Portfolio/portfolio_weights.csv` | the book, in the shape the Backtest Engine reads |
 
 ### The four shared modules

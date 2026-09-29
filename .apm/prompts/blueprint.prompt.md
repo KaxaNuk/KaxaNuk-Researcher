@@ -103,7 +103,8 @@ as the example's.
 - **Success criteria**, **what would falsify it** — one condition for the whole experiment, and the
   changes that may not rescue it — **key risks** and **open questions this experiment does not
   answer**, in the template's terms. For Experiment 1, what it has to beat is the benchmark
-  `BRAINSTORMING_1.md` names.
+  `JOURNAL_1.md` chose — or, in a strategy that still keeps `BRAINSTORMING_1.md`, the one its first
+  entry names.
   For the falsifying condition, ask the owner for the kill switch — the result that would make them
   drop the idea rather than tune it, the map's *An idea's anatomy* — or propose the one the claim
   already carries in `OBJECTIVE.md`; the condition names it, in their words. With none given, the
@@ -169,9 +170,8 @@ be ranked, the one falsification condition — so the owner meets now what gradu
 the gate. Wait for the go. Then write it into `Experiments/Experiment_N/BLUEPRINT_N.md` in the
 strategy, under the template's headings and its blockquote. The owner edits and commits it **before
 writing the rule** — in a commit of its own, so the history shows the order. Then say what comes
-next in the order of work: the broad reading, for what the blueprint left as leads; `brainstorm`,
-for what to try next; and the cycle — portfolio construction, backtest, attribution — until it is
-finished.
+next in the order of work: the broad reading, for what the blueprint left as leads; and the cycle
+— portfolio construction, backtest, attribution — until it is finished.
 
 Never write into the researcher's home from here. Never state a performance number as a prediction
 unless an analyzer measurement licenses it; the engine has not run, and the blueprint must not

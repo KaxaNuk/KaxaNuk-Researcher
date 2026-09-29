@@ -41,6 +41,28 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.2 (2026-09-29)
+
+**PATCH** — `Experiments/Experiment_1/BRAINSTORMING_1.md` is gone. Its entries had the journal's
+own four fields, and the thinking before a blueprint is a dated journal entry like any other, each
+entry's open threads keeping planning apart from history. The benchmark's choice, the one entry that
+had to come before the blueprint, is now an entry of `JOURNAL_1.md`, and `BLUEPRINT_1.md`, the
+notebook, `AGENTS.md` and the README read it there. Nothing about any result changes.
+
+**What to do differently:** choose the benchmark in a dated entry of `JOURNAL_1.md`, before the
+blueprint. A strategy made from an earlier template can keep its `BRAINSTORMING_1.md`: the
+Researcher's commands still read the benchmark there.
+
+### Removed
+
+- **`Experiments/Experiment_1/BRAINSTORMING_1.md`.**
+
+### Changed
+
+- **`Experiments/Experiment_1/JOURNAL_1.md`** says the entry before the blueprint chooses the
+  benchmark; **`BLUEPRINT_1.md`**, **`experiment_1.ipynb`**, **`AGENTS.md`** and **`README.md`**
+  name the benchmark `JOURNAL_1.md` chose, and three documents in every experiment.
+
 ## 0.13.1 (2026-09-25)
 
 **PATCH** — a frozen book's security master stays out of git. `.gitignore` keeps

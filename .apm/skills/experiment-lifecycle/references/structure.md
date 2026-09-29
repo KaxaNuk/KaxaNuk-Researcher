@@ -60,7 +60,7 @@ Template version: **0.11.0**. The template ships `Experiments/Experiment_1/` and
 │   ├── backtest_engine.py       #   the one path from a weight file to a number
 │   ├── attribution_analysis.py  #   the hand-supplied inputs and the book's daily weights; what is missing, first
 │   └── Experiment_N/            #   Experiment_1 ships, the first rule; N > 1 from this skill's references/
-│       ├── BLUEPRINT_N.md  BRAINSTORMING_N.md  JOURNAL_N.md  FINDINGS_N.md
+│       ├── BLUEPRINT_N.md  JOURNAL_N.md  FINDINGS_N.md
 │       ├── experiment_N.ipynb
 │       ├── Portfolio/           #   step 4 output, gitignored, kept by .gitkeep
 │       ├── Backtest/            #   step 5 output, gitignored, kept by .gitkeep
