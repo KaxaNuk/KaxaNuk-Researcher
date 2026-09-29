@@ -41,6 +41,28 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.2 (2026-09-29)
+
+**PATCH** — the four `BRAINSTORMING_N.md` files are gone, as the template's is. Their five entries
+moved into each experiment's journal at their dates, word for word, and `JOURNAL_1.md` records where
+each went. The entries that name a brainstorming file were correct on their dates and stay as
+written. The shared lines follow the template's, and the blueprints' pointers to the moved entries,
+`OBJECTIVE.md`, `RESULTS.md`, the Baltussen note and the analyzer's comment on the bear market point
+at the journals. No figure, rule or frozen byte moves.
+
+**What to do differently:** read the thinking before each blueprint in that experiment's journal.
+
+### Removed
+
+- **`BRAINSTORMING_1.md` to `BRAINSTORMING_4.md`.**
+
+### Changed
+
+- **The journals** hold the moved entries; **`JOURNAL_1.md`** records the move in an entry of
+  2026-09-29.
+- **`AGENTS.md`, the blueprints, the journals' headers and Experiment 1's notebook**, as the
+  template's; the pointers listed above.
+
 ## 0.18.1 (2026-09-25)
 
 **PATCH** — the frozen security master leaves git. It is the provider's data, as the master in

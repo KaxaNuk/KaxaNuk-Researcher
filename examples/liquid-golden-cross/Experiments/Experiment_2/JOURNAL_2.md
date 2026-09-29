@@ -6,9 +6,8 @@
 > **Earlier entries are never edited.** The one exception is correcting an error, and the correction
 > is written as a new entry saying what was wrong — not by rewriting the original.
 >
-> The hypothesis is in [`BLUEPRINT_2.md`](BLUEPRINT_2.md); what to try next is in
-> [`BRAINSTORMING_2.md`](BRAINSTORMING_2.md); the results that survive are in
-> [`FINDINGS_2.md`](FINDINGS_2.md).
+> The hypothesis is in [`BLUEPRINT_2.md`](BLUEPRINT_2.md); the results that survive are in
+> [`FINDINGS_2.md`](FINDINGS_2.md); what to try next is in each entry's open threads.
 
 **Paths and figures inside entries are as they were written.** Where a path has since moved the
 entry is left alone — it was correct on its date.
@@ -35,6 +34,39 @@ which template version it was created from, the strategy name, and everything `O
 leaves open.
 
 <!-- example: begin -->
+
+## 2026-09-24 — confirming the slow exit on years it was not found on
+
+- **Idea / question:** Experiment 1's second design sold a broken cross the day after it broke and
+  lost to its control; its diagnostic arm — twenty names, the whole set re-equalised only on a day
+  it moves by three names or more, so a broken name is held a median of 28 trading days — earned
+  19.52% a year with a Sharpe of 0.877, against the fast exit's 17.87% and 0.806, and the index's
+  14.63% and 0.770, over 2017 to 2026 (`../Experiment_1/FINDINGS_1.md`). Is that slow exit an edge,
+  or the best of several books tried on one window?
+- **What we tried / considered:**
+    - *Freezing the arm as it stands.* Rejected: it was one of forty-five runs on the window that
+      had already falsified claim 1 once, and choosing it after seeing it is a trial, not a result.
+    - *The held-out months since 2026-06-01.* Too short: months cannot show skill.
+    - *Years it was not found on.* The desk's holdings reach back to 2000, so the same rule can be
+      run point in time from 2002, when the cash proxy starts, to 2016, the year before the window
+      it was found on. The seed held only 64% of the index's weight in 2000 and 90% by 2016, because
+      the names that left before 2017 were never in it; widening it to every listing the index held
+      adds 712 names, and FMP carries almost none of them on this key — nineteen of a sample of
+      twenty came back empty.
+    - *The dead names from Sharadar*, through the Data Curator's Sharadar provider, on the library's
+      issues/31 branch until it is released. Sharadar keeps the companies that left the market, and
+      the desk's suffixed tickers, such as `AGN1`, are its convention for a reused ticker. It
+      publishes no VWAP, so for those names the fill price is the day's close and the traded value
+      the close times the volume — a difference in how they are filled, stated wherever it matters.
+- **Outcome / decision:** the owner decided on 2026-09-24 to confirm the arm's design on 2002 to
+  2016 as Experiment 2, with the seed widened and the dead names from Sharadar, and to take it to
+  paper trading only if it passes its own gate. **The arm was never priced against its own
+  control**: the first design, the same timing at thirty names, lost to its control by 1.12 points a
+  year, so whether the cross earns anything at twenty is the open question, and the blueprint says
+  so.
+- **Open threads:** how much of the index's weight the priced names hold before 2017, once the dead
+  names are in, decides where the window can start; the blueprint fixes that rule before anyone
+  looks.
 
 ## 2026-09-24 — the blueprint, the critic, and the dead names' download
 

@@ -115,8 +115,9 @@ verdicts stand or fall on the blueprint as written.
 ## Step 4: Report, and offer the one line it may write
 
 **In chat:** what held, what failed and by which falsifier, what the findings do not say, and the
-bookkeeping. Then the leads — what to read for what the run left open, and what `brainstorm` should
-consider next. Name every file and every note by path.
+bookkeeping. Then the leads — what to read for what the run left open, and what the next experiment
+should consider, which the journal entry below carries as open threads. Name every file and every
+note by path.
 
 **Then offer one appended entry in `JOURNAL_N.md`**, dated, in the template's format, and write it
 only on the owner's go. It is the one file this command may touch, because the journal is appended
