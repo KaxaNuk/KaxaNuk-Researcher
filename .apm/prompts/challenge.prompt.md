@@ -92,6 +92,23 @@ numbers out of them is the line the non-negotiables draw. Every number in the re
 9. **Arithmetic between published numbers.** A difference published alongside the two numbers it
    comes from either reconciles or it does not. Report a disagreement and ask for a re-run; never
    supply the corrected value.
+10. **The reading before the blueprint.** A note read after the blueprint cannot have informed its
+    predictions, and a prediction that cites one is look-ahead in the research itself. Read the
+    commit that brought the blueprint in, and the one that brought in each note a prediction
+    cites, with its date:
+
+    ```bash
+    git log --diff-filter=A --format='%h %cs' -- Experiments/Experiment_N/BLUEPRINT_N.md
+    git log --diff-filter=A --format='%h %cs' -- <note>
+    ```
+
+    The note must have entered git before the blueprint's commit, and the first `YYYY-MM-DD` in
+    its frontmatter's `read` field must fall on or before that commit's date. A note that entered
+    with the blueprint or after it, or whose `read` field holds no date that parses, is a finding:
+    it cannot be shown to have informed the prediction. A note that entered before but whose `read`
+    date is later was read again since: say so, and read for check 6 the version the prediction
+    rests on, the one at the blueprint's commit, `git show <commit>:<note>`. That is not a finding
+    by itself. The log is read, never changed.
 
 Two things cannot be checked from the working tree, and the report says so when they matter: the
 falsifiers are prose, so pairing *a beta at or above one* with *beta is 1.028* is a judgement made
@@ -114,10 +131,10 @@ verdicts stand or fall on the blueprint as written.
 
 ## Step 4: Report, and offer the one line it may write
 
-**In chat:** what held, what failed and by which falsifier, what the findings do not say, and the
-bookkeeping. Then the leads — what to read for what the run left open, and what the next experiment
-should consider, which the journal entry below carries as open threads. Name every file and every
-note by path.
+**In chat:** what held, what failed and by which falsifier, what the findings do not say, the
+bookkeeping, and every cited note read after the blueprint or read again since. Then the leads —
+what to read for what the run left open, and what the next experiment should consider, which the
+journal entry below carries as open threads. Name every file and every note by path.
 
 **Then offer one appended entry in `JOURNAL_N.md`**, dated, in the template's format, and write it
 only on the owner's go. It is the one file this command may touch, because the journal is appended

@@ -21,6 +21,7 @@ GEMINI.md
 # Python
 __pycache__/
 .venv/
+.pytest_cache/
 .ruff_cache/
 
 # IDE and OS
