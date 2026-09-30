@@ -1,12 +1,8 @@
 # How I invest
 
-> **Yours, in your own words.** What you believe about markets, what experience has taught you, and
-> how you think when you decide. The researcher reads this file and cites it as your view, never
-> as a source; it never writes here, except to fix a typo through `refine`, diff first. Write it in
-> your voice — lists, fragments and strong opinions are fine — and keep adding to it as you learn.
-> `interview` can start it from the interview. If your research is not investing, edit the
-> headings to fit and keep the file name, which `interview` and the skills find it by. Delete this
-> blockquote once it is filled.
+> **Yours, in your own words** — lists, fragments and strong opinions are fine; keep adding as you
+> learn. The researcher reads and cites it as your view, never as a source, and never writes here
+> except to fix a typo through `refine`, diff first. Delete this note once you start.
 
 ## What I believe about markets
 

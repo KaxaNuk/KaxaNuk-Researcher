@@ -1,19 +1,26 @@
 ---
-description: Say where the owner stands — in the researcher's home or in a strategy — and the one thing to do next, with the command or skill that does it, read from the files on disk as a checklist; nothing is written. Only when the owner runs it by name; never on its own.
-input:
-  - strategy: "Optional: path to the strategy repository, if not the one the session is in"
+name: next
+description: >
+  Say where the owner stands — in the researcher's home or in a strategy — and the one thing to do
+  next, with the command or skill that does it, read from the files on disk as a checklist; nothing
+  is written. Takes an optional path to a strategy, when the session is not open in it. Only when
+  the owner runs it by name; never on its own.
+metadata:
+  version: 1.0.0
 ---
 
 # Next — where you stand, and what to do next
 
-The process has eight steps, an order of work with eight parts, three commands that make folders
-and eleven commands, this one among them. This command is the map: it reads the folder, says which
-parts are done, and names **the one thing to do next** with the command that does it. It writes
-nothing, runs nothing, and never starts the next thing itself — doing it is a different request,
-by the name this command gives.
+The process has eight steps, an order of work with eight parts, three skills that make folders,
+`interview`, this skill and nine commands. This skill is the map: it reads the folder, says which
+parts are done, and names **the one thing to do next** with the command or skill that does it. It
+writes nothing, runs nothing, and never starts the next thing itself — doing it is a different
+request, by the name this skill gives. It is a skill, not a command, so every assistant APM deploys
+to has it, Codex included.
 
-Every path below is relative to the folder being read. `${input:strategy}` is a strategy's path,
-given when the session is not open in it; otherwise the folder the session is open in.
+Every path below is relative to the folder being read: a strategy's path when the owner gives one
+— *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
+session is open in.
 
 ## Step 1: Which folder this is
 
@@ -24,7 +31,7 @@ given when the session is not open in it; otherwise the folder the session is op
 | `RESEARCHER.md` | a researcher's home | *Step 2* |
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
 | none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, and the project's own rules apply; the next things are `query` for what the library holds and, to learn from the project, a source into `Sources/` then `read` at home. No `init-*` command is suggested |
-| none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which of the three commands makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-example` to read the worked example — and stop |
+| none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which of the three skills makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-example` to read the worked example — and stop |
 
 When both a strategy and a home are in the session — added to it, or named by the researcher's
 skill — read the strategy: the home is the library it brought along.
@@ -91,4 +98,4 @@ In chat, short:
 3. **Next:** one line — the part, the command or skill by name, and what it will ask for.
 
 Nothing else. No file is written, no log entry appended, no number computed and no plan drafted:
-when the owner says *do it*, that is the named command's own plan and go, not this one's.
+when the owner says *do it*, that is the named command's or skill's own plan and go, not this one's.

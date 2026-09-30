@@ -6,6 +6,28 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.15.0 (2026-09-29)
+
+**MINOR** — quick to start: the install asks your language first and, in one conversation, makes
+your researcher's home under the name you give it and runs a four-step interview, about five
+minutes. `README.md` opens with a table of your folders — what each holds and what you do with it
+— and `RESEARCHER.md` and `Philosophy/HOW-I-INVEST.md` carry shorter prompts, with an *Add later*
+line for what the interview no longer asks. `interview` and `next` are skills now, so Codex and
+Gemini have them too.
+
+**What to do differently:** run `update` in your home. It brings the new `README.md` and the
+changed rows of `AGENTS.md` across, on your go. Your `RESEARCHER.md` and `Philosophy/` stay as they
+are; add the *Add later* lines by hand if you want them.
+
+### Changed
+
+* **`README.md`**: *Your folders* and *First things to do* first; *In a strategy or another
+  project*, *Growing your researcher* and *Installing and updating* after them, shorter.
+* **`RESEARCHER.md`** and **`Philosophy/HOW-I-INVEST.md`**: shorter prompts; *Add later* lines
+  under *What you believe* and *What you are reading for*.
+* **`AGENTS.md`**: `interview` and `next` in the skills' row, nine commands in the commands' row,
+  and how an assistant with no question tool asks.
+
 ## 0.14.1 (2026-09-29)
 
 **PATCH** — the order of work chooses the benchmark in an entry of `JOURNAL_1.md`, and the

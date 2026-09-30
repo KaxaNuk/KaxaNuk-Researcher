@@ -1,61 +1,57 @@
 # A KaxaNuk researcher's home
 
-This folder is a researcher's home: its library of what you have read, your own voice, your
-studies, and the rules it works by. It was made by `init-researcher` from the KaxaNuk Researcher, in
-[KaxaNuk-Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher), which says what the
-researcher is and how to install it. Once `interview` has named your researcher, it proposes the
-paragraph that replaces this one, on your go.
+This folder is your researcher's home: the library of what you read, your own voice, your studies
+and the rules it works by. It was made from the
+[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher). Once `interview` has named
+your researcher, it proposes a paragraph about it to replace this one, on your go.
 
 ---
 
-## Working with it
+## Your folders
 
-**The researcher is yours:** it grows with what you believe, and the package brings only hints,
-offered as options, that make a complex idea simple — never a position to adopt.
+| Folder or file | What it holds | What you do with it |
+| --- | --- | --- |
+| `RESEARCHER.md` | who the researcher is: your name, its voice, your rules, what you are reading for | edit it whenever you like — it is yours. Add what the interview did not ask: your view as a sentence a test could answer, how long its edge might last, what would change your mind |
+| `Philosophy/HOW-I-INVEST.md` | your own view of markets, in your words | write in it freely; the researcher reads and cites it, and never writes in it. `refine` tidies it, diff first |
+| `Sources/Papers/`, `Sources/Books/`, `Sources/Clippings/` | the PDFs and clippings you read | drop a file in, then `read` |
+| `Knowledge/` | the researcher's notes on what you read, with `INDEX.md` and `LOG.md` | written by `read`, on your go; ask it with `query` |
+| `Studies/` | ideas, plans and decisions worked out from what you read | `study <subject>`; `study` alone lists them |
+| `Lessons/` | lessons from `teach`, a folder per topic | appears with your first `teach <topic>` |
+| `AGENTS.md`, `CLAUDE.md` | the rules the researcher works by | nothing to do |
+| `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
+| `Extracts/` | text pulled out of the PDFs, for `read`; regenerable, never committed | nothing to do |
 
-**What you can use it for**, with a strategy or without one:
+The library is private: nothing in `Sources/` should ever be pushed anywhere public, and the
+`.gitignore` keeps PDFs out. Clippings and the notes read from them are committed with the home, so
+a home that holds a private project's material stays a private repository.
 
-- **A library you can ask.** `read` a paper, a book or a clipping into `Knowledge/`, against your
-  own questions; `query` it later, every answer cited and every gap named.
-- **Your studies.** `study <subject>` works out an idea that is not a strategy yet, or a plan or a
-  decision with no repository of its own, from what you have read, and keeps it in `Studies/`;
-  `study` alone lists them.
-- **Lessons.** `teach <topic>` tutors you from your library, one lesson a session.
-- **Strategies.** `init-strategy <name>` starts one from the KaxaNuk Strategy Template, a
-  repository of its own, where the researcher is present as everywhere.
-- **Any other project.** Open it, and the researcher is there, as *In a strategy or another project*
-  below says: it objects on evidence from your library, under that project's own rules.
-- **A researcher that fits you.** Its questions, its voice, its rules, the tools it knows and
-  commands of your own — *Growing your researcher* below says the four moves.
+## First things to do
 
-**First, once.** Open your assistant in this folder, in a new session, and run `interview`: seven
-questions, about ten minutes. It writes `RESEARCHER.md`, the agent that makes your researcher
-callable by name and the skill that makes it present in every session, installs both for your user
-and commits what it wrote — you answer, give your go, and allow the commands your assistant asks
-about. Then open a new session, here or in any folder. On a new machine, or after adding an
-assistant under `targets:` in `~/.apm/apm.yml`, install this home yourself:
+1. **First, once:** `interview`, if the install has not run it yet — four short steps, about five
+   minutes. It writes `RESEARCHER.md`, the agent that makes your researcher callable by name and
+   the skill that makes it present in every session, installs both for your user and commits.
+2. **Read something.** Drop a paper or a book into `Sources/` and run `read`. For a book it shows
+   the table of contents and asks which chapters serve which of your questions; it reads only
+   those, shows the plan, waits for your go, and writes one note per chapter into `Knowledge/`.
+3. **Ask.** `query <question>` answers from what you have read, every claim cited and every gap
+   named.
+4. **Think something through.** `study <subject>` for an idea that is not a strategy yet, or a
+   plan or a decision; `teach <topic>` for a lesson a session.
+5. **Start a strategy.** `init-strategy <name>` makes one beside this folder, from the KaxaNuk
+   Strategy Template; the researcher is there when you open it.
 
-```bash
-apm install -g "<this folder>"
-```
+**Lost?** `next`, here or in a strategy, says what is done and the one thing to do next. In Claude,
+type these with a slash, `/read`; anywhere else, ask for them by name.
 
-The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
-folder: they are installed once for your user, `apm install -g`, and updated with `apm update -g`;
-`update`, run here, brings what changed in this home's own files across. The home's own version in
-`apm.yml` is yours: `interview` sets it to 0.1.0, you bump it with each entry you add to
-`CHANGELOG.md`, and `update` reads the *Brought to template* line there, never this field.
+---
 
-**At home.** Drop a paper or a book into `Sources/` and run `read`. For a book the researcher shows
-the table of contents and asks which chapters serve which of your questions; it reads only those,
-shows the plan, waits for your go, and writes one note per chapter into `Knowledge/` — and the
-concept pages those chapters argue, every claim citing its note. `query` answers from what is here.
+## In a strategy or another project
 
-**In a strategy or another project.** Open your assistant in the project's folder: the researcher
-is there, and reads this home when the work needs it. Add this folder to the session —
-`claude --add-dir <this folder>`, `/add-dir` once inside, or the desktop app's add-folder button —
-for it to read the library without asking each time. For `CLAUDE.md`, `AGENTS.md` and
-`RESEARCHER.md` to load in full from the first line, set this once per machine and reopen the
-assistant:
+Open your assistant in the project's folder: the researcher is there, and reads this home when the
+work needs it. Add this folder to the session — `claude --add-dir <this folder>`, `/add-dir` once
+inside, or the desktop app's add-folder button — for it to read the library without asking each
+time. For `CLAUDE.md`, `AGENTS.md` and `RESEARCHER.md` to load in full from the first line, set
+this once per machine and reopen the assistant:
 
 ```bash
 setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
@@ -65,17 +61,9 @@ setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
 to confirm it loaded. Work on a strategy lands in the strategy; nothing comes back here unless you
 ask, and then as a source in `Sources/` that `read` files.
 
-**Lost?** Run `next`, here or in a strategy: it reads the folder and says what is done and the one
-thing to do next.
-
-**On Windows,** `git diff` prints a CRLF warning for files the researcher wrote; it is expected and
-harmless, `.gitattributes` normalises on commit.
-
----
-
 ## Growing your researcher
 
-The researcher grows four ways, each governed by a section of `AGENTS.md`:
+It grows four ways, each governed by a section of `AGENTS.md`:
 
 1. **Knowledge of a tool or a project.** Put its documentation in `Sources/Clippings/` and run
    `read`, with a reading question that names it. *Joining other projects* says how a project's
@@ -89,38 +77,28 @@ The researcher grows four ways, each governed by a section of `AGENTS.md`:
 4. **How it behaves.** A line by hand under *How it speaks* or *Non-negotiables* in
    `RESEARCHER.md`, which every skill and the agent read first. The same paragraph governs it.
 
-`teach` tutors you from the library and `study` works out what you will do with it; you teach the
-researcher by these four moves.
+## Installing and updating
 
----
+The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
+folder: they are installed once for your user and updated with
+`uvx --from apm-cli==0.29.0 apm update -g`; `update`, run here, brings what changed in this home's
+own files across. On a new machine, or after adding an assistant under `targets:` in
+`~/.apm/apm.yml`, install this home yourself, once:
 
-## What is in here
-
+```bash
+uvx --from apm-cli==0.29.0 apm install -g "<this folder>"
 ```
-RESEARCHER.md    who the researcher is, and what you are reading for — written by interview
-AGENTS.md        the library's rules: folders, conventions, strategies and projects, plan first
-CLAUDE.md        imports AGENTS.md and RESEARCHER.md
-CHANGELOG.md     the template's changelog, then this home's; update adds the version it brings
-apm.yml          what apm install deploys: the agent, and any skill or command of this home's own
 
-Sources/         what you read — Books/, Papers/, Clippings/. The researcher reads, never writes
-Extracts/        text pulled out of the PDFs, one file per chapter; regenerable, gitignored
-Knowledge/       notes by domain, a folder per book, concept pages; INDEX.md and LOG.md
-Philosophy/      your voice. HOW-I-INVEST.md is the page to write it in; cited, never generated
-Studies/         your studies: an idea, a plan or a decision, a file each; written by study
-Lessons/         teach's lessons, a folder per topic; the first teach creates it
-.apm/agents/     your researcher as a callable agent, written by interview
-.apm/skills/, .apm/prompts/  your researcher's own skills and commands, if you write any
-```
+The home's own version in `apm.yml` is yours: `interview` sets it to 0.1.0, you bump it with each
+entry you add to `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never
+this field. `CHANGELOG.md` holds the template's changelog, then this home's.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: studies and lessons
 are built from the notes, and no note is ever built from a study. `Philosophy/` is cited, never
-compiled into notes, so your judgement stays yours. Anything else you ask for here is answered in
-chat, or as a page you can share, unless you keep it as a study; strategy work lives in the
-strategy. The library is private to you: nothing in `Sources/` should
-ever be pushed anywhere public, and the `.gitignore` keeps PDFs out by default. Clippings and the
-notes read from them are committed with the home, so a home that holds a private project's
-material stays a private repository.
+compiled into notes, so your judgement stays yours.
+
+**On Windows,** `git diff` prints a CRLF warning for files the researcher wrote; it is expected and
+harmless, `.gitattributes` normalises on commit.
 
 ---
 

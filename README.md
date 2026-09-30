@@ -1,73 +1,89 @@
 # KaxaNuk Researcher
 
-**A research companion you name and teach.** It keeps a library of what you have read, works out
-your ideas and decisions from it, knows the KaxaNuk Investment Lab and the KaxaNuk Strategy
-Template, and helps you write the hypothesis of every strategy you build — with every claim
-pointing back to something you actually read. One researcher per person, not per strategy; one
-repository per strategy.
+**A research companion you name and teach.** It keeps a library of what you read, answers from it
+with every claim pointing back to a source, helps you work out your ideas, and walks you through
+building an investment strategy with the KaxaNuk Investment Lab. One researcher per person; it
+works in any language.
 
-This repository is one package: every KaxaNuk skill — the researcher's, the process's and each
-Investment Lab library's — the strategy template, a strategy worked through it, and the
-researcher's home.
+## Install — three steps, no coding
+
+1. Open **Claude** (the desktop app or Claude Code), **Codex** or **Gemini**.
+2. Paste this line and send it:
+
+   ```text
+   Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
+   ```
+
+3. Answer its questions. It asks your language first, then everything happens in the same
+   conversation:
+   - it installs what it needs — allow the commands it asks about, that is all you do;
+   - it asks what you want to call your researcher, and where to keep it — a folder with that
+     name, `C:\Research\Ada` for example;
+   - it asks four short questions about you and how you see markets, about five minutes;
+   - it shows you your researcher's folders, what each one is for, and what to do next.
+
+Then open your researcher's folder in a **new** conversation and say hello, by its name.
+
+### Instalación en español
+
+1. Abre **Claude** (la app de escritorio o Claude Code), **Codex** o **Gemini**.
+2. Pega esta línea y envíala:
+
+   ```text
+   Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
+   ```
+
+3. Responde sus preguntas. Primero te pregunta el idioma — elige *Español* — y todo sigue en la
+   misma conversación: instala lo necesario (solo permite los comandos que te pida), te pregunta
+   el nombre de tu investigador y dónde guardarlo, te hace cuatro preguntas cortas, unos cinco
+   minutos, y te explica sus carpetas y qué hacer después.
+
+Después abre la carpeta de tu investigador en una conversación **nueva** y salúdalo por su nombre.
 
 ## What you can use it for
 
-With a strategy or without one: the library and your studies stand on their own.
-
-| You want to | Run | You get |
+| You want to | Say or type | You get |
 | --- | --- | --- |
-| keep what you read, and ask it later | `read`, then `query <question>` | a note for each paper or chapter you chose, read against your own questions; answers that cite them and name what is missing |
-| work out an idea, a plan or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, what you decide and what to check next — for an idea that is not a strategy yet, or work with no repository of its own |
-| build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a repository of its own on the KaxaNuk Strategy Template: the claims before any paper, the hypothesis before the test, every number from the Lab's engines |
+| keep what you read, and ask it later | `read`, then `query <question>` | a note for each paper or chapter you chose; answers that cite them and name what is missing |
+| work out an idea, a plan or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, and what to check next |
+| build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder of its own on the KaxaNuk Strategy Template, every claim before any test, every number from the Lab's engines |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
-| bring your library into other work | your home added to any project's session | a second pair of eyes that objects on evidence, under that project's own rules |
+| know what to do next | `next` | where you stand, and the one thing to do next |
 | see the process worked end to end | `init-example` | `liquid-golden-cross`, one strategy through every step, to read or run |
 
-**It grows with you.** It reads for your questions, speaks in your voice, keeps your rules and
-learns the tools and projects you give it, and it takes skills and commands of your own. Each is a
-line or a file in your home: *Growing your researcher* in the home's README says the four moves.
-The package brings only hints, offered as options — never a position to adopt.
+In Claude, type these with a slash, `/read`; anywhere else, ask for them by name. **It grows with
+you**: it reads for your questions, speaks in your voice and keeps your rules, all written in its
+own folder, where you can edit them. The package brings only hints, offered as options — never a
+position to adopt.
+
+**Lost at any point?** Type `next` in the folder you are in.
 
 ---
 
-## Install
+## For developers and advanced users
 
-Paste this into Claude or Codex:
-
-```text
-Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
-```
-
-It follows [`SETUP.md`](SETUP.md): it checks that git and [`uv`](https://docs.astral.sh/uv/) are
-there, and installs the package once, for your user. By hand, it is:
+### Installing by hand
 
 ```bash
 uv tool install apm-cli==0.29.0
 uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
-`--target codex`, `cursor` or another agent in place of `claude`; Claude Code receives everything,
-and [`SETUP.md`](SETUP.md) says what the others miss. The skills are then in every folder you open,
-so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.29.0 apm update -g` brings
-every new version. **APM stays at 0.29.0, and every command that runs it names that version.**
-0.29.0 installs this package cleanly; from 0.29.1 on, APM stages a package under about 148 more
-characters of folders, the worked example's longest paths pass Windows' path limit, and the install
-fails with `WinError 3` or `WinError 206`. [`SETUP.md`](SETUP.md) says more. Never run
-`apm self-update`.
+`--target codex`, `gemini`, `cursor` or another in place of `claude`; Claude Code receives
+everything, and [`SETUP.md`](SETUP.md) says what the others miss. The skills are then in every
+folder you open, so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.29.0 apm
+update -g` brings every new version. **APM stays at 0.29.0, and every command that runs it names
+that version**: from 0.29.1 on, the install fails on Windows with `WinError 3` or `WinError 206`.
+Never run `apm self-update`. Then, in a new session, `init-researcher Ada` makes the home and runs
+the interview. [`SETUP.md`](SETUP.md) is the whole path, step by step.
 
-## The path
-
-Four moves, each in a **new session**, in the folder the line names. The first two ask for nothing
-but your answers and your go: they run their own commands, and your assistant may ask you to allow
-them. Lost at any point: run `next` in the folder, and it says which move is done and what comes
-next.
+### The path after the install
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Ada` | brings the package up to date, then makes your researcher's home, with the name you choose |
-| 2 | the home | `interview` | seven questions, ten minutes; writes `RESEARCHER.md`, the agent and the researcher's skill, installs them for your user so the researcher is in every folder and you can call it by name, and commits |
-| 3 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
-| 4 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
+| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: four short steps that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and commit. The install in [`SETUP.md`](SETUP.md) runs this for you |
+| 2 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
+| 3 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
 
 The interview's questions on markets and the reading map cover investment research; a researcher
 for another field answers *not sure yet* where it must and grows by reading.
@@ -82,9 +98,6 @@ KaxaNuk for them. Without them a strategy still runs up to its portfolios — an
 needs nothing more — and the backtest and attribution say what is missing and skip. Every key goes
 in the strategy's `Config/.env`, which only you fill in and nobody commits; the strategy's own
 `SETUP.md` says how.
-
-In Claude Code, type a skill or a command with a slash, as `/init-strategy fcf-yield-quality`;
-elsewhere, ask for it by name.
 
 **The researcher is in every folder** once the interview has run: open your assistant in a
 strategy's folder, or any other project's, and it is there, by name, on whichever assistant APM
@@ -103,11 +116,11 @@ Every one that writes shows its plan first and waits for your go.
 | `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. It carries the reading map, `references/reading-map.md`, that `interview` proposes the first works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
 | `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `liquid-golden-cross` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
+| `interview` | four short steps that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with a map of the home's folders. `init-researcher` runs it straight after making the home; `interview force` starts over |
+| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing |
 
 | Command | What it does |
 | --- | --- |
-| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command that does it; reads the folder, writes nothing |
-| `interview` | seven questions that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, and commits. `interview force` starts over |
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md` — the idea and its claims — before any paper, then from the notes |
 | `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` — thesis, rules, predictions — every prediction citing a note or a measurement |
 | `challenge <N> [strategy]` | checks a finished experiment against its own blueprint |
@@ -225,10 +238,11 @@ of `D:/tmp/check`. Open a new session in that folder. If the working tree carrie
 deep enough to fail the install, copy the files `git ls-files` lists to a short folder and install
 that instead.
 
-**Before a release, do the same with the commit to be tagged.** It should deploy exactly 16 skills,
-11 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
-or a script, walk the newcomer's path by hand in that folder — `init-researcher`, `interview`,
-`next`, `init-strategy`, and `read` on one clipping. Delete the folder afterwards. A newer APM is
+**Before a release, do the same with the commit to be tagged.** It should deploy exactly 18 skills,
+9 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
+or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
+`interview`, then `next`, `init-strategy`, and `read` on one clipping — once in Spanish, and once
+on an assistant with no question tool, such as Codex. Delete the folder afterwards. A newer APM is
 adopted only when this install passes with it, on Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is

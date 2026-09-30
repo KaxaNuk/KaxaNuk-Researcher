@@ -6,6 +6,36 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.30.0] - 2026-09-29
+A new user installed the researcher by pasting the install line, and the path was hard to follow:
+English from the first line, three sessions — install, `init-researcher`, `interview` — a parent
+folder and a name asked apart, and a seven-question interview of about ten minutes. On Codex, which
+takes no commands, `interview` and `next` could only run by naming a file inside `~/.apm/`, and on
+assistants with no question tool the interview's options had no shape in chat.
+
+**What to do differently:** nothing to install differently — the same line, pasted into Claude,
+Codex or Gemini, now does it all in one conversation. In an existing home, run `update`.
+### Changed
+- **`SETUP.md`** is the agent's script, in one conversation: the language first, the two tools and
+  the git identity, the package, the researcher's name and one proposed folder named after it —
+  `C:\Research\<Name>` — the home copied by `scaffold.py` from the installed package, the
+  interview, the hand-over. The pin, the per-assistant differences and the Windows fixes move to
+  *Troubleshooting*.
+- **`README.md`** opens with *Install — three steps, no coding*, the same in Spanish, and what it is
+  for; the manual install, the path and the tables move under *For developers and advanced users*.
+- **`interview`** (skill 1.0.0, from the command): four steps, about five minutes — about you,
+  voice, domains and rules, how you see markets, what to read for and first. The language, the
+  researcher's name — the home's folder — and the owner's name are taken, not asked. The testable
+  sentence, the shelf life, the decision and *would change my mind* are left for the owner to add;
+  *Where it sits* is still written from the map. A written chat form for assistants with no
+  question tool, a shorter preview, and a hand-over with a table of the home's folders.
+- **`next`** (skill 1.0.0, from the command), unchanged in what it checks.
+- **`init-researcher`** (0.4.0): asks the language, the name and the place, one go, and runs the
+  interview in the same conversation.
+- **The home template** (0.15.0): its README, `RESEARCHER.md` and `Philosophy/HOW-I-INVEST.md`
+  shorter, and `AGENTS.md` as above.
+- An install deploys **18 skills and 9 commands**.
+
 ## [0.29.0] - 2026-09-29
 Two checks a researcher cannot make by reading alone. `challenge` read the git log for the order
 blueprint, then rule, but not for the order reading, then blueprint: a prediction citing a note read

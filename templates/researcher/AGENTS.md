@@ -245,7 +245,7 @@ why each part comes where it does. The parts are lettered A to H there, so they 
 for the eight steps; the researcher's part is this repository's, and the commands cite the parts by
 these letters. **The objective comes before any paper**, and the reading comes in two waves —
 narrow, per claim, before the blueprint; broad, after it, for what the blueprint left open. The
-`next` command reads a strategy against this table and names the part that comes next.
+`next` skill reads a strategy against this table and names the part that comes next.
 
 | | Part | Where it lands | The researcher's part |
 | --- | --- | --- | --- |
@@ -354,8 +354,8 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — and `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
-| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other eleven — `interview`, `next`, `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder; and `interview` and `next`, which the owner runs by name too, and which are skills so that every assistant has them, Codex included. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
+| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, or whose home has moved |
 | **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the four house instructions — Bloom Code, PEP 8, test writing, filesystem boundaries — which apply to every Python project on the machine where the assistant receives them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as the package's `SETUP.md` says. The home adds none |
@@ -390,7 +390,10 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
   not rewrite, stays one line with no colon in it.
 - **Codex has no command primitive.** There, a command is run by naming its file in the package —
   *follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/blueprint.prompt.md`
-  for experiment 1* — and the skills work as everywhere.
+  for experiment 1* — and the skills, `interview` and `next` among them, work as everywhere.
+  Codex and Gemini have no question tool either: a skill that asks through one asks in chat
+  instead, each question numbered with its options beneath, and the owner answers with the
+  numbers.
 - **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex takes the
   agent and drops the tool list; OpenCode rejects it, wanting the tool list as a mapping; Gemini
   and Windsurf have no agent primitive at all. That is why the read-only rule is written into the
