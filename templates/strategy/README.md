@@ -10,7 +10,7 @@ without knowing what is in it: **equities, ETFs, FX, crypto, commodities or futu
 same process.**
 
 **To start a strategy, install the KaxaNuk skills once, for your user** — with
-`uvx --from apm-cli==0.29.0` in front if `apm` is not on the path, and your assistant, such as
+`uvx --from apm-cli==0.32.0` in front if `apm` is not on the path, and your assistant, such as
 `codex`, in place of `claude`:
 
 ```bash

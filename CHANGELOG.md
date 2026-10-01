@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.30.1] - 2026-10-01
+APM is pinned at 0.32.0. It was pinned at 0.29.0 because 0.29.1 to 0.31.0 fail this package's
+install on Windows; 0.32.0 shortens the staging folders those versions added,
+<https://github.com/microsoft/apm/pull/2941>, and installs it as 0.29.0 did. Measured on Windows
+11, with 0.29.0, 0.29.1, 0.31.0 and 0.32.0 side by side, under a user folder of 35 characters: the
+release check's project-scope install of the working tree, a `-g` install from GitHub and a second
+over it, the copies `init-researcher`, `init-strategy` and `init-example` make from the installed
+package, a home installed with `-g`, and `apm deps list -g`, `apm outdated -g` and
+`apm update -g --yes`. 0.29.0 and 0.32.0 pass every step with the same 18 skills, 9 commands, 4
+rules and 1 agent and the same messages, and the longest path is about 200 characters; 0.29.1 and
+0.31.0 fail the first install with `WinError 3`. A user folder installed with 0.29.0 updates with
+0.32.0, the home included. Home template 0.15.1, strategy template 0.13.3, example 0.18.3.
+
+**What to do differently:** run `uv tool install apm-cli==0.32.0`, then
+`uvx --from apm-cli==0.32.0 apm update -g`, and `update` in your home.
+### Changed
+- **APM 0.32.0 in every command that runs it**: the README, `SETUP.md`, `AGENTS.md`, `update`,
+  `init-researcher` (0.4.1), `interview` (1.0.1) and `next` (1.0.1), the home template's README,
+  the strategy template's README and `SETUP.md`, and the example's `SETUP.md`. `SETUP.md`'s *Why
+  APM is pinned*, the README and `update`'s pre-flight say which versions fail, and why 0.32.0
+  does not.
+
 ## [0.30.0] - 2026-09-29
 A new user installed the researcher by pasting the install line, and the path was hard to follow:
 English from the first line, three sessions — install, `init-researcher`, `interview` — a parent

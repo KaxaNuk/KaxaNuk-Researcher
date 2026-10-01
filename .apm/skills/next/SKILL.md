@@ -6,7 +6,7 @@ description: >
   is written. Takes an optional path to a strategy, when the session is not open in it. Only when
   the owner runs it by name; never on its own.
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Next — where you stand, and what to do next
@@ -45,7 +45,7 @@ Check in this order and stop at the first that fails; that is the next thing.
 | 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise commit what is there, with a message saying what came in |
 | 1 | `RESEARCHER.md` has no angle-bracketed slot left | `interview` — the interview |
 | 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved |
-| 3 | the home is installed for the user: `uvx --from apm-cli==0.29.0 apm deps list -g` names this folder, and the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code | `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
+| 3 | the home is installed for the user: `uvx --from apm-cli==0.32.0 apm deps list -g` names this folder, and the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code | `uvx --from apm-cli==0.32.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
 | 4 | every source under `Sources/` — a PDF, a document or a clipping, not a `.gitkeep` — has a note: match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves |
 | 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/`, or the owner took it off the line, which is theirs to edit by hand | find it by its title and authors, put it in `Sources/Papers/` or `Sources/Books/`, then `read`; or, when it cannot be found, take it off the *Find first* line in `RESEARCHER.md` |
 | 6 | `Knowledge/INDEX.md` lists every note and page on disk | `refresh-index` |

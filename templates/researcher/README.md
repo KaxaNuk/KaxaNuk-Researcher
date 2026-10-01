@@ -81,12 +81,12 @@ It grows four ways, each governed by a section of `AGENTS.md`:
 
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
 folder: they are installed once for your user and updated with
-`uvx --from apm-cli==0.29.0 apm update -g`; `update`, run here, brings what changed in this home's
+`uvx --from apm-cli==0.32.0 apm update -g`; `update`, run here, brings what changed in this home's
 own files across. On a new machine, or after adding an assistant under `targets:` in
 `~/.apm/apm.yml`, install this home yourself, once:
 
 ```bash
-uvx --from apm-cli==0.29.0 apm install -g "<this folder>"
+uvx --from apm-cli==0.32.0 apm install -g "<this folder>"
 ```
 
 The home's own version in `apm.yml` is yours: `interview` sets it to 0.1.0, you bump it with each

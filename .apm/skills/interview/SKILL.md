@@ -9,7 +9,7 @@ description: >
   of the install that SETUP.md or init-researcher walk through; never on its own. "interview force"
   starts over when RESEARCHER.md is already filled.
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # The interview
@@ -89,7 +89,7 @@ going. A proposal the owner picks is theirs; one they did not pick is never writ
    under `~/.claude/skills/` or the user's folder for the agent in use, or in the package under
    `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/` when the install ran in this
    same conversation. If it is missing, say so and give the fix —
-   `uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
+   `uvx --from apm-cli==0.32.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
    new session — and say that until then `read` cannot extract a PDF and has no note shape to
    follow. Never scaffold any of the three: writing `note.md` from memory forks the one convention
    both repositories share, the reading map is KaxaNuk's own and a copy from memory would invent
@@ -427,7 +427,7 @@ types nothing:
    `targets:`:
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
+   uvx --from apm-cli==0.32.0 apm install -g "<absolute path to the home>"
    ```
 
    APM installs the home's `.apm/` and nothing else, as its `apm.yml` says. Never `apm install`

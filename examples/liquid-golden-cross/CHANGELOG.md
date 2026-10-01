@@ -41,6 +41,17 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.3 (2026-10-01)
+
+**PATCH** — `SETUP.md`'s note for the agent names `apm-cli==0.32.0`, as the template's: the
+KaxaNuk Researcher pins APM at 0.32.0. No figure, rule or frozen byte moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`SETUP.md`**, as the template's.
+
 ## 0.18.2 (2026-09-29)
 
 **PATCH** — the four `BRAINSTORMING_N.md` files are gone, as the template's is. Their five entries
