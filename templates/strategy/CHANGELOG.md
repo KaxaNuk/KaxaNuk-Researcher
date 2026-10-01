@@ -41,6 +41,17 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.3 (2026-10-01)
+
+**PATCH** — the KaxaNuk Researcher pins APM at 0.32.0, so `README.md` and `SETUP.md` name
+`uvx --from apm-cli==0.32.0`. Nothing about any result changes.
+
+**What to do differently:** nothing in a strategy: the skills update with the Researcher.
+
+### Changed
+
+- **`README.md`** and **`SETUP.md`**: `apm-cli==0.32.0`.
+
 ## 0.13.2 (2026-09-29)
 
 **PATCH** — `Experiments/Experiment_1/BRAINSTORMING_1.md` is gone. Its entries had the journal's

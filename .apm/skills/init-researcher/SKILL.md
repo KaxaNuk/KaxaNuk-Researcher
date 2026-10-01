@@ -8,7 +8,7 @@ description: >
   owner runs it by name, or as the step of the install SETUP.md walks through; once per person,
   never per strategy. It does NOT create a strategy (use `init-strategy`).
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 # Init researcher — a home for the library, once
@@ -55,7 +55,7 @@ what happens in a sentence, and never ask them to type a command: you run every 
    nothing:
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm update -g --yes
+   uvx --from apm-cli==0.32.0 apm update -g --yes
    ```
 
    The go is the confirmation, so `--yes` answers APM's own prompt, which an agent's shell cannot.
@@ -97,7 +97,7 @@ what happens in a sentence, and never ask them to type a command: you run every 
 
 ## References
 
-- `apm update -g`, with the APM the package is pinned to, 0.29.0 — the update its `SETUP.md` and
+- `apm update -g`, with the APM the package is pinned to, 0.32.0 — the update its `SETUP.md` and
   the `update` command run.
 - `scripts/scaffold.py`, in the `init-strategy` skill's folder — copies `templates/researcher/`
   from the KaxaNuk Researcher package.

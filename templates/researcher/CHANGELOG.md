@@ -6,6 +6,19 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.15.1 (2026-10-01)
+
+**PATCH** — APM is pinned at 0.32.0: the commands in `README.md` that update the skills and
+install this home name `apm-cli==0.32.0`, as the package's do. APM 0.29.1 to 0.31.0 fail the
+install on Windows; 0.32.0 installs it as 0.29.0 did.
+
+**What to do differently:** run `uv tool install apm-cli==0.32.0`, then `update` in your home. It
+brings the two changed lines of `README.md` across, on your go.
+
+### Changed
+
+* **`README.md`**: `apm-cli==0.32.0` in *Installing and updating*.
+
 ## 0.15.0 (2026-09-29)
 
 **MINOR** — quick to start: the install asks your language first and, in one conversation, makes

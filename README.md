@@ -65,15 +65,15 @@ position to adopt.
 ### Installing by hand
 
 ```bash
-uv tool install apm-cli==0.29.0
-uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uv tool install apm-cli==0.32.0
+uvx --from apm-cli==0.32.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 `--target codex`, `gemini`, `cursor` or another in place of `claude`; Claude Code receives
 everything, and [`SETUP.md`](SETUP.md) says what the others miss. The skills are then in every
-folder you open, so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.29.0 apm
-update -g` brings every new version. **APM stays at 0.29.0, and every command that runs it names
-that version**: from 0.29.1 on, the install fails on Windows with `WinError 3` or `WinError 206`.
+folder you open, so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.32.0 apm
+update -g` brings every new version. **APM stays at 0.32.0, and every command that runs it names
+that version**: 0.29.1 to 0.31.0 fail the install on Windows with `WinError 3` or `WinError 206`.
 Never run `apm self-update`. Then, in a new session, `init-researcher Ada` makes the home and runs
 the interview. [`SETUP.md`](SETUP.md) is the whole path, step by step.
 
@@ -129,7 +129,7 @@ Every one that writes shows its plan first and waits for your go.
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
 | `study [subject]` | works out an idea, a plan or a decision from your library and keeps it in `Studies/` — every claim linked to its note, anything from outside it marked as not checked; with no subject, lists your studies |
 | `teach <topic>` | tutors you on a topic from your library, one lesson per session |
-| `update [check]` | brings a new version into your home — `uvx --from apm-cli==0.29.0 apm update -g`, and what changed in the home's own files, shown as a diff |
+| `update [check]` | brings a new version into your home — `uvx --from apm-cli==0.32.0 apm update -g`, and what changed in the home's own files, shown as a diff |
 
 How a researcher grows beyond the Lab — a tool, a project, a field of its own — is *Growing your
 researcher* in the home's README: four moves, each with the file it changes.
@@ -205,7 +205,7 @@ LICENSE               MIT
 **What this repository owns, and what a copy owns.** This repository owns what is written once and
 copied or installed everywhere; a copy owns what its owner writes in it. A strategy made from the
 template is its owner's from the first commit and never merges back; the skills keep updating with
-`uvx --from apm-cli==0.29.0 apm update -g`.
+`uvx --from apm-cli==0.32.0 apm update -g`.
 
 ---
 
@@ -230,7 +230,7 @@ the working tree:
 ```bash
 mkdir -p D:/tmp/check
 cd D:/tmp/check
-uvx --from apm-cli==0.29.0 apm install "<path to this repository>" --target claude
+uvx --from apm-cli==0.32.0 apm install "<path to this repository>" --target claude
 ```
 
 with the path to your clone in place of the placeholder, and any short folder of your own in place

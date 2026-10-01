@@ -58,24 +58,24 @@ stops, changing nothing.
    Edits the owner made to those skill copies are named in the plan, one line each —
    `git log --oneline -- .apm/skills .apm/prompts scripts references` shows whether there are any —
    because the package's version replaces them.
-3. **APM is the version this package is installed with.** APM 0.29.0 installs this package
-   cleanly. From 0.29.1 on, APM stages each package under about 148 more characters of folders, the
-   worked example's longest paths pass Windows' 260-character limit, and the install fails with
-   `WinError 3` or `WinError 206`. So every command below that runs APM names
-   `apm-cli==0.29.0` itself. `apm --version` should also say `0.29.0`, since the skills name the
+3. **APM is the version this package is installed with.** APM 0.32.0 installs this package
+   cleanly. From 0.29.1 to 0.31.0, APM staged each package under about 148 more characters of
+   folders, the worked example's longest paths passed Windows' 260-character limit, and the install
+   failed with `WinError 3` or `WinError 206`. So every command below that runs APM names
+   `apm-cli==0.32.0` itself. `apm --version` should also say `0.32.0`, since the skills name the
    `apm` on the path; any other version: say so, and put the pinned install first in the plan,
    ahead of the update —
 
    ```bash
-   uv tool install apm-cli==0.29.0
+   uv tool install apm-cli==0.32.0
    ```
 
    Never `apm self-update`, which brings the newest APM back.
 
 ## Step 2: What is new
 
-- **The package.** `uvx --from apm-cli==0.29.0 apm outdated -g` says whether a newer commit is
-  out, and `uvx --from apm-cli==0.29.0 apm deps list -g` names the installed version. The copy
+- **The package.** `uvx --from apm-cli==0.32.0 apm outdated -g` says whether a newer commit is
+  out, and `uvx --from apm-cli==0.32.0 apm deps list -g` names the installed version. The copy
   under `~/.apm/apm_modules/` stays at that version until *Step 4*, so read the newest from GitHub
   instead: the `main` that `apm update -g` brings, under
   `https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/`, with `curl -fsSL` or the
@@ -120,7 +120,7 @@ stops, changing nothing.
   at. A home with an agent in `.apm/agents/` and no `.apm/skills/<slug>/SKILL.md` — one made
   before template 0.14.0 — or whose skill names a folder other than this one: the skill is to be
   written as `interview`'s *Step 4* gives it, from `RESEARCHER.md` and this folder's absolute path.
-  When `uvx --from apm-cli==0.29.0 apm deps list -g` does not name this folder, the home is to be
+  When `uvx --from apm-cli==0.32.0 apm deps list -g` does not name this folder, the home is to be
   installed for the user. And an agent an install inside the home deployed there —
   `.claude/agents/<slug>.md`, or the agent's file in another assistant's folder inside the home —
   is to be deleted: it is git-ignored, it shadows the user's copy in every session at home, and it
@@ -146,15 +146,15 @@ Then ask for the go through the question tool — *Go*, *Change something*, *Sto
 
 ## Step 4: Update
 
-1. **The package**, after `uv tool install apm-cli==0.29.0` when *Step 1* found another APM:
+1. **The package**, after `uv tool install apm-cli==0.32.0` when *Step 1* found another APM:
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm update -g --yes
+   uvx --from apm-cli==0.32.0 apm update -g --yes
    ```
 
    The owner's go in *Step 3* is the confirmation, so `--yes` skips APM's own `[y/N]` prompt,
    which an agent's shell cannot answer; without it the update stops with an error. Then check
-   `uvx --from apm-cli==0.29.0 apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new
+   `uvx --from apm-cli==0.32.0 apm deps list -g`: it lists `KaxaNuk/KaxaNuk-Researcher` at the new
    version; a package it still marks orphaned deploys nothing any more. The old
    `KaxaNuk-Agent-Skills` packages deployed skills under the same names as the package's, so if any
    of the package's skills or commands is missing afterwards, deploy it again with the command
@@ -163,14 +163,14 @@ Then ask for the go through the question tool — *Go*, *Change something*, *Sto
    For a migration, install it instead — it is new at user scope:
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>
+   uvx --from apm-cli==0.32.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>
    ```
 
 2. **The migration, for a home from before the user-scope install.** `git rm -r` the researcher's
    own skill and command copies under `.apm/skills/` and `.apm/prompts/`, and `scripts/` and
    `references/` at the root; empty `dependencies.apm` in `apm.yml` to `[]`; keep `.apm/agents/`,
    and any skill or command the owner wrote themselves, which the package does not carry. Then
-   `uvx --from apm-cli==0.29.0 apm install --target <the owner's agent>` in the home, which removes
+   `uvx --from apm-cli==0.32.0 apm install --target <the owner's agent>` in the home, which removes
    the copies it deployed before; the agent it deploys there is deleted in item 5, once the home is
    installed for the user.
 3. **The home's files**, the sections the owner approved. A file the home has is edited in place,
@@ -204,7 +204,7 @@ Then ask for the go through the question tool — *Go*, *Change something*, *Sto
    reach every folder —
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
+   uvx --from apm-cli==0.32.0 apm install -g "<absolute path to the home>"
    ```
 
    — and delete each copy of the agent an install inside the home deployed there. Commit the skill
