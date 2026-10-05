@@ -32,8 +32,8 @@ plan and an explicit go, as `AGENTS.md` requires of every command that writes.
   folder with its first study, on the same go.
 - **Something another command owns:** say which, and stop unless the owner says it is a study. A
   source to read is `read`'s, a question about what the library holds is `query`'s, a belief is the
-  owner's to write in `Philosophy/`, a topic to learn is `teach`'s, and work on a strategy or on a
-  project with a repository of its own happens there.
+  owner's to write in `Philosophy/HOW-I-INVEST.md`, by hand or with `philosophy`, a topic to learn
+  is `teach`'s, and work on a strategy or on a project with a repository of its own happens there.
 
 ## Step 2: The owner's words first
 
@@ -48,9 +48,11 @@ library; what they skip stays out, and is not a gap. For a revision, ask only wh
 
 Walk the library the way `query` does — `Knowledge/INDEX.md` end to end, the concept pages first,
 then the links between notes, then the notes — and read the owner's `Philosophy/` where their own
-view bears on the subject, to cite as theirs. Gather what supports the subject, what argues against
-it, and the simpler rival it has to beat. For a revision, start with the notes written since the
-study's date, which `Knowledge/LOG.md` names.
+view bears on the subject, to cite as theirs. Round files in `Philosophy/Evolution/` are a record of
+how the owner's answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a
+round file, as the owner's view. Gather what supports the subject, what argues against it, and the
+simpler rival it has to beat. For a revision, start with the notes written since the study's date,
+which `Knowledge/LOG.md` names.
 
 Name each gap — what the study needs and the library does not hold — as a lead, labelled as `query`
 labels one: a work from the reading map, a work on a *Find first* line, or a file already in
