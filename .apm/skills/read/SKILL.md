@@ -6,11 +6,12 @@ description: >
   OBJECTIVE.md has claims because the objective comes before any paper, into a note beside the PDF
   in its Bibliotheca/ with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter with a script,
   shows the owner the table of contents, asks which chapters serve which of their questions or
-  claims, reads only those, and writes one note per chapter read, after a plan and the owner's go;
-  contradictions are flagged, never overwritten. It does NOT answer questions from the library
-  (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
+  claims — at home with no question yet, first which question the source serves, added as
+  question 1 — reads only those, and writes one note per chapter read, after a plan and the
+  owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
+  library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.8.0
+  version: 0.9.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -44,14 +45,16 @@ Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belo
 ## 1. Know what happened recently
 
 Read the last five entries of the library's log, its index end to end, and in `RESEARCHER.md` the
-domains, the tag policy and the owner's open questions under *What you are reading for*, with the
-works each one names to *Find first*. In a
+domains, the *Here for* line and *Works for* under *Who*, the tag policy and the owner's open
+questions under *What you are reading for*, with the works each one names to *Find first*. In a
 strategy the index is `BIBLIOGRAPHY.md` — a row without a note is a lead, not a source — and the
 questions are the claims in `OBJECTIVE.md`, by number.
 
 **A home whose `RESEARCHER.md` still holds an angle-bracketed slot** has not been interviewed: with
 *Domains* a slot there is no folder for a note, and with the tag policy a slot no tag can be
 checked. A section holding only such slots counts as empty. Say so, offer `interview`, and stop.
+*What you are reading for* with no numbered question is not a slot: the template ships it so, and
+*step 3* asks for question 1.
 
 **A strategy whose `OBJECTIVE.md` has no claims yet** cannot take a note. The objective comes
 before any paper — *The order of work* in `AGENTS.md` — because a note is read for a claim, and a
@@ -157,17 +160,26 @@ question the list does not have yet, which the plan offers to add to `RESEARCHER
 owner's words; *the other side of question N*; and *background reading, no question in mind*,
 recorded as such.
 
-**If the section is empty at home — no question under it, or only angle-bracketed slots — propose
-the questions first.** Three to five candidates drawn
-from this source's table of contents, the other sources under `Sources/`, and the role and beliefs
-in `RESEARCHER.md`, offered through the question tool as a multi-select with *Other*. The ones the
-owner picks are theirs, numbered; the plan offers to write them under *What you are reading for*,
-in their words, and that is the one write this skill makes outside the library and the extracts,
-at home only, said in the plan. The owner may still read a source as background, no question in
-mind, but the proposal comes first. In a strategy the questions are the claims in `OBJECTIVE.md`,
-by number — a strategy with none stopped at A, the objective. A question the claims do not cover
-is a claim to add with `objective` before the reading, and *background reading* is a home answer:
-in a strategy every note serves a claim. Nothing is written at home.
+**At home with no numbered question yet — a home fresh from the interview, which asks none — ask
+which question this source serves, first,** in plain words: *what do you want this reading to help
+you answer?* Ask it through the question tool, header `Reading for` (`Leer para`), single-select:
+three proposals, then *Background reading, no question in mind*, with *Other* for their own words.
+One proposal comes from the source itself, its title and table of contents; the others from *Here
+for* and *About you* — the *Here for* line and *Works for* under *Who* in `RESEARCHER.md`. With
+*Here for* *Learn the basics, step by step*, or the voice *Explain as you go*, every proposal is in
+everyday words — *can anyone do better than the market, year after year?*, *why do people make the
+same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build and test a strategy*,
+one may come from the reading map's *Questions to read for, from the evidence*; with *Write down
+how I invest, and see it evolve*, one asks about the owner's own way of investing; with *Organise
+what I read*, they follow the source's own subject. A home made before template 0.16.0 has no
+*Here for* line, and draws on *Works for* and the source alone. The question the owner picks or
+types is theirs: the plan offers to add it as question 1 under *What you are reading for*, in their
+words, and that is the one write this skill makes outside the library and the extracts, at home
+only, said in the plan. Then the table of contents is shown against it, as above. In a strategy
+the questions are the claims in `OBJECTIVE.md`, by number — a strategy with none stopped at A, the
+objective. A question the claims do not cover is a claim to add with `objective` before the
+reading, and *background reading* is a home answer: in a strategy every note serves a claim.
+Nothing is written at home.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the
@@ -205,7 +217,9 @@ holds, and why it was passed over. For each note, decide:
 - **What it contradicts or supersedes.** Any claim in an existing note that the chapter conflicts
   with, quoted.
 - **What the owner believes about it.** Any file in `Philosophy/` on the same subject — at home,
-  to be cited from the note; in a strategy, named in prose — never compiled into it.
+  to be cited from the note; in a strategy, named in prose — never compiled into it. Round files
+  in `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
+  levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view.
 
 What you remember of a well-known book is not the book: nothing is written from memory, and nothing
 from a summary.
@@ -216,16 +230,16 @@ In chat: for each source, the notes it becomes — target paths, each with the q
 serves, by number — and, for a book, what its `INDEX.md` will record for the chapters skimmed and
 skipped; in a strategy, the row each note adds to `BIBLIOGRAPHY.md` or the lead it replaces, under
 the part it bears on; at home, the concept pages it creates and the ones it updates, one line each;
-links; `Philosophy/` files to cite; contradictions found; new domain folders at home, if any;
-questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log line. In a
-strategy, a clipping in markdown or plain text under `Notes/` is committed with the strategy unless
-the owner ignores it — the `.gitignore` keeps out PDFs and extracts, not clippings — so the plan
-says so, beside the note it becomes. Then ask for the go through the question tool — *Go*, *Change
-something*, *Stop* — or in chat where there is none; *go*, *proceed*, *ok* or *yes* is the go. **On
-*Change something*, ask again with options, never with an open question**: the changes this plan
-admits, as concrete alternatives — fewer notes or pages, different names, only the notes this run, a
-different domain — and ask for the go again on the revised plan. **Never write on silence or on a
-rejection.**
+links; `Philosophy/` files to cite, never a round file in `Philosophy/Evolution/`; contradictions
+found; new domain folders at home, if any; questions to add to `RESEARCHER.md` at home, if any, in
+the owner's words; and the log line. In a strategy, a clipping in markdown or plain text under
+`Notes/` is committed with the strategy unless the owner ignores it — the `.gitignore` keeps out
+PDFs and extracts, not clippings — so the plan says so, beside the note it becomes. Then ask for
+the go through the question tool — *Go*, *Change something*, *Stop* — or in chat where there is
+none; *go*, *proceed*, *ok* or *yes* is the go. **On *Change something*, ask again with options,
+never with an open question**: the changes this plan admits, as concrete alternatives — fewer notes
+or pages, different names, only the notes this run, a different domain — and ask for the go again
+on the revised plan. **Never write on silence or on a rejection.**
 
 ## 6. Write, on approval only
 
@@ -243,8 +257,10 @@ rejection.**
 - For every contradiction the owner confirmed: keep the original claim in the older note and place
   a `> [!WARNING]` callout above it naming the newer note by link. Never delete the claim.
 - At home, when the plan added questions: write them under *What you are reading for* in
-  `RESEARCHER.md`, in the owner's words, numbered after the ones already there. Nothing else in
-  that file changes.
+  `RESEARCHER.md`, in the owner's words, numbered after the ones already there — the first one in a
+  section with none is question 1, in place of the template's *None yet.* paragraph — each
+  followed by *feeds: nothing yet* and *Would change my mind: not yet known*, the labels a question
+  carries there, for the owner to fill by hand. Nothing else in that file changes.
 - The index. At home, `Knowledge/INDEX.md`, under the domain: *Concepts* first — one line per
   concept page, title and one-line definition — then *Sources*: one line per paper; one line per
   book linking its `INDEX.md`, saying which chapters were read of how many, with one indented line
@@ -262,10 +278,18 @@ rejection.**
 In chat: what was written, updated and flagged; any gap the source exposed — a concept the library
 leans on with no source behind it — as a suggestion for the sources, naming the work the reading
 map gives as this one's other side when it names one, as a lead; whether the source changes a
-belief in `Philosophy/`, as a question for the owner to answer there in their words; and, at home,
-the strategy a note could serve, with the `read <strategy> <source>` that would carry it there, and
-a study in `Studies/`, still *idea* or *active*, that the note bears on, with the `study <its name>`
-that would revise it.
+belief in `Philosophy/HOW-I-INVEST.md`, as a question for the owner to answer there in their words,
+by hand or in a round of `philosophy`; and, at home, the strategy a note could serve, with the
+`read <strategy> <source>` that would carry it there, and a study in `Studies/`, still *idea* or
+*active*, that the note bears on, with the `study <its name>` that would revise it.
+
+At home, one more line: **the questions of the owner's philosophy the new note bears on.** Match
+the note's work, by its authors' surnames as the reading map's *Match before proposing* says,
+against the *Bears on* table of `references/questions.md` in the `philosophy` skill's folder —
+another skill's reference, read on demand for that table only — and name each question it lists by
+its ID and short name. With a round in `Philosophy/Evolution/`, the line gives the last round's
+date and offers the next round with `philosophy`; with none, it offers round 1. A work the table
+does not list, or a table that cannot be read because the skill is not installed, gets no line.
 
 Then say: review the diff and commit.
 
@@ -313,3 +337,6 @@ Then say: review the diff and commit.
   hints, the five sources of edge, where ideas come from, seven questions before any backtest and
   an idea's anatomy. The one list a work to read may be proposed from besides the owner's library;
   a work in it is a lead, never a citation.
+- `references/questions.md`, in the **`philosophy` skill's** folder, not this one: its *Bears on*
+  table, which works touch which of the owner's philosophy questions, read on demand for the one
+  line in *step 7*. It is that skill's file; this skill reads it and never copies it.

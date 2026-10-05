@@ -5,10 +5,11 @@ description: >
   topic, how two sources relate, or what evidence there is for a claim — any factual or
   comparative question that should be answered from the library, Philosophy/ and the sources
   rather than from general knowledge: Knowledge/ at home, a strategy's Bibliotheca/ when invited
-  there. It walks the index and the links between notes before reading anything, and cites every
-  claim. It does NOT write code and does NOT answer questions about files outside the library.
+  there — and how the owner's own view has changed, from the rounds in Philosophy/Evolution/. It
+  walks the index and the links between notes before reading anything, and cites every claim. It
+  does NOT write code and does NOT answer questions about files outside the library.
 metadata:
-  version: 0.6.1
+  version: 0.7.0
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -39,9 +40,11 @@ are the library's value.
    each other are one argument; read both. Quote the source's terms where they matter.
 3. **Then the owner's voice.** Read the relevant files in `Philosophy/` at home when the owner's
    own synthesis is more specific than the library, and cite them as the owner's view, distinct
-   from the sources' — in a strategy, by name in prose, never by link. A study in `Studies/` that
-   bears on the question is the owner's work in the same way: name it as theirs, never as
-   evidence — its claims rest on the notes it links, and those are what the answer cites.
+   from the sources' — in a strategy, by name in prose, never by link. Round files in
+   `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
+   levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view. A study in
+   `Studies/` that bears on the question is the owner's work in the same way: name it as theirs,
+   never as evidence — its claims rest on the notes it links, and those are what the answer cites.
 4. **In a strategy, then the home library.** Walk `Knowledge/INDEX.md` at home for what the
    researcher has read that the strategy has not. Report it as the researcher's library, not the
    strategy's, and say that the strategy cannot cite it until the source has a note in its
@@ -69,6 +72,41 @@ are the library's value.
    the map names no work — no title, author or year, not even labelled as memory: the kind of
    source is the whole suggestion. Do not answer from memory without saying you did, and never
    write it into the library during a query.
+
+## How has my view changed
+
+When the owner asks how their own view has moved — *how has my view changed?*, *what did I say
+about my benchmark the first time?* — the answer is not in the library but in the rounds
+`philosophy` writes: one file each in `Philosophy/Evolution/`, named by its date, `YYYY-MM-DD.md`,
+and a second round the same day `YYYY-MM-DD-2.md`. This is the one question a round file answers,
+and it is quoted as the record of a round, never as the owner's standing view.
+
+1. **The rounds, oldest first** — by the date in the name, and on one date by its suffix. Read each
+   one's first line, `# Round <N> · <date> · <level>`, and its lines by question ID:
+   `- <ID> · <answer>`, or on a retake `- <ID> · <label> · <answer>`, the label *kept*, *changed*,
+   *new* or *still open*. A *kept* line carries no answer: the words are the latest earlier
+   round's for that ID, quoted with that round's date. A question answered before and skipped or
+   explained now carries no label, only its status, and its earlier answer stands. An answer is
+   the owner's typed words, or a status — *not sure yet*, *skipped*, *explained*. A round holds
+   nothing else, so nothing else is quoted from it.
+2. **Compare by ID.** For each question asked in more than one round, use the label the later
+   line carries, against the latest earlier answer; where a line carries none, say *kept*,
+   *changed*, *new* or *still open* as `philosophy` defines them, and *not asked again* for a
+   question answered before and only skipped or explained since. Quote each answer word for word,
+   in the owner's language, beside its round's date and level — *2026-10-04, Starter* — naming the
+   round by its date in prose, never by a link: a round file is a record, never cited. The levels
+   then and now are said once.
+3. **The reading in between**: the notes, linked, that the `read` entries of `Knowledge/LOG.md`
+   list as written, dated on or after the earlier round's date and before the later one's — a
+   read the same day as a round counts after it, as `philosophy` counts it. Name them as what was
+   read in between, never as the cause: whether a note moved the owner is theirs to say.
+4. **The standing view is `HOW-I-INVEST.md`.** Where an earlier answer that later changed still
+   stands there as a line, say so: the owner edits it by hand, or with `refine`, never this skill.
+
+With no round file, say so in one line, and that `philosophy` takes round 1; with one, quote it
+with its date and level, and say there is nothing to compare yet. In a strategy the rounds are read
+at home and named in prose. Nothing is written: the comparison lives in chat, as `philosophy`'s own
+does, and is never kept as a synthesis page.
 
 ## Numbers
 

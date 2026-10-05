@@ -15,7 +15,7 @@ need to: the assistant runs every command.
 >   and that their assistant may ask them to allow a command — allowing it is all they do.
 > - **One conversation, start to finish.** Steps 1 to 6 run here, one after the other, stopping
 >   only for the user's answers. The skills installed in step 2 appear only in a new session, so
->   steps 4 and 5 follow the package's files by their installed path, as the table below gives.
+>   steps 4 to 6 follow the package's files by their installed path, as the table below gives.
 > - **Nothing is cloned.** This repository is a package: it is installed once for the user, and
 >   its files then make every folder they need.
 
@@ -27,6 +27,8 @@ need to: the assistant runs every command.
 | step 4, the researcher's home | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md` |
 | the copy it makes | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-strategy/scripts/scaffold.py` |
 | step 5, the interview | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` |
+| step 6, `read`, only if the user brings a document now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` |
+| step 6, `philosophy`, only if the user takes it now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/philosophy/SKILL.md` |
 
 ---
 
@@ -90,27 +92,37 @@ the researcher's home with `scaffold.py`, as a git repository with its first com
 ## Step 5 — The interview
 
 Follow `interview` from its installed path, in the same conversation, with the new folder as the
-home: four short steps, about five minutes, in the user's language. It writes `RESEARCHER.md`, the
-agent that makes the researcher callable by name and the skill that puts it in every session,
-installs them for the user and commits — the user answers and gives one go.
+home: a few short questions about the user — what they do, what they are here for, the
+researcher's voice and their rules — about three minutes, in the user's language. Nothing about
+markets is asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by
+name and the skill that puts it in every session, installs them for the user and commits — the
+user answers and gives one go.
 
 ## Step 6 — Hand over
 
 The interview's own hand-over ends the conversation: who the researcher is, a table of the home's
-folders and what each is for, what to add later to `RESEARCHER.md` or
-`Philosophy/HOW-I-INVEST.md`, and what to do next. Add one line: **the skills and the researcher
-appear in a new session**, so the next thing is to open the researcher's folder in a new
-conversation.
+folders and what each is for, how to start learning — a document into `Sources/`, then `read`, or a
+topic it suggests from the reading map, put on *Find first* — what grows the researcher in later
+sessions, `philosophy` and `brief` among them, and how to stay current. When the user brings a
+document now, follow `read` from its installed path. It offers `philosophy` *now* or *later*, in a
+new session, which it recommends; on *now*, follow `philosophy` from its installed path, as the
+table above gives. Add one line: **the skills and the researcher appear in a new session**, so the
+next thing is to open the researcher's folder in a new conversation.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
-`.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and `git status` is clean. For
-Claude Code, `~/.claude/skills/` holds `init-strategy`, `read`, `query`, `interview`, `next` and
-the researcher's own skill, and `~/.claude/agents/` holds `blueprint-critic.md` and the
-researcher's agent.
+`.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and `git status` is clean — save
+the files a `read` or a `philosophy` round taken now leaves for the user to review and commit. For
+Claude Code, `~/.claude/skills/` holds `init-strategy`, `read`, `query`, `interview`, `next`,
+`philosophy`, `brief` and the researcher's own skill, and `~/.claude/agents/` holds
+`blueprint-critic.md` and the researcher's agent.
 
 ---
 
 ## Later
+
+**The user's philosophy, and a daily brief.** In a new session in the home: `philosophy`, a second
+interview pitched at what they already know, and `brief setup`, which schedules the brief on the
+Claude desktop app and says how to run it elsewhere.
 
 **A strategy.** In a new session in the home: `init-strategy fcf-yield-quality`. It makes the
 strategy's folder beside the home, from the KaxaNuk Strategy Template; open that folder in a new
@@ -134,8 +146,9 @@ which land in `~/.claude/rules/` and apply to every Python project on the machin
 the same, its instructions merged into `~/.copilot/copilot-instructions.md`. Cursor, Gemini,
 OpenCode and Windsurf get the skills and the commands but not the instructions, and Gemini,
 OpenCode and Windsurf take no agent: there the researcher is its skill. **Codex gets the skills
-only**, so the steps a newcomer needs — `init-researcher`, `interview`, `next`, `read`, `query` —
-are all skills. A command, such as `objective` or `blueprint`, is run there by naming its file:
+only**, so the steps a newcomer needs — `init-researcher`, `interview`, `next`, `read`, `query`,
+`philosophy`, `brief` — are all skills. A command, such as `objective` or `blueprint`, is run
+there by naming its file:
 *follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`*.
 Assistants without a question tool, such as Codex and Gemini, ask each question in chat as a
 numbered list; the user answers with the numbers.

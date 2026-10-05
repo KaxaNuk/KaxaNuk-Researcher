@@ -32,15 +32,16 @@ The researcher arrives in two parts, and each updates its own way:
   bump it with each entry you add to `CHANGELOG.md`, and `update` reads the *Brought to template*
   line there, never this field."
 
-The owner's files are never touched: `RESEARCHER.md`, `Philosophy/`, `Knowledge/`, `Sources/`,
-`Studies/`, `Lessons/`, the agent file in `.apm/agents/`, and any skill or command of the home's
-own in `.apm/skills/` or `.apm/prompts/`. The exceptions are three, each on the owner's go: the
-`Projects/` a home made before template 0.10.0 still has, which *Step 2* reads and *Step 4* moves
-or removes; the empty `Studies/` a home made before template 0.12.0 lacks, whose `.gitkeep`
-*Step 4* brings from the template; and the researcher's skill, `.apm/skills/<slug>/SKILL.md`, which
-a home made before template 0.14.0 lacks, or which names a folder the home has left, and which
-*Step 4* writes as `interview` gives it. `${input:mode}` set to `check` reports what is new and
-stops, changing nothing.
+The owner's files are never touched: `RESEARCHER.md`, `Philosophy/` — its round files in
+`Philosophy/Evolution/` included, which nothing edits once `philosophy` has written them —
+`Knowledge/`, `Sources/`, `Studies/`, `Lessons/`, `Briefs/`, `Portfolio/`, the agent file in
+`.apm/agents/`, and any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`.
+The exceptions are three, each on the owner's go: the `Projects/` a home made before template
+0.10.0 still has, which *Step 2* reads and *Step 4* moves or removes; the empty `Studies/` a home
+made before template 0.12.0 lacks, whose `.gitkeep` *Step 4* brings from the template; and the
+researcher's skill, `.apm/skills/<slug>/SKILL.md`, which a home made before template 0.14.0 lacks,
+or which names a folder the home has left, and which *Step 4* writes as `interview` gives it.
+`${input:mode}` set to `check` reports what is new and stops, changing nothing.
 
 ## Step 1: Pre-flight
 
@@ -101,7 +102,31 @@ stops, changing nothing.
   slots, nor the blockquote the interview deletes — the headings of `Philosophy/HOW-I-INVEST.md`,
   and the blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md`, each against the home's.
   Every difference is a *by hand* line in *Step 3* and *Step 5*, never a change `update` makes:
-  those files are the owner's.
+  those files are the owner's. Template 0.16.0 adds two lines a home made before it lacks, each a
+  *by hand* line, quoted from the template, when the home has no such line: *Here for* under *Who*
+  in `RESEARCHER.md` — what the owner is here for, one of the four the interview offers or their
+  own words — and `## Why I invest`, the new first heading of `Philosophy/HOW-I-INVEST.md`, which
+  the owner may write in their own language. The same release points *What you believe* to
+  `HOW-I-INVEST.md` and takes *Where it sits* and its *Add later* line out of the template: the
+  home's own prose there is the owner's, and stays unless they take it out by hand. The agent file
+  is theirs as well: a line `interview` now writes into a new agent's body is a *by hand* line too
+  — from 0.16.0, *Round files in `Philosophy/Evolution/` are a record of how the owner's answers
+  moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a round file, as the
+  owner's view.* So is the researcher's skill, unless *Step 4* writes it afresh: the same line
+  goes in its item 2, *Read the home first*, by hand. After either edit,
+  `uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"` deploys it.
+- **`Briefs/` and `Portfolio/`.** From template 0.16.0 the home's `.gitignore` ignores both — the
+  daily brief `brief` writes, and the holdings and rules the owner keeps for its *Portfolio* part —
+  and `AGENTS.md` gives each a row in its folder table: `Briefs/` written through `brief` only, one
+  file a day, never edited afterwards, never cited and never a source; `Portfolio/` read only, the
+  owner's to write, its numbers from the engines the project names and never advice. They are
+  compared like any
+  other lines of those two files, and the `.gitignore` lines are said first in the plan, so they
+  are in place before a first `brief setup` and no holding is ever committed. When either folder
+  exists already and `git ls-files Briefs Portfolio` lists a file, say so: a line in `.gitignore`
+  does not take a committed file out of the history, and what to do about it is the owner's.
+  `update` never writes in either folder, and the template ships neither: `brief setup` creates
+  `Portfolio/` when the owner opts into its *Portfolio* part, and the first brief `Briefs/`.
 - **`Projects/`, whenever the home still has one**, whatever template version it is at, so a
   move the owner declined once is offered again. Until 0.10.0 the template shipped an
   empty `Projects/`; from 0.10.0 `teach` keeps its lessons in `Lessons/<topic>/`, and from 0.12.0
@@ -139,10 +164,10 @@ for each home file, the sections to bring across, quoted, in the home's own name
 the home lacks, to bring across whole — `Studies/.gitkeep` among them, when the folder is
 missing; what a migration removes; each move out of `Projects/` and its removal, path by path, and
 what stays there; the researcher's skill, shown whole, the install for the user and each copy of
-the agent inside the home to delete; and what the owner will have to do by hand afterwards, one line for each heading
-or blockquote of their own files that the template changed.
-Then ask for the go through the question tool — *Go*, *Change something*, *Stop* — and update on
-*Go* only; in chat, *go*, *proceed*, *ok* or *yes* is the go.
+the agent inside the home to delete; and what the owner will have to do by hand afterwards, one
+line for each heading, line or blockquote of their own files that the template changed. Then ask
+for the go through the question tool — *Go*, *Change something*, *Stop* — and update on *Go* only;
+in chat, *go*, *proceed*, *ok* or *yes* is the go.
 
 ## Step 4: Update
 
@@ -224,8 +249,8 @@ In chat and nowhere else:
 - the home's template version, before and after, and the rule for the home's own version in
   `apm.yml`, in the words above;
 - every **What to do differently** instruction, again, as a list of what is now the owner's to do;
-- the *by hand* lines: each heading or blockquote of the owner's files that the template changed,
-  for the owner to carry across or leave;
+- the *by hand* lines: each heading, line or blockquote of the owner's files that the template
+  changed, for the owner to carry across or leave;
 - for a migration, what was removed, and that the skills now live at user scope;
 - what left `Projects/` — each move and the removal — and each path left there for the owner, and
   that a file moved into `Studies/` may want a state on its first line;

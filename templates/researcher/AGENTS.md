@@ -7,8 +7,8 @@ operating manual.
 ## The researcher's home
 
 The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills —
-`Sources/`, `Knowledge/`, `Philosophy/`, `Studies/`, `Lessons/` — is relative to the home, never
-to wherever the session happened to open.
+`Sources/`, `Knowledge/`, `Philosophy/`, `Studies/`, `Lessons/`, `Briefs/`, `Portfolio/` — is
+relative to the home, never to wherever the session happened to open.
 
 **The researcher is in every session, in every folder.** `interview` writes two files of the home's
 own, the agent in `.apm/agents/` and the researcher's skill in `.apm/skills/<slug>/`, and installs
@@ -61,8 +61,9 @@ engine and model of that session, and whether the home is readable there; where 
 is read by all of them. When the owner says *learn this* or *remember this*, anywhere, sort it and
 plan it: a source, a finding or a document enters as a copy in `Sources/`, made by the owner, and
 then `read`; a way of working or a rule is one line for `RESEARCHER.md`, under *How it speaks* or
-*Non-negotiables*, in the owner's words, shown in chat for them to add; a fact about one project
-stays in that project, in the file its rules give it.
+*Non-negotiables*, in the owner's words, shown in chat for them to add; a view on investing is
+theirs to write in `Philosophy/HOW-I-INVEST.md`, by hand or with `philosophy`; a fact about one
+project stays in that project, in the file its rules give it.
 
 ## What each folder is, and who may write in it
 
@@ -73,30 +74,38 @@ stays in that project, in the file its rules give it.
 | `Knowledge/` | what the researcher read — one note per paper, one folder per book with a note per chapter read — and its wiki: one concept page per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
 | `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh, and of every synthesis page kept | **append one entry** at the end of those runs, and from `query` when a page is kept; never edit past entries |
-| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words | **read and cite.** Edit only through `refine`, diff first — save `interview`'s one write: the owner's typed answers into `Philosophy/HOW-I-INVEST.md`, verbatim, on their go, added to what is there and never restructured |
+| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words, in `HOW-I-INVEST.md` and any file of their own beside it; and `Evolution/`, one round file per `philosophy` round, `YYYY-MM-DD.md` (`YYYY-MM-DD-2.md` for a second the same day) — the round's number, date and level on its first line, then the question IDs with the owner's typed answers word for word, or their status, and *kept*, *changed*, *new* or *still open* on a retake — the record of how those answers moved | **read and cite**, and write through its two writers only: `philosophy` adds the owner's typed answers to `HOW-I-INVEST.md`, word for word and add-only, after the owner's go, and writes one round file in `Philosophy/Evolution/`, never edited afterwards; `refine` edits `HOW-I-INVEST.md` as an editor, diff first, and never touches `Evolution/`. `refine` takes the same pass over any other file the owner keeps in `Philosophy/`, outside `Evolution/`. No text of the researcher's own goes here: `HOW-I-INVEST.md` never takes a pick, an example, a placement or *not sure yet*, and a round file holds nothing but the round's number, date and level, the IDs, the owner's answers or their status, and on a retake the labels *kept*, *changed*, *new* and *still open* |
 | `Studies/` | the owner's own work from the library — an idea that is not a strategy yet, or a decision, a plan or a brief with no repository of its own — one file each, or a folder once it needs more; *Studies* below says what one holds. The template ships it empty | **write, through `study` only**, after its plan and the owner's go |
 | `Lessons/` | `teach`'s lessons, one folder per topic — its `progress.md` and `sessions/`. The template ships none: `teach` creates it the first time it runs | **write, through `teach` only**, after its plan and the owner's go |
+| `Briefs/` | the daily brief, one `YYYY-MM-DD.md` a day in up to three parts — Work, Markets, Portfolio — written by `brief`, run by name or on the schedule `brief setup` made. The template ships none: the first brief creates it | **write, through `brief` only**: one file a day, never edited afterwards. Never cited, never a source: a figure there enters the library only as a source in `Sources/`, then `read`. Gitignored |
+| `Portfolio/` | the owner's holdings and the rules they hold them by — `holdings.csv` and `RULES.md`. The template ships none: `brief setup` starts both, a header and headings to fill, when the owner chooses the Portfolio part | **read only**; the owner writes it, save the two files `brief setup` starts from its own `references/`, on the owner's go and never over an existing one. Its numbers — weights, P&L, returns, risk — come from the engines the project names, in a KaxaNuk strategy the Lab's libraries, never from the researcher, and nothing in it is advice to buy or sell. Gitignored |
 
 **Anything else the owner asks for at home is answered in chat**, or as a page they can share where
 the assistant offers one, and is never written as a file unless they keep it as a study, through
-`study`: the home holds the library, the owner's voice, their studies and the lessons. Strategy
-work lives in the strategy, and work on any other project in that project, where the owner invites
-the researcher — *Working in a strategy* and *Joining other projects* below say how.
+`study`: the home holds the library, the owner's voice and its rounds, their studies, the lessons,
+the daily briefs and the portfolio they keep. Strategy work lives in the strategy, and work on any
+other project in that project, where the owner invites the researcher — *Working in a strategy* and
+*Joining other projects* below say how.
 
-`RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from
-the interview; `read`, at home, may add a question under *What you are reading for* — in the
-owner's words, after their go — and nothing else writes it. The owner edits it by hand whenever they
-like: to teach the researcher how to behave, they add a line by hand under *How it speaks* or
-*Non-negotiables*, which every skill and the agent read first. The same holds for
-`Philosophy/HOW-I-INVEST.md`, which the template ships as headings to fill: a heading still holding
-its angle-bracketed prompt says nothing yet, and the researcher never cites a prompt as the owner's
-view.
+`RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from the
+interview, and nothing else writes it but two additions, each after the owner's go: `read`, at
+home, may add a question under *What you are reading for*, in the owner's words; and the works the
+owner picks — at the interview's hand-over, or at the close of a round of `philosophy` unless they
+leave *Find first* alone in that round's preview — are appended to the closing *Find first* line,
+add-only. The owner edits it by hand whenever they like: to teach the researcher how to behave,
+they add a line by hand under *How it speaks* or *Non-negotiables*, which every skill and the agent
+read first. The same holds for `Philosophy/HOW-I-INVEST.md`, which the template ships as headings
+to fill: a prompt in angle brackets is never the owner's view, and a heading holding nothing but
+its prompt says nothing yet. Round files in `Philosophy/Evolution/` are a record of how the owner's
+answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a round file, as
+the owner's view.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`. Notes are born from
 sources, never from `Philosophy/` alone and never from a study, and studies and lessons are built
-from the notes; `Philosophy/` is cited from notes, studies and lessons, never compiled into them.
-That wall is what keeps the owner's judgement recognisably theirs. Between repositories the valve
-is one-way as well: home → strategy, never back.
+from the notes; `Philosophy/` is cited from notes, studies and lessons, never compiled into them,
+and `Philosophy/Evolution/` is a record beside it, never cited as the owner's view. That wall is
+what keeps the owner's judgement recognisably theirs. Between repositories the valve is one-way as
+well: home → strategy, never back.
 
 **Inside `Sources/`** the owner files by kind — `Sources/Books/`, `Sources/Papers/`,
 `Sources/Clippings/` — and may add more. The taxonomy is theirs; a read walks all of it. Note that
@@ -205,7 +214,7 @@ from another template keeps or maps them in its own `AGENTS.md`.
 | `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads, and `LOG.md` empty. |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
-| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `JOURNAL_N.md` (`challenge`'s entry, and the benchmark's in `JOURNAL_1.md`), the notes, `BIBLIOGRAPHY.md`; `study` and `teach` work at home only |
+| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, `Philosophy/` from `philosophy`, `Briefs/` from `brief`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `JOURNAL_N.md` (`challenge`'s entry, and the benchmark's in `JOURNAL_1.md`), the notes, `BIBLIOGRAPHY.md`; `study`, `teach`, `philosophy` and `brief` write at home only |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, nothing may be read into the strategy — `objective` comes first, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
@@ -303,9 +312,15 @@ project's material stays a private repository.
 Every skill or command that writes a file presents a plan in chat — what will be written, where,
 and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*) before writing
 anything. Never write on a rejected or unanswered plan. Never write a command's plan or its report
-as a file; the chat and the `LOG.md` entry are the record. **One write is made without a go:** the
-single line `audit` appends to the library's `LOG.md` when it reports. Running `audit` by name is
-the go for that line, and it writes nothing else.
+as a file; the chat and the `LOG.md` entry are the record. Three files are kept as records by
+design, each with its row in the folder table: `teach`'s `progress.md` in `Lessons/`, the round
+file `philosophy` writes in `Philosophy/Evolution/` — the round's number, date and level, the
+owner's answers or their status, and on a retake *kept*, *changed*, *new* or *still open*, nothing
+else the researcher wrote — and the day's brief in `Briefs/`. **Two writes are made without a go of
+their own:** the single line `audit` appends to the library's `LOG.md` when it reports, and the
+day's file `brief` writes in `Briefs/`. Running `audit` or `brief` by name is the go for that
+write, the go on `brief setup`'s plan is the go for every brief its schedule writes, and neither
+writes anything else.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool
 — Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
@@ -314,7 +329,9 @@ nothing to answer, the researcher proposes options drawn from what is already in
 sources and their tables of contents, `RESEARCHER.md`, the notes so far — or, for a work to read,
 from the reading map the package ships, `references/reading-map.md` in the `read` skill's folder,
 and lets them pick. A proposal the owner picks is theirs; one they did not pick is never written.
-The point is to keep going, never to stall on an empty answer.
+`Philosophy/` is stricter: a pick is never written there, not even one the owner made — only what
+they typed, word for word; a work they pick may go on *Find first*, and the rest stays in chat. The
+point is to keep going, never to stall on an empty answer.
 
 **An answer that asks for a change is answered with options too.** *Change something* is not a
 prompt for free text: the next question offers the changes the plan actually admits — fewer files,
@@ -354,7 +371,7 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder; and `interview` and `next`, which the owner runs by name too, and which are skills so that every assistant has them, Codex included. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `init-strategy` the `scaffold.py` all three run |
+| **Skill** | `.apm/skills/<name>/` in the package | the researcher's: `read` and `query` — capabilities the researcher reaches for on its own when the work calls for them, and that the owner can also invoke by name — `init-researcher`, `init-strategy` and `init-example`, which the owner runs by name to create a folder; and `interview`, `next`, `philosophy` and `brief`, which the owner runs by name too — `brief` also on the schedule `brief setup` makes — and which are skills so that every assistant has them, Codex included. The process's and each Lab library's, which the assistant loads when a strategy's work calls for them: `experiment-lifecycle`, `universe-point-in-time`, `data-curator-custom-calculations`, `data-analyzer-runs`, `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition` and `paper-trading-gate`. The house rules': `how-we-work` and `bloom-code-lint`. A skill folder holds its `SKILL.md`, and beside it what the skill runs in `scripts/` and reads on demand in `references/` — `read` carries `extract.py`, `note.md` and `reading-map.md`, `philosophy` its question bank, `questions.md`, `brief` its contract, `brief-contract.md`, and the two `Portfolio/` files it starts, and `init-strategy` the `scaffold.py` all three `init-*` skills run. `philosophy` proposes works from `read`'s reading map, as `interview` does, and `read`'s report draws on the *Bears on* table of `philosophy`'s bank when it offers a round again: the three ship in one package for that reason |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, or whose home has moved |
@@ -369,10 +386,10 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
   it, which the home no longer needs — a copy there goes stale the first time the agent or a skill
   changes. Git ignores all of it.
 - **Change a skill at its source, never in a deployed copy.** A fix every home needs is a pull
-  request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with `apm update -g`. A
-  skill or command of this home's own goes in `.apm/skills/` or `.apm/prompts/` here, and deploys
-  beside the package's — under a name the package does not use. Then `apm install -g "<the
-  home>"` again and open a new session. A copy that differs from its source is a stale install; `audit` reports it.
+  request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with `apm update -g`. A skill or command of
+  this home's own goes in `.apm/skills/` or `.apm/prompts/` here, and deploys beside the package's
+  — under a name the package does not use. Then `apm install -g "<the home>"` again and open a new
+  session. A copy that differs from its source is a stale install; `audit` reports it.
 - **A skill is written the way KaxaNuk's own APM packages write theirs** — frontmatter `name`,
   matching the folder, a folded `description` that says when to use it and what it does not
   cover, and `metadata.version`; a body that says when it applies, then numbered steps, as `read`
@@ -390,7 +407,8 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
   not rewrite, stays one line with no colon in it.
 - **Codex has no command primitive.** There, a command is run by naming its file in the package —
   *follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/blueprint.prompt.md`
-  for experiment 1* — and the skills, `interview` and `next` among them, work as everywhere.
+  for experiment 1* — and the skills, `interview`, `next`, `philosophy` and `brief` among them,
+  work as everywhere.
   Codex and Gemini have no question tool either: a skill that asks through one asks in chat
   instead, each question numbered with its options beneath, and the owner answers with the
   numbers.
@@ -407,8 +425,12 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
 
 ## Hard don'ts
 
-- Don't write into `Sources/`, or into `Philosophy/` outside `refine` — save `interview`'s one
-  write, the owner's typed answers into `Philosophy/HOW-I-INVEST.md`, verbatim, on their go.
+- Don't write into `Sources/`, or into `Philosophy/` outside its two writers: `philosophy` adds the
+  owner's typed answers to `HOW-I-INVEST.md`, word for word and add-only, after the owner's go, and
+  writes one round file in `Philosophy/Evolution/`, never edited afterwards; `refine` edits
+  `HOW-I-INVEST.md` as an editor, diff first, and never touches `Evolution/`. `refine` takes the
+  same pass over any other file the owner keeps in `Philosophy/`, outside `Evolution/`. Never a
+  pick there, nor any text of the researcher's own.
 - Don't write at home while working in a strategy, unless the owner asks for that write by name.
   Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
 - Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder. Change the
@@ -420,6 +442,11 @@ owner's: `interview` sets it to 0.1.0, they bump it with each entry they add to 
   never the other way.
 - Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
   regenerated. A concept page cites notes, never a PDF, and is never built from memory.
+- Don't cite a brief, ever: it is never a source. Don't cite a round file as the owner's view or as
+  evidence: it is a record, quoted only as the record of a round, by `philosophy`'s retake and
+  `query`'s *How has my view changed*.
+- Don't advise on a holding. A brief, a round or an answer never says buy, sell, trim, add or
+  hold, and `Portfolio/` is read, never written, save the two files `brief setup` starts.
 - Don't compute a return, a Sharpe or an attribution yourself — those numbers come from the engines
   the project names, in a KaxaNuk strategy the Lab's libraries, and a number without an engine
   behind it is not quoted.

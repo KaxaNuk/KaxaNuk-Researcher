@@ -11,37 +11,76 @@ your researcher, it proposes a paragraph about it to replace this one, on your g
 
 | Folder or file | What it holds | What you do with it |
 | --- | --- | --- |
-| `RESEARCHER.md` | who the researcher is: your name, its voice, your rules, what you are reading for | edit it whenever you like — it is yours. Add what the interview did not ask: your view as a sentence a test could answer, how long its edge might last, what would change your mind |
-| `Philosophy/HOW-I-INVEST.md` | your own view of markets, in your words | write in it freely; the researcher reads and cites it, and never writes in it. `refine` tidies it, diff first |
+| `RESEARCHER.md` | who the researcher is: your name, what you are here for, its voice, your rules, what you are reading for | edit it whenever you like — it is yours. Your first `read` adds your first reading question, on your go |
+| `Philosophy/HOW-I-INVEST.md` | your view of investing, in your words | write freely, or build it with `philosophy`, at your level; `refine` tidies it, diff first |
+| `Philosophy/Evolution/` | one file per `philosophy` round: your answers that day, word for word | nothing to do — the record of how your view moved, never edited; it appears with your first round |
 | `Sources/Papers/`, `Sources/Books/`, `Sources/Clippings/` | the PDFs and clippings you read | drop a file in, then `read` |
 | `Knowledge/` | the researcher's notes on what you read, with `INDEX.md` and `LOG.md` | written by `read`, on your go; ask it with `query` |
 | `Studies/` | ideas, plans and decisions worked out from what you read | `study <subject>`; `study` alone lists them |
 | `Lessons/` | lessons from `teach`, a folder per topic | appears with your first `teach <topic>` |
+| `Briefs/` | your daily brief, one file a day — work, markets, portfolio — every figure quoted from a dated source, never advice | `brief setup` once — on the Claude desktop app it then comes on its schedule; `brief` writes today's now. Kept on this machine, never committed |
+| `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them. Kept on this machine, never committed |
 | `AGENTS.md`, `CLAUDE.md` | the rules the researcher works by | nothing to do |
 | `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
 | `Extracts/` | text pulled out of the PDFs, for `read`; regenerable, never committed | nothing to do |
 
 The library is private: nothing in `Sources/` should ever be pushed anywhere public, and the
 `.gitignore` keeps PDFs out. Clippings and the notes read from them are committed with the home, so
-a home that holds a private project's material stays a private repository.
+a home that holds a private project's material stays a private repository. `Philosophy/` is
+committed too, your rounds included: on a public remote, your goals and answers are public.
+`Briefs/` and `Portfolio/` never leave this machine — the `.gitignore` keeps them out.
 
-## First things to do
+## Save a copy off this computer
 
-1. **First, once:** `interview`, if the install has not run it yet — four short steps, about five
-   minutes. It writes `RESEARCHER.md`, the agent that makes your researcher callable by name and
-   the skill that makes it present in every session, installs both for your user and commits.
-2. **Read something.** Drop a paper or a book into `Sources/` and run `read`. For a book it shows
-   the table of contents and asks which chapters serve which of your questions; it reads only
-   those, shows the plan, waits for your go, and writes one note per chapter into `Knowledge/`.
-3. **Ask.** `query <question>` answers from what you have read, every claim cited and every gap
-   named.
-4. **Think something through.** `study <subject>` for an idea that is not a strategy yet, or a
-   plan or a decision; `teach <topic>` for a lesson a session.
-5. **Start a strategy.** `init-strategy <name>` makes one beside this folder, from the KaxaNuk
+This folder is a git repository. When the researcher commits for you — *Commit it for me*, after
+a `philosophy` round, or the commit at the end of the interview — it saves a version **on this
+computer only**: a broken or lost laptop takes your library with it. Learning a little git is worth
+it, so your researcher is also kept somewhere else and can follow you to another computer:
+
+1. Create an empty **private** repository on GitHub, or a service like it.
+2. Connect this folder to it and send what you have — or ask your researcher to walk you through
+   it:
+
+   ```bash
+   git remote add origin <the URL of your private repository>
+   git push -u origin main
+   ```
+
+3. From then on, `git push` after a commit sends the new version too.
+
+Keep that repository private: your sources, your notes and your answers in `Philosophy/` are in it.
+
+## The path
+
+1. **Set up, once:** `interview`, if the install has not run it yet — a few short questions about
+   you, about three minutes: what you do, what you are here for, the researcher's voice and your
+   rules. It writes `RESEARCHER.md`, the agent that makes your researcher callable by name and the
+   skill that makes it present in every session, installs both for your user and commits.
+2. **Start learning.** Drop a PDF, or a text or Markdown file, into `Sources/Papers/`,
+   `Sources/Books/` or `Sources/Clippings/` and say *read it* — save a Word document, an e-book or a
+   web page as PDF first. The first `read` asks which question the source serves,
+   in plain words, and keeps it as your question 1. For a book it shows the table of contents and
+   asks which chapters serve your questions; it reads only those, shows the plan, waits for your
+   go, and writes one note per chapter into `Knowledge/`. With nothing to read yet, `read` proposes
+   a few works to start from.
+3. **Write down how you invest,** whenever you like: `philosophy`, a second interview, optional and
+   pitched at what you already know. It starts with why you invest and what you already believe,
+   teaches as it asks, and adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, on
+   your go. Take it again after you have read, and see how your view moved.
+4. **A daily brief,** if you want one: `brief setup` chooses the parts — your work, the markets you
+   follow, your portfolio — the days and the time, and schedules it on the Claude desktop app;
+   elsewhere `brief` writes the day's file when you run it. Each lands in `Briefs/`, every figure
+   quoted from a dated source, never advice.
+5. **Ask, and think things through.** `query <question>` answers from what you have read, every
+   claim cited and every gap named; `study <subject>` works out an idea, a plan or a decision;
+   `teach <topic>` gives a lesson a session.
+6. **Start a strategy.** `init-strategy <name>` makes one beside this folder, from the KaxaNuk
    Strategy Template; the researcher is there when you open it.
 
-**Lost?** `next`, here or in a strategy, says what is done and the one thing to do next. In Claude,
-type these with a slash, `/read`; anywhere else, ask for them by name.
+**Lost?** `next`, here or in a strategy, says what is done and the one thing to do next. **Stay
+current:** `update` brings new skills and new versions of the researcher — it runs the package's
+update for you and shows any change to your home as a diff first. In Claude, type these with a
+slash, `/read`; anywhere else, ask for them by name.
 
 ---
 
@@ -71,9 +110,9 @@ It grows four ways, each governed by a section of `AGENTS.md`:
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
    `.apm/prompts/`, then `apm install -g "<this folder>"` and a new session. *Where the skills, the
    commands and the agent live* says how one is written and where it deploys.
-3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`. The
-   paragraph after the folder table in *What each folder is, and who may write in it* says who
-   writes that file.
+3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`, by hand or
+   through `read`, which asks for your first. The paragraph after the folder table in *What each
+   folder is, and who may write in it* says who writes that file.
 4. **How it behaves.** A line by hand under *How it speaks* or *Non-negotiables* in
    `RESEARCHER.md`, which every skill and the agent read first. The same paragraph governs it.
 
@@ -95,7 +134,9 @@ this field. `CHANGELOG.md` holds the template's changelog, then this home's.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: studies and lessons
 are built from the notes, and no note is ever built from a study. `Philosophy/` is cited, never
-compiled into notes, so your judgement stays yours.
+compiled into notes, so your judgement stays yours; its rounds in `Philosophy/Evolution/` are a
+record of how your view moved, and `HOW-I-INVEST.md`, never a round, is what is cited as your
+view. A brief is never cited: a figure in one enters the library only as a source in `Sources/`.
 
 **On Windows,** `git diff` prints a CRLF warning for files the researcher wrote; it is expected and
 harmless, `.gitattributes` normalises on commit.

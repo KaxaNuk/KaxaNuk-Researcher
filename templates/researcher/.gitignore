@@ -34,6 +34,10 @@ GEMINI.md
 .env
 *.env
 
+# Personal and daily: the briefs and the holdings stay on this machine
+Briefs/
+Portfolio/
+
 # Regenerable: extracts and Python caches
 Extracts/
 __pycache__/

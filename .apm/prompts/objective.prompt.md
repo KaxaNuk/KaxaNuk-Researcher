@@ -48,11 +48,13 @@ draft it.
 ## Step 2: Contrast with the researcher's library
 
 Walk `Knowledge/INDEX.md` at home and the links for the domains the strategy touches. Read the
-owner's `Philosophy/` on how they invest. Where the home library or a note says something the
-strategy's `Bibliotheca/` does not, that is either a lead for `BIBLIOGRAPHY.md` or a warning for the
-claim — never a citation, because links stay inside the strategy. In the first pass this is where
-the questions come from: what the home library already holds on each claim, and what argues against
-it, names what the strategy should read for.
+owner's `Philosophy/` on how they invest. Round files in `Philosophy/Evolution/` are a record of how
+the owner's answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a round
+file, as the owner's view. Where the home library or a note says something the strategy's
+`Bibliotheca/` does not, that is either a lead for `BIBLIOGRAPHY.md` or a warning for the claim —
+never a citation, because links stay inside the strategy. In the first pass this is where the
+questions come from: what the home library already holds on each claim, and what argues against it,
+names what the strategy should read for.
 
 ## Step 3: Draft, in the file's own shape
 
