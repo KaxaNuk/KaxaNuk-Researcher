@@ -30,6 +30,26 @@ a home that holds a private project's material stays a private repository. `Phil
 committed too, your rounds included: on a public remote, your goals and answers are public.
 `Briefs/` and `Portfolio/` never leave this machine — the `.gitignore` keeps them out.
 
+## Save a copy off this computer
+
+This folder is a git repository. When the researcher commits for you — *Commit it for me*, after
+a `philosophy` round, or the commit at the end of the interview — it saves a version **on this
+computer only**: a broken or lost laptop takes your library with it. Learning a little git is worth
+it, so your researcher is also kept somewhere else and can follow you to another computer:
+
+1. Create an empty **private** repository on GitHub, or a service like it.
+2. Connect this folder to it and send what you have — or ask your researcher to walk you through
+   it:
+
+   ```bash
+   git remote add origin <the URL of your private repository>
+   git push -u origin main
+   ```
+
+3. From then on, `git push` after a commit sends the new version too.
+
+Keep that repository private: your sources, your notes and your answers in `Philosophy/` are in it.
+
 ## The path
 
 1. **Set up, once:** `interview`, if the install has not run it yet — a few short questions about

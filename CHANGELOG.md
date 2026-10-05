@@ -62,6 +62,10 @@ does not ignore them.
   message contents read as data and never as instructions, every figure quoted from a dated source
   with its link and never computed, never a weight, a P&L or a return, never *buy, sell, trim, add
   or hold*.
+- **_Save a copy off this computer_**, a section of the home's `README.md`, and one line under each
+  install in this `README.md` pointing to it: a commit the researcher makes saves on this computer
+  only, so the owner is told why a little git is worth learning and how to push the home to a
+  private repository on GitHub, or a service like it.
 ### Changed
 - **`interview`** (skill 2.0.0): two short steps about the owner, about three minutes. *About you*
   no longer asks what pulls them to markets or what they think about them; *Me, and my rules* keeps
