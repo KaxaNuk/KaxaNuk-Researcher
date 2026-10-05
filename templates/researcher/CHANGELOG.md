@@ -40,6 +40,8 @@ again.
   portfolio part.
 * **`## Why I invest`**, the first heading of `Philosophy/HOW-I-INVEST.md`.
 * **`Here for:`** under *Who* in `RESEARCHER.md`, from the interview's new question.
+* **_Save a copy off this computer_** in `README.md`: a commit saves on this computer only; how to
+  keep a copy on a private GitHub repository as well.
 
 ### Changed
 

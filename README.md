@@ -22,7 +22,9 @@ works in any language.
    - it asks a few short questions about you, about three minutes;
    - it shows you your researcher's folders, what each one is for, and how to start learning.
 
-Then open your researcher's folder in a **new** conversation and say hello, by its name.
+Then open your researcher's folder in a **new** conversation and say hello, by its name. Your
+researcher is saved on your computer; to keep a copy somewhere else too, on a private GitHub
+repository, read *Save a copy off this computer* in its own `README.md`.
 
 ### Instalación en español
 
@@ -39,6 +41,8 @@ Then open your researcher's folder in a **new** conversation and say hello, by i
    tres minutos, y te explica sus carpetas y cómo empezar a aprender.
 
 Después abre la carpeta de tu investigador en una conversación **nueva** y salúdalo por su nombre.
+Tu investigador se guarda en tu computadora; para tener también una copia en otro lugar, en un
+repositorio privado de GitHub, lee *Save a copy off this computer* en su propio `README.md`.
 
 ## What you can use it for
 
