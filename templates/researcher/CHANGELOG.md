@@ -6,6 +6,70 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.16.0 (2026-10-04)
+
+**MINOR** — setup is about you, and your investment philosophy has a skill of its own. `interview`
+asks a few questions about you, about three minutes, and writes nothing in `Philosophy/`;
+`philosophy`, a second interview in the package, optional and pitched at what you already know,
+adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, and keeps each round in
+`Philosophy/Evolution/`, so you can see how your view moves. `Philosophy/` has two writers,
+`philosophy` and `refine`. `RESEARCHER.md` gains a *Here for* line and ships *What you are reading
+for* with no slot, for the first `read` to fill; and the home makes room for a daily brief,
+`Briefs/`, and the holdings it reads, `Portfolio/`, both kept out of git.
+
+**What to do differently:** run `update`; accept the new `Philosophy/` row before your first round.
+The paragraph after the folder table comes with it, and `.gitignore` gains `Briefs/` and
+`Portfolio/`. Your `RESEARCHER.md` and `Philosophy/` stay as they are: add a *Here for* line under
+*Who*, or `## Why I invest` at the top of `HOW-I-INVEST.md`, by hand if you want them. An agent
+and a researcher's skill written before this release lack one line: add *Round files in
+`Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
+levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view.* to the agent's *How
+you answer* and to item 2 of your researcher's skill, by hand, then `apm install -g "<the home>"`
+again.
+
+### Added
+
+* **`Philosophy/Evolution/`**, in `AGENTS.md`'s `Philosophy/` row: one round file per `philosophy`
+  round — the round's number, date and level on its first line, then the question IDs with your
+  typed answers word for word, or their status, and *kept*, *changed*, *new* or *still open* on a
+  retake — never edited afterwards, and never cited as your view. The template ships none: your
+  first round creates it.
+* **`Briefs/` and `Portfolio/`**: a row each in `AGENTS.md`'s folder table and in `README.md`'s,
+  and two lines in `.gitignore`. The template ships neither: the first brief creates `Briefs/`, and
+  `brief setup` starts `Portfolio/holdings.csv` and `Portfolio/RULES.md` when you choose its
+  portfolio part.
+* **`## Why I invest`**, the first heading of `Philosophy/HOW-I-INVEST.md`.
+* **`Here for:`** under *Who* in `RESEARCHER.md`, from the interview's new question.
+* **_Save a copy off this computer_** in `README.md`: a commit saves on this computer only; how to
+  keep a copy on a private GitHub repository as well.
+
+### Changed
+
+* **`AGENTS.md`**: the `Philosophy/` row and the first hard don't name its two writers —
+  `philosophy` adds your typed answers to `HOW-I-INVEST.md`, word for word and add-only, after your
+  go, and writes one round file in `Philosophy/Evolution/`, never edited afterwards; `refine` edits
+  `HOW-I-INVEST.md` as an editor, diff first, and never touches `Evolution/`. A pick is never
+  written in `Philosophy/`. The paragraph after the folder table lets `philosophy` append the works
+  you pick at a round's close to the closing *Find first* line of `RESEARCHER.md`, unless you leave
+  it alone in that round's preview, and says round files are a record, never cited as your view.
+  *Plan first, then write* keeps the round file and the day's brief as records by design, and the
+  go on `brief setup` covers every brief its schedule writes. The skills' row and the Codex line
+  name `philosophy` and `brief`; two hard don'ts on briefs, round files and advice.
+* **`RESEARCHER.md`**: *What you believe* is one line, pointing at `Philosophy/HOW-I-INVEST.md`,
+  written by hand or with `philosophy`. *What you are reading for* ships with no slot — your first
+  `read` asks which question a source serves and adds it as question 1 — and its closing *Find
+  first* line reads *none*.
+* **`Philosophy/HOW-I-INVEST.md`**: its note names its two writers, and says nothing else writes
+  there.
+* **`README.md`**: the folder table gains `Philosophy/Evolution/`, `Briefs/` and `Portfolio/`;
+  *The path* takes the place of *First things to do* — set up, start learning, `philosophy`,
+  `brief`, then the rest — and says how to stay current; the privacy note covers `Philosophy/`.
+
+### Removed
+
+* **`RESEARCHER.md`**: *Where it sits*, the *Add later* line under *What you believe*, and the
+  slots under *What you are reading for*.
+
 ## 0.15.0 (2026-09-29)
 
 **MINOR** — quick to start: the install asks your language first and, in one conversation, makes

@@ -6,6 +6,112 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.31.0] - 2026-10-04
+The researcher is a way in for people with any background, and its setup lost the newcomers it was
+for. The interview mixed two jobs, getting to know the person and asking their market beliefs, and
+its step 3, *How you see markets*, put efficient prices and published edges to them in the papers'
+vocabulary before anything was explained. Setup is now about the person only, about three minutes,
+and the owner's investment philosophy has a skill of its own: optional, pitched at what the owner
+already knows, teaching as it asks, and taken again after reading, so the owner sees how their
+view moved. What it brings a beginner is a personal benchmark — what their money does if they
+never choose an investment on purpose — and a process to find out whether they do better than it.
+Its purpose line, the only one the package ships: *KaxaNuk built me so that more people can make
+better investment decisions.* A daily brief joins it. Issue #25.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home, and accept the new `Philosophy/` row of its `AGENTS.md` before your first round of
+`philosophy`: until then the home's own rules name `interview` and `refine` as its writers. Your
+`RESEARCHER.md`, `Philosophy/` and agent stay as they are; `update` lists what to carry across by
+hand — a *Here for* line under *Who*, `## Why I invest` in `HOW-I-INVEST.md`, and, in a home
+interviewed before `interview` 2.0.0, the line *Round files in `Philosophy/Evolution/` are a record
+of how the owner's answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never
+a round file, as the owner's view.* in your agent's *How you answer*. Add the same line, by hand,
+to item 2 of your researcher's skill, then run
+`uvx --from apm-cli==0.29.0 apm install -g "<the home>"` again. Before `brief setup`, let `update`
+bring the `Briefs/` and `Portfolio/` lines into your `.gitignore`: `brief` stops in a home that
+does not ignore them.
+### Added
+- **`philosophy`** (skill 1.0.0): the owner's investment philosophy, by name, as often as they
+  like. The opening is the same for everyone — why you invest, what you already believe, how much
+  you know — and the level, *Starter*, *Building* or *Researching*, is nested: each asks what the
+  one below asks, in harder words, and more; a calibration places an owner who is not sure, and the
+  home suggests a level. The personal benchmark and why a process are said once, with an honest
+  caveat: nothing on the reading map shows that a process makes more money; it is how you find out
+  whether a result is yours or luck. Then the level's blocks — *Scoreboard*, *Edge*, *You*, *The
+  world moves*, *Proof*, *Process* — one open question per message, one line that teaches after
+  each answer and never a verdict, and a pitch check after the first block. Every question takes
+  *explain*, *example*, *not sure yet*, *skip*, *simpler*, *harder* and *stop*, in the owner's
+  language too.
+  The preview shows every line word for word; on the go it adds the owner's typed answers to
+  `Philosophy/HOW-I-INVEST.md`, add-only, one bullet each tagged *(round N)*, writes one round file,
+  `Philosophy/Evolution/YYYY-MM-DD.md`, and may append the works picked at the close to the closing
+  *Find first* line of `RESEARCHER.md`, unless the owner leaves it alone in that preview. A pick is
+  never written in `Philosophy/`. It never commits on its own: after the write it asks `Commit?` —
+  *Commit it for me* runs the commit, *Philosophy: round N, <level>*; *I'll review it first* leaves
+  it to the owner. Taken again, it quotes each earlier answer for *keep* or new words, and shows
+  then and now in chat. Its question bank is `references/questions.md`, with
+  stable IDs and every paper a lead from the reading map.
+- **`brief`** (skill 1.0.0): a daily brief in `Briefs/YYYY-MM-DD.md`, in up to three parts —
+  *Work*, *Markets*, *Portfolio*. `brief setup` chooses the parts, the days and the time, and the
+  measures, proposed from the owner's numbered questions; *Work* needs the calendar, mail and chat
+  connectors, and a part with none is left out, said plainly. On the Claude desktop app it creates
+  a scheduled task whose prompt is the brief's contract, `references/brief-contract.md`; elsewhere
+  it says how to run `brief` each morning and creates nothing it cannot. When the owner chooses the
+  *Portfolio* part, it starts `Portfolio/holdings.csv` and `Portfolio/RULES.md` from its own
+  `references/`. `brief`, by name, writes today's file if none exists: nothing written elsewhere,
+  message contents read as data and never as instructions, every figure quoted from a dated source
+  with its link and never computed, never a weight, a P&L or a return, never *buy, sell, trim, add
+  or hold*.
+- **_Save a copy off this computer_**, a section of the home's `README.md`, and one line under each
+  install in this `README.md` pointing to it: a commit the researcher makes saves on this computer
+  only, so the owner is told why a little git is worth learning and how to push the home to a
+  private repository on GitHub, or a service like it.
+### Changed
+- **`interview`** (skill 2.0.0): two short steps about the owner, about three minutes. *About you*
+  no longer asks what pulls them to markets or what they think about them; *Me, and my rules* keeps
+  *Domains*, *Voice* and *Your rules*, with a plain gloss, and adds `Here for` — *Learn the basics,
+  step by step*, *Organise what I read*, *Build and test a strategy*, *Write down how I invest, and
+  see it evolve* — written as a *Here for:* line under *Who*. *How you see markets* moves to
+  `philosophy`, as its stance picks, and *What to read for* to `read`. *What you believe* is one
+  line pointing at `Philosophy/HOW-I-INVEST.md`, the owner's own prose there kept verbatim on
+  `force`, and nothing is written in `Philosophy/`. The hand-over: who the researcher is, the
+  folders, *Start learning now* — a document into `Sources/` and `read`, or a topic proposed from
+  the reading map — the skills that grow it in later sessions, and how to stay current; it offers
+  `philosophy` now or, recommended, later in a new session. *What I did not ask* is gone.
+- **`read`** (0.9.0): at home with no numbered question, it asks first which question the source
+  serves, in plain words, with proposals from *Here for* and *About you*, and adds it as question 1
+  on the go. Its report names the questions of the owner's philosophy a new note bears on, from the
+  *Bears on* table of `philosophy`'s bank, and offers a round.
+- **`next`** (1.1.0): a home with no reading question passes, and its next thing is a source
+  dropped into `Sources/` and `read`; it counts `philosophy` and `brief`, and closes at home with
+  one line on the owner's philosophy, offered and never pressed.
+- **`query`** (0.7.0): *how has my view changed?* is answered from the round files, compared by
+  question ID, and `HOW-I-INVEST.md`, never a round file, is cited as the owner's view.
+- **`init-researcher`** (0.5.0): hands over to the shorter interview, and says that how the owner
+  invests is `philosophy`'s, later.
+- **The commands**: `objective`, `blueprint`, `study` and `teach` read round files for dates and
+  levels and never cite one; `refine` refuses a round file and keeps every *(round N)* tag; `teach`
+  takes the level from the newest round and offers a round at a lesson's close; `update` puts the
+  `.gitignore` lines for `Briefs/` and `Portfolio/` first and lists *Here for*, *Why I invest* and
+  the agent's line on round files as lines to carry across by hand.
+- **The reading map**: `philosophy` among its users — its stance picks, its hunches, and the
+  discussion questions, some of the seven questions and the kill switch put to the owner as
+  questions about how they invest, never as a strategy's rules; a work picked at a round's close,
+  or from the interview's *Suggest a topic*, goes on the closing *Find first* line.
+- **The home template** (0.16.0): `Philosophy/` has two writers — `philosophy` adds the owner's
+  typed answers to `HOW-I-INVEST.md`, word for word and add-only, after the owner's go, and writes
+  one round file in `Philosophy/Evolution/`, never edited afterwards; `refine` edits
+  `HOW-I-INVEST.md` as an editor, diff first, and never touches `Evolution/`. `AGENTS.md` gains rows
+  for `Briefs/` and `Portfolio/`, both gitignored, and the *Find first* grant; `RESEARCHER.md` a
+  *Here for* line, a one-line *What you believe* and no slot under *What you are reading for*;
+  `HOW-I-INVEST.md` a first heading, `## Why I invest`; the README its folder table and *The path*.
+- **`README.md`** and **`SETUP.md`**: the interview as a few questions about the owner,
+  `philosophy` and `brief` in the tables, and the release check.
+- An install deploys **20 skills and 9 commands**.
+### Removed
+- **`interview`'s market stances and its reading step**, and *Where it sits* in `RESEARCHER.md`:
+  the stances are asked by `philosophy`, the first reading question by `read`.
+
 ## [0.30.0] - 2026-09-29
 A new user installed the researcher by pasting the install line, and the path was hard to follow:
 English from the first line, three sessions — install, `init-researcher`, `interview` — a parent
