@@ -19,8 +19,8 @@ works in any language.
    - it installs what it needs — allow the commands it asks about, that is all you do;
    - it asks what you want to call your researcher, and where to keep it — a folder with that
      name, `C:\Research\Ada` for example;
-   - it asks four short questions about you and how you see markets, about five minutes;
-   - it shows you your researcher's folders, what each one is for, and what to do next.
+   - it asks a few short questions about you, about three minutes;
+   - it shows you your researcher's folders, what each one is for, and how to start learning.
 
 Then open your researcher's folder in a **new** conversation and say hello, by its name.
 
@@ -35,8 +35,8 @@ Then open your researcher's folder in a **new** conversation and say hello, by i
 
 3. Responde sus preguntas. Primero te pregunta el idioma — elige *Español* — y todo sigue en la
    misma conversación: instala lo necesario (solo permite los comandos que te pida), te pregunta
-   el nombre de tu investigador y dónde guardarlo, te hace cuatro preguntas cortas, unos cinco
-   minutos, y te explica sus carpetas y qué hacer después.
+   el nombre de tu investigador y dónde guardarlo, te hace unas preguntas cortas sobre ti, unos
+   tres minutos, y te explica sus carpetas y cómo empezar a aprender.
 
 Después abre la carpeta de tu investigador en una conversación **nueva** y salúdalo por su nombre.
 
@@ -47,6 +47,8 @@ Después abre la carpeta de tu investigador en una conversación **nueva** y sal
 | keep what you read, and ask it later | `read`, then `query <question>` | a note for each paper or chapter you chose; answers that cite them and name what is missing |
 | work out an idea, a plan or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, and what to check next |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder of its own on the KaxaNuk Strategy Template, every claim before any test, every number from the Lab's engines |
+| write down how you invest, and see it evolve | `philosophy` | a second interview at your level — why you invest, what you believe, how you would know you are doing better than doing nothing — your typed answers in `Philosophy/HOW-I-INVEST.md`, word for word, and a record of each round |
+| start each day informed | `brief setup`, then `brief` | a dated file each morning: your work, the markets you follow, news on your holdings — every figure quoted from a source, never advice |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | know what to do next | `next` | where you stand, and the one thing to do next |
 | see the process worked end to end | `init-example` | `liquid-golden-cross`, one strategy through every step, to read or run |
@@ -81,12 +83,14 @@ the interview. [`SETUP.md`](SETUP.md) is the whole path, step by step.
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: four short steps that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and commit. The install in [`SETUP.md`](SETUP.md) runs this for you |
-| 2 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
-| 3 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
+| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: a few short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and commit. The install in [`SETUP.md`](SETUP.md) runs this for you |
+| 2 | the home | `read` | your first note: drop a document into `Sources/` and the first `read` asks which question it serves, then keeps it as question 1 |
+| 3 | the home | `philosophy`, `brief setup` | when you like: your investment philosophy, at your level, and a daily brief |
+| 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
+| 5 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
 
-The interview's questions on markets and the reading map cover investment research; a researcher
-for another field answers *not sure yet* where it must and grows by reading.
+The questions of `philosophy` and the reading map cover investment research; a researcher for
+another field skips `philosophy`, or answers *not sure yet* where it must, and grows by reading.
 
 **What a strategy needs from outside this package.** The researcher needs nothing more. A strategy
 needs a key from a data provider the Data Curator reads — FMP, Sharadar or LSEG, from the provider
@@ -109,14 +113,18 @@ app's add-folder button — for it to read the library without asking each time.
 
 ## The skills and commands
 
-Every one that writes shows its plan first and waits for your go.
+Every one that writes shows its plan first and waits for your go. Two writes need none of their
+own: `audit`'s log line and the day's brief — running `audit` or `brief` by name is the go, and the
+go you gave `brief setup` covers every brief its schedule writes.
 
 | Skill | What it does |
 | --- | --- |
-| `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. It carries the reading map, `references/reading-map.md`, that `interview` proposes the first works from |
+| `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. At home with no reading question yet, it asks first which question the source serves, and adds it as question 1. It carries the reading map, `references/reading-map.md`, that it, the interview's hand-over and `philosophy` propose works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
 | `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `liquid-golden-cross` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
-| `interview` | four short steps that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with a map of the home's folders. `init-researcher` runs it straight after making the home; `interview force` starts over |
+| `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with a map of the home's folders, how to start learning and what grows your researcher later. `init-researcher` runs it straight after making the home; `interview force` starts over |
+| `philosophy` | a second interview, optional and as often as you like, on your investment philosophy, pitched at your level — Starter, Building or Researching. It starts with why you invest and what you already believe, teaches one idea after each answer, never a verdict, and after your go adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, and keeps the round in `Philosophy/Evolution/`. Taken again after reading, it shows how your answers moved |
+| `brief [setup]` | a daily brief in `Briefs/`, one file a day in up to three parts — your work, the markets you follow, news on your holdings — every figure quoted from a dated source, never computed, never advice. `brief setup` chooses the parts, the measures and the time, and on the Claude desktop app schedules it; `brief` writes today's now |
 | `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing |
 
 | Command | What it does |
@@ -178,6 +186,10 @@ The researcher's part is **the hypothesis**, and it stops where the numbers star
   to draft.
 - **It cites no source that has no note.** A source in a `BIBLIOGRAPHY.md` without a note is a lead,
   and nothing is claimed on its authority.
+- **It never advises on a holding.** A brief quotes figures from dated sources and names the rules
+  in your `Portfolio/RULES.md` worth a look; it never says buy, sell, trim, add or hold, and never
+  computes a weight, a P&L or a return. `philosophy` writes only what you typed, never a view of
+  its own.
 
 ---
 
@@ -238,12 +250,13 @@ of `D:/tmp/check`. Open a new session in that folder. If the working tree carrie
 deep enough to fail the install, copy the files `git ls-files` lists to a short folder and install
 that instead.
 
-**Before a release, do the same with the commit to be tagged.** It should deploy exactly 18 skills,
+**Before a release, do the same with the commit to be tagged.** It should deploy exactly 20 skills,
 9 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
 or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
-`interview`, then `next`, `init-strategy`, and `read` on one clipping — once in Spanish, and once
-on an assistant with no question tool, such as Codex. Delete the folder afterwards. A newer APM is
-adopted only when this install passes with it, on Windows.
+`interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, and
+`init-strategy` — once in Spanish, and once on an assistant with no question tool, such as Codex.
+Delete the folder afterwards. A newer APM is adopted only when this install passes with it, on
+Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.

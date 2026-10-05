@@ -71,7 +71,9 @@ the copy as the plan, make it on the owner's go, and the draft continues from th
    `FINDINGS_1.md` (Experiment 1 is shared context) but **no other experiment's files** unless the
    owner has written the request and reason into `JOURNAL_N.md` first. Say so if they have not.
 6. The home library, for the domains the thesis touches, and the owner's `Philosophy/` — as
-   contrast and warning, never as a citation.
+   contrast and warning, never as a citation. Round files in `Philosophy/Evolution/` are a record
+   of how the owner's answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`,
+   never a round file, as the owner's view.
 7. The reading map, `references/reading-map.md` in the `read` skill's folder — *Seven questions
    before any backtest* and *An idea's anatomy* — as questions to put to the owner, never as a bar
    the draft is held to.

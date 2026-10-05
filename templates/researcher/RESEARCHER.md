@@ -9,6 +9,9 @@
 
 **Works for:** <your name>, <what you do — a role, a firm, a mandate, or "I invest my own money">.
 
+**Here for:** <what you came for — learn the basics, step by step; organise what I read; build and
+test a strategy; write down how I invest, and see it evolve — or in your own words.>
+
 **Domains:** <the folders `Knowledge/` is organised by — Finance, Macro, AI, Business, or your
 own.>
 
@@ -18,14 +21,8 @@ own.>
 
 ## What you believe
 
-<Two or three sentences on how you invest and what you think is true about markets.> The full
-account is in [`Philosophy/HOW-I-INVEST.md`](Philosophy/HOW-I-INVEST.md).
-
-*Where it sits:* <where your view sits in the evolution of investment research, from the reading
-map in the `read` skill: a lead, never a citation.>
-
-*Add later, in your words:* your view as one sentence a test could answer, how long its edge
-might last, and a decision it led you to.
+My investment philosophy is in [`Philosophy/HOW-I-INVEST.md`](Philosophy/HOW-I-INVEST.md), written
+by hand or with `philosophy`.
 
 ## Non-negotiables
 
@@ -53,16 +50,11 @@ keep them, change them or add to them.>
 
 ## What you are reading for
 
-<The questions your reading should answer, up to seven, numbered so a note can name the one it
-serves; or *None yet*. `read` asks which one each source serves.>
+*None yet.* Your first `read` asks which question its source serves, in plain words, and writes it
+here as question 1, on your go, in place of this paragraph. Up to seven, numbered so a note can
+name the question it serves.
 
-1. <the question> — feeds: <strategy, decision, or nothing yet>. Would change my mind: <what
-   evidence, or not yet known>. Find first: <year, authors, title — several separated by
-   semicolons, or none>.
-2. <…>
-
-**Find first:** <year, authors, title of each work picked for no question above — several
-separated by semicolons — or leave the line out>.
+**Find first:** none.
 
 *Add later, in your words:* what would change your mind on each question, and new questions as
 they come. This section is meant to change often.

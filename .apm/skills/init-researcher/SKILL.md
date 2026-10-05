@@ -4,11 +4,12 @@ description: >
   Create a KaxaNuk researcher's home — asking the language, the researcher's name and where to put
   it, the folder named after the researcher — after bringing the researcher package to its newest
   version with apm update -g, from the template that ships inside it, copied by a script and made a
-  git repository; then run the interview straight away, in the same conversation. Only when the
-  owner runs it by name, or as the step of the install SETUP.md walks through; once per person,
-  never per strategy. It does NOT create a strategy (use `init-strategy`).
+  git repository; then run the interview straight away, in the same conversation — two short steps
+  about the owner, about three minutes. Only when the owner runs it by name, or as the step of the
+  install SETUP.md walks through; once per person, never per strategy. It does NOT create a
+  strategy (use `init-strategy`), and does NOT ask how the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.4.0
+  version: 0.5.0
 ---
 
 # Init researcher — a home for the library, once
@@ -47,9 +48,10 @@ what happens in a sentence, and never ask them to type a command: you run every 
    limit. The folder always takes the researcher's name.
 
 4. **The go, in two lines.** "I will update the researcher package, create `<full path>` with your
-   researcher's library, and then ask you four short questions. Your assistant may ask you to allow
-   a few commands; allowing them is all you need to do." Ask for the go — *Go*, *Change something*,
-   *Stop* — and run on *Go* only. What the copy contains is said in the hand-over, not here.
+   researcher's library, and then ask you a few short questions about you, about three minutes.
+   Your assistant may ask you to allow a few commands; allowing them is all you need to do." Ask
+   for the go — *Go*, *Change something*, *Stop* — and run on *Go* only. What the copy contains is
+   said in the hand-over, not here.
 
 5. **Bring the package up to date**, on the same go, before anything is copied — the owner types
    nothing:
@@ -88,8 +90,13 @@ what happens in a sentence, and never ask them to type a command: you run every 
 7. **Run the interview now**, in this conversation, in the language chosen: follow the `interview`
    skill — from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` when
    it is not loaded in this session — with `<full path>` as the home. Say one line first: *Your
-   researcher's home is ready at `<full path>`. Now four short questions, about five minutes, so it
-   is yours.* The interview's own hand-over, with the map of the folders, ends the run.
+   researcher's home is ready at `<full path>`. Now two short steps about you, about three minutes,
+   so it is yours.* It asks who the owner is, what they are here for, and the researcher's domains,
+   voice and rules — nothing about markets: how the owner invests is `philosophy`'s, a second
+   interview the hand-over offers, and what the reading is for is asked by the first `read`. The
+   interview's own hand-over — the map of the folders, a first thing to read, the skills that grow
+   the researcher, and `philosophy` now or in a new session — ends the run, or hands on to `read`
+   or `philosophy` when the owner picks one there.
 
    If the owner would rather stop here, the hand-over is two lines: open `<full path>` in a new
    session, and there type `/interview` — elsewhere, ask for the interview by name. The library is

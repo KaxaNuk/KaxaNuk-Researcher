@@ -17,19 +17,24 @@ evolve by replacement; it evolved by addition (page 48).
 
 ## How the researcher uses this file
 
-- **Place the belief.** *Where a belief sits* gives, for each stance the `interview`
-  interview offers, the act, the arc's question, the work that holds it, who tested it where the
-  deck names someone, and its *other side*. *Beliefs people type* does the same for the beliefs a
-  newcomer states in their own words. A belief neither lists is placed by the arc question whose
-  works or core ideas name it, in *The six acts*.
+- **Place the belief.** *Where a belief sits* gives, for each stance `philosophy` offers as a pick,
+  the act, the arc's question, the work that holds it, who tested it where the deck names someone,
+  and its *other side*. *Beliefs people type* does the same for the beliefs a newcomer states in
+  their own words, and gives `philosophy` six of its seven hunches for an owner with nothing to
+  type; the seventh, *No — prices already know*, comes from *Where a belief sits*. A belief
+  neither lists is placed by the arc question whose works or core ideas name it, in *The six acts*.
 - **Name the other side** only as this file names it. Where it says the deck names none, say that;
   never supply one.
 - **Propose what to find first** from *Start here*, the ten papers of the two timelines, and from
   the belief's own entry. A proposal the owner does not pick is never written.
 - **Say where it lands.** A picked work is written after the owner's go, in `RESEARCHER.md` under
-  *What you are reading for*, as *Find first* under the question it serves. Never download it: the
-  owner finds it by its title and authors, puts the PDF in `Sources/Papers/`, or `Sources/Books/`
-  for a book, and runs `read`.
+  *What you are reading for*: as *Find first* under the question it serves or, when it serves no
+  numbered question, on the section's closing *Find first* line, which is added to and never
+  rewritten — its *none* gives way to the first work. `interview` writes a work picked from
+  *Suggest a topic* there, and `philosophy` the works picked at a round's close. Never download it:
+  the owner finds it by its title and authors, puts the PDF in `Sources/Papers/`, or
+  `Sources/Books/` for a book, and runs `read`; a work that cannot be found comes off the line by
+  hand.
 - **Match before proposing.** Compare each work here with the file names under `Sources/` and the
   notes in `Knowledge/INDEX.md` by the distinctive words of the title, and by the first author's
   surname wherever the file name or the note carries one, ignoring the year, punctuation and
@@ -41,9 +46,11 @@ evolve by replacement; it evolved by addition (page 48).
 - **Offer Section 02 as hints.** *Where alpha comes from* holds the five sources of edge, where
   ideas come from and how each fools you, seven questions before any backtest, an idea's anatomy
   and three questions for discussion. Each is offered as a question the owner may answer, edit,
-  skip or refuse — `interview` takes its *Edge from?* options and its testable sentence from them,
-  `objective` the anatomy of a claim, `blueprint` the seven questions and the kill switch — never
-  as a position to adopt, and never cited as evidence.
+  skip or refuse, never as a position to adopt, and never cited as evidence. `philosophy` takes its
+  *Edge from?* options from the five sources, and puts *Discussion*, some of the seven questions
+  and the kill switch to the owner as questions about how they invest — how they would know, how
+  long they would hold, what would make them stop — never as a strategy's rules. `objective` takes
+  the anatomy of a claim, and `blueprint` the seven questions and the kill switch, for a strategy.
 
 ## Start here — the ten papers of the two timelines
 
@@ -92,9 +99,9 @@ edges are real, and for how long, is the job, and it never finishes.
 
 ## Where a belief sits
 
-The stances the interview offers. *Holds it* is the work the stance comes from; *tested* and
-*other side* come only from the deck's own pages, and where the deck names no one, the entry says
-so.
+The stances `philosophy` offers as picks; how the owner likes to invest, its fourth pick, is not
+placed here. *Holds it* is the work the stance comes from; *tested* and *other side* come only from
+the deck's own pages, and where the deck names no one, the entry says so.
 
 ### Can anyone beat the market?
 
@@ -231,8 +238,9 @@ tested or revised an earlier one.
 
 ## Questions to read for, from the evidence
 
-The evidence timeline's roles, as questions a newcomer can pick when their `Sources/` is empty
-(page 50). Each names its evidence paper and its other side.
+The evidence timeline's roles, as questions a newcomer can pick when their `Sources/` is empty, or
+when `read` asks an owner who is here to build and test a strategy for their first question (page
+50). Each names its evidence paper and its other side.
 
 - **Crowding** — what happens when others crowd into the same edge? Khandani & Lo, 2011. Other
   side: the deck names none.
@@ -248,7 +256,9 @@ The evidence timeline's roles, as questions a newcomer can pick when their `Sour
 Each act asks the question the one before could not answer, dated by the works that forced it
 (page 5). The arc's 21 questions are given as the deck words them, with the page of the question;
 the works are on the page after it. *Edge* is the deck's "where the edge is" line, shortened. The
-edge lines are strategy-stage questions, never questions for setup.
+edge lines are strategy-stage questions, never questions for setup: `interview` asks none of them,
+and `philosophy` may put one to the owner at Researching only, as a question about how they invest,
+never as a strategy's rule.
 
 ### Act I — Prices: can prices be predicted?
 
@@ -556,8 +566,8 @@ door is still open, before testing anything.
    known edge better than others do? Markowitz · Grinold & Kahn · Paleologo — questions 04, 18 and
    19.
 
-`interview` offers them as four options, the last two together as *Something I see or do better*;
-*Where a belief sits* places each.
+`philosophy` offers them as four options of its *Edge from?* pick, the last two together as
+*Something I see or do better*; *Where a belief sits* places each.
 
 ### Where ideas come from, and how each fools you (page 57)
 
@@ -614,5 +624,6 @@ Three questions the deck leaves open, to put to any belief:
 - If alpha decays, how long would the strategy they want to build last?
 - What evidence would change their mind before four months go into it?
 
-`interview` asks the last two its own way, as the belief's shelf life and what would change the
-owner's mind; the first is the other side it offers to find.
+`philosophy` asks the last two its own way, as questions about the owner rather than a strategy's
+rules: how long an edge would last once everybody knows it, and what would change the owner's mind.
+The first is the other side it names when it places a belief, offered as a work to find.

@@ -15,9 +15,10 @@ so.
 
 Review the library and report; `${input:mode}` set to `deep` adds the expensive pass at the end.
 **Nothing is changed by this command except one entry appended to the library's `LOG.md`** —
-`Knowledge/LOG.md` at home, `Bibliotheca/LOG.md` in a strategy, never the other. That line is the
-one write made without a go, as *Plan first, then write* in the home's `AGENTS.md` says: running
-`audit` by name is the go for it. Fixes are a plan the owner approves separately.
+`Knowledge/LOG.md` at home, `Bibliotheca/LOG.md` in a strategy, never the other. That line is one
+of the two writes made without a go of their own, as *Plan first, then write* in the home's
+`AGENTS.md` says: running `audit` by name is the go for it. Fixes are a plan the owner approves
+separately.
 
 **In the worked example, nothing is appended.** When the folder is the worked example — its
 `README.md` is titled *Liquid Golden-Cross*, or `README.md` or `AGENTS.md` holds a line reading
@@ -120,7 +121,8 @@ for reading and running, never built on; a strategy of the owner's own is `init-
 
 In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them
 as a plan and wait for a go; approved fixes append their own log entry. Append one entry to the
-library's `LOG.md`, the one write made without a go: `## [YYYY-MM-DD] audit | <N> findings` — or
+library's `LOG.md`, one of the two writes made without a go of their own:
+`## [YYYY-MM-DD] audit | <N> findings` — or
 `audit deep` — except in the worked example, where nothing is written. Its entries come
 from `read`, `audit` and `refresh-index`, and from `query` when the owner keeps a synthesis page,
 whose index line `query` adds on the same go — so a page whose line `query` added is not a
