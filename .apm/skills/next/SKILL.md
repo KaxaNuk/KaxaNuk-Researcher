@@ -6,17 +6,17 @@ description: >
   is written. Takes an optional path to a strategy, when the session is not open in it. Only when
   the owner runs it by name; never on its own.
 metadata:
-  version: 1.0.0
+  version: 1.1.0
 ---
 
 # Next — where you stand, and what to do next
 
 The process has eight steps, an order of work with eight parts, three skills that make folders,
-`interview`, this skill and nine commands. This skill is the map: it reads the folder, says which
-parts are done, and names **the one thing to do next** with the command or skill that does it. It
-writes nothing, runs nothing, and never starts the next thing itself — doing it is a different
-request, by the name this skill gives. It is a skill, not a command, so every assistant APM deploys
-to has it, Codex included.
+`interview`, `philosophy`, `brief`, this skill and nine commands. This skill is the map: it reads
+the folder, says which parts are done, and names **the one thing to do next** with the command or
+skill that does it. It writes nothing, runs nothing, and never starts the next thing itself — doing
+it is a different request, by the name this skill gives. It is a skill, not a command, so every
+assistant APM deploys to has it, Codex included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
 — *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
@@ -42,20 +42,27 @@ Check in this order and stop at the first that fails; that is the next thing.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
-| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise commit what is there, with a message saying what came in |
-| 1 | `RESEARCHER.md` has no angle-bracketed slot left | `interview` — the interview |
+| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise commit what is there, with a message saying what came in — for a round of `philosophy`, the message it suggested, *Philosophy: round N, <level>* |
+| 1 | `RESEARCHER.md` has no angle-bracketed slot left. *What you are reading for* with no numbered question is not a slot: the template ships it so, and the first `read` asks for question 1 | `interview` — the interview |
 | 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved |
 | 3 | the home is installed for the user: `uvx --from apm-cli==0.29.0 apm deps list -g` names this folder, and the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code | `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
-| 4 | every source under `Sources/` — a PDF, a document or a clipping, not a `.gitkeep` — has a note: match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves |
+| 4 | every source under `Sources/` — a PDF, a document or a clipping, not a `.gitkeep` — has a note: match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves; with no numbered question yet, `read <the source>` alone, which asks the owner which question it serves and adds it as question 1 |
 | 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/`, or the owner took it off the line, which is theirs to edit by hand | find it by its title and authors, put it in `Sources/Papers/` or `Sources/Books/`, then `read`; or, when it cannot be found, take it off the *Find first* line in `RESEARCHER.md` |
 | 6 | `Knowledge/INDEX.md` lists every note and page on disk | `refresh-index` |
 
-All seven done: say so, and that the next thing is the owner's — a new source into `Sources/`, a
-question added under *What you are reading for*, `study <subject>` to work out an idea, a plan or a
-decision from the library — `study` alone lists the studies already in `Studies/` — or
+All seven done: say so, and that the next thing is the owner's. **With no numbered question under
+*What you are reading for*** — a home fresh from the interview — it is one thing: drop a PDF, or a
+text or Markdown file, into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` and say
+*read it* — save a Word document, an e-book or a web page as PDF first; the first `read` asks
+which question it serves, in plain words, and adds it as question 1 on the go.
+**Otherwise** it is one of these — a new source into `Sources/`, a question added under *What you
+are reading for*, `study <subject>` to work out an idea, a plan or a decision from the library —
+`study` alone lists the studies already in `Studies/` — `teach <topic>` for lessons on what the
+library holds, `brief setup` for a daily brief of work, markets and portfolio on a schedule, or
 `init-strategy <name>` for the first strategy, where the researcher is already present; or work
 with it in any other project, where it is present too, or teach it a tool: its documentation into
-`Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README.
+`Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README. The owner's
+philosophy is never a step that fails: *Step 4* closes with it in one line.
 
 ## Step 3: In a strategy
 
@@ -96,6 +103,14 @@ In chat, short:
 1. **Which folder this is**, and the status line where there is one.
 2. **The checklist** as a table: each part, done or not, with the file that says so.
 3. **Next:** one line — the part, the command or skill by name, and what it will ask for.
+4. **Your philosophy**, at home only, one closing line, offered and never pressed. With no round
+   file in `Philosophy/Evolution/`: *`philosophy` writes down how you invest, in your words, at
+   your level — round 1, whenever you like.* With one or more: the last round's date and level —
+   the latest date in the file names, `YYYY-MM-DD.md`, and on that date the highest suffix,
+   `YYYY-MM-DD-2.md` — and how many notes came in since: the notes the `read` entries of
+   `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as written, a
+   book's `INDEX.md` and concept pages aside. When notes came in, add that `philosophy` takes the
+   round again; when none did, the date, the level and *no notes since* are the whole line.
 
 Nothing else. No file is written, no log entry appended, no number computed and no plan drafted:
 when the owner says *do it*, that is the named command's or skill's own plan and go, not this one's.
