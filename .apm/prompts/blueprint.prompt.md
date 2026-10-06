@@ -146,8 +146,8 @@ library is yours to check:
    can report; a falsifier with two limbs fires on either.
 3. **A prediction worth being wrong about.** A table of things that will obviously happen is not a
    hypothesis.
-4. **No performance number without a licence.** No return, Sharpe or drawdown is predicted unless
-   an analyzer measurement licenses it.
+4. **No performance number without a measurement behind it.** No return, Sharpe or drawdown is
+   predicted unless an analyzer measurement supports it.
 5. **The bar in the strategy's `AGENTS.md`**, item by item: the economic reason stated in the
    thesis; a *Control* line in *Rules* that differs from the book in exactly one thing and trades on
    the rule's own rebalance dates (item 9); a trial count, if variants will be ranked (item 3);
@@ -176,5 +176,5 @@ next in the order of work: the broad reading, for what the blueprint left as lea
 — portfolio construction, backtest, attribution — until it is finished.
 
 Never write into the researcher's home from here. Never state a performance number as a prediction
-unless an analyzer measurement licenses it; the engine has not run, and the blueprint must not
+unless an analyzer measurement supports it; the engine has not run, and the blueprint must not
 pretend it has.

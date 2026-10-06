@@ -82,8 +82,8 @@ date, and its line says *none*. Then **Rules to look at**: each rule in `RULES.m
 news bears on, quoted word for word as the owner's, with no verdict on it; a heading that still
 holds its angle-bracketed prompt says nothing yet, and is skipped. Never compute a weight, a P&L, a
 return or a risk figure for the portfolio or a holding in it: say once that those come from the
-engines the project names — in a KaxaNuk strategy the Lab's libraries — never from this brief.
-Never say buy, sell, trim, add or hold: this is monitoring, not advice.
+engines the project names, never from this brief. Never say buy, sell, trim, add or hold: this is
+monitoring, not advice.
 
 End the file with one line in this form, its two lists filled in, `none` for an empty one:
 `Sources read: …; unavailable: ….`

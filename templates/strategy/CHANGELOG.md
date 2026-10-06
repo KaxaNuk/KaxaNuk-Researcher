@@ -41,6 +41,39 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.4 (2026-10-06)
+
+**PATCH** — the way to a licence, to access and to the index and factor files is written where a
+strategy meets them. The Backtest Engine and Attribution Analysis licences, and access to Portfolio
+Construction, are KaxaNuk's to give, and nothing here said whom to ask; "the desk" that ships the
+index and the factor model had no name. Nothing about any result changes.
+
+**What to do differently:** for a licence, access to Portfolio Construction or the Analytics
+Factory's files, write to `lab@kaxanuk.mx`, saying which library and what it is for. Run APM as
+`uvx --from apm-cli==0.29.0 apm`, as every command here now shows.
+
+### Added
+
+- **`.gitignore`**: `.DS_Store`, `Thumbs.db` and `desktop.ini`, which Finder or Explorer leaves in
+  a folder it shows. `init-strategy` already left them out of the first commit; this keeps them out
+  after it.
+
+### Changed
+
+- **`SETUP.md`**: step 3 says how a licence or access is asked for, and names KaxaNuk's Analytics
+  Factory, with its page, as what ships the files `KN_ANALYTICS_PATH` points at; the folders it
+  reads are unchanged. Step 4's install command names `apm-cli==0.29.0` itself, so the agent's note
+  on putting `uvx` in front is gone.
+- **`README.md`**: *The six Lab modules* has a Status column — the Data Curator open source, the
+  Data Refinery and the Data Analyzer coming and hand-rolled in `Data/` until then, Portfolio
+  Construction on request, the Backtest Engine and Attribution Analysis licensed — and *Two doors*
+  gives the platform's page, <https://www.kaxanuk.mx/lab>, without the list of what it does. The
+  licensed paragraph says how a licence or access is asked for; the install command names
+  `apm-cli==0.29.0`; the folder table names the Analytics Factory where it said the desk.
+- **`Config/.env.template`**, **`Data/hand_supplied.py`**, **`Data/curator.py`** and
+  **`Experiments/attribution_analysis.py`**: the Analytics Factory where they said the desk, in a
+  comment and the docstrings; no code changes.
+
 ## 0.13.3 (2026-10-06)
 
 **PATCH** — a name whose prices are about to stop is sold the day before. A strategy built on the

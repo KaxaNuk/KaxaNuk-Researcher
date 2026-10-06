@@ -13,7 +13,7 @@ thing to try is the journal's and a claim is `objective`'s; in another project t
 the researcher into, the work lives in that project. Say so and stop.
 
 A study is the owner's own work from the library: an idea that is not a strategy yet, or a
-decision, a plan or a brief with no repository of its own. A synthesis page that `query` keeps says
+decision, a plan or a memo with no repository of its own. A synthesis page that `query` keeps says
 what the library holds; a study says what the owner will do about it. `${input:subject}` is the
 subject in the owner's words, or the name of a study already in `Studies/`. Running this command
 names `Studies/` as the only place it may write — the place, not the go: every write waits for a
@@ -28,8 +28,8 @@ plan and an explicit go, as `AGENTS.md` requires of every command that writes.
   line what a study is for, and stop.
 - **A study that exists** — the subject matches a file or a folder in `Studies/`, by its name or
   its title: read it whole. This is a revision.
-- **A new subject:** a new study. A home without `Studies/`, made before template 0.12.0, gets the
-  folder with its first study, on the same go.
+- **A new subject:** a new study. A home without `Studies/` gets the folder with its first study,
+  on the same go.
 - **Something another command owns:** say which, and stop unless the owner says it is a study. A
   source to read is `read`'s, a question about what the library holds is `query`'s, a belief is the
   owner's to write in `Philosophy/HOW-I-INVEST.md`, by hand or with `philosophy`, a topic to learn
@@ -48,11 +48,10 @@ library; what they skip stays out, and is not a gap. For a revision, ask only wh
 
 Walk the library the way `query` does — `Knowledge/INDEX.md` end to end, the concept pages first,
 then the links between notes, then the notes — and read the owner's `Philosophy/` where their own
-view bears on the subject, to cite as theirs. Round files in `Philosophy/Evolution/` are a record of
-how the owner's answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a
-round file, as the owner's view. Gather what supports the subject, what argues against it, and the
-simpler rival it has to beat. For a revision, start with the notes written since the study's date,
-which `Knowledge/LOG.md` names.
+view bears on the subject, to cite as theirs, never a round file in `Philosophy/Evolution/`, a
+record, as the home's `AGENTS.md` says. Gather what supports the subject, what argues against it,
+and the simpler rival it has to beat. For a revision, start with the notes written since the
+study's date, which `Knowledge/LOG.md` names.
 
 Name each gap — what the study needs and the library does not hold — as a lead, labelled as `query`
 labels one: a work from the reading map, a work on a *Find first* line, or a file already in
@@ -104,12 +103,10 @@ offer as options the changes the draft admits: a narrower subject, a part left o
 Then write the study and nothing else — no note, no line in `Knowledge/INDEX.md`, no entry in
 `Knowledge/LOG.md`, which record the library, not the owner's work.
 
-**Then offer the commit.** Show the two commands it takes — `git add` with the study's files, by
-name, never `--all`, and `git commit -m "Study: <subject>"` — and ask `Commit?` (`¿Confirmo?`):
-*Commit it for me*, *I'll review it first*; without a question tool, the two as a numbered list in
-chat. On *Commit it for me*, run them: the owner's pick is the human act, as the go was for the
-write. On *I'll review it first*, nothing more: they commit, or say *commit it* and you run the
-commands then. Never commit unasked.
+**Then offer the commit**, as the home's `AGENTS.md` says. Show `git add` with the study's files, by
+name, never `--all`, and `git commit -m "Study: <subject>"`, and ask `Commit?` (`¿Confirmo?`):
+*Commit it for me* runs them; after *I'll review it first*, they commit, or say *commit it* and you
+run them. Never commit unasked.
 
 Never move, rename or delete a study on your own, never write outside `Studies/`, and never cite a
 study as a source — in a note, a concept page or a strategy.

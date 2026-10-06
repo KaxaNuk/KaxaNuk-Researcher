@@ -6,6 +6,83 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.33.0] - 2026-10-06
+A way into the Lab, and less to read. The researcher is where many people first meet KaxaNuk's
+Investment Lab, yet no file named an address: a licence, access or a problem had nowhere to go but
+"ask KaxaNuk". Now one address, `lab@kaxanuk.mx`, takes a licence request, an access request and a
+problem report, and the Lab is named as a fact at the moment a step needs it — never as advice,
+never as a pitch. Testers also found the text long: what loads in every session — the home's
+`AGENTS.md`, `RESEARCHER.md` and `CLAUDE.md`, and every skill's and command's description — is
+9,880 words where it was 10,907, with no rule dropped and no behaviour changed.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home: it shows the changes to `AGENTS.md`, `README.md` and `apm.yml` (template 0.18.0) as a diff
+and brings them across on your go. If you scheduled a daily brief, run `brief setup` again, so the
+task's prompt takes the new contract. For a licence, access to Portfolio Construction or the
+Analytics Factory's files, write to `lab@kaxanuk.mx`, saying which library and what it is for; a
+problem report names the two versions `update check` shows.
+### Added
+- **The Lab's access facts** — `next` (1.3.0) ships `references/investment-lab.md`: each Lab
+  library, its step, what it does and how to get it — the Data Curator open source, the Data
+  Refinery and the Data Analyzer coming, Portfolio Construction on request, the Backtest Engine and
+  Attribution Analysis licensed — the access line, KaxaNuk's Analytics Factory at
+  <https://www.kaxanuk.mx/analytics>, and where a problem report goes. It is installed with the
+  package and never copied into a home or a strategy. `next`'s row G gives the access line when
+  the engine or the attribution library is missing, and the Analytics Factory's line when
+  attribution's index or factor files are.
+- **When the Lab may be named** — a hard don't in the home's `AGENTS.md`, and the facts file's
+  header: as a fact, never as advice, and naming its engines as where a strategy's numbers come
+  from is one; what a library does and how to get it only when a step needs a library the owner
+  lacks, or when they ask; never added unasked to `RESEARCHER.md`, `Philosophy/`, a brief, a
+  study, a round of `philosophy` or a *Find first* line, and never as a reason to invest.
+- **The access line where access comes up** — `backtest-engine-runs` (0.1.8),
+  `attribution-analysis-runs` (0.2.10) and `portfolio-construction-runs` (0.2.6) open their
+  install section with it, for an owner without a licence or access; `init-example` (0.2.2) at its
+  hand-over; `README.md`'s *What a strategy needs*; the strategy template's `SETUP.md` and
+  `README.md`; and the home's README, in a short section on the Lab after *The path*.
+- **What it is** — two lines at the top of `README.md`, in English and in Spanish: a research and
+  learning tool, never investment advice; it runs on your computer, through an assistant installed
+  there; KaxaNuk receives nothing from it, and a licensed Lab library checks its licence with
+  KaxaNuk.
+### Changed
+- **Less to read, every rule kept.** The home's `AGENTS.md` (template 0.18.0) is 401 lines where
+  it was 462: each rule has one owner and the rest point to it, history went to `update` and the
+  changelogs, and the Claude Code setup and how to write a skill of your own went to the home's
+  README, marked optional. The descriptions of `brief` (1.0.2), `read` (0.10.1), `interview`
+  (2.1.1), `philosophy` (1.0.2), `init-researcher` (0.5.2), `init-example` and `query` (0.8.1)
+  are 90 to 102 words each; their bodies, and `study`, `teach` and `update`, point to the home's
+  `AGENTS.md` for the go words, the commit offer, the round-file rule and how an assistant without
+  a question tool asks.
+- **The brief's contract** (`brief` 1.0.2): its Portfolio part says a portfolio's figures come from
+  the engines the project names, and no longer names the Lab.
+- **"The desk" is KaxaNuk's Analytics Factory** in the strategy template (0.13.4) and the worked
+  example (0.18.4) — `SETUP.md`, `Config/.env.template` and the docstrings of
+  `Data/hand_supplied.py`, `Data/curator.py` and `Experiments/attribution_analysis.py` — and in
+  `attribution-analysis-runs`, `paper-trading-gate` (0.2.2) and `experiment-lifecycle`'s
+  `structure.md` (0.11.1). What is read, and from where, is unchanged. The template's README gives
+  each Lab module a Status column, and *Two doors* the platform's page.
+- **"Licenses" meaning "supports"** is *supports* or *allows* in `blueprint`, `blueprint-critic`
+  and `data-analyzer-runs` (0.2.1), so no prediction reads as needing a licence. The reading map
+  labels the course deck's three conclusions as KaxaNuk's view, a view to test.
+- **Codex and the home install, as APM 0.29.0 does them** — `SETUP.md`, the home's `AGENTS.md`,
+  `interview` and `update`: Codex receives the skills and the agent, without its tool list, and no
+  commands or instructions; installing the home copies the whole folder — `.git/`, `Sources/`,
+  `Extracts/`, `Briefs/` and `Portfolio/` included — into
+  `~/.apm/apm_modules/_local/<folder name>/` on the same machine, and deploys only its `.apm/`; on
+  Windows a long `Extracts/` path in that copy can fail the install.
+- **The four house instructions' scopes**, in `README.md`, `SETUP.md` and the home's `AGENTS.md`:
+  Bloom Code and PEP 8 for every Python file, test writing for Python tests, filesystem boundaries
+  for every file the assistant reads, in any project.
+- **`update`** opens its report with the installed package version and the home's template
+  version, even when all is current: the two a problem report names.
+- **Every `apm` line you are told to run names `apm-cli==0.29.0`**, `apm.yml`'s comment, `audit`'s
+  fix and `structure.md` included.
+- **`README.md`**: *What a strategy needs* moves up, beside *Lost at any point?*, and names the
+  Analytics Factory and the address; a question or a problem to report has one line.
+### Fixed
+- **`scaffold.py`**: the comment on `FILE_MANAGER_FILES` says a strategy's `.gitignore` names them
+  from template 0.13.4.
+
 ## [0.32.0] - 2026-10-06
 The first run lands, and the next step is clear. People who installed 0.31.0 finished setup not
 knowing what to do next, and found the text long: every owner in an empty home was told to drop a

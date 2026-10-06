@@ -109,6 +109,12 @@ Paper_Trading/Record/
 .vscode/
 .ipynb_checkpoints/
 
+# --- File managers ---------------------------------------------------------------------------
+# What Finder or Explorer leaves in a folder it shows: never part of the research.
+.DS_Store
+Thumbs.db
+desktop.ini
+
 # --- Credentials -----------------------------------------------------------------------------
 # The template is tracked; the filled-in file never is.
 Config/.env

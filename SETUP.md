@@ -143,14 +143,18 @@ a bare `apm update` outside an APM project updates APM itself.
 ## Troubleshooting
 
 **What each assistant receives.** Claude Code receives everything: the skills, the commands, the
-agents and the four instructions — Bloom Code, PEP 8, test writing and filesystem boundaries —
-which land in `~/.claude/rules/` and apply to every Python project on the machine. Copilot receives
-the same, its instructions merged into `~/.copilot/copilot-instructions.md`. Cursor, Gemini,
-OpenCode and Windsurf get the skills and the commands but not the instructions, and Gemini,
-OpenCode and Windsurf take no agent: there the researcher is its skill. **Codex gets the skills
-only**, so the steps a newcomer needs — `init-researcher`, `interview`, `next`, `read`, `query`,
-`philosophy`, `brief` — are all skills. A command, such as `objective` or `blueprint`, is run
-there by naming its file —
+agents and the four instructions, which land in `~/.claude/rules/` — Bloom Code and PEP 8 for
+every Python file on the machine, test writing for Python tests, and filesystem boundaries, in any
+project, for every file the assistant reads: outside the folder it works in, only the places the
+task needs. Copilot receives the same, its instructions merged into
+`~/.copilot/copilot-instructions.md`. Cursor, Gemini, OpenCode and Windsurf get the skills and the
+commands but not the instructions, and Gemini, OpenCode and Windsurf take no agent: there the
+researcher is its skill. **Codex gets the skills and the agents, and no commands.** The skills land
+in `.agents/skills/` and each agent in `.codex/agents/<name>.toml`, without its tool list: APM
+warns that it drops it, so on Codex an agent has no tool boundary. No instruction lands either:
+APM asks for `apm compile`, which writes them into a project's `AGENTS.md`. So the steps a
+newcomer needs — `init-researcher`, `interview`, `next`, `read`, `query`, `philosophy`, `brief` —
+are all skills. A command, such as `objective` or `blueprint`, is run there by naming its file —
 *follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and
 once the interview has run, the researcher's own skill does this for the user: they name the
 command, and it follows the file. Assistants without a question tool, such as Codex and Gemini,
@@ -174,6 +178,15 @@ need it.
 ```bash
 git config --global core.longpaths true
 ```
+
+**What installing the home copies.** `uvx --from apm-cli==0.29.0 apm install -g "<the home>"`,
+which the interview runs, copies the whole home — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and
+`Portfolio/` included — into `~/.apm/apm_modules/_local/<the home's folder name>/`, on the same
+machine, and deploys only its `.apm/`: the researcher's agent and skill. Nothing leaves the
+machine, and each install refreshes the copy. On Windows a deep path in that copy, such as a long
+slug under `Extracts/`, can pass the 260-character limit and fail the install. The fix is a
+shorter path for the home, or fewer deep extracts: `Extracts/` is a cache, which `read`'s script
+makes again from the source.
 
 **On Windows, `git diff` prints a CRLF warning** for the files the researcher wrote; it is expected
 and harmless — `.gitattributes` normalises them on commit.

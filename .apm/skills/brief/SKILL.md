@@ -1,19 +1,14 @@
 ---
 name: brief
 description: >
-  A daily brief in the researcher's home — one new Briefs/YYYY-MM-DD.md a day, in up to three
-  parts: Work (today's meetings, and the mail and chat that ask something of the owner), Markets
-  (the measures the owner chose, each quoted from a dated source with its link) and Portfolio
-  (news, earnings dates and filings for each holding in Portfolio/holdings.csv, and the rules in
-  Portfolio/RULES.md that the news bears on). "brief setup" asks the parts, the days and the time
-  and the measures, plan first, and on the Claude desktop app creates the scheduled task that
-  writes it; "brief" writes today's file now, if none exists. Only when the owner runs it by name,
-  or as the scheduled task its setup created. It does NOT compute a weight, a P&L, a return or a
-  risk figure, never says buy, sell, trim, add or hold, never sends, posts, replies or trades, and
-  adds nothing to the library — a figure in a brief enters it only as a source in Sources/, then
-  `read`.
+  One new Briefs/YYYY-MM-DD.md a day in the researcher's home: Work (meetings, and mail and chat
+  asking something of the owner), Markets (measures quoted from dated sources) and Portfolio (news,
+  earnings and filings per holding). "brief setup" asks the parts, days and measures, plan first,
+  and schedules it on the Claude desktop app; "brief" writes today's file now. Only when the owner
+  runs it by name, or as the task its setup created. It does NOT compute a figure about the book or
+  add to the library, never says buy, sell, trim, add or hold, and never sends, posts or trades.
 metadata:
-  version: 1.0.1
+  version: 1.0.2
 ---
 
 # Brief — one dated file a day: work, markets, portfolio
@@ -35,9 +30,9 @@ writes. Running either by name is the owner asking for that write by name.
 **What it writes, and nothing else.**
 
 - **`Briefs/YYYY-MM-DD.md`** — one new file a day, named by the local date, never edited
-  afterwards; the first brief makes the folder. Running `brief` by name is the go for that one
-  file, as running `audit` is the go for its log line, and the owner's go on setup's plan is the
-  standing go for the file the scheduled task writes each day.
+  afterwards; the first brief makes the folder. Running `brief` by name is the go for that file;
+  the go on setup's plan is the go for each one the scheduled task writes, as the home's
+  `AGENTS.md` says.
 - **`Portfolio/holdings.csv` and `Portfolio/RULES.md`** — created by `brief setup`, on its go,
   only when the owner picks *Portfolio* and the file is missing: this skill's
   `references/portfolio-holdings.csv`, a header and no row, and `references/portfolio-rules.md`,
@@ -59,11 +54,10 @@ read only, no figure about the book, no advice.
 
 **How to ask.** In Claude Code, the questions below are asked by calling `AskUserQuestion` — the
 options as its choices, at most four, and *Other*, which the tool always offers, as the free-text
-escape. Without such a tool — Codex, Gemini and every other assistant — one chat message: each
-question numbered, its options beneath as a numbered list with *Other — your own words* last, and
-one line saying how to answer. Every question, option and line is in the owner's language, and
-every header is the one given below for that language — the English one for any other — twelve
-characters at most.
+escape. Without such a tool — Codex, Gemini and every other assistant — they are one chat message,
+as the home's `AGENTS.md` says, *Other — your own words* last. Every question, option and line is
+in the owner's language, and every header is the one given below for that language — the English
+one for any other — twelve characters at most.
 
 ## brief setup
 
@@ -72,10 +66,10 @@ characters at most.
 1. **A home not yet interviewed** — `RESEARCHER.md` still holding an angle-bracketed slot under
    *Who* or *How it speaks* — has no name and no language to brief in. Say so, offer `interview`,
    and stop.
-2. **The two folders are ignored.** `.gitignore` lists `Briefs/` and `Portfolio/`. A home made
-   before template 0.16.0 does not: say so, give the two lines for the owner to add at its end — or
-   `update`, which brings them as a diff with the template's other changes — and stop. A brief, or
-   a holding, that git does not ignore is one `git add --all` from a commit.
+2. **The two folders are ignored.** `.gitignore` lists `Briefs/` and `Portfolio/`. When it does
+   not, say so, give the two lines for the owner to add at its end — or `update`, which brings them
+   as a diff — and stop. A brief, or a holding, that git does not ignore is one `git add --all`
+   from a commit.
 3. **What this session can reach.**
    - **The web** — a web search tool. Without one, *Markets* and the news under *Portfolio* cannot
      run: say so.
@@ -152,9 +146,8 @@ In chat, short:
 - the files: `Portfolio/holdings.csv` and `Portfolio/RULES.md`, *created empty* or *already there,
   not touched*; `Briefs/`, made by the first brief;
 - the task, *<Name> daily brief*, new or changed — its prompt, the contract filled, shown only when
-  the owner asks; elsewhere, that nothing is scheduled and these choices are kept nowhere — no
-  file at home holds them — so the brief is run by name each morning with the one line *Step 4*
-  gives, which carries them, and *brief* alone takes the defaults;
+  the owner asks; elsewhere, that nothing is scheduled and no file keeps these choices: the brief
+  is run by name each morning with the line *Step 4* gives, and *brief* alone takes the defaults;
 - one line on privacy: `Briefs/` and `Portfolio/` are gitignored and stay on this machine, and
   *Work* quotes no more of a message than the line that says what it asks.
 

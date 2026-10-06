@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.11.0
+  version: 0.11.1
 ---
 
 # The research process — how a strategy repository is worked in
@@ -184,7 +184,7 @@ file; the skills are installed once for the user, not here — then work in this
 index of *Starting your own strategy* in the template's README**, which is the source and says why
 each part comes where it does; the parts are lettered A to H so they are never mistaken for the
 eight steps. What this skill adds is the last column — which tool each part loads. The KaxaNuk
-Researcher's `next` command reads a strategy against this list and names the part that comes next.
+Researcher's `next` skill reads a strategy against this list and names the part that comes next.
 
 | | Part | Lands in | Load |
 | --- | --- | --- | --- |

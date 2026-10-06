@@ -85,6 +85,14 @@ for what you came for. **Stay current:** `update` brings new skills and new vers
 researcher — it runs the package's update for you and shows any change to your home as a diff
 first. In Claude, type these with a slash, `/read`; anywhere else, ask for them by name.
 
+## The KaxaNuk Investment Lab
+
+A strategy you build from here can use KaxaNuk's Lab libraries: the Data Curator is open source;
+the Backtest Engine and Attribution Analysis are licensed; Portfolio Construction is on request;
+the Data Refinery and the Data Analyzer are coming. <https://www.kaxanuk.mx/lab> shows them.
+Write to `lab@kaxanuk.mx` for a licence or access, or to report a problem with your researcher —
+with the version `update check` shows.
+
 ---
 
 ## In a strategy or another project
@@ -92,16 +100,28 @@ first. In Claude, type these with a slash, `/read`; anywhere else, ask for them 
 Open your assistant in the project's folder: the researcher is there, and reads this home when the
 work needs it. Add this folder to the session — `claude --add-dir <this folder>`, `/add-dir` once
 inside, or the desktop app's add-folder button — for it to read the library without asking each
-time. For `CLAUDE.md`, `AGENTS.md` and `RESEARCHER.md` to load in full from the first line, set
-this once per machine and reopen the assistant:
+time. Work on a strategy lands in the strategy; nothing comes back here unless you ask, and then as
+a source in `Sources/` that `read` files.
+
+### The rules, loaded from the first line
+
+*Optional, and for Claude Code only.* Every skill reads `AGENTS.md` and `RESEARCHER.md` before it
+works. To have them loaded from a session's first line in a strategy, Claude Code must read this
+folder's `CLAUDE.md`, which imports both — and it reads `CLAUDE.md` from an added folder only when
+this variable is in the environment before it starts. Set it once per machine, as a user variable,
+then quit and reopen the assistant:
 
 ```bash
 setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
 ```
 
-`export` it in your shell profile outside Windows. *The researcher's home* in `AGENTS.md` says how
-to confirm it loaded. Work on a strategy lands in the strategy; nothing comes back here unless you
-ask, and then as a source in `Sources/` that `read` files.
+`export` it in your shell profile outside Windows; an `env` entry in `settings.json` is applied too
+late for it. `/context` lists what loaded, under *Memory files*. Where the variable is not honoured
+— the desktop app does not document it — a `CLAUDE.local.md` at the strategy's root holding one
+line, this folder's `CLAUDE.md` by absolute path, `@D:/Research/Ada/CLAUDE.md`, loads it with the
+strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md` to the strategy's
+`.gitignore`, and approve the external import the first time the assistant asks — declined, it
+stays off.
 
 ## Growing your researcher
 
@@ -111,13 +131,38 @@ It grows four ways, each governed by a section of `AGENTS.md`:
    `read`, with a reading question that names it. *Joining other projects* says how a project's
    files reach `Sources/` and how they are cited.
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
-   `.apm/prompts/`, then `apm install -g "<this folder>"` and a new session. *Where the skills, the
-   commands and the agent live* says how one is written and where it deploys.
+   `.apm/prompts/`, written as below, then
+   `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"` and a new session. *Where the
+   skills, the commands and the agent live* says where it deploys.
 3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`, by hand or
    through `read`, which asks for your first. The paragraph after the folder table in *What each
    folder is, and who may write in it* says who writes that file.
 4. **How it behaves.** A line by hand under *How it speaks* or *Non-negotiables* in
    `RESEARCHER.md`, which every skill and the agent read first. The same paragraph governs it.
+
+### Writing a skill or a command of your own (advanced)
+
+Only when you want a procedure of your own; nothing here is needed to use the researcher. Write it
+the way KaxaNuk's own APM packages write theirs, under a name the package does not use:
+
+- **A skill** is `.apm/skills/<name>/SKILL.md`: frontmatter `name`, matching the folder, a folded
+  `description` that says when to use it and what it does not cover, and `metadata.version`; a
+  body that says when it applies, then numbered steps, as `read` does. What it runs lives in its
+  own `scripts/`, what it reads on demand in its own `references/`, named by its own directory.
+- **A command** is one `.apm/prompts/<name>.prompt.md` with `description` and its `input` list, no
+  `name` and no `metadata`: APM keeps only `description`, `input`, `allowed-tools`, `model` and
+  `argument-hint` for a command, and warns on install for each key it drops. The body reads its
+  inputs as `${input:name}`, which APM turns into the arguments each harness takes; the required
+  input comes first and the optional ones after it, because an assistant binds them by position.
+- **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
+  says which on install — and a dropped key is a rule that is not enforced: anything that must
+  hold everywhere goes in the body or the description, not only in a key. A folded
+  `description: >` keeps a colon from breaking the YAML; the agent's frontmatter, which APM does
+  not rewrite, stays one line with no colon in it.
+- **No instructions.** Nothing goes in `.apm/instructions/`: the house instructions are the
+  package's, and one here would be rendered by `apm compile` over `AGENTS.md`, which is written by
+  hand. With only skills, prompts and agents, `apm compile` leaves `AGENTS.md` and `CLAUDE.md`
+  alone and writes a `GEMINI.md` that imports them, which git ignores.
 
 ## Installing and updating
 
@@ -130,6 +175,12 @@ own files across. On a new machine, or after adding an assistant under `targets:
 ```bash
 uvx --from apm-cli==0.29.0 apm install -g "<this folder>"
 ```
+
+APM first copies this whole folder — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/`
+included — into `~/.apm/apm_modules/_local/<folder name>/` on this computer, refreshed by each
+install, and deploys only its `.apm/`: nothing leaves the machine, and on Windows a path there past
+260 characters, from a long `Extracts/` name, fails the install — a shorter path to this home, or
+fewer deep extracts, fixes it.
 
 The home's own version in `apm.yml` is yours: `interview` sets it to 0.1.0, you bump it with each
 entry you add to `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never

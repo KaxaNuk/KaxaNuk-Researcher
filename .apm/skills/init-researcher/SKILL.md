@@ -1,15 +1,14 @@
 ---
 name: init-researcher
 description: >
-  Create a KaxaNuk researcher's home — asking the language, the researcher's name and where to put
-  it, the folder named after the researcher — after bringing the researcher package to its newest
-  version with apm update -g, from the template that ships inside it, copied by a script and made a
-  git repository; then run the interview straight away, in the same conversation — two short steps
-  about the owner, about three minutes. Only when the owner runs it by name, or as the step of the
-  install SETUP.md walks through; once per person, never per strategy. It does NOT create a
-  strategy (use `init-strategy`), and does NOT ask how the owner invests (`philosophy` does, later).
+  Create a KaxaNuk researcher's home, once per person — ask the language, the researcher's name and
+  where to put it, bring the package to its newest version with apm update -g, copy the home
+  template inside it by a script and make it a git repository — then run the interview in the same
+  conversation. Only when the owner runs it by name, or as the step of the install SETUP.md walks
+  through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
+  the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.5.1
+  version: 0.5.2
 ---
 
 # Init researcher — a home for the library, once
@@ -92,12 +91,9 @@ what happens in a sentence, and never ask them to type a command: you run every 
    skill — from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` when
    it is not loaded in this session — with `<full path>` as the home. Say one line first: *Your
    researcher's home is ready at `<full path>`. Now two short steps about you, about three minutes,
-   so it is yours.* It asks who the owner is, what they are here for, and the researcher's domains,
-   voice and rules — nothing about markets: how the owner invests is `philosophy`'s, a second
-   interview the hand-over offers, and what the reading is for is asked by the first `read`. The
-   interview's own hand-over — the home, a first source, the one next thing for what the owner is
-   here for — ends the run, or hands on to `read`, `philosophy` or `init-example` when the owner
-   picks one there.
+   so it is yours.* What it asks, and what it leaves to `philosophy` and the first `read`, is the
+   interview's to say; its own hand-over ends the run, or hands on to `read`, `philosophy` or
+   `init-example` when the owner picks one there.
 
    If the owner would rather stop here, the hand-over is two lines: open `<full path>` in a new
    session, and there type `/interview` — elsewhere, ask for the interview by name. The library is

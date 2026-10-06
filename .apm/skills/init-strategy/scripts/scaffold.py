@@ -61,7 +61,8 @@ CACHE_FOLDERS = frozenset({
     '__pycache__',
 })
 # Files Finder or Explorer leaves in a folder it shows: a folder holding only these is still empty,
-# and the first commit leaves them out, since a strategy's .gitignore does not name them.
+# and the first commit leaves them out, since a strategy's .gitignore before template 0.13.4 does
+# not name them.
 FILE_MANAGER_FILES = frozenset({
     '.DS_Store',
     'Thumbs.db',
