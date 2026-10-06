@@ -99,10 +99,17 @@ Rules:
 
 Show the draft in chat — for a revision, the change — with its path and the leads it depends on.
 Ask for the go through the question tool — *Go*, *Change something*, *Stop* — and write on *Go*
-only; in chat, *go*, *proceed*, *ok* or *yes* is the go. On *Change something*, offer as options the
-changes the draft admits: a narrower subject, a part left out, another name. Then write the study
-and nothing else — no note, no line in `Knowledge/INDEX.md`, no entry in `Knowledge/LOG.md`, which
-record the library, not the owner's work. The owner reviews the diff and commits.
+only; in chat, any of the go words in the home's `AGENTS.md` is the go. On *Change something*,
+offer as options the changes the draft admits: a narrower subject, a part left out, another name.
+Then write the study and nothing else — no note, no line in `Knowledge/INDEX.md`, no entry in
+`Knowledge/LOG.md`, which record the library, not the owner's work.
+
+**Then offer the commit.** Show the two commands it takes — `git add` with the study's files, by
+name, never `--all`, and `git commit -m "Study: <subject>"` — and ask `Commit?` (`¿Confirmo?`):
+*Commit it for me*, *I'll review it first*; without a question tool, the two as a numbered list in
+chat. On *Commit it for me*, run them: the owner's pick is the human act, as the go was for the
+write. On *I'll review it first*, nothing more: they commit, or say *commit it* and you run the
+commands then. Never commit unasked.
 
 Never move, rename or delete a study on your own, never write outside `Studies/`, and never cite a
 study as a source — in a note, a concept page or a strategy.

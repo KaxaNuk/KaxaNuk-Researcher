@@ -9,7 +9,7 @@ description: >
   install SETUP.md walks through; once per person, never per strategy. It does NOT create a
   strategy (use `init-strategy`), and does NOT ask how the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.5.0
+  version: 0.5.1
 ---
 
 # Init researcher — a home for the library, once
@@ -25,7 +25,7 @@ what happens in a sentence, and never ask them to type a command: you run every 
 ## When to Use
 
 - The owner runs `init-researcher` by name — *init-researcher Ada*, *set up my researcher* — or
-  `SETUP.md` reaches its step 3, in the conversation that installed the package.
+  `SETUP.md` reaches its step 4, in the conversation that installed the package.
 - **Not when a home already exists.** If the owner already has one — a folder with a filled
   `RESEARCHER.md` — say where, and stop: a second home splits the library. A home made before the
   researcher was a package is brought forward by `update`, not replaced.
@@ -42,16 +42,17 @@ what happens in a sentence, and never ask them to type a command: you run every 
 
 3. **The place, in one question.** Propose one folder, built from the name, short and outside any
    synced folder: `C:\Research\<Name>` on Windows — `D:\Research\<Name>` when a `D:` drive exists —
-   and `~/Research/<Name>` on macOS and Linux. Options: *Here — <that path>*; *Choose another
-   folder*, which asks for the parent folder only, in chat, and puts `<Name>` inside it. Never a
-   deep path such as `C:\Users\<you>\OneDrive\...`: on Windows a copied path may pass the path
-   limit. The folder always takes the researcher's name.
+   `/Users/<you>/Research/<Name>` on macOS and `/home/<you>/Research/<Name>` on Linux. The path
+   handed to the script is absolute, the home folder spelled out — never `~`. Options:
+   *Here — <that path>*; *Choose another folder*, which asks for the parent folder only, in chat,
+   and puts `<Name>` inside it. Never a deep path such as `C:\Users\<you>\OneDrive\...`: on Windows
+   a copied path may pass the path limit. The folder always takes the researcher's name.
 
 4. **The go, in two lines.** "I will update the researcher package, create `<full path>` with your
    researcher's library, and then ask you a few short questions about you, about three minutes.
-   Your assistant may ask you to allow a few commands; allowing them is all you need to do." Ask
-   for the go — *Go*, *Change something*, *Stop* — and run on *Go* only. What the copy contains is
-   said in the hand-over, not here.
+   Your assistant may ask you to allow a few commands; allowing them is all you need to do." The
+   update is said only when step 5 will run. Ask for the go — *Go*, *Change something*, *Stop* —
+   and run on *Go* only; what the copy contains is said in the hand-over, not here.
 
 5. **Bring the package up to date**, on the same go, before anything is copied — the owner types
    nothing:
@@ -94,9 +95,9 @@ what happens in a sentence, and never ask them to type a command: you run every 
    so it is yours.* It asks who the owner is, what they are here for, and the researcher's domains,
    voice and rules — nothing about markets: how the owner invests is `philosophy`'s, a second
    interview the hand-over offers, and what the reading is for is asked by the first `read`. The
-   interview's own hand-over — the map of the folders, a first thing to read, the skills that grow
-   the researcher, and `philosophy` now or in a new session — ends the run, or hands on to `read`
-   or `philosophy` when the owner picks one there.
+   interview's own hand-over — the home, a first source, the one next thing for what the owner is
+   here for — ends the run, or hands on to `read`, `philosophy` or `init-example` when the owner
+   picks one there.
 
    If the owner would rather stop here, the hand-over is two lines: open `<full path>` in a new
    session, and there type `/interview` — elsewhere, ask for the interview by name. The library is

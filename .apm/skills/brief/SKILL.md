@@ -13,7 +13,7 @@ description: >
   adds nothing to the library — a figure in a brief enters it only as a source in Sources/, then
   `read`.
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Brief — one dated file a day: work, markets, portfolio
@@ -159,7 +159,7 @@ In chat, short:
   *Work* quotes no more of a message than the line that says what it asks.
 
 Then ask for the go — header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat,
-*go*, *proceed*, *ok*, *yes*, *sí* or *dale* is the go. **On *Change something*, ask again with
+any of the go words in the home's `AGENTS.md` is the go. **On *Change something*, ask again with
 options**: drop a part; other days or another time; fewer measures; no *Regime watch*; leave the
 `Portfolio/` files uncreated. Never write on silence or on a rejection.
 
@@ -178,10 +178,10 @@ options**: drop a part; other days or another time; fewer measures; no *Regime w
    slots filled, a part not picked dropped whole, *Regime watch* dropped when no question is tied
    to the measures, and nothing else changed. The prompt is what lies between its two markers.
 3. **On the desktop app, the task** — `create_scheduled_task` with the task id
-   `<slug>-daily-brief`, `<slug>` the researcher's name in lowercase with hyphens, as `interview`
-   makes it; the title *<Name> daily brief*; a one-line description; the cron line in local time;
-   and the filled contract as its prompt. A change is `update_scheduled_task` on the task step 1
-   found. The app may ask the owner to allow it.
+   `<slug>-daily-brief`, `<slug>` the researcher's name made safe for a folder, as `interview`'s
+   *Step 4* says — `Sofía` becomes `sofia`; the title *<Name> daily brief*; a one-line
+   description; the cron line in local time; and the filled contract as its prompt. A change is
+   `update_scheduled_task` on the task step 1 found. The app may ask the owner to allow it.
 4. **Elsewhere, no task is created, and the choices are kept nowhere.** Give the one line that
    carries them, in the owner's language, to say each morning — *brief*, the parts, the set or the
    measures, and each measure tied to a question with *for question N*: *brief, Markets and

@@ -8,7 +8,7 @@ description: >
   the worked example (use `init-example`), and does NOT create a researcher (use
   `init-researcher`).
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -54,10 +54,12 @@ every strategy made from the same package version starts identical.
    uv run --no-project python "<this skill's directory>/scripts/scaffold.py" strategy "<full path>"
    ```
 
-   It refuses a folder that exists and is not empty, and says why; go back to step 1 rather than
-   around it. On Windows without long paths, it also refuses a destination so deep that a copied
-   path would pass 259 characters, names that path and the longest destination that fits, and writes
-   nothing; choose a shorter place. If it cannot find the package, it prints the install command —
+   It takes a leading `~` as the home folder, and refuses a folder that exists and is not empty,
+   saying why; go back to step 1 rather than around it. On Windows without long paths, it also
+   refuses a destination so deep that a copied path would pass 259 characters, names that path and
+   the longest destination that fits, and writes nothing; choose a shorter place. A copy the system
+   stops partway — a full disk, a file refused — ends in one line naming the file and the reason;
+   the partial folder can be deleted. If it cannot find the package, it prints the install command —
    give it to the owner. A fork of the package, or a clone in a folder of another name, is not found
    on its own: pass `--package <its install folder>`. A git step that fails leaves the copy in place
    — the script still exits 0 — and prints every command that finishes the repository from that step

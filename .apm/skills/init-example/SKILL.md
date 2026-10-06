@@ -9,7 +9,7 @@ description: >
   script with `--only` does), and never builds on the example: it is a worked strategy to read,
   not a template to fill.
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -74,9 +74,11 @@ belongs in each file. It is also readable without installing anything, in
    copy already holds. Name the path it landed at, to read beside the strategy's file; never copy
    its lines into the strategy.
 
-5. **Hand over.** For the whole example: open it in a **new** session, and its `SETUP.md` from
-   step 2 builds the environment if they want to run it. Never build a strategy on it; a strategy
-   of their own is `init-strategy`.
+5. **Hand over.** For the whole example: reading it needs nothing — `OBJECTIVE.md`, then
+   `RESULTS.md`, then `Experiments/Experiment_1/`. Running it needs a data provider's key (FMP),
+   about three hours of downloads, KaxaNuk's benchmark and factor files, and the licensed Backtest
+   Engine and Attribution Analysis; its `SETUP.md`, from step 2, says how, in a **new** session
+   opened in the folder. Never build a strategy on it; a strategy of their own is `init-strategy`.
 
 ## References
 

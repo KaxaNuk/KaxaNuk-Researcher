@@ -2,27 +2,28 @@
 name: read
 description: >
   Load this skill whenever the owner asks to read, file, compile or add a source to the library — a
-  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, and in a strategy, once its
-  OBJECTIVE.md has claims because the objective comes before any paper, into a note beside the PDF
-  in its Bibliotheca/ with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter with a script,
+  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, a file they attach or name
+  copied into Sources/ first, on the same go, and in a strategy, once its OBJECTIVE.md has claims
+  because the objective comes before any paper, into a note beside the PDF in its Bibliotheca/
+  with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter with a script,
   shows the owner the table of contents, asks which chapters serve which of their questions or
   claims — at home with no question yet, first which question the source serves, added as
   question 1 — reads only those, and writes one note per chapter read, after a plan and the
   owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
   library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
 metadata:
-  version: 0.9.0
+  version: 0.10.0
 ---
 
 # Read — a source into the library, a chapter at a time
 
-The owner drops a PDF or a clipping into the sources and asks to read it, file it, compile it or add
-it to the library; names a source and the question or claim it should serve; or asks for a book's
-table of contents before deciding what to read. What they said carries the arguments: the
-strategy's path when the session is not open in it, a path under the sources to read only that,
-the question or claim by number, and *outline only* to stop after the table of contents. It is not
-for answering questions from the library — that is `query` — nor for rebuilding the index, which
-is the `refresh-index` command.
+The owner attaches a PDF or a clipping, names one on their computer or drops one into the sources,
+and asks to read it, file it, compile it or add it to the library; names a source and the question
+or claim it should serve; or asks for a book's table of contents before deciding what to read. What
+they said carries the arguments: the strategy's path when the session is not open in it, a path
+under the sources or on their computer to read only that, the question or claim by number, and
+*outline only* to stop after the table of contents. It is not for answering questions from the
+library — that is `query` — nor for rebuilding the index, which is the `refresh-index` command.
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
@@ -95,15 +96,23 @@ with no note beside it, and every clipping under `Notes/` with no note in `Paper
 the owner named. The owner may also point at a file under `Sources/` at home for a strategy: it is
 read for the strategy, and its note and its extract are written there, nothing at home.
 
+**A file the owner attaches or names on their computer is copied in, at home** — a paper into
+`Sources/Papers/`, a book into `Sources/Books/`, an article, notes or a page saved as PDF into
+`Sources/Clippings/` — under its own file name, never over an existing file. When an attachment has
+no path you can read, ask where it is saved — Downloads, usually — and copy it from there. The copy
+is part of this read's plan, and one go covers the copy and the read; until then the script runs on
+the file where it lies. That is the only write into `Sources/`: a source there is never moved,
+renamed, edited or deleted.
+
 **At home, with nothing in `Sources/` left to read,** say so, and name the works under *Find first*
 in `RESEARCHER.md` that have no file yet — year, authors and title as written there, and the
-question each serves — for the owner to find by title and authors and put in `Sources/Papers/`, or
-`Sources/Books/` for a book. With no *Find first* either, and Finance among the domains in
-`RESEARCHER.md`, name the ten papers of the two timelines in `references/reading-map.md`, in this
-skill's folder, one line each, as leads, matched against `Sources/` and the index as the map's
-*Match before proposing* says. With Finance not among the domains, ask the owner for the works to
-find, and say that the reading map covers investment research. Never download one, and write
-nothing; stop there.
+question each serves — for the owner to find by title and authors, and attach or put in
+`Sources/Papers/`, or `Sources/Books/` for a book. With no *Find first* either, and Finance among
+the domains in `RESEARCHER.md`, name the ten papers of the two timelines in
+`references/reading-map.md`, in this skill's folder, one line each, as leads, matched against
+`Sources/` and the index as the map's *Match before proposing* says. With Finance not among the
+domains, ask the owner for the works to find, and say that the reading map covers investment
+research. Never download one, and write nothing; stop there.
 
 For every PDF among them, run the script — `scripts/extract.py` in this skill's folder, wherever
 the harness installed it — from the folder whose library this is, home or the strategy, and read
@@ -174,12 +183,12 @@ how I invest, and see it evolve*, one asks about the owner's own way of investin
 what I read*, they follow the source's own subject. A home made before template 0.16.0 has no
 *Here for* line, and draws on *Works for* and the source alone. The question the owner picks or
 types is theirs: the plan offers to add it as question 1 under *What you are reading for*, in their
-words, and that is the one write this skill makes outside the library and the extracts, at home
-only, said in the plan. Then the table of contents is shown against it, as above. In a strategy
-the questions are the claims in `OBJECTIVE.md`, by number — a strategy with none stopped at A, the
-objective. A question the claims do not cover is a claim to add with `objective` before the
-reading, and *background reading* is a home answer: in a strategy every note serves a claim.
-Nothing is written at home.
+words — with the copy of *step 2*, the only write this skill makes outside the library and the
+extracts, at home only, said in the plan. Then the table of contents is shown against it, as
+above. In a strategy the questions are the claims in `OBJECTIVE.md`, by number — a strategy with
+none stopped at A, the objective. A question the claims do not cover is a claim to add with
+`objective` before the reading, and *background reading* is a home answer: in a strategy every
+note serves a claim. Nothing is written at home.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the
@@ -226,23 +235,25 @@ from a summary.
 
 ## 5. Present the plan
 
-In chat: for each source, the notes it becomes — target paths, each with the question or claim it
-serves, by number — and, for a book, what its `INDEX.md` will record for the chapters skimmed and
-skipped; in a strategy, the row each note adds to `BIBLIOGRAPHY.md` or the lead it replaces, under
-the part it bears on; at home, the concept pages it creates and the ones it updates, one line each;
-links; `Philosophy/` files to cite, never a round file in `Philosophy/Evolution/`; contradictions
-found; new domain folders at home, if any; questions to add to `RESEARCHER.md` at home, if any, in
-the owner's words; and the log line. In a strategy, a clipping in markdown or plain text under
-`Notes/` is committed with the strategy unless the owner ignores it — the `.gitignore` keeps out
-PDFs and extracts, not clippings — so the plan says so, beside the note it becomes. Then ask for
-the go through the question tool — *Go*, *Change something*, *Stop* — or in chat where there is
-none; *go*, *proceed*, *ok* or *yes* is the go. **On *Change something*, ask again with options,
-never with an open question**: the changes this plan admits, as concrete alternatives — fewer notes
-or pages, different names, only the notes this run, a different domain — and ask for the go again
-on the revised plan. **Never write on silence or on a rejection.**
+In chat: for each source, its copy into `Sources/` when it came from outside, the notes it becomes
+— target paths, each with the question or claim it serves, by number — and, for a book, what its
+`INDEX.md` will record for the chapters skimmed and skipped; in a strategy, the row each note adds
+to `BIBLIOGRAPHY.md` or the lead it replaces, under the part it bears on; at home, the concept pages
+it creates and the ones it updates, one line each; links; `Philosophy/` files to cite, never a
+round file in `Philosophy/Evolution/`; contradictions found; new domain folders at home, if any;
+questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log line. In a
+strategy, a clipping in markdown or plain text under `Notes/` is committed with the strategy unless
+the owner ignores it — the `.gitignore` keeps out PDFs and extracts, not clippings — so the plan
+says so, beside the note it becomes. Then ask for the go through the question tool — *Go*, *Change
+something*, *Stop* — or in chat where there is none; any of the go words in the home's
+`AGENTS.md` is the go. **On *Change something*, ask again with options, never with an open
+question**: the changes this plan admits, as concrete alternatives — fewer notes or pages, different
+names, only the notes this run, a different domain — and ask for the go again on the revised plan.
+**Never write on silence or on a rejection.**
 
 ## 6. Write, on approval only
 
+- At home, the copy into `Sources/` first, when the plan has one, as *step 2* says.
 - The notes, in the shape `references/note.md` gives and under its names: frontmatter with `source`,
   `citation`, `local_copy`, `read`, and `tags` where the owner's policy asks; the provenance line;
   `## Why it is here` with the question or claim by number and the owner's reason in their words;
@@ -291,17 +302,24 @@ its ID and short name. With a round in `Philosophy/Evolution/`, the line gives t
 date and offers the next round with `philosophy`; with none, it offers round 1. A work the table
 does not list, or a table that cannot be read because the skill is not installed, gets no line.
 
-Then say: review the diff and commit.
+**Then offer the commit,** at home. Show the two commands it takes — `git add` with every file this
+run wrote, by name, never `--all`, leaving out the extracts and any PDF, which git ignores, and
+`git commit -m "Read: <Author Year, short title>"` — and ask `Commit?` (`¿Confirmo?`): *Commit it
+for me*, *I'll review it first*; without a question tool, the two as a numbered list in chat. On
+*Commit it for me*, run them: the owner's pick is the human act, as the go was for the write. On
+*I'll review it first*, nothing more: they commit, or say *commit it* and you run the commands
+then. Never commit unasked. In a strategy the owner reviews the diff and commits, as its
+`AGENTS.md` says.
 
 ## What this skill will not let you do
 
 - Read a PDF page by page when the script can extract it. The table-of-contents pages of a PDF with
   no outline are the one exception.
-- Write to the sources, `Philosophy/`, `Studies/` or `Lessons/`. The extracts folder is the one
-  place outside the library this skill writes, and only the script writes there.
+- Write to the sources beyond the copy *step 2* makes, or to `Philosophy/`, `Studies/` or
+  `Lessons/`. Only the script writes the extracts.
 - Write at home while reading in a strategy — no note, no index line, no log entry, no question in
-  `RESEARCHER.md`, no extract. A strategy's source enters the home library only when the owner puts
-  it in `Sources/` at home and runs `read` there.
+  `RESEARCHER.md`, no extract. A strategy's source enters the home library only when it is copied
+  into `Sources/` at home, on the owner's go, and read there.
 - Write into a strategy's `Bibliotheca/Knowledge/`. Its notes live beside its sources, and
   `BIBLIOGRAPHY.md` is its index.
 - Rewrite `BIBLIOGRAPHY.md` beyond the row a note adds or replaces.

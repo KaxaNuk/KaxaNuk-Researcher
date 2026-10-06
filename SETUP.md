@@ -29,6 +29,7 @@ need to: the assistant runs every command.
 | step 5, the interview | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` |
 | step 6, `read`, only if the user brings a document now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` |
 | step 6, `philosophy`, only if the user takes it now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/philosophy/SKILL.md` |
+| step 6, `init-example`, only if the user asks for the worked example now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-example/SKILL.md` |
 
 ---
 
@@ -43,11 +44,15 @@ Two tools. Python is **not** one of them — `uv` fetches what it needs itself. 
 
 | Tool | Windows | macOS and Linux |
 | --- | --- | --- |
-| [git](https://git-scm.com) | `winget install --id Git.Git -e` | `xcode-select --install` on macOS; the package manager on Linux |
+| [git](https://git-scm.com) | `winget install --id Git.Git -e --accept-source-agreements --accept-package-agreements` | `xcode-select --install` on macOS; the package manager on Linux |
 | [uv](https://docs.astral.sh/uv/) | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 
-A tool just installed may not be on this shell's path yet: call it by its full path, or ask the
-user to reopen the assistant only if nothing else works.
+On macOS, `xcode-select --install` opens a dialog: ask the user to click *Install* and to say when
+it has finished; `xcode-select -p` printing a folder confirms it. A tool just installed is not on
+this shell's path yet, so call it by its full path for the rest of the conversation: `uv` and `uvx`
+in `%USERPROFILE%\.local\bin\` on Windows and `~/.local/bin/` elsewhere, and git at
+`C:\Program Files\Git\cmd\git.exe` on Windows. A command that runs git itself, APM among them,
+finds it when `C:\Program Files\Git\cmd` is put first on the path in that same command.
 
 Every folder the researcher makes starts as a git repository with a first commit, which needs a
 name and an email. If `git config --global user.name` prints nothing, ask the user for both —
@@ -78,10 +83,10 @@ Two questions, one at a time:
 1. **"What will you call your researcher?"** — propose three short names, and take theirs. Never
    pick one for them.
 2. **Where.** Propose one folder, built from the name: `C:\Research\<Name>` on Windows —
-   `D:\Research\<Name>` when a `D:` drive exists — and `~/Research/<Name>` on macOS and Linux.
-   They answer *yes*, or name another parent folder, and the researcher's folder goes inside it.
-   Keep it short and out of synced folders such as OneDrive: on Windows a long path breaks the
-   copy.
+   `D:\Research\<Name>` when a `D:` drive exists — `/Users/<you>/Research/<Name>` on macOS and
+   `/home/<you>/Research/<Name>` on Linux, passed to the script spelled out, never with `~`. They
+   answer *yes*, or name another parent folder, and the researcher's folder goes inside it. Keep it
+   short and out of synced folders such as OneDrive: on Windows a long path breaks the copy.
 
 ## Step 4 — Make the home
 
@@ -100,18 +105,15 @@ user answers and gives one go.
 
 ## Step 6 — Hand over
 
-The interview's own hand-over ends the conversation: who the researcher is, a table of the home's
-folders and what each is for, how to start learning — a document into `Sources/`, then `read`, or a
-topic it suggests from the reading map, put on *Find first* — what grows the researcher in later
-sessions, `philosophy` and `brief` among them, and how to stay current. When the user brings a
-document now, follow `read` from its installed path. It offers `philosophy` *now* or *later*, in a
-new session, which it recommends; on *now*, follow `philosophy` from its installed path, as the
-table above gives. Add one line: **the skills and the researcher appear in a new session**, so the
-next thing is to open the researcher's folder in a new conversation.
+The interview's own hand-over ends the conversation, short: who the researcher is, where its home
+is, how to add a first source, the one next thing for what the user came for, and *lost? say
+`next`*. When the user brings a document now, follow `read` from its installed path; when they take
+`philosophy` *now* rather than in a new session, or ask for the worked example, follow that skill
+from its installed path.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
 `.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and `git status` is clean — save
-the files a `read` or a `philosophy` round taken now leaves for the user to review and commit. For
+what a `read` or a `philosophy` round taken now leaves for the user to review first. For
 Claude Code, `~/.claude/skills/` holds `init-strategy`, `read`, `query`, `interview`, `next`,
 `philosophy`, `brief` and the researcher's own skill, and `~/.claude/agents/` holds
 `blueprint-critic.md` and the researcher's agent.
@@ -148,10 +150,11 @@ OpenCode and Windsurf get the skills and the commands but not the instructions, 
 OpenCode and Windsurf take no agent: there the researcher is its skill. **Codex gets the skills
 only**, so the steps a newcomer needs — `init-researcher`, `interview`, `next`, `read`, `query`,
 `philosophy`, `brief` — are all skills. A command, such as `objective` or `blueprint`, is run
-there by naming its file:
-*follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`*.
-Assistants without a question tool, such as Codex and Gemini, ask each question in chat as a
-numbered list; the user answers with the numbers.
+there by naming its file —
+*follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and
+once the interview has run, the researcher's own skill does this for the user: they name the
+command, and it follows the file. Assistants without a question tool, such as Codex and Gemini,
+ask each question in chat as a numbered list; the user answers with the numbers.
 
 **Why APM is pinned at 0.29.0.** APM 0.29.0 installs this package cleanly. From 0.29.1 on, APM
 stages every package it installs under about 148 more characters of folders —

@@ -12,7 +12,7 @@ description: >
   write RESEARCHER.md beyond the works picked for its closing Find first line, and never says what
   to buy, sell or hold.
 metadata:
-  version: 1.0.0
+  version: 1.0.1
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -258,8 +258,8 @@ Show in chat, before anything is written:
   they commit, and a public remote would show their goals and answers to anyone; keep the remote
   private, or leave a line out.
 
-Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat, *go*, *proceed*, *ok*,
-*yes*, *sí* or *dale* is the go. **A round with no typed answer** says *nothing typed, so
+Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat, any of the go words in
+the home's `AGENTS.md` is the go. **A round with no typed answer** says *nothing typed, so
 `HOW-I-INVEST.md` stays as it is*, and asks instead `Keep it?` (`¿Lo guardo?`) — *Keep this round
 as a record*, *Change something*, *Write nothing* — because a kept round counts as round *N* and
 makes the next run a retake.
@@ -328,7 +328,7 @@ not kept, and the next run starts as this one did, as round *N* again.
    or already read. A section with no such line takes one as its last line, before *Out of scope
    for now*: `**Find first:** <the works>`. Nothing else in that file changes.
 
-Then say: *review the diff and commit*, with the commands it takes:
+Then show the two commands it takes:
 
 ```bash
 git add Philosophy/HOW-I-INVEST.md Philosophy/Evolution/<the round file> RESEARCHER.md
@@ -347,9 +347,10 @@ Short, in the owner's language and voice, in this order:
 1. **What moved.** On a retake, the comparison's line of counts; on round 1, *round 1 written*,
    and how many lines went into `HOW-I-INVEST.md`.
 2. **The first thing to `read`.** The first work picked in C2 — in `Sources/` already, `read` it;
-   otherwise find it by its title and authors, put it in `Sources/Papers/`, or `Sources/Books/`
-   for a book, then say *read it*. A work that cannot be found comes off the *Find first* line by
-   hand: it is the owner's file. With nothing picked, any source dropped into `Sources/`.
+   otherwise find it by its title and authors, then attach it or say where it is saved, and I copy
+   it into `Sources/Papers/`, or `Sources/Books/` for a book, on your go, and read it. A work that
+   cannot be found comes off the *Find first* line by hand: it is the owner's file. With nothing
+   picked, any source: attach it or say where it is saved, and I copy it in on your go.
 3. **When to come back.** Name two or three works from this round's reading list — the works
    picked in C2 first, then the list's *Start here* works in the map's order; at Starter, in the
    plain words of C2's *Three classic studies* — and say: once two of them have notes,

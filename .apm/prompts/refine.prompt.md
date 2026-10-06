@@ -32,6 +32,12 @@ pass. `${input:path}` is one file under `Philosophy/`.
    new words are already in the file, under their own tag.
 5. Show the diff in chat and wait for an explicit go.
 6. Apply exactly the approved diff. Report what changed.
+7. **Then offer the commit.** Show the two commands it takes — `git add` with the file, by name,
+   never `--all`, and `git commit -m "Refine: <file>"` — and ask `Commit?` (`¿Confirmo?`):
+   *Commit it for me*, *I'll review it first*; without a question tool, the two as a numbered list
+   in chat. On *Commit it for me*, run them: the owner's pick is the human act, as the go was for
+   the write. On *I'll review it first*, nothing more: they commit, or say *commit it* and you run
+   the commands then. Never commit unasked.
 
 Never restructure, reorder or paraphrase. Never move a `Philosophy/` file's content into
 `Knowledge/` as a side effect. Never invent content to resolve an ambiguity — flag it.

@@ -31,6 +31,12 @@ the files.
    rejected or unanswered plan.**
 5. Write `INDEX.md`, and append to the library's `LOG.md`: `## [YYYY-MM-DD] refresh-index | <N>
    notes indexed`.
+6. **Then offer the commit.** Show the two commands it takes — `git add Knowledge/INDEX.md
+   Knowledge/LOG.md`, never `--all`, and `git commit -m "Refresh the index"` — and ask `Commit?`
+   (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question tool, the two as
+   a numbered list in chat. On *Commit it for me*, run them: the owner's pick is the human act, as
+   the go was for the write. On *I'll review it first*, nothing more: they commit, or say *commit
+   it* and you run the commands then. Never commit unasked.
 
 Never modify a note during a refresh. Never index anything under `Philosophy/`, `Sources/` or
 `Extracts/`.

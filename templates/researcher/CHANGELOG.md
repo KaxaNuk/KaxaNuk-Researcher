@@ -6,6 +6,36 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.17.0 (2026-10-06)
+
+**MINOR** — the first run lands, and the next step is clear. Attach a file in chat or name one on
+your computer and the researcher copies it into `Sources/` on your go — the one write there. Every
+skill that writes at home then asks `Commit?` — *Commit it for me* or *I'll review it first* — and
+never commits unasked. A go is *go*, *proceed*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same
+word in your language. `next`, and your researcher when you greet it, name the one next thing for
+what you are *Here for*; the interview's hand-over is shorter.
+
+**What to do differently:** run `update` in your home — it offers the new researcher skill, with
+the greeting, commands on Codex and a safe slug, as a diff, and on your go writes it, renames the
+agent with it when the slug changes, and reinstalls the home. The changes to `AGENTS.md`,
+`README.md` and `.gitignore` come with it, as a diff too.
+
+### Changed
+
+* **`AGENTS.md`**: the `Sources/` row allows one write — a source you attach or name, copied in on
+  your go under its own file name, never over an existing file; nothing there is moved, renamed,
+  edited or deleted. *What is learned goes home*, *Working in a strategy*, *Joining other projects*
+  and the first hard don't say the same. *Plan first, then write* lists the go words, and has a
+  skill that wrote at home offer the commit, your pick its go. *Who is speaking* answers a greeting
+  with the one next thing, and on Codex a command you name is followed from its file in the
+  package.
+* **`.gitignore`**: `desktop.ini`, which Explorer leaves in a folder, beside `.DS_Store` and
+  `Thumbs.db`.
+* **`README.md`**: the `Sources/` row and step 2 of *The path* — attach or name a file, copied in
+  on your go; step 6 reads the worked example, `init-example`, before `init-strategy`; *Save a copy
+  off this computer* says every skill that writes here offers to commit; *Lost?* says `next` names
+  the one next thing for what you came for.
+
 ## 0.16.0 (2026-10-04)
 
 **MINOR** — setup is about you, and your investment philosophy has a skill of its own. `interview`
