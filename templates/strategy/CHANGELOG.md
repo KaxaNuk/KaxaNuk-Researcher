@@ -41,6 +41,26 @@ for somebody who was not in the room:
 
 ---
 
+## 0.13.3 (2026-10-06)
+
+**PATCH** — a name whose prices are about to stop is sold the day before. A strategy built on the
+template found the Backtest Engine refusing its book outright: a provider's file had a 62-day gap
+at a corporate event, the book held the name through it, and the engine checks every open
+position on every rebalance date. Nothing about any result changes: the rule is written into the
+contract, and a strategy takes it when its own rule does.
+
+**What to do differently:** in a strategy's eligibility, require a price on t and on t+1, so the
+book re-strikes on the last priced day; apply it to every counterfactual alike, and name the day
+of hindsight it takes beside the delisting exit in `AGENTS.md`.
+
+### Changed
+
+- **`AGENTS.md`**: the look-ahead row of the five ways a backtest lies says a name whose prices
+  are about to stop is sold at t−1 by a re-strike the rule triggers, and names that exit's day of
+  hindsight as the one stated leak.
+- **`Experiments/portfolio_construction.py`**: a third timing rule in its contract, *sell before a
+  price series stops*.
+
 ## 0.13.2 (2026-09-29)
 
 **PATCH** — `Experiments/Experiment_1/BRAINSTORMING_1.md` is gone. Its entries had the journal's

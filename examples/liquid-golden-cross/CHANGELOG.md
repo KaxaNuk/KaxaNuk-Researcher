@@ -41,6 +41,20 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.3 (2026-10-06)
+
+**PATCH** — the template's 0.13.3, in the shared lines: a name whose prices are about to stop is
+sold the day before, by a re-strike the rule triggers at t−1. The example's code takes the rule on
+its next run; no figure, rule or frozen byte moves until then.
+
+**What to do differently:** nothing, until the example's next run.
+
+### Changed
+
+- **`AGENTS.md`**: the look-ahead row, as the template's.
+- **`Experiments/portfolio_construction.py`**: the docstring's third timing rule, *sell before a
+  price series stops*.
+
 ## 0.18.2 (2026-09-29)
 
 **PATCH** — the four `BRAINSTORMING_N.md` files are gone, as the template's is. Their five entries

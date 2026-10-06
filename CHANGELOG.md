@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
-## [Unreleased]
+## [0.31.1] - 2026-10-06
 A name whose prices are about to stop is sold the day before. A strategy built on the template found
 the Backtest Engine refusing its book outright: a provider's file had a 62-day gap at a corporate
 event, the book held the name through it, and the engine checks every open position on every
@@ -23,9 +23,11 @@ of hindsight it takes beside the delisting exit in `AGENTS.md`.
 - **`Experiments/portfolio_construction.py`**, the template's contract and the example's docstring:
   a third timing rule, *sell before a price series stops*. The example's code takes it on its next
   run; its published numbers are unchanged until then.
-- **`portfolio-construction-runs`**: the rule in section 5, beside lagging and rebalancing on
-  change. **`backtest-engine-runs`**: the integrity check covers every open position, not only the
-  names traded, and no configuration field waives it.
+- **`portfolio-construction-runs`** (0.2.5): the rule in section 5, beside lagging and
+  rebalancing on change. **`backtest-engine-runs`** (0.1.7): the integrity check covers every open
+  position, not only the names traded, and no configuration field waives it.
+- **The template** (0.13.3) and **the worked example** (0.18.3), PATCH: nothing about any result
+  changes.
 
 ## [0.31.0] - 2026-10-04
 The researcher is a way in for people with any background, and its setup lost the newcomers it was
