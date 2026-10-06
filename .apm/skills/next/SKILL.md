@@ -3,10 +3,12 @@ name: next
 description: >
   Say where the owner stands — in the researcher's home or in a strategy — and the one thing to do
   next, with the command or skill that does it, read from the files on disk as a checklist; nothing
-  is written. Takes an optional path to a strategy, when the session is not open in it. Only when
-  the owner runs it by name; never on its own.
+  is written, save the commit of what a skill left at home, run only when the owner picks *Commit
+  it for me*. Takes an optional path to a strategy, when the session is not open in it. Only when
+  the owner runs it by name, or when the researcher's skill answers a greeting; never on its own
+  otherwise.
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Next — where you stand, and what to do next
@@ -14,9 +16,10 @@ metadata:
 The process has eight steps, an order of work with eight parts, three skills that make folders,
 `interview`, `philosophy`, `brief`, this skill and nine commands. This skill is the map: it reads
 the folder, says which parts are done, and names **the one thing to do next** with the command or
-skill that does it. It writes nothing, runs nothing, and never starts the next thing itself — doing
-it is a different request, by the name this skill gives. It is a skill, not a command, so every
-assistant APM deploys to has it, Codex included.
+skill that does it. It writes nothing and never starts the next thing itself — doing it is a
+different request, by the name this skill gives — save one: at home, the commit *Step 2* offers,
+run when the owner picks *Commit it for me*. It is a skill, not a command, so every assistant APM
+deploys to has it, Codex included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
 — *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
@@ -30,7 +33,7 @@ session is open in.
 | `Bibliotheca/`, `Universe/` and `Experiments/` | a strategy | *Step 3* |
 | `RESEARCHER.md` | a researcher's home | *Step 2* |
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
-| none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, and the project's own rules apply; the next things are `query` for what the library holds and, to learn from the project, a source into `Sources/` then `read` at home. No `init-*` command is suggested |
+| none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, and the project's own rules apply. Name the home and its one next thing, *Step 2* read at the home's path; here, `query` answers from the library, and what the project teaches goes home as a source, then `read`. No `init-*` command is suggested for this folder |
 | none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which of the three skills makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-example` to read the worked example — and stop |
 
 When both a strategy and a home are in the session — added to it, or named by the researcher's
@@ -38,31 +41,45 @@ skill — read the strategy: the home is the library it brought along.
 
 ## Step 2: At home
 
-Check in this order and stop at the first that fails; that is the next thing.
+Check in this order and stop at the first that fails; that is the next thing. `<slug>` is the
+researcher's name in `RESEARCHER.md` made safe for a folder, as `interview` *Step 4* says: accents
+and marks removed — *á* to *a*, *ñ* to *n*, *ü* to *u* — lowercase, every character that is not a
+letter a to z or a digit turned into a hyphen, repeated hyphens collapsed and none at either end:
+`Ada Lovelace` becomes `ada-lovelace`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`. In rows 2 and
+3 a file or a folder of another name counts when its `name:` is the one the home's agent carries,
+as an older `interview` wrote them, so a home already installed is not sent to install again.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
-| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise commit what is there, with a message saying what came in — for a round of `philosophy`, the message it suggested, *Philosophy: round N, <level>* |
+| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise the commit of what came in: name it, file by file, show the two commands it takes — `git add` with each file by name, never `--all`, and `git commit -m "<message>"`, the message the skill that wrote them gives, such as *Philosophy: round N, <level>* or *Read: <Author Year, short title>*, or one saying what came in — and ask `Commit?` (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question tool, the two as a numbered list in chat. On *Commit it for me*, run them — the owner's pick is the go — and go on from row 1; on *I'll review it first*, nothing more |
 | 1 | `RESEARCHER.md` has no angle-bracketed slot left. *What you are reading for* with no numbered question is not a slot: the template ships it so, and the first `read` asks for question 1 | `interview` — the interview |
-| 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved |
-| 3 | the home is installed for the user: `uvx --from apm-cli==0.29.0 apm deps list -g` names this folder, and the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code | `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
+| 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, its folder named in a to z, digits and hyphens only, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved — or its folder's name holds anything but a to z, digits and hyphens, such as an accent, which APM deletes on install |
+| 3 | the home is installed for the user: the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code — or, where that folder cannot be read, `uvx --from apm-cli==0.29.0 apm deps list -g` names `_local/<this folder's name>`, its accents possibly dropped | `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
 | 4 | every source under `Sources/` — a PDF, a document or a clipping, not a `.gitkeep` — has a note: match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves; with no numbered question yet, `read <the source>` alone, which asks the owner which question it serves and adds it as question 1 |
-| 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/`, or the owner took it off the line, which is theirs to edit by hand | find it by its title and authors, put it in `Sources/Papers/` or `Sources/Books/`, then `read`; or, when it cannot be found, take it off the *Find first* line in `RESEARCHER.md` |
+| 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/`, or the owner took it off the line, which is theirs to edit by hand | find it by its title and authors, then attach it or say where it is saved, and the researcher copies it into `Sources/Papers/` or `Sources/Books/` on the go, then `read`; or, when it cannot be found, take it off the *Find first* line in `RESEARCHER.md` |
 | 6 | `Knowledge/INDEX.md` lists every note and page on disk | `refresh-index` |
 
-All seven done: say so, and that the next thing is the owner's. **With no numbered question under
-*What you are reading for*** — a home fresh from the interview — it is one thing: drop a PDF, or a
-text or Markdown file, into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` and say
-*read it* — save a Word document, an e-book or a web page as PDF first; the first `read` asks
-which question it serves, in plain words, and adds it as question 1 on the go.
-**Otherwise** it is one of these — a new source into `Sources/`, a question added under *What you
-are reading for*, `study <subject>` to work out an idea, a plan or a decision from the library —
-`study` alone lists the studies already in `Studies/` — `teach <topic>` for lessons on what the
-library holds, `brief setup` for a daily brief of work, markets and portfolio on a schedule, or
-`init-strategy <name>` for the first strategy, where the researcher is already present; or work
-with it in any other project, where it is present too, or teach it a tool: its documentation into
-`Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README. The owner's
-philosophy is never a step that fails: *Step 4* closes with it in one line.
+All seven done, the one next thing follows the *Here for* line under *Who* in `RESEARCHER.md`: the
+first row below whose pick is on the line and whose thing is not done yet. *Step 1*'s first-row
+test tells the worked example from a strategy of the owner's own.
+
+| Pick | The one next thing | Done when |
+| --- | --- | --- |
+| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | a round file exists in `Philosophy/Evolution/` |
+| *Write down how I invest, and see it evolve* | `philosophy`; once a round exists, `brief setup`, for a daily brief of the markets and holdings they follow, leads the *also* line until `Briefs/` exists | a round file exists in `Philosophy/Evolution/` |
+| *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, hours of downloads, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
+| *Organise what I read*, none, or their own words | a source into `Sources/` — they attach it or name it, and the researcher copies it into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` on their go — then `read`, which asks which question it serves | `Knowledge/` holds a note |
+
+When every pick's thing is done, the one next thing is, with no note in `Knowledge/` yet, the last
+row's; otherwise the first of these whose pick is on the line — *Learn the basics*,
+`teach <topic>` on a topic the notes cover; *Write down how I invest*, a new source, and
+`philosophy` again once notes came in since the last round; *Build and test a strategy*,
+`next <its path>`; the rest, a new source, or `query`. Up to three more on one line as *also*: a
+question added under *What you are reading for*, `study <subject>` to work out an idea, a plan or
+a decision from the library — `study` alone lists the studies in `Studies/` — `teach <topic>`,
+`brief setup` for a daily brief, `init-strategy <name>`, or teaching it a tool: its documentation
+into `Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README.
+Philosophy is never a row that fails: for the other picks, *Step 4* closes with it in one line.
 
 ## Step 3: In a strategy
 
@@ -101,16 +118,20 @@ E; the objective, the universe and the data are the strategy's and stay.
 In chat, short:
 
 1. **Which folder this is**, and the status line where there is one.
-2. **The checklist** as a table: each part, done or not, with the file that says so.
-3. **Next:** one line — the part, the command or skill by name, and what it will ask for.
-4. **Your philosophy**, at home only, one closing line, offered and never pressed. With no round
-   file in `Philosophy/Evolution/`: *`philosophy` writes down how you invest, in your words, at
-   your level — round 1, whenever you like.* With one or more: the last round's date and level —
-   the latest date in the file names, `YYYY-MM-DD.md`, and on that date the highest suffix,
-   `YYYY-MM-DD-2.md` — and how many notes came in since: the notes the `read` entries of
-   `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as written, a
-   book's `INDEX.md` and concept pages aside. When notes came in, add that `philosophy` takes the
-   round again; when none did, the date, the level and *no notes since* are the whole line.
+2. **The checklist**: in a strategy, a table — each part, done or not, with the file that says so;
+   at home, one line when rows 0 to 6 pass, *setup: all good*, else the failing row alone.
+3. **Next:** one line — the part, the command or skill by name, and what it will ask for; any
+   *also*, one line after it.
+4. **Your philosophy**, at home only, one closing line, offered and never pressed, and left out
+   when *Next* names `philosophy`. With no round file in `Philosophy/Evolution/`: *`philosophy`
+   writes down how you invest, in your words, at your level — round 1, whenever you like.* With
+   one or more: the last round's date and level — the latest date in the file names,
+   `YYYY-MM-DD.md`, and on that date the highest suffix, `YYYY-MM-DD-2.md` — and how many notes
+   came in since: the notes the `read` entries of `Knowledge/LOG.md` dated on or after it — a read
+   the same day counts — list as written, a book's `INDEX.md` and concept pages aside. When notes
+   came in, add that `philosophy` takes the round again; when none did, the date, the level and
+   *no notes since* are the whole line.
 
 Nothing else. No file is written, no log entry appended, no number computed and no plan drafted:
 when the owner says *do it*, that is the named command's or skill's own plan and go, not this one's.
+Row 0's commit, on *Commit it for me*, is the one thing this skill runs.

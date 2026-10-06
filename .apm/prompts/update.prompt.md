@@ -1,5 +1,5 @@
 ---
-description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, and writing the researcher's skill for a home that lacks it; plan first, the owner's go, then update. Home only. Only when the owner runs it by name.
+description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, and writing the researcher's skill for a home that lacks it or holds one behind the template; plan first, the owner's go, then update. Home only. Only when the owner runs it by name.
 input:
   - mode: "Optional: check, to report what is new without changing anything"
 ---
@@ -39,17 +39,19 @@ The owner's files are never touched: `RESEARCHER.md`, `Philosophy/` — its roun
 The exceptions are three, each on the owner's go: the `Projects/` a home made before template
 0.10.0 still has, which *Step 2* reads and *Step 4* moves or removes; the empty `Studies/` a home
 made before template 0.12.0 lacks, whose `.gitkeep` *Step 4* brings from the template; and the
-researcher's skill, `.apm/skills/<slug>/SKILL.md`, which a home made before template 0.14.0 lacks,
-or which names a folder the home has left, and which *Step 4* writes as `interview` gives it.
+researcher's skill, `.apm/skills/<slug>/SKILL.md`, which *Step 4* writes as `interview` gives it
+when the home lacks it or *Step 2* finds it behind the template — and, when its slug changes, the
+agent's file name and `name:` with it, nothing else in the agent.
 `${input:mode}` set to `check` reports what is new and stops, changing nothing.
 
 ## Step 1: Pre-flight
 
 1. **The working tree must be clean, for the update.** `git status --short`. Anything uncommitted
-   — stop, say so, and tell the owner to commit or stash first. In `check` mode, which changes
-   nothing, a dirty tree does not stop the check: report it as one line and go on. A home with no
-   `.git/` is not a repository yet: the update stops and the check reports it, naming the commands
-   `next` gives to finish it.
+   — name it and offer its commit as `next`'s row 0 does, `Commit?` (`¿Confirmo?`), *Commit it
+   for me*, *I'll review it first*; on *Commit it for me*, run it and go on; otherwise stop. In
+   `check` mode, which changes nothing, a dirty tree does not stop the check: report it as one
+   line and go on. A home with no `.git/` is not a repository yet: the update stops and the check
+   reports it, naming the commands `next` gives to finish it.
 2. **A home from before the user-scope install.** Any of these means the home predates it, and this
    update is the migration, which *Step 4* carries out:
    - `.apm/skills/` or `.apm/prompts/` holding `read`, `query` or the researcher's commands;
@@ -142,20 +144,36 @@ or which names a folder the home has left, and which *Step 4* writes as `intervi
 - **`Studies/`, when the home lacks it** — a home made before template 0.12.0: its `.gitkeep` is
   to come from the template, so the folder is there to see.
 - **The researcher's skill and the install for the user**, whatever template version the home is
-  at. A home with an agent in `.apm/agents/` and no `.apm/skills/<slug>/SKILL.md` — one made
-  before template 0.14.0 — or whose skill names a folder other than this one: the skill is to be
-  written as `interview`'s *Step 4* gives it, from `RESEARCHER.md` and this folder's absolute path.
-  When `uvx --from apm-cli==0.29.0 apm deps list -g` does not name this folder, the home is to be
-  installed for the user. And an agent an install inside the home deployed there —
-  `.claude/agents/<slug>.md`, or the agent's file in another assistant's folder inside the home —
-  is to be deleted: it is git-ignored, it shadows the user's copy in every session at home, and it
-  goes stale the first time the agent changes.
+  at. `<slug>` is the researcher's name made safe for a folder, as `interview`'s *Step 4* says:
+  accents and marks removed — *á* to *a*, *ñ* to *n*, *ü* to *u* — lowercase, every character that
+  is not a letter a to z or a digit turned into a hyphen, repeated hyphens collapsed and none at
+  either end: `Ada Lovelace` becomes `ada-lovelace`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`;
+  with nothing left — a name in another script — ask the owner for a short name in Latin letters.
+  The name keeps its accents in the skill's text. APM deletes any other character from a folder
+  name — `sofía` would deploy as `sofa` — so a slug that keeps an accent never installs under its
+  own name. The skill is to be written as `interview`'s *Step 4* gives it, from `RESEARCHER.md` and
+  this folder's absolute path, when the home has an agent in `.apm/agents/` and no skill of the
+  same `name:` — a home made before template 0.14.0 — and written again when the home's skill
+  names a folder other than this one, is behind the template — its `metadata.version` below the
+  one `interview`'s *Step 4* gives, as a skill without the items *A greeting, or what now* and *A
+  command, where the assistant has none* is — or has a slug that breaks the rule, such as an
+  accent, when it moves to `.apm/skills/<slug>/`. Written again, it is shown as a diff against the
+  home's: a line there that no template gave is the owner's, kept where it stands and shown as
+  kept. A slug that changes moves the agent with it, on the same go: its file to
+  `.apm/agents/<slug>.agent.md` and its `name:` to `<slug>`, the only edit to that file. When the
+  skill is written, or the user's folder of the assistant in use lacks the agent or the skill, as
+  `next`'s row 3 checks, the home is to be installed for the user. And an agent an install inside
+  the home deployed there — `.claude/agents/<slug>.md`, or the agent's file in another assistant's
+  folder inside the home — is to be deleted: it is git-ignored, it shadows the user's copy in every
+  session at home, and it goes stale the first time the agent changes; so are the copies a changed
+  slug leaves in the user's folder, the skill and the agent there whose `name:` is the old slug,
+  under the name APM gave them — `~/.claude/skills/sofa/` for `sofía`.
 - **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
   **What to do differently** instruction that applies to this home, in full. Those instructions are
   the point of the update; never summarise them away.
 - **All current?** Say so and stop — unless the home still has a `Projects/`, lacks `Studies/`,
-  or lacks the researcher's skill or the install for the user, which go on to the plan as the items
-  above list them. **`check` mode?** Stop here.
+  or its researcher's skill or the install for the user is missing or behind, which go on to the
+  plan as the items above list them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
@@ -163,11 +181,12 @@ In chat: the pinned APM install, when *Step 1* asked for it; the package version
 for each home file, the sections to bring across, quoted, in the home's own names, and each file
 the home lacks, to bring across whole — `Studies/.gitkeep` among them, when the folder is
 missing; what a migration removes; each move out of `Projects/` and its removal, path by path, and
-what stays there; the researcher's skill, shown whole, the install for the user and each copy of
-the agent inside the home to delete; and what the owner will have to do by hand afterwards, one
-line for each heading, line or blockquote of their own files that the template changed. Then ask
-for the go through the question tool — *Go*, *Change something*, *Stop* — and update on *Go* only;
-in chat, *go*, *proceed*, *ok* or *yes* is the go.
+what stays there; the researcher's skill, shown whole when new and as a diff when written again,
+the agent's move when the slug changes, the install for the user and each copy to delete; and what
+the owner will have to do by hand afterwards, one line for each heading, line or blockquote of
+their own files that the template changed. Then ask for the go through the question tool — *Go*,
+*Change something*, *Stop* — and update on *Go* only; in chat, *go*, *proceed*, *ok*, *yes*, *sí*,
+*dale*, *adelante*, or the same word in the owner's language, is the go.
 
 ## Step 4: Update
 
@@ -224,22 +243,32 @@ in chat, *go*, *proceed*, *ok* or *yes* is the go.
    destination that exists, which would nest one inside the other. `rmdir` once `Projects/Teach/`
    is empty, and `git rm` only when nothing but `Projects/.gitkeep` is left, which removes the
    folder with it. What the owner chose to keep in `Projects/` stays where it is.
-5. **The researcher's skill and the install for the user**, as the owner approved. Write
-   `.apm/skills/<slug>/SKILL.md`; install the home beside the package, so the agent and the skill
-   reach every folder —
+5. **The researcher's skill and the install for the user**, as the owner approved. When the slug
+   changed, `git mv` the old skill folder to `.apm/skills/<slug>/` and the agent to
+   `.apm/agents/<slug>.agent.md`, so both keep their history, and set the agent's `name:` to
+   `<slug>`. Write `.apm/skills/<slug>/SKILL.md`; install the home beside the package, so the agent
+   and the skill reach every folder —
 
    ```bash
    uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
    ```
 
-   — and delete each copy of the agent an install inside the home deployed there. Commit the skill
-   with the entry below; the deleted copies are git-ignored and leave nothing to commit.
+   — and delete each copy *Step 2* listed: the agent's inside the home, and the skill and the agent
+   the old slug left in the user's folder.
 6. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
    *Brought to template X.Y.Z*, a line for each section brought across or declined, one for what
    left `Projects/` and what stayed, one for `Studies/` when it came, and one for the researcher's
-   skill when it was written — whatever the owner
-   declined, so the file names the version the home is now at and the next `update` reports only
-   the versions after it. Nothing else in the file changes: it is the home's history.
+   skill when it was written — whatever the owner declined, so the file names the version the home
+   is now at and the next `update` reports only the versions after it. Nothing else in the file
+   changes: it is the home's history.
+7. **Then offer the commit.** Show the two commands it takes — `git add` with every file written
+   above, by name, never `--all`, since what `git mv` and `git rm` did is staged already, and
+   `git commit -m "Update: brought to template X.Y.Z"` — and ask `Commit?` (`¿Confirmo?`): *Commit
+   it for me*, *I'll review it first*; without a question tool, the two as a numbered list in chat.
+   On *Commit it for me*, run them: the owner's pick is the human act, as the go was for the
+   update. On *I'll review it first*, nothing more: they commit, or say *commit it* and you run the
+   commands then. Never commit unasked. The copies deleted in item 5 are git-ignored or outside the
+   home, and leave nothing to commit.
 
 ## Step 5: Report
 
@@ -255,8 +284,9 @@ In chat and nowhere else:
 - what left `Projects/` — each move and the removal — and each path left there for the owner, and
   that a file moved into `Studies/` may want a state on its first line;
 - the sections of the home's files brought across, and those the owner declined;
-- the researcher's skill, when it was written, and that the home is now installed for the user, so
-  the researcher is in every folder;
+- the researcher's skill, when it was written, with the owner's lines it kept, and the agent's new
+  name when the slug changed; and that the home is now installed for the user, so the researcher
+  is in every folder;
 - that the new skills and commands appear in a **new** session, not this one.
 
 Nothing is appended to `Knowledge/LOG.md`: that log records reads, audits, index refreshes and kept

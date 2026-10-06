@@ -11,29 +11,37 @@ Usage:
     uv run --no-project python scaffold.py researcher <destination>
     uv run --no-project python scaffold.py strategy <destination>
     uv run --no-project python scaffold.py example <destination>
-    uv run --no-project python scaffold.py example <strategy root> --only Experiments/Experiment_1
+    uv run --no-project python scaffold.py strategy <strategy root> --only Data/analyzer.ipynb
+    uv run --no-project python scaffold.py example <a folder of its own> --only Experiments/Experiment_1
 
-Without `--only`, the destination must not exist or must be an empty folder; the copy is then made
-a git repository on branch `main` with one first commit, unless `--no-git`.  With `--only`, one
-path of the starting point is copied into an existing folder: a file already there with the same
-content is skipped, and one with other content stops the run before anything is written, so
-nothing is overwritten.  The path is relative and stays inside both the starting point and the
-folder: one that is absolute, or that leads outside either through `..`, is refused before anything
-is read.
+Without `--only`, the destination must not exist or must be an empty folder — one holding only
+what Finder or Explorer leaves, `FILE_MANAGER_FILES`, counts as empty, and those files stay on disk
+and out of the commit; the copy is then made a git repository on branch `main` with one first
+commit, unless `--no-git`.  With `--only`, one path of the starting point is copied into an
+existing folder: a file already there with the same content is skipped, and one with other content
+stops the run before anything is written, so nothing is overwritten.  The path is relative and
+stays inside both the starting point and the folder: one that is absolute, or that leads outside
+either through `..`, is refused before anything is read.  A piece of the example goes into a folder
+of its own, never into a strategy, whose file of the same name is the template's.
 
 The package is found beside this script when it runs from a checkout of KaxaNuk-Researcher, then
 under `apm_modules/` in the folder it runs from or any folder above it, then under `~/.apm/`, where
-`apm install -g` puts it.  `--package` names it outright.
+`apm install -g` puts it.  `--package` names it outright.  A destination or a `--package` that
+starts with `~` starts in the user's home folder.
 
 On Windows, unless long paths are enabled, a path stops at 259 characters and a folder at 247.  A
 copy whose longest path would reach 260 characters, or whose deepest folder would reach 248, is
 refused before anything is written, exit code 1: the message names that path and how short a
 destination would do.  Where the platform allows long paths, or is not Windows, there is no check.
 
-Exit code 0 when the copy was made, 1 when nothing was written.  A git step that fails — git not
-installed, no identity for the commit — leaves the copy in place and the exit code 0, and is
-reported with every command that finishes the repository by hand, from the failed step on.  git's
-output is decoded as UTF-8 and printed as ASCII; the script's own messages are ASCII, paths aside.
+Exit code 0 when the copy was made, 1 when it was not.  A copy the operating system stops partway —
+a full disk, a file it refuses — is reported in one line with the file and the system's reason:
+a new folder's partial copy can be deleted, and a run with `--only` run again, skipping what it
+copied.  A git step that fails — git not installed, no identity for the commit — leaves the copy in
+place and the exit code 0, and is reported with every command that finishes the repository by
+hand, from the failed step on.  git's output is decoded as UTF-8 and printed as ASCII; the script's
+own messages are ASCII, paths aside, and the console is written in UTF-8, so a path in any
+alphabet prints.
 """
 import argparse
 import ctypes
@@ -51,6 +59,13 @@ CACHE_FOLDERS = frozenset({
     '.ruff_cache',
     '.venv',
     '__pycache__',
+})
+# Files Finder or Explorer leaves in a folder it shows: a folder holding only these is still empty,
+# and the first commit leaves them out, since a strategy's .gitignore does not name them.
+FILE_MANAGER_FILES = frozenset({
+    '.DS_Store',
+    'Thumbs.db',
+    'desktop.ini',
 })
 # Each starting point: where it sits inside the package, and the first commit of a copy of it.
 STARTING_POINTS = {
@@ -84,7 +99,8 @@ WINDOWS_MAX_PATH = 260
 WINDOWS_FOLDER_MARGIN = 12
 MISSING_PACKAGE = ' '.join([
     'The researcher package was not found. Install it with',
-    '`apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, or pass --package.',
+    '`uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`,',
+    'or pass --package.',
 ])
 
 
@@ -100,19 +116,29 @@ class CopyPlan:
 
 def copy_files(
     plan: CopyPlan,
-) -> None:
+) -> str | None:
     """
-    Copy every file in the plan, creating the folders it needs.
+    Copy every file in the plan, creating the folders it needs: None when every file was copied,
+    otherwise the path the operating system stopped the copy at, and its reason.
     """
     for source, target in plan.files:
-        target.parent.mkdir(
-            parents=True,
-            exist_ok=True,
-        )
-        shutil.copy2(
-            source,
-            target,
-        )
+        try:
+            target.parent.mkdir(
+                parents=True,
+                exist_ok=True,
+            )
+            shutil.copy2(
+                source,
+                target,
+            )
+        except OSError as exception:
+            failed_path = exception.filename or target
+            reason = exception.strerror or str(exception)
+            failure = f'{failed_path}: {reason}'
+
+            return failure
+
+    return None
 
 
 def find_package(
@@ -148,6 +174,16 @@ def main(
     """
     Parse the command line, check the destination, copy, and make the copy a git repository.
     """
+    # A path in any alphabet — Łucja, Sofía — prints, whatever the console's own code page.
+    for console_stream in (sys.stdout, sys.stderr):
+        try:
+            console_stream.reconfigure(
+                encoding='utf-8',
+                errors='replace',
+            )
+        except Exception:
+            pass
+
     parser = _build_parser()
     parsed = parser.parse_args(arguments)
     package = find_package(
@@ -194,7 +230,13 @@ def main(
 
         return 1
 
-    copy_files(plan)
+    failure = copy_files(plan)
+
+    if failure is not None:
+        print(f'The copy stopped at {failure}. Anything it wrote is in {destination}, which can be deleted.')
+
+        return 1
+
     print(f'Copied {len(plan.files)} files from {source_root} to {destination}')
 
     if not parsed.no_git:
@@ -287,7 +329,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         'destination',
-        type=pathlib.Path,
+        type=_expanded_path,
         help='the new folder; with --only, the existing folder to copy into',
     )
     parser.add_argument(
@@ -303,7 +345,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         '--package',
-        type=pathlib.Path,
+        type=_expanded_path,
         default=None,
         help='the researcher package folder, when it cannot be found on its own',
     )
@@ -404,7 +446,13 @@ def _copy_one_path(
 
         return 1
 
-    copy_files(missing_plan)
+    failure = copy_files(missing_plan)
+
+    if failure is not None:
+        print(f'The copy stopped at {failure}. Run it again once that is fixed: what it copied is skipped.')
+
+        return 1
+
     already_there = len(plan.files) - len(missing)
     print(f'Copied {len(missing)} files into {target}; {already_there} were already there, identical')
 
@@ -416,6 +464,9 @@ def _destination_problem(
 ) -> str | None:
     """
     Why the destination cannot take a new copy, or None when it can.
+
+    A folder holding only `FILE_MANAGER_FILES` counts as empty: one the owner made in Finder or
+    Explorer still takes the copy.
     """
     if not destination.exists():
 
@@ -426,7 +477,12 @@ def _destination_problem(
 
         return not_a_folder
 
-    contents = list(destination.iterdir())
+    contents = [
+        entry
+        for entry
+        in destination.iterdir()
+        if entry.name not in FILE_MANAGER_FILES
+    ]
 
     if contents:
         not_empty = f'{destination} is not empty; choose a new folder'
@@ -450,6 +506,19 @@ def _differs(
     same = landing.read_bytes() == origin.read_bytes()
 
     return not same
+
+
+def _expanded_path(
+    text: str,
+) -> pathlib.Path:
+    """
+    A path from the command line, a leading `~` turned into the user's home folder.
+
+    A path in quotes reaches the script with its `~` as typed, and PowerShell never expands one.
+    """
+    path = pathlib.Path(text).expanduser()
+
+    return path
 
 
 def _installed_candidates(
@@ -580,8 +649,9 @@ def _make_repository(
     """
     Make the copy a git repository on branch `main` with one first commit, and say so.
 
-    A failed step — git not installed, no identity for the commit — is reported with every
-    command that finishes the repository by hand, from the failed step on.
+    What Finder or Explorer left in the folder, `FILE_MANAGER_FILES`, is taken back out of the
+    commit and stays on disk.  A failed step — git not installed, no identity for the commit — is
+    reported with every command that finishes the repository by hand, from the failed step on.
     """
     commands = [
         [
@@ -594,6 +664,15 @@ def _make_repository(
             'git',
             'add',
             '--all',
+        ],
+        [
+            'git',
+            'rm',
+            '--cached',
+            '--quiet',
+            '--ignore-unmatch',
+            '--',
+            *sorted(FILE_MANAGER_FILES),
         ],
         [
             'git',

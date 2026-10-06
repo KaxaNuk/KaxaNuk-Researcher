@@ -70,10 +70,11 @@ for reading and running, never built on; a strategy of the owner's own is `init-
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`
   rather than reading it. The fix for the first is `interview`, which writes it.
-- The researcher's skill: missing from `.apm/skills/<slug>/` when the agent is there, naming a
-  home other than this folder — the home has moved — or carrying a copy of `RESEARCHER.md` beyond
-  the name, the owner and the path. The fix for the first is `interview`, for the second
-  `update`, which writes it again.
+- The researcher's skill: missing from `.apm/skills/<slug>/` when the agent is there; naming a
+  home other than this folder — the home has moved — or behind the template in `interview`, an
+  older `metadata.version` or a folder named with anything but a to z, digits and hyphens; or
+  carrying a copy of `RESEARCHER.md` beyond the name, the owner and the path. The fix for the
+  first is `interview`, for the second `update`, which writes it again.
 
 ## Step 2: In a strategy, also
 
@@ -127,6 +128,15 @@ library's `LOG.md`, one of the two writes made without a go of their own:
 from `read`, `audit` and `refresh-index`, and from `query` when the owner keeps a synthesis page,
 whose index line `query` adds on the same go — so a page whose line `query` added is not a
 stale-index finding.
+
+**Then, at home, offer the commit**, once the log line is in and any fix the owner approved is
+written. Show the two commands it takes — `git add` with `Knowledge/LOG.md` and every file a fix
+changed, by name, never `--all`, and `git commit -m "Audit: <the log line's summary>"` — and ask
+`Commit?` (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question tool, the
+two as a numbered list in chat. On *Commit it for me*, run them: the owner's pick is the human act,
+as running `audit` by name was for the line. On *I'll review it first*, nothing more: they commit,
+or say *commit it* and you run the commands then. Never commit unasked. In a strategy the owner
+reviews the diff and commits, as its `AGENTS.md` says.
 
 Never touch `Philosophy/`, `Studies/` or the sources. Never fix silently. In a strategy, never write
 at home.

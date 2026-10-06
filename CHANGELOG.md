@@ -6,6 +6,69 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.32.0] - 2026-10-06
+The first run lands, and the next step is clear. People who installed 0.31.0 finished setup not
+knowing what to do next, and found the text long: every owner in an empty home was told to drop a
+PDF, whatever they came for; a greeting in the next session had no defined answer; after a first
+`read`, `next` said "commit what is there" and `update` refused, a wall for anyone who has never
+used a terminal; and a researcher named *Sofía* deployed as `sofa`, because APM deletes accents
+from a folder name, so `next` asked for a reinstall forever. Now the researcher names one next
+thing for what the owner is *Here for*, offers to commit what it writes, copies a file the owner
+attaches into `Sources/`, and keeps every name installable.
+
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home: it offers your researcher's skill again — the greeting, commands on Codex, a slug APM keeps —
+as a diff, renames the agent with it when the slug changes, and reinstalls the home. Attach a file
+in chat, or name one on your computer, and the researcher copies it into `Sources/` on your go.
+### Added
+- **The one next thing, by *Here for*** — `next` (1.2.0) and the interview's hand-over: *Learn the
+  basics* → `philosophy` at Starter, which needs no reading; *Write down how I invest* →
+  `philosophy`, then `brief setup`; *Build and test a strategy* → `init-example` to read, then
+  `init-strategy`; *Organise what I read*, or none → a first source, then `read`. The rest is one
+  line of *also*. At home the setup checklist is one line when it passes.
+- **A greeting and commands on Codex** — the researcher's skill (template 0.2.0, in `interview`
+  Step 4) answers *hello* or *what now* in three lines — who is speaking, the one next thing, the
+  rest by name — and, on an assistant with no commands, follows a command the owner names from its
+  file in the package. `update` writes it into homes already installed, on the go.
+- **`Commit?` after every write at home** — `read`, `query`'s kept page, `study`, `teach`,
+  `refine`, `refresh-index`, `audit`, `update` and `next` row 0 ask *Commit it for me* or *I'll
+  review it first*, as `philosophy` did; never unasked, never in a strategy, where the owner
+  commits.
+- **A source copied in on the go** — a file the owner attaches or names is copied into
+  `Sources/Papers/`, `Books/` or `Clippings/` under its own name, never over a file: the one write
+  in `Sources/`. `read` (0.10.0) does it inside its own plan, one go for both.
+- **`teach` checks the library first**: with no note on the topic it writes nothing and offers
+  `read`, `philosophy` or a labelled general answer; `teach` alone lists the topics in `Lessons/`.
+### Changed
+- **The slug** — `interview` (2.1.0), `update`, `next` and `brief` (1.0.1): accents and marks
+  removed, every other character a hyphen — `Sofía` → `sofia`, `Begoña Ruiz` → `begona-ruiz`; the
+  name keeps its accents everywhere else. `update` moves a skill and an agent whose slug APM would
+  mangle, and removes the mangled copies.
+- **The interview** (2.1.0): the hand-over is five short items — who I am, where the home is, the
+  first source, the one next thing, *lost? say `next`* — with the question that serves the one next
+  thing asked first, *Show me the worked example* among them; the folder table lives in the home's
+  README. The preview names the fixed text instead of reprinting it. `RESEARCHER.md`'s rules and
+  *How it cites* are written in the owner's language; only the headings and labels the skills look
+  up stay English. The owner's name is read with `git -C "<the home>"`.
+- **The go words** are one list, in the home's `AGENTS.md`: *go*, *proceed*, *ok*, *yes*, *sí*,
+  *dale*, *adelante*, or the same word in the owner's language; `read`, `study`, `update`,
+  `philosophy` (1.0.1) and `brief` (1.0.1) use it.
+- **`scaffold.py`** (`init-strategy` 0.2.1): a destination or `--package` starting with `~` starts
+  in the home folder; the console prints any alphabet; a copy the system stops partway is one
+  plain line, not a traceback; a folder holding only `.DS_Store`, `Thumbs.db` or `desktop.ini`
+  counts as empty, and those stay out of the first commit; the missing-package message pins APM.
+  `init-researcher` (0.5.1) hands the script an absolute path.
+- **`init-example`** (0.2.1) and the README: reading the worked example needs nothing; running it
+  takes a data key, hours of downloads, KaxaNuk's benchmark and factor files and licences.
+- **`README.md`** and **`SETUP.md`**: where to paste the install line — the Code tab of the Claude
+  desktop app, Claude Code, Codex, the Gemini CLI, never a web chat — how to open the home in a new
+  conversation in each, a first line for an assistant to follow `SETUP.md`; `winget` accepts its
+  agreements, a tool just installed is called by its full path, and the assistant is reopened
+  after installing one.
+- **The home template** (0.17.0): `Sources/` takes the copy, `Plan first` the go words and the
+  commit offer, *Who is speaking* the greeting, `.gitignore` `desktop.ini`; the README's path reads
+  the worked example before the first strategy.
+
 ## [0.31.1] - 2026-10-06
 A name whose prices are about to stop is sold the day before. A strategy built on the template found
 the Backtest Engine refusing its book outright: a provider's file had a 62-day gap at a corporate

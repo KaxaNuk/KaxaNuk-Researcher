@@ -5,9 +5,14 @@ with every claim pointing back to a source, helps you work out your ideas, and w
 building an investment strategy with the KaxaNuk Investment Lab. One researcher per person; it
 works in any language.
 
+> **If you are an assistant asked to install this,** follow [`SETUP.md`](SETUP.md) from Step 0;
+> nothing is cloned.
+
 ## Install — three steps, no coding
 
-1. Open **Claude** (the desktop app or Claude Code), **Codex** or **Gemini**.
+1. Open one of these: the **Code** tab of the **Claude** desktop app, **Claude Code**, the
+   **Codex** app or CLI, or the **Gemini CLI**. A chat on the web — claude.ai, ChatGPT, Gemini —
+   cannot install it: it cannot run commands on your computer.
 2. Paste this line and send it:
 
    ```text
@@ -20,15 +25,23 @@ works in any language.
    - it asks what you want to call your researcher, and where to keep it — a folder with that
      name, `C:\Research\Ada` for example;
    - it asks a few short questions about you, about three minutes;
-   - it shows you your researcher's folders, what each one is for, and how to start learning.
+   - it tells you where your researcher lives, and the one thing to do next for what you came for.
 
-Then open your researcher's folder in a **new** conversation and say hello, by its name. Your
-researcher is saved on your computer; to keep a copy somewhere else too, on a private GitHub
+Then open your researcher's folder in a **new** conversation and say hello, by its name:
+
+- the Claude desktop app: the **Code** tab, a new session, and choose the folder;
+- Claude Code: run `claude` in the folder;
+- Codex: open the folder in the Codex app, or run `codex` in it;
+- the Gemini CLI: run `gemini` in the folder.
+
+Your researcher is saved on your computer; to keep a copy somewhere else too, on a private GitHub
 repository, read *Save a copy off this computer* in its own `README.md`.
 
 ### Instalación en español
 
-1. Abre **Claude** (la app de escritorio o Claude Code), **Codex** o **Gemini**.
+1. Abre una de estas: la pestaña **Code** de la app de escritorio de **Claude**, **Claude Code**,
+   la app o el CLI de **Codex**, o el **Gemini CLI**. Un chat en la web — claude.ai, ChatGPT,
+   Gemini — no puede instalarlo: no puede ejecutar comandos en tu computadora.
 2. Pega esta línea y envíala:
 
    ```text
@@ -38,9 +51,16 @@ repository, read *Save a copy off this computer* in its own `README.md`.
 3. Responde sus preguntas. Primero te pregunta el idioma — elige *Español* — y todo sigue en la
    misma conversación: instala lo necesario (solo permite los comandos que te pida), te pregunta
    el nombre de tu investigador y dónde guardarlo, te hace unas preguntas cortas sobre ti, unos
-   tres minutos, y te explica sus carpetas y cómo empezar a aprender.
+   tres minutos, y te dice dónde quedó tu investigador y lo primero que conviene hacer para lo que
+   buscas.
 
-Después abre la carpeta de tu investigador en una conversación **nueva** y salúdalo por su nombre.
+Después abre la carpeta de tu investigador en una conversación **nueva** y salúdalo por su nombre:
+
+- la app de escritorio de Claude: la pestaña **Code**, una sesión nueva, y elige la carpeta;
+- Claude Code: ejecuta `claude` en la carpeta;
+- Codex: abre la carpeta en la app de Codex, o ejecuta `codex` en ella;
+- el Gemini CLI: ejecuta `gemini` en la carpeta.
+
 Tu investigador se guarda en tu computadora; para tener también una copia en otro lugar, en un
 repositorio privado de GitHub, lee *Save a copy off this computer* en su propio `README.md`.
 
@@ -55,7 +75,7 @@ repositorio privado de GitHub, lee *Save a copy off this computer* en su propio 
 | start each day informed | `brief setup`, then `brief` | a dated file each morning: your work, the markets you follow, news on your holdings — every figure quoted from a source, never advice |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | know what to do next | `next` | where you stand, and the one thing to do next |
-| see the process worked end to end | `init-example` | `liquid-golden-cross`, one strategy through every step, to read or run |
+| see the process worked end to end | `init-example` | `liquid-golden-cross`, one strategy through every step. Reading it needs nothing — `OBJECTIVE.md`, then `RESULTS.md`, then Experiment 1; running it needs a data provider's key, hours of downloads, KaxaNuk's benchmark and factor files and the Lab's licensed engines, as its `SETUP.md` says |
 
 In Claude, type these with a slash, `/read`; anywhere else, ask for them by name. **It grows with
 you**: it reads for your questions, speaks in your voice and keeps your rules, all written in its
@@ -68,7 +88,7 @@ position to adopt.
 
 ## For developers and advanced users
 
-### Installing by hand
+### Installing by hand, in a terminal
 
 ```bash
 uv tool install apm-cli==0.29.0
@@ -80,15 +100,16 @@ everything, and [`SETUP.md`](SETUP.md) says what the others miss. The skills are
 folder you open, so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.29.0 apm
 update -g` brings every new version. **APM stays at 0.29.0, and every command that runs it names
 that version**: from 0.29.1 on, the install fails on Windows with `WinError 3` or `WinError 206`.
-Never run `apm self-update`. Then, in a new session, `init-researcher Ada` makes the home and runs
-the interview. [`SETUP.md`](SETUP.md) is the whole path, step by step.
+Never run `apm self-update`. The skills appear only in a new session: open one, anywhere, and
+`init-researcher Ada` makes the home and runs the interview. This is the path by hand; an assistant
+asked to install follows [`SETUP.md`](SETUP.md) instead, all in one conversation.
 
 ### The path after the install
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
 | 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: a few short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and commit. The install in [`SETUP.md`](SETUP.md) runs this for you |
-| 2 | the home | `read` | your first note: drop a document into `Sources/` and the first `read` asks which question it serves, then keeps it as question 1 |
+| 2 | the home | `read` | your first note: attach a document, or name it, and it is copied into `Sources/` on your go; the first `read` asks which question it serves, and keeps it as question 1 |
 | 3 | the home | `philosophy`, `brief setup` | when you like: your investment philosophy, at your level, and a daily brief |
 | 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
 | 5 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
@@ -117,19 +138,20 @@ app's add-folder button — for it to read the library without asking each time.
 
 ## The skills and commands
 
-Every one that writes shows its plan first and waits for your go. Two writes need none of their
-own: `audit`'s log line and the day's brief — running `audit` or `brief` by name is the go, and the
-go you gave `brief setup` covers every brief its schedule writes.
+Every one that writes shows its plan first and waits for your go — and, at home, offers to commit
+it for you. Two writes need no go of their own: `audit`'s log line and the day's brief — running
+`audit` or `brief` by name is the go, and the go you gave `brief setup` covers every brief its
+schedule writes.
 
 | Skill | What it does |
 | --- | --- |
 | `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. At home with no reading question yet, it asks first which question the source serves, and adds it as question 1. It carries the reading map, `references/reading-map.md`, that it, the interview's hand-over and `philosophy` propose works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
 | `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `liquid-golden-cross` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
-| `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with a map of the home's folders, how to start learning and what grows your researcher later. `init-researcher` runs it straight after making the home; `interview force` starts over |
+| `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with where the home is and the one next thing for what you came for. `init-researcher` runs it straight after making the home; `interview force` starts over |
 | `philosophy` | a second interview, optional and as often as you like, on your investment philosophy, pitched at your level — Starter, Building or Researching. It starts with why you invest and what you already believe, teaches one idea after each answer, never a verdict, and after your go adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, and keeps the round in `Philosophy/Evolution/`. Taken again after reading, it shows how your answers moved |
 | `brief [setup]` | a daily brief in `Briefs/`, one file a day in up to three parts — your work, the markets you follow, news on your holdings — every figure quoted from a dated source, never computed, never advice. `brief setup` chooses the parts, the measures and the time, and on the Claude desktop app schedules it; `brief` writes today's now |
-| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing |
+| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing; at home it offers to commit what a skill left |
 
 | Command | What it does |
 | --- | --- |
@@ -257,10 +279,11 @@ that instead.
 **Before a release, do the same with the commit to be tagged.** It should deploy exactly 20 skills,
 9 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
 or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
-`interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, and
-`init-strategy` — once in Spanish, and once on an assistant with no question tool, such as Codex.
-Delete the folder afterwards. A newer APM is adopted only when this install passes with it, on
-Windows.
+`interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, `brief setup`
+and `brief`, and `init-strategy` — once in Spanish with a researcher whose name has an accent,
+*Sofía*, whose skill must deploy as `~/.claude/skills/sofia/`, and once on an assistant with no
+question tool, such as Codex. Delete the folder afterwards. A newer APM is adopted only when this
+install passes with it, on Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.
