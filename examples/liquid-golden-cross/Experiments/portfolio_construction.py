@@ -29,6 +29,12 @@ What is expected here is one function signature and a few things behind it:
 - The two timing helpers that cannot be forgotten if they live here: lag the eligibility so the
   set used on rebalance date t is the one observed at t-1, and rebalance only on the dates that set
   changes -- a signal that has not moved is not a reason to pay commission.
+- Sell before a price series stops.  A name is tradable on t only if it is priced on t and on t+1,
+  so a delisting, or a corporate event that leaves a gap in the provider's file, triggers a
+  re-strike on the last priced day, t-1, and the name is sold there at a real price.  The engine
+  refuses a rebalance date on which an open position has no price, so a book that holds a name
+  through a gap cannot be re-struck at all.  It is one day of hindsight, the leak `AGENTS.md`
+  names; take it in the eligibility, once, for the book and every counterfactual alike.
 - Causality by construction.  A weigher never sees a date, only a history already cut off, so it
   cannot reach into the future even by accident.
 

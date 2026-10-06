@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [Unreleased]
+A name whose prices are about to stop is sold the day before. A strategy built on the template found
+the Backtest Engine refusing its book outright: a provider's file had a 62-day gap at a corporate
+event, the book held the name through it, and the engine checks every open position on every
+rebalance date. The owner's rule, now the template's: when a company is delisted or a corporate
+event stops its prices, the rule triggers a rebalance at t−1 and sells it at a real price.
+
+**What to do differently:** in a strategy's eligibility, require a price on t and on t+1, so the
+book re-strikes on the last priced day; apply it to every counterfactual alike, and name the day
+of hindsight it takes beside the delisting exit in `AGENTS.md`.
+### Changed
+- **The template's `AGENTS.md`** (and the worked example's): the look-ahead row of the five ways a
+  backtest lies says a name whose prices are about to stop is sold at t−1 by a re-strike the rule
+  triggers, and names that exit's day of hindsight as the one stated leak.
+- **`Experiments/portfolio_construction.py`**, the template's contract and the example's docstring:
+  a third timing rule, *sell before a price series stops*. The example's code takes it on its next
+  run; its published numbers are unchanged until then.
+- **`portfolio-construction-runs`**: the rule in section 5, beside lagging and rebalancing on
+  change. **`backtest-engine-runs`**: the integrity check covers every open position, not only the
+  names traded, and no configuration field waives it.
+
 ## [0.31.0] - 2026-10-04
 The researcher is a way in for people with any background, and its setup lost the newcomers it was
 for. The interview mixed two jobs, getting to know the person and asking their market beliefs, and
