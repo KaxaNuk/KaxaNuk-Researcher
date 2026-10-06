@@ -1,5 +1,5 @@
 name: kaxanuk-researcher
-version: 0.17.0
+version: 0.18.0
 description: A KaxaNuk researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read, works out your ideas and decisions from it and drafts the hypothesis of every strategy you build
 author: KaxaNuk
 license: MIT
@@ -15,15 +15,20 @@ dependencies:
   apm: []
   mcp: []
 
-# The targets below serve only an install inside this folder, which the home no longer needs: a
-# copy there goes stale the first time the agent or a skill changes. These four are the ones that
-# take an agent; the rest have no agent primitive or reject its tool list.
+# The targets below serve only an install inside this folder, which the home no longer needs:
+# since template 0.14.0 it is installed for the user, as above, and a copy inside it goes stale
+# the first time the agent or a skill changes. These four are the ones that take an agent; the
+# rest have no agent primitive or reject its tool list.
 targets:
   - claude
   - copilot
   - cursor
   - codex
 
-# What publishes: `.apm/` and nothing else, so a private reading list under `Sources/` or
-# `Knowledge/` cannot ship.
+# What deploys: only `.apm/`, though `apm install -g "<this folder>"` first copies the whole
+# folder — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/` included — into
+# `~/.apm/apm_modules/_local/<folder name>/` on this machine, refreshed by each install. Nothing
+# leaves the machine. On Windows a deep path in that copy, a long `Extracts/` slug, can pass the
+# 260-character limit and fail the install; a shorter path to this home fixes it, or fewer deep
+# extracts — a regenerable cache.
 includes: auto

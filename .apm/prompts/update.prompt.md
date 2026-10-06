@@ -17,11 +17,6 @@ The researcher arrives in two parts, and each updates its own way:
 - **The skills and commands** are one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for
   the user. `apm update -g` brings its next version to every folder at once, and nothing in the
   home's history changes.
-
-  Only for a home from before 0.7.0: the package then brought the Lab's skills from
-  `KaxaNuk/KaxaNuk-Agent-Skills`, and now carries them itself. The next `apm update -g` removes what
-  those packages deployed; `apm deps list -g` may still name them as orphaned, because their folders
-  stay under `~/.apm/apm_modules/`, and that is harmless.
 - **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `README.md`, `LICENSE`, `apm.yml`,
   `.gitignore` and `.gitattributes` — were copied from `templates/researcher/` in the KaxaNuk
   Researcher package when the home was made. When the package's copy changes, the difference is
@@ -65,9 +60,9 @@ agent's file name and `name:` with it, nothing else in the agent.
    cleanly. From 0.29.1 on, APM stages each package under about 148 more characters of folders, the
    worked example's longest paths pass Windows' 260-character limit, and the install fails with
    `WinError 3` or `WinError 206`. So every command below that runs APM names
-   `apm-cli==0.29.0` itself. `apm --version` should also say `0.29.0`, since the skills name the
-   `apm` on the path; any other version: say so, and put the pinned install first in the plan,
-   ahead of the update —
+   `apm-cli==0.29.0` itself. `apm --version` should also say `0.29.0`, since a command typed by
+   hand runs the `apm` on the path; any other version: say so, and put the pinned install first in
+   the plan, ahead of the update —
 
    ```bash
    uv tool install apm-cli==0.29.0
@@ -119,41 +114,33 @@ agent's file name and `name:` with it, nothing else in the agent.
   `uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"` deploys it.
 - **`Briefs/` and `Portfolio/`.** From template 0.16.0 the home's `.gitignore` ignores both — the
   daily brief `brief` writes, and the holdings and rules the owner keeps for its *Portfolio* part —
-  and `AGENTS.md` gives each a row in its folder table: `Briefs/` written through `brief` only, one
-  file a day, never edited afterwards, never cited and never a source; `Portfolio/` read only, the
-  owner's to write, its numbers from the engines the project names and never advice. They are
-  compared like any
-  other lines of those two files, and the `.gitignore` lines are said first in the plan, so they
-  are in place before a first `brief setup` and no holding is ever committed. When either folder
-  exists already and `git ls-files Briefs Portfolio` lists a file, say so: a line in `.gitignore`
-  does not take a committed file out of the history, and what to do about it is the owner's.
-  `update` never writes in either folder, and the template ships neither: `brief setup` creates
-  `Portfolio/` when the owner opts into its *Portfolio* part, and the first brief `Briefs/`.
-- **`Projects/`, whenever the home still has one**, whatever template version it is at, so a
-  move the owner declined once is offered again. Until 0.10.0 the template shipped an
-  empty `Projects/`; from 0.10.0 `teach` keeps its lessons in `Lessons/<topic>/`, and from 0.12.0
-  the owner's own work from the library is a study in `Studies/`. List what the home's `Projects/`
-  holds, sorted three ways: each `Projects/Teach/<topic>/` is to move to `Lessons/<topic>/`; every
-  other file or folder at the top of `Projects/` is to move to `Studies/` under the same name —
-  `Projects/GPU_Compute.md` to `Studies/GPU_Compute.md` — at the same depth, so its links into
-  `Knowledge/` still resolve; and when nothing is left but `Projects/.gitkeep`, it is to be
-  removed, and the folder with it. A destination that exists already is listed instead, and
-  nothing moves onto it. A file that moves is a study from then on: say that its first line may
-  want a state, the owner's to add by hand or with `study`. The list goes in the report. A home
-  with no `Projects/` has nothing to do here.
+  and `AGENTS.md` gives each a row in its folder table. They are compared like any other lines of
+  those two files, and the `.gitignore` lines are said first in the plan, so they are in place
+  before a first `brief setup` and no holding is ever committed. When either folder exists already
+  and `git ls-files Briefs Portfolio` lists a file, say so: a line in `.gitignore` does not take a
+  committed file out of the history, and what to do about it is the owner's. `update` never writes
+  in either folder, and the template ships neither: `brief setup` creates `Portfolio/` when the
+  owner opts into its *Portfolio* part, and the first brief `Briefs/`.
+- **`Projects/`, whenever the home still has one**, whatever template version it is at, so a move
+  the owner declined once is offered again. Until 0.10.0 the template shipped an empty `Projects/`;
+  from 0.10.0 `teach` keeps its lessons in `Lessons/<topic>/`, and from 0.12.0 the owner's own work
+  from the library is a study in `Studies/`. List what the home's `Projects/` holds, sorted three
+  ways: each `Projects/Teach/<topic>/` is to move to `Lessons/<topic>/`; every other file or folder
+  at the top of `Projects/` is to move to `Studies/` under the same name — `Projects/GPU_Compute.md`
+  to `Studies/GPU_Compute.md` — at the same depth, so its links into `Knowledge/` still resolve; and
+  when nothing is left but `Projects/.gitkeep`, it is to be removed, and the folder with it. A
+  destination that exists already is listed instead, and nothing moves onto it. A file that moves is
+  a study from then on: say that its first line may want a state, the owner's to add by hand or with
+  `study`. The list goes in the report. A home with no `Projects/` has nothing to do here.
 - **`Studies/`, when the home lacks it** — a home made before template 0.12.0: its `.gitkeep` is
   to come from the template, so the folder is there to see.
 - **The researcher's skill and the install for the user**, whatever template version the home is
-  at. `<slug>` is the researcher's name made safe for a folder, as `interview`'s *Step 4* says:
-  accents and marks removed — *á* to *a*, *ñ* to *n*, *ü* to *u* — lowercase, every character that
-  is not a letter a to z or a digit turned into a hyphen, repeated hyphens collapsed and none at
-  either end: `Ada Lovelace` becomes `ada-lovelace`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`;
-  with nothing left — a name in another script — ask the owner for a short name in Latin letters.
-  The name keeps its accents in the skill's text. APM deletes any other character from a folder
-  name — `sofía` would deploy as `sofa` — so a slug that keeps an accent never installs under its
-  own name. The skill is to be written as `interview`'s *Step 4* gives it, from `RESEARCHER.md` and
-  this folder's absolute path, when the home has an agent in `.apm/agents/` and no skill of the
-  same `name:` — a home made before template 0.14.0 — and written again when the home's skill
+  at. `<slug>` is the researcher's name made safe for a folder, by the rule `interview`'s *Step 4*
+  gives — `Sofía` becomes `sofia` — and the name keeps its accents in the skill's text. APM deletes
+  any other character from a folder name — `sofía` would deploy as `sofa` — so a slug that keeps
+  an accent never installs under its own name. The skill is to be written as `interview`'s *Step 4*
+  gives it, from `RESEARCHER.md` and this folder's absolute path, when the home has an agent in
+  `.apm/agents/` and no skill of the same `name:`, and written again when the home's skill
   names a folder other than this one, is behind the template — its `metadata.version` below the
   one `interview`'s *Step 4* gives, as a skill without the items *A greeting, or what now* and *A
   command, where the assistant has none* is — or has a slug that breaks the rule, such as an
@@ -168,12 +155,14 @@ agent's file name and `name:` with it, nothing else in the agent.
   session at home, and it goes stale the first time the agent changes; so are the copies a changed
   slug leaves in the user's folder, the skill and the agent there whose `name:` is the old slug,
   under the name APM gave them — `~/.claude/skills/sofa/` for `sofía`.
-- **Report in chat, newest first:** the versions crossed, one line each on what changed, and every
-  **What to do differently** instruction that applies to this home, in full. Those instructions are
-  the point of the update; never summarise them away.
-- **All current?** Say so and stop — unless the home still has a `Projects/`, lacks `Studies/`,
-  or its researcher's skill or the install for the user is missing or behind, which go on to the
-  plan as the items above list them. **`check` mode?** Stop here.
+- **Report in chat:** first the installed package version, as `apm deps list -g` names it, and the
+  home's template version — the two a problem report to `lab@kaxanuk.mx` names; then the versions
+  crossed, newest first, one line each on what changed, and every **What to do differently**
+  instruction that applies to this home, in full. Those instructions are the point of the update;
+  never summarise them away.
+- **All current?** Say so, with those two versions, and stop — unless the home still has a
+  `Projects/`, lacks `Studies/`, or its researcher's skill or the install for the user is missing
+  or behind, which go on to the plan as the items above list them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
@@ -185,8 +174,8 @@ what stays there; the researcher's skill, shown whole when new and as a diff whe
 the agent's move when the slug changes, the install for the user and each copy to delete; and what
 the owner will have to do by hand afterwards, one line for each heading, line or blockquote of
 their own files that the template changed. Then ask for the go through the question tool — *Go*,
-*Change something*, *Stop* — and update on *Go* only; in chat, *go*, *proceed*, *ok*, *yes*, *sí*,
-*dale*, *adelante*, or the same word in the owner's language, is the go.
+*Change something*, *Stop* — and update on *Go* only; in chat, any of the go words in the home's
+`AGENTS.md` is the go.
 
 ## Step 4: Update
 
@@ -254,20 +243,23 @@ their own files that the template changed. Then ask for the go through the quest
    ```
 
    — and delete each copy *Step 2* listed: the agent's inside the home, and the skill and the agent
-   the old slug left in the user's folder.
+   the old slug left in the user's folder. The install copies the whole home — `.git/`, `Sources/`,
+   `Extracts/`, `Briefs/` and `Portfolio/` included — into
+   `~/.apm/apm_modules/_local/<folder name>/` on this machine, refreshed by each install, and
+   deploys only its `.apm/`; nothing leaves the machine. On Windows a long `Extracts/` path in that
+   copy can pass the 260-character limit and fail the install: the fix, the owner's to choose, is a
+   shorter home path or fewer deep extracts, a regenerable cache.
 6. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
    *Brought to template X.Y.Z*, a line for each section brought across or declined, one for what
    left `Projects/` and what stayed, one for `Studies/` when it came, and one for the researcher's
    skill when it was written — whatever the owner declined, so the file names the version the home
    is now at and the next `update` reports only the versions after it. Nothing else in the file
    changes: it is the home's history.
-7. **Then offer the commit.** Show the two commands it takes — `git add` with every file written
-   above, by name, never `--all`, since what `git mv` and `git rm` did is staged already, and
-   `git commit -m "Update: brought to template X.Y.Z"` — and ask `Commit?` (`¿Confirmo?`): *Commit
-   it for me*, *I'll review it first*; without a question tool, the two as a numbered list in chat.
-   On *Commit it for me*, run them: the owner's pick is the human act, as the go was for the
-   update. On *I'll review it first*, nothing more: they commit, or say *commit it* and you run the
-   commands then. Never commit unasked. The copies deleted in item 5 are git-ignored or outside the
+7. **Then offer the commit**, as the home's `AGENTS.md` says. Show `git add` with every file
+   written above, by name, never `--all`, since what `git mv` and `git rm` did is staged already,
+   and `git commit -m "Update: brought to template X.Y.Z"`, and ask `Commit?` (`¿Confirmo?`):
+   *Commit it for me* runs them; after *I'll review it first*, they commit, or say *commit it* and
+   you run them. Never commit unasked. The copies deleted in item 5 are git-ignored or outside the
    home, and leave nothing to commit.
 
 ## Step 5: Report

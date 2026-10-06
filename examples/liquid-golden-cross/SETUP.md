@@ -12,9 +12,9 @@ strategy runs in, and so a person can read it in two minutes.
 > here*, says how.
 >
 > **Its benchmark cannot be downloaded.** The KN600 is KaxaNuk's own index: its daily holdings and
-> returns and the factor model's returns are supplied by hand, by the desk that builds them, and no
-> provider sells them. **Their names and headers are fixed by the code that reads them**,
-> `Data/hand_supplied.py`. With `KN_ANALYTICS_PATH` set, they are read in place from the desk's
+> returns and the factor model's returns are supplied by hand, by KaxaNuk's Analytics Factory, and
+> no provider sells them. **Their names and headers are fixed by the code that reads them**,
+> `Data/hand_supplied.py`. With `KN_ANALYTICS_PATH` set, they are read in place from the Factory's
 > folder, in `Benchmark Portfolios/` and `Factor Models/`, or in the older `Benchmarks/` and
 > `Factors/` where those are absent; with it empty, from `Data/Curator/Benchmarks/` and
 > `Data/Curator/Factors/`. The holdings file is `KN_US_Equity_Benchmark_Holdings.csv`, `m_date`
@@ -137,13 +137,17 @@ cp Config/.env.template Config/.env
 Fill in the key for your data provider; the template has a line for FMP, Sharadar and LSEG.
 `KNBE_API_KEY_KAXANUK` and `KNAA_API_KEY_KAXANUK` are the Backtest Engine and Attribution Analysis
 licences: the process runs without them up to portfolio construction, and the backtest and
-attribution report what is missing and skip.
+attribution report what is missing and skip. A licence for either, or access to Portfolio
+Construction, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is
+for — <https://www.kaxanuk.mx/lab> shows the Lab.
 
-`KN_ANALYTICS_PATH` is not a key: it is the folder the desk ships the index and the factor model
-in, holding `Benchmark Portfolios/` and `Factor Models/`, read in place in the desk's own names and
-headers; the older `Benchmarks/` and `Factors/` are still read where the new ones are absent. Leave
-it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and
-`Data/Curator/Factors/`. The four `PAPER_TRADING_*` lines configure step 7, below.
+`KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships the
+benchmark and the factor model files attribution reads (<https://www.kaxanuk.mx/analytics>; ask
+`lab@kaxanuk.mx` for them). It holds `Benchmark Portfolios/` and `Factor Models/`, read in place
+in the Factory's own names and headers; the older `Benchmarks/` and `Factors/` are still read where
+the new ones are absent. Leave it empty and drop the same files, unchanged, into
+`Data/Curator/Benchmarks/` and `Data/Curator/Factors/`. The four `PAPER_TRADING_*` lines configure
+step 7, below.
 
 > **For the agent.** Never open, read back, print or echo `Config/.env`, and never put a value from
 > it in a command that gets recorded. You may say **which keys are still empty, by name only** —
@@ -159,7 +163,7 @@ experiment is structured, how attribution is read, the house rules — and the
 are installed once for your user, not per repository, by the same command that gave you step 1:
 
 ```bash
-apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 `--target codex`, `cursor` or another assistant in place of `claude`; the researcher package's
@@ -177,8 +181,7 @@ results are the same with or without them.
 
 > **For the agent.** Do not install skills into this repository. If they are missing, give the user
 > the command above, with the assistant you are as the target — it installs for their user, not
-> here, with `uvx --from apm-cli==0.29.0` in front if `apm` is not on the path — and say that they
-> appear in a **new** session.
+> here — and say that they appear in a **new** session.
 
 ---
 

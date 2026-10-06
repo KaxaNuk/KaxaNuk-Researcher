@@ -47,8 +47,8 @@ three: an unused column costs bytes, a missing one costs a refetch of every iden
     dividend-and-split    the total-return series a signal and the backtest P&L run on
 
 An index's daily holdings and returns, and a factor model's returns, are not sold by any price
-provider: they arrive from the desk that builds them, and `Data/hand_supplied.py` reads them -- in
-place, from the folder `KN_ANALYTICS_PATH` names, or from the drop zones `Benchmarks/` and
+provider: they arrive from KaxaNuk's Analytics Factory, and `Data/hand_supplied.py` reads them --
+in place, from the folder `KN_ANALYTICS_PATH` names, or from the drop zones `Benchmarks/` and
 `Factors/` beside the time series.  Without them this script still downloads every price and says
 the index was not staged; the notebooks stop where they first read it.
 

@@ -1,16 +1,17 @@
 """
 The hand-supplied inputs -- step 3 of 8, beside the Curator.  The index a book is reported against
 and the factor model attribution reads are not sold by any price provider: they arrive as files
-from the desk that builds them, and this module is the one place that reads them.
+from KaxaNuk's Analytics Factory (https://www.kaxanuk.mx/analytics; ask lab@kaxanuk.mx for them),
+and this module is the one place that reads them.
 
-In plain words: set `KN_ANALYTICS_PATH` in `Config/.env` to the desk's folder and the files are
-read where they are, in the desk's own names and headers -- nobody renames or re-heads a file.
+In plain words: set `KN_ANALYTICS_PATH` in `Config/.env` to the Factory's folder and the files are
+read where they are, in the Factory's own names and headers -- nobody renames or re-heads a file.
 Leave it empty, and the same files, dropped unchanged into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`, are read from there.
 
-The desk's layout, its folders read under the Analytics Factory's names first and under the
-older ones, `Benchmarks/` and `Factors/`, where those are absent.  The files keep the same names and
-headers in both, and the drop-in folders keep the older names:
+The Factory's layout, its folders read under their current names first and under the older ones,
+`Benchmarks/` and `Factors/`, where those are absent.  The files keep the same names and headers in
+both, and the drop-in folders keep the older names:
 
     Benchmark Portfolios/KN_US_Equity_Benchmark_Holdings.csv
         m_date, ISO dates; one column per listing, its weight in the index that day
@@ -30,5 +31,5 @@ each experiment read the holdings for point-in-time membership; and
 `Experiments/attribution_analysis.py` reads all three.  Each loads this file by path, because
 `Data/` is a folder rather than a package.
 
-It prevents a renamed copy drifting from the desk's file, and a date read in the wrong order.
+It prevents a renamed copy drifting from the Factory's file, and a date read in the wrong order.
 """

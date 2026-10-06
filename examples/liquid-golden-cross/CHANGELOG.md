@@ -41,6 +41,30 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.4 (2026-10-06)
+
+**PATCH** — the template's 0.13.4, in the shared lines: `SETUP.md` says how a licence or access is
+asked for, `lab@kaxanuk.mx`; KaxaNuk's Analytics Factory is named where the desk was; the install
+command names `apm-cli==0.29.0`; `.gitignore` keeps out what Finder or Explorer leaves in a folder.
+No figure, rule or frozen byte moves.
+
+**What to do differently:** nothing.
+
+### Added
+
+- **`.gitignore`**: `.DS_Store`, `Thumbs.db` and `desktop.ini`, as the template's.
+
+### Changed
+
+- **`SETUP.md`**: steps 3 and 4, as the template's; *On the example* names the Analytics Factory
+  as what supplies the KN600's files.
+- **`Config/.env.template`** and **`Data/hand_supplied.py`**: the Analytics Factory, as the
+  template's; no code changes, and the frozen copy in `Paper_Trading/Paper_Trading_4/` is as it
+  was.
+- **`Data/curator.py`** and **`Experiments/attribution_analysis.py`**: the Analytics Factory where
+  the shared docstring said the desk, as the template's; the example's own code and its dated
+  records keep the name they were written with.
+
 ## 0.18.3 (2026-10-06)
 
 **PATCH** — the template's 0.13.3, in the shared lines: a name whose prices are about to stop is

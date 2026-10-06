@@ -43,7 +43,7 @@ the note's path and what it does say, the section of `RESULTS.md`, or the item o
 - **A prediction with neither a note nor an analyzer section that is not marked a lead.** The
   `blueprint` command writes such a prediction as *read X, or run analyzer section Y, before
   predicting this*. One that asserts instead is an objection, and so is a performance number that no
-  analyzer measurement licenses, since the engine has not run.
+  analyzer measurement supports, since the engine has not run.
 - **A missing control or trial count the bar asks for.** No *Control* line in *Rules* that differs
   from the book in exactly one thing, or a control left to choose its own rebalance dates rather
   than trade on the rule's; variants to be ranked with no count of the trials that will be

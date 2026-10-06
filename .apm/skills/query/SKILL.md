@@ -2,14 +2,13 @@
 name: query
 description: >
   Load this skill whenever the owner asks what their library says, what they have read about a
-  topic, how two sources relate, or what evidence there is for a claim — any factual or
-  comparative question that should be answered from the library, Philosophy/ and the sources
-  rather than from general knowledge: Knowledge/ at home, a strategy's Bibliotheca/ when invited
-  there — and how the owner's own view has changed, from the rounds in Philosophy/Evolution/. It
-  walks the index and the links between notes before reading anything, and cites every claim. It
-  does NOT write code and does NOT answer questions about files outside the library.
+  topic, how two sources relate, or what evidence there is for a claim — any question to answer
+  from the library, Philosophy/ and the sources rather than general knowledge: Knowledge/ at home,
+  a strategy's Bibliotheca/ when invited there — or how their own view has changed, from the rounds
+  in Philosophy/Evolution/. It walks the index and the links before reading, and cites every claim.
+  It does NOT write code or answer questions about files outside the library.
 metadata:
-  version: 0.8.0
+  version: 0.8.1
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -40,11 +39,10 @@ are the library's value.
    each other are one argument; read both. Quote the source's terms where they matter.
 3. **Then the owner's voice.** Read the relevant files in `Philosophy/` at home when the owner's
    own synthesis is more specific than the library, and cite them as the owner's view, distinct
-   from the sources' — in a strategy, by name in prose, never by link. Round files in
-   `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
-   levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view. A study in
-   `Studies/` that bears on the question is the owner's work in the same way: name it as theirs,
-   never as evidence — its claims rest on the notes it links, and those are what the answer cites.
+   from the sources' — in a strategy, by name in prose, never by link; never a round file in
+   `Philosophy/Evolution/`, a record, as the home's `AGENTS.md` says. A study in `Studies/` that
+   bears on the question is the owner's work in the same way: name it as theirs, never as evidence
+   — its claims rest on the notes it links, and those are what the answer cites.
 4. **In a strategy, then the home library.** Walk `Knowledge/INDEX.md` at home for what the
    researcher has read that the strategy has not. Report it as the researcher's library, not the
    strategy's, and say that the strategy cannot cite it until the source has a note in its
@@ -59,12 +57,10 @@ are the library's value.
    in the `read` skill's folder — and write it on *Go* only: the page itself, under the domain;
    its one line under *Concepts* in `Knowledge/INDEX.md`, title and one-line definition; and one
    entry appended to `Knowledge/LOG.md`, `## [YYYY-MM-DD] query | kept a synthesis page`, with the
-   page's path. Nothing else. **Then offer the commit**: show `git add` with those three files, by
-   name, never `--all`, and `git commit -m "Query: kept <page>"`, and ask `Commit?`
-   (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question tool, the two as
-   a numbered list in chat. On *Commit it for me*, run them: the owner's pick is the human act, as
-   the go was for the write. On *I'll review it first*, nothing more: they commit, or say *commit
-   it* and you run the commands then. Never commit unasked. In a strategy, never a page:
+   page's path. Nothing else. **Then offer the commit**, as the home's `AGENTS.md` says: `git add`
+   with those three files, by name, never `--all`, and `git commit -m "Query: kept <page>"`; ask
+   `Commit?` (`¿Confirmo?`): *Commit it for me* runs them; after *I'll review it first*, they
+   commit, or say *commit it* and you run them. Never commit unasked. In a strategy, never a page:
    `OBJECTIVE.md` is the strategy's synthesis, which `objective` drafts and the owner commits.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
    suggest the source that would close it: by year, authors and title when

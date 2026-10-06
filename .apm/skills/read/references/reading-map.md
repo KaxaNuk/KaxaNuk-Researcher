@@ -56,7 +56,8 @@ evolve by replacement; it evolved by addition (page 48).
 
 ### The argument, dated (page 49)
 
-Five papers, thirty-four years. Read in order, the case for research makes itself.
+Five papers, thirty-four years. The deck's conclusion — KaxaNuk's view, a view to test, not a
+position to adopt: read in order, the case for research makes itself.
 
 1. **The claim** — 1970, Fama, *Efficient Capital Markets: A Review of Theory and Empirical Work*.
    Prices already reflect what is known; beating the market is luck.
@@ -71,8 +72,9 @@ Five papers, thirty-four years. Read in order, the case for research makes itsel
 5. **Why it keeps moving** — 2004, Lo, *The Adaptive Markets Hypothesis*. Edges get crowded and
    decay, the environment shifts, new ones appear; nothing stays put.
 
-Alpha has to exist. It has a source. It persists. And it keeps moving. Therefore research cannot be
-a one-time effort: the edge is in the process that finds the next one, not in any single signal.
+The deck's conclusion — KaxaNuk's view, a view to test, not a position to adopt: alpha has to
+exist. It has a source. It persists. And it keeps moving. Therefore research cannot be a one-time
+effort: the edge is in the process that finds the next one, not in any single signal.
 
 ### The evidence, dated (page 50)
 
@@ -94,8 +96,9 @@ being fought over.
 10. **The rebuttal** — 2023, Jensen, Kelly & Pedersen, *Is There a Replication Crisis in Finance?*
     Model the factors jointly and 82% replicate, in 13 themes across 93 countries.
 
-Real. Decaying. And still contested. Nobody will settle the factor fight for you: deciding which
-edges are real, and for how long, is the job, and it never finishes.
+The deck's conclusion — KaxaNuk's view, a view to test, not a position to adopt: real. Decaying.
+And still contested. Nobody will settle the factor fight for you: deciding which edges are real,
+and for how long, is the job, and it never finishes.
 
 ## Where a belief sits
 

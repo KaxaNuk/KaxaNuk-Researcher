@@ -9,12 +9,11 @@ The universe is one CSV whose only required column is `main_identifier`, and eve
 without knowing what is in it: **equities, ETFs, FX, crypto, commodities or futures all run the
 same process.**
 
-**To start a strategy, install the KaxaNuk skills once, for your user** — with
-`uvx --from apm-cli==0.29.0` in front if `apm` is not on the path, and your assistant, such as
-`codex`, in place of `claude`:
+**To start a strategy, install the KaxaNuk skills once, for your user** — with your assistant,
+such as `codex`, in place of `claude`:
 
 ```bash
-apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 **Then ask Claude or Codex to run `init-strategy <strategy-name>`.** It copies this template into
@@ -187,10 +186,10 @@ to keep current:
 | --- | --- | --- | --- |
 | `Bibliotheca/` | 1 | `BIBLIOGRAPHY.md`, the index of sources and the leads. `Papers/`, one note per paper, and `Books/`, one folder per book — its `INDEX.md` of chapters and one note per chapter somebody chose to read — each beside the PDF it came from. `LOG.md`, what was read here and when. `Notes/` for clippings and transcripts | the notes and the indexes — they are the reasoning. The PDFs and `Extracts/` are ignored: licensed material, and the extracts regenerate |
 | `Universe/` | 2 | `Investable_Universe.csv`, **the seed**: one row per security, `main_identifier` the only required column, every other column yours. `universe.ipynb`, which profiles what the curator downloaded and writes `Security_Master.csv` and `Data_Issues.csv` | the seed and the notebook; the two outputs and `Provider_Cache/` are regenerated, so ignored |
-| `Data/` | 3 | `curator.py`, `refinery.py`, `analyzer.ipynb` — the three drivers — and `hand_supplied.py`, the one reader of the index and factor files the desk ships, in place from `KN_ANALYTICS_PATH` or from the drop zones. `Curator/custom_calculations.py` for `c_*` columns and `Refinery/custom_calculations.py` for `r_*`. `Curator/Time_Series/`, `Benchmarks/`, `Factors/` and `Refinery/Time_Series/` for what is downloaded or dropped in by hand; `Analyzer/` for charts and the signal table | code only. **Every data file is ignored** — downloaded, derived or dropped in, all of it regenerable |
+| `Data/` | 3 | `curator.py`, `refinery.py`, `analyzer.ipynb` — the three drivers — and `hand_supplied.py`, the one reader of the index and factor files KaxaNuk's Analytics Factory ships, in place from `KN_ANALYTICS_PATH` or from the drop zones. `Curator/custom_calculations.py` for `c_*` columns and `Refinery/custom_calculations.py` for `r_*`. `Curator/Time_Series/`, `Benchmarks/`, `Factors/` and `Refinery/Time_Series/` for what is downloaded or dropped in by hand; `Analyzer/` for charts and the signal table | code only. **Every data file is ignored** — downloaded, derived or dropped in, all of it regenerable |
 | `Experiments/` | 4–6 | The four shared modules — `securities_panel.py`, `portfolio_construction.py`, `backtest_engine.py`, `attribution_analysis.py`. One `Experiment_N/` per idea: `BLUEPRINT_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, the notebook, and its `Portfolio/`, `Backtest/` and `Attribution/` output folders | the documents, the notebook with outputs stripped, the modules. The output folders are rebuilt by the notebook, so ignored |
 | `Paper_Trading/` | 7 | `BITACORA.md`, what graduation means and the gate. `promote.py`, which freezes a graduated experiment into `Paper_Trading_N/`; `daily_update.py`, which runs every frozen book each day; `record.py`, which keeps the record in files, a DuckDB database or both. `Paper_Trading_N/`, one frozen book: its `paper_trading_N.py`, the files it needs in the strategy's own layout, and `FREEZE.json` | the scripts, `BITACORA.md` and every frozen book. Each day's raw files, logs and record are ignored, and the record cannot be fetched again: keep it in the database or back it up |
-| `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key, the two engine licences, the desk's folder and the paper-trading settings | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
+| `Config/` | — | `.env.template`, copied to `.env` and filled in with a data-provider key, the two engine licences, the Analytics Factory's folder and the paper-trading settings | the template. **`.env` never** — and it cannot be regenerated, so discarding all changes loses it |
 
 **Every one of those files is in this template**, except `Bibliotheca/Papers/`, `Books/` and
 `Notes/`, which appear with their first note: each as a description of what is expected in it — a
@@ -220,25 +219,27 @@ each back from the template, `scaffold.py strategy . --only <path>`, and never o
 Six modules across steps 3 to 6, each reading the previous one's output, so you can enter the
 pipeline wherever your work already is.
 
-| Module | Step | What it does |
-| --- | --- | --- |
-| **Data Curator** | 3 | pulls raw market and fundamental data from any provider and aligns it on one calendar |
-| **Data Refinery** | 3 | cleans, adjusts and reshapes the curated data into analysis-ready series |
-| **Data Analyzer** | 3 | builds features and tests whether they carry signal, before you model anything |
-| **Portfolio Construction** | 4 | turns a signal into weights, position limits and a rebalancing rule |
-| **Backtest Engine** | 5 | runs the rules over history with costs and no look-ahead, and returns the track record |
-| **Attribution Analysis** | 6 | splits the return into known factor exposure and the part that is actually yours |
+| Module | Step | What it does | Status |
+| --- | --- | --- | --- |
+| **Data Curator** | 3 | pulls raw market and fundamental data from any provider and aligns it on one calendar | open source, on [PyPI](https://pypi.org/project/kaxanuk.data-curator/) |
+| **Data Refinery** | 3 | cleans, adjusts and reshapes the curated data into analysis-ready series | coming; hand-rolled in `Data/refinery.py` until then |
+| **Data Analyzer** | 3 | builds features and tests whether they carry signal, before you model anything | coming; hand-rolled in `Data/analyzer.ipynb` until then |
+| **Portfolio Construction** | 4 | turns a signal into weights, position limits and a rebalancing rule | on request, from a private repository |
+| **Backtest Engine** | 5 | runs the rules over history with costs and no look-ahead, and returns the track record | licensed |
+| **Attribution Analysis** | 6 | splits the return into known factor exposure and the part that is actually yours | licensed |
 
-**Two doors.** KaxaNuk's platform drives the same pipeline from a workspace instead of a terminal —
-build a universe, download data, construct a portfolio, run a backtest and attribution, each step
-tracked to completion. The other door is `pip install`: the open-source libraries are public on
-[PyPI](https://pypi.org/project/kaxanuk.data-curator/) and [GitHub](https://github.com/KaxaNuk), no
-account and no platform login required, and `uv sync` installs the Data Curator.
+**Two doors.** KaxaNuk's platform, <https://www.kaxanuk.mx/lab>, drives the same pipeline from a
+workspace instead of a terminal. The other door is `pip install`: the open-source libraries are
+public on [PyPI](https://pypi.org/project/kaxanuk.data-curator/) and
+[GitHub](https://github.com/KaxaNuk), no account and no platform login required, and `uv sync`
+installs the Data Curator.
 
 The **licensed** engines — Backtest Engine and Attribution Analysis — are deliberately absent
 from `pyproject.toml`, so their index URLs and keys never enter version control. **Portfolio
-Construction** is absent too: it is KaxaNuk's own library, not distributed publicly yet. Install
-each by hand, as the `portfolio-construction-runs`, `backtest-engine-runs` and
+Construction** is absent too: it is KaxaNuk's own library, not distributed publicly yet. A licence
+for either engine, or access to Portfolio Construction, is KaxaNuk's to give: write to
+`lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows the
+Lab. Install each by hand, as the `portfolio-construction-runs`, `backtest-engine-runs` and
 `attribution-analysis-runs` skills describe, and **guard their imports**: a notebook that uses one
 reports what is missing and skips. Without Portfolio Construction an equal-weight book still needs
 nothing but the eligible set; without the engines the pipeline still builds its portfolios and

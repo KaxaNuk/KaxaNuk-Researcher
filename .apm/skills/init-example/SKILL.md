@@ -3,13 +3,12 @@ name: init-example
 description: >
   Copy the KaxaNuk worked example strategy, liquid-golden-cross, into a new folder to study or run
   it — or one of its worked files, such as Data/analyzer.ipynb, into a folder of its own to read
-  beside a strategy's own — from the copy that ships inside the researcher package, by a script.
-  Only when the owner runs it by name. It does NOT start a strategy of the owner's own (use
-  `init-strategy`), does NOT bring back a file of the template a strategy lacks (`init-strategy`'s
-  script with `--only` does), and never builds on the example: it is a worked strategy to read,
-  not a template to fill.
+  beside a strategy's own — from the copy inside the researcher package, by a script. Only when
+  the owner runs it by name. It does NOT start a strategy of the owner's own (use
+  `init-strategy`), does NOT bring back a template file a strategy lacks (`init-strategy`'s script
+  with `--only` does), and never builds on the example.
 metadata:
-  version: 0.2.1
+  version: 0.2.2
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -77,8 +76,10 @@ belongs in each file. It is also readable without installing anything, in
 5. **Hand over.** For the whole example: reading it needs nothing — `OBJECTIVE.md`, then
    `RESULTS.md`, then `Experiments/Experiment_1/`. Running it needs a data provider's key (FMP),
    about three hours of downloads, KaxaNuk's benchmark and factor files, and the licensed Backtest
-   Engine and Attribution Analysis; its `SETUP.md`, from step 2, says how, in a **new** session
-   opened in the folder. Never build a strategy on it; a strategy of their own is `init-strategy`.
+   Engine and Attribution Analysis — the files and the licences are KaxaNuk's to give: write to
+   `lab@kaxanuk.mx`, saying what it is for — <https://www.kaxanuk.mx/lab> shows the Lab; its
+   `SETUP.md`, from step 2, says how, in a **new** session opened in the folder. Never build a
+   strategy on it; a strategy of their own is `init-strategy`.
 
 ## References
 

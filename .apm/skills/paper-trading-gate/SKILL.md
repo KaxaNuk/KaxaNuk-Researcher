@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.2.1
+  version: 0.2.2
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -73,16 +73,16 @@ reaches paper trading with its results reproduced from a clean clone.
 A graduated book is the strategy, frozen. After the sign-off, the rule is written into
 `Paper_Trading_N/paper_trading_N.py` from the experiment's cells and committed; then
 `Paper_Trading/promote.py N`, on a clean tree, copies byte for byte from that commit every file the
-book needs — the refinery and its calculations, the reader of the desk's files, the shared modules
-the rule calls and the seed — into `Paper_Trading_N/` in the strategy's own layout, with the
-security master from disk, and writes `FREEZE.json`: the commit, the freeze date, the hash of every
-file, the library versions, and the hash of what it cannot copy, the Curator's calculations. The
-security master is the provider's data, so `.gitignore` keeps the book's copy out of git: it stays
-on the machine that froze the book, backed up with the record, and is brought across by hand to any
-other machine that runs it. Every module resolves its paths from its own folder, so the copies read
-and write inside the book's folder: an experiment under construction can change the shared modules
-and the book never moves. A frozen book is never frozen again; a new freeze is a new book, with its
-own number.
+book needs — the refinery and its calculations, the reader of the Analytics Factory's files, the
+shared modules the rule calls and the seed — into `Paper_Trading_N/` in the strategy's own layout,
+with the security master from disk, and writes `FREEZE.json`: the commit, the freeze date, the hash
+of every file, the library versions, and the hash of what it cannot copy, the Curator's
+calculations. The security master is the provider's data, so `.gitignore` keeps the book's copy out
+of git: it stays on the machine that froze the book, backed up with the record, and is brought
+across by hand to any other machine that runs it. Every module resolves its paths from its own
+folder, so the copies read and write inside the book's folder: an experiment under construction can
+change the shared modules and the book never moves. A frozen book is never frozen again; a new
+freeze is a new book, with its own number.
 
 ## What a paper-trading run is
 

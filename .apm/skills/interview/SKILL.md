@@ -1,17 +1,14 @@
 ---
 name: interview
 description: >
-  Interview the owner in two short steps, about three minutes, and write RESEARCHER.md — who they
-  are, what they are here for, the researcher's domains, voice and rules — then write the agent
-  file that makes the researcher callable by name and the skill that makes it present in every
-  session, install both for the user and commit, all on one go, and hand over with where the home
-  is, how to add a first source and the one next thing for what the owner is here for. Only when
-  the owner runs it by name, or as the last step of the install that SETUP.md or init-researcher
-  walk through; never on its own. "interview force" starts over when RESEARCHER.md is already
-  filled. It does NOT ask what the owner believes about markets or how they invest (use
-  `philosophy`), nor what their reading is for (the first `read` asks).
+  Interview the owner in two short steps and write RESEARCHER.md — who they are, what they are
+  here for, the researcher's domains, voice and rules — then the agent and skill that make the
+  researcher callable by name and present in every session; install both, commit and hand over.
+  Only when the owner runs it by name, or as the last step of the install SETUP.md or
+  init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
+  invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.1.0
+  version: 2.1.1
 ---
 
 # The interview
@@ -25,12 +22,14 @@ when `RESEARCHER.md` is already filled.
 You are about to become somebody's research companion. This interview decides who. Ask **one step
 at a time**, and do not write anything until every answer is in.
 
-**The interview is about the person.** Who they are, what brings them here, and how the researcher
-should speak and behave — nothing about markets. What they believe about markets and how they
-invest is `philosophy`'s: a second interview, pitched at what they already know, that they take
-when they choose and again as they learn. The questions their reading should answer are asked by
-the first `read`, with a source in front of them. Setup stays fast, and the researcher grows from
-the hand-over.
+**The interview is about the person**: who they are, what brings them here, and how the researcher
+should speak and behave. **Nothing about markets, and no strategy** — not what they believe about
+markets or how they invest, nor a benchmark, a holding horizon, a stop, or when an idea earns real
+money. Each has its own place, which `next` names when its turn comes: how they invest and what
+would change their mind, `philosophy`, which asks their own habits — the yardstick they measure
+themselves against, when they get out, how long they hold — as questions about them, never as
+strategy rules; the questions their reading should answer, the first `read`; a strategy,
+`objective` and `blueprint`. Setup stays fast, and the researcher grows from the hand-over.
 
 **The interview at a glance.** Two steps, about three minutes. Say so in one line before the first,
 and open every step with its number, *2 of 2*, so the owner always knows how much is left.
@@ -40,12 +39,6 @@ and open every step with its number, *2 of 2*, so the owner always knows how muc
 | 1 | what the owner does, what they invest in or study, and what to skip | chat, one paragraph | *Works for*, *Out of scope for now* |
 | 2 | the domains, the researcher's voice, its rules, and what the owner is here for | one tool call | *Domains*, *How it speaks*, *Non-negotiables*, *Here for* |
 
-**What is known is not asked.** The language, the researcher's name and the owner's name come
-before step 1, as *Step 1: Pre-flight* says. **What is left out has a place of its own**: how the
-owner invests and what would change their mind, `philosophy`; the questions their reading should
-answer, the first `read`; a strategy, `objective` and `blueprint`, once the researcher is invited
-into one. `next` names each when its turn comes.
-
 **How to ask.** In Claude Code, every question marked *tool* is asked by **calling
 `AskUserQuestion`** — the options as its choices, at most four, and *Other*, which the tool always
 offers, as the free-text escape. Call the tool; do not type those questions and their options as
@@ -54,12 +47,6 @@ chat message**: each question in it numbered, its options beneath as a numbered 
 your own words* last, and one line saying how to answer: the numbers, *1: 2, 3 · 2: 1*, several
 where the question says several, or their own words. One step per message; wait for the answer
 before the next. Never type the questions of two steps at once.
-
-**When the owner has nothing to say, propose.** Draw candidates from what is already in the
-folder — the files under `Sources/`, by name; the role already given — and, for the works to read
-in the hand-over, from the reading map the package ships, `references/reading-map.md` in the
-`read` skill's folder. Offer them as options to pick, edit or refuse. The point is to keep going.
-A proposal the owner picks is theirs; one they did not pick is never written.
 
 ## Step 1: Pre-flight
 
@@ -71,18 +58,16 @@ A proposal the owner picks is theirs; one they did not pick is never written.
    - **Otherwise stop:** the researcher is already initialised. Say so, and suggest editing
      `RESEARCHER.md` by hand.
 2. Confirm the folders exist — `Sources/` with `Books/`, `Papers/` and `Clippings/`, `Knowledge/`,
-   `Philosophy/` — and the two files `Knowledge/INDEX.md` and `Knowledge/LOG.md`.
-   Create any folder that is missing. A missing `INDEX.md` or `LOG.md` is a file of the home
-   template, blockquote and all, so it is brought from the package by the script in the
-   `init-strategy` skill's folder, run from the home's root — never written from memory. The script
-   copies the one file and never overwrites:
+   `Philosophy/` — and the two files `Knowledge/INDEX.md` and `Knowledge/LOG.md`. Create any
+   folder that is missing. A missing `INDEX.md` or `LOG.md` is a file of the home template,
+   blockquote and all, so it is brought from the package by the script in the `init-strategy`
+   skill's folder, run from the home's root — never written from memory. The script copies the one
+   file, and an existing one is never overwritten, by the script or by you:
 
    ```bash
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/INDEX.md
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/LOG.md
    ```
-
-   An existing `INDEX.md` or `LOG.md` is never overwritten, by the script or by you.
 3. Confirm the researcher's skills are installed for the user: the `read` skill, which carries
    `scripts/extract.py`, `references/note.md` and `references/reading-map.md` in its own folder,
    under `~/.claude/skills/` or the user's folder for the agent in use, or in the package under
@@ -90,10 +75,8 @@ A proposal the owner picks is theirs; one they did not pick is never written.
    same conversation. If it is missing, say so and give the fix —
    `uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
    new session — and say that until then `read` cannot extract a PDF and has no note shape to
-   follow. Never scaffold any of the three: writing `note.md` from memory forks the one convention
-   both repositories share, the reading map is KaxaNuk's own and a copy from memory would invent
-   citations, and `extract.py` is code. With the map absent, the hand-over suggests no topic, as
-   *Step 6* says.
+   follow. Never write any of the three from memory: `note.md` is the one convention both
+   repositories share, a map from memory would invent citations, and `extract.py` is code.
 4. **What is already known**, taken without asking:
    - **The language** the owner has been speaking in this conversation — the install and
      `init-researcher` ask it first. With nothing to go on, ask it before anything else, alone, in
@@ -111,19 +94,16 @@ A proposal the owner picks is theirs; one they did not pick is never written.
 
 ## Step 2: The interview
 
-Keep it short: two steps. **Nothing about markets, and no strategy** — do not ask what the owner
-believes about markets or how they invest, nor about a benchmark, a holding horizon, a stop, or
-when an idea earns real money. `philosophy` asks the owner's own habits — the yardstick they
-measure themselves against, when they get out, how long they hold — as questions about them,
-never as strategy rules; `objective` and `blueprint` ask them of a strategy, later.
-
 **Ask in their language.** Every question, option and draft is in it, and every header is the one
 given below for that language — the English one for any other — twelve characters at most. A work
 keeps the year, authors and title the reading map gives it, never translated.
 
 **Open first, then propose.** When an open question gets nothing, or *I don't know*, offer a
-proposal, labelled as one. What an earlier answer already said is used, never asked again. Every
-tool question has at least two options; when the rules below leave fewer, ask it in chat.
+proposal, labelled as one, drawn from what is already in the folder — the files under `Sources/`,
+by name; the role already given — to pick, edit or refuse. A proposal the owner picks is theirs;
+one they did not pick is never written. What an earlier answer already said is used, never asked
+again. Every tool question has at least two options; when the rules below leave fewer, ask it in
+chat.
 
 **A re-run** under `force` starts from what is there, and a kept answer is written back verbatim.
 - A tool question whose answer is in `RESEARCHER.md` offers it as its first option, marked
@@ -141,8 +121,7 @@ tool question has at least two options; when the rules below leave fewer, ask it
 1. **About you** — *chat.* One paragraph, and say the things it may cover so nobody stares at a
    blank line: their role and what they are building or learning; what they invest in or study,
    and where they are with it — *nothing yet* is a fine answer; and anything the researcher should
-   skip. Say that *I am just starting* is a complete answer. Nothing in it asks what they think
-   about markets: that is `philosophy`'s, later, at their level.
+   skip. Say that *I am just starting* is a complete answer.
 2. **Me, and my rules** — *tool, one call, four questions.*
    - `Domains` (`Dominios`), multi-select — the folders `Knowledge/` starts with: Finance, then
      those the paragraph points to, then Macro, Business, AI, Coding and Math in that order, four in
@@ -170,9 +149,8 @@ tool question has at least two options; when the rules below leave fewer, ask it
      *Organise what I read* — a note on each source, so you can ask what you have read; *Build and
      test a strategy* — an idea written as rules, and tested before any money moves; *Write down
      how I invest, and see it evolve* — your view in your own words, taken again as you learn.
-     The options are shown in their language; the *Here for* line takes them as worded here, in
-     English, as the *Domains* line takes the English names, because `read`, `philosophy` and
-     `next` find them by these words. An *Other* keeps the owner's own words.
+     The options are shown in their language and written in English as worded here, because
+     `read`, `philosophy` and `next` find them by these words; an *Other* keeps the owner's own.
 
 ## Step 3: Write
 
@@ -203,28 +181,22 @@ template has them: *Name*, *Works for*, *Here for* and its four options, *Domain
   runs, and every idea tried is counted.*
 - **Tag policy** — loose: the researcher proposes tags as it reads, the owner prunes at audit. On
   a re-run, the policy the file already states is kept.
-- **The strategies and projects it works on** — as the template ships it: one row,
-  `| *none listed* | — | — |`, and under it *I join a strategy or a project when you invite me; a
-  row is added only when you ask.* The first real row replaces the placeholder. On a re-run, the
-  rows already there are kept verbatim.
-- **What you are reading for** — as the template ships it, with no question yet: the first `read`
-  asks, in plain words, which question a source serves, and adds the answer as question 1 on the
-  owner's go. On a re-run, what is there is kept verbatim.
+- **The strategies and projects it works on** — as the template ships it, the placeholder row
+  `| *none listed* | — | — |`, which the first real row replaces, and the line under it. On a
+  re-run, the rows already there are kept verbatim.
+- **What you are reading for** — as the template ships it, with no question yet; the first `read`
+  adds question 1. On a re-run, what is there is kept verbatim.
 - **Out of scope for now** — what step 1 said to skip, in their words, or *None yet*.
 - **How it cites** — the template's text, in their language, its meaning unchanged.
 
-No angle-bracketed slot is left. **Nothing is written in `Philosophy/`.** It has exactly two
-writers: `philosophy` adds the owner's typed answers to `HOW-I-INVEST.md`, word for word and
-add-only, after the owner's go, and writes one round file in `Philosophy/Evolution/`, never edited
-afterwards; `refine` edits `HOW-I-INVEST.md` as an editor, diff first, and never touches
-`Evolution/`. A rule of the owner's own from step 2 goes under *Non-negotiables*, in their words,
-and nowhere else.
+No angle-bracketed slot is left. **Nothing is written in `Philosophy/`**: its two writers are
+`philosophy` and `refine`, as the home's `AGENTS.md` says. A rule of the owner's own from step 2
+goes under *Non-negotiables*, in their words, and nowhere else.
 
-**The README's opening paragraph.** The home's `README.md` opens with the template's paragraph
-and asks to be replaced with one about this researcher once it is named. On the same go, propose
-that paragraph — the researcher's name, the owner, and what they are here for — in the owner's
-language, in place of the first paragraph only. Everything under the first `---` line stays as it
-is. On a re-run, a paragraph already written by the owner is kept verbatim.
+**The README's opening paragraph.** The template's first paragraph asks to be replaced with one
+about this researcher. On the same go, propose it — the researcher's name, the owner, and what
+they are here for — in the owner's language, in place of the first paragraph only; everything
+under the first `---` line stays as it is. On a re-run, an owner's paragraph is kept verbatim.
 
 **The preview, short.** Show in chat what the owner answered — *Name*, *Works for*, *Here for*,
 *Domains*, *How it speaks*, a rule in their own words, *Out of scope for now* — marking what was
@@ -294,21 +266,16 @@ not come from the engines the project names.
 
 **Write it in English**, whatever the owner's language: the voice line names the language it
 speaks, and the agent answers in it. **Keep the description to one line, and put no colon in
-it.** A colon followed by a space makes the frontmatter invalid YAML, and a harness that cannot
-parse it drops the tool list and installs the agent with no boundary at all. An em-dash does the
-same work safely.
-
-Two things this file deliberately does not do. **It does not copy `RESEARCHER.md`**, so there is
-one source of truth and no second copy to rot — the agent reads it at the start of every run.
-And **it takes no web tools**, because the point of the library is that answers rest on sources
-the owner chose.
+it**: a colon followed by a space makes the frontmatter invalid YAML, and a harness that cannot
+parse it installs the agent with no tool boundary at all. An em-dash is safe. **It does not copy
+`RESEARCHER.md`**, which the agent reads at the start of every run, so there is one source of
+truth; and **it takes no web tools**, because answers rest on the sources the owner chose.
 
 **The researcher's skill makes it present in every session.** The agent is called by name; the
-skill is what every session on the machine sees before anything is loaded — in any folder, on any
-assistant APM deploys to — so the researcher is there without the home being added, answers the
-same way when asked who is speaking, and sends what it is taught home instead of into one
-assistant's memory of one folder. Write `.apm/skills/<slug>/SKILL.md`, the same `<slug>` as the
-agent — a skill and an agent may share a name — on the same go:
+skill is seen by every session on the machine — in any folder, on any assistant APM deploys to —
+so the researcher is there without the home being added, answers the same way when asked who is
+speaking, and sends what it is taught home. Write `.apm/skills/<slug>/SKILL.md`, the same `<slug>`
+as the agent — a skill and an agent may share a name — on the same go:
 
 ```markdown
 ---
@@ -365,24 +332,21 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
 Write it in English, as the agent, with the owner's language named in item 2 as the one it
 speaks, and name the researcher as `RESEARCHER.md` does; `<engine and model>`, `<kind>` and
 `<command>` stay as written, for the session to fill. **It copies nothing else from
-`RESEARCHER.md`**, for the reason the agent does not: its description is in every session on the
-machine, so it carries who and where, and the body only what to do; the rest is read from the
-home. The home's path is the one thing in it that ties it to this machine: if the home moves,
-`update` writes it again.
+`RESEARCHER.md`**: its description carries who and where, its body only what to do, and the rest
+is read from the home. The home's path ties it to this machine: if the home moves, `update` writes
+it again.
 
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
 the package's name, which this home is not. On the same go, set its `name:` to `<slug>`, its
 `description:` to one line — *<Name>, <owner>'s research companion* and what it is for — with no
-colon in it, for the reason above, its `author:` to the owner, and its `version:` to `0.1.0`. The
-home's own version is the owner's: `interview` sets it to 0.1.0, the owner bumps it with each
-entry they add to `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never
-this field. Nothing else in it changes.
+colon in it, for the reason above, its `author:` to the owner, and its `version:` to `0.1.0`, the
+owner's from then on, as the home's `README.md` says under *Installing and updating*. Nothing else
+in it changes.
 
 ## Step 5: Deploy it, and commit
 
-The agent and the skill are files until APM deploys them, and the owner may have no idea what
-either command means. So on the same go, once the files are written, run both yourself — the owner
-types nothing:
+The agent and the skill are files until APM deploys them. On the same go, once they are written,
+run both commands yourself — the owner types nothing, and may not know what either means:
 
 1. **Install the home for the owner's user**, beside the package — the same user scope, so the
    agent and the skill reach every folder, for every assistant `~/.apm/apm.yml` lists under
@@ -392,11 +356,14 @@ types nothing:
    uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
    ```
 
-   APM installs the home's `.apm/` and nothing else, as its `apm.yml` says. Never `apm install`
-   inside the home: it deploys a second copy, at project scope, that goes stale the first time the
-   agent or the skill changes. Gemini, OpenCode and Windsurf take the skill and not the agent: say
-   so in one line. If it fails, say so in one plain line, give the owner that command to run later,
-   and go on.
+   APM copies the whole home into `~/.apm/apm_modules/_local/<folder name>/`, on this machine only,
+   and deploys only its `.apm/` — the agent and the skill. Never `apm install` inside the home: it
+   deploys a second copy, at project scope, that goes stale the first time the agent or the skill
+   changes. Gemini, OpenCode and Windsurf take the skill and not the agent: say so in one line.
+   Codex takes the agent without its tool list, which is why its body says it never writes. Say
+   this, and where else the boundary holds, only if the owner asks; the home's `AGENTS.md` has it.
+   If it fails, say so in one plain line, give the owner that command to run later, and go on; on
+   Windows, a path in that copy past 260 characters fails it, and a shorter home path fixes it.
 2. **Commit what the interview wrote**, by name and nothing else in the folder — `RESEARCHER.md`,
    `README.md`, `apm.yml`, the agent file and the skill:
 
@@ -410,17 +377,10 @@ types nothing:
    never invent them — set them in this repository only, `git config user.name "<name>"` and
    `git config user.email "<email>"`, and commit again.
 
-Where the agent's boundary holds: Claude Code, Copilot and Cursor enforce the tool list. Codex
-takes the agent but drops the list, which is why the read-only rule is written into the body as
-well. OpenCode rejects the agent, because it wants the tool list as a mapping of tool name to
-boolean; Gemini and Windsurf have no agent primitive at all. On those three the researcher is its
-skills and commands — its own skill among them — exactly as before. Say none of this to the owner
-unless they ask.
-
-Beyond this install there is nothing to install: the home's `apm.yml` declares no dependency, and
-every KaxaNuk skill and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed
-once for the user. The home's `LICENSE` names KaxaNuk as the copyright holder, as the template ships
-it; the home is the owner's, and they may put themselves there or choose another licence.
+Nothing else is installed: the home's `apm.yml` declares no dependency, and every KaxaNuk skill
+and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user.
+The home's `LICENSE` names KaxaNuk as the copyright holder, as the template ships it; the home is
+the owner's, to put themselves there or choose another licence.
 
 ## Step 6: Hand over
 
@@ -459,21 +419,17 @@ serves item 4 first — `Philosophy?` when item 4 is `philosophy`, `Start?` othe
   new session starts with every skill loaded and a clean context.
 
 **I have a document.** Ask them to attach it, or to say where it is saved, and follow the `read`
-skill with the same home: its plan copies the file into `Sources/` and reads it, on one go. Every
-path is relative to the home's absolute path, and `extract.py` runs from the home's root, so its
-extracts land in the home's `Extracts/`; the skill is read from
-`~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` when it is not loaded in
-this session, as `init-researcher` follows this one. With no question under
-*What you are reading for* yet, `read` asks which one the source serves, in plain words, and adds
-it as question 1 on the owner's go.
+skill with the same home: its plan copies the file into `Sources/` and reads it, on one go, with
+`extract.py` run from the home's root, so its extracts land in the home's `Extracts/`. The skill is
+read from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` when it is not
+loaded in this session, as `init-researcher` follows this one.
 
 **Suggest a topic.** One more tool question, `Find first` (`Buscar`), multi-select: up to four
 works from the reading map, `references/reading-map.md` in the `read` skill's folder — never from
-memory, and never a work the map gives without a title. Match the map's works first against the
-file names under `Sources/` and the notes in `Knowledge/INDEX.md`, as its *Match before
-proposing* says: a work with a note is *read*, and never offered; a PDF with no note is *in your
-Sources/, not yet read*, needs only `read`, and comes first; a *possibly in your Sources/* match is
-offered as a work to find, saying so. Then, in this order, skipping a work already offered:
+memory, and never a work the map gives without a title. Match them first against `Sources/` and
+`Knowledge/INDEX.md`, as the map's *Match before proposing* says: a work *read* is never offered;
+one *in your Sources/, not yet read* needs only `read`, and comes first; one *possibly in your
+Sources/* is offered as a work to find, saying so. Then, in this order, never offering one twice:
 
 - what *About you* names — a topic or a belief — placed as the map's *Beliefs people type* or *The
   six acts* places it: the work that holds it, then its other side where the map names one;

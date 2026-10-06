@@ -40,21 +40,18 @@ unless the owner says the mission has changed.
 **An existing topic**: read `progress.md` — mission, track, preferences — and pick the next lesson
 just beyond what stuck last time.
 
-**A topic still in `Projects/Teach/<topic-slug>/`**, from a home made before template 0.10.0:
-never start it afresh in `Lessons/`. Say so and point at `update`, which offers to move it to
-`Lessons/<topic-slug>/` on the owner's go, as often as a `Projects/` remains — or at the one line
-that does it by hand, `git mv Projects/Teach/<topic-slug> Lessons/<topic-slug>`, after
-`mkdir -p Lessons`. When a `Lessons/<topic-slug>/` exists as well, the owner merges the two by
-hand; teach the topic from `Lessons/` once it is there.
+**A topic still in `Projects/Teach/<topic-slug>/`** is never started afresh in `Lessons/`. Say so
+and point at `update`, which moves it to `Lessons/<topic-slug>/` on the owner's go; or by hand,
+`mkdir -p Lessons`, then `git mv Projects/Teach/<topic-slug> Lessons/<topic-slug>`. With a
+`Lessons/<topic-slug>/` as well, the owner merges the two by hand; teach it from `Lessons/` then.
 
 **Every lesson:**
 
 1. Ground it in `Knowledge/` by the same walk as `query`: index first, then links, then notes,
-   and the owner's `Philosophy/` where their own view bears on the concept, cited as theirs. Round
-   files in `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for
-   dates and levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view. Cite
-   every claim with a link. If the library is thin on the topic, say so and name the sources to
-   add to `Sources/` — never substitute what you happen to know for what the owner has read.
+   and the owner's `Philosophy/` where their own view bears on the concept, cited as theirs, never
+   a round file in `Philosophy/Evolution/`, a record, as the home's `AGENTS.md` says. Cite every
+   claim with a link. If the library is thin on the topic, say so and name the sources to add to
+   `Sources/` — never substitute what you happen to know for what the owner has read.
 2. One tightly scoped concept, tied to the mission and, where it fits, to a strategy the owner is
    building.
 3. Show the lesson's plan first — the one concept, the notes it will cite, the file name — and wait
@@ -62,12 +59,10 @@ hand; teach the topic from `Lessons/` once it is there.
    with a short retrieval quiz that also touches earlier sessions.
 4. Append one row to the track in `progress.md`: date, lesson, what stuck, what did not. That row
    is part of the same run, on the same go, the way a `LOG.md` entry is; it needs no second go.
-5. **Then offer the commit.** Show the two commands it takes — `git add` with the session file and
-   `progress.md`, by name, never `--all`, and `git commit -m "Teach: <topic>, session <N>"` — and
-   ask `Commit?` (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question
-   tool, the two as a numbered list in chat. On *Commit it for me*, run them: the owner's pick is
-   the human act, as the go was for the write. On *I'll review it first*, nothing more: they
-   commit, or say *commit it* and you run the commands then. Never commit unasked.
+5. **Then offer the commit**, as the home's `AGENTS.md` says. Show `git add` with the session file
+   and `progress.md`, by name, never `--all`, and `git commit -m "Teach: <topic>, session <N>"`,
+   and ask `Commit?` (`¿Confirmo?`): *Commit it for me* runs them; after *I'll review it first*,
+   they commit, or say *commit it* and you run them. Never commit unasked.
 6. Close the lesson with one line, offered and never pressed: a round of `philosophy` — round 1
    when `Philosophy/Evolution/` holds none, else the next, naming the last round's date — for
    whenever they want to write down how they invest, in their words, as what they learn moves it.

@@ -42,7 +42,7 @@ Template version: **0.11.0**. The template ships `Experiments/Experiment_1/` and
 │   └── universe.ipynb           #   -> Security_Master.csv, Data_Issues.csv, Provider_Cache/ (gitignored)
 ├── Data/                        # step 3
 │   ├── curator.py               #   Data Curator driver; --end-date refreshes it for paper trading
-│   ├── hand_supplied.py         #   reads the desk's index and factor files, in place or dropped in
+│   ├── hand_supplied.py         #   reads the Analytics Factory's index and factor files, in place or dropped in
 │   ├── Curator/
 │   │   ├── custom_calculations.py   # c_* columns: one security's own history
 │   │   ├── Time_Series/         #   downloaded, gitignored — universe, cash proxy, benchmarks
@@ -85,7 +85,7 @@ extension and by path. `Config/.env` is gitignored **because it is secret**; the
 committed. Everything APM would install — `.claude/`, `.agents/`, `.codex/`, `.cursor/`,
 `apm_modules/`, `apm.lock.yaml`, `.mcp.json` — is gitignored as well, though a strategy installs
 nothing: the skills are installed once for the user, by
-`apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`.
+`uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`.
 
 Strip notebook outputs before committing. `--group notebook` adds JupyterLab, which a bare
 `uv sync` leaves out; `uv run` adds it without removing a hand-installed engine:

@@ -7,13 +7,13 @@ description: >
   feature carries signal, how to compute an information coefficient or information ratio, over
   which horizons, on which pool, how to check coverage, diversification or a cross-sectional rank,
   what a fitted signal's look-ahead costs, what to write in `RESULTS.md` under *Before any
-  experiment*, or which predictions the analyzer licenses a blueprint to make. It covers the
+  experiment*, or which predictions the analyzer allows a blueprint to make. It covers the
   notebook's sections, the traps that make a clean screen wrong, and where the numbers go. It does
   NOT cover the `c_*` and `r_*` columns it reads (`data-curator-custom-calculations`), the
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -42,7 +42,7 @@ signal built on it carries anything. It builds no book, runs no engine and sizes
 - The user asks whether a feature predicts returns, over what horizon and with which sign; how to
   compute an information coefficient; whether to screen on the whole panel or the eligible pool.
 - The user is writing or debugging `Data/analyzer.ipynb`, or asks what a section of it is for.
-- A blueprint needs a prediction and nothing licenses it yet: the analyzer measurement that would
+- A blueprint needs a prediction and nothing supports it yet: the analyzer measurement that would
   is the lead to run first.
 - The user asks what goes into `RESULTS.md` before any experiment, or where an analyzer number is
   cited from.
@@ -96,7 +96,7 @@ every one.
 
 - **`RESULTS.md`, *Before any experiment*** — every measurement worth keeping, in a table with the
   section it came from: what the signal predicts, over what horizon, with which sign, and what it
-  does not; what the findings license a blueprint to predict and what they forbid; the caveats the
+  does not; what the findings allow a blueprint to predict and what they forbid; the caveats the
   data carries — a security with no file, a bad print excluded by name, series that end early.
   Findings from this stage go there **directly**, the one exception to *findings first*: notebook
   outputs are stripped before committing, so a measurement living only in a cell output does not

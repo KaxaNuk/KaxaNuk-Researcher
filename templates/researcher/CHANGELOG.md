@@ -6,6 +6,70 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.18.0 (2026-10-06)
+
+**MINOR** — a way into the KaxaNuk Investment Lab, and less to read. `README.md` says in a short
+section which Lab libraries a strategy can use — open source, licensed, on request or coming — and
+gives one address, `lab@kaxanuk.mx`, for a licence, access or a problem with your researcher.
+`AGENTS.md`, which loads in every session, is 401 lines where it was 462: no rule dropped and none
+changed, and a new hard don't names the Lab as a fact, never as advice. Installing the home is
+described as it happens — APM copies the whole folder on this machine and deploys only `.apm/` —
+and every `apm` line you are told to run names `apm-cli==0.29.0`.
+
+**What to do differently:** run `update` in your home — it shows the changes to `AGENTS.md`,
+`README.md` and `apm.yml` as a diff, and brings them across on your go.
+
+### Added
+
+* **`README.md`, *The KaxaNuk Investment Lab***, after *The path*: what a strategy built from here
+  can use — the Data Curator open source, the Backtest Engine and Attribution Analysis licensed,
+  Portfolio Construction on request, the Data Refinery and the Data Analyzer coming — with
+  <https://www.kaxanuk.mx/lab>, and `lab@kaxanuk.mx` for a licence, access or a problem report,
+  with the version `update check` shows.
+* **`AGENTS.md`, a hard don't**: the Lab is named as a fact, never as advice, and naming its
+  engines as where a strategy's numbers come from is one. What a library does and how to get it is
+  said only when a step needs a library you lack, or when you ask; never added unasked to
+  `RESEARCHER.md`, `Philosophy/`, a brief, a study, a round of `philosophy` or a *Find first*
+  line, and never as a reason to invest in anything.
+
+### Changed
+
+* **`AGENTS.md` is shorter, every rule kept.** What moved: the
+  `CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD` setting and the `CLAUDE.local.md` fallback, to *The
+  rules, loaded from the first line* under `README.md`'s *In a strategy or another project*, marked
+  optional and for Claude Code only; how a skill or a command of the home's own is written —
+  frontmatter, body, inputs, and why nothing goes in `.apm/instructions/` — to *Writing a skill or a
+  command of your own (advanced)* under *Growing your researcher*, which says nothing there is
+  needed to use the researcher; the history of `targets:`, to `apm.yml`'s comment; the home's
+  version rule, to `README.md`'s *Installing and updating*, which states it once. The `Philosophy/`
+  row holds the two writers and the whole round-file rule — read for dates and levels, quoted only
+  as the record of a round, never cited as your view — and the paragraph after the folder table,
+  *Plan first, then write* and the hard don'ts point to it. The skills' row and *Working lean* are
+  shorter. The note on a strategy made from a template before 0.13.2, which keeps the benchmark in
+  `BRAINSTORMING_1.md`, is gone: `blueprint` and `next` still read it there. "Save" meaning "except"
+  now says "except", and a study is "a decision, a plan or a memo" where it said "a brief", the
+  daily brief's name.
+* **`AGENTS.md`, *Where the skills, the commands and the agent live***: installing the home copies
+  the whole folder — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/` included — into
+  `~/.apm/apm_modules/_local/<folder name>/` on this machine, refreshed by each install, and
+  deploys only its `.apm/`; nothing leaves the machine, and on Windows a long `Extracts/` path in
+  that copy can fail the install. On Codex the skills and the agent arrive, the agent without its
+  tool list, and the commands and the instructions do not; with no question tool, each question
+  is asked in chat with its options numbered, *Other — your own words* last, and one line on how
+  to answer. The Instruction row gives the four house instructions' real scopes — Bloom Code and
+  PEP 8 for every Python file, test writing for Python tests, filesystem boundaries for every file
+  the assistant reads, in any project — where it said every Python project on the machine.
+* **`apm.yml`**: its comment says what deploys and what the install copies, where it said that
+  only `.apm/` publishes, and holds the history of `targets:`.
+* **`README.md`, *Installing and updating***: the same fact about the install, in one sentence
+  that names the folders it copies.
+* **Every `apm` line you are told to run names `apm-cli==0.29.0`**, in `AGENTS.md` and
+  `README.md`.
+
+### Fixed
+
+* **`CHANGELOG.md`**: a 101-column line in the 0.5.3 entry, rewrapped.
+
 ## 0.17.0 (2026-10-06)
 
 **MINOR** — the first run lands, and the next step is clear. Attach a file in chat or name one on
@@ -645,8 +709,8 @@ copy of it. Nothing to do differently; every command behaves as before.
   and that this repository's table and the `experiment-lifecycle` skill both index it.
 * **The table's *Item* column is names, not restatements.** The reasons behind the order — why the
   objective comes before any paper, why the universe comes after the claims — stay in the template's
-  README. *Where it lands*, *the researcher's part* and the rule for a command asked for out of order
-  are unchanged word for word, and so are the item numbers `blueprint` and `challenge` cite.
+  README. *Where it lands*, *the researcher's part* and the rule for a command asked for out of
+  order are unchanged word for word, and so are the item numbers `blueprint` and `challenge` cite.
 * The paragraph on items and steps is three lines instead of six; its examples named lines in a
   strategy's files that change as the strategy does.
 

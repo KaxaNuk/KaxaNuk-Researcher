@@ -8,18 +8,17 @@ description: >
   the owner runs it by name, or when the researcher's skill answers a greeting; never on its own
   otherwise.
 metadata:
-  version: 1.2.0
+  version: 1.3.0
 ---
 
 # Next — where you stand, and what to do next
 
-The process has eight steps, an order of work with eight parts, three skills that make folders,
-`interview`, `philosophy`, `brief`, this skill and nine commands. This skill is the map: it reads
-the folder, says which parts are done, and names **the one thing to do next** with the command or
-skill that does it. It writes nothing and never starts the next thing itself — doing it is a
-different request, by the name this skill gives — save one: at home, the commit *Step 2* offers,
-run when the owner picks *Commit it for me*. It is a skill, not a command, so every assistant APM
-deploys to has it, Codex included.
+This skill is the map of the process and of the researcher's skills and commands: it reads the
+folder, says which parts are done, and names **the one thing to do next** with the command or skill
+that does it. It writes nothing and never starts the next thing itself — doing it is a different
+request, by the name this skill gives — save one: at home, the commit *Step 2* offers, run when the
+owner picks *Commit it for me*. It is a skill, not a command, so every assistant APM deploys to has
+it, Codex included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
 — *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
@@ -105,7 +104,7 @@ empty after the work was done.
 | D | The data | on this machine: `Data/Curator/Time_Series/` has files, `Universe/Security_Master.csv` exists, `Data/Refinery/Time_Series/` has files; and `RESULTS.md` has a measurement under *Before any experiment* with the analyzer section it came from | the first of `Data/curator.py`, `Universe/universe.ipynb`, `Data/refinery.py`, `Data/analyzer.ipynb` whose output is missing, in that order — `data-curator-custom-calculations`, `universe-point-in-time`, `data-analyzer-runs` |
 | E | The blueprint | `JOURNAL_1.md` has the entry choosing the benchmark — in a strategy that still keeps `BRAINSTORMING_1.md`, its first entry counts; `Experiments/Experiment_N/BLUEPRINT_N.md` carries the line `blueprint` writes under the experiment's heading, `**Written YYYY-MM-DD, before any rule was coded.**`, and every prediction names a note or an analyzer section, and it is committed before the rule cell of `experiment_N.ipynb` holds code | the benchmark, chosen with the owner in chat and appended to `JOURNAL_1.md` on their go, when that entry is missing; else `blueprint N`; else the owner's commit |
 | F | The broad reading | the leads the blueprint counted are read or recorded as leads in `BIBLIOGRAPHY.md` | `read` for the first lead |
-| G | The cycle | section 2 of `experiment_N.ipynb` holds the rule; on this machine `Portfolio/`, `Backtest/` and `Attribution/` hold output; `FINDINGS_N.md` reports, every prediction of the blueprint evaluated | the first of `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs` whose output is missing; `alpha-decomposition` to read it; then `challenge N` once `FINDINGS_N.md` reports. When the engine or the attribution library is not installed, which the notebook's guarded import reports, say the step is skipped for want of a licence, point to the strategy's `SETUP.md` for how to get one, and move on to what can still be done — `FINDINGS_N.md` for the book, and the journal's open threads |
+| G | The cycle | section 2 of `experiment_N.ipynb` holds the rule; on this machine `Portfolio/`, `Backtest/` and `Attribution/` hold output; `FINDINGS_N.md` reports, every prediction of the blueprint evaluated | the first of `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs` whose output is missing; `alpha-decomposition` to read it; then `challenge N` once `FINDINGS_N.md` reports. When the engine or the attribution library is not installed, which the notebook's guarded import reports, say the step is skipped for want of a licence and give the access line from the Lab's access facts, `references/investment-lab.md` in this skill's folder: *A licence for the Backtest Engine or Attribution Analysis is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows the Lab.* When the library is installed and attribution reports its index or factor files missing instead, give the facts file's Analytics Factory line: *KaxaNuk's Analytics Factory ships the benchmark and the factor model files attribution reads, <https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them.* Then move on to what can still be done — `FINDINGS_N.md` for the book, and the journal's open threads |
 | H | The results | `RESULTS.md` has the experiment's row citing `FINDINGS_N.md`; the claim has moved — where `BLUEPRINT_N.md` names one under *The claim this moves*, `OBJECTIVE.md` gives that claim the status `FINDINGS_N.md` says it reached, and so does the row's *Claim moved* where `RESULTS.md` has that column; where the blueprint names none, the statuses in `OBJECTIVE.md` of the claims it tests have moved; and `CHANGELOG.md` has the entry | the missing one of those three |
 
 A to H done for the newest experiment: the next thing is either the gate — `Paper_Trading/

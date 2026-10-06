@@ -5,6 +5,18 @@ with every claim pointing back to a source, helps you work out your ideas, and w
 building an investment strategy with the KaxaNuk Investment Lab. One researcher per person; it
 works in any language.
 
+**What it is.** A research and learning tool, never investment advice: it does not tell you what
+to buy or sell. It runs on your computer, through an assistant installed there — Claude, Codex or
+Gemini — and KaxaNuk receives nothing from it: what the assistant reads goes to the company that
+runs that assistant, as in any conversation with it. A licensed Lab library, if you use one,
+checks its licence with KaxaNuk.
+
+**Qué es.** Una herramienta de investigación y aprendizaje, nunca asesoría de inversión: no te
+dice qué comprar ni qué vender. Funciona en tu computadora, con un asistente instalado ahí —
+Claude, Codex o Gemini — y KaxaNuk no recibe nada de ella: lo que el asistente lee va a la
+empresa que lo ofrece, como en cualquier conversación con él. Una librería del Lab con licencia,
+si la usas, verifica su licencia con KaxaNuk.
+
 > **If you are an assistant asked to install this,** follow [`SETUP.md`](SETUP.md) from Step 0;
 > nothing is cloned.
 
@@ -84,6 +96,22 @@ position to adopt.
 
 **Lost at any point?** Type `next` in the folder you are in.
 
+**What a strategy needs from outside this package.** The researcher needs nothing more. A strategy
+needs a key from a data provider the Data Curator reads — FMP, Sharadar or LSEG, from the provider
+itself; the worked example uses FMP — before it can download anything, the worked example included.
+Three of the Lab libraries are not public: the Backtest Engine and Attribution Analysis each need a
+KaxaNuk licence, and Portfolio Construction needs access to KaxaNuk's private
+`KaxaNuk/Portfolio-Construction` repository. Attribution also reads the benchmark and factor model
+files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>. A licence, access or those
+files are KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
+<https://www.kaxanuk.mx/lab> shows the Lab. Without them a strategy still runs up to its portfolios
+— an equal-weight book needs nothing more — and the backtest and attribution say what is missing and
+skip. Every key goes in the strategy's `Config/.env`, which only you fill in and nobody commits; the
+strategy's own `SETUP.md` says how.
+
+**A question, or a problem to report:** the same address — a problem report names the version
+`update check` shows.
+
 ---
 
 ## For developers and advanced users
@@ -96,13 +124,14 @@ uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target cl
 ```
 
 `--target codex`, `gemini`, `cursor` or another in place of `claude`; Claude Code receives
-everything, and [`SETUP.md`](SETUP.md) says what the others miss. The skills are then in every
-folder you open, so **a strategy installs nothing of its own**; `uvx --from apm-cli==0.29.0 apm
-update -g` brings every new version. **APM stays at 0.29.0, and every command that runs it names
-that version**: from 0.29.1 on, the install fails on Windows with `WinError 3` or `WinError 206`.
-Never run `apm self-update`. The skills appear only in a new session: open one, anywhere, and
-`init-researcher Ada` makes the home and runs the interview. This is the path by hand; an assistant
-asked to install follows [`SETUP.md`](SETUP.md) instead, all in one conversation.
+everything, and *Troubleshooting* in [`SETUP.md`](SETUP.md) says what the others miss. The skills
+are then in every folder you open, so **a strategy installs nothing of its own**;
+`uvx --from apm-cli==0.29.0 apm update -g` brings every new version. **APM stays at 0.29.0, and
+every command that runs it names that version**: from 0.29.1 on, the install fails on Windows with
+`WinError 3` or `WinError 206`. Never run `apm self-update`. The skills appear only in a new
+session: open one, anywhere, and `init-researcher Ada` makes the home and runs the interview. This
+is the path by hand; an assistant asked to install follows [`SETUP.md`](SETUP.md) instead, all in
+one conversation.
 
 ### The path after the install
 
@@ -116,17 +145,6 @@ asked to install follows [`SETUP.md`](SETUP.md) instead, all in one conversation
 
 The questions of `philosophy` and the reading map cover investment research; a researcher for
 another field skips `philosophy`, or answers *not sure yet* where it must, and grows by reading.
-
-**What a strategy needs from outside this package.** The researcher needs nothing more. A strategy
-needs a key from a data provider the Data Curator reads — FMP, Sharadar or LSEG, from the provider
-itself; the worked example uses FMP — before it can download anything, the worked example
-included. Three of the Lab libraries are not public: the Backtest Engine and Attribution Analysis
-each need a KaxaNuk licence, a welcome email with an index URL and a key, and Portfolio
-Construction needs access to KaxaNuk's private `KaxaNuk/Portfolio-Construction` repository; ask
-KaxaNuk for them. Without them a strategy still runs up to its portfolios — an equal-weight book
-needs nothing more — and the backtest and attribution say what is missing and skip. Every key goes
-in the strategy's `Config/.env`, which only you fill in and nobody commits; the strategy's own
-`SETUP.md` says how.
 
 **The researcher is in every folder** once the interview has run: open your assistant in a
 strategy's folder, or any other project's, and it is there, by name, on whichever assistant APM
@@ -183,10 +201,11 @@ strategy, in the order of its steps:
 | `alpha-decomposition` | reading attribution: is the signal doing anything, or is it a factor exposure |
 | `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, the freeze, and the daily run and its record |
 
-**The house rules**: `how-we-work` (where work lands, changelogs, versions) and `bloom-code-lint`
-with the Bloom Code, PEP 8, test-writing and filesystem-boundaries instructions, which apply to
-every Python project on the machine where the agent receives them (`SETUP.md` step 1).
-`bloom-code-lint` is the check to run by hand.
+**The house rules**: `how-we-work` (where work lands, changelogs, versions), `bloom-code-lint`,
+and four instructions, on the assistants that receive them — *Troubleshooting* in `SETUP.md` says
+which: Bloom Code and PEP 8, for every Python file on the machine; test writing, for Python tests;
+and filesystem boundaries, in any project, for every file the assistant reads: outside the folder
+it works in, only the places the task needs. `bloom-code-lint` is the check to run by hand.
 
 **One agent**, deployed for your user with the skills: `blueprint-critic` reads a drafted
 `BLUEPRINT_N.md` cold, before your go, against the strategy's `AGENTS.md`, `OBJECTIVE.md`, the

@@ -2,17 +2,13 @@
 name: read
 description: >
   Load this skill whenever the owner asks to read, file, compile or add a source to the library — a
-  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, a file they attach or name
-  copied into Sources/ first, on the same go, and in a strategy, once its OBJECTIVE.md has claims
-  because the objective comes before any paper, into a note beside the PDF in its Bibliotheca/
-  with a row in BIBLIOGRAPHY.md. It extracts a PDF by chapter with a script,
-  shows the owner the table of contents, asks which chapters serve which of their questions or
-  claims — at home with no question yet, first which question the source serves, added as
-  question 1 — reads only those, and writes one note per chapter read, after a plan and the
-  owner's go; contradictions are flagged, never overwritten. It does NOT answer questions from the
-  library (use `query`) and does NOT rebuild the index (the `refresh-index` command does).
+  PDF, a paper, a clipping — at home from Sources/ into Knowledge/, a file they attach copied in
+  first; in a strategy, once OBJECTIVE.md has claims, into a note beside the PDF in Bibliotheca/.
+  It extracts a PDF by chapter with a script, asks which chapters serve which question or claim,
+  and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
+  questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.10.0
+  version: 0.10.1
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -35,8 +31,7 @@ of the owner's questions, and nothing for a chapter they did not choose — and,
 wiki: the concept pages those chapters touch, one small page per idea, created and updated as the
 sources come in. One convention serves both repositories, so a note has the same shape at home and
 in a strategy; it and the concept page are in [`references/note.md`](references/note.md), in this
-skill's own folder. **You must present a plan in chat and receive an explicit go
-before writing any file.**
+skill's own folder. **A plan in chat, and the owner's explicit go, before any file is written.**
 
 Three jobs, kept apart. **Extracting** text from a PDF is deterministic and belongs to
 `scripts/extract.py` in this skill's folder, never to reading the PDF page by page.
@@ -64,11 +59,9 @@ the claims from the owner's words, and stop. The reading that follows comes in t
 per claim, to fine-tune the objective before the blueprint; broad, after the blueprint.
 
 **A strategy with no `Bibliotheca/BIBLIOGRAPHY.md`** cannot take a note either: there is no row
-to add and no convention to follow. The KaxaNuk Strategy Template ships it empty, with
-`Bibliotheca/LOG.md`, since 0.7.15; a strategy created before that has `Bibliotheca/.gitkeep` and
-nothing else. Say so, and give the command that copies the two files from the template inside
-the KaxaNuk Researcher package, run in the strategy's root — the script is in the `init-strategy`
-skill's folder:
+to add and no convention to follow. Say so, and give the commands that copy it and
+`Bibliotheca/LOG.md` from the template inside the KaxaNuk Researcher package, run in the
+strategy's root — the script is in the `init-strategy` skill's folder:
 
 ```bash
 uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Bibliotheca/BIBLIOGRAPHY.md
@@ -79,10 +72,9 @@ They come empty, so there is nothing to delete. Then stop; the owner runs it, an
 from there. Never scaffold `BIBLIOGRAPHY.md` by hand: it is the template's file, with its parts and
 its prose.
 
-The commands assume the KaxaNuk Strategy Template's paths; a strategy made from another template
-keeps or maps them in its own `AGENTS.md`. In a strategy whose `README.md` or `AGENTS.md` names
-another template, never offer `scaffold.py` to copy KaxaNuk files in: follow that template's own
-record of what was read, wherever its `AGENTS.md` says it lives.
+A strategy whose `README.md` or `AGENTS.md` names another template is never offered `scaffold.py`
+to copy KaxaNuk files in: follow that template's own record of what was read, wherever its
+`AGENTS.md` says it lives.
 
 A source already read is not read again unless the owner says so. A book begun in an earlier run is
 found by its path in the log and by its `INDEX.md` — the status column says which chapters are
@@ -173,22 +165,21 @@ recorded as such.
 which question this source serves, first,** in plain words: *what do you want this reading to help
 you answer?* Ask it through the question tool, header `Reading for` (`Leer para`), single-select:
 three proposals, then *Background reading, no question in mind*, with *Other* for their own words.
-One proposal comes from the source itself, its title and table of contents; the others from *Here
-for* and *About you* — the *Here for* line and *Works for* under *Who* in `RESEARCHER.md`. With
-*Here for* *Learn the basics, step by step*, or the voice *Explain as you go*, every proposal is in
-everyday words — *can anyone do better than the market, year after year?*, *why do people make the
-same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build and test a strategy*,
-one may come from the reading map's *Questions to read for, from the evidence*; with *Write down
-how I invest, and see it evolve*, one asks about the owner's own way of investing; with *Organise
-what I read*, they follow the source's own subject. A home made before template 0.16.0 has no
-*Here for* line, and draws on *Works for* and the source alone. The question the owner picks or
-types is theirs: the plan offers to add it as question 1 under *What you are reading for*, in their
-words — with the copy of *step 2*, the only write this skill makes outside the library and the
-extracts, at home only, said in the plan. Then the table of contents is shown against it, as
-above. In a strategy the questions are the claims in `OBJECTIVE.md`, by number — a strategy with
-none stopped at A, the objective. A question the claims do not cover is a claim to add with
-`objective` before the reading, and *background reading* is a home answer: in a strategy every
-note serves a claim. Nothing is written at home.
+One proposal comes from the source itself, its title and table of contents; the others from the
+*Here for* line and *Works for* under *Who* in `RESEARCHER.md`, or *Works for* alone where there is
+no *Here for*. With *Here for* *Learn the basics, step by step*, or the voice *Explain as you go*,
+every proposal is in everyday words — *can anyone do better than the market, year after year?*,
+*why do people make the same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build
+and test a strategy*, one may come from the reading map's *Questions to read for, from the
+evidence*; with *Write down how I invest, and see it evolve*, one asks about the owner's own way of
+investing; with *Organise what I read*, they follow the source's own subject. The question the
+owner picks or types is theirs: the plan offers to add it as question 1 under *What you are reading
+for*, in their words — with the copy of *step 2*, the only write this skill makes outside the
+library and the extracts, at home only, said in the plan. Then the table of contents is shown
+against it, as above. In a strategy the questions are the claims in `OBJECTIVE.md`, by number — a
+strategy with none stopped at A, the objective. A question the claims do not cover is a claim to
+add with `objective` before the reading, and *background reading* is a home answer: in a strategy
+every note serves a claim. Nothing is written at home.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the
@@ -226,9 +217,8 @@ holds, and why it was passed over. For each note, decide:
 - **What it contradicts or supersedes.** Any claim in an existing note that the chapter conflicts
   with, quoted.
 - **What the owner believes about it.** Any file in `Philosophy/` on the same subject — at home,
-  to be cited from the note; in a strategy, named in prose — never compiled into it. Round files
-  in `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
-  levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view.
+  to be cited from the note; in a strategy, named in prose — never compiled into it, and never a
+  round file in `Philosophy/Evolution/`, a record, as the home's `AGENTS.md` says.
 
 What you remember of a well-known book is not the book: nothing is written from memory, and nothing
 from a summary.
@@ -302,14 +292,11 @@ its ID and short name. With a round in `Philosophy/Evolution/`, the line gives t
 date and offers the next round with `philosophy`; with none, it offers round 1. A work the table
 does not list, or a table that cannot be read because the skill is not installed, gets no line.
 
-**Then offer the commit,** at home. Show the two commands it takes — `git add` with every file this
-run wrote, by name, never `--all`, leaving out the extracts and any PDF, which git ignores, and
-`git commit -m "Read: <Author Year, short title>"` — and ask `Commit?` (`¿Confirmo?`): *Commit it
-for me*, *I'll review it first*; without a question tool, the two as a numbered list in chat. On
-*Commit it for me*, run them: the owner's pick is the human act, as the go was for the write. On
-*I'll review it first*, nothing more: they commit, or say *commit it* and you run the commands
-then. Never commit unasked. In a strategy the owner reviews the diff and commits, as its
-`AGENTS.md` says.
+**Then offer the commit,** at home, as the home's `AGENTS.md` says. Show `git add` with every file
+this run wrote, by name, never `--all`, leaving out the extracts and any PDF, which git ignores, and
+`git commit -m "Read: <Author Year, short title>"`, and ask `Commit?` (`¿Confirmo?`): *Commit it
+for me* runs them; after *I'll review it first*, they commit, or say *commit it* and you run them.
+Never commit unasked. In a strategy the owner reviews the diff and commits, as its `AGENTS.md` says.
 
 ## What this skill will not let you do
 

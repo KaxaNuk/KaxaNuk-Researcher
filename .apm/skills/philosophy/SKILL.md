@@ -1,18 +1,15 @@
 ---
 name: philosophy
 description: >
-  Interview the owner about how they invest — why they invest and what they already believe, then
-  questions pitched at how much they know, Starter, Building or Researching, with one idea taught
-  after each answer — and add their typed answers, word for word, to Philosophy/HOW-I-INVEST.md,
-  with one round file in Philosophy/Evolution/ that records the round; taken again after reading,
-  it shows how their view moved. Plan first, the owner's go, then write; never a commit the owner
-  did not pick. It writes at home only — run from a strategy or another project, it says so first.
-  Only when the owner runs it by name, or picks it where another skill offers a round; never on its
-  own. It does NOT edit what HOW-I-INVEST.md already holds (the `refine` command does), does NOT
-  write RESEARCHER.md beyond the works picked for its closing Find first line, and never says what
-  to buy, sell or hold.
+  Interview the owner about how they invest — why, what they believe, then questions at their
+  level, one idea taught after each — and add their typed answers, word for word, to
+  Philosophy/HOW-I-INVEST.md, with a round file in Philosophy/Evolution/; retaken after reading, it
+  shows how their view moved. Plan first, the owner's go, then write, at home only. Only when the
+  owner runs it by name, or picks it where another skill offers a round. It does NOT edit what
+  HOW-I-INVEST.md holds (`refine` does) or write RESEARCHER.md beyond Find first, and never says
+  what to buy, sell or hold.
 metadata:
-  version: 1.0.1
+  version: 1.0.2
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -27,23 +24,20 @@ wrong answer — and it never tells the owner what to buy, sell or hold, never n
 ticker, never proposes an allocation or a benchmark, and never computes a return. For what the
 library says, use `query`; for a lesson on an idea, `teach`.
 
-**What it writes, and only on the owner's go.** `philosophy` adds the owner's typed answers to
-`HOW-I-INVEST.md`, word for word and add-only, after the owner's go, and writes one round file in
-`Philosophy/Evolution/`, never edited afterwards; `refine` edits `HOW-I-INVEST.md` as an editor,
-diff first, and never touches `Evolution/`. Beyond `Philosophy/`, it may append the works the
-owner picks at the close of a round to the closing *Find first* line of `RESEARCHER.md`, add-only,
-unless they leave that line alone in the round's preview. Nothing else, anywhere. It commits only
-when the owner picks *Commit it for me* after the write; otherwise the owner reviews the diff and
-commits.
+**What it writes, and only on the owner's go.** The owner's typed answers, added to
+`HOW-I-INVEST.md` word for word and add-only, and one round file in `Philosophy/Evolution/`: this
+skill and `refine` are `Philosophy/`'s two writers, as the home's `AGENTS.md` says. Beyond
+`Philosophy/`, the works the owner picks at the close of a round go on the closing *Find first*
+line of `RESEARCHER.md`, add-only, unless they leave that line alone in the preview. Nothing else,
+anywhere. It commits only when the owner picks *Commit it for me*.
 
 **Only typed words reach `Philosophy/`.** Nothing the owner picks — a hunch, a stance, a level, an
 example, a work — is written there: this is stricter than the rule for other proposals, where a
 pick the owner makes is theirs. After a pick comes one optional line, *in your own words?*, and
-only what they type is written. No line the researcher says — a question, a
-placement, a teaching line, a pick's label, a reading list — goes into `Philosophy/`, round files
-included. Round files in `Philosophy/Evolution/` are a record of how the owner's answers moved:
-read them for dates and levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's
-view.
+only what they type is written. No line the researcher says — a question, a placement, a teaching
+line, a pick's label, a reading list — goes into `Philosophy/`, round files included. A round file
+is a record, read for dates and levels; the owner's view is cited from `HOW-I-INVEST.md`, never
+from a round file, as the home's `AGENTS.md` says.
 
 **The bank.** [`references/questions.md`](references/questions.md), in this skill's folder: the
 explainers, every question by level with its plain line, examples and the one idea it teaches,
@@ -55,18 +49,15 @@ stable and never renumbered; a retake compares by ID.
 **The reading map.** Every work named comes from `references/reading-map.md` in the `read`
 skill's folder, or from the owner's own `Sources/` and `Knowledge/`, with its year, authors, title
 and page as the map gives them — never from memory. A work is a lead, never a source: a paper's
-finding is said as the map sums it up, as a lead to read. The coupling runs both ways, which is why
-the three ship in one package: this skill reads the map, and `read`'s report reads the bank's
-*Bears on* table to offer the next round.
+finding is said as the map sums it up, as a lead to read.
 
 **How to ask.** Open questions are asked in chat, one per message, because only typed words reach
 the file; at Building and Researching the owner may ask for a whole block in one message. A pick
 is asked by **calling the question tool** — `AskUserQuestion` in Claude Code — its options at most
 four, with *Other*, which the tool always offers, as the free-text escape; call the tool, never
-type a pick and its options as chat. **Without a question tool** — Codex, Gemini — a pick is one
-chat message: the options numbered beneath it, *Other — your own words* last, and one line on how
-to answer, by the numbers or in their words. Every header is the one the bank gives for that
-language, the English one for any other, twelve characters at most. Wait for each answer.
+type a pick and its options as chat. **Without one** — Codex, Gemini — a pick is asked in chat, as
+the home's `AGENTS.md` says, *Other — your own words* last. Every header is the one the bank gives
+for that language, the English one for any other, twelve characters at most. Wait for each answer.
 
 **A round at a glance.** About 10, 20 or 30 minutes by level, and it can stop after any block.
 
@@ -386,9 +377,6 @@ The bank's escape table holds on every question. What it leaves to this skill:
   Researching, *harder* has no set above it — say so, and offer the rest of the block in one
   message. **Stop** works at any time, and goes straight to the preview with what is already
   answered; a question it leaves unreached is open, and the next round picks it up.
-- **Exits.** *Not now* at the welcome writes nothing. *Stop* at the preview, *Write nothing*,
-  silence or a closed session write nothing, and the next run starts as this one did. A round
-  with no typed answer asks *Keep this round as a record?* before writing.
 
 ## What this skill will not let you do
 

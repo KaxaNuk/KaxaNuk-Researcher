@@ -9,10 +9,11 @@ Runs inside an experiment notebook, section 5, after the backtest.
 What is expected here:
 
 - Say what is present.  The library needs four inputs: an index's daily holdings and its daily
-  returns, one or more factor-return files, and the book from step 5.  The first three are the
-  desk's, read in place by `Data/hand_supplied.py` from the folder `KN_ANALYTICS_PATH` names, or
-  from the drop zones under `Data/Curator/`.  Check for them first and report the gap in a
-  sentence, so a clone with no licence and no index files pays nothing to find out.
+  returns, one or more factor-return files, and the book from step 5.  The first three come from
+  KaxaNuk's Analytics Factory, read in place by `Data/hand_supplied.py` from the folder
+  `KN_ANALYTICS_PATH` names, or from the drop zones under `Data/Curator/`.  Check for them first
+  and report the gap in a sentence, so a clone with no licence and no index files pays nothing
+  to find out.
 - Take the book as a daily series, from `Backtest/`, never from `Portfolio/portfolio_weights.csv`.
   The library rejects a weight file that is not daily once it spans a year, and the rebalance-date
   file the engine read is exactly what it refuses.  The book it attributes is the one the engine
@@ -34,7 +35,7 @@ What is expected here:
 - Say what the factor directory has to look like, because it holds nothing but factor files: one CSV per factor, a date column first -- its header may be empty -- and one column per
   security after it.  Four names are reserved by the library and dropped from the percentage
   decomposition: `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and
-  `f_idyo_returns`.  The desk ships them as `Market`, `Total_Factor_Returns`,
+  `f_idyo_returns`.  The Analytics Factory ships them as `Market`, `Total_Factor_Returns`,
   `Total_Excess_Returns` and `Idyo_Returns`; `Data/hand_supplied.py` gives them the library's names,
   because a reserved file attributed as an ordinary factor is a quiet way to double-count the
   market.
