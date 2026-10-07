@@ -41,6 +41,49 @@ for somebody who was not in the room:
 
 ---
 
+## Unreleased
+
+**MINOR, when released** — every attribution figure here paired a weight with the return of its
+own day, and the notebooks now hold the weights overnight; the figures were not run again. The
+engine's daily book and the index's holdings are both struck at a day's close, after that day's
+return has moved them, and the attribution library pairs a weight with the return of its own date,
+so every pass credited every book, the index's included, with the day's move its weights already
+held. Measured with the library on Experiment 1's window, 2017-01-03 to 2026-06-01, and the
+seed's FMP names — 681 listings, 96% of the index's weight on average, priced from FMP files the
+same Data Curator release wrote, since this run could not download its own — the first cut's
+benchmark read 22.60 points a year against the index's own 16.03, a gap of 6.56; held overnight,
+15.97 against 15.94, a gap of 0.03. No engine figure moves.
+
+**What to do differently:** quote no Brinson-Fachler or factor-model figure from `RESULTS.md`, a
+findings file or `Paper_Trading/BITACORA.md` until the experiment is run again; the engine's
+figures stand.
+
+### Fixed
+
+- **`Experiments/attribution_analysis.py`**: the template's contract, in the shared docstring, and
+  the example's code for it — `held_overnight` moves a weight table one day on, and
+  `reconcile_benchmark` sets the first cut's benchmark beside the index's own returns file, in
+  points a year; `RECONCILIATION_TOLERANCE_POINTS` is 1.0.
+- **The four experiment notebooks**: the book and the index are held overnight after the asset
+  returns are read on the engine's days, in the first cut and in the factor model on every arm;
+  the first cut prints its benchmark beside the index's own; Verify raises when the two are more
+  than a point a year apart. Sections 5 and 8 say so, as the template's.
+
+### Not run again
+
+- **Every attribution figure would move**: Brinson-Fachler alpha, allocation, selection and
+  interaction, and the factor model's excess, factor and idiosyncratic points, for every book —
+  Experiment 1's rule, control, diagnostic arm and random books (`FINDINGS_1.md`, *Attribution*,
+  and the arms table in `RESULTS.md`), Experiment 2's rule and control, Experiment 3's, and
+  Experiment 4's rule, control and arm — and with them criterion 2's rows in each findings file and
+  in `Paper_Trading/BITACORA.md`. Engine figures, sub-periods, perturbation cells and kill-switch
+  verdicts do not move: no engine run reads the attribution.
+
+### Changed
+
+- **`RESULTS.md`**: limitation 12 says the attribution figures paired each weight with its own
+  day's return and were not run again.
+
 ## 0.18.4 (2026-10-06)
 
 **PATCH** — the template's 0.13.4, in the shared lines: `SETUP.md` says how a licence or access is

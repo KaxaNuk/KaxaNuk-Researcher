@@ -6,6 +6,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [Unreleased]
+Attribution pairs each weight with the day it earns. The Backtest Engine's daily weights and the
+index's holdings are both struck at a day's close, after that day's return has moved them, and the
+Attribution Analysis library pairs a weight with the return of its own date: the worked example
+handed both over unmoved, so every pass credited every book, the index's included, with the day's
+move its weights already held. On Experiment 1's window, 2017 to 2026, and its seed's names, the
+first cut's benchmark read 22.60 points a year against the index's own 16.03; held overnight,
+15.97 against 15.94. Nothing raised, because nothing set the first cut's benchmark beside the
+index's own returns.
+
+**What to do differently:** in a strategy's `Experiments/attribution_analysis.py`, move the book's
+and the index's daily weights one day on before any pass — the close of t−1 earns day t — after
+the asset returns are read on the engine's own days, and make the notebook's Verify section raise
+unless the first cut's benchmark comes within a point a year of the index's own returns file. An
+attribution figure computed before that check is likely overstated: run it again before quoting
+it.
+### Fixed
+- **The strategy template's attribution contract** — the docstring of
+  `Experiments/attribution_analysis.py`, the README's row for it, and sections 5 and 8 of
+  `experiment_1.ipynb`, with `experiment-lifecycle`'s reference notebook: both weight tables are
+  held overnight, and the benchmark is reconciled with the index's own returns before any figure is
+  read, raising in Verify above a point a year.
+- **The worked example** — `held_overnight`, `reconcile_benchmark` and
+  `RECONCILIATION_TOLERANCE_POINTS` in `Experiments/attribution_analysis.py`; all four experiment
+  notebooks hold the book and the index overnight in every pass, print the first cut's benchmark
+  beside the index's own, and raise in Verify when the two are more than a point a year apart.
+  **Not re-run:** every Brinson-Fachler and factor-model figure in the four findings files,
+  `RESULTS.md` and `Paper_Trading/BITACORA.md` came from same-day pairing and stands as published
+  until the example is run again; `RESULTS.md` says so in its limitations. No engine figure moves.
+- **`attribution-analysis-runs` (0.2.11)** names the trap in section 3 — the library pairs a
+  weight with the return of its own date, and both of a strategy's weight tables are struck at the
+  close — and adds the reconciliation to section 8 and to what it will not let you do.
+- **`backtest-engine-runs` (0.1.9)** says `Daily_Weights` is struck at each day's close, so it
+  earns the next day's return.
+
 ## [0.33.0] - 2026-10-06
 A way into the Lab, and less to read. The researcher is where many people first meet KaxaNuk's
 Investment Lab, yet no file named an address: a licence, access or a problem had nowhere to go but

@@ -19,6 +19,17 @@ What is expected here:
   file the engine read is exactly what it refuses.  The book it attributes is the one the engine
   held each trading day, drift and the cash proxy included; the benchmark's holdings follow the
   same rule.
+- Hold both weight tables overnight.  The engine's daily weights and the index's holdings are
+  struck at a day's close, after that day's return has moved them, and the library pairs a weight
+  with the return of its own date.  Paired as they arrive, a weight that already holds a day's
+  move earns that move again, and every book -- the index's too -- is credited with the
+  cross-section's daily variance, several points a year, in every pass.  Move both tables one day
+  on, so the close of t-1 earns day t, after the asset returns are read on the engine's own days.
+- Reconcile the benchmark before any figure is read.  The first cut's benchmark return, mean daily
+  times 252, against the index's own returns file over the same days: more than a point a year
+  apart, and the benchmark the book was compared with is not the index -- weights a day out,
+  members unpriced, a book not widened -- so the notebook's Verify section raises.  The returns
+  file never enters the library, which is what makes it the check.
 - Widen the book to the benchmark before handing it over: every benchmark constituent the book
   does not hold, added at zero weight, each with its own price series.  The library prices only
   the securities named in the book, and the first cut computes the benchmark's return from those
@@ -57,6 +68,7 @@ reasoning.
 It produces `Attribution/` -- the figures and the two decompositions -- for `FINDINGS_N.md`, and
 the answer to graduation criterion 2.
 
-It prevents selling factor beta as if it were alpha, and a run that stops at its first file because
-a header carries the name a provider gave it rather than the one the loader expects.
+It prevents selling factor beta as if it were alpha, crediting a book with a day's return its
+weights already held, and a run that stops at its first file because a header carries the name a
+provider gave it rather than the one the loader expects.
 """

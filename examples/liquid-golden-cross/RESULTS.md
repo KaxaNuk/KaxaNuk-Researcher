@@ -797,7 +797,7 @@ idiosyncratic share is measured against a five-seed random baseline in Experimen
 floor on the honest figure rather than a deflated one, and against no random baseline in
 Experiments 2 and 3.
 
-Five more, specific to this example:
+Six more, specific to this example:
 
 | # | Limitation | Effect |
 | --- | --- | --- |
@@ -806,6 +806,7 @@ Five more, specific to this example:
 | 9 | **Experiments 2 and 3 have two providers and two Curator versions.** The 712 names added fill at the close, from Sharadar through the Data Curator's `issues/31` branch at `8b54c2f`, built as 0.49.1; every other name at the day's VWAP, from FMP through 0.50.0 | The fill check prices the difference and the verdict does not change. To fetch those names a copy of this example needs a Sharadar key and a Data Curator with the Sharadar provider; the branch was the only version with it when Experiment 2 ran, and `JOURNAL_2.md` records how it was called |
 | 10 | **Experiments 2 and 3 were reproduced from a wiped working copy that kept its raw downloads**: FMP files downloaded fresh through 2026-06-01 in that clone the same morning, and Sharadar names re-curated from the bulk tables that morning's fetch had cached | Every figure matched the working copy's. A reproduction that also fetches afresh would meet limitation 5: a later download rebases every adjusted column |
 | 11 | **Nine FMP files end in bars that repeat their last distinct one**, `VMW`'s after a gap across a month start | Experiment 4's notebook ends each at its last distinct bar; no other stage or experiment does. Elsewhere the engine refuses a book that holds such a name on a date its file skips, as it refused two of Experiment 3's cells, and values one held across the repeated bars at a flat price |
+| 12 | **Every attribution figure here paired a weight with the return of its own day.** The engine's daily book and the index's holdings are struck at the close, after the day's return has moved them, and the notebooks handed both to the library unmoved | Every book, the index's included, was credited with the day's move its weights already held. On Experiment 1's window and seed the first cut's benchmark read 22.60 points a year against the index's own 16.03; held overnight, 15.97 against 15.94. The notebooks now hold both tables overnight and raise in Verify unless the two agree within a point a year; the figures above were not run again, so every Brinson-Fachler and factor-model figure here would move. No engine figure moves |
 
 <!-- example: end -->
 
