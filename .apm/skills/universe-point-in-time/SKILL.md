@@ -83,6 +83,15 @@ Nothing beyond the identifier is required, and two columns earn their place in m
   correct, because the seed has told it nothing.
 - **A readable name**, so a book can be read by a person rather than decoded.
 
+A seed taken from an index's own list often carries a third: **a span**, the first and last dates
+an identifier speaks for one company, so the panel reads no price of the company that later reused
+the symbol. **A span ends where the security did, never where its source does.** A listing still
+trading on the last date of the file the span was taken from — an index's master, a provider's
+listing table — has no last date: that date is when the file was written, not a delisting. Closed
+there, every live name stops on that day. No backtest cut earlier notices, because inside it a
+span ending then reads the same as an open one; a paper book is the first reader of the days after,
+and finds nothing to price.
+
 Add whatever else the strategy groups or reports by. A column the provider can fill may be left
 empty in the seed and filled by section 2; a column only you know — a hand-assigned bucket, an
 internal classification — belongs in the seed, because nothing else will supply it.
@@ -183,6 +192,7 @@ different universe from the one the row count suggests.
   discovers that markets go up.
 - **Let a provider overwrite the seed's identity.** Compare, report the disagreement, and keep the
   seed.
+- **Close a span on its source's last date.** A listing still trading then has no last date.
 - **Select on a `current_*` column**, or present a classification-bucketed number without saying it
   is a today-snapshot.
 - **Drop a bad identifier silently.** It goes in the register, by name, with the check that caught

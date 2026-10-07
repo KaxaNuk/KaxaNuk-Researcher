@@ -74,7 +74,8 @@ A repository can hold several books on paper and several experiments under const
 
 - refreshes the shared raw prices once, or reads them from a database another machine published;
 - checks the newest day before any book reads it, and stops every book on a close with no fill
-  price or a move no price can make — a book on broken data is worse than none;
+  price or a move no price can make — a book on broken data is worse than none. It reads that day
+  alone: a security's file that ends before it, and a bad bar between two runs, pass unflagged;
 - runs each frozen book: its frozen refinery, its frozen rule from the experiment's first day,
   and the engine, twice — over the whole history, and since the day it was frozen;
 - writes the record — the book in force, the engine's daily values and statistics, what the book
@@ -82,7 +83,8 @@ A repository can hold several books on paper and several experiments under const
 - flags every diagnostic outside the band registered below, every failed check, an input that
   lags the day, and a **restatement**: a past value the engine now prices differently, which is
   flagged and never overwritten;
-- exits 0, 1 or 2 — clean, flagged, failed — so a scheduler can tell.
+- exits 0, 1 or 2 — clean, flagged, failed — so a scheduler can tell; a step that raises is a
+  failed day, with its traceback in the day's log.
 
 One rule in that contract is worth repeating, because it is the whole point of the stage: **a
 paper-trading script re-fits nothing.** A run that tunes anything is a backtest wearing a costume,
