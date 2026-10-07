@@ -84,6 +84,14 @@ folder, so the copies read and write inside the book's folder: an experiment und
 change the shared modules and the book never moves. A frozen book is never frozen again; a new
 freeze is a new book, with its own number.
 
+**The days after the window are the first any code reads**, so the book is tried once before the
+real freeze — frozen in a scratch clone, never committed, and run with `--dry-run` for a day past
+the window — and two faults show only there. Membership built only from the dates an index's
+holdings cover has no member past their last date, so a book reading it that way sells every name
+the day those files end: it holds the last membership they wrote, as `paper_trading_N.py`'s
+contract says. And a seed span closed on its source's last date stops every live name on that
+date: `universe-point-in-time` says why a live listing's span stays open.
+
 ## What a paper-trading run is
 
 Not a notebook: `daily_update.py`, run on a schedule after the close, because the question is no
@@ -93,8 +101,14 @@ stops every book on a close with no fill price or a move no price can make; runs
 `BOOKS` — its frozen refinery, its frozen rule from the experiment's first day, and the engine
 twice, over the whole history and since the freeze; writes the record through `record.py` to local
 CSV files, a DuckDB database or both, as `Config/.env` says; and exits 0, 1 or 2 — clean, flagged,
-failed. A frozen file missing or changed, or a shared input that no longer matches `FREEZE.json`,
-stops the book with `unfrozen-input`.
+failed. A step that raises is a failed day, exit 2 with its traceback in the day's log: Python's
+own exit code for it is 1, which a scheduler reads as flagged. A frozen file missing or changed, or
+a shared input that no longer matches `FREEZE.json`, stops the book with `unfrozen-input`.
+
+**What the checks do not see.** They read each file's newest day alone: a security's file that
+ends before the day, or a bad bar on a day between two runs — an unadjusted corporate action, say —
+passes unflagged, and the book reads it. And a book flagged every day, by a hand-supplied file
+behind the day, hides a new flag among the old ones: read the flags, not only the exit code.
 
 The record has six tables — runs, books, performance, statistics, diagnostics, flags — keyed so a
 second run of a day replaces that day's rows. A past value the engine now prices differently is a

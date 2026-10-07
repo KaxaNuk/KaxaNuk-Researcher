@@ -21,6 +21,14 @@ What it holds, once its experiment graduates:
   `FREEZE.json` -- and returns what the record needs: the engine's results, the book in force,
   the day's diagnostics, the flags and a summary.
 
+**Membership past the last date its source wrote is held at that date.**  An index's holdings,
+read by `Data/hand_supplied.py`, are refreshed later than prices, and a membership built only from
+the dates they hold -- in the rule, or as a refined column -- has no member past their last date:
+right for a backtest, and a book that read it so would sell every name the day those files end.
+The book holds the last membership they wrote, and `../daily_update.py` flags the files once they
+fall behind the day; inside the experiment's window they cover every day, so the rule it ran is
+unchanged.
+
 Every module it imports is the copy `../promote.py` made in this folder, loaded by path under a
 name of its own, never the shared one in `Experiments/`: that is what keeps it frozen.  It re-fits
 nothing, and it computes no performance figure -- the engine does.

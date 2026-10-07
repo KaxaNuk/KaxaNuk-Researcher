@@ -279,18 +279,21 @@ missing or changed.
 folder, once:
 
 ```bash
-schtasks /Create /SC WEEKLY /D MON,TUE,WED,THU,FRI /ST 19:00 /TN "<strategy-name> daily update" /TR "uv run --directory <full path of this folder> python Paper_Trading/daily_update.py"
+schtasks /Create /SC WEEKLY /D MON,TUE,WED,THU,FRI /ST 19:00 /TN "<strategy-name> daily update" /TR "cmd /c uv run --directory <full path of this folder> python Paper_Trading/daily_update.py >> <full path of this folder>\Paper_Trading\Logs\scheduled.log 2>&1"
 ```
 
 On macOS or Linux, one line of `crontab -e`, in the machine's own time zone:
 
 ```bash
-0 19 * * 1-5 cd <full path of this folder> && uv run python Paper_Trading/daily_update.py
+0 19 * * 1-5 cd <full path of this folder> && uv run python Paper_Trading/daily_update.py >> Paper_Trading/Logs/scheduled.log 2>&1
 ```
 
 The run's log is in `Paper_Trading/Logs/`, one file per day, and its exit code says how the day
-went: 0 clean, 1 flagged, 2 failed. The licensed engine checks its licence online at least once a
-week, so the machine needs the network that often.
+went: 0 clean, 1 flagged, 2 failed. A step that raises exits 2 with its traceback in the day's
+log, so a day whose log does not end in `done, exit code` is one to read. The redirect keeps, in
+`scheduled.log`, what the run prints outside that log — the download, and an error raised before
+the log opens; the folder exists once the run has been tried by hand, as above. The licensed
+engine checks its licence online at least once a week, so the machine needs the network that often.
 
 > **For the agent.** Registering a scheduled task changes the machine: give the command and let
 > the user run it. Never read the record's figures back as your own: they are the engine's, and

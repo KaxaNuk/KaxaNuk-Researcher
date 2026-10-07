@@ -6,6 +6,62 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [Unreleased]
+What a book's first days on paper found. A strategy taking its first book to paper trading on
+2026-10-06 hit three faults the template and the worked example share or say nothing about: a
+crash in the daily run exited 1, the code of a flagged day, so on a book flagged every day it read
+as an ordinary day; a seed span closed on its source's last date stopped every live name there,
+which no backtest cut earlier could see; and the daily checks read each file's newest day alone. A
+fourth, a book that empties the day an index's files end, the example already guarded against
+without the template saying so.
+
+**What to do differently:** in a strategy with a book on paper, catch a step that raises in
+`daily_update.py`'s `main()` and return 2 with the traceback in the day's log, as the example now
+does, and register the scheduled task again with the redirect `SETUP.md` gives. If the seed carries
+a span, leave the last date empty for a listing still trading on its source's last date. Before a
+freeze, try the book in a scratch clone on a day past the window. Read a book's flags, not only its
+exit code.
+### Fixed
+- **A crash in the daily run exits 2.** The example's `Paper_Trading/daily_update.py` caught
+  nothing around the day's run, so a step that raised left Python to exit 1, the flagged code, with
+  nothing in the day's log. `main()` catches it now, writes the traceback to the day's log and
+  returns 2, the lock still released. Tried in a scratch copy, with the day's run made to raise and
+  with a real failure: the code before exits 1 and logs nothing, the code after exits 2 and logs the
+  traceback. The docstring the template shares and `BITACORA.md`'s account of the run, in both
+  copies, say so.
+- **The scheduled command keeps its output.** `SETUP.md`'s `schtasks` line, in both copies, runs
+  through `cmd /c` and appends to `Paper_Trading\Logs\scheduled.log`, and the `crontab` line to the
+  same file: what the run prints outside the day's log — the download, an error before the log
+  opens — was lost.
+### Changed
+- **Where a span ends**, in *The seed* of `Universe/universe.ipynb`, both copies, and in
+  `universe-point-in-time`: a seed that carries the dates each identifier speaks for leaves the last
+  empty for a listing still trading on its source's last date — when the source was written, not a
+  delisting. Neither the template nor the example can close one: the template's seed is
+  `main_identifier` alone, the example's adds `provider`, and the refinery reads each file whole.
+  The strategy's own seed builder took its spans from an index's master, and its paper book's
+  calendar stopped on the master's last date.
+- **`paper_trading_N.py` holds membership** past the last date an index's holdings were written,
+  as its contract now says in both copies: a membership built only from the dates those files hold
+  has no member after it, and a book that read it so would sell every name the day they end. The
+  example's books already hold it.
+- **The daily checks say what they miss**, in `daily_update.py`'s docstring and `BITACORA.md`,
+  both copies: a security's file that ends before the day, and a bad bar between two runs, pass
+  unflagged.
+- **`paper-trading-gate`**: a step that raises is a failed day; *What the checks do not see*; and
+  the book tried once before the real freeze, frozen in a scratch clone and run dry on a day past
+  the window, where the membership and span faults show.
+### Notes
+- **Proposed, not built: check every day since the last recorded run.** `check_market_data` would
+  take the newest `as_of` the record's `runs` table holds as ran — the freeze date, before a first
+  run — and read each file from the row before it to the day: the bad-print and fill-price checks
+  on every row of that stretch, not the newest alone; `stopped-series`, a flag, for a name whose
+  file ends before the day the cash proxy and the benchmark reached while its span, if any, is
+  open, and a stop when a book held it; and `internal-gap` for a day of the benchmark's calendar
+  missing inside the stretch. An unadjusted −84% bar between two runs leaves less than a sixth of
+  the price, which the existing threshold already stops. The stretch is a day or a weekend, so the
+  check still costs seconds.
+
 ## [0.33.0] - 2026-10-06
 A way into the Lab, and less to read. The researcher is where many people first meet KaxaNuk's
 Investment Lab, yet no file named an address: a licence, access or a problem had nowhere to go but
