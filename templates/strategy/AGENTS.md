@@ -36,7 +36,7 @@ Work is committed on `main`, in small commits whose messages say what moved and 
 lines of work that must not mix — never a gate — and the branch is deleted once it is merged or
 abandoned: `main` is the only branch that stays.
 
-**The template and the worked example, `liquid-golden-cross`, live in the
+**The template and the worked example, `golden-flow`, live in the
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package. The example is for
 reading, never for building on: nothing in a strategy is brought across from it. Issues and pull
 requests about the process land there, and so does a trap found in a Lab library while running a
@@ -202,14 +202,13 @@ where the money is.
 
 ## What attribution must report
 
-Savvy investors do not chase past performance. They follow a **process**, an **investing thesis**
-and **data**, and attribution is what gives them all three about a book. Step 6 runs two
-methodologies and a third pass, and `FINDINGS_N.md` reports each.
+Step 6 says **where a book's return came from**; the return alone shows neither the process nor the
+thesis behind it. It runs two methodologies and a third pass, and `FINDINGS_N.md` reports each.
 
 **First cut — Brinson-Fachler.** Active return split into **allocation** (did the book overweight
 the right groups) and **selection** (did it pick the right names inside them), plus their
-interaction. No more hand-waving about "the process worked": the exact lever that moved the needle
-is named, and that is a process you can defend, refine or fix.
+interaction. It names the lever that moved the return, which "the process worked" does not, and a
+named lever can be defended, refined or fixed.
 
 **Second layer — the factor model.** Realised return projected onto systematic exposures — beta,
 momentum, residual volatility, liquidity — so **idiosyncratic alpha** is separated from
@@ -222,10 +221,8 @@ factor exposure is stripped out. The selection story gets sharper, and it answer
 first cut alone cannot: **whether the Sharpe survives once that factor turns.**
 
 **What it settles:** whether there is genuine idiosyncratic alpha — criterion 2 of the graduation
-gate that `Paper_Trading/BITACORA.md` defines, evaluated, not deferred. For a strategy raising
-outside money it is also the plainest signal of sophistication: allocators are not buying returns,
-they are buying proof you know where the returns come from, and showing both layers cleanly is how
-that proof is given.
+gate that `Paper_Trading/BITACORA.md` defines, evaluated, not deferred. It is also what lets a
+reader of the record tell skill from exposure.
 
 **What to expect it not to settle:** an *absolute* rule is close to invisible to a factor model
 built on *relative* factors, so a book can beat every benchmark while the model assigns roughly

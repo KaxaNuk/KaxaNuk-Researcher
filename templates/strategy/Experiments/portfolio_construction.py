@@ -10,12 +10,13 @@ panel built.
 
 What is expected here is one function signature and a few things behind it:
 
-- The signature.  Given the securities eligible today and a returns history that has already been
-  cut off before today, return one weight per security, summing to at most 1.0.  Every weighting
-  scheme -- equal weight, or any sizing method the library registers whose configuration has no
-  required field: inverse volatility, risk parity, hierarchical risk parity -- is the same shape,
-  so swapping one for another is one line in the rule cell and nothing else in the notebook moves.
-  That is what makes two experiments comparable rather than merely adjacent.
+- The signature.  Given the securities eligible today, a returns history that has already been
+  cut off before today and, for a scheme that sizes by a score, that score as it stood before
+  today, return one weight per security, summing to at most 1.0.  Every weighting scheme -- equal
+  weight, proportional to a score, or any sizing method the library registers whose configuration
+  has no required field: inverse volatility, risk parity, hierarchical risk parity -- is the same
+  shape, so swapping one for another is one line in the rule cell and nothing else in the notebook
+  moves.  That is what makes two experiments comparable rather than merely adjacent.
 - The library inside the signature, never around it.  Build one of its methods per rebalance date,
   on the history already cut: a method that estimates from returns uses whatever history it was
   built with, and the library's own pipeline builds each method once for every date.  Import it
@@ -24,8 +25,10 @@ What is expected here is one function signature and a few things behind it:
 - At most one, not exactly one.  A strategy that can go to cash cannot satisfy the stricter form;
   the residual becomes a real, priced cash position when the weight file is written.
 - The constraints every scheme respects, as arguments of `build_weights`: a maximum weight and a
-  minimum holding count.  Each is a lever a later experiment has to earn by beating the book
-  without it.
+  minimum holding count.  One the blueprint does not name is switched off, and a lever a later
+  experiment has to earn by beating the book without it.  Bounds the blueprint names -- a cap and a
+  floor on each weight -- are the design, not levers to earn: the blueprint says whether a capped
+  name's excess goes to cash or to the other names, and the control holds the same bounds.
 - The two timing helpers that cannot be forgotten if they live here: lag the eligibility so the
   set used on rebalance date t is the one observed at t-1, and rebalance only on the dates that set
   changes -- a signal that has not moved is not a reason to pay commission.
@@ -35,8 +38,9 @@ What is expected here is one function signature and a few things behind it:
   refuses a rebalance date on which an open position has no price, so a book that holds a name
   through a gap cannot be re-struck at all.  It is one day of hindsight, the leak `AGENTS.md`
   names; take it in the eligibility, once, for the book and every counterfactual alike.
-- Causality by construction.  A weigher never sees a date, only a history already cut off, so it
-  cannot reach into the future even by accident.
+- Causality by construction.  A weigher never sees a date, only a history -- and a score, where
+  the scheme sizes by one -- already cut off before the date it sizes, so it cannot reach into the
+  future even by accident.  The module makes that cut once, for the book and its control alike.
 
 It produces the `REBALANCE_DATES x securities` target weights the rule cell hands to the
 diagnostics and the weight file.

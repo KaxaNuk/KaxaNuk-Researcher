@@ -13,7 +13,7 @@ description: >
   `data-analyzer-runs`), sizing a book (use `portfolio-construction-runs`), or the research
   process around the stage (use `experiment-lifecycle`).
 metadata:
-  version: 0.1.7
+  version: 0.2.0
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -54,9 +54,12 @@ strategy is about. It is **committed** — the one data file that is — because
 grows from it, and because a universe nobody can reconstruct makes every number downstream
 unverifiable.
 
-- **One column is required: `main_identifier`**, the name the Data Curator asks the provider for.
-  Every other column is the strategy's own. Replace the rows with equities, ETFs, FX crosses,
-  crypto pairs or futures and every stage below still runs: nothing downstream names an asset class.
+- **One column is required: `main_identifier`**, the name the Data Curator asks the provider for:
+  chosen per experiment, the identifier that experiment's provider prices under, and mapped from
+  an index's own ticker by the strategy's seed builder, or by the Analytics Factory when it
+  supplies the map. Every other column is the strategy's own. Replace the rows with equities,
+  ETFs, FX crosses, crypto pairs or futures and every stage below still runs: nothing downstream
+  names an asset class.
 - **It is point-in-time, and it retains delisted, acquired and renamed names.** A universe built
   from *today's* members has silently deleted everything that failed, and the backtest then
   discovers that markets go up. If a seed shows 0% delisted, it is not a universe, it is a survivor
@@ -164,14 +167,17 @@ extra steps.
 A file that starts in 2010 gives no signal in 2010. Every feature has a warm-up, and a five-year
 one moves the honest start of a backtest by five years.
 
-**The date that matters is the first day on which every security can be both priced and
-signalled** — and, for a strategy that selects a fixed number of names, the first day the eligible
-pool is at least as deep as the book. Before it the strategy is choosing from a smaller menu than
-it appears to be, and a backtest that starts earlier is quietly comparing books drawn from
-different universes.
+**The date that matters is the first day on which the universe can be both priced and
+signalled** — every security in it, or the share of it the strategy declares, with the shortfall
+published beside every result — and, for a strategy that selects a fixed number of names, the first
+day the eligible pool is at least as deep as the book. Before it the strategy is choosing from a
+smaller menu than it appears to be, and a backtest that starts earlier is quietly comparing books
+drawn from different universes.
 
 Nothing else in the pipeline says so, which is why it is answered here, and why it is declared in
-`BLUEPRINT_N.md` before the rule rather than discovered afterwards.
+`BLUEPRINT_N.md` before the rule rather than discovered afterwards. The worked example declares 90%
+of its index's weight; on 2015-01-02, its owner's floor, the members its provider prices held
+92.97%.
 
 ## 5. What the stage hands on
 
@@ -199,5 +205,5 @@ different universe from the one the row count suggests.
   it.
 - **Change the seed without a change-set.** Its own commit, changelog entry, and the pipeline re-run
   before a figure from the new universe stands beside one from the old.
-- **Use an in-house KaxaNuk strategy as a worked example.** Examples in this public package come
-  from the worked example, `liquid-golden-cross`, only.
+- **Use a live KaxaNuk strategy as a worked example.** Examples in this package come only from
+  `golden-flow` as the package ships it, never from a live strategy repository.

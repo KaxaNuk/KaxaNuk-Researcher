@@ -87,7 +87,7 @@ repositorio privado de GitHub, lee *Save a copy off this computer* en su propio 
 | start each day informed | `brief setup`, then `brief` | a dated file each morning: your work, the markets you follow, news on your holdings — every figure quoted from a source, never advice |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | know what to do next | `next` | where you stand, and the one thing to do next |
-| see the process worked end to end | `init-example` | `liquid-golden-cross`, one strategy through every step. Reading it needs nothing — `OBJECTIVE.md`, then `RESULTS.md`, then Experiment 1; running it needs a data provider's key, hours of downloads, KaxaNuk's benchmark and factor files and the Lab's licensed engines, as its `SETUP.md` says |
+| see the process worked end to end | `init-example` | `golden-flow`, one strategy taken from the first note to a book signed into paper trading. Reading it needs nothing — `OBJECTIVE.md`, then `RESULTS.md`, then `Experiments/Experiment_1/`; running it needs an FMP key, the Analytics Factory's KN US Equity Core and factor model files and the Lab's two licensed engines, as its `SETUP.md` says |
 
 In Claude, type these with a slash, `/read`; anywhere else, ask for them by name. **It grows with
 you**: it reads for your questions, speaks in your voice and keeps your rules, all written in its
@@ -106,8 +106,9 @@ files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>. A lice
 files are KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
 <https://www.kaxanuk.mx/lab> shows the Lab. Without them a strategy still runs up to its portfolios
 — an equal-weight book needs nothing more — and the backtest and attribution say what is missing and
-skip. Every key goes in the strategy's `Config/.env`, which only you fill in and nobody commits; the
-strategy's own `SETUP.md` says how.
+skip; the worked example reads its universe from the Analytics Factory, so without those files only
+its download runs. Every key goes in the strategy's `Config/.env`, which only you fill in and nobody
+commits; the strategy's own `SETUP.md` says how.
 
 **A question, or a problem to report:** the same address — a problem report names the version
 `update check` shows.
@@ -165,7 +166,7 @@ schedule writes.
 | --- | --- |
 | `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. At home with no reading question yet, it asks first which question the source serves, and adds it as question 1. It carries the reading map, `references/reading-map.md`, that it, the interview's hand-over and `philosophy` propose works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
-| `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `liquid-golden-cross` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
+| `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `golden-flow` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
 | `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with where the home is and the one next thing for what you came for. `init-researcher` runs it straight after making the home; `interview force` starts over |
 | `philosophy` | a second interview, optional and as often as you like, on your investment philosophy, pitched at your level — Starter, Building or Researching. It starts with why you invest and what you already believe, teaches one idea after each answer, never a verdict, and after your go adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, and keeps the round in `Philosophy/Evolution/`. Taken again after reading, it shows how your answers moved |
 | `brief [setup]` | a daily brief in `Briefs/`, one file a day in up to three parts — your work, the markets you follow, news on your holdings — every figure quoted from a dated source, never computed, never advice. `brief setup` chooses the parts, the measures and the time, and on the Claude desktop app schedules it; `brief` writes today's now |
@@ -248,8 +249,7 @@ The researcher's part is **the hypothesis**, and it stops where the numbers star
 templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folders; its README is the
                       process, and the order of work a strategy follows
 templates/researcher/ the researcher's home, empty
-examples/liquid-golden-cross/
-                      one strategy worked through every folder of the template
+examples/golden-flow/ one strategy worked through every folder of the template
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the ruff settings for the skills' scripts
@@ -270,9 +270,9 @@ template is its owner's from the first commit and never merges back; the skills 
 
 ```bash
 uvx ruff check .
-(cd examples/liquid-golden-cross && uvx ruff check .)
+(cd examples/golden-flow && uvx ruff check .)
 uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py \
-  .apm/skills/*/scripts examples/liquid-golden-cross
+  .apm/skills/*/scripts examples/golden-flow
 ```
 
 Ruff lints the skills' scripts, the worked example with its own settings, and the last command

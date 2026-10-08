@@ -21,9 +21,9 @@ of the two writes made without a go of their own, as *Plan first, then write* in
 separately.
 
 **In the worked example, nothing is appended.** When the folder is the worked example — its
-`README.md` is titled *Liquid Golden-Cross*, or `README.md` or `AGENTS.md` holds a line reading
-`<!-- example: begin -->`, the test `next` uses — report in chat and write nothing: the example is
-for reading and running, never built on; a strategy of the owner's own is `init-strategy <name>`.
+`README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`, the test `next` uses —
+report in chat and write nothing: the example is for reading and running, never built on; a
+strategy of the owner's own is `init-strategy <name>`.
 
 ## Step 1: Always
 
@@ -94,8 +94,8 @@ for reading and running, never built on; a strategy of the owner's own is `init-
   share — in a document the researcher drafts, `OBJECTIVE.md`, a `BLUEPRINT_N.md` or a
   `BRAINSTORMING_N.md`, that appears in neither `FINDINGS_N.md` nor `RESULTS.md`. Every number
   about a book comes from the engines the project names, and a figure that is in neither file came
-  from somewhere else. A figure matches at the precision it is quoted: *0.03* matches *+0.030*, and
-  *45.5* matches *45.52*. Not a figure any of these documents quotes from a paper through a note it
+  from somewhere else. A figure matches at the precision it is quoted: *0.08* matches *+0.080*, and
+  *13.8* matches *13.84*. Not a figure any of these documents quotes from a paper through a note it
   cites, and not an analyzer measurement cited by its section: those are sources, not the
   strategy's results.
 

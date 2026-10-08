@@ -74,11 +74,11 @@ Keep that repository private: your sources, your notes and your answers in `Phil
 5. **Ask, and think things through.** `query <question>` answers from what you have read, every
    claim cited and every gap named; `study <subject>` works out an idea, a plan or a decision;
    `teach <topic>` gives a lesson a session.
-6. **Start a strategy.** Read a finished one first: `init-example` copies `liquid-golden-cross`
-   beside this folder — open `OBJECTIVE.md`, then `RESULTS.md`, then `Experiments/Experiment_1/`.
-   Reading it needs nothing; running it needs a data provider's key, hours of downloads, and
-   KaxaNuk's files and licensed libraries — its `SETUP.md` says how. Then `init-strategy <name>`
-   makes your own, beside this folder too, from the KaxaNuk Strategy Template.
+6. **Start a strategy.** Read a finished one first: `init-example` copies `golden-flow` beside
+   this folder — open `OBJECTIVE.md`, then `RESULTS.md`, then `Experiments/Experiment_1/`. Reading
+   it needs nothing; running it needs a data provider's key, the Analytics Factory's files and the
+   Lab's licences — its `SETUP.md` says how. Then `init-strategy <name>` makes your own, beside
+   this folder too, from the KaxaNuk Strategy Template.
 
 **Lost?** `next`, here or in a strategy, names the one next thing and the command for it — here,
 for what you came for. **Stay current:** `update` brings new skills and new versions of the

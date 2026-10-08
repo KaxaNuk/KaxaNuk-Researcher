@@ -23,10 +23,9 @@ measured, and writes it where the template keeps it. `${input:experiment}` is th
 The blueprint is E in *The order of work* in `AGENTS.md`. Stop, and name the part that comes
 first, when:
 
-- **The folder is the worked example** — its `README.md` is titled *Liquid Golden-Cross*, or
-  `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`, the test `next` uses.
-  The example is for reading and running, never built on; a strategy of the owner's own is
-  `init-strategy <name>`.
+- **The folder is the worked example** — its `README.md` or `AGENTS.md` holds a line reading
+  `<!-- example: begin -->`, the test `next` uses. The example is for reading and running, never
+  built on; a strategy of the owner's own is `init-strategy <name>`.
 - **`OBJECTIVE.md` has no claims** — the objective comes first, and its claims fine-tuned by reading
   for them: `objective`, then `read`.
 - **`Universe/Investable_Universe.csv` has no identifier under its header** — the investable

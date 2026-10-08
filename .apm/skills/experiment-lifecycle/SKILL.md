@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.11.1
+  version: 0.12.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -23,11 +23,11 @@ Strategy Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/s
 template is the shape and every file the process expects in it: six folders, the documents at the
 root, and inside the folders each driver, module, notebook and document as a description of what
 belongs there — a `.py` file as its docstring, a notebook as its markdown cells — to be filled in
-with the strategy's own. The worked example beside it, `examples/liquid-golden-cross/`, works one
-strategy, `liquid-golden-cross`, through the same files, with the strategy's own lines between
-example markers. The fixed shape buys comparability and legibility: any experiment looks like any
-other, every experiment is measured against the same named benchmark, and a CIO reads the whole
-state of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
+with the strategy's own. The worked example beside it, `examples/golden-flow/`, works one strategy,
+`golden-flow`, through the same files, with the strategy's own lines between example markers. The
+fixed shape buys comparability and legibility: any experiment looks like any other, every
+experiment is measured against the same named benchmark, and a CIO reads the whole state of a
+project from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
 Work in English: notebook narrative, documents, function names and comments.
 
@@ -35,8 +35,8 @@ Work in English: notebook narrative, documents, function names and comments.
 `init-strategy <name>`, from the KaxaNuk Researcher, which copies it into a new folder by script and
 makes it a repository; the new folder's own `SETUP.md` owns the rest of the procedure. To work
 inside a strategy repository, follow this skill. `references/structure.md` has the tree, what is
-committed, and the steps to fill it in. **Do not name Obsidian, a deck, or any KaxaNuk in-house
-strategy in a repository document.**
+committed, and the steps to fill it in. **Do not name Obsidian or a deck in a repository document,
+nor any KaxaNuk in-house strategy other than the package's worked example, `golden-flow`.**
 
 ## 1. The eight steps
 
@@ -134,11 +134,11 @@ section saying what that section computes — and is the file to copy.
 | 2 · The rule | selection, sizing, timing; must produce `selected_matrix`, `REBALANCE_DATES`, `target_weights` with rows summing to **at most** 1.0; 2.1 asserts the invariants |
 | 3 · Construction | the book's shape — invested share, trigger frequency, turnover, concentration, group drift; 3.1 writes the deliverables, `portfolio_weights.csv` with cash as a real priced position |
 | 4 · Backtest | the KaxaNuk Backtest Engine, the only backtest anywhere; guarded import, reports and skips without a licence |
-| 5 · Attribution | Brinson-Fachler, the factor model, and Brinson-Fachler again on the residual; guarded the same way |
+| 5 · Attribution | Brinson-Fachler, the factor model, and Brinson-Fachler again on the residual, the book's and the index's daily weights both held overnight, so the close of t-1 earns day t; guarded the same way |
 | 6 · Counterfactuals | the arms that price who earned the idiosyncratic share: the same book with one choice removed, priced by the same engine |
 | 7 · Verdict | what it concluded, in words |
 | Handoff · Open items | what the next stage consumes; what this one left open |
-| 8 · Verify | assertions that raise when the output is wrong: the invariants, the weight file read back, each engine run's valued days against its window's trading days — skipped where the engine is absent |
+| 8 · Verify | assertions that raise when the output is wrong: the invariants, the weight file read back, each engine run's valued days against its window's trading days, and the first cut's benchmark within a point a year of the index's own returns file — each skipped where its library is absent |
 
 **Every notebook of the pipeline ends in a Verify section** — `Universe/universe.ipynb`,
 `Data/analyzer.ipynb` and each experiment's — that reads back what the notebook wrote and raises
@@ -152,14 +152,16 @@ position is sold on the last day it still has a fill price.
 **Four modules beside the notebook are shared by every experiment**, one per Lab library:
 `securities_panel.py` (the one panel loader), `portfolio_construction.py` (eligible set to weights,
 one signature every scheme shares, the Portfolio Construction library called inside it one rebalance
-date at a time where it is installed, constraints switched off by default as levers a later
-experiment earns), `backtest_engine.py` (the one path from a weight file to a number),
-`attribution_analysis.py` (shaping the hand-supplied inputs and the book's **daily** weights from
-the backtest — the attribution library rejects a rebalance-only file — and saying what is missing
-first). **A strategy column is named in exactly two kinds of place — a notebook's setup cell and the
-rule — never in a shared module**, so a signal cannot become every later experiment's default
-without anyone deciding it. Experiment 1 loads the panel through `securities_panel.py` like every
-later experiment, so the comparison is on the rule and nothing else.
+date at a time where it is installed, the bounds the blueprint names as the design and every other
+constraint switched off, a lever a later experiment earns), `backtest_engine.py` (the one path from
+a weight file to a number), `attribution_analysis.py` (shaping the hand-supplied inputs and the
+book's **daily** weights from the backtest — the attribution library rejects a rebalance-only
+file — with both weight tables held overnight and the benchmark reconciled with the index's own
+returns before any figure is read, and saying what is missing first). **A strategy column is
+named in exactly two kinds of place — a notebook's setup cell and the rule — never in a shared
+module**, so a signal cannot become every later experiment's default without anyone deciding it.
+Experiment 1 loads the panel through `securities_panel.py` like every later experiment, so the
+comparison is on the rule and nothing else.
 
 ## 5. Where each kind of logic goes
 
@@ -248,6 +250,6 @@ is two rules, and the copies drift. Read them where they are.
   `experiment_N.ipynb`.
 
 The three documents and the notebook are copies of Experiment 1's files in the worked example,
-`examples/liquid-golden-cross/` in KaxaNuk-Researcher, with the example's own lines stripped — what
+`examples/golden-flow/` in KaxaNuk-Researcher, with the example's own lines stripped — what
 the template ships as Experiment 1, kept here for every experiment after it. They change by hand
 with the example's, in the same commit, and so does `references/structure.md`.

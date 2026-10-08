@@ -1,25 +1,25 @@
 ---
 name: init-example
 description: >
-  Copy the KaxaNuk worked example strategy, liquid-golden-cross, into a new folder to study or run
-  it — or one of its worked files, such as Data/analyzer.ipynb, into a folder of its own to read
-  beside a strategy's own — from the copy inside the researcher package, by a script. Only when
-  the owner runs it by name. It does NOT start a strategy of the owner's own (use
-  `init-strategy`), does NOT bring back a template file a strategy lacks (`init-strategy`'s script
-  with `--only` does), and never builds on the example.
+  Copy the KaxaNuk worked example strategy, golden-flow, into a new folder to study or run it — or
+  one of its worked files, such as Data/analyzer.ipynb, into a folder of its own to read beside a
+  strategy's own — from the copy inside the researcher package, by a script. Only when the owner
+  runs it by name. It does NOT start a strategy of the owner's own (use `init-strategy`), does NOT
+  bring back a template file a strategy lacks (`init-strategy`'s script with `--only` does), and
+  never builds on the example.
 metadata:
-  version: 0.2.2
+  version: 0.3.0
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
 
-The example is one strategy, `liquid-golden-cross`, worked through every folder of the KaxaNuk
-Strategy Template: the objective and its claims, the notes, the universe, the data, the experiment
-and its documents, the findings and the results. Its own lines sit between example markers —
-`<!-- example: begin -->` and `<!-- example: end -->` in Markdown, `# --- example: begin ---` in
-Python, `# EXAMPLE-ONLY CELL` on a notebook cell — beside the template's description of what
-belongs in each file. It is also readable without installing anything, in
-`examples/liquid-golden-cross/` of `KaxaNuk/KaxaNuk-Researcher`.
+The example is one strategy, `golden-flow`, worked through every folder of the KaxaNuk Strategy
+Template: the objective and its claims, the notes, the universe, the data, the experiment and its
+documents, the findings, the results and the paper-trading gate. Its own lines sit between example
+markers — `<!-- example: begin -->` and `<!-- example: end -->` in Markdown,
+`# --- example: begin ---` in Python, `# EXAMPLE-ONLY CELL` on a notebook cell — beside the
+template's description of what belongs in each file. It is also readable without installing
+anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
 
 ## When to Use
 
@@ -41,7 +41,7 @@ belongs in each file. It is also readable without installing anything, in
 1. **Which of the two, and where.** A path of the example — `Data/analyzer.ipynb`,
    `Experiments/Experiment_1` — means that one piece; no path means the whole example. Either lands
    in a folder outside any strategy: ask where through the question tool, defaulting to
-   `liquid-golden-cross` beside the folder the session is open in. Never into a strategy: its file
+   `golden-flow` beside the folder the session is open in. Never into a strategy: its file
    of the same name is the template's description, for the owner to fill.
 
 2. **The plan.** In chat: what will be copied and where; for one piece, that the folder is made if
@@ -69,19 +69,23 @@ belongs in each file. It is also readable without installing anything, in
    `git config user.email "<email>"`, then run the printed commands there.
 
 4. **For one piece, say what it shows.** Everything between the markers in what was copied is
-   `liquid-golden-cross`'s own work; around it is the template's description, which the strategy's
-   copy already holds. Name the path it landed at, to read beside the strategy's file; never copy
-   its lines into the strategy.
+   `golden-flow`'s own work, and so, whole, are its seed and every file only the example has — its
+   notes, `Universe/seed.py`, a frozen book's `FREEZE.json` and the files it hashes; around the
+   markers is the template's description, which the strategy's copy already holds. Name the path
+   it landed at, to read beside the strategy's file; never copy its lines into the strategy.
 
 5. **Hand over.** For the whole example: reading it needs nothing — `OBJECTIVE.md`, then
-   `RESULTS.md`, then `Experiments/Experiment_1/`. Running it needs a data provider's key (FMP),
-   about three hours of downloads, KaxaNuk's benchmark and factor files, and the licensed Backtest
-   Engine and Attribution Analysis — the files and the licences are KaxaNuk's to give: write to
-   `lab@kaxanuk.mx`, saying what it is for — <https://www.kaxanuk.mx/lab> shows the Lab; its
-   `SETUP.md`, from step 2, says how, in a **new** session opened in the folder. Never build a
-   strategy on it; a strategy of their own is `init-strategy`.
+   `RESULTS.md`, then `Experiments/Experiment_1/`, its `BLUEPRINT_1.md` and `FINDINGS_1.md`, then
+   `Paper_Trading/BITACORA.md`. Running it needs an FMP key (this experiment's provider), the
+   Analytics Factory's KN US Equity Core holdings and returns and its KN US Equity Factor Model
+   files, and the licensed Backtest Engine and Attribution Analysis — the files and the licences
+   are KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying what it is for —
+   <https://www.kaxanuk.mx/lab> shows the Lab; its `SETUP.md`, from step 2, says how, in a **new**
+   session opened in the folder. The download took 1 hour 37 minutes for 892 names on 2026-10-06,
+   and its frozen paper book, `Paper_Trading/Paper_Trading_1/`, is a record that does not run in a
+   copy. Never build a strategy on it; a strategy of their own is `init-strategy`.
 
 ## References
 
 - `scripts/scaffold.py`, in the `init-strategy` skill's folder — copies
-  `examples/liquid-golden-cross/` from the KaxaNuk Researcher package, whole or `--only` one path.
+  `examples/golden-flow/` from the KaxaNuk Researcher package, whole or `--only` one path.

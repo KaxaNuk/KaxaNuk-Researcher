@@ -2,7 +2,7 @@
 Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy, or the example.
 
 The three starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
-`templates/strategy/` and `examples/liquid-golden-cross/` — and this script copies one of them
+`templates/strategy/` and `examples/golden-flow/` — and this script copies one of them
 byte for byte, so every folder made from the same package version starts identical.  Nothing is
 written from memory and nothing is generated; a cache folder a checkout or a local install carries
 is left behind.
@@ -79,8 +79,8 @@ STARTING_POINTS = {
         'Start from the KaxaNuk Strategy Template',
     ),
     'example': (
-        'examples/liquid-golden-cross',
-        'Start from the KaxaNuk example strategy, liquid-golden-cross',
+        'examples/golden-flow',
+        'Start from the KaxaNuk example strategy, golden-flow',
     ),
 }
 # Where APM puts the package, relative to an `apm_modules/` folder: from GitHub, then from a path.

@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.10.1
+  version: 0.10.2
 ---
 
 # Read — a source into the library, a chapter at a time

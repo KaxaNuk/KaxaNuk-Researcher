@@ -31,10 +31,11 @@ of them.
 > is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
 > <https://www.kaxanuk.mx/lab> shows the Lab.
 
-**The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, the files attribution
-reads: <https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them. A strategy reads them in
-place from the folder its `KN_ANALYTICS_PATH` names, or from copies dropped into
-`Data/Curator/Benchmarks/` and `Data/Curator/Factors/`, as its `SETUP.md` says.
+**The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
+read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;
+ask `lab@kaxanuk.mx` for them. A strategy reads them in place from the folder its
+`KN_ANALYTICS_PATH` names, or from copies dropped into `Data/Curator/Benchmarks/` and
+`Data/Curator/Factors/`, as its `SETUP.md` says.
 
 **To report a problem or suggest a change to the researcher:** the same address, with the
 researcher's version — `update check` reports it — and what happened.

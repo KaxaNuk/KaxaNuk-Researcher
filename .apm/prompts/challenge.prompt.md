@@ -22,10 +22,9 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 
 ## Step 1: Refuse if there is nothing to challenge
 
-- **The folder is the worked example** — its `README.md` is titled *Liquid Golden-Cross*, or
-  `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`, the test `next` uses.
-  The example is for reading and running, never built on; a strategy of the owner's own is
-  `init-strategy <name>`.
+- **The folder is the worked example** — its `README.md` or `AGENTS.md` holds a line reading
+  `<!-- example: begin -->`, the test `next` uses. The example is for reading and running, never
+  built on; a strategy of the owner's own is `init-strategy <name>`.
 - **No `Experiments/Experiment_N/BLUEPRINT_N.md`, or it is not filled** — it lacks the line
   `blueprint` writes under the experiment's heading, `**Written YYYY-MM-DD, before any rule was
   coded.**` — there is no hypothesis to check the run against: `blueprint`, E.

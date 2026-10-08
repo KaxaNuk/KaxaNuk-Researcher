@@ -6,84 +6,83 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
-## [Unreleased]
-What a book's first days on paper found. A strategy taking its first book to paper trading on
-2026-10-06 hit three faults the template and the worked example share or say nothing about: a
-crash in the daily run exited 1, the code of a flagged day, so on a book flagged every day it read
-as an ordinary day; a seed span closed on its source's last date stopped every live name there,
-which no backtest cut earlier could see; and the daily checks read each file's newest day alone. A
-fourth, a book that empties the day an index's files end, the example already guarded against
-without the template saying so.
+## [0.34.0] - 2026-10-07
+Golden Flow is the worked example. `init-example` now copies `golden-flow`: the Lab's reference
+strategy, taken from the first note to a book signed into paper trading on 2026-10-06 — the most
+traded members of the KN US Equity Core in a 50/200 golden cross, weighted by 63-day traded value
+inside a 20% cap and a 1% floor. It is a curated copy, shorter than the example it replaces, and it
+shows step by step which Lab library or Analytics Factory file each step uses. The first strategy
+to reach paper trading also taught the template four things: attribution pairs each weight with
+the day it earns, a crash in the daily run must not read as an ordinary day, a seed's span ends
+where the security did and not where its source does, and a seed taken from an index carries two
+keys and one map.
 
-Attribution pairs each weight with the day it earns. The Backtest Engine's daily weights and the
-index's holdings are both struck at a day's close, after that day's return has moved them, and the
-Attribution Analysis library pairs a weight with the return of its own date: the worked example
-handed both over unmoved, so every pass credited every book, the index's included, with the day's
-move its weights already held. On Experiment 1's window, 2017 to 2026, and its seed's names, the
-first cut's benchmark read 22.60 points a year against the index's own 16.03; held overnight,
-15.97 against 15.94. Nothing raised, because nothing set the first cut's benchmark beside the
-index's own returns.
-
-**What to do differently:** in a strategy with a book on paper, catch a step that raises in
-`daily_update.py`'s `main()` and return 2 with the traceback in the day's log, as the example now
-does, and register the scheduled task again with the redirect `SETUP.md` gives. If the seed carries
-a span, leave the last date empty for a listing still trading on its source's last date. Before a
-freeze, try the book in a scratch clone on a day past the window. Read a book's flags, not only its
-exit code.
-
-In a strategy's `Experiments/attribution_analysis.py`, move the book's
-and the index's daily weights one day on before any pass — the close of t−1 earns day t — after
-the asset returns are read on the engine's own days, and make the notebook's Verify section raise
-unless the first cut's benchmark comes within a point a year of the index's own returns file. An
-attribution figure computed before that check is likely overstated: run it again before quoting
-it.
-### Fixed
-- **A crash in the daily run exits 2.** The example's `Paper_Trading/daily_update.py` caught
-  nothing around the day's run, so a step that raised left Python to exit 1, the flagged code, with
-  nothing in the day's log. `main()` catches it now, writes the traceback to the day's log and
-  returns 2, the lock still released. Tried in a scratch copy, with the day's run made to raise and
-  with a real failure: the code before exits 1 and logs nothing, the code after exits 2 and logs the
-  traceback. The docstring the template shares and `BITACORA.md`'s account of the run, in both
-  copies, say so.
-- **The scheduled command keeps its output.** `SETUP.md`'s `schtasks` line, in both copies, runs
-  through `cmd /c` and appends to `Paper_Trading\Logs\scheduled.log`, and the `crontab` line to the
-  same file: what the run prints outside the day's log — the download, an error before the log
-  opens — was lost.
-- **The strategy template's attribution contract** — the docstring of
-  `Experiments/attribution_analysis.py`, the README's row for it, and sections 5 and 8 of
-  `experiment_1.ipynb`, with `experiment-lifecycle`'s reference notebook: both weight tables are
-  held overnight, and the benchmark is reconciled with the index's own returns before any figure is
-  read, raising in Verify above a point a year.
-- **The worked example** — `held_overnight`, `reconcile_benchmark` and
-  `RECONCILIATION_TOLERANCE_POINTS` in `Experiments/attribution_analysis.py`; all four experiment
-  notebooks hold the book and the index overnight in every pass, print the first cut's benchmark
-  beside the index's own, and raise in Verify when the two are more than a point a year apart.
-  **Not re-run:** every Brinson-Fachler and factor-model figure in the four findings files,
-  `RESULTS.md` and `Paper_Trading/BITACORA.md` came from same-day pairing and stands as published
-  until the example is run again; `RESULTS.md` says so in its limitations. No engine figure moves.
-- **`attribution-analysis-runs` (0.2.11)** names the trap in section 3 — the library pairs a
-  weight with the return of its own date, and both of a strategy's weight tables are struck at the
-  close — and adds the reconciliation to section 8 and to what it will not let you do.
-- **`backtest-engine-runs` (0.1.9)** says `Daily_Weights` is struck at each day's close, so it
-  earns the next day's return.
+**What to do differently:** run `uvx --from apm-cli==0.29.0 apm update -g`, then `update` in your
+home: it shows the changed line of `README.md` (template 0.18.1) as a diff and brings it across on
+your go. Run `init-example` again to read the new example; `liquid-golden-cross` stays readable at
+tag `v0.33.0`. In a strategy of your own, read the strategy template's 0.14.0 entry: hold both
+attribution weight tables overnight and reconcile the first cut's benchmark within a point a year
+before quoting any attribution figure; in a strategy with a book on paper, catch a step that
+raises in `daily_update.py` and return 2, and register the scheduled task again with the redirect
+`SETUP.md` gives; install with `uv sync --group notebook --inexact`.
+### Added
+- **`examples/golden-flow/`**, a curated copy of Golden Flow 0.15.1. Its README says how to read
+  it — `OBJECTIVE.md`, then `RESULTS.md`, then Experiment 1's blueprint and findings, then the gate
+  in `Paper_Trading/BITACORA.md` — and gives the rule in one table, the Lab library or Analytics
+  Factory file each step uses with the skill for doing it yourself, how to run it, what a correct
+  run shows and the words it uses. Its documents keep every rule and every number they quote, and
+  leave out the strategy's earlier versions, which stand in its record as one row of `RESULTS.md`
+  and 37 books of its trial count. FMP is this experiment's provider. The seed, the frozen book's
+  `FREEZE.json` and the files it hashes ship byte for byte, but for the frozen security master,
+  the provider's data; `paper_trading_1.py` carries the template's docstring and the example's
+  markers. The book is a record and does not run in a copy, as `BITACORA.md` says.
+- **`AGENTS.md`**: the written exceptions to the rule that the template and the example share
+  every unmarked line, and that a file only the example has is its own whole; a line copied
+  verbatim from a strategy's fixed or append-only record may run past 100 columns; a change to a
+  Lab library's API changes the worked example too where it uses that library, with a new example
+  version and a journal entry.
 ### Changed
-- **Where a span ends**, in *The seed* of `Universe/universe.ipynb`, both copies, and in
-  `universe-point-in-time`: a seed that carries the dates each identifier speaks for leaves the last
-  empty for a listing still trading on its source's last date — when the source was written, not a
-  delisting. Neither the template nor the example can close one: the template's seed is
-  `main_identifier` alone, the example's adds `provider`, and the refinery reads each file whole.
-  The strategy's own seed builder took its spans from an index's master, and its paper book's
-  calendar stopped on the master's last date.
-- **`paper_trading_N.py` holds membership** past the last date an index's holdings were written,
-  as its contract now says in both copies: a membership built only from the dates those files hold
-  has no member after it, and a book that read it so would sell every name the day they end. The
-  example's books already hold it.
-- **The daily checks say what they miss**, in `daily_update.py`'s docstring and `BITACORA.md`,
-  both copies: a security's file that ends before the day, and a bad bar between two runs, pass
-  unflagged.
-- **`paper-trading-gate`**: a step that raises is a failed day; *What the checks do not see*; and
-  the book tried once before the real freeze, frozen in a scratch clone and run dry on a day past
-  the window, where the membership and span faults show.
+- **The strategy template (0.14.0)**, in its shared lines: attribution holds both weight tables
+  overnight, reconciles its benchmark with the index's own returns, maps the index's tickers to the
+  book's identifiers through the seed and compares against the members it can price; a seed taken
+  from an index carries `index_identifier` beside `main_identifier`, the identifier the
+  experiment's provider prices under, and `Data/hand_supplied.py` maps them; refined rows stay
+  inside each security's span, and a live listing's span stays open; the panel returns one
+  calendar; a scheme may size by a score inside bounds its blueprint names; a book on paper is
+  priced over three windows, holds the last membership an index's files wrote, and a step that
+  raises exits 2, its scheduled command keeping its output; lines that read false in a filled copy
+  are worded for a new strategy. Its `CHANGELOG.md` lists each file.
+- **`init-example`** (0.3.0) copies `golden-flow` into a folder named `golden-flow`, and its
+  hand-over gives the reading order, the measured download time and what a run needs.
+  **`init-strategy`** (0.2.2): `scaffold.py`'s example is `examples/golden-flow`.
+- **The example is told by its markers alone**: `audit`, `blueprint`, `challenge`, `objective` and
+  `next` (1.3.1) drop the test on the old example's README title. `next`'s facts file says the
+  Analytics Factory's files may be a strategy's universe, its benchmark and attribution's inputs.
+- **The skills' worked cases are Golden Flow's**, every figure from its 0.15.1 files:
+  `alpha-decomposition` (0.4.0) — the arm table and its lessons, and the benchmark checked whole
+  and aligned; `attribution-analysis-runs` (0.3.0) — the library pairs a weight with the return of
+  its own date, so both weight tables are held overnight and the benchmark reconciled, and a zero
+  price in the index's holdings reads as an infinite return; `backtest-engine-runs` (0.2.0) —
+  `Daily_Weights` is struck at the close, the reserve is checked run by run, commission per share
+  as measured, `references/api.md`'s values, and the engine's years counted as weekday steps over
+  252; `data-analyzer-runs` (0.2.2) — the orders of magnitude of an information coefficient;
+  `portfolio-construction-runs` (0.3.0) — sizing by a score inside named bounds, and the sell
+  before a price series stops; `paper-trading-gate` (0.3.0) — the example's gate answered yes, a
+  step that raises is a failed day, what the checks do not see, the dry run before a freeze, and
+  `1.0.0` waiting for a clean-clone reproduction; `universe-point-in-time` (0.2.0) — where a span
+  ends, and the main identifier chosen per experiment; `data-curator-custom-calculations` (0.3.4);
+  `experiment-lifecycle` (0.12.0) and its references; `read` (0.10.2).
+- **Published figures that moved in skills**: the arm table of `alpha-decomposition`, the
+  commission figures and `references/api.md` values of `backtest-engine-runs`, the coefficients of
+  `data-analyzer-runs` and the sample figures of `audit` are Golden Flow's.
+- **An in-house strategy**: examples in this package come only from `golden-flow` as the package
+  ships it, never from a live strategy repository — in `AGENTS.md` and five skills.
+- **`README.md`**, the home's `README.md` (template 0.18.1) and the strategy template's README,
+  `AGENTS.md` and `SETUP.md` name `golden-flow`.
+### Removed
+- **`examples/liquid-golden-cross/`**, readable at tag `v0.33.0`. Its four experiments'
+  attribution figures came from weights paired with the return of their own date and were not run
+  again.
 ### Notes
 - **Proposed, not built: check every day since the last recorded run.** `check_market_data` would
   take the newest `as_of` the record's `runs` table holds as ran — the freeze date, before a first
@@ -91,9 +90,7 @@ it.
   on every row of that stretch, not the newest alone; `stopped-series`, a flag, for a name whose
   file ends before the day the cash proxy and the benchmark reached while its span, if any, is
   open, and a stop when a book held it; and `internal-gap` for a day of the benchmark's calendar
-  missing inside the stretch. An unadjusted −84% bar between two runs leaves less than a sixth of
-  the price, which the existing threshold already stops. The stretch is a day or a weekend, so the
-  check still costs seconds.
+  missing inside the stretch. The stretch is a day or a weekend, so the check still costs seconds.
 
 ## [0.33.0] - 2026-10-06
 A way into the Lab, and less to read. The researcher is where many people first meet KaxaNuk's

@@ -13,7 +13,7 @@ description: >
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.2.1
+  version: 0.2.2
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -50,15 +50,15 @@ signal built on it carries anything. It builds no book, runs no engine and sizes
 ## The notebook, section by section
 
 The template ships `Data/analyzer.ipynb` as its markdown cells — each section says what is expected
-in it — and the worked example, `examples/liquid-golden-cross/` in the KaxaNuk Researcher package,
-fills every one. Read the example's copy before writing a cell; `init-example` puts it in a folder
-of its own. Sections 0 to 4 are what any strategy needs; 5 depends on the signal; 7, Verify, ends
+in it — and the worked example, `examples/golden-flow/` in the KaxaNuk Researcher package, fills
+every one. Read the example's copy before writing a cell; `init-example` puts it in a folder of
+its own. Sections 0 to 4 are what any strategy needs; 5 depends on the signal; 7, Verify, ends
 every one.
 
 | Section | Measures | The trap it catches |
 | --- | --- | --- |
 | 0 · Setup | the refined panel, and **the columns this notebook reads, named once in this cell** — eligibility, the features, the candidates to screen | a column named in three cells is three places to change |
-| 1 · What each stage contributed | the refined file is the curator file plus columns, same rows; then **coverage per column** | a column at 60% coverage quietly averaged over the 60%; say whether the gap is a warm-up, a late listing or a broken input |
+| 1 · What each stage contributed | the refined file is the curator file plus columns, its rows inside each security's span; then **coverage per column** | a column at 60% coverage quietly averaged over the 60%; say whether the gap is a warm-up, a late listing or a broken input |
 | 2 · What diversification is available | buy-and-hold return, volatility and worst day per security; the correlation matrix, its mean off-diagonal and the extreme pairs | **if everything is one trade, choosing between securities is theatre** — this is the measurement that says how much a selection rule can possibly add |
 | 3 · Are the cross-sectional columns what they claim | that every rank is a percentile **inside a single date**, checked as an identity: a per-date percentile over *n* untied values has mean exactly `(n + 1) / (2n)` | a rank pooled across dates drifts as the universe changes and raises no error; testing against 0.5 fails on every date of a narrow universe and passes on a wide one |
 | 4 · Information coefficient | for each feature and horizon, the cross-sectional **rank** correlation between the feature at *t* and the forward return *t* to *t+h*, **per date, then averaged**; the IC, and the IR as IC over its standard deviation; beside it the share of dates with the expected sign, and the overlap, *h − 1* days, that consecutive windows share; on the whole panel and, separately, on the **eligible pool** the rule selects from | a correlation pooled over dates compares securities that were never observable together; a feature that behaves on the panel and not inside the filtered pool; an IR over overlapping windows read as if every date were an independent observation |
@@ -77,8 +77,10 @@ every one.
 4. **The IC table is a screening tool, not evidence.** An information ratio scales with the square
    root of the number of independent bets, so on a narrow universe read it as directional. A
    feature that fails here does not get a book built on it; one that passes has earned a backtest,
-   not a belief. Orders of magnitude, from the example: an IC of 0.01 at one month is noise beside
-   the 0.02 to 0.03 a working signal shows.
+   not a belief. Orders of magnitude, from the example: on the pool its rule selects from, the
+   golden cross as a state reads an IC of +0.0235 at 21 days, with the expected sign on 54.6% of
+   dates, and −0.0010 before the window; the traded-value rank +0.0977 at 252 days, against
+   −0.0494 before. What the window shows is the window's.
 5. **Never choose a parameter on the metric it will be judged by.** A window, a threshold or a
    lookback is chosen on a property of the signal — persistence, coverage, turnover — and the
    sweep is published as a curve, never as its best cell. That rule is the bar's sixth point in
@@ -117,9 +119,9 @@ the one that passed: count them, and publish the count beside the winner.
 
 ## References
 
-- `Data/analyzer.ipynb` in the worked example, `examples/liquid-golden-cross/` in the KaxaNuk
-  Researcher package — every section filled, with the strategy's own cells marked
-  `# EXAMPLE-ONLY CELL`. The template's copy is the same notebook with those cells removed.
+- `Data/analyzer.ipynb` in the worked example, `examples/golden-flow/` in the KaxaNuk Researcher
+  package — every section filled, with the strategy's own cells marked `# EXAMPLE-ONLY CELL`. The
+  template's copy is the same notebook with those cells removed.
 - `RESULTS.md` in the same example, *Before any experiment* — what a filled table looks like.
 - The strategy's `AGENTS.md`, *The bar any new signal must clear* and *Research integrity — the
   five ways a backtest lies*, which this stage serves.

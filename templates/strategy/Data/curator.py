@@ -2,7 +2,8 @@
 Data Curator -- step 3 of 8, block 1 of 3.  The only file in this repository that downloads time
 series from a data provider.  `Universe/universe.ipynb` asks the same provider what each security
 *is* -- name, type, exchange, currency, inception -- and caches that payload in
-`Universe/Provider_Cache/`; nothing else talks to a provider.
+`Universe/Provider_Cache/`.  A strategy's seed builder, where it has one, may ask it which
+identifier each listing is priced under; nothing else talks to a provider.
 
 In plain words: you describe the data you want -- provider, identifiers, dates and columns -- and
 the KaxaNuk Data Curator fetches it, aligns the calendar, handles splits and dividends, and writes
@@ -13,8 +14,9 @@ provider key in `Config/.env`.  `Universe/universe.ipynb` profiles what this wri
 
 What is expected here is a short driver, not a framework:
 
-- Read the identifiers from `Universe/Investable_Universe.csv`, column `main_identifier`.  The
-  seed is the authority on what exists, so it drives the download.
+- Read the identifiers from `Universe/Investable_Universe.csv`, column `main_identifier`, the
+  identifier the experiment's provider prices each security under.  The seed is the authority on
+  what exists, so it drives the download.
 - Build one Data Curator configuration: the date window, those identifiers, and the output columns
   -- the provider's `m_*` columns plus the `c_*` columns defined in
   `Data/Curator/custom_calculations.py`.  Fix the end date rather than using today, so two people
@@ -23,15 +25,18 @@ What is expected here is a short driver, not a framework:
   `Paper_Trading/daily_update.py`.  A refresh refetches each file whole, because a fresh pull
   rebases every adjusted column from the present, and remembers the date each file was fetched
   through, so a run that stops half way resumes where it stopped.
-- Call the public library once -- `kaxanuk-data-curator`, already installed by `uv sync` from
-  `pyproject.toml`, imported as `kaxanuk.data_curator`.  It loops over the identifiers, skips one
-  that fails and says why, and writes `<identifier>.csv` for each.
+- Call the public library once per identifier -- `kaxanuk-data-curator`, already installed by
+  `uv sync` from `pyproject.toml`, imported as `kaxanuk.data_curator` -- so each name gets its own
+  answer and its own `<identifier>.csv`.
+- Record the provider's answer for each name.  A name it does not carry is then told from one it
+  refused today -- a rate limit, a timeout -- and only the second is asked again.
 - Point its output at `Data/Curator/Time_Series/`.  The library's default folder is `Output/`;
   here every stage has one home, and this is the Curator's.
 - A provider's history can stop where its coverage does: a name that left the market years ago may
   be missing from it altogether.  Fetch such names from a second provider that carries them, into
   the same files and columns, and say in the strategy's documents which names came from where and
-  how any column the second provider lacks was filled.
+  how any column the second provider lacks was filled.  Or leave them out and publish what that
+  costs, the survivorship cost, beside every result.  Either is a decision the journal records.
 
 Two groups ride along in the same folder although they are not in the seed: a cash proxy, because
 a book that goes to cash has to hold a real priced instrument, and the benchmarks the strategy is
@@ -56,7 +61,8 @@ Credentials come from `Config/.env` and are never printed -- not into a log line
 output or a commit.  An exposed key is rotated, not edited out.
 
 It produces `Data/Curator/Time_Series/<identifier>.csv`, `m_*` plus `c_*`, read by
-`Universe/universe.ipynb` and `Data/refinery.py`.
+`Universe/universe.ipynb` and `Data/refinery.py`, and in `Data/Curator/` the provider's last
+answer for each name.
 
 It prevents beautiful results that came from broken inputs -- and a dataset nobody else can
 rebuild.

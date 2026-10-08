@@ -26,8 +26,8 @@ the process improves in public, the way KaxaNuk's open-source Data Curator did.
 This template is the shape and every file the process expects in it: six folders, the documents at
 the root, and inside the folders each driver, module, notebook and document as a description of
 what belongs there — a `.py` file as its docstring, a notebook as its markdown cells. The same
-files, worked through for one strategy, `liquid-golden-cross`, are the
-[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross);
+files, worked through for one strategy, `golden-flow`, are the
+[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/golden-flow);
 *What is in here* says what each file is for.
 
 ---
@@ -196,7 +196,7 @@ to keep current:
 `.py` file as its docstring, a notebook as its markdown cells, a document as its prose — to be
 filled in with the strategy's own.
 The same files are worked through in the
-[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/liquid-golden-cross),
+[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/golden-flow),
 where the worked strategy's own lines sit beside that description between the example markers:
 `<!-- example: begin -->` and `<!-- example: end -->` in Markdown, `# --- example: begin ---` in
 Python, `# EXAMPLE-ONLY CELL` on a notebook cell. The `Bibliotheca/` index and log, the drivers,
@@ -208,7 +208,9 @@ copy it whole into a folder of its own:
 init-example
 ```
 
-Never build on it: the seed in `Universe/` and everything between the markers is that strategy's.
+Never build on it: the seed in `Universe/` and everything between the markers is that strategy's,
+and so, whole, is every file only the example has — its notes, `Universe/seed.py`, and a frozen
+book's `FREEZE.json` with the files it hashes.
 A strategy made from a template before 0.10.0 lacks these files; `init-strategy`'s script brings
 each back from the template, `scaffold.py strategy . --only <path>`, and never overwrites.
 
@@ -282,7 +284,7 @@ Two rules follow, and one exception worth knowing:
 | `Universe/Security_Master.csv` | the seed plus what the provider knows, written by step 2 |
 | `Universe/Data_Issues.csv` | what is wrong with the downloaded files, written by step 2 |
 | `Data/Curator/Time_Series/` | one file per identifier: `m_*` and `c_*` |
-| `Data/Refinery/Time_Series/` | the same rows plus `r_*` and `current_*` — **the panel every experiment reads** |
+| `Data/Refinery/Time_Series/` | each security's rows inside its span, plus `r_*` and `current_*` — **the panel every experiment reads** |
 | `Experiments/Experiment_N/` | one folder per idea: `BLUEPRINT_N.md`, `JOURNAL_N.md`, `FINDINGS_N.md`, and the notebook |
 | `Portfolio/portfolio_weights.csv` | the book, in the shape the Backtest Engine reads |
 

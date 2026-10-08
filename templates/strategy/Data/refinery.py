@@ -3,22 +3,25 @@ Data Refinery -- step 3 of 8, block 2 of 3.  The cross-sectional layer over the 
 
 In plain words: the Curator sees one security at a time; this stage sees all of them on one date.
 It stacks every Curator file into one panel, computes the `r_*` columns across it, and writes the
-files back out with the same rows and more columns.
+files back out with more columns, each security's rows kept inside the span the seed gives it.
 
 Runs after `Universe/universe.ipynb`, because it joins the security master that notebook writes,
 and before `Data/analyzer.ipynb`, which reads what this writes.  Run too early it should say which
 columns it is skipping and carry on -- the right behaviour and the wrong outcome.
 
-    Data/Curator/Time_Series/<id>.csv      m_* + c_*                       per security
+    Data/Curator/Time_Series/<id>.csv      m_* + c_*                    per security
             |
             v   stack, compute per date across the cross-section, join the master
-    Data/Refinery/Time_Series/<id>.csv     m_* + c_* + r_* + current_*     same rows, more columns
+    Data/Refinery/Time_Series/<id>.csv     m_* + c_* + r_* + current_*  rows in span, more columns
 
 What is expected here is loading, ordering and writing.  The calculations live in
 `Data/Refinery/custom_calculations.py`.
 
 - Membership is an allowlist taken from `Universe/Investable_Universe.csv`, so the cash proxy and
   the benchmarks in the Curator folder never enter a rank.  There is no second list to forget.
+- Keep each security's rows inside the span the seed gives it: outside it, a file under a reused
+  identifier is another company's history, and no stage may read it.  A seed without spans keeps
+  every row.
 - Resolve each `r_*` function by its parameter names against the columns already built -- the same
   convention the Curator uses -- and compute them in dependency order.
 - Join the classification columns of `Universe/Security_Master.csv`, prefixed `current_`, because
@@ -30,8 +33,8 @@ What is expected here is loading, ordering and writing.  The calculations live i
   incompatible cross-sections without raising an error.
 
 This is the seam the KaxaNuk Data Refinery library replaces.  Keep the contract -- Curator files
-in, `r_*` functions resolved by name, Refinery files out with the same rows -- and the swap is a
-one-file change.
+in, `r_*` functions resolved by name, Refinery files out with each security's rows inside its
+span -- and the swap is a one-file change.
 
 It produces `Data/Refinery/Time_Series/`, the panel every experiment reads.
 

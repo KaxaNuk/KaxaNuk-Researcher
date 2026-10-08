@@ -36,8 +36,8 @@ to keep the path short.
 
 A source with no author, such as a tool's README clipping, takes the organisation or the project
 that published it as its author; one with no year printed takes `ND`, for *no date*, in the year's
-place: `Grinold_Kahn_ND_Active_Portfolio_Management`, as the worked example names a copy that
-prints no year. Its `citation` says *n.d.* and that no year is printed. Neither is guessed.
+place: `Grinold_Kahn_ND_Active_Portfolio_Management` for a copy that prints no year. Its
+`citation` says *n.d.* and that no year is printed. Neither is guessed.
 
 At home, a book folder is the only kind of subfolder a domain has, and its `INDEX.md` the only
 per-folder index. A clipping or a transcript — `Sources/Clippings/` at home, `Bibliotheca/Notes/`

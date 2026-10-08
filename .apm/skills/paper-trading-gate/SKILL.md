@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.2.2
+  version: 0.3.0
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -63,10 +63,10 @@ An experiment is **promoted, not copied.** `Paper_Trading/Paper_Trading_N/` mirr
 experiment's notebook stays where it is, as the record of how the rule was chosen. The template
 ships `Paper_Trading_1/` as the contract of a frozen book, named for the experiment it would
 mirror: it becomes Experiment 1's book if Experiment 1 graduates, and a later experiment that
-graduates takes its own number.
+graduates takes its own number. In the worked example it is that book, frozen.
 
-A strategy's first graduation is its `1.0.0`: the changelog reserves it for the first strategy that
-reaches paper trading with its results reproduced from a clean clone.
+A strategy's `1.0.0` waits for more than its first graduation: the changelog reserves it for the
+first strategy that reaches paper trading with its results reproduced from a clean clone.
 
 ## The freeze
 
@@ -99,11 +99,12 @@ longer *what would this have done* but *what does it hold today, and how is it d
 the shared raw prices once, or reads what another machine published; checks the newest day and
 stops every book on a close with no fill price or a move no price can make; runs each book in
 `BOOKS` — its frozen refinery, its frozen rule from the experiment's first day, and the engine
-twice, over the whole history and since the freeze; writes the record through `record.py` to local
-CSV files, a DuckDB database or both, as `Config/.env` says; and exits 0, 1 or 2 — clean, flagged,
-failed. A step that raises is a failed day, exit 2 with its traceback in the day's log: Python's
-own exit code for it is 1, which a scheduler reads as flagged. A frozen file missing or changed, or
-a shared input that no longer matches `FREEZE.json`, stops the book with `unfrozen-input`.
+three times, over the whole history, the days after the experiment's window and since the freeze;
+writes the record through `record.py` to local CSV files, a DuckDB database or both, as
+`Config/.env` says; and exits 0, 1 or 2 — clean, flagged, failed. A step that raises is a failed
+day, exit 2 with its traceback in the day's log: Python's own exit code for it is 1, which a
+scheduler reads as flagged. A frozen file missing or changed, or a shared input that no longer
+matches `FREEZE.json`, stops the book with `unfrozen-input`.
 
 **What the checks do not see.** They read each file's newest day alone: a security's file that
 ends before the day, or a bad bar on a day between two runs — an unadjusted corporate action, say —
@@ -131,10 +132,12 @@ cannot show.
 ## The status section
 
 *Current status* in `BITACORA.md` is the gate's record. Until something graduates it says so —
-*nothing has graduated, nothing has been tested*. When a candidate arrives, record which
+*nothing has graduated and nothing has been tested*. When a candidate arrives, record which
 experiment, which variant, which criteria it clears and, above all, **which it does not and why:
 the blocking items are the content of this section, not the passing ones.** The worked example's
-verdict table, criterion by criterion with its evidence, is the shape to follow.
+verdict table, criterion by criterion with its evidence, is the shape to follow. Its answer was
+yes; a no has the same shape — each blocking row with the evidence that blocks it, and criterion 5
+*not sought*.
 
 ## What the assistant never does here
 
@@ -154,9 +157,11 @@ verdict table, criterion by criterion with its evidence, is the shape to follow.
 ## References
 
 - `Paper_Trading/BITACORA.md`, `daily_update.py` and `Paper_Trading_1/paper_trading_1.py` in the
-  worked example, `examples/liquid-golden-cross/` in the KaxaNuk Researcher package — the gate run
-  once, and the answer no, with every row evidenced from `FINDINGS_1.md`. The template's copies are
-  the same files with the example's lines removed.
+  worked example, `examples/golden-flow/` in the KaxaNuk Researcher package — the gate run once,
+  every row evidenced from `FINDINGS_1.md`: criteria 1 to 4 passed, criterion 3 exactly at its bar,
+  6 of 8 settings; the owner signed on 2026-10-06, and the book frozen as `Paper_Trading_1` is kept
+  in the package as a record. The template's copies are the same files with the example's lines
+  removed.
 - The strategy's `AGENTS.md`, *Research integrity — the five ways a backtest lies* and *What
   attribution must report*, which criteria 2, 3 and 4 rest on.
 - `CHANGELOG.md` in the strategy, *What a version number means here* — `1.0.0` and the gate.
