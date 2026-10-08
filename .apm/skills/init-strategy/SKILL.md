@@ -7,7 +7,7 @@ description: >
   environment or the keys (the new folder's SETUP.md does), does NOT copy the worked example (use
   `init-example`), and does NOT create a researcher (use `init-researcher`).
 metadata:
-  version: 0.3.0
+  version: 0.3.1
 ---
 
 # Init strategy — a new strategy, one folder, one repository

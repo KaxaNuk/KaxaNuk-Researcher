@@ -1,6 +1,6 @@
 [project]
 name = "golden-flow"
-version = "0.15.7"
+version = "0.16.0"
 license = "MIT"
 # The ceiling is the Backtest Engine's, not this repository's: its quick start states Python 3.12
 # or 3.13, and every performance figure here comes from that engine, so a version it cannot be
@@ -13,7 +13,7 @@ dependencies = [
     "kaxanuk-data-curator>=0.50.0",
     "matplotlib>=3.11.1",
     "numpy>=2.5.2",
-    "pandas>=2.3.3",
+    "pandas>=2.3.3,<3",
     "pandas-stubs~=2.3.3",
     "pyarrow>=18.0.0",
     "python-dotenv>=1.2.3",

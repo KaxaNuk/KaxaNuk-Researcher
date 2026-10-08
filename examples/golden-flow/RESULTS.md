@@ -27,8 +27,9 @@
 
 ## The project in three sentences
 
-Does the benchmark book work, with its headline numbers. What attribution says about where the
-return comes from. Which lever earned its place after the benchmark, and which was rejected.
+Does Experiment 1's book beat its benchmark and its control, with its headline numbers. What
+attribution says about where the return comes from. Which lever earned its place after Experiment 1,
+and which was rejected.
 
 <!-- example: begin -->
 
@@ -125,7 +126,7 @@ finding.
 
 | Exp | Book | CAGR | Sharpe | Max DD | Control Sharpe | vs control | Status | Claim moved | Findings |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- | --- | --- |
-| **1** | the benchmark rule, in five words | | | | — | — | **the benchmark** | the claim's number, and its new status | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
+| **1** | the first rule, in five words | | | | — | — | kept or rejected | the claim's number, and its new status | [`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md) |
 
 <!-- example: begin -->
 

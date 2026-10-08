@@ -98,6 +98,68 @@ quarter, so the daily record is read for whether the book behaves like its backt
 holdings, exposure, costs — and never for a good month. What it can show in months is the plumbing,
 which is what this step exists to find before money does.
 
+## Running it daily
+
+Once an experiment has graduated and `Paper_Trading/promote.py N` has frozen it,
+`Paper_Trading/daily_update.py` runs every frozen book once a day. Try it by hand first, from the
+strategy's folder:
+
+```bash
+uv run python Paper_Trading/daily_update.py --dry-run
+uv run python Paper_Trading/daily_update.py
+```
+
+The first refreshes the prices, unless `--skip-refresh` is given, then checks, runs and prices
+everything and writes no record; the second writes the record. Running the same day twice replaces
+that day's rows instead of adding to them.
+
+**Where it reads and writes** is set in `Config/.env`:
+
+| Line | Values | What it does |
+| --- | --- | --- |
+| `PAPER_TRADING_INPUT` | `provider` or `database` | `provider` downloads the day's prices here, with the data key; `database` reads the prices another machine published, with no download and no data key |
+| `PAPER_TRADING_SINKS` | `local`, `database`, `local,database` | `local` writes the record as CSV files in `Paper_Trading/Record/`; `database` writes the same tables to the database |
+| `PAPER_TRADING_DATABASE` | a file, or `postgres:<connection string>` | a DuckDB file, by default `Paper_Trading/paper_trading.duckdb`; or a PostgreSQL server, reached through DuckDB |
+| `PAPER_TRADING_PUBLISH_DATA` | `true` or `false` | with the database sink, also writes the refreshed prices there, for the machines that read them |
+
+Each has a flag that overrides it for one run: `--input`, `--sinks`; `--as-of` runs a past day and
+`--book` one book. **A local record is not a backup**: the provider restates its history, so a
+day's inputs cannot be fetched again as they were. Keep the database sink on, or back the folder
+up.
+
+**A book's frozen security master travels by hand.** It is the provider's data, so `.gitignore`
+keeps it out of git, as it keeps the one in `Universe/`: it stays on the machine that froze the
+book. Back it up with the record, and bring it across before the first run anywhere else — the run
+checks every frozen file against its hash in `FREEZE.json`, and stops a book whose files are
+missing or changed.
+
+**Schedule it** after the US close, once the provider has the day. On Windows, from the strategy's
+folder, once:
+
+```bash
+schtasks /Create /SC WEEKLY /D MON,TUE,WED,THU,FRI /ST 19:00 /TN "<strategy-name> daily update" /TR "cmd /c uv run --directory <full path of this folder> python Paper_Trading/daily_update.py >> <full path of this folder>\Paper_Trading\Logs\scheduled.log 2>&1"
+```
+
+On macOS or Linux, one line of `crontab -e`, in the machine's own time zone. `cron` does not read
+your shell's `PATH`: give uv by its full path, which `command -v uv` prints.
+
+```bash
+0 19 * * 1-5 cd <full path of this folder> && <full path of uv> run python Paper_Trading/daily_update.py >> Paper_Trading/Logs/scheduled.log 2>&1
+```
+
+The run's log is in `Paper_Trading/Logs/`, one file per day, and its exit code says how the day
+went: 0 clean, 1 flagged, 2 failed. A step that raises exits 2 with its traceback in the day's
+log, so a day whose log does not end in `done, exit code` is one to read. The redirect keeps, in
+`scheduled.log`, what the run prints outside that log — the download, and an error raised before
+the log opens; the folder exists once the run has been tried by hand, as above. The licensed
+engine checks its licence online: without the network a saved check stands in for 3 days from
+Backtest Engine 0.67.0, 7 on 0.66.0, so the machine needs the network that often — and on its
+first run on 0.67.0, which does not read the older saved check.
+
+> **For the agent.** Registering a scheduled task changes the machine: give the command and let
+> the user run it. Never read the record's figures back as your own: they are the engine's, and
+> you quote them with the file they came from.
+
 ## Before a book's first day
 
 Each graduated book gets a section in *Current status*, written and committed before

@@ -23,7 +23,14 @@ never create a folder around this one: one folder is the whole project, as `SETU
 Three rules from `SETUP.md` apply from the first command:
 
 - **Never open, read back, print or echo `Config/.env`**, and never put a value from it into a
-  command that gets recorded. You may say which keys are still empty, **by name only**.
+  command that gets recorded. You may say which keys are still empty, **by name only**, with the
+  one check allowed, which prints names and never values — Git Bash, then PowerShell:
+
+  ```
+  grep -E '^[A-Z_]+=$' Config/.env | cut -d= -f1
+  Select-String -Pattern '^[A-Z_]+=$' Config/.env | ForEach-Object { $_.Line.TrimEnd('=') }
+  ```
+
 - **Install no skills here.** They are installed once for the user, with `apm install -g`, as
   *step 4* of `SETUP.md` says, and `uvx --from apm-cli==0.33.0 apm update -g` keeps them current
   for every strategy.
