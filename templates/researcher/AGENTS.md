@@ -193,15 +193,16 @@ from another template keeps or maps them in its own `AGENTS.md`.
 | `Knowledge/`, with `INDEX.md` and `LOG.md` | the notes in `Bibliotheca/Papers/` and `Books/`, beside their PDFs; `BIBLIOGRAPHY.md` is the index and `Bibliotheca/LOG.md` the log. No concept pages: `OBJECTIVE.md` is the strategy's synthesis. The template ships `BIBLIOGRAPHY.md` with no notes, only the seeded leads, and `LOG.md` empty. |
 | `Extracts/` | `Bibliotheca/Extracts/` — the same cache, beside the strategy's PDFs; the template's `.gitignore` ignores it, and `read` says so in its plan when a strategy's does not |
 | `Philosophy/` | nothing — the owner's voice is read at home, named in prose, never linked |
-| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, `Philosophy/` from `philosophy`, `Briefs/` from `brief`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `JOURNAL_N.md` (`challenge`'s entry, and the benchmark's in `JOURNAL_1.md`), the notes, `BIBLIOGRAPHY.md`; `study`, `teach`, `philosophy` and `brief` write at home only |
+| what the owner asks for at home — `Studies/` from `study`, `Lessons/` from `teach`, `Philosophy/` from `philosophy`, `Briefs/` from `brief`, the rest answered in chat | the strategy's own files: `OBJECTIVE.md`, `Experiments/Experiment_N/BLUEPRINT_N.md` and `JOURNAL_N.md` (`challenge`'s entry, the benchmark's in `JOURNAL_1.md`, and `blueprint`'s *the rule read back*), the notes, `BIBLIOGRAPHY.md`; `study`, `teach`, `philosophy` and `brief` write at home only |
 | *What you are reading for* in `RESEARCHER.md` — the numbered questions | the numbered claims in `OBJECTIVE.md`; while it has none, nothing may be read into the strategy — `objective` comes first, and the file is theirs to fill |
 
 - **Strategy work is written in the strategy**, in the file the template gives it, after the plan
   and the owner's go — a note into `Bibliotheca/Papers/` or `Books/` with its row in
-  `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`, a line
-  in `Bibliotheca/LOG.md` from `read` and `audit`, and a dated entry appended to `JOURNAL_N.md` —
-  the benchmark's choice in `JOURNAL_1.md`, or `challenge`'s. The go, the owner's review and
-  signature, saves the version; the blueprint is saved alone, before the rule.
+  `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`, a line in
+  `Bibliotheca/LOG.md` from `read` and `audit`, and a dated entry appended to `JOURNAL_N.md` — the
+  benchmark's choice in `JOURNAL_1.md`, the rule read back by `blueprint`, or `challenge`'s. The go,
+  the owner's review and signature, saves the version; the blueprint is saved alone, before the
+  rule.
 - **Nothing flows back.** The researcher is one per person and shared by every strategy; what it
   learns in one experiment must not leak into the next through its own library. While it works on a
   strategy it writes nothing at home — no note, no index line, no log entry, no extract — the weekly
@@ -241,7 +242,7 @@ strategy against this table and names the part that comes next.
 | B | **The reading**, for each claim | `Bibliotheca/`, then `OBJECTIVE.md` | `read`, one note per paper or chapter naming the claim it serves; then `objective` again, the evidence rewritten from the notes |
 | C | **The universe**, delisted names included | `Universe/Investable_Universe.csv` | contrast from the library — survivorship, point-in-time membership — never a number |
 | D | **The data** — curator, universe notebook, refinery, analyzer | `Data/` — the analyzer's measurements go straight into `RESULTS.md`, *Before any experiment* | contrast from the library — what the data can do to a signal — never a number |
-| E | **The blueprint**, after the benchmark is chosen and before the rule | `JOURNAL_1.md` for the benchmark, then `Experiments/Experiment_N/BLUEPRINT_N.md` | the benchmark's entry, drafted in chat and appended on the owner's go, then `blueprint`: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
+| E | **The blueprint**, after the benchmark is chosen and before the rule | `JOURNAL_1.md` for the benchmark, then `Experiments/Experiment_N/BLUEPRINT_N.md` | the benchmark's entry, drafted in chat and appended on the owner's go, then `blueprint`, which reads the rule back on one worked date before the go: every prediction cites a note from B or an analyzer measurement from D, or is a lead, counted |
 | F | **The broad reading** | `Bibliotheca/` | `read` for what the blueprint left open; what to try next goes in the journal's open threads |
 | G | **The cycle** — portfolio, backtest, attribution | the experiment notebook, `JOURNAL_N.md`, `FINDINGS_N.md` | `challenge`: each run checked against the blueprint's predictions and the notes; every number comes from the engines the project names — in a KaxaNuk strategy the Lab's libraries — never from here |
 | H | **The results**, kept or rejected | `RESULTS.md`, compiled from `FINDINGS_N.md` | a rejected cycle is reported as loudly as a kept one: *What is closed* is what stops the next person repeating it |

@@ -33,10 +33,14 @@ The first entry is usually *repository instantiated from the template*: what thi
 which template version it was created from, the strategy name, and everything `OBJECTIVE.md` still
 leaves open.
 
-The entry before `BLUEPRINT_1.md` is *choosing the benchmark*: what every experiment will be
-measured against, which candidates were considered, and the one property that decided between
-them — a benchmark is chosen for being transparent, liquid and stable, not for being clever.
-`blueprint` reads the benchmark from it.
+Two entries come before `BLUEPRINT_1.md`. The first is *choosing the benchmark*: what every
+experiment will be measured against, which candidates were considered, and the one property that
+decided between them — a benchmark is chosen for being transparent, liquid and stable, not for
+being clever. `blueprint` reads the benchmark from it.
+
+The second, saved before the blueprint, is *the rule read back*: the rule in one plain sentence,
+one worked date's book — the names it holds that day, each one's rank and signal value, and why the
+last name in and the first name out fall where they do — and the owner's yes, in their words.
 
 <!-- example: begin -->
 

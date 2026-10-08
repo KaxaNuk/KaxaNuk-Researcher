@@ -1,5 +1,5 @@
 ---
-description: Draft BLUEPRINT_N.md in place for a strategy, once its objective has claims and its investable universe exists — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement, and the draft put to a critic; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
+description: Draft BLUEPRINT_N.md in place for a strategy, once its objective has claims and its investable universe exists — thesis, rules, predictions — with every prediction citing a Bibliotheca note or an analyzer measurement, the draft put to a critic and its rule read back to the owner on one worked date; plan first, the owner's go, then write, before the rule. Only when the owner runs it by name, on a strategy they name or are working in.
 input:
   - experiment: "The experiment number N"
   - strategy: "Optional: path to the strategy repository, if not the one the session is in"
@@ -50,9 +50,10 @@ The owner runs it, and the draft continues from there.
 
 **For N > 1 there is no file yet.** The blank is the `experiment-lifecycle` skill's
 `references/blueprint-template.md` — the example's file with its own lines stripped — copied to
-`Experiments/Experiment_N/BLUEPRINT_N.md` with `N` replaced, as that skill's section 6 says. Offer
-the copy as the plan, make it on the owner's go — it is saved with the blueprint, in *Step 5* — and
-the draft continues from there.
+`Experiments/Experiment_N/BLUEPRINT_N.md` with `N` replaced, as that skill's section 6 says, and
+`references/journal-template.md` the same way when `JOURNAL_N.md` is missing, for the read-back's
+entry. Offer the copy as the plan, make it on the owner's go — it is saved with the blueprint, in
+*Step 5* — and the draft continues from there.
 
 ## Step 2: Read, in this order
 
@@ -128,11 +129,11 @@ as the example's.
 
 The blueprint does not change once written, so its weak spots are found now, not at `challenge`.
 Where the assistant can call a subagent and the `blueprint-critic` agent is installed, hand it the
-draft, the experiment number and the strategy's path, and bring its objections back to show beside
-the draft. The critic reads and objects; it writes nothing, and the owner's go stays the only go.
-Where the assistant cannot call a subagent, or the agent is not there, review the draft yourself
-against the same checklist, and say in *Step 5* that you did: a second reader would have been
-better than the hand that drafted it.
+draft, the experiment number, the strategy's path and the read-back *Step 5* will show, prepared
+now, and bring its objections back to show beside the draft. The critic reads and objects; it
+writes nothing, and the owner's go stays the only go. Where the assistant cannot call a subagent,
+or the agent is not there, review the draft yourself against the same checklist, and say in
+*Step 5* that you did: a second reader would have been better than the hand that drafted it.
 
 The checklist. The agent's objections cover the same ground, grouped their own way, and add two: a
 rule that reads data it could not have had on the date, and a tuned parameter with no reason written
@@ -159,6 +160,9 @@ library is yours to check:
    the strategy's `Bibliotheca/` or the home library holds it.
 7. **The claim this moves.** One claim of `OBJECTIVE.md`, by number, and the status it reaches
    either way.
+8. **The rule read back.** The sentence and the worked date's book of *Step 5* follow from *Rules*
+   as drafted: every name held, its rank and signal, and the edge, explained by the rules and
+   nothing else; with no refined panel yet, the sentence alone, the worked date named as owed.
 
 ## Step 5: Show, wait, then write
 
@@ -169,15 +173,35 @@ sections still to run, the seven questions they left open and whether the kill s
 still the draft's, and **anything the bar in `AGENTS.md` asks for that the draft does not have**
 — a control differing in exactly one thing on the rule's own dates, a trial count if variants will
 be ranked, the one falsification condition — so the owner meets now what graduation will ask, not at
-the gate. Wait for the go, described as *sign it, write it and save a version*: it is the owner's
-signature. On it, write the draft into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy,
-under the template's headings, and remove the template's blockquote.
+the gate.
 
-**Then save the blueprint alone**, on the same go, **before any rule is coded** — no rule cell, no
-code, no second question, and no `CHANGELOG.md` entry, version bump or ruff gate: the next
-change-set's entry names it. `git add Experiments/Experiment_N/BLUEPRINT_N.md`, then
+**Read the rule back**, because code can follow a blueprint faithfully and still not be the book its
+owner meant. The rule in one plain sentence, in the owner's words where they gave them, then one
+worked date's book: a date inside the window, from the refined panel the data step already wrote,
+`Data/Refinery/Time_Series/` — the names the rule would hold that day, each one's rank and signal
+value, and why the last name in and the first name out fall where they do. Reading the panel is
+allowed; writing rule code is not, in the notebook or in any file. The worked date is read, not
+built: one query run in the shell and never saved, which takes that date's rows of the panel,
+filters and sorts them as *Rules* say, and quotes each name's signal value and its rank in that
+column from the files. No weight, return or other figure about the book is stated: where the count
+depends on the sizing, the edge is explained in words — which bound stops the book — and the weights
+are left to the rule cell. Ask *Is this the book you mean?* A no is a new draft of *Rules*, back
+through *Step 4*. On yes, the plan adds a `JOURNAL_N.md` entry, *the rule read back* — the sentence,
+the worked date's book and the owner's yes in their words — saved before the blueprint. With no
+refined panel yet, read back the sentence alone, and say, in chat and in the entry, that the worked
+date is owed before the rule cell.
+
+Wait for the go, described as *sign it, write it and save a version*: it is the owner's
+signature. On it, append the read-back entry to `JOURNAL_N.md`, dated today, then write the draft
+into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy, under the template's headings, and
+remove the template's blockquote.
+
+**Then save the entry, then the blueprint, each alone**, on the same go, **before any rule is
+coded** — no rule cell, no code, no second question, and no `CHANGELOG.md` entry, version bump or
+ruff gate: the next change-set's entry names them. `git add` each, then
+`git commit -m "Experiment N: the rule read back" -- Experiments/Experiment_N/JOURNAL_N.md` and
 `git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md`, so
-nothing else staged goes with it; to the owner, one plain line, never the commands: *Saved: your
+nothing else staged goes with either; to the owner, one plain line, never the commands: *Saved: your
 proof the idea came before the result.* When `git config --get kaxanuk.autosend` prints `true` in
 the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants
 a name and an e-mail, ask for both in one plain line, set them in this folder only, never invented,

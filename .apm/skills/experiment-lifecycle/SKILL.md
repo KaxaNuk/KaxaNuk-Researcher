@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.13.2
+  version: 0.14.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -114,9 +114,11 @@ the analyzer — and a prediction with no source is a lead to read first, not a 
 
 Repository-level history — the benchmark and the choice of it, the data step, the architecture —
 belongs in `JOURNAL_1.md`, Experiment 1 being the first rule tested against that benchmark and the
-yardstick for every later one. Later journals point there. The journal's entry choosing the
-benchmark is the one step allowed before `BLUEPRINT_1.md`: the blueprint states what "beat" means,
-so the benchmark cannot wait for it. A strategy made from a template before 0.13.2 may keep that
+yardstick for every later one. Later journals point there. Two of its entries come before
+`BLUEPRINT_1.md`: the one choosing the benchmark — the blueprint states what "beat" means, so the
+benchmark cannot wait for it — and *the rule read back*, the owner's yes that the rule written is
+the rule meant, given to one plain sentence and one worked date's book; every later blueprint has
+its own, in `JOURNAL_N.md`. A strategy made from a template before 0.13.2 may keep the benchmark's
 choice in `BRAINSTORMING_1.md`, which the Researcher's commands still read. Experiment 1 can
 graduate like any other; its rules freeze once its findings report, and a rewrite the owner decides
 is written down as one, as the strategy's `AGENTS.md` says.
@@ -195,7 +197,7 @@ Researcher's `next` skill reads a strategy against this list and names the part 
 | B | The reading, for each claim; then the objective fine-tuned from the notes | `Bibliotheca/`, then `OBJECTIVE.md` | the Researcher, `read`, then `objective` |
 | C | The investable universe, delisted names included | `Universe/Investable_Universe.csv` | `universe-point-in-time` |
 | D | The data — curator, universe notebook, refinery, analyzer, in that order | `Data/`, and `RESULTS.md` for the analyzer's measurements | `data-curator-custom-calculations`, `universe-point-in-time`, `data-analyzer-runs` |
-| E | The benchmark, chosen in `JOURNAL_1.md`, then `BLUEPRINT_1.md` **before the rule** | `Experiments/Experiment_1/` | this skill; the Researcher, `blueprint` |
+| E | The benchmark, chosen in `JOURNAL_1.md`, then the rule read back there and `BLUEPRINT_1.md` **before the rule** | `Experiments/Experiment_1/` | this skill; the Researcher, `blueprint`, which reads the rule back |
 | F | The broad reading, for what the blueprint left open | `Bibliotheca/` | the Researcher, `read` |
 | G | The cycle — portfolio, backtest, attribution | the notebook, `FINDINGS_1.md` | `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`; the Researcher, `challenge` |
 | H | Every finished cycle, kept or rejected | `RESULTS.md` | this skill |
@@ -215,10 +217,12 @@ its path: `--only Universe` stops over the seed, which is already the strategy's
 1. Create `Experiments/Experiment_N/` with `Portfolio/`, `Backtest/`, `Attribution/`, each holding a
    `.gitkeep`. The template's `.gitignore` already covers them.
 2. Copy the three templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
-   code**, stating the economic mechanism, the claim it moves, its control and the one condition
-   that would falsify it, and citing every prediction's source; on the owner's go it is saved
-   alone, before the rule. The blueprint template is the first experiment's; delete the sentences
-   that only apply to Experiment 1.
+   code**, with the Researcher's `blueprint N`, which reads the rule back to the owner — one plain
+   sentence and one worked date's book, their yes a `JOURNAL_N.md` entry saved before the
+   blueprint — and puts the draft to its critic. The blueprint states the economic mechanism, the
+   claim it moves, its control and the one condition that would falsify it, and cites every
+   prediction's source; on the owner's go it is saved alone, before the rule. The blueprint
+   template is the first experiment's; delete the sentences that only apply to Experiment 1.
 3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`. It too is Experiment 1's:
    retitle it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that
    only apply to Experiment 1. Then declare the experiment's columns in section 0; import the

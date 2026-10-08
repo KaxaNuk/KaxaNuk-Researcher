@@ -41,6 +41,38 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.0 (2026-10-08)
+
+**MINOR** — three checks a live strategy needed: keys that join, traded value continuous at a split,
+and the rule read back before its blueprint. They add to what Verify raises on; no published result
+changes by itself, but a strategy whose universe dropped index members by key, or ranked on traded
+value broken at a split, should re-run before quoting a figure.
+
+**What to do differently:** make your universe notebook's Verify raise on an index listing with no
+seed row and on a key used twice; read the register's blocking rows as exclusions in the experiment
+and raise if one is held; check traded value at every split; and before a blueprint is saved, have
+its rule read back to you on one worked date.
+
+### Changed
+
+- **`AGENTS.md`**: *Keys join, or the pipeline stops* — every join between the index's files and
+  the book goes through the seed's two keys (#13); *The rule is read back before its blueprint* —
+  one plain sentence and one worked date's book, the owner's yes a `JOURNAL_N.md` entry saved before
+  the blueprint, so two entries come before Experiment 1's (#15).
+- **`Universe/universe.ipynb`**: every register row has a severity, blocking first, a blocking row
+  excluded by name; a further check, *traded value broken at a split* (#14); a shortfall is a member
+  the provider does not carry, never a listing whose key did not join; Verify, for a seed taken from
+  an index, raises on a weighted listing with no seed row, a key used twice, or one ISIN on two rows
+  over the same dates (#13); section 1 says an ISIN repeats only where a renamed security's rows
+  follow each other in time.
+- **`Experiments/Experiment_1/experiment_1.ipynb`**: section 0 reads the exclusions from the
+  register's blocking rows, never typed; section 8 raises if the book, the control or any arm holds
+  one (#13).
+- **`Experiments/Experiment_1/JOURNAL_1.md`**, its preamble, and **`Data/curator.py`**, its
+  docstring: the read-back entry (#15); traded value checked across every split (#14).
+
+- **`README.md`**, part E: the read-back entry before the blueprint.
+
 ## 0.16.0 (2026-10-08)
 
 **MINOR** — the researcher says, at most once a week, when a newer build of a Lab library this

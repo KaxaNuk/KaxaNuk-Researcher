@@ -48,7 +48,8 @@ Three adjustment families arrive from the provider and each does a different job
 three: an unused column costs bytes, a missing one costs a refetch of every identifier.
 
     unadjusted            recovers the split and dividend ratios; commission is charged on it
-    split-adjusted        traded value, which is liquidity in today's share terms
+    split-adjusted        traded value, which is liquidity in today's share terms, checked
+                          across every split before it is ranked on: volume can arrive split twice
     dividend-and-split    the total-return series a signal and the backtest P&L run on
 
 An index's daily holdings and returns, and a factor model's returns, are not sold by any price

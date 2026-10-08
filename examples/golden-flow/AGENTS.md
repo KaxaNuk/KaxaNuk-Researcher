@@ -61,9 +61,24 @@ strategy of your own starts with `init-strategy`.
 ### The blueprint is committed before the rule
 
 For an experiment, `BLUEPRINT_N.md` is committed alone — no rule cell, no code — before the rule
-cell of `experiment_N.ipynb` holds code; for Experiment 1 only the `JOURNAL_1.md` entry choosing
-the benchmark comes before it. The commit order is what shows the hypothesis was written before the
-answer, so the two never share a commit.
+cell of `experiment_N.ipynb` holds code; for Experiment 1 the `JOURNAL_1.md` entries choosing the
+benchmark and reading the rule back are the two that come before it. The commit order is what shows
+the hypothesis was written before the answer, so the two never share a commit.
+
+**The rule is read back before its blueprint**, because code can follow a blueprint faithfully and
+still not be the book its owner meant. Before `BLUEPRINT_N.md` is saved, new or rewritten, its rule
+is read back in one plain sentence and one worked date's book — the names it holds that day, each
+one's rank and signal, and why the names at the edge are in or out. The owner's yes, in their
+words, is the `JOURNAL_N.md` entry *the rule read back*, saved before the blueprint; a no is a new
+draft of *Rules*.
+
+<!-- example: begin -->
+
+**In this example, the rule was read back as a sentence, without a worked date's book.** The owner
+confirmed the reading *bounds set the count* in `JOURNAL_1.md`'s entry of 2026-10-06 on the
+rewrite; the read-back, worked date and all, entered the template after Golden Flow's record.
+
+<!-- example: end -->
 
 **A document the researcher writes on the owner's go is saved as its own version on that go** — a
 note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a line in `Bibliotheca/LOG.md` —
@@ -202,6 +217,12 @@ of `RESULTS.md`, and the 37 books two earlier versions priced count in the trial
   the Data Curator it was frozen with.
 - **Do not quietly drop a bad run.** A run that cannot be believed is excluded **by name**, with its
   reason, in `RESULTS.md`.
+- **Keys join, or the pipeline stops.** Every join between the index's files and the book —
+  membership, the benchmark's weights, the factor exposures — goes through the seed's two keys,
+  `index_identifier` and `main_identifier`. A key that does not join raises nothing by itself: it
+  makes a member that can never be held. So the universe notebook raises when a listing the index
+  weights has no seed row, and an experiment raises when it holds a name a blocking row of the
+  register lists.
 - **Do not commit binaries or notebook outputs.** No charts, no engine workbooks, no PDFs.
 - **Do not put logic in a file that cannot be traced to a stage.** If a reader cannot tell which
   step owns a file, it does not belong here, however correct it is.
