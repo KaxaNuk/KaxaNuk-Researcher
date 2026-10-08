@@ -10,7 +10,7 @@ description: >
   it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
   (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.5.2
+  version: 0.5.3
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -48,6 +48,11 @@ A long-lived branch other than `main`, such as a deployed `dev`, exists only whe
   entry, the change-set is not finished.
 - **No secrets, no binaries.** Nothing from a `.env` file, no keys in a notebook output or a log
   line, no charts, workbooks or PDFs unless the repository explicitly keeps them.
+- **Code is written in English** — names, docstrings, comments and commit messages — whatever
+  language its owner speaks, and so are folder and file names and every heading or label a skill
+  or a tool reads by name. A repository's prose documents — a strategy's `OBJECTIVE.md`, its
+  blueprints, journal entries and notes, a library's guides — are in its owner's language, unless
+  its `AGENTS.md` names one language for the team; a source's terms and quotes stay as written.
 - **If a published number or a public interface moved, the commit message says which** — the
   pull request too, when there is one — and the documents that cite it changed in the same
   change-set.

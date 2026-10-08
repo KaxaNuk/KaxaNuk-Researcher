@@ -12,6 +12,12 @@ a chapter the owner did not choose. Beside the notes, at home, the library keeps
 concept page per idea, small and specific, updated as chapters come in, and the synthesis pages the
 owner chose to keep from a `query`. Both are described at the end of this file.
 
+**Language.** A note is written in the owner's language, the one *How it speaks* names in
+`RESEARCHER.md` — in a strategy whose `AGENTS.md` names one language for its team, in that one —
+with the source's own terms and quotations as written. Its file name, the frontmatter fields and
+the headings the skills read — `## Why it is here`, `## What it changes` — stay in English:
+`refresh-index` finds them by name.
+
 ## Paths and names
 
 ```

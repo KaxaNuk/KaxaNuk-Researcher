@@ -6,6 +6,18 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.23.1 (2026-10-08)
+
+**PATCH** — notes are written in your language, and the names the skills read stay in English.
+
+**What to do differently:** run `update` in your home; the change to `AGENTS.md` comes as a diff.
+
+### Changed
+
+* **`AGENTS.md`**: notes, pages and studies are written in the language *How it speaks* names, a
+  source's terms and quotes as written; folder and file names, frontmatter fields and the headings
+  the skills read stay in English. A few repeated phrases trimmed. Still at most 6,541 words.
+
 ## 0.23.0 (2026-10-08)
 
 **MINOR** — a new home ships no investing file and no rules of its own: `philosophy` writes down
