@@ -26,10 +26,20 @@ library knows them by reserved lower-case names: `Market.csv` is `f_market`, and
 `f_total_excess_returns` and `f_total_factor_returns`.  Every other file is a factor named by its
 file name in lower case.
 
+**Two keys, one map.**  An index keys each listing by its own ticker, which can differ from the
+identifier the experiment's provider prices it under -- `BRK.B` against `BRK-B`, or a symbol since
+recycled.  A seed taken from an index carries both: `index_identifier`, the index's, and
+`main_identifier`, the provider's.  This module is the one place that maps one to the other, so
+the holdings and the factor files reach every reader keyed like the price files, and a listing
+whose two keys differ is never silently read as a non-member.  The map comes from the strategy's
+seed builder, or from the Analytics Factory when it supplies one.
+
 `Data/curator.py` rebuilds the index as a price level from its returns; the universe notebook and
 each experiment read the holdings for point-in-time membership; and
 `Experiments/attribution_analysis.py` reads all three.  Each loads this file by path, because
-`Data/` is a folder rather than a package.
+`Data/` is a folder rather than a package.  A book frozen for paper trading carries its own copy
+of this file and of the seed, and the copy resolves its paths from where it sits.
 
-It prevents a renamed copy drifting from the Factory's file, and a date read in the wrong order.
+It prevents a renamed copy drifting from the Factory's file, a date read in the wrong order, and
+a member dropped because its two keys differ.
 """

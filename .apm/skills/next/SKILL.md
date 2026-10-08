@@ -8,7 +8,7 @@ description: >
   the owner runs it by name, or when the researcher's skill answers a greeting; never on its own
   otherwise.
 metadata:
-  version: 1.3.0
+  version: 1.3.1
 ---
 
 # Next — where you stand, and what to do next
@@ -28,7 +28,7 @@ session is open in.
 
 | It holds | It is | What follows |
 | --- | --- | --- |
-| `Bibliotheca/`, `Universe/` and `Experiments/`, and a `README.md` titled *Liquid Golden-Cross* or a line reading `<!-- example: begin -->` in `README.md` or `AGENTS.md` — the example's own lines, which `init-example` copies byte for byte and a strategy from the template never has | the worked example, made by `init-example` | say so, and quote its status line, which says how far it went: it is for reading, never built on; a strategy of the owner's own is `init-strategy <name>`. No part of *Step 3* is offered |
+| `Bibliotheca/`, `Universe/` and `Experiments/`, and a line reading `<!-- example: begin -->` in `README.md` or `AGENTS.md` — the example's own lines, which `init-example` copies byte for byte and a strategy from the template never has | the worked example, made by `init-example` | say so, and quote its status line, which says how far it went: it is for reading, never built on; a strategy of the owner's own is `init-strategy <name>`. No part of *Step 3* is offered |
 | `Bibliotheca/`, `Universe/` and `Experiments/` | a strategy | *Step 3* |
 | `RESEARCHER.md` | a researcher's home | *Step 2* |
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
@@ -66,7 +66,7 @@ test tells the worked example from a strategy of the owner's own.
 | --- | --- | --- |
 | *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | a round file exists in `Philosophy/Evolution/` |
 | *Write down how I invest, and see it evolve* | `philosophy`; once a round exists, `brief setup`, for a daily brief of the markets and holdings they follow, leads the *also* line until `Briefs/` exists | a round file exists in `Philosophy/Evolution/` |
-| *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, hours of downloads, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
+| *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, a download of 1 hour 37 minutes, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
 | *Organise what I read*, none, or their own words | a source into `Sources/` — they attach it or name it, and the researcher copies it into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` on their go — then `read`, which asks which question it serves | `Knowledge/` holds a note |
 
 When every pick's thing is done, the one next thing is, with no note in `Knowledge/` yet, the last

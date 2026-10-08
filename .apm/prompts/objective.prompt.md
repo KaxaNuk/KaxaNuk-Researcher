@@ -19,10 +19,10 @@ ones as the notes for each claim arrive — so every claim ends up pointing back
 having been written to fit one. `${input:strategy}` is the strategy's path, left out when the
 session is open in it.
 
-**Never in the worked example.** When the folder is the worked example — its `README.md` is titled
-*Liquid Golden-Cross*, or `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`,
-the test `next` uses — say so and stop: the example is for reading and running, never built on; a
-strategy of the owner's own is `init-strategy <name>`.
+**Never in the worked example.** When the folder is the worked example — its `README.md` or
+`AGENTS.md` holds a line reading `<!-- example: begin -->`, the test `next` uses — say so and stop:
+the example is for reading and running, never built on; a strategy of the owner's own is
+`init-strategy <name>`.
 
 ## Step 1: Read the strategy's own material, and name the pass
 

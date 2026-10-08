@@ -8,7 +8,7 @@
 > actually produced is in [`FINDINGS_N.md`](FINDINGS_N.md); the running log, the thinking
 > before this blueprint included, in [`JOURNAL_N.md`](JOURNAL_N.md).
 >
-> Record the date it was written, and delete this blockquote.
+> In a new strategy, record the date it was written and delete this blockquote.
 
 ---
 
@@ -31,8 +31,10 @@ could beat every benchmark and settle nothing is a measurement, not a test.
 ### Rules
 
 - **Selection:** the eligibility condition, naming the column it reads.
-- **Sizing:** the weighting scheme. Say which constraints are switched off, and that each one is a
-  lever a later experiment has to earn.
+- **Sizing:** the weighting scheme, and any bounds it sizes inside — a cap and a floor on each
+  weight, and whether a capped name's excess goes to cash or to the other names. Named bounds are
+  the design, and the control holds them too; every other constraint is switched off, a lever a
+  later experiment has to earn.
 - **Cash:** where the uninvested residual goes — a real, priced instrument, because the engine's
   weight file has no cash row.
 - **Timing:** calendar, or event-driven on a stated trigger. Say what happens between triggers.

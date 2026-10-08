@@ -3,7 +3,7 @@
 This repository is the KaxaNuk Researcher: one APM package that carries every KaxaNuk skill,
 instruction and command in `.apm/`, with its one agent, `blueprint-critic`, and the three starting
 points its `init-*` skills copy — `templates/strategy/`, `templates/researcher/` and
-`examples/liquid-golden-cross/`. Read this before changing anything. The rules a researcher works
+`examples/golden-flow/`. Read this before changing anything. The rules a researcher works
 by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy works by are in
 `templates/strategy/AGENTS.md`. This file is about changing the package.
 
@@ -16,14 +16,19 @@ by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy wor
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `pyproject.toml`, which declares its version, and `CHANGELOG.md` move together |
-| `examples/liquid-golden-cross/` | one strategy worked through the template | the same; it commits no `uv.lock`, so its library versions resolve when `uv sync` runs |
+| `examples/golden-flow/` | one strategy worked through the template | the same; it commits no `uv.lock`, so its library versions resolve when `uv sync` runs |
 | `templates/researcher/` | the researcher's home, copied by `init-researcher` | its `apm.yml` version leads its `CHANGELOG.md`; `update` compares a home against it |
 
 **The template and the example share every file the example does not mark.** A change to the
 template's description of a file changes the example's copy in the same commit; only the lines
 between `<!-- example: begin -->` and `<!-- example: end -->` — `# --- example: begin ---` in
 Python, `# EXAMPLE-ONLY CELL` on a notebook cell — are the example's own, and every other line is
-the same in both copies. A marker stands alone on its line, at column 0.
+the same in both copies. A marker stands alone on its line, at column 0. The only exceptions are
+these: the example's status banner in `AGENTS.md`; the `init-example` lines of `SETUP.md`; the body
+of `OBJECTIVE.md`; the entries of `CHANGELOG.md`; the name and version in `pyproject.toml`; and,
+whole, the example's seed CSV and every file only the example has — its notes, `Universe/seed.py`
+and a frozen book's `FREEZE.json` with the files it hashes. `paper_trading_N.py` stays shared and
+marked.
 
 ## Rules
 
@@ -36,7 +41,9 @@ the same in both copies. A marker stands alone on its line, at column 0.
 - **Work lands on `main`**, as the `how-we-work` skill says: a branch and a pull request only for a
   change you want reviewed, deleted once merged. `main` is the only branch that stays.
 - **Every KaxaNuk skill lives here.** A skill for a new Lab library is a folder in `.apm/skills/`;
-  a change to a library's API changes its skill in the same release.
+  a change to a library's API changes its skill in the same release, and the worked example where
+  it uses that library — with a new example version and a journal entry, re-run where a figure
+  moves.
 - **A fork changes every line that names `KaxaNuk-Researcher`** — `git grep KaxaNuk-Researcher`
   finds them, `scaffold.py`'s `INSTALLED_PACKAGE_PATHS` included — and installs as the one
   researcher package on its user's machine. Two packages with skills or commands of the same names
@@ -45,7 +52,10 @@ the same in both copies. A marker stands alone on its line, at column 0.
 - **Ruff and the Bloom Code check pass before any commit,** run as the README's *Development*
   section shows. There is no CI: nothing runs them for you.
 - **Markdown you write or change is wrapped at 100 columns**, with no literal tab and LF line
-  endings. A line inside a fenced code block, a table row, a line carrying a URL and the YAML
-  frontmatter at the top of a file may run longer. Never use the section symbol; write "section".
-- **No secrets, no binaries, no in-house strategy.** The worked example is the only strategy this
-  repository names.
+  endings. A line inside a fenced code block, a table row, a line carrying a URL, the YAML
+  frontmatter at the top of a file and a line copied verbatim from a strategy's fixed or
+  append-only record — a blueprint, a journal entry, a registered gate section — may run longer.
+  Never use the section symbol; write "section".
+- **No secrets, no binaries.** The worked example, `golden-flow`, is the only strategy this
+  repository names, as a curated copy; nothing in it is taken from a live strategy repository after
+  the copy.

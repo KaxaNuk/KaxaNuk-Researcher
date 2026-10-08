@@ -14,6 +14,16 @@ What is expected here:
   `KN_ANALYTICS_PATH` names, or from the drop zones under `Data/Curator/`.  Check for them first
   and report the gap in a sentence, so a clone with no licence and no index files pays nothing
   to find out.
+- Speak the book's language.  The index's holdings and the factor files key a listing by the
+  index's own ticker; the book keys it by `main_identifier`, the identifier the experiment's
+  provider prices it under.  Map one to the other through the seed's two keys, as
+  `Data/hand_supplied.py` reads them, before any pass, so `BRK.B` and `BRK-B` are one security and
+  a listing the seed does not price is left out rather than matched by accident.  The map comes
+  from the strategy's seed builder, or from the Analytics Factory where it supplies one.
+- Compare against the index the strategy can price.  On each date, a member with no price -- one
+  the experiment's provider does not carry, or a date outside the span its file speaks for -- is
+  dropped from the index's holdings and the rest renormalised, and the share dropped is reported
+  per year: a member left in at a zero return hands its return to the book as alpha.
 - Take the book as a daily series, from `Backtest/`, never from `Portfolio/portfolio_weights.csv`.
   The library rejects a weight file that is not daily once it spans a year, and the rebalance-date
   file the engine read is exactly what it refuses.  The book it attributes is the one the engine
@@ -43,18 +53,21 @@ What is expected here:
   to use -- raises before a number is read.  The same rule governs the book, the benchmark's
   holdings and the benchmark's return series, and none of them may carry nulls.  That is why the
   shaping lives here and not in a notebook.
-- Say what the factor directory has to look like, because it holds nothing but factor files: one CSV per factor, a date column first -- its header may be empty -- and one column per
-  security after it.  Four names are reserved by the library and dropped from the percentage
-  decomposition: `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and
-  `f_idyo_returns`.  The Analytics Factory ships them as `Market`, `Total_Factor_Returns`,
-  `Total_Excess_Returns` and `Idyo_Returns`; `Data/hand_supplied.py` gives them the library's names,
-  because a reserved file attributed as an ordinary factor is a quiet way to double-count the
-  market.
-- Name the two output files and the date convention once, so switching to a different index is an
-  edit here and no notebook names a file.
-- Capture the library's figures.  It shows them and returns nothing, so this module has to catch
-  them on the way past and write them to `Attribution/`, then leave the plotting state as it found
-  it.
+- Say what the factor directory has to look like, because it holds nothing but factor files: one CSV per factor, named by its file name, a date column first -- its
+  header may be empty -- and one column per security after it.  Four names are reserved by the
+  library, matched exactly and in lower case, and dropped from the percentage decomposition:
+  `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and `f_idyo_returns`.  The
+  Analytics Factory ships them as `Market`, `Total_Factor_Returns`, `Total_Excess_Returns` and
+  `Idyo_Returns`, and a reserved file attributed as an ordinary factor is a quiet way to
+  double-count the market.  So `Data/hand_supplied.py` maps each file name to the library's name,
+  once, and nothing is renamed on disk.
+- Name the index's two files and their date convention once, in `Data/hand_supplied.py`, so
+  switching to a different index is an edit there and no notebook names one of them.
+- Keep the library's numbers as tables.  It writes no file: the first cut, the factor model and
+  the third pass are read from the objects it builds, and the notebook writes each table
+  `FINDINGS_N.md` quotes to `Attribution/`.  Its figures go to the screen; say whether they are
+  kept -- saved to `Attribution/` beside the tables -- or left unshown under a non-interactive
+  backend, so a headless run never waits on a window.
 
 Expect two methodologies and a third pass, all reported.  Brinson-Fachler splits active return
 into allocation, selection and interaction -- the lever that moved.  The factor model splits
@@ -65,10 +78,10 @@ close to invisible to a factor model built on relative factors -- and treat that
 The follow-ups are counterfactual books the engine can already price.  `AGENTS.md` has the
 reasoning.
 
-It produces `Attribution/` -- the figures and the two decompositions -- for `FINDINGS_N.md`, and
-the answer to graduation criterion 2.
+It produces `Attribution/` -- the tables of the two decompositions and the third pass, and the
+figures where they are kept -- for `FINDINGS_N.md`, and the answer to graduation criterion 2.
 
 It prevents selling factor beta as if it were alpha, crediting a book with a day's return its
-weights already held, and a run that stops at its first file because a header carries the name a
-provider gave it rather than the one the loader expects.
+weights already held or with an unpriced member's return, and a run that stops at its first file
+because a header carries the name a provider gave it rather than the one the loader expects.
 """

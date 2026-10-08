@@ -62,7 +62,7 @@ folder, `uv sync` building `.venv/` among them, can pass Windows' 260-character 
 and fail with messages that do not say so, such as `WinError 3: The system cannot find the path
 specified`.
 
-The worked example, `liquid-golden-cross`, is not copied, on purpose: every file it works through
+The worked example, `golden-flow`, is not copied, on purpose: every file it works through
 is already here, as a description of what belongs in it. `init-example` copies the example whole
 into a folder of its own, to read or run. Never build on it.
 
@@ -78,11 +78,12 @@ into a folder of its own, to read or run. Never build on it.
 From the root:
 
 ```bash
-uv sync
+uv sync --group notebook --inexact
 ```
 
-That creates `.venv/` and installs the pipeline. **If neither Python 3.12 nor 3.13 is on the
-machine, `uv` downloads 3.13** — there is nothing to install by hand.
+That creates `.venv/` and installs the pipeline, with the `notebook` group: JupyterLab and its
+`nbconvert`, which runs a notebook, or strips its outputs, from the command line. **If neither
+Python 3.12 nor 3.13 is on the machine, `uv` downloads 3.13** — there is nothing to install by hand.
 
 **Why 3.13 and not the newest.** The Backtest Engine is documented for Python 3.12 or 3.13, and
 every performance figure in this process comes from that engine, so the ceiling is its, not ours.
@@ -90,9 +91,9 @@ The Data Curator allows 3.12 to 3.14, which makes 3.13 the version that satisfie
 
 **Once the Backtest Engine, Attribution Analysis or Portfolio Construction is installed by hand,
 never run a bare `uv sync` here again:** it is exact, and removes every package `uv.lock` does not
-name, which those three deliberately are not. Use `uv sync --inexact` instead, and `uv run` for
-everything else; both keep them. The `backtest-engine-runs`, `attribution-analysis-runs` and
-`portfolio-construction-runs` skills have the installs.
+name, which those three deliberately are not. Use the command above instead, `--inexact` included,
+and `uv run` for everything else; both keep them. The `backtest-engine-runs`,
+`attribution-analysis-runs` and `portfolio-construction-runs` skills have the installs.
 
 ---
 
@@ -109,13 +110,13 @@ attribution report what is missing and skip. A licence for either, or access to 
 Construction, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is
 for — <https://www.kaxanuk.mx/lab> shows the Lab.
 
-`KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships the
-benchmark and the factor model files attribution reads (<https://www.kaxanuk.mx/analytics>; ask
-`lab@kaxanuk.mx` for them). It holds `Benchmark Portfolios/` and `Factor Models/`, read in place
-in the Factory's own names and headers; the older `Benchmarks/` and `Factors/` are still read where
-the new ones are absent. Leave it empty and drop the same files, unchanged, into
-`Data/Curator/Benchmarks/` and `Data/Curator/Factors/`. The four `PAPER_TRADING_*` lines configure
-step 7, below.
+`KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships its
+benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark and
+attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them). It holds
+`Benchmark Portfolios/` and `Factor Models/`, read in place in the Factory's own names and headers;
+the older `Benchmarks/` and `Factors/` are still read where the new ones are absent. Leave it empty
+and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and `Data/Curator/Factors/`. The
+four `PAPER_TRADING_*` lines configure step 7, below.
 
 > **For the agent.** Never open, read back, print or echo `Config/.env`, and never put a value from
 > it in a command that gets recorded. You may say **which keys are still empty, by name only** —

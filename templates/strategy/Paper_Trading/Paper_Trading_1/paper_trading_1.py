@@ -17,9 +17,9 @@ What it holds, once its experiment graduates:
 - `run(as_of)`, which `../daily_update.py` calls once a day.  It runs the frozen refinery in this
   folder over the raw files linked into `Data/Curator/Time_Series/`, applies the rule from the
   experiment's first day to `as_of`, writes the weight files, prices the book and its control with
-  the frozen engine module twice -- over the whole history and since the freeze date in
-  `FREEZE.json` -- and returns what the record needs: the engine's results, the book in force,
-  the day's diagnostics, the flags and a summary.
+  the frozen engine module -- over the whole history, over the days after the experiment's window
+  and since the freeze date in `FREEZE.json` -- and returns what the record needs: the engine's
+  results, the book in force, the day's diagnostics, the flags and a summary.
 
 **Membership past the last date its source wrote is held at that date.**  An index's holdings,
 read by `Data/hand_supplied.py`, are refreshed later than prices, and a membership built only from

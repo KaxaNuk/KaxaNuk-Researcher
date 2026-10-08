@@ -20,6 +20,9 @@ What is expected here:
 - Pivot the long panel into one wide `dates x securities` matrix per column the notebook asks for:
   the signal, the mark price, the fill price, and whatever else the rule reads.  A matrix per input
   is what lets the whole rule be a handful of whole-matrix statements instead of a loop over files.
+  Return every matrix on one calendar and one set of positions, so the rule combines them without
+  aligning them first: a pivot drops any date on which a column is null for every security -- the
+  first days of a moving average -- and two matrices then disagree about which days exist.
 - Name no strategy column.  The columns to load arrive as arguments from the notebook's setup cell.
   A signal declared here becomes every later experiment's default without anyone deciding it.
 - Fail readably: a column the files do not carry is named in the error, not discovered inside a

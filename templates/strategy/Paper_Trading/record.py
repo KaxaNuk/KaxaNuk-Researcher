@@ -16,8 +16,8 @@ Six tables, each keyed by the columns named here:
     flags        book, as_of, kind, detail                everything outside its band, every
                                                           failed check, every restatement
 
-`window` is `whole`, from the experiment's first day, or `since_freeze`, from the day the book was
-frozen; `series` is `book`, `control` or `benchmark`.
+`window` is `whole`, from the experiment's first day, `after_window`, from the day after its last,
+or `since_freeze`, from the day the book was frozen; `series` is `book`, `control` or `benchmark`.
 
 Two sinks, chosen in `Config/.env` by `PAPER_TRADING_SINKS`: `local` writes the tables as CSV files
 under `Paper_Trading/Record/`, and `database` writes them to the DuckDB database that

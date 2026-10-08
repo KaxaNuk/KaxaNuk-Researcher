@@ -34,8 +34,9 @@ Bibliotheca/Extracts/
 # --- Step 2: Universe ------------------------------------------------------------------------
 # Regenerable from Investable_Universe.csv (which IS tracked - it is the seed the whole pipeline
 # grows from) plus the data provider.
-Universe/Security_Master.csv
-Universe/Data_Issues.csv
+# Every table the universe notebook writes - the master, the register and any a strategy adds.
+Universe/*.csv
+!Universe/Investable_Universe.csv
 Universe/Provider_Cache/
 
 # --- Step 3: Data ----------------------------------------------------------------------------
@@ -47,8 +48,8 @@ Universe/Provider_Cache/
 # sells them.
 Data/Curator/Time_Series/*.csv
 Data/Curator/Time_Series/*.parquet
-# The date each price file was last fetched through, so a refresh resumes where it stopped.
-Data/Curator/fetched_through.json
+# Where a refresh resumes: each file's fetched-through date, and the provider's answer per name.
+Data/Curator/*.json
 Data/Curator/_history/
 Data/Curator/Benchmarks/*.csv
 Data/Curator/Benchmarks/*.parquet
@@ -82,6 +83,9 @@ Experiments/*/Attribution/*
 # book, known by its hash in FREEZE.json - back it up with the record.
 Paper_Trading/*/Universe/Security_Master.csv
 Paper_Trading/*/Data/Curator/Time_Series/
+# The index and factor files the daily run links in: licensed to a person, not to the repository.
+Paper_Trading/*/Data/Curator/Benchmarks/
+Paper_Trading/*/Data/Curator/Factors/
 Paper_Trading/*/Data/Refinery/Time_Series/
 Paper_Trading/*/Portfolio/
 Paper_Trading/*/Backtest/

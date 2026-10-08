@@ -26,10 +26,12 @@ What one run does, in order:
    two runs, pass unflagged.
 4. For each book in `BOOKS`: compares every frozen file with its hash in `FREEZE.json` -- the
    security master, which is never committed, among them -- and the Curator's calculations with
-   the ones frozen, links the raw files into the book's folder, and calls
-   `paper_trading_N.run(as_of)`, which runs the frozen refinery and rule and prices the book and
-   its control twice -- over the whole history and since the freeze.  A frozen file missing or
-   changed stops the book, as a changed calculation does.
+   the ones frozen, links the raw files into the book's folder, with the index and factor files
+   from the drop zones beside them, and calls `paper_trading_N.run(as_of)`, which runs the frozen
+   refinery and rule and prices the book and its control over the whole history, over the days
+   after the experiment's window and since the freeze.  A frozen file missing or changed stops the
+   book, as a changed calculation does.  The frozen `Data/hand_supplied.py` reads the drop zones
+   in the book's folder when `KN_ANALYTICS_PATH` is empty.
 5. Writes the record through `record.py`: the book in force, the engine's daily values and
    statistics, the diagnostics, and a flag for each diagnostic outside the band the book's
    section of `BITACORA.md` registered before its first day, each failed check and each

@@ -6,6 +6,19 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.18.1 (2026-10-07)
+
+**PATCH** — the worked example `init-example` copies is `golden-flow`: one strategy taken from the
+first note to a book signed into paper trading, where `liquid-golden-cross` stopped at the gate.
+
+**What to do differently:** run `update` in your home — it shows the changed line of `README.md` as
+a diff, and brings it across on your go.
+
+### Changed
+
+* **`README.md`**, step 6 of *The path*: `init-example` copies `golden-flow`; reading it needs
+  nothing, and running it needs the Analytics Factory's files and the Lab's two licences.
+
 ## 0.18.0 (2026-10-06)
 
 **MINOR** — a way into the KaxaNuk Investment Lab, and less to read. `README.md` says in a short

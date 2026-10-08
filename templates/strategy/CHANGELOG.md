@@ -41,28 +41,71 @@ for somebody who was not in the room:
 
 ---
 
-## Unreleased
+## 0.14.0 (2026-10-07)
 
-**MINOR, when released** — attribution holds every weight overnight and reconciles its benchmark
-before any figure is read. The engine's daily book and the index's holdings are both struck at a
-day's close, after that day's return has moved them, and the attribution library pairs a weight
-with the return of its own date: handed over unmoved, every book, the index's too, is credited with
-the day's move its weights already hold, in every pass. The template computes no figure, so none
-moves here; a strategy's attribution computed the old way does.
+**MINOR** — the contract learns what the first strategy to reach paper trading found, and the
+worked example becomes `golden-flow`. Attribution holds every weight overnight and reconciles its
+benchmark before any figure is read; a seed taken from an index carries two keys and one map; the
+refined rows stay inside each security's span; a book on paper is priced over three windows and a
+crash in its daily run exits 2; and a scheme may size by a score inside bounds its blueprint names.
+The template computes no figure, so none moves here; a strategy's attribution computed the old way
+does.
 
 **What to do differently:** in `Experiments/attribution_analysis.py`, move both weight tables one
-day on before any pass, after the asset returns are read on the engine's own days; in section 8,
-raise unless the first cut's benchmark comes within a point a year of the index's own returns file.
-Run an attribution computed without them again before quoting it.
+day on before any pass, compare against the members the strategy can price, and make section 8
+raise unless the first cut's benchmark comes within a point a year of the index's own returns file
+— run an attribution computed without them again before quoting it. In a strategy with a book on
+paper, catch a step that raises in `daily_update.py` and return 2, and register the scheduled task
+again with the redirect `SETUP.md` gives. Install with `uv sync --group notebook --inexact`. Point
+the two links to the worked example at `examples/golden-flow`, or at tag `v0.33.0` for
+`liquid-golden-cross`.
 
 ### Changed
 
-- **`Experiments/attribution_analysis.py`**: its contract holds both weight tables overnight, so
-  the close of t−1 earns day t, and reconciles the first cut's benchmark with the index's own
-  returns before any figure is read.
-- **`Experiments/Experiment_1/experiment_1.ipynb`**: section 5 says the weights are held
-  overnight; section 8 raises unless the benchmark reconciles within a point a year.
-- **`README.md`**: the row for `attribution_analysis.py` says both.
+- **`Experiments/attribution_analysis.py`**: both weight tables are held overnight, so the close of
+  t−1 earns day t, and the first cut's benchmark is reconciled with the index's own returns before
+  any figure is read; the index's tickers are mapped to the book's identifiers through the seed's
+  two keys; the index is compared on the members the strategy can price, the rest renormalised and
+  the dropped share reported per year; the factor files are named, the reserved
+  names matched exactly, nothing renamed on disk; the library's numbers are kept as tables, and the
+  notebook says whether its figures are kept.
+- **`Experiments/portfolio_construction.py`**: a scheme may size by a score, cut once before each
+  date, inside bounds the blueprint names — the design, held by the control too — and the blueprint
+  says where a capped name's excess goes; a constraint it does not name is off, a lever to earn.
+  **`BLUEPRINT_1.md`**'s *Sizing* line says the same.
+- **`Experiments/securities_panel.py`**: every matrix comes back on one calendar and one set of
+  positions.
+- **`Data/hand_supplied.py`**: *Two keys, one map* — a seed taken from an index carries the index's
+  ticker beside the provider's identifier, and this module is the one place that maps them, the map
+  coming from the strategy's seed builder or from the Analytics Factory; a frozen book carries its
+  own copy.
+- **`Data/curator.py`**: the library is called once per identifier, and the provider's answer is
+  kept per name, so a name it does not carry is told from one it refused today; `main_identifier`
+  is the identifier the experiment's provider prices under; leaving the dead names out and
+  publishing the survivorship cost is a choice beside a second provider.
+- **`Data/refinery.py`** and **`Data/analyzer.ipynb`**: each security's rows stay inside the span
+  the seed gives it, in place of "the same rows".
+- **`Universe/universe.ipynb`**: a live listing's span stays open — the seed's last date is when the
+  source was written, not a delisting; `main_identifier` is the provider's identifier and an index's
+  ticker its second key; the register states no fixed count of checks, and the old example's own
+  sentence is gone; the usable date counts the share of the universe the strategy declares.
+- **`Paper_Trading/daily_update.py`**, **`record.py`**, **`Paper_Trading_1/paper_trading_1.py`** and
+  **`BITACORA.md`**: a book is priced over the whole history, the days after the experiment's window
+  and since the freeze; a step that raises exits 2, with its traceback in the day's log; the index's
+  and factor files are linked into a book's folder; a book holds the last membership an index's
+  files wrote; the daily checks say what they miss.
+- **`SETUP.md`**: `uv sync --group notebook --inexact`, so `nbconvert` is installed; the scheduled
+  command keeps its output in `Paper_Trading/Logs/scheduled.log`; the Analytics Factory's files
+  are what a strategy may read as its universe, its benchmark and attribution's inputs.
+- **`.gitignore`**: `Universe/*.csv` but the seed, `Data/Curator/*.json`, and the index's and factor
+  files linked into a book's folder.
+- **Lines that read false in a filled copy** are worded for a new strategy: the notebooks' *empty by
+  design*, the blueprint's and the objective's *delete this blockquote*, the findings' *Not yet
+  run*, the results' *empty by design* and limitation 1, and the gate's *Nothing has graduated*.
+- **`AGENTS.md`**: what attribution must report is said without the passage on savvy investors and
+  allocators.
+- **`README.md`**, **`AGENTS.md`** and **`SETUP.md`**: the worked example is `golden-flow`, and the
+  files only it has are its own whole.
 
 ## 0.13.4 (2026-10-06)
 

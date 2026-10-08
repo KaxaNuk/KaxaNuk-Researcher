@@ -77,7 +77,8 @@ A repository can hold several books on paper and several experiments under const
   price or a move no price can make — a book on broken data is worse than none. It reads that day
   alone: a security's file that ends before it, and a bad bar between two runs, pass unflagged;
 - runs each frozen book: its frozen refinery, its frozen rule from the experiment's first day,
-  and the engine, twice — over the whole history, and since the day it was frozen;
+  and the engine — over the whole history, over the days after the experiment's window, and since
+  the day it was frozen;
 - writes the record — the book in force, the engine's daily values and statistics, what the book
   looked like that day — to local files, a DuckDB database, or both, as `Config/.env` says;
 - flags every diagnostic outside the band registered below, every failed check, an input that
@@ -113,7 +114,7 @@ under it, dated:
 
 ## Current status
 
-**Nothing has graduated. Nothing has been tested.** This is the template; the first candidate
+**In a new strategy, nothing has graduated and nothing has been tested.** The first candidate
 arrives when an experiment's `FINDINGS_N.md` can evidence criterion 1.
 
 When one does, record it here: which experiment, which variant, which criteria it clears, and —

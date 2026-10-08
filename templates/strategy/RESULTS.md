@@ -13,9 +13,8 @@
 > Every performance figure comes from the **KaxaNuk Backtest Engine**. There is no second backtest
 > in this repository, by design.
 >
-> Every table below except *Known limitations* is empty by design: the shape is fixed, the numbers
-> arrive from the pipeline.
-> Delete this blockquote when the first one reports.
+> Until the first experiment reports, every table below except *Known limitations* is empty: the
+> shape is fixed, the numbers arrive from the pipeline.
 
 ## The project in three sentences
 
@@ -106,7 +105,7 @@ name with a reason is how that stays honest.
 
 | # | Limitation | Effect |
 | --- | --- | --- |
-| 1 | **Nothing is out of sample.** No experiment has reached step 7 | Every number here is in-sample, and in-sample selection is what the deflation literature warns about |
+| 1 | **Nothing is out of sample** until a frozen book has days on paper after its freeze | Every number here is in-sample, and in-sample selection is what the deflation literature warns about |
 | 2 | **A control arm differing in exactly one thing** — the same rule with one ingredient removed, on the rule's own rebalance dates — is missing from any experiment that claims a margin | Which lever earned that margin is inferred from per-lever rows, not measured |
 | 3 | Classification buckets use today's labels, not point-in-time | Anything reclassified mid-window is misattributed before its move — the `current_*` prefix marks exactly this |
 | 4 | Delisting exits use one day of hindsight | A position is sold on the last day it still has a fill price, knowable only the day after |

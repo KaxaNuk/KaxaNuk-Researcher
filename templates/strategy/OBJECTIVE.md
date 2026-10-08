@@ -8,8 +8,8 @@
 > of predictions; a claim written after the reading, or added after a result, is an observation
 > wearing a hypothesis's clothes.
 >
-> Everything in italics below is guidance: replace it, keep the plain text, then delete this
-> blockquote.
+> In a new strategy, everything in italics below is guidance: replace it, keep the plain text,
+> then delete this blockquote.
 
 ## The main idea
 
@@ -54,7 +54,8 @@ measured — and which test would settle what is still open.*
 
 - **Not that the parameters are right.** *Which parameters were taken as given rather than tuned,
   and why that is a defence against data-snooping rather than evidence of optimality.*
-- **Not that this is out of sample.** Nothing is, until an experiment reaches step 7.
+- **Not that this is out of sample.** Nothing is, until a frozen book has days on paper after its
+  freeze.
 - *Anything a reader might assume the strategy claims and would be wrong to. They will assume it
   anyway if you do not say.*
 
