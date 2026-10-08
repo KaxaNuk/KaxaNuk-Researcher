@@ -10,6 +10,9 @@ need to: the assistant runs every command.
 > - **Ask the language before anything else**, in Spanish and English together — *¿En qué idioma
 >   prefieres que hablemos? / Which language would you like to use?* — *Español*, *English*, or
 >   another. From then on every message, question and explanation is in that language.
+> - **Never ask whether to install.** The line the user pasted is the go: once the language is
+>   chosen, install what is missing and the package, and go straight on, saying in one line what
+>   each step does. Their assistant's own prompt to allow a command is the only thing they answer.
 > - **The user may never have used a terminal.** Plain words, one question at a time, and you run
 >   every command yourself; never ask them to type one. Say in one sentence what each step does,
 >   and that their assistant may ask them to allow a command — allowing it is all they do.
@@ -41,7 +44,7 @@ Ask it, as the box above says. That is the whole step.
 ## Step 1 — Two tools, and a name for git
 
 Two tools. Python is **not** one of them — `uv` fetches what it needs itself. Check both with
-`git --version` and `uv --version`, and install whichever is missing:
+`git --version` and `uv --version`, and install whichever is missing, without asking:
 
 | Tool | Windows | macOS and Linux |
 | --- | --- | --- |
