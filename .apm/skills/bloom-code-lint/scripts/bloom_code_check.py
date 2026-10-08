@@ -7,6 +7,10 @@ and prints one line per violation with a remediation hint. Console output is ASC
 Usage:
     python bloom_code_check.py <path> [<path> ...] [--local-package NAME ...] [--strict] [--max-line-length N]
 
+A directory is searched for *.py files below it, skipping links and every folder named in
+IGNORED_FOLDER_NAMES: virtual environments, caches, .git, apm_modules and node_modules. A file or
+folder named on the command line is always checked.
+
 Two rules are read with a threshold by default: BLOOM010 (one item per line) fires from three
 comma-separated items, or from two when the line is longer than --max-line-length; BLOOM012 (one call
 per line) allows a second call on the line, nested or not. --strict restores the literal reading of both.
@@ -65,6 +69,16 @@ FUNCTION_DEFINITION_TYPES = (
     ast.AsyncFunctionDef,
     ast.FunctionDef,
 )
+IGNORED_FOLDER_NAMES = frozenset([
+    '.git',
+    '.ipynb_checkpoints',
+    '.ruff_cache',
+    '.venv',
+    '__pycache__',
+    'apm_modules',
+    'node_modules',
+    'venv',
+])
 IGNORED_TOKEN_TYPES = frozenset([
     tokenize.COMMENT,
     tokenize.NL,
@@ -883,7 +897,7 @@ def _build_argument_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         'paths',
-        help='Files or directories to check (directories are searched recursively for *.py).',
+        help='Files or directories to check (directories are searched for *.py, skipping .venv, .git and caches).',
         nargs='+',
     )
     parser.add_argument(
@@ -1619,6 +1633,16 @@ def _is_plain_assignment(node: ast.AST) -> bool:
     )
 
 
+def _is_python_file(path: pathlib.Path) -> bool:
+    """
+    True for a file whose suffix is .py.
+    """
+    if path.suffix != '.py':
+        return False
+
+    return path.is_file()
+
+
 def _is_raise(node: ast.AST) -> bool:
     """
     True for a raise statement.
@@ -1637,6 +1661,19 @@ def _is_return(node: ast.AST) -> bool:
         node,
         ast.Return,
     )
+
+
+def _is_searched_folder(path: pathlib.Path) -> bool:
+    """
+    True for a folder searched for *.py files: not a link, and not named in IGNORED_FOLDER_NAMES.
+    """
+    if path.name in IGNORED_FOLDER_NAMES:
+        return False
+
+    if path.is_symlink():
+        return False
+
+    return path.is_dir()
 
 
 def _is_short_name(name: str) -> bool:
@@ -2004,14 +2041,35 @@ def _order_violations(
     return violations
 
 
+def _python_files_in_folder(folder: pathlib.Path) -> list[pathlib.Path]:
+    """
+    The *.py files in a folder and its subfolders, never entering an ignored folder or a link.
+    """
+    children = sorted(folder.iterdir())
+    own_files = [
+        child
+        for child
+        in children
+        if _is_python_file(child)
+    ]
+    nested_files = [
+        python_file
+        for child
+        in children
+        if _is_searched_folder(child)
+        for python_file
+        in _python_files_in_folder(child)
+    ]
+
+    return own_files + nested_files
+
+
 def _python_files_under(path: pathlib.Path) -> list[pathlib.Path]:
     """
-    All *.py files under a directory, or the path itself when it is a file.
+    All *.py files under a directory, outside the ignored folders, or the path itself when it is a file.
     """
     if path.is_dir():
-        found = path.rglob('*.py')
-
-        return sorted(found)
+        return _python_files_in_folder(path)
 
     return [path]
 

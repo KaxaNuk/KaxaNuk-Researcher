@@ -6,6 +6,73 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.37.0] - 2026-10-08
+The Lab skills know the Lab's newest builds, and KaxaNuk's Python style stays in KaxaNuk's
+repositories. Backtest Engine 0.67.0, Portfolio Construction 2.0.0 and Attribution Analysis 0.3.0
+shipped in the last days of September; each skill now says what changed in its build, from the
+library's changelog, while its traps stay marked as checked on the build a run proved. And the
+Bloom Code and PEP 8 rules, installed for the whole machine, no longer reach a user's own Python
+projects.
+
+**What to do differently:** say `update` in your home (home template 0.19.1). In a strategy that
+uses Portfolio Construction 2.0.0, add `KNPC_API_KEY_KAXANUK` — its licence — to the environment
+or a `.kaxanuk_license` file, as `portfolio-construction-runs` says; on any licensed library's new
+build, the first run needs the network. The test-writing rule leaves your machine with the update.
+### Changed
+- **`backtest-engine-runs`** (0.3.0), **`attribution-analysis-runs`** (0.4.0) and
+  **`portfolio-construction-runs`** (0.4.0) each gain a *Changed in <build>* paragraph, from the
+  library's changelog and not yet checked by a run here: the shared `kaxanuk-license-client` from
+  the private index; 3 days offline instead of 7, and a rejection that is final; saved checks in a
+  new folder, so the first run after upgrading needs the network; `.kaxanuk_license` read as a
+  `.env` file; a keyword-only `ValidationResult`; the engine's `main()` returning a licence that
+  does not validate as `success=False`; and Portfolio Construction licensed — `run_pipeline()` and
+  its entry scripts check `KNPC_API_KEY_KAXANUK`, from the environment or `.kaxanuk_license`, never
+  `Config/.env`, while whether `build_allocator`, the template's per-date route, checks it is
+  marked unverified. Each `library_version` stays at the build its traps were checked on (0.66.0,
+  0.2.0, 1.28.0).
+- **`references/investment-lab.md`** (`next` 1.4.1): a *Latest* column — Data Curator 0.50.0,
+  Backtest Engine 0.67.0, Portfolio Construction 2.0.0, Attribution Analysis 0.3.0 — the package's
+  record of each newest build, apart from each skill's `library_version`; one definition of the
+  Investment Lab, its six libraries running steps 3 to 6, in `investment-lab.md`,
+  `experiment-lifecycle` (0.13.1) and the strategy template's README; Portfolio Construction on
+  request and licensed since 2.0.0, there, in the README and in the home's README.
+  `data-analyzer-runs` (0.2.3) says the Analyzer is one of the two Lab modules still hand-rolled,
+  the only one in a notebook; `universe-point-in-time` (0.2.1) sends downloading prices to the Data
+  stage, `Data/curator.py`, with `data-curator-custom-calculations`.
+- **`data-curator-custom-calculations`** (0.4.0) records `library_version: 0.50.0` with the other
+  library skills' rule, and gains *The library*: on PyPI, installed by `uv sync`, upgraded only
+  between experiments, and a frozen paper book stopping on any other Curator. Its `template.py`
+  passes the Bloom Code check (it failed ten rules), `conventions.md` follows the strategy's style,
+  and the references import the package with qualified names.
+- **`paper-trading-gate`** (0.4.0): a library upgrade is a change to every frozen book — a new Data
+  Curator stops each with `unfrozen-input`, a new engine reprices the record — made only on the
+  owner's go, and a book that must move to a new build is frozen again as a new book.
+- **The house rules apply in KaxaNuk repositories only**: `python-bloom-code` (2.2.0),
+  `python-pep8` (2.1.0) and `bloom-code-lint` (0.2.0) say they apply in a Lab library, a strategy,
+  this package, or a repository whose `AGENTS.md`, `CLAUDE.md` or README names Bloom Code, and that
+  elsewhere the project's own style holds. The README, `SETUP.md` and the home's `AGENTS.md` say so.
+- **The Bloom Code checker** skips `.venv`, `venv`, `.git`, `apm_modules`, `__pycache__`,
+  `.ruff_cache`, `node_modules` and `.ipynb_checkpoints` in a folder it walks, so a run on a
+  strategy's root checks the strategy's own files. `alpha-decomposition`'s counterfactual snippets
+  (0.4.1) are in Bloom form and build the same books.
+- **The strategy template** (0.15.1) and **the example** (0.15.5): `Config/.env.template` gains
+  `KNPC_API_KEY_KAXANUK`; `SETUP.md` step 3 names it, and its *Paper trading, daily* says a saved
+  licence check covers 3 days offline from Backtest Engine 0.67.0 (7 before); `BITACORA.md` puts
+  paper trading inside the repository, not the Lab.
+- **`AGENTS.md`**: a section *When a Lab library or an Analytics Factory file changes* — read the
+  changelog, record the build in *Latest* with a *Changed in* paragraph, move `library_version`
+  only after a run, one release for the skill, the template, the example and every quoted figure.
+### Removed
+- **`python-test-writing`**: it applied only to `tests/` folders, which nothing the package ships
+  has had since 0.29.0, and reached a user's other projects. APM removes it on the next install or
+  update (measured with 0.29.0 and 0.33.0: *Cleaned 1 stale file*). The install deploys 3 rules.
+### Fixed
+- **`backup`** (0.1.1): its github.com way, which 0.36.0 left as one line past 100 columns, is
+  wrapped; nothing it says changes.
+- **`backtest-engine-runs`** no longer calls `KNPC_API_KEY_KAXANUK` a stale spelling of the
+  engine's key: it is Portfolio Construction's licence. The engine reads only
+  `KNBE_API_KEY_KAXANUK`; neither is renamed into the other.
+
 ## [0.36.0] - 2026-10-08
 Your researcher saves your work for you, and keeps a copy on GitHub only when you ask. Testers
 asked what *commit* means: no skill asks it any more. The go you give a plan also saves a version

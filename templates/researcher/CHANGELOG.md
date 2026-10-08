@@ -6,6 +6,20 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.19.1 (2026-10-08)
+
+**PATCH** — the house rules described as the package now ships them: three, Bloom Code and PEP 8
+for Python in KaxaNuk repositories only; and Portfolio Construction is licensed since its 2.0.0.
+
+**What to do differently:** run `update` in your home — it shows the two changed lines as a diff.
+
+### Changed
+
+* **`AGENTS.md`**, the *Instruction* row: three house instructions, Bloom Code and PEP 8 for Python
+  in a KaxaNuk repository and nowhere else, and filesystem boundaries.
+* **`README.md`**, *The KaxaNuk Investment Lab*: Portfolio Construction is on request, and licensed
+  since its 2.0.0.
+
 ## 0.19.0 (2026-10-08)
 
 **MINOR** — your researcher saves your work for you: every go also saves a version of what it

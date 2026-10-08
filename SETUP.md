@@ -143,22 +143,22 @@ a bare `apm update` outside an APM project updates APM itself.
 ## Troubleshooting
 
 **What each assistant receives.** Claude Code receives everything: the skills, the commands, the
-agents and the four instructions, which land in `~/.claude/rules/` — Bloom Code and PEP 8 for
-every Python file on the machine, test writing for Python tests, and filesystem boundaries, in any
-project, for every file the assistant reads: outside the folder it works in, only the places the
-task needs. Copilot receives the same, its instructions merged into
-`~/.copilot/copilot-instructions.md`. Cursor, Gemini, OpenCode and Windsurf get the skills and the
-commands but not the instructions, and Gemini, OpenCode and Windsurf take no agent: there the
-researcher is its skill. **Codex gets the skills and the agents, and no commands.** The skills land
-in `.agents/skills/` and each agent in `.codex/agents/<name>.toml`, without its tool list: APM
-warns that it drops it, so on Codex an agent has no tool boundary. No instruction lands either:
-APM asks for `apm compile`, which writes them into a project's `AGENTS.md`. So the steps a
-newcomer needs — `init-researcher`, `interview`, `next`, `read`, `query`, `philosophy`, `brief` —
-are all skills. A command, such as `objective` or `blueprint`, is run there by naming its file —
-*follow `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and
-once the interview has run, the researcher's own skill does this for the user: they name the
-command, and it follows the file. Assistants without a question tool, such as Codex and Gemini,
-ask each question in chat as a numbered list; the user answers with the numbers.
+agents and the three instructions, which land in `~/.claude/rules/` — Bloom Code and PEP 8 for
+Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries, in any project, for
+every file the assistant reads: outside the folder it works in, only the places the task needs.
+Copilot receives the same, its instructions merged into `~/.copilot/copilot-instructions.md`.
+Cursor, Gemini, OpenCode and Windsurf get the skills and the commands but not the instructions, and
+Gemini, OpenCode and Windsurf take no agent: there the researcher is its skill. **Codex gets the
+skills and the agents, and no commands.** The skills land in `.agents/skills/` and each agent in
+`.codex/agents/<name>.toml`, without its tool list: APM warns that it drops it, so on Codex an agent
+has no tool boundary. No instruction lands either: APM asks for `apm compile`, which writes them
+into a project's `AGENTS.md`. So the steps a newcomer needs — `init-researcher`, `interview`,
+`next`, `read`, `query`, `philosophy`, `brief` — are all skills. A command, such as `objective` or
+`blueprint`, is run there by naming its file — *follow
+`~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and once the
+interview has run, the researcher's own skill does this for the user: they name the command, and it
+follows the file. Assistants without a question tool, such as Codex and Gemini, ask each question in
+chat as a numbered list; the user answers with the numbers.
 
 **Why APM is pinned at 0.33.0.** APM 0.33.0 installs this package cleanly, on Windows too. APM
 0.29.1 to 0.31.0 staged every package under about 148 more characters of folders —

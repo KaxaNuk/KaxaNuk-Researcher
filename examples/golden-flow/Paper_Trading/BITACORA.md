@@ -1,6 +1,6 @@
 # Paper Trading — step 7 of 8
 
-The last step inside the Investment Lab, and the only one that runs on data the strategy has never
+The last step inside this repository, and the only one that runs on data the strategy has never
 seen.
 
 **In plain words:** a dress rehearsal on data nobody has seen yet. **It produces** out-of-sample

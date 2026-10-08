@@ -1,16 +1,22 @@
 ---
 name: bloom-code-lint
 description: >
-  Run this skill after writing, editing or reviewing any Python file in a project that follows the
-  KaxaNuk "Bloom Code" style guide, and before reporting that work as done. It runs a deterministic
-  checker that reports every violation of the mechanical Bloom Code rules with a remediation hint.
-  Do not use it for non-Python files, and do not use it as a substitute for the project's configured
-  linter or formatter (ruff, flake8, black), which cover PEP 8.
+  Run this skill after writing, editing or reviewing any Python file in a KaxaNuk repository — a
+  Lab library, a strategy, the KaxaNuk Researcher package, or any repository whose `AGENTS.md`,
+  `CLAUDE.md` or README names Bloom Code — and before reporting that work as done. It runs a
+  deterministic checker that reports every violation of the mechanical Bloom Code rules with a
+  remediation hint. Do not use it elsewhere, where the project's own style applies, nor for
+  non-Python files, nor as a substitute for the project's configured linter or formatter (ruff,
+  flake8, black), which cover PEP 8.
 metadata:
-  version: 0.1.1
+  version: 0.2.0
 ---
 
 # Bloom Code Lint
+
+Use it in a KaxaNuk repository — a Lab library, a strategy, the KaxaNuk Researcher package, or any
+repository whose `AGENTS.md`, `CLAUDE.md` or README names Bloom Code. Elsewhere, follow the
+project's own style, and do not run it.
 
 ## What it does
 `scripts/bloom_code_check.py` parses each Python file with `ast` and `tokenize` and prints one line
@@ -32,7 +38,10 @@ violation. Output is ASCII only.
    under the folder the checker runs in or under its `src/`, which is why it runs from the root. If
    a package lives elsewhere, declare it so its `from x import y` imports are accepted:
    `--local-package <name>` (repeatable). `--strict` restores the literal reading of BLOOM010 and
-   BLOOM012 (see the table).
+   BLOOM012 (see the table). A directory is searched for `*.py` below it, skipping links and every
+   `.venv`, `venv`, `.git`, `apm_modules`, `__pycache__`, `.ruff_cache`, `node_modules` and
+   `.ipynb_checkpoints` folder, so `.` at a strategy's root checks only the strategy's own code; a
+   file or folder named on the command line is always checked.
 2. Fix every reported line. The message says what to change; the rule table below says why.
 3. Re-run until the checker prints `[ok]`. Only then report the Python work as done.
 

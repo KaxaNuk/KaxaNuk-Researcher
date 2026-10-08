@@ -106,9 +106,12 @@ cp Config/.env.template Config/.env
 Fill in the key for your data provider; the template has a line for FMP, Sharadar and LSEG.
 `KNBE_API_KEY_KAXANUK` and `KNAA_API_KEY_KAXANUK` are the Backtest Engine and Attribution Analysis
 licences: the process runs without them up to portfolio construction, and the backtest and
-attribution report what is missing and skip. A licence for either, or access to Portfolio
-Construction, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is
-for — <https://www.kaxanuk.mx/lab> shows the Lab.
+attribution report what is missing and skip. `KNPC_API_KEY_KAXANUK` is the Portfolio Construction
+licence, since its 2.0.0 — the library reads it from the environment or a `.kaxanuk_license` file,
+not from this file, as `portfolio-construction-runs` says: an equal-weight book needs neither the
+key nor the library. A licence for any of the three, or access to Portfolio Construction, is
+KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
+<https://www.kaxanuk.mx/lab> shows the Lab.
 
 `KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships its
 benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark and
@@ -288,7 +291,9 @@ went: 0 clean, 1 flagged, 2 failed. A step that raises exits 2 with its tracebac
 log, so a day whose log does not end in `done, exit code` is one to read. The redirect keeps, in
 `scheduled.log`, what the run prints outside that log — the download, and an error raised before
 the log opens; the folder exists once the run has been tried by hand, as above. The licensed
-engine checks its licence online at least once a week, so the machine needs the network that often.
+engine checks its licence online: without the network a saved check stands in for 3 days from
+Backtest Engine 0.67.0, 7 on 0.66.0, so the machine needs the network that often — and on its
+first run on 0.67.0, which does not read the older saved check.
 
 > **For the agent.** Registering a scheduled task changes the machine: give the command and let
 > the user run it. Never read the record's figures back as your own: they are the engine's, and

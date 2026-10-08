@@ -13,7 +13,7 @@ description: >
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.2.2
+  version: 0.2.3
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -23,9 +23,9 @@ metadata:
 measurements that go into `RESULTS.md` under *Before any experiment*. **It prevents** a book built
 on a feature that never predicted anything.
 
-The Analyzer is the third block of step 3, the one Lab module still hand-rolled in the notebook
-until its library lands. It runs **after `Data/refinery.py` and before any experiment**: the
-predictions an experiment's blueprint makes are supposed to come from here.
+The Analyzer is the third block of step 3: one of the two Lab modules still hand-rolled, and the
+only one in a notebook, until its library lands. It runs **after `Data/refinery.py` and before any
+experiment**: the predictions an experiment's blueprint makes are supposed to come from here.
 
 ```
 Data/curator.py    + Data/Curator/custom_calculations.py    ->  Curator/Time_Series/   m_* + c_*

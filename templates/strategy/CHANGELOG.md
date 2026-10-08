@@ -41,6 +41,29 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.1 (2026-10-08)
+
+**PATCH** — Portfolio Construction needs a licence since its 2.0.0, and the template says where its
+key goes; the README says steps 1 to 7 are this repository, and steps 3 to 6 run on the Lab's
+libraries. Nothing about any result changes.
+
+**What to do differently:** with Portfolio Construction 2.0.0, put `KNPC_API_KEY_KAXANUK` in the
+environment or a `.kaxanuk_license` file.
+
+### Changed
+
+- **`Config/.env.template`**: `KNPC_API_KEY_KAXANUK`, Portfolio Construction's licence since its
+  2.0.0 — the library reads it from the environment or a `.kaxanuk_license` file, and a driver that
+  loads this file into the environment first passes it on.
+- **`SETUP.md`** step 3 names it beside the other two licences, and says the library reads it from
+  the environment or `.kaxanuk_license`; *Paper trading, daily* says a saved licence check covers 3
+  days offline from Backtest Engine 0.67.0 (7 before), the first run on it needing the network.
+- **`Paper_Trading/BITACORA.md`**: paper trading is the last step inside this repository, not
+  inside the Investment Lab, whose libraries run steps 3 to 6.
+
+- **`README.md`**: steps 1 to 7 are this repository, and steps 3 to 6 run on the Investment Lab's
+  libraries; Portfolio Construction is licensed since its 2.0.0.
+
 ## 0.15.0 (2026-10-08)
 
 **MINOR** — the researcher saves the documents it writes on your go, each as its own version, and

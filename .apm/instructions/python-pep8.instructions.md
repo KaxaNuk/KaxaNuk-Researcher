@@ -2,9 +2,13 @@
 description: Python PEP 8 coding standard
 applyTo: "**/*.py"
 metadata:
-  version: 2.0.1
+  version: 2.1.0
 ---
 # Python PEP 8 coding standard
+Apply this in a KaxaNuk repository — a Lab library, a strategy, the KaxaNuk Researcher package, or
+any repository whose `AGENTS.md`, `CLAUDE.md` or README names Bloom Code.
+Elsewhere, follow the project's own style.
+
 Follow [PEP 8](https://peps.python.org/pep-0008/) and [PEP 257](https://peps.python.org/pep-0257/)
 as published.
 This file does not restate them; it only lists where this project is stricter:
