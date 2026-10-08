@@ -62,7 +62,7 @@ version writes it and, on Gemini or Windsurf, your researcher itself (home templ
 - **The package's description** says what it is: your own research companion, with investment
   research as its home ground.
 - **The home template** (0.22.0): its README teaches *Working well with your researcher* and folds
-  the advanced sections away; its `AGENTS.md` says the install mechanics once, 6,518 words where
+  the advanced sections away; its `AGENTS.md` says the install mechanics once, 6,537 words where
   0.34.1's held 6,541; the Lab section names the Analytics Factory.
 - **What you came for stays one click away.** `interview` (2.5.0) keeps one next thing at its
   hand-over, but `Start?` also offers, before *Later*, the start of each other thing you picked —
@@ -104,13 +104,14 @@ version writes it and, on Gemini or Windsurf, your researcher itself (home templ
   four; a Gemini or Windsurf user had the package's skills but never the researcher's own. The
   template now lists `gemini` and `windsurf`, which take the skill alone; `update` proposes a line
   the template lists and the home lacks, whatever version the home is at, and installs the home
-  again; `next` sends a home missing the assistant in use to `update`; `interview` (2.4.1),
+  again; `next` sends a home missing the assistant in use to `update`; `interview` (2.5.0),
   `SETUP.md` and the home's `AGENTS.md` say an assistant must be in both lists. OpenCode stays
   out: it rejects the agent APM writes for it, as `SETUP.md` now says.
 - **`backup`'s send works on macOS** (0.1.2): it used `timeout`, which macOS does not ship, so
   every automatic send there would fail and pause; git's own stall limit,
-  `-c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20`, replaces it, tried in Git Bash and
-  PowerShell 5.1.
+  `-c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20`, replaces it, and an ssh address is held
+  the same way, never prompting (`GIT_SSH_COMMAND='ssh -o BatchMode=yes -o ConnectTimeout=20'`);
+  tried in Git Bash and PowerShell 5.1.
 - **`next`** (1.8.0) tells the worked example by `<!-- example: begin -->` alone on its line, so a
   strategy still holding the template's README, which quotes the marker, is not taken for it. A
   blueprint stamped 0.39.0 or later and saved without its read-back has a way through part E: the

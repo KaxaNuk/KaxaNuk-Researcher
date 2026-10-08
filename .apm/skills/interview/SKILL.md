@@ -385,10 +385,12 @@ run both commands yourself — the owner types nothing, and may not know what ei
    ```
 
    The go on the preview covers it, with no second question. Say *Saved* in one plain line, never
-   the commands; when `git config --get kaxanuk.autosend` prints `true`, send it as the `backup`
-   skill says. If the commit fails for want of a git identity, ask for *a name and an email to sign
-   the versions your researcher saves*, never invented; set them in this folder only,
-   `git config user.name "<name>"` and `git config user.email "<email>"`, and save again.
+   the commands; when `git -C "<absolute path to the home>" config --get kaxanuk.autosend` prints
+   `true`, send it as the `backup` skill says, with `git -C "<absolute path to the home>"` for
+   `git`. If the commit fails for want of a git identity, ask for *a name and an email to sign the
+   versions your researcher saves*, never invented; set them in the home only,
+   `git -C "<absolute path to the home>" config user.name "<name>"` and the same for `user.email`,
+   and save again.
 
 Nothing else is installed: the home's `apm.yml` declares no dependency, and every KaxaNuk skill
 and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user.
@@ -408,17 +410,17 @@ could not install or save, say so first, in one plain line, and offer to try aga
 
 | Pick | The one next thing | `Start?` offers |
 | --- | --- | --- |
-| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | *Now*; *Later, in a new session (recommended)* |
+| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | *Later, in a new session (recommended)*; *Now* |
 | *Write down how I invest, and see it evolve* | `philosophy` | the same |
 | *Build and test a strategy* | `init-example`, a finished strategy to read, then `init-strategy <name>` for their own | *Show me the worked example*; *Later* |
 | *Organise what I read, and help with my projects* — or the old *Organise what I read* — none, or their own words | when question 1 named a project or a decision, `study <it>`; otherwise their first source — attach it, or say where it is saved — then `read` | for `study`, *Start the study*; *Later*. For a source, *I have a document*; *Suggest a topic*, only with Finance among the domains and the reading map at hand; *Later* |
 
-The message ends with that one tool question, `Start?` (`¿Empezamos?`), which also offers, before
-*Later*, each other pick's start option — *Show me the worked example*; *Start the study* when
-question 1 named a project or a decision, else *I have a document* — none twice, four at most. For
-`philosophy`, its description says how long a round takes at that level, as `philosophy` gives it,
-that it can stop after any block, and that a new session starts with every skill loaded and a
-clean context.
+The message ends with that one tool question, `Start?` (`¿Empezamos?`), which also offers the start
+option of each other pick on the *Here for* line — *Show me the worked example*; *Start the study*
+when question 1 named a project or a decision, else *I have a document* — after *Now* where *Later
+(recommended)* leads, else before *Later*; none twice, four at most. For `philosophy`, its
+description says how long a round takes at that level, as `philosophy` gives it, that it can stop
+after any block, and that a new session starts with every skill loaded and a clean context.
 
 - **Now** follows the `philosophy` skill in this conversation, with the same home; **Show me the
   worked example**, the `init-example` skill, handed the home's parent folder; **Start the
@@ -454,8 +456,8 @@ by semicolons; the line goes before *Out of scope for now* when the section has 
 it and save it as *Step 5* does:
 
 ```bash
-git add RESEARCHER.md
-git commit -m "Find first: <the works, by authors and year>" -- RESEARCHER.md
+git -C "<absolute path to the home>" add RESEARCHER.md
+git -C "<absolute path to the home>" commit -m "Find first: <the works, by authors and year>" -- RESEARCHER.md
 ```
 
 Then, in two lines: attach each one found, or say where it is saved, and I copy it into

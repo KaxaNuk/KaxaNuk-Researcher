@@ -73,8 +73,8 @@ every strategy made from the same package version starts identical.
    commands there.
 
 4. **Hand over.** Tell the owner to open the new folder in a **new** session and follow its
-   `SETUP.md` from step 2. Repeat their sentence, if any, to give again when the new session asks
-   for the README's first line; then `OBJECTIVE.md`, before any paper.
+   `SETUP.md` from step 2. Repeat their sentence, if any, for them to give the new session at its
+   `SETUP.md` step 5, the README's first line; then `OBJECTIVE.md`, before any paper.
 
 ## References
 

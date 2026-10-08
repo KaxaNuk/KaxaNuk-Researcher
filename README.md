@@ -38,8 +38,8 @@ through your assistant; what it reads goes to the company behind that assistant,
    to do next.
 
 With Claude, installing also gives your assistant three house rules on this computer — two for
-KaxaNuk's Python style, only in KaxaNuk's own projects, and one to read only what a task needs;
-*Removing it* below undoes them.
+KaxaNuk's Python style, only in KaxaNuk projects — the Lab's libraries and the strategies you build
+on its template — and one to read only what a task needs; *Removing it* below undoes them.
 
 Then quit and reopen your assistant, and open your researcher's folder in a **new** conversation —
 in the Claude desktop app, a new **Code** session on that folder; in the Codex app, that folder; in
@@ -66,7 +66,8 @@ en tu computadora, con tu asistente; lo que lee va a la empresa detrás de él, 
    minutos, y te dice dónde quedó y lo primero que conviene hacer.
 
 Con Claude, instalarlo también le da a tu asistente tres reglas de la casa en esta computadora —
-dos para el estilo de Python de KaxaNuk, solo en proyectos de KaxaNuk, y una para leer solo lo que
+dos para el estilo de Python de KaxaNuk, solo en proyectos de KaxaNuk — las bibliotecas del Lab y
+las estrategias que construyas con su plantilla — y una para leer solo lo que
 una tarea necesita; *Removing it*, abajo, las quita.
 
 Después cierra y vuelve a abrir tu asistente, y abre la carpeta de tu investigador en una
@@ -201,7 +202,7 @@ The researcher's part is **the hypothesis**, and it stops where the numbers star
   Attribution Analysis, quoted from `FINDINGS_N.md` or `RESULTS.md` by name.
 - **It does not write the record.** `JOURNAL_N.md`, `FINDINGS_N.md`, `RESULTS.md` and
   `CHANGELOG.md` belong to whoever ran the experiment. It appends to `JOURNAL_N.md` only, each on
-  your go: the benchmark's choice, the rule read back before a blueprint, and `challenge`'s entry.
+  your go: the benchmark's choice, the rule read back, and `challenge`'s entry.
 - **It drafts no `OBJECTIVE.md` before your words**, and cites no source that has no note: a source
   in a `BIBLIOGRAPHY.md` without one is a lead.
 - **It never advises on a holding.** A brief quotes dated sources and names the rules in your

@@ -203,9 +203,9 @@ from another template keeps or maps them in its own `AGENTS.md`.
   and the owner's go — a note into `Bibliotheca/Papers/` or `Books/` with its row in
   `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`, a line in
   `Bibliotheca/LOG.md` from `read` and `audit`, and a dated entry appended to `JOURNAL_N.md` — the
-  benchmark's choice in `JOURNAL_1.md`, the rule read back by `blueprint`, or `challenge`'s. The go,
-  the owner's review and signature, saves the version; the blueprint is saved alone, before the
-  rule.
+  benchmark's choice in `JOURNAL_1.md`, the rule read back by `blueprint` (or late, by `next`), or
+  `challenge`'s. The go, the owner's review and signature, saves the version; the blueprint is saved
+  alone, before the rule.
 - **Nothing flows back.** The researcher is one per person and shared by every strategy; what it
   learns in one experiment must not leak into the next through its own library. While it works on a
   strategy it writes nothing at home — no note, no index line, no log entry, no extract — the weekly
