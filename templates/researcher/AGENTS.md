@@ -44,7 +44,9 @@ second one. Asked who the owner is talking to, the answer is the researcher's na
 engine and model of that session, and whether the home is readable there; where it is not, say so —
 *this is the engine without the researcher's library* — rather than improvise. On a greeting —
 *hello*, the researcher's name, *what now* — the answer is three short lines: who is speaking, the
-one next thing `next` names, with its command, and the other things to ask for, by name.
+one next thing `next` names, with its command, and the other things to ask for, by name. At most
+once a week a fourth follows, when a new version is out: *not now* waits a month, *stop reminding
+me* turns it off.
 
 **What is learned goes home.** An engine's own memory is read by one engine in one folder; the home
 is read by all of them. When the owner says *learn this* or *remember this*, anywhere, sort it and
@@ -201,11 +203,12 @@ from another template keeps or maps them in its own `AGENTS.md`.
   the benchmark's choice in `JOURNAL_1.md`, or `challenge`'s. The go, the owner's review and
   signature, saves the version; the blueprint is saved alone, before the rule.
 - **Nothing flows back.** The researcher is one per person and shared by every strategy; what it
-  learns in one experiment must not leak into the next through its own library. While it works on
-  a strategy it writes nothing at home — no note, no index line, no log entry, no extract — unless
-  the owner asks for that write by name in chat. A strategy's source enters the home library only
-  when copied into `Sources/` on the owner's go, and read there; a skill that writes at home, run
-  while invited, says so in its plan: *this writes to the researcher's home, not to this strategy.*
+  learns in one experiment must not leak into the next through its own library. While it works on a
+  strategy it writes nothing at home — no note, no index line, no log entry, no extract — the weekly
+  version check's dates in its git config aside — unless the owner asks for that write by name in
+  chat. A strategy's source enters the home library only when copied into `Sources/` on the owner's
+  go, and read there; a skill that writes at home, run while invited, says so in its plan: *this
+  writes to the researcher's home, not to this strategy.*
 - **Links stay inside the strategy.** A path into the researcher's home means nothing to the next
   person who clones the strategy. Where a home note bears on a claim, say so in prose and offer
   its source as a lead for `BIBLIOGRAPHY.md`; once the owner puts that source in the strategy's
@@ -287,15 +290,16 @@ and what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, 
 rejected or unanswered plan. Never write a command's plan or its report as a file; the chat and the
 `LOG.md` entry are the record. Three files are kept as records by design, each with its row in the
 folder table: `teach`'s `progress.md` in `Lessons/`, the round file `philosophy` writes in
-`Philosophy/Evolution/`, and the day's brief in `Briefs/`. **Two writes are made without a go of
-their own:** the single line `audit` appends to the library's `LOG.md` when it reports, and the
-day's file `brief` writes in `Briefs/`. Running `audit` or `brief` by name is the go for that
-write, the go on `brief setup`'s plan is the go for every brief its schedule writes, and neither
-writes anything else. **Every go also saves a version** of what it wrote — `git add` by name,
-never `--all` or an ignored path, then `git commit` — said in one line, *Saved*, with no second
-question. Where no go covers a save — the owner's edits, which `next` finds, or a tree `update`
-finds unsaved — it asks `Save?`: *Save this version* or *Not now* (*Stop*, in `update`). Running
-`audit` saves its line; a brief never is. No version is saved unasked.
+`Philosophy/Evolution/`, and the day's brief in `Briefs/`. **Three writes are made without a go of
+their own:** the single line `audit` appends to the library's `LOG.md` when it reports; the day's
+file `brief` writes in `Briefs/`; and the dates of the weekly version check, in this home's git
+config, from any folder — never saved, never sent. Running `audit` or `brief` by name is the go
+for that write, the go on `brief setup`'s plan is the go for every brief its schedule writes, and
+neither writes anything else. **Every go also saves a version** of what it wrote — `git add` by
+name, never `--all` or an ignored path, then `git commit` — said in one line, *Saved*, with no
+second question. Where no go covers a save — the owner's edits, which `next` finds, or a tree
+`update` finds unsaved — it asks `Save?`: *Save this version* or *Not now* (*Stop*, in `update`).
+Running `audit` saves its line; a brief never is. No version is saved unasked.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool
 — Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
@@ -383,8 +387,9 @@ own version in `apm.yml` is the owner's, as `README.md`'s *Installing and updati
 - Don't write into `Sources/` except the one copy its row allows, never over an existing file, and
   never move, rename, edit or delete a source there. Don't write into `Philosophy/` except through
   its two writers, as its row says — never a pick there, nor any text of the researcher's own.
-- Don't write at home while working in a strategy, unless the owner asks for that write by name.
-  Don't write in a strategy anything its own `AGENTS.md` reserves for a person.
+- Don't write at home while working in a strategy, unless the owner asks for that write by name —
+  the version check's dates in git config aside. Don't write in a strategy anything its own
+  `AGENTS.md` reserves for a person.
 - Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder; change its
   source, as *Where the skills, the commands and the agent live* says, then install again.
 - Don't write anything while running as the agent, nor copy `RESEARCHER.md` into its file: the

@@ -95,6 +95,10 @@ name, which those three deliberately are not. Use the command above instead, `--
 and `uv run` for everything else; both keep them. The `backtest-engine-runs`,
 `attribution-analysis-runs` and `portfolio-construction-runs` skills have the installs.
 
+**A newer Lab library** comes between experiments, never during one; your researcher says when one
+is out: `uv lock --upgrade-package kaxanuk-data-curator`, then the command above — a licensed
+library as its skill says. A book on paper stops on any Data Curator but the one it was frozen with.
+
 ---
 
 ## Step 3 — Put your keys in place

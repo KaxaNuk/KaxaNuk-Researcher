@@ -8,7 +8,7 @@ description: >
   bring back a template file a strategy lacks (`init-strategy`'s script with `--only` does), and
   never builds on the example.
 metadata:
-  version: 0.3.1
+  version: 0.4.0
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -47,7 +47,11 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
 2. **The plan.** In chat: what will be copied and where; for one piece, that the folder is made if
    it is not there, that the piece keeps its path inside it, that nothing already there is
    overwritten — the script refuses rather than overwrite — and that the worked strategy's own
-   lines come with it. Ask for the go — *Go*, *Change something*, *Stop* — and run on *Go* only.
+   lines come with it. When a newer package is out, checked and dated as item 5 of *Step 4* in the
+   `next` skill beside this one says — never with `updatereminder` off or an `updatenext` still
+   ahead — one more line: *a newer version of the package is out, X.Y.Z: `update` first brings the
+   newest example*. Never a question of its own, and the copy never waits on it. Ask for the go —
+   *Go*, *Change something*, *Stop* — and run on *Go* only.
 
 3. **Copy.** The script is in the `init-strategy` skill's folder, beside this one:
 

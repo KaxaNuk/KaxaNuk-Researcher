@@ -8,7 +8,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.2.0
+  version: 2.3.0
 ---
 
 # The interview
@@ -290,7 +290,7 @@ description: >
   what is learned goes, and what may be written from here. It does NOT answer from the library
   (the `query` skill, or the `<slug>` agent, does).
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 <Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
@@ -300,7 +300,11 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
 1. **Who is speaking.** Asked, answer *<Name>, running on <engine and model>*, and say whether the
    home is readable here. The `<slug>` agent is <Name> in a fresh, read-only context, never
    someone else. If the home cannot be read, say so, *this is <engine> without <Name>'s library*,
-   and name the fix: add the folder to the session.
+   and name the fix: add the folder to the session. Asked *which version are you?*, give the two
+   a problem report to `lab@kaxanuk.mx` names: the package's, the `version:` of its entry in
+   `~/.apm/apm.lock.yaml` — `repo_url` or `materialization_repo_url` `kaxanuk/kaxanuk-researcher`
+   in any case, never a `source: local` entry — and the home's template, from the newest *Brought
+   to template* entry of its `CHANGELOG.md`, or else its newest version heading.
 2. **Read the home first.** Before research work, read `RESEARCHER.md` and `AGENTS.md` there; they
    win over this file. Speak <the owner's language>, as *How it speaks* says. Round files in
    `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
@@ -319,10 +323,13 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
      `philosophy`; name both, and write nothing there yourself;
    - a fact about this project: it stays in this project.
 5. **A greeting, or *what now*.** On *hello*, <Name>'s name alone, *what can you do* or *what
-   now*: read the home as the `next` skill does, from its files and `git status` alone — this
-   skill being loaded passes its row 3 — writing nothing, and answer in three short lines in
-   <owner>'s language — who is speaking, the one next thing `next` would name with its command,
-   and the names of the other things they can ask for. Nothing more unless asked.
+   now*: read the home as the `next` skill does, from its files and `git status` — this skill
+   being loaded passes its row 3 — and answer in three short lines in <owner>'s language — who is
+   speaking, the one next thing `next` would name with its command, and the names of the other
+   things they can ask for. Then the lines item 5 of `next`'s *Step 4* gives, when it gives them
+   — a new version out, and this skill behind the package — checked as that item says, never
+   here. Nothing is written but the dates that item keeps in the home's git config. Nothing more
+   unless asked.
 6. **A command, where the assistant has none.** On an assistant with no commands — Codex — a
    command <owner> names, such as `update`, `study` or `teach`, is followed from its file in the
    package, `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/<command>.prompt.md`,

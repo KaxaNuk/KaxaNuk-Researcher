@@ -112,8 +112,8 @@ in the strategy's `Config/.env` — Portfolio Construction's in the environment 
 `.kaxanuk_license` file — which only you fill in and which never leaves your computer; the
 strategy's own `SETUP.md` says how.
 
-**A question, or a problem to report:** the same address — a problem report names the version
-`update check` shows.
+**A question, or a problem to report:** the same address — a problem report names the versions
+your researcher gives when you ask *which version are you?*
 
 ---
 
@@ -173,7 +173,7 @@ go you gave `brief setup` covers every brief its schedule writes.
 | `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, saves a first version, and ends with where the home is and the one next thing for what you came for. `init-researcher` runs it straight after making the home; `interview force` starts over |
 | `philosophy` | a second interview, optional and as often as you like, on your investment philosophy, pitched at your level — Starter, Building or Researching. It starts with why you invest and what you already believe, teaches one idea after each answer, never a verdict, and after your go adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, and keeps the round in `Philosophy/Evolution/`. Taken again after reading, it shows how your answers moved |
 | `brief [setup]` | a daily brief in `Briefs/`, one file a day in up to three parts — your work, the markets you follow, news on your holdings — every figure quoted from a dated source, never computed, never advice. `brief setup` chooses the parts, the measures and the time, and on the Claude desktop app schedules it; `brief` writes today's now |
-| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing; at home it offers to save what you changed by hand |
+| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder and writes nothing but the date of its weekly version check, in git config, never saved; at home it offers to save what you changed by hand |
 | `backup` | keeps a copy of your researcher — or of a strategy — on a private GitHub repository, when you ask for one: *keep a copy*. It walks you through it, can send each new version there, and brings the copy back on a new computer |
 
 | Command | What it does |

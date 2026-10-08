@@ -6,6 +6,24 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.20.0 (2026-10-08)
+
+**MINOR** — your researcher tells you, at most once a week, when a new version of itself is out,
+in one line after its greeting; `update` brings it.
+
+**What to do differently:** run `update` in your home, then once more in a new session — the second
+brings the researcher's skill that gives the weekly word.
+
+### Changed
+
+* **`AGENTS.md`**, *Who is speaking*: at most once a week, a fourth line follows the greeting when a
+  new version is out — *not now* waits a month, *stop reminding me* turns it off. *Plan first, then
+  write*: three writes are made without a go of their own, the third the dates of the weekly
+  version check, in this home's git config, from any folder, never saved or sent; *Hard don'ts*
+  makes room for them.
+* **`README.md`**, *Stay current*: the weekly word, and `update`; a problem report names the
+  versions your researcher gives when you ask *which version are you?*
+
 ## 0.19.1 (2026-10-08)
 
 **PATCH** — the house rules described as the package now ships them: three, Bloom Code and PEP 8

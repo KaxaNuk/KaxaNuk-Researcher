@@ -6,6 +6,59 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.38.0] - 2026-10-08
+Your researcher tells you, at most once a week, when a new version of itself — or, in a strategy,
+of a Lab library — is out. Without a word, most people never update; now `next` and the greeting
+add one line when a newer release is out, with its headline, and `update` brings it. *Not now*
+waits a month, *stop reminding me* turns it off, and offline nothing is said.
+
+**What to do differently:** say `update` in your home, then once more in a new session: the second
+brings the researcher's skill that gives the weekly word (home template 0.20.0).
+### Added
+- **`next`** (1.5.0), *Step 4* item 5: when the home's git config says a check is due — a week
+  after the last, read with the file tool so a week with nothing due asks no permission — it
+  compares the package's version in `~/.apm/apm.lock.yaml` with the newest tag on GitHub
+  (`git ls-remote`, with prompts off) and, for a newer minor or major release, says in one line
+  what it is, quoting the first sentence of its changelog entry (a Python one-liner, the same in Git
+  Bash and PowerShell). Whatever happens, the next check is a week on (`kaxanuk.updatenext`); *not
+  now* makes it a month, *stop reminding me* sets `kaxanuk.updatereminder off`. A researcher's
+  skill behind the package gets its own line on every `next`, with no network.
+- **`next`, in a strategy**: the Lab libraries too, on the strategy's own date
+  (`kaxanuk.labnext`), never while an experiment has a saved blueprint and no findings — the
+  installed builds (`uv pip list`) against the *Latest* column and each skill's `library_version`,
+  and `uv lock --upgrade-package kaxanuk-data-curator --dry-run` for the Curator, one line per
+  library behind, with the upgrade to make between experiments, and a word about a frozen book.
+### Changed
+- **The researcher's skill** (`interview` 2.3.0 writes it at 0.3.0): the greeting adds `next`'s
+  version line when there is one, and *which version are you?* is answered from the lock and the
+  home's changelog — the two versions a problem report to `lab@kaxanuk.mx` names. The README's and
+  `investment-lab.md`'s problem-report lines say so.
+- **`update`**: from a strategy it brings the package only and reports the Lab libraries, writing
+  nothing there; it reads only the changelog entries above the installed version, never the whole
+  file, through a Python one-liner that works in PowerShell too (`curl` and the web fetch are
+  gone); it judges the researcher's skill against `interview` on GitHub, so one run brings a newer
+  skill; it says when an experiment sits between its blueprint and its findings; and it moves the
+  weekly date on after the package update.
+- **`init-strategy`** (0.3.0) and **`init-example`** (0.4.0): one plan line when a newer package is
+  out — `update` first brings the newest template or example — never a question of its own.
+- **`how-we-work`** (0.5.0) and **`AGENTS.md`**: a release's tag message is
+  `X.Y.Z: <the entry's first sentence>`, the line the weekly word quotes; a *What to do
+  differently* line says what the owner says, never the `apm` command `update` runs; nothing
+  reaches `main` without its version, since `apm update -g` installs `main` as it stands.
+- **The home template** (0.20.0): `AGENTS.md` names the third write without a go — the dates of
+  the weekly check, in the home's git config, never saved or sent — and the greeting's extra line;
+  `README.md`'s *Stay current* describes the reminder.
+- **The strategy template** (0.16.0) and **the example** (0.15.6): `AGENTS.md` makes a new Lab
+  library build a change-set between experiments, its weekly check's date in the strategy's git
+  config; `SETUP.md` step 2 says how to take one; `experiment-lifecycle` (0.13.2)'s
+  `references/structure.md` names template 0.16.0. The README's `next` row says the one thing it
+  writes, the date of that check.
+### Fixed
+- **`blueprint`'s stamp and `challenge`'s comparison** read the package's entry of
+  `~/.apm/apm.lock.yaml` by the rule `next` and `update` use — its `repo_url`, ignoring case, never
+  a home's local entry — where *the entry named `kaxanuk-researcher`* could pick a home made before
+  `interview` renamed its `apm.yml`.
+
 ## [0.37.0] - 2026-10-08
 The Lab skills know the Lab's newest builds, and KaxaNuk's Python style stays in KaxaNuk's
 repositories. Backtest Engine 0.67.0, Portfolio Construction 2.0.0 and Attribution Analysis 0.3.0

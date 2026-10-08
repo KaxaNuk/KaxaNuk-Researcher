@@ -37,10 +37,14 @@ marked.
   not by an agent helping here. `scaffold.py` copies byte for byte.
 - **Every change carries its `CHANGELOG.md` entry**, and a version bump in the same commit: in
   `apm.yml` for the package at the root and for the home, in `pyproject.toml` for the template and
-  the example.
-  Tag `vX.Y.Z` on `main` once the release's commit is there.
+  the example. The entry opens with one plain sentence a newcomer understands — the line the
+  researcher's weekly word on a new version quotes — and its *What to do differently* says what the
+  owner says (*say `update` in your home*), never the `apm` command `update` runs for them. Tag
+  `vX.Y.Z` on `main` once the release's commit is there, with the message
+  `X.Y.Z: <that sentence>`.
 - **Work lands on `main`**, as the `how-we-work` skill says: a branch and a pull request only for a
-  change you want reviewed, deleted once merged. `main` is the only branch that stays.
+  change you want reviewed, deleted once merged. `main` is the only branch that stays, and
+  `apm update -g` installs it as it stands, so nothing reaches `main` without its version.
 - **Every KaxaNuk skill lives here.** A skill for a new Lab library is a folder in `.apm/skills/`;
   a change to a library's API changes its skill in the same release, and the worked example where
   it uses that library — with a new example version and a journal entry, re-run where a figure
@@ -68,7 +72,8 @@ marked.
    one, `[Unreleased]` aside: what changes for the install, a caller, a key or a trap. Copy names
    and behaviour only — a private index, host or key stays a `{SERVER}` placeholder.
 2. **Record the new build** in the *Latest* column of
-   `.apm/skills/next/references/investment-lab.md` and, in the library's skill, a short *Changed in
+   `.apm/skills/next/references/investment-lab.md` — what `next`'s weekly check in a strategy
+   compares the installed builds against — and, in the library's skill, a short *Changed in
    <build>* paragraph: from its changelog, not yet checked by a run.
 3. **Check it by a run** before `library_version` moves: in a scratch copy of the worked example on
    a short path outside this repository, with the new build, every line that says *checked*,

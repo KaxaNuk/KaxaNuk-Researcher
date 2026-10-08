@@ -7,7 +7,7 @@ description: >
   environment or the keys (the new folder's SETUP.md does), does NOT copy the worked example (use
   `init-example`), and does NOT create a researcher (use `init-researcher`).
 metadata:
-  version: 0.2.4
+  version: 0.3.0
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -44,8 +44,12 @@ every strategy made from the same package version starts identical.
 
 2. **The plan.** In chat: the path, that it will hold the KaxaNuk Strategy Template at this
    package's version, that it keeps dated versions from the start, the first saved now, and that
-   nothing else on the machine changes. Ask for the go — *Go*, *Change something*, *Stop* — and
-   run on *Go* only.
+   nothing else on the machine changes, the date of the weekly version check in the home's git
+   config aside. When a newer package is out, checked and dated as item 5 of *Step 4* in the `next`
+   skill beside this one says — never with `updatereminder` off or an `updatenext` still ahead — one
+   more line: *a newer version of the package is out, X.Y.Z: `update` first brings the newest
+   template*. Never a question of its own, and the copy never waits on it. Ask for the go — *Go*,
+   *Change something*, *Stop* — and run on *Go* only.
 
 3. **Copy.** The script is in this skill's folder:
 
