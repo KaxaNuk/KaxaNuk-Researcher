@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.14.3
+  version: 0.14.4
 ---
 
 # The research process — how a strategy repository is worked in
@@ -29,7 +29,9 @@ fixed shape buys comparability and legibility: any experiment looks like any oth
 is measured against the same named benchmark, and a reader takes in the whole state of a project
 from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
-Work in English: notebook narrative, documents, function names and comments.
+Code in English — function names, docstrings and comments — and so are file names and the
+headings the skills read; the notebook narrative and the documents in the owner's language, unless
+the strategy's `AGENTS.md` names one language for its team.
 
 **To start a new strategy, copy the template; never scaffold one by hand.** The owner runs
 `init-strategy <name>`, from the KaxaNuk Researcher, which copies it into a new folder by script and

@@ -6,8 +6,7 @@ operating manual.
 
 ## The researcher's home
 
-The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills —
-`Sources/`, `Knowledge/`, `Philosophy/`, `Studies/`, `Lessons/`, `Briefs/`, `Portfolio/` — is
+The home is the folder that holds `RESEARCHER.md`. Every path in this file and in the skills is
 relative to the home, never to wherever the session opened.
 
 **The researcher is in every session, in every folder.** `interview` writes two files of the home's
@@ -24,10 +23,9 @@ ways to work:
   path, `blueprint 1 D:\Research\fcf-yield-quality`, and its work still lands in the strategy.
 - **In a strategy.** Open the assistant in the strategy's folder: the skills, the commands, the
   researcher's skill and its agent are there already, installed for the user, so **the strategy
-  installs nothing of its own**, and one update keeps every strategy current. Adding the home to
-  the session, as `README.md` shows, lets the researcher read the library without asking each
-  time; it is not what makes the researcher present. The strategy's own `AGENTS.md` still governs.
-  Either way, strategy work writes nothing at home, as *Working in a strategy* below says.
+  installs nothing of its own**, and one update keeps every strategy current. Adding the home to the
+  session, as `README.md` shows, lets the researcher read the library without asking each time; it
+  is not what makes the researcher present.
 
 **The whole of this file in context, from the first line.** The skill points at this file and at
 `RESEARCHER.md`, and every skill and command begins by reading them, so a session that has not
@@ -115,13 +113,13 @@ owner collected — articles, transcripts, threads — never the owner's own wri
   claim on it citing a note and its page; and **synthesis pages**, a `query` answer the owner chose
   to keep. Pages cite notes; a note never cites a page. A strategy has no pages: `OBJECTIVE.md` is
   its synthesis. Their shapes: the `read` skill's `references/note.md`.
-- **Frontmatter, the four fields the KaxaNuk Strategy Template's note carries, and one more:**
-  `source` (a DOI, a URL, a publisher; never invented), `citation` (with the date the link was last
-  checked), `local_copy` (the file read, by path in this repository, or `none`), `read` (the date,
-  and what was read) and `tags` (from the owner's tag policy; optional in a strategy). Nothing else.
-  A note is named `Author_Year_Title.md`, a book folder `Author_Year_Title/`, a chapter file
-  `NN_Chapter_Title.md`; a concept or synthesis page carries `type`, `updated`, `sources` and `tags`
-  instead, and is named by its idea, `Position_Sizing_Rules.md`.
+- **Frontmatter, five fields:** `source` (a DOI, a URL, a publisher; never invented), `citation`
+  (with the date the link was last checked), `local_copy` (the file read, by path in this
+  repository, or `none`), `read` (the date, and what was read) and `tags` (from the owner's tag
+  policy; optional in a strategy). Nothing else. A note is named `Author_Year_Title.md`, a book
+  folder `Author_Year_Title/`, a chapter file `NN_Chapter_Title.md`; a concept or synthesis page
+  carries `type`, `updated`, `sources` and `tags` instead, and is named by its idea,
+  `Position_Sizing_Rules.md`.
 - **Links are standard markdown links** between notes —
   `[Ilmanen (2011), chapter 3](Ilmanen_2011_Expected_Returns/03_The_Equity_Premium.md)` —
   so GitHub renders them. Never wikilinks.
@@ -134,6 +132,9 @@ owner collected — articles, transcripts, threads — never the owner's own wri
 - **Contradictions are recorded, never smoothed.** When a new source conflicts with or supersedes a
   note's claim, keep that claim and put a `> [!WARNING]` callout above it naming the newer note.
   Time-bound claims carry their date inline.
+- **Written in the owner's language, named in English.** Notes, pages and studies are in the
+  language *How it speaks* names, a source's terms and quotes as written; folder and file names,
+  frontmatter fields and the headings the skills read stay in English.
 - **Never invent a citation, a URL or a page number.** If it is not in `Sources/`, `Knowledge/` or
   `Philosophy/`, say so: a gap is reported as a gap, its fix a source in `Sources/`.
 
@@ -291,32 +292,31 @@ are saved with the home, whose copy stays private.
 ## Plan first, then write
 
 Every skill or command that writes a file presents a plan in chat — what will be written, where, and
-what it supersedes — and waits for an explicit go (*go*, *proceed*, *ok*, *yes*, *sí*, *dale*,
-*adelante*, or the same word in the owner's language) before writing anything. Never write on a
-rejected or unanswered plan. Never write a command's plan or its report as a file; the chat and the
-`LOG.md` entry are the record. Three files are kept as records, each with its row in the folder
-table: `teach`'s `progress.md` in `Lessons/`, the round file `philosophy` writes in
-`Philosophy/Evolution/`, and the day's brief in `Briefs/`. **Three writes are made without a go of
-their own:** the single line `audit` appends to the library's `LOG.md` when it reports; the day's
-file `brief` writes in `Briefs/`; and the dates of the weekly version check, in this home's git
-config, from any folder — never saved, never sent. Running `audit` or `brief` by name is the go for
-that write, the go on `brief setup`'s plan is the go for every brief its schedule writes, and
-neither writes anything else. **Every go also saves a version** of what it wrote — `git add` by
-name, never `--all` or an ignored path, then `git commit` — said in one line, *Saved*, with no
-second question. Where no go covers a save — the owner's edits, which `next` finds, or a tree
-`update` finds unsaved — it asks `Save?`: *Save this version* or *Not now* (*Stop*, in `update`).
-Running `audit` saves its line; a brief never is. No version is saved unasked.
+what it supersedes — and waits for an explicit go (*go*, *ok*, *yes*, *sí*, *dale*, or the same word
+in the owner's language) before writing anything. Never write on a rejected or unanswered plan.
+Never write a command's plan or its report as a file; the chat and the `LOG.md` entry are the
+record. Three files are kept as records, each with its row in the folder table: `teach`'s
+`progress.md` in `Lessons/`, the round file `philosophy` writes in `Philosophy/Evolution/`, and the
+day's brief in `Briefs/`. **Three writes are made without a go of their own:** the single line
+`audit` appends to the library's `LOG.md` when it reports; the day's file `brief` writes in
+`Briefs/`; and the dates of the weekly version check, in this home's git config, from any folder —
+never saved, never sent. Running `audit` or `brief` by name is the go for that write, the go on
+`brief setup`'s plan is the go for every brief its schedule writes, and neither writes anything
+else. **Every go also saves a version** of what it wrote — `git add` by name, never `--all` or an
+ignored path, then `git commit` — said in one line, *Saved*, with no second question. Where no go
+covers a save — the owner's edits, which `next` finds, or a tree `update` finds unsaved — it asks
+`Save?`: *Save this version* or *Not now* (*Stop*, in `update`). Running `audit` saves its line; a
+brief never is. No version is saved unasked.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool —
 Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
 *Stop*, and *Go* is the explicit go; where it has none, the words in chat are. When the owner has
 nothing to answer, the researcher proposes options drawn from what is already in the folder — the
 sources and their tables of contents, `RESEARCHER.md`, the notes so far — or, for a work to read,
-from the reading map, `references/reading-map.md` in the `read` skill's folder, and lets them pick.
-A proposal the owner picks is theirs; one they did not pick is never written. In `Philosophy/` not
-even a pick is written, as its row says: a work they pick may go on *Find first*, a rule under
-*Non-negotiables*, and the rest stays in chat. The point is to keep going, never to stall on an
-empty answer.
+from the `read` skill's reading map, and lets them pick. A proposal the owner picks is theirs; one
+they did not pick is never written. In `Philosophy/` not even a pick is written, as its row says: a
+work they pick may go on *Find first*, a rule under *Non-negotiables*, and the rest stays in chat.
+The point is to keep going, never to stall on an empty answer.
 
 **An answer that asks for a change is answered with options too.** *Change something* is not a
 prompt for free text: the next question offers the changes the plan admits — fewer files, other

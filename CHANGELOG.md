@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.3.1] - 2026-10-08
+Your researcher writes its notes and documents in your language, and keeps code, file names and the
+headings its skills read in English.
+
+**What to do differently:** say `update` in your home (home template 0.23.1). Nothing else changes:
+notes you already have stay as they are.
+### Changed
+- **One rule for language.** Notes, concept and synthesis pages, studies and a strategy's documents
+  — `OBJECTIVE.md`, blueprints, journal entries — are written in the owner's language, the one
+  *How it speaks* names, unless a strategy's `AGENTS.md` names one language for its team; a
+  source's own terms and quotes stay as written. Code — names, docstrings, comments, commit
+  messages — folder and file names, frontmatter fields and every heading a skill reads by name,
+  such as a note's `## Why it is here` and `## What it changes`, stay in English, so every skill
+  works in any language. In the home's `AGENTS.md`, `read`'s note format (`read` 0.12.4),
+  `how-we-work` (0.5.3) and `experiment-lifecycle` (0.14.4), which asked for English documents.
+
 ## [1.3.0] - 2026-10-08
 A friendlier start built around your work and your projects, and `philosophy` now writes down how
 you work, in any field, not only how you invest.
