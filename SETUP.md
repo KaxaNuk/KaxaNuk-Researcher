@@ -129,7 +129,8 @@ finished strategy to read first.
 at once; then `update`, in the home, brings what changed in the home's own files. Always with `-g`:
 a bare `apm update` outside an APM project updates APM itself.
 
-**A new machine, or another assistant.** Step 2 with the new target, then install the home, once:
+**A new machine, or another assistant.** Step 2 with the new target, then install the home, once,
+the assistant added under `targets:` in the home's `apm.yml` first, OpenCode aside:
 `uvx --from apm-cli==0.33.0 apm install -g "<the home>"`.
 
 ---
@@ -142,8 +143,10 @@ Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries, in 
 every file the assistant reads: outside the folder it works in, only the places the task needs.
 Copilot receives the same, its instructions merged into `~/.copilot/copilot-instructions.md`.
 Cursor, Gemini, OpenCode and Windsurf get the skills and the commands but not the instructions, and
-Gemini, OpenCode and Windsurf take no agent: there the researcher is its skill. **Codex gets the
-skills and the agents, and no commands.** The skills land in `.agents/skills/` and each agent in
+Gemini and Windsurf take no agent: there the researcher is its skill. OpenCode takes the package
+but not the researcher's own agent and skill: it rejects the agent APM writes for it, so the home's
+`apm.yml` leaves it out of `targets:`. **Codex gets the skills and the agents, and no commands.**
+The skills land in `.agents/skills/` and each agent in
 `.codex/agents/<name>.toml`, without its tool list: APM warns that it drops it, so on Codex an agent
 has no tool boundary. No instruction lands either: APM asks for `apm compile`, which writes them
 into a project's `AGENTS.md`. So the steps a newcomer needs — `init-researcher`, `interview`,
@@ -155,12 +158,11 @@ follows the file. Assistants without a question tool, such as Codex and Gemini, 
 chat as a numbered list; the user answers with the numbers.
 
 **Why APM is pinned at 0.33.0.** APM 0.33.0 installs this package cleanly, on Windows too. APM
-0.29.1 to 0.31.0 staged every package under about 148 more characters of folders —
-`apm_modules/.apm-resolution-staging/` and two long hashes — and on Windows the worked example's
+0.29.1 to 0.31.0 staged every package under long folders, and on Windows the worked example's
 longest paths passed the 260-character limit: the install failed with `WinError 3` or
-`WinError 206`, at project scope and with `-g` alike. APM 0.32.0 shortened those hashes
-(microsoft/apm#2941). A version is adopted only once the package's release check passes with it on
-Windows, so the pin is written into every command that runs APM. `uv tool upgrade` keeps it.
+`WinError 206`. APM 0.32.0 shortened them (microsoft/apm#2941). A version is adopted only once the
+package's release check passes with it on Windows, so the pin is written into every command that
+runs APM. `uv tool upgrade` keeps it.
 **Never run `apm self-update`**, nor a bare `apm update` outside an APM project, which forwards to
 it: both bring the newest APM back. A machine on any other APM runs the same
 `uv tool install apm-cli==0.33.0` over it. If `apm` is *command not found*, run

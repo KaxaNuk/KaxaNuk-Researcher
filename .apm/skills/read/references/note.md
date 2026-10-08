@@ -66,7 +66,7 @@ tags: [expected-returns, risk-premia]
 - `tags` — by the owner's tag policy in `RESEARCHER.md`. Optional in a strategy.
 
 A chapter note carries the book's `source`, `citation` and `local_copy`; its `read` names the
-chapter. Nothing else goes in the frontmatter: the Investment Lab reads these fields.
+chapter. Nothing else goes in the frontmatter: `audit` checks these fields.
 
 ## A chapter note
 

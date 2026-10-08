@@ -11,7 +11,7 @@ by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy wor
 
 | Path | What it is | Changed how |
 | --- | --- | --- |
-| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as the README's *Development* shows, and a new session there; before a release, that install deploys exactly 21 skills, 9 commands, 3 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
+| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as `CONTRIBUTING.md`'s *Development* shows, and a new session there; before a release, that install deploys exactly 21 skills, 9 commands, 3 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
 | the skills' `scripts/` | `scaffold.py`, `extract.py`, `check_numbers.py`, `bloom_code_check.py`: what `init-*`, `read`, `audit deep` and `bloom-code-lint` run for every user | nothing tests them: a change is tried by running the skill that uses it in a scratch folder before the commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
@@ -49,14 +49,21 @@ marked.
   a change to a library's API changes its skill in the same release, and the worked example where
   it uses that library — with a new example version and a journal entry, re-run where a figure
   moves.
+- **A new starting point** — valuation, M&A, a budget — is a folder under `templates/` that
+  `scaffold.py` copies, a kind in its `STARTING_POINTS`, and an `init-<kind>` skill that runs it as
+  `init-strategy` does. Its `AGENTS.md` names it in a marker line that survives its setup,
+  `<!-- kaxanuk-starting-point: <kind> -->`, alone at column 0, and carries a `## Next` table,
+  *Done when* and *The next thing*, that `next` reads for any kind other than a strategy. No folder
+  in it is named `Bibliotheca/`: that is a strategy's word only, and every skill that finds one
+  reads the folder as a strategy.
 - **A fork changes every line that names `KaxaNuk-Researcher`**, in either case —
   `git grep -i kaxanuk-researcher` finds them, `scaffold.py`'s `INSTALLED_PACKAGE_PATHS` included —
   and installs as the one researcher package on its user's machine. Two packages with skills or
   commands of the same names do not share a user: a `-g` install of the second replaces a
   same-named skill of the first, with a warning, and overwrites a same-named command silently. The
   last install wins.
-- **Ruff and the Bloom Code check pass before any commit,** run as the README's *Development*
-  section shows. There is no CI: nothing runs them for you.
+- **Ruff and the Bloom Code check pass before any commit,** run as `CONTRIBUTING.md`'s
+  *Development* section shows. There is no CI: nothing runs them for you.
 - **Markdown you write or change is wrapped at 100 columns**, with no literal tab and LF line
   endings. A line inside a fenced code block, a table row, a line carrying a URL, the YAML
   frontmatter at the top of a file and a line copied verbatim from a strategy's fixed or

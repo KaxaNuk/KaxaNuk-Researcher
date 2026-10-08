@@ -6,6 +6,74 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.0.0] - 2026-10-08
+Your own research companion, for every project you work on, with investment research as its home
+ground. You teach it who you are and how you work; it keeps what you read and comes with you to any
+folder. The first stable release: the README says in one page what it is, how to install it and how
+to remove it, and your home's README teaches six habits for working well with it.
+
+**What to do differently:** say `update` in your home, then once more in a new conversation — the
+first brings this version, and the second, run by it, adds what the first could not: on Gemini or
+Windsurf, your researcher itself (home template 0.22.0).
+
+**Since 0.34.1**, one line each:
+- **0.35.0** — APM moves to 0.33.0, which installs the package cleanly on Windows.
+- **0.36.0** — your researcher saves your work for you; `backup` keeps a copy on GitHub, only
+  when you ask.
+- **0.37.0** — the Lab skills know the Lab's newest builds; KaxaNuk's Python style applies only
+  in KaxaNuk's repositories.
+- **0.38.0** — a word, at most once a week, when a new version of your researcher or of a Lab
+  library is out.
+- **0.39.0** — three traps a live strategy fell into are caught for every strategy.
+- **0.40.0** — a new strategy says what to expect on its first day; the worked example does what
+  its pages promise.
+- **0.41.0** — a shorter, warmer start: two questions about you, then one next thing; say
+  *remember this* and your researcher keeps the rule.
+### Added
+- **`CONTRIBUTING.md`**: the install by hand and the APM pin, the path after the install, what the
+  repository holds and owns, and *Development* — moved from the README unchanged; `AGENTS.md`
+  points at it.
+- **Room for the starting points to come**: the root `AGENTS.md` gives the rule a new one follows
+  — a folder under `templates/` that `scaffold.py` copies, an `init-<kind>` skill, the marker line
+  `<!-- kaxanuk-starting-point: <kind> -->` and a `## Next` table in its `AGENTS.md`;
+  `Bibliotheca/` stays a strategy's word. `next` (1.8.0) recognises such a folder by the marker
+  and reads its table for the one next thing.
+### Changed
+- **The README** opens with what the researcher is, for anyone — train your own research companion,
+  which comes with you to every project — and a four-line exchange; then the install, which says
+  each assistant needs you signed in and that, with Claude, installing adds three house rules; a use
+  table with *teach it how you work* and *bring it into any project*; *Its home ground: investment
+  research*, what a strategy needs from outside the package and `lab@kaxanuk.mx`; *Coming next*,
+  starting points for valuation (DCF, multiples), M&A and budgets; and *Removing it*, two pinned
+  `apm uninstall -g` lines — tried with APM 0.33.0 on the package installed from GitHub and a home
+  named *Sofía* — and the daily brief's task to delete in the app. 1,381 words up to the developers'
+  link, where 0.34.1's ran 3,632 whole; *Qué es* moves into the Spanish install.
+- **The skills and commands tables** keep one short line a row; the reading-map sentence, the
+  pre-0.10.0 note and the two-writes paragraph leave the README, their rules staying in the home's
+  `AGENTS.md`. *What it will not do* names every journal entry the researcher appends — the
+  benchmark's choice, the rule read back, `challenge`'s — each on your go.
+- **`study`** says what to do today with work that needs code or data: make a folder for it, open
+  your assistant there and say your researcher's name.
+- **`next`** (1.8.0) is tighter, no rule dropped: the Lab's access and Analytics Factory lines are
+  read from `references/investment-lab.md`; its row 3 finds the skill alone on an assistant that
+  takes no agent.
+- **`read`** (0.12.1): the note convention gives the true reason for its fixed frontmatter —
+  `audit` checks those fields.
+- **The package's description** says what it is: your own research companion, with investment
+  research as its home ground.
+- **The home template** (0.22.0): its README teaches *Working well with your researcher* and folds
+  the advanced sections away; its `AGENTS.md` says the install mechanics once, 6,518 words where
+  0.34.1's held 6,541; the Lab section names the Analytics Factory.
+### Fixed
+- **Gemini and Windsurf now get your researcher.** Installing a home deploys only to the assistants
+  its own `apm.yml` lists under `targets:`, with APM 0.29.0 as with 0.33.0, and the template listed
+  four; a Gemini or Windsurf user had the package's skills but never the researcher's own. The
+  template now lists `gemini` and `windsurf`, which take the skill alone; `update` proposes a line
+  the template lists and the home lacks, whatever version the home is at, and installs the home
+  again; `next` sends a home missing the assistant in use to `update`; `interview` (2.4.1),
+  `SETUP.md` and the home's `AGENTS.md` say an assistant must be in both lists. OpenCode stays
+  out: it rejects the agent APM writes for it, as `SETUP.md` now says.
+
 ## [0.41.0] - 2026-10-08
 Getting started is shorter and warmer: two questions about you, then one next thing. The interview
 now asks what you work on — at work and on your own — and what you would like a hand with,

@@ -24,19 +24,9 @@ your researcher, it proposes a paragraph about it to replace this one, on your g
 | `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
 | `Extracts/` | text pulled out of the PDFs, for `read`; remade when needed, kept on this computer only | nothing to do |
 
-## Keep a copy off this computer
-
-Each go saves a dated version of what your researcher wrote, on this computer only: a broken or
-lost laptop would take your library with it. Say *keep a copy*, or run `backup`, and your
-researcher puts this folder on a private GitHub repository — a copy only you can see — sends each
-new version there, and brings it back on a new computer. You need a free GitHub account; signing
-in is yours to do, and the rest it does for you or walks you through.
-
-The copy holds your notes, studies, lessons, clippings kept as text, `RESEARCHER.md` and
-`Philosophy/`, your answers included: keep it private. It never holds the PDFs, images and office
-files in `Sources/`, nor `Extracts/`, `Briefs/` or `Portfolio/` — they stay on this computer. Keep
-the PDFs and `Portfolio/` somewhere private of your own: an external disk, or a personal cloud
-folder outside this one.
+**A copy off this computer.** Each go saves a dated version of what your researcher wrote, on this
+computer only. For a private copy on GitHub, which a lost laptop does not take with it, say *keep a
+copy*, or run `backup`; the PDFs, `Briefs/` and `Portfolio/` never go in it.
 
 ## The path
 
@@ -75,26 +65,37 @@ line, at most once a week; say `update` and it brings it — the package for eve
 change to this home shown as a diff first. *Not now* waits a month; *stop reminding me* turns it
 off. In Claude, type the commands with a slash, `/read`; anywhere else, ask for them by name.
 
+## Working well with your researcher
+
+- **One task per conversation**; start a new one when the subject changes.
+- **Give it the file**, not a summary from memory: attach it, or say where it is.
+- **Say *remember this*** when you want a rule kept; it goes in `RESEARCHER.md`, on your go.
+- **Ask it to argue the other side**, or what would change your mind.
+- **Click the links**: every claim names its note, and a claim without one is a lead.
+- **After an install or an update**, open a new conversation.
+
 ## The KaxaNuk Investment Lab
 
 A strategy you build from here can use KaxaNuk's Lab libraries: the Data Curator is open source; the
 Backtest Engine and Attribution Analysis are licensed; Portfolio Construction is on request, and
-licensed since its 2.0.0; the Data Refinery and the Data Analyzer are coming.
-<https://www.kaxanuk.mx/lab> shows them. Write to `lab@kaxanuk.mx` for a licence or access, or to
-report a problem with your researcher — with the versions your researcher names when you ask
-*which version are you?*
+licensed since its 2.0.0; the Data Refinery and the Data Analyzer are coming. Attribution reads the
+benchmark and factor model files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>;
+<https://www.kaxanuk.mx/lab> shows the libraries. Write to `lab@kaxanuk.mx` for a licence, access
+or those files, or to report a problem with your researcher — with the versions your researcher
+names when you ask *which version are you?*
 
 ---
 
 ## In a strategy or another project
 
-Open your assistant in the project's folder: the researcher is there, and reads this home when the
-work needs it. Add this folder to the session — `claude --add-dir <this folder>`, `/add-dir` once
-inside, or the desktop app's add-folder button — for it to read the library without asking each
-time. Work on a strategy lands in the strategy; nothing comes back here unless you ask, and then as
-a source in `Sources/` that `read` files.
+Open your assistant in the project's folder and call your researcher by name: it is there, and
+reads this home when the work needs it. Add this folder to the session —
+`claude --add-dir <this folder>`, `/add-dir` once inside, or the desktop app's add-folder button —
+for it to read the library without asking each time. Work on a strategy lands in the strategy;
+nothing comes back here unless you ask, and then as a source in `Sources/` that `read` files.
 
-### The rules, loaded from the first line
+<details>
+<summary><strong>The rules, loaded from the first line</strong></summary>
 
 *Optional, and for Claude Code only.* Every skill reads `AGENTS.md` and `RESEARCHER.md` before it
 works. To have them loaded from a session's first line in a strategy, Claude Code must read this
@@ -114,6 +115,8 @@ strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md
 `.gitignore`, and approve the external import the first time the assistant asks — declined, it
 stays off.
 
+</details>
+
 ## Growing your researcher
 
 It grows four ways, each governed by a section of `AGENTS.md`:
@@ -123,8 +126,7 @@ It grows four ways, each governed by a section of `AGENTS.md`:
    files reach `Sources/` and how they are cited.
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
    `.apm/prompts/`, written as below, then
-   `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` and a new session. *Where the
-   skills, the commands and the agent live* says where it deploys.
+   `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` and a new session.
 3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`, by hand or
    through `read`, which asks for your first. The paragraph after the folder table in *What each
    folder is, and who may write in it* says who writes that file.
@@ -132,7 +134,8 @@ It grows four ways, each governed by a section of `AGENTS.md`:
    it speaks* or *Non-negotiables* in `RESEARCHER.md` on your go — or add it by hand; every skill
    and the agent read it first. The same paragraph governs it.
 
-### Writing a skill or a command of your own (advanced)
+<details>
+<summary><strong>Writing a skill or a command of your own (advanced)</strong></summary>
 
 Only when you want a procedure of your own; nothing here is needed to use the researcher. Write it
 the way KaxaNuk's own APM packages write theirs, under a name the package does not use:
@@ -156,27 +159,26 @@ the way KaxaNuk's own APM packages write theirs, under a name the package does n
   hand. With only skills, prompts and agents, `apm compile` leaves `AGENTS.md` and `CLAUDE.md`
   alone and writes a `GEMINI.md` that imports them, which git ignores.
 
-## Installing and updating
+</details>
+
+<details>
+<summary><strong>Installing and updating</strong></summary>
 
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
 folder: they are installed once for your user and updated with
 `uvx --from apm-cli==0.33.0 apm update -g`; `update`, run here, brings what changed in this home's
 own files across. On a new machine, or after adding an assistant under `targets:` in
-`~/.apm/apm.yml`, install this home yourself, once:
+`~/.apm/apm.yml` and in this home's `apm.yml`, install this home yourself, once:
 
 ```bash
 uvx --from apm-cli==0.33.0 apm install -g "<this folder>"
 ```
 
-APM first copies this whole folder — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/`
-included — into `~/.apm/apm_modules/_local/<folder name>/` on this computer, refreshed by each
-install, and deploys only its `.apm/`: nothing leaves the machine, and on Windows a path there past
-260 characters, from a long `Extracts/` name, fails the install — a shorter path to this home, or
-fewer deep extracts, fixes it.
-
 The home's own version in `apm.yml` is yours: `interview` sets it to 0.1.0, you bump it with each
 entry you add to `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never
 this field. `CHANGELOG.md` holds the template's changelog, then this home's.
+
+</details>
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: studies and lessons
 are built from the notes, and no note is ever built from a study. `Philosophy/` is cited, never

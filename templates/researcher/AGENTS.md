@@ -15,16 +15,16 @@ own, the agent in `.apm/agents/` and the researcher's skill in `.apm/skills/<slu
 the home for the owner's user, beside the package, with
 `uvx --from apm-cli==0.33.0 apm install -g "<the home>"`. The skill's description names the
 researcher, the owner and the home by path, so every session on the machine, in any folder and on
-any assistant `~/.apm/apm.yml` lists under `targets:`, knows who it is before anything is loaded,
-and the agent is callable by name from any folder. Add an assistant to `targets:`, run the same
-command again, and the researcher follows. There are two ways to work:
+any assistant listed under `targets:` in both `~/.apm/apm.yml` and this home's `apm.yml`, knows who
+it is before anything is loaded, and the agent is callable by name from any folder. Add an
+assistant to both lists, run the same command again, and the researcher follows. There are two
+ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
   path, `blueprint 1 D:\Research\fcf-yield-quality`, and its work still lands in the strategy.
-- **In a strategy.** Open the assistant in the strategy's folder. The skills and the commands are
-  there already — one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user with
-  `apm install -g` — and so are the researcher's skill and its agent, so **the strategy installs
-  nothing of its own**, and one `apm update -g` keeps every strategy current. Adding the home to
+- **In a strategy.** Open the assistant in the strategy's folder: the skills, the commands, the
+  researcher's skill and its agent are there already, installed for the user, so **the strategy
+  installs nothing of its own**, and one update keeps every strategy current. Adding the home to
   the session, as `README.md` shows, lets the researcher read the library without asking each
   time; it is not what makes the researcher present. The strategy's own `AGENTS.md` still governs.
   Either way, strategy work writes nothing at home, as *Working in a strategy* below says.
@@ -67,7 +67,7 @@ another folder, the write is saved in the home, with `git -C "<the home>"`.
 | `Knowledge/` | what the researcher read — one note per paper, one folder per book with a note per chapter read — and its wiki: one concept page per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
 | `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
 | `Knowledge/LOG.md` | append-only record of every read, audit and refresh, and of every synthesis page kept | **append one entry** at the end of those runs, and from `query` when a page is kept; never edit past entries |
-| `Philosophy/` | the owner's voice — how they invest, what they believe, in their own words, in `HOW-I-INVEST.md` and any file of their own beside it; and `Evolution/`, one round file per `philosophy` round, `YYYY-MM-DD.md` (`YYYY-MM-DD-2.md` for a second the same day) — the round's number, date and level on its first line, then the question IDs with the owner's typed answers word for word, or their status, and *kept*, *changed*, *new* or *still open* on a retake — the record of how those answers moved: read for dates and levels, quoted only as the record of a round, by `philosophy`'s retake and `query`'s *How has my view changed*, and never cited as the owner's view or as evidence — `HOW-I-INVEST.md` is the owner's view | **read and cite**, and write through its two writers only: `philosophy` adds the owner's typed answers to `HOW-I-INVEST.md`, word for word and add-only, after the owner's go, and writes one round file in `Philosophy/Evolution/`, never edited afterwards; `refine` edits `HOW-I-INVEST.md` as an editor, diff first, and never touches `Evolution/`. `refine` takes the same pass over any other file the owner keeps in `Philosophy/`, outside `Evolution/`. No text of the researcher's own goes here: `HOW-I-INVEST.md` never takes a pick — not even one the owner made — nor an example, a placement or *not sure yet*, and a round file holds nothing but the round's number, date and level, the IDs, the owner's answers or their status, and on a retake the labels *kept*, *changed*, *new* and *still open* |
+| `Philosophy/` | the owner's voice — how they invest and what they believe, in their own words, in `HOW-I-INVEST.md`, their view, and any file of their own beside it; and `Evolution/`, one round file per `philosophy` round (format: the `philosophy` skill), the record of how their answers moved: read for dates and levels, quoted only as a round's record, never cited as the owner's view or as evidence | **read and cite**, and write through its two writers only: `philosophy` adds the owner's typed answers to `HOW-I-INVEST.md`, word for word and add-only, after the owner's go, and writes one round file in `Philosophy/Evolution/`, never edited afterwards; `refine` edits `HOW-I-INVEST.md` as an editor, diff first, and never touches `Evolution/`. `refine` takes the same pass over any other file the owner keeps in `Philosophy/`, outside `Evolution/`. No text of the researcher's own goes here: `HOW-I-INVEST.md` never takes a pick — not even one the owner made — nor an example, a placement or *not sure yet*, and a round file holds nothing but the round's number, date and level, the IDs, the owner's answers or their status, and on a retake the labels *kept*, *changed*, *new* and *still open* |
 | `Studies/` | the owner's own work from the library — an idea that is not a strategy yet, or a decision, a plan or a memo with no repository of its own — one file each, or a folder once it needs more; *Studies* below says what one holds. The template ships it empty | **write, through `study` only**, after its plan and the owner's go |
 | `Lessons/` | `teach`'s lessons, one folder per topic — its `progress.md` and `sessions/`. The template ships none: `teach` creates it the first time it runs | **write, through `teach` only**, after its plan and the owner's go |
 | `Briefs/` | the daily brief, one `YYYY-MM-DD.md` a day in up to three parts — Work, Markets, Portfolio — written by `brief`, run by name or on the schedule `brief setup` made. The template ships none: the first brief creates it | **write, through `brief` only**: one file a day, never edited afterwards. Never cited, never a source: a figure there enters the library only as a source in `Sources/`, then `read`. Gitignored |
@@ -120,7 +120,7 @@ owner collected — articles, transcripts, threads — never the owner's own wri
   instead, and is named by its idea, `Position_Sizing_Rules.md`.
 - **Links are standard markdown links** between notes —
   `[Ilmanen (2011), chapter 3](Ilmanen_2011_Expected_Returns/03_The_Equity_Premium.md)` —
-  so GitHub renders them and the Investment Lab can index them. Never wikilinks.
+  so GitHub renders them. Never wikilinks.
 - **Dense over decorative.** Bullets, tables, the source's own terms. First the provenance — the
   chapter and pages read; then `## Why it is here` — the question in `RESEARCHER.md` the source
   serves, by number, and the owner's reason in their words, absent if they gave none, never
@@ -338,34 +338,21 @@ owner's consent. It answers, it cites, and it names the skill or command the own
 
 ## Where the skills, the commands and the agent live
 
-The researcher arrives in two parts: **one package, installed once for the user** —
-`KaxaNuk/KaxaNuk-Researcher`, every Investment Lab skill with the researcher's own, never committed
-here and brought to its next version by `apm update -g` — and **this home's own**, the agent and
-the researcher's skill, written from `RESEARCHER.md` and installed beside the package. The home's
-own version in `apm.yml` is the owner's, as `README.md`'s *Installing and updating* says.
+**One package**, `KaxaNuk/KaxaNuk-Researcher`, and **this home's own** `.apm/` are installed for
+the user, never inside this home, where a copy goes stale. `README.md`'s *Installing and updating*
+has the commands and says the home's own version is the owner's; *Troubleshooting* in the package's
+`SETUP.md` says what installing the home copies.
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
 | **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read` and `query`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
-| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
+| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |
-| **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the three house instructions — Bloom Code and PEP 8 for Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries for every file the assistant reads, in any project — on the assistants that receive them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as *Troubleshooting* in the package's `SETUP.md` says. The home adds none: one in its `.apm/instructions/` would be rendered by `apm compile` over this file, which is written by hand |
+| **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the three house instructions — Bloom Code and PEP 8 for Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries for every file the assistant reads, in any project — on the assistants that receive them, which *Troubleshooting* in the package's `SETUP.md` names. The home adds none: one in its `.apm/instructions/` would be rendered by `apm compile` over this file, which is written by hand |
 
-- **`uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`
-  deploys the package once per machine**, into the user's folders — `~/.claude/skills/` and
-  `~/.claude/commands/` for Claude Code, the matching folders for the rest — and keeps it in
-  `~/.apm/apm_modules/`. **`uvx --from apm-cli==0.33.0 apm install -g "<the home>"` deploys this
-  home's own** — the agent, the researcher's skill and any skill or command of its own — into the
-  same user folders, `~/.claude/agents/` and `~/.claude/skills/` for Claude Code, for every target
-  `~/.apm/apm.yml` lists. It first copies the whole home — `.git/`, `Sources/`, `Extracts/`,
-  `Briefs/` and `Portfolio/` included — into `~/.apm/apm_modules/_local/<folder name>/` on this
-  machine, refreshed by each install, and deploys only its `.apm/`; nothing leaves the machine. On
-  Windows a deep path in that copy, a long `Extracts/` slug, can pass the 260-character limit and
-  fail the install: a shorter home path fixes it, or fewer deep extracts — a regenerable cache.
-  An install inside the home is not needed; `apm.yml`'s comment says why. Git ignores all of it.
 - **Change a skill at its source, never in a deployed copy.** A fix every home needs is a pull
-  request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with `apm update -g`. A skill or command of
+  request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with the next update. A skill or command of
   this home's own goes in `.apm/skills/` or `.apm/prompts/` here, written as `README.md`'s *Growing
   your researcher* says, and deploys beside the package's — under a name the package does not use.
   Then install the home again, as above, and open a new session: a skill or a command is

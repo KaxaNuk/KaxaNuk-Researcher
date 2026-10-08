@@ -1,32 +1,35 @@
 name: kaxanuk-researcher
-version: 0.21.0
-description: A KaxaNuk researcher — a companion you name and teach, with the KaxaNuk Strategy Template's process built in, that keeps a library of what you read, works out your ideas and decisions from it and drafts the hypothesis of every strategy you build
+version: 0.22.0
+description: A KaxaNuk researcher — your own research companion, which you name and teach; it keeps a library of what you read and answers from it with sources, works out your ideas and plans, briefs you each morning and comes with you to every project; its home ground is investment research
 author: KaxaNuk
 license: MIT
 
 # The researcher's skills and commands are installed once for the user, not here:
-# `apm install -g KaxaNuk/KaxaNuk-Researcher`, which carries every Investment Lab skill itself,
-# and `apm update -g` brings new versions. Every folder — this home, and every strategy —
-# then has them, and a strategy installs nothing. `apm install -g "<this folder>"` installs this
-# home's own for the user, beside the package — the agent in `.apm/agents/` and the researcher's
-# skill in `.apm/skills/`, which `interview` writes, and any skill or command of this home's own —
-# so the researcher is in every folder, for every target in `~/.apm/apm.yml`.
+# `uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher`, which carries every
+# Investment Lab skill itself, and `uvx --from apm-cli==0.33.0 apm update -g` brings new versions.
+# Every folder — this home, and every strategy — then has them, and a strategy installs nothing.
+# `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` installs this home's own for the
+# user, beside the package — the agent in `.apm/agents/` and the researcher's skill in
+# `.apm/skills/`, which `interview` writes, and any skill or command of this home's own — so the
+# researcher is in every folder, for every target listed both in `~/.apm/apm.yml` and below.
 dependencies:
   apm: []
   mcp: []
 
-# The targets below serve only an install inside this folder, which the home no longer needs:
-# since template 0.14.0 it is installed for the user, as above, and a copy inside it goes stale
-# the first time the agent or a skill changes. These four are the ones that take an agent; the
-# rest have no agent primitive or reject its tool list.
+# Installing this home deploys only to the targets listed here that `~/.apm/apm.yml` lists too: an
+# assistant missing here receives neither the agent nor the researcher's skill. The first four take
+# the agent and the skill; Gemini and Windsurf have no agent primitive and take the skill alone.
+# OpenCode is left out: it rejects the agent APM writes for it. Never install inside this folder.
 targets:
   - claude
   - copilot
   - cursor
   - codex
+  - gemini
+  - windsurf
 
-# What deploys: only `.apm/`, though `apm install -g "<this folder>"` first copies the whole
-# folder — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/` included — into
+# What deploys: only `.apm/`, though installing the home first copies the whole folder —
+# `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/` included — into
 # `~/.apm/apm_modules/_local/<folder name>/` on this machine, refreshed by each install. Nothing
 # leaves the machine. On Windows a deep path in that copy, a long `Extracts/` slug, can pass the
 # 260-character limit and fail the install; a shorter path to this home fixes it, or fewer deep

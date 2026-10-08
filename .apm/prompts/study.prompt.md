@@ -13,12 +13,10 @@ names by path, as `interview`'s hand-over does. In a strategy, the next thing to
 journal's and a claim is `objective`'s; in another project the owner invited the researcher into,
 the work lives in that project. Say so and stop.
 
-A study is the owner's own work from the library: an idea that is not a strategy yet, or a
-decision, a plan or a memo with no repository of its own. A synthesis page that `query` keeps says
-what the library holds; a study says what the owner will do about it. `${input:subject}` is the
-subject in the owner's words, or the name of a study already in `Studies/`. Running this command
-names `Studies/` as the only place it may write — the place, not the go: every write waits for a
-plan and an explicit go, as `AGENTS.md` requires of every command that writes.
+`${input:subject}` is the subject in the owner's words, or the name of a study already in
+`Studies/`. Running this command names `Studies/` as the only place it may write — the place, not
+the go: every write waits for a plan and an explicit go, as `AGENTS.md` requires of every command
+that writes.
 
 ## Step 1: Which study
 
@@ -90,8 +88,9 @@ Rules:
 - **Words only.** Code, data and notebooks belong in a repository of their own. When the study needs
   them, or the idea is ready to be a strategy, say so: its state becomes *moved to `<path>`*, it
   stays behind as the record, and the next thing is `init-strategy <name>` — where the study is the
-  owner's words for `objective`'s first pass, named in prose, never linked — or a repository of the
-  owner's own, with the researcher invited in.
+  owner's words for `objective`'s first pass, named in prose, never linked — or, for other work,
+  what to do today: make a folder for it, open the assistant there and say the researcher's name,
+  and the researcher joins it as *Joining other projects* in `AGENTS.md` says.
 - **A revision keeps every line the owner wrote.** What the new reading changes is proposed as a
   change, never made silently; the date moves, and the state moves only when the owner says so.
 
@@ -110,7 +109,7 @@ name, never `--all`, and `git commit -m "Study: <subject>"`; to the owner, *Save
 line, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to
 their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in
 one plain line, set them in this folder only, never invented, and save again; with no `.git/`, say
-in one line that the home keeps no versions yet. This replaces an older home's *Commit?* question.
+in one line that the home keeps no versions yet.
 
 Never move, rename or delete a study on your own, never write outside `Studies/`, and never cite a
 study as a source — in a note, a concept page or a strategy.

@@ -28,10 +28,11 @@ The researcher arrives in two parts, and each updates its own way:
   shown, never merged: the owner's home may have renamed its prose. `LICENSE` is compared without
   its copyright line, which is the owner's to keep and never proposed back to KaxaNuk. In
   `apm.yml` the comments, `includes` and `dependencies` are compared: its `name`, `version`,
-  `description`, `author` and `targets` are the owner's — the version by a rule of its own, which
-  the report in *Step 5* gives in these words: "The home's own version in `apm.yml` is yours:
-  `interview` sets it to 0.1.0, you bump it with each entry you add to `CHANGELOG.md`, and `update`
-  reads the *Brought to template* line there, never this field."
+  `description`, `author` and `targets` are the owner's, but for an assistant the template's
+  `targets:` lists and the home's does not, proposed as a line to add — the version by a rule of
+  its own, which the report in *Step 5* gives in these words: "The home's own version in
+  `apm.yml` is yours: `interview` sets it to 0.1.0, you bump it with each entry you add to
+  `CHANGELOG.md`, and `update` reads the *Brought to template* line there, never this field."
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/` — its round files in
 `Philosophy/Evolution/` included, which nothing edits once `philosophy` has written them —
@@ -185,31 +186,37 @@ agent's file name and `name:` with it, nothing else in the agent.
   goes stale the first time the agent changes; so are the copies a changed slug leaves in the
   user's folder, the skill and the agent there whose `name:` is the old slug, under the name APM
   gave them — `~/.claude/skills/sofa/` for `sofía`.
+- **`targets:` in `apm.yml`, whatever template version the home is at.** Installing a home reaches
+  only the assistants listed under `targets:` both in its `apm.yml` and in `~/.apm/apm.yml`. Each
+  one the template's lists — the second command, run with `templates/researcher/apm.yml` — and the
+  home's does not is to be added as a line, and the home then installed for the user; the home's
+  other lines there are the owner's, and stay.
 - **Report in chat:** first the installed package version, as `apm deps list -g` names it, and the
   home's template version — the two a problem report to `lab@kaxanuk.mx` names; then the versions
   crossed, newest first, one line each on what changed, and every **What to do differently**
   instruction that applies to this home, in full. Those instructions are the point of the update;
   never summarise them away.
 - **All current?** Say so, with those two versions, and stop — unless the home still has a
-  `Projects/`, lacks `Studies/`, or its researcher's skill or the install for the user is missing
-  or behind, which go on to the plan as the items above list them. **`check` mode?** Stop here.
+  `Projects/`, lacks `Studies/` or a `targets:` line the template lists, or its researcher's skill
+  or the install for the user is missing or behind, which go on to the plan as the items above list
+  them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
 In chat: the pinned APM install, when *Step 1* asked for it; the package versions before and after;
-for each home file, the sections to bring across, quoted, in the home's own names, and each file
-the home lacks, to bring across whole — `Studies/.gitkeep` among them, when the folder is
-missing; what a migration removes; each move out of `Projects/` and its removal, path by path, and
-what stays there; the researcher's skill, shown whole when new and as a diff when written again,
-the agent's move when the slug changes, the install for the user and each copy to delete; and what
-the owner will have to do by hand afterwards, one line for each heading, line or blockquote of
-their own files that the template changed. When a strategy the session is in, or one the table
-*The strategies and projects it works on* in `RESEARCHER.md` lists, has a `BLUEPRINT_N.md` saved
-and no `FINDINGS_N.md` that reports yet, one more line, with the version its *Drafted with* stamp
-names: *Experiment N was drafted with X.Y.Z; `challenge` will name both versions — update now, or
-after its findings.* Then ask for the go through the question tool — *Go*, described as *update
-it and save a version*; *Change something*; *Stop* — and update on *Go* only; in chat, any of the
-go words in the home's `AGENTS.md` is the go.
+for each home file, the sections to bring across, quoted, in the home's own names, the `targets:`
+lines to add to `apm.yml`, and each file the home lacks, to bring across whole — `Studies/.gitkeep`
+among them, when the folder is missing; what a migration removes; each move out of `Projects/` and
+its removal, path by path, and what stays there; the researcher's skill, shown whole when new and as
+a diff when written again, the agent's move when the slug changes, the install for the user and each
+copy to delete; and what the owner will have to do by hand afterwards, one line for each heading,
+line or blockquote of their own files that the template changed. When a strategy the session is in,
+or one the table *The strategies and projects it works on* in `RESEARCHER.md` lists, has a
+`BLUEPRINT_N.md` saved and no `FINDINGS_N.md` that reports yet, one more line, with the version its
+*Drafted with* stamp names: *Experiment N was drafted with X.Y.Z; `challenge` will name both
+versions — update now, or after its findings.* Then ask for the go through the question tool — *Go*,
+described as *update it and save a version*; *Change something*; *Stop* — and update on *Go* only;
+in chat, any of the go words in the home's `AGENTS.md` is the go.
 
 ## Step 4: Update
 
@@ -248,11 +255,11 @@ go words in the home's `AGENTS.md` is the go.
    `uvx --from apm-cli==0.33.0 apm install --target <the owner's agent>` in the home, which removes
    the copies it deployed before; the agent it deploys there is deleted in item 5, once the home is
    installed for the user.
-3. **The home's files**, the sections the owner approved. A file the home has is edited in place,
-   in the home's own names, and nothing else in it changes. A file the home lacks — one a later
-   template added, such as `.gitattributes` or `Studies/.gitkeep` — is brought across whole by the
-   script in the `init-strategy` skill's folder, run from the home's root, never written from
-   memory. It copies the one path and never overwrites:
+3. **The home's files**, the sections and the `targets:` lines the owner approved. A file the home
+   has is edited in place, in the home's own names, and nothing else in it changes. A file the home
+   lacks — one a later template added, such as `.gitattributes` or `Studies/.gitkeep` — is brought
+   across whole by the script in the `init-strategy` skill's folder, run from the home's root, never
+   written from memory. It copies the one path and never overwrites:
 
    ```bash
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only <path>
@@ -274,7 +281,8 @@ go words in the home's `AGENTS.md` is the go.
    destination that exists, which would nest one inside the other. `rmdir` once `Projects/Teach/`
    is empty, and `git rm` only when nothing but `Projects/.gitkeep` is left, which removes the
    folder with it. What the owner chose to keep in `Projects/` stays where it is.
-5. **The researcher's skill and the install for the user**, as the owner approved. When the slug
+5. **The researcher's skill and the install for the user**, as the owner approved — the install
+   alone, below, when only `targets:` gained a line. When the slug
    changed, `git mv` the old skill folder to `.apm/skills/<slug>/` and the agent to
    `.apm/agents/<slug>.agent.md`, so both keep their history, and set the agent's `name:` to
    `<slug>`. Write `.apm/skills/<slug>/SKILL.md`; install the home beside the package, so the agent
