@@ -1,20 +1,24 @@
 # Ways to use your researcher
 
-Twelve things you can ask for today. In Claude, type a command with a slash, `/study`; anywhere
-else, say it. Whatever writes a file shows its plan first and writes only on your go, except a
-brief: running `brief`, or the schedule you approved, writes it.
+Twelve things you can ask for. In Claude, type a command with a slash, `/study`; anywhere else, say
+it. Whatever writes a file shows its plan first and writes only on your go, except a brief: running
+`brief`, or the schedule you approved, writes it.
 
-## A brief every Friday
+## Bring it into my work project
 
-Say `brief setup`. It asks which parts you want (Work, Markets, Portfolio), when, and which market
-measures. Pick *Other*: *Fridays at 07:30*. The Claude desktop app schedules it. Each Friday, while
-the app is open or at its next launch, a dated file appears in `Briefs/`: that day's meetings and
-what mail and chat ask of you, market levels, news on your holdings — the last day's, not the
-week's. Anywhere else nothing is scheduled: each Friday, say the line `brief setup` gives you;
-`brief` alone takes the defaults.
+Open your assistant in the project's folder and say your researcher's name. It brings your library,
+objects with the note behind each point, and says when it has nothing. The project's own rules
+govern; it writes there only after a plan and your go.
 
-*Never:* a figure of its own or a guess: every level is quoted from a dated source. Nothing is sent;
-briefs stay on your computer.
+*Never:* anything carried back home unless you ask, and then as a source to `read`.
+
+## Help me think a decision through
+
+Say `study pay off the loan early or invest the difference`. It asks what you want to settle, then
+drafts a study: your words, your library for and against, the simpler option to beat, and anything
+from outside marked *not checked*. It ends with what you decided, or what you would need to see.
+
+*Never:* a number worked out for you. The decision is yours.
 
 ## Work toward a goal
 
@@ -25,16 +29,17 @@ against your plan, and *Where it stands*, each next step with its command. Come 
 
 *Never:* a projection of its own. You judge the progress; the state moves only on your word.
 
-## Watch my holdings beside my own rules
+## A brief every Friday
 
-Pick *Portfolio* in `brief setup`. It creates two files for you to fill, never over yours:
-`Portfolio/holdings.csv`, one row a holding, and `Portfolio/RULES.md`, headings for your rules (how
-much in one place, when you sell, when you look again). Each brief then gives each holding's news,
-next earnings date and new filings, and quotes word for word each rule of yours the news bears on.
-Both files stay on your computer, never in a saved version or a backup.
+Say `brief setup`. It asks which parts (Work, Markets, Portfolio), when, and which market measures.
+Pick *Other*: *Fridays at 07:30*. The Claude desktop app schedules it. Each Friday, while the app is
+open or at its next launch, a dated file appears in `Briefs/`: that day's meetings and what mail and
+chat ask of you, market levels, news on your holdings — the last day's, not the week's. Anywhere
+else nothing is scheduled: each Friday, say the line `brief setup` gives you; `brief` alone takes
+the defaults.
 
-*Never:* a buy, sell, trim, add or hold of its own, nor a weight, a gain or a return. The rules are
-yours; it only points at them.
+*Never:* a figure of its own or a guess: every level is quoted from a dated source. Nothing is sent;
+briefs stay on your computer.
 
 ## Read a book a chapter at a time
 
@@ -45,29 +50,22 @@ The first `read` asks what you are reading for. Next time, it picks up where you
 
 *Never:* a note from memory, or a book downloaded for you.
 
-## What have I read about index funds?
+## What have I read about pricing?
 
 Ask in plain words, or `query <question>`. It links every claim to its note and names what is
-missing. An answer drawn from three notes or more can become a page in your library. Ask *how has
-my view changed?* and it compares your rounds of `philosophy`.
+missing. An answer from three notes or more can become a page in your library. Ask *how has my view
+changed?* and it compares your `philosophy` rounds, on work or investing.
 
 *Never:* general knowledge passed off as your library.
 
-## Teach me a topic
+## Remember this
 
-Say `teach <topic>` — *teach compound interest*. It checks your library first; with nothing there,
-it helps you pick a work to read. Then a few questions, and one lesson a session, ending with a
-quiz that also revisits earlier ones. `Lessons/<topic>/` keeps each session and what stuck.
+Say *remember this* or *learn this*, anywhere. It sorts what you said: a way of working becomes one
+line in `RESEARCHER.md`, in your words; a document goes into `Sources/`, then `read`; a new project,
+a row in its projects table — each on your go.
 
-*Never:* a lesson from memory: every point cites a note you have read.
-
-## Bring it into my work project
-
-Open your assistant in the project's folder and say your researcher's name. It brings your library,
-objects with the note behind each point, and says when it has nothing. The project's own rules
-govern; it writes there only after a plan and your go.
-
-*Never:* anything carried back home unless you ask, and then as a source to `read`.
+*Never:* your view, on work or investing, written for you: it stays yours, through `philosophy` or
+by hand.
 
 ## Learn the tools I use
 
@@ -77,21 +75,24 @@ notes.
 
 *Never:* a link it could not open: a private repository is cited as one, *link not checked*.
 
-## Remember this
+## Teach me a topic
 
-Say *remember this* or *learn this*, anywhere. It sorts what you said: a way of working becomes one
-line in `RESEARCHER.md`, in your words; a document goes into `Sources/`, then `read`; a new project,
-a row in its projects table — each on your go.
+Say `teach <topic>` — *teach compound interest*. It checks your library first; with nothing there,
+it helps you pick a work to read. Then a few questions, and one lesson a session, ending with a
+quiz that also revisits earlier ones. `Lessons/<topic>/` keeps each session and what stuck.
 
-*Never:* a view on investing written for you: that stays yours, through `philosophy` or by hand.
+*Never:* a lesson from memory: every point cites a note you have read.
 
-## Help me think a decision through
+## Watch my holdings beside my own rules
 
-Say `study pay off the loan early or invest the difference`. It asks what you want to settle, then
-drafts a study: your words, your library for and against, the simpler option to beat, and anything
-from outside marked *not checked*. It ends with what you decided, or what you would need to see.
+Pick *Portfolio* in `brief setup`. It creates two files for you to fill, never over yours:
+`Portfolio/holdings.csv`, one row a holding, and `Portfolio/RULES.md`, headings for your rules (how
+much in one place, when you sell, when you look again). Each brief then gives each holding's news,
+next earnings date and new filings, and quotes word for word each rule of yours the news bears on.
+Both files stay on your computer, never in a saved version or backup.
 
-*Never:* a number worked out for you. The decision is yours.
+*Never:* a buy, sell, trim, add or hold of its own, nor a weight, a gain or a return. The rules are
+yours; it only points at them.
 
 ## Build and test an investment strategy
 
@@ -101,7 +102,7 @@ claim; `blueprint` drafts the thesis, rules and predictions, each citing a note 
 and a critic reads it cold; `challenge` checks the finished experiment against it. `init-example`
 shows a finished one.
 
-*Never:* a return or a drawdown of its own: those come from the KaxaNuk Investment Lab's engines. A
+*Never:* a return or drawdown of its own: those come from the KaxaNuk Investment Lab's engines. A
 strategy needs a key from a data provider, and the engines a licence from `lab@kaxanuk.mx`.
 
 ## Build a Python library of my own

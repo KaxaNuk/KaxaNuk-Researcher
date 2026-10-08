@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.12.2
+  version: 0.12.3
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -169,19 +169,21 @@ three proposals, then *Background reading, no question in mind*, with *Other* fo
 One proposal comes from the source itself, its title and table of contents; the others from the
 *Here for* line and *Works for* under *Who* in `RESEARCHER.md`, or *Works for* alone where there is
 no *Here for*. With *Here for* *Learn the basics, step by step*, or the voice *Explain as you go*,
-every proposal is in everyday words — *can anyone do better than the market, year after year?*,
-*why do people make the same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build
-and test a strategy*, one may come from the reading map's *Questions to read for, from the
-evidence*; with *Write down how I invest, and see it evolve*, one asks about the owner's own way of
-investing; with *Organise what I read, and help with my projects* — or the older *Organise what I
-read* — they follow the source's own subject and the projects *Works for* names. The question the
-owner picks or types is theirs: the plan offers to add it as question 1 under *What you are reading
-for*, in their words — with the copy of *step 2*, the only write this skill makes outside the
-library and the extracts, at home only, said in the plan. Then the table of contents is shown
-against it, as above. In a strategy the questions are the claims in `OBJECTIVE.md`, by number — a
-strategy with none stopped at A, the objective. A question the claims do not cover is a claim to
-add with `objective` before the reading, and *background reading* is a home answer: in a strategy
-every note serves a claim. Nothing is written at home.
+every proposal is in everyday words — *can anyone do better than the market, year after year?*, *why
+do people make the same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build and
+test a strategy*, one may come from the reading map's *Questions to read for, from the evidence*;
+with *Write down how I invest, and see it evolve*, one asks about the owner's own way of investing;
+with *Organise what I read, and help with my projects* — or the older *Organise what I read* — they
+follow the source's own subject and the projects *Works for* names. A proposal drawn from an
+investing pick is offered only when the source is about money or markets; for any other source, the
+proposals follow the source and *Works for*, in everyday words when *Learn the basics* is picked or
+the voice is *Explain as you go*. The question the owner picks or types is theirs: the plan offers
+to add it as question 1 under *What you are reading for*, in their words — with the copy of *step
+2*, the only write this skill makes outside the library and the extracts, at home only, said in the
+plan. Then the table of contents is shown against it, as above. In a strategy the questions are the
+claims in `OBJECTIVE.md`, by number — a strategy with none stopped at A, the objective. A question
+the claims do not cover is a claim to add with `objective` before the reading, and *background
+reading* is a home answer: in a strategy every note serves a claim. Nothing is written at home.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the
@@ -257,9 +259,10 @@ run, a different domain — and ask for the go again on the revised plan.
   a `> [!WARNING]` callout above it naming the newer note by link. Never delete the claim.
 - At home, when the plan added questions: write them under *What you are reading for* in
   `RESEARCHER.md`, in the owner's words, numbered after the ones already there — the first one in a
-  section with none is question 1, in place of the template's *None yet.* paragraph — each
-  followed by *feeds: nothing yet* and *Would change my mind: not yet known*, the labels a question
-  carries there, for the owner to fill by hand. Nothing else in that file changes.
+  section with none is question 1, in place of the template's *None yet.* paragraph, in whatever
+  language it is written — each followed by *feeds: nothing yet* and *Would change my mind: not yet
+  known*, the labels a question carries there, for the owner to fill by hand. Nothing else in that
+  file changes.
 - The index. At home, `Knowledge/INDEX.md`, under the domain, as *What the indexes show* in
   `references/note.md` gives it: *Concepts* first, then *Sources*.
   In a strategy, `BIBLIOGRAPHY.md`: the note's row under the part it bears on — replacing the
@@ -273,22 +276,24 @@ run, a different domain — and ask for the go again on the revised plan.
 ## 7. Report
 
 In chat: what was written, updated and flagged; any gap the source exposed — a concept the library
-leans on with no source behind it — as a suggestion for the sources, naming the work the reading
-map gives as this one's other side when it names one, as a lead; whether the source changes a
-belief in `Philosophy/HOW-I-INVEST.md`, as a question for the owner to answer there in their words,
-by hand or in a round of `philosophy`; and, at home, the strategy a note could serve, with the
-`read <strategy> <source>` that would carry it there, and a study in `Studies/`, still *idea* or
-*active*, that the note bears on, with the `study <its name>` that would revise it.
+leans on with no source behind it — as a suggestion for the sources, naming the work the reading map
+gives as this one's other side when it names one, as a lead; whether the source changes a belief in
+the owner's file in `Philosophy/` — `HOW-I-WORK.md` or `HOW-I-INVEST.md` — as a question for the
+owner to answer there in their words, by hand or in a round of `philosophy`; and, at home, the
+strategy a note could serve, with the `read <strategy> <source>` that would carry it there, and a
+study in `Studies/`, still *idea* or *active*, that the note bears on, with the `study <its name>`
+that would revise it.
 
-At home, where `philosophy` is offered at all — *Domains* holding Finance, or *Here for* holding
-*Learn the basics*, *Build and test a strategy* or *Write down how I invest* — one more line:
-**the questions of the owner's philosophy the new note bears on.** Match
-the note's work, by its authors' surnames as the reading map's *Match before proposing* says,
-against the *Bears on* table of `references/questions.md` in the `philosophy` skill's folder —
-another skill's reference, read on demand for that table only — and name each question it lists by
-its ID and short name. With a round in `Philosophy/Evolution/`, the line gives the last round's
-date and offers the next round with `philosophy`; with none, it offers round 1. A work the table
-does not list, or a table that cannot be read because the skill is not installed, gets no line.
+At home, where *Domains* holds Finance or *Here for* holds *Learn the basics*, *Build and test a
+strategy* or *Write down how I invest*, one more line: **the investing questions of the owner's
+philosophy the new note bears on.** Match the note's work, by its authors' surnames as the reading
+map's *Match before proposing* says, against the *Bears on* table of `references/questions.md` in
+the `philosophy` skill's folder — another skill's reference, read on demand for that table only —
+and name each question it lists by its ID and short name. With a round on investing in
+`Philosophy/Evolution/` — a level, not `Field`, on its first line — the line gives the last such
+round's date and offers the next round with `philosophy`; with none, it offers round 1. A work the
+table does not list, or a table that cannot be read because the skill is not installed, gets no
+line.
 
 **Then save a version**, on the plan's go, with no second question, in the folder whose library
 this is — every git command, the `backup` skill's send included, as `git -C "<that folder>"` when

@@ -49,9 +49,9 @@ command asks whether the run treated them that way. `${input:experiment}` is the
 7. `AGENTS.md` in that repository — the bar a result has to clear, and who writes each document.
 8. `Paper_Trading/BITACORA.md` only when graduation is being claimed.
 
-**Not the engine's workbooks.** `Backtest/` and `Attribution/` are gitignored outputs; reading
-numbers out of them is the line the non-negotiables draw. Every number in the report is quoted from
-`FINDINGS_N.md` or `RESULTS.md`, with its source named.
+**Not the engine's workbooks.** `Backtest/` and `Attribution/` are gitignored outputs: a fresh
+clone has none, and they can differ from what the findings published. Every number in the report
+is quoted from `FINDINGS_N.md` or `RESULTS.md`, with its source named.
 
 ## Step 3: The checks
 

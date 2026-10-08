@@ -30,11 +30,11 @@ evolve by replacement; it evolved by addition (page 48).
 - **Say where it lands.** A picked work is written after the owner's go, in `RESEARCHER.md` under
   *What you are reading for*: as *Find first* under the question it serves or, when it serves no
   numbered question, on the section's closing *Find first* line, which is added to and never
-  rewritten — its *none* gives way to the first work. `interview` writes a work picked from
-  *Suggest a topic* there, and `philosophy` the works picked at a round's close. Never download it:
-  the owner finds it by its title and authors, puts the PDF in `Sources/Papers/`, or
-  `Sources/Books/` for a book, and runs `read`; a work that cannot be found comes off the line by
-  hand.
+  rewritten — its *none*, in whatever language it is written, gives way to the first work.
+  `interview` writes a work picked from *Suggest a topic* there, and `philosophy` the works picked
+  at a round's close. Never download it: the owner finds it by its title and authors, puts the PDF
+  in `Sources/Papers/`, or `Sources/Books/` for a book, and runs `read`; a work that cannot be found
+  comes off the line by hand.
 - **Match before proposing.** Compare each work here with the file names under `Sources/` and the
   notes in `Knowledge/INDEX.md` by the distinctive words of the title, and by the first author's
   surname wherever the file name or the note carries one, ignoring the year, punctuation and

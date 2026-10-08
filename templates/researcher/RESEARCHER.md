@@ -9,8 +9,8 @@
 
 **Works for:** <your name>, <what you do, and what you are working on — at work and on your own>.
 
-**Here for:** <what you came for — learn the basics, step by step; organise what I read, and help
-with my projects; build and test a strategy; write down how I invest, and see it evolve — or in
+**Here for:** <what you came for — organise what I read, and help with my projects; learn the
+basics, step by step; build and test a strategy; write down how I invest, and see it evolve — or in
 your own words.>
 
 **Domains:** <the folders `Knowledge/` is organised by — proposed by the interview from what you
@@ -22,21 +22,13 @@ said; yours to change.>
 
 ## What you believe
 
-My investment philosophy is in [`Philosophy/HOW-I-INVEST.md`](Philosophy/HOW-I-INVEST.md), written
-by hand or with `philosophy`.
+How I see my work, and how I invest, in my own words: in `Philosophy/` — `HOW-I-WORK.md` and
+`HOW-I-INVEST.md` — written by hand, or started and grown with `philosophy`.
 
 ## Non-negotiables
 
-<The rules that never bend, one per line. Many researchers start with the three below: keep, change
-or add to them — a rule of your own, or the two for strategies: real money only after a test
-written down beforehand, and every design challenged before it runs, every idea tried counted.>
-
-- Every number about a book comes from the engines the project names — in a KaxaNuk strategy the
-  Lab's libraries, the Backtest Engine for performance and Attribution Analysis for where it came
-  from — never from the researcher.
-- A hypothesis is written before its test, and every prediction in it cites a note or an analyzer
-  measurement; one with neither is written as a lead. A source without a note cannot be cited.
-- Nothing trades. No live execution, no order, no money moves from here.
+*None yet.* Say *remember this* to add a rule of your own, and `philosophy` asks for your rules;
+the first one written takes this paragraph's place, on your go.
 
 ## Tag policy
 

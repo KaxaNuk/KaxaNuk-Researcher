@@ -6,6 +6,55 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.3.0] - 2026-10-08
+A friendlier start built around your work and your projects, and `philosophy` now writes down how
+you work, in any field, not only how you invest.
+
+**What to do differently:** say `update` in your home (home template 0.23.0, researcher's skill
+0.4.2). Your rules and your `HOW-I-INVEST.md` stay as they are. To write down how you work, say
+`philosophy my work`.
+### Changed
+- **Your researcher is a companion for your work and your projects first.** The README opens that
+  way — when you want, it teaches you to invest, and if investing is why you came it has every tool
+  for it — its example asks about your work, and `USE-CASES.md` puts work and personal uses first,
+  then the investing ones. The README is in English only, its Spanish install section gone: the
+  install asks your language first, any you choose, and its badge says so.
+- **`interview`** (2.6.0) asks only who you are, how your researcher should speak — each voice with
+  a short description — and *What brings you here?* (*¿Qué te trae por aquí?*), in everyday words:
+  *Help with my work and my projects* first, then *Learn about investing from scratch*, *Build and
+  test an investment strategy* and *Write down how I invest*, written to `RESEARCHER.md` in the
+  words the other skills read. The preview shows your own picks, in plain words. The hand-over says
+  who it is and where it lives, lists what you can ask it — work and projects first, then lessons,
+  `philosophy` and the investing tools — with a link to more on each, step by step, then the one
+  next thing and `Start?`. A work pick leads the next thing. Spanish words about you stay
+  gender-neutral.
+- **`philosophy`** (1.3.0) is about how you work, in any field, or how you invest: its first
+  question, *About?*, suggests one from what you told the interview, and `philosophy my work` or
+  `philosophy investing` skips it. A round on your work asks why you do it, what you believe about
+  your field, what you have learned, how you decide and what would change your mind — about ten
+  minutes, no level, no reading list about markets — and writes your words to
+  `Philosophy/HOW-I-WORK.md`. Each topic keeps its own rounds.
+- **Your rules are asked in `philosophy`**, on either topic, never at the first interview: keep the
+  three, add one of your own, change or drop one, and, when you are here to build a strategy, the
+  two for strategies — in plain words, written under *Non-negotiables* on your go. A rule about
+  your holdings — from `philosophy` or *remember this* — goes to `Portfolio/RULES.md`, where the
+  brief reads it. *In your own words?* follows only a hunch or a stance pick.
+- **A new home ships no investing file and no rules of its own**: `philosophy` starts
+  `HOW-I-WORK.md` or `HOW-I-INVEST.md` with its title and headings when a round needs it, and the
+  first rule written replaces *None yet.* Placing an order or moving money joins the home's hard
+  don'ts.
+- **Offered to everyone.** `next` (1.8.3) and `teach` close with `philosophy` for every home, worded
+  for how you work or how you invest; `next` and the interview hand it the topic. `read` (0.12.3)
+  asks whether a source changes your view in your file in `Philosophy/`, and finds *None yet.* and
+  *none* in any language; `query` (0.9.3) compares rounds on one topic at a time; `refine` and
+  `study` name either file; `init-researcher` (0.6.3) says `philosophy` asks how you work or invest.
+  The researcher's skill (0.4.2) points a holdings rule to `Portfolio/RULES.md`.
+- **`update`** no longer compares `HOW-I-INVEST.md`'s headings: a home keeps its own. **`backup`**
+  (0.1.4): the interview's list of uses names it in one line, never as an offer. **`challenge`**
+  says why it never reads numbers from the engines' workbooks.
+- **`SETUP.md`**, the READMEs and `CONTRIBUTING.md` describe the shorter interview, its hand-over
+  and the open `philosophy`.
+
 ## [1.2.0] - 2026-10-08
 Start a Python library of your own, laid out like the KaxaNuk Data Curator: tests, docs and a
 workflow that publishes it, ready from the first day.

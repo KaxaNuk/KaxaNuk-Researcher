@@ -23,23 +23,24 @@ for a topic.
 concept pages first. With no note bearing on it, say so in one line, then offer up to three works to
 read first, and *Later*, through the question tool: from the reading map in the `read` skill's
 folder when Finance is among the domains and the map has the topic, matched first as its *Match
-before proposing* says; otherwise a *Find first* work that bears on it, or ask the owner for one.
-Never download a work: on a pick, the owner attaches it or says where it is saved, and `read` copies
-it into `Sources/` and writes its note, on its one go. Then go straight on into the interview below,
-in the same session, so the first lesson stands on a note; *Later* stops here. Nothing is taught
-from memory.
+before proposing* says; otherwise a *Find first* work that bears on it; with none, *I have a
+document* — they attach it or say where it is saved — beside *Later*. Never download a work: on a
+pick, the owner attaches it or says where it is saved, and `read` copies it into `Sources/` and
+writes its note, on its one go. Then go straight on into the interview below, in the same session,
+so the first lesson stands on a note; *Later* stops here. Nothing is taught from memory.
 
-**A new topic** (no `progress.md` yet), with notes that bear on it: interview the owner first —
-why this topic, what for, what they already know, how they like to learn. Two to four questions.
-When `Philosophy/Evolution/` holds a round of `philosophy`, read the newest one's level —
-*Starter*, *Building* or *Researching* — instead of asking what they already know, and say so in
-one line for them to correct; the newest is the latest date in the file names, and on that date
-the highest suffix, `YYYY-MM-DD-2.md`. Then show the plan in chat — the mission, the preferences,
-the folder and the files it creates — and ask for the go through the question tool where the
-harness has one: *Go*, described as *write it and save a version*; *Change something*; *Stop*. On
-the go, write the mission and the preferences into `progress.md` and save it alone, as item 5
-says, with the message `Teach: <topic>, mission`. Never skip the interview; never re-interview an
-existing topic unless the owner says the mission has changed.
+**A new topic** (no `progress.md` yet), with notes that bear on it: interview the owner first — why
+this topic, what for, what they already know, how they like to learn. Two to four questions. When
+the topic is about investing and `Philosophy/Evolution/` holds a round on investing — a level, not
+`Field`, on its first line — read the newest such round's level, *Starter*, *Building* or
+*Researching*, instead of asking what they already know, and say so in one line for them to correct;
+the newest is, among those rounds, the latest date in the file names, and on that date the highest
+suffix, `YYYY-MM-DD-2.md`. Then show the plan in chat — the mission, the preferences, the folder and
+the files it creates — and ask for the go through the question tool where the harness has one: *Go*,
+described as *write it and save a version*; *Change something*; *Stop*. On the go, write the mission
+and the preferences into `progress.md` and save it alone, as item 5 says, with the message
+`Teach: <topic>, mission`. Never skip the interview; never re-interview an existing topic unless the
+owner says the mission has changed.
 
 **An existing topic**: read `progress.md` — mission, track, preferences — and pick the next lesson
 just beyond what stuck last time.
@@ -70,10 +71,13 @@ just beyond what stuck last time.
    ask for both in one plain line, set them in the home only, never invented, and save again; with
    no `.git/`, say in one line that the home keeps no versions yet. This replaces an older home's
    *Commit?* question.
-6. Close the lesson with one line, offered and never pressed, only when *Domains* holds Finance or
-   *Here for* holds *Learn the basics*, *Build and test a strategy* or *Write down how I invest*: a
-   round of `philosophy` — round 1 when `Philosophy/Evolution/` holds none, else the next, naming
-   the last round's date — for whenever they want to write down how they invest, in their words.
+6. Close the lesson with one line, offered and never pressed, a round of `philosophy`. With no round
+   file in `Philosophy/Evolution/`, when *Domains* holds Finance or *Here for* holds *Learn the
+   basics*, *Build and test a strategy* or *Write down how I invest*: *`philosophy` writes down how
+   you invest, in your words, at your level, and sets the rules I keep with you — round 1, whenever
+   you like.* Otherwise: *`philosophy` writes down how you work, in your words, and sets the rules I
+   keep with you — round 1, whenever you like.* With one or more, the next round, naming the latest
+   round's date, of either topic, and its level or *field*, as `next` does.
 
 Never edit a past session file. Never write outside `Lessons/<topic-slug>/` — a first work's
 `read`, or a round of `philosophy`, is that skill's own run, with its own plan and go, never part of

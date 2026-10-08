@@ -92,19 +92,20 @@ ago — and copies the researcher's home with `scaffold.py`, its first version s
 ## Step 5 — The interview
 
 Follow `interview` from its installed path, in the same conversation, with the new folder as the
-home: two questions about the user — what they do and work on, at work and on their own, what they'd
-like a hand with, then the researcher's voice, their rules and why they are here — in the user's
-language; the domains and the projects are proposed from what they say. Nothing about markets is
-asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by name and the
-skill that puts it in every session, installs them for the user and saves a first version — the user
-answers and gives one go.
+home: two questions about the user — what they do and work on, at work and on their own, what
+they'd like a hand with, then the researcher's voice and why they are here — in the user's
+language; the domains and the projects are proposed from what they say. Nothing about how they
+invest is asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by
+name and the skill that puts it in every session, installs them for the user and saves a first
+version — the user answers and gives one go.
 
 ## Step 6 — Hand over
 
-The interview's own hand-over ends the conversation: four lines — who the researcher is and that it
-is in every folder, where its home is, the one next thing for what the user came for, and *lost? say
-`next`* — and one question, `Start?`, whose options start each thing they came for. On *Now*,
-*Show me the worked example*, *Start the study* or *I have a document*, follow that skill or
+The interview's own hand-over ends the conversation: who the researcher is and that it is in every
+folder, where its home is, what the user can ask it for — one short line a use, and a link to
+`USE-CASES.md` — the one next thing for what they came for, and *not sure what's next? say `next`*;
+then one question, `Start?`, whose options start each thing they came for. On *Now*, under either
+label, *Show me the worked example*, *Start the study* or *I have a document*, follow that skill or
 command from its installed path, in this conversation.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
@@ -118,8 +119,8 @@ command from its installed path, in this conversation.
 ## Later
 
 **The user's philosophy, and a daily brief.** In a new session in the home: `philosophy`, a second
-interview pitched at what they already know, and `brief setup`, which schedules the brief on the
-Claude desktop app and says how to run it elsewhere.
+interview on how they work or how they invest — investing at their level — and `brief setup`, which
+schedules the brief on the Claude desktop app and says how to run it elsewhere.
 
 **A strategy.** In a new session in the home: `init-strategy fcf-yield-quality`. It makes the
 strategy's folder beside the home, from the KaxaNuk Strategy Template; open that folder in a new

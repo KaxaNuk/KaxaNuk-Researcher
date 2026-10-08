@@ -126,24 +126,32 @@ nothing else.
   GitHub copy lacks may be what a newer template added. A `Projects/` it still holds is listed all
   the same, as the next item says.
 - **The owner's files, read and never written.** The template's `RESEARCHER.md` headings — not its
-  slots, nor the blockquote the interview deletes — the headings of `Philosophy/HOW-I-INVEST.md`,
-  and the blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md`, each against the home's.
-  Every difference is a *by hand* line in *Step 3* and *Step 5*, never a change `update` makes:
-  those files are the owner's. Template 0.16.0 adds two lines a home made before it lacks, each a
-  *by hand* line, quoted from the template, when the home has no such line: *Here for* under *Who*
-  in `RESEARCHER.md` — what the owner is here for, one of the four the interview offers or their
-  own words — and `## Why I invest`, the new first heading of `Philosophy/HOW-I-INVEST.md`, which
-  the owner may write in their own language. A *Here for* holding the older *Organise what I read*
-  is no *by hand* line: every skill reads it as *Organise what I read, and help with my projects*.
-  The same release points *What you believe* to
-  `HOW-I-INVEST.md` and takes *Where it sits* and its *Add later* line out of the template: the
-  home's own prose there is the owner's, and stays unless they take it out by hand. The agent file
-  is theirs as well: a line `interview` now writes into a new agent's body is a *by hand* line too
-  — from 0.16.0, *Round files in `Philosophy/Evolution/` are a record of how the owner's answers
-  moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a round file, as the
-  owner's view.* So is the researcher's skill, unless *Step 4* writes it afresh: the same line
-  goes in its item 2, *Read the home first*, by hand. After either edit,
-  `uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"` deploys it.
+  slots, nor the blockquote the interview deletes — and the blockquotes of `Knowledge/INDEX.md` and
+  `Knowledge/LOG.md`, each against the home's. Every difference is a *by hand* line in *Step 3* and
+  *Step 5*, never a change `update` makes: those files are the owner's. Template 0.16.0 adds a line
+  a home made before it lacks, a *by hand* line, quoted from the template, when the home has no such
+  line: *Here for* under *Who* in `RESEARCHER.md` — what the owner is here for, one of the four the
+  interview offers or their own words. A *Here for* holding the older *Organise what I read* is no
+  *by hand* line: every skill reads it as *Organise what I read, and help with my projects*. The
+  same release points *What you believe* to `HOW-I-INVEST.md` and takes *Where it sits* and its *Add
+  later* line out of the template: the home's own prose there is the owner's, and stays unless they
+  take it out by hand. Template 0.23.0 ships `Philosophy/` holding only a `.gitkeep`, which is never
+  brought across: `Philosophy/` is the owner's, and `philosophy` makes what a round needs. The
+  home's `HOW-I-INVEST.md` stays as it is, its headings are no longer compared, and a missing one —
+  the file, or a heading such as 0.16.0's `## Why I invest` — is no *by hand* line: `philosophy`
+  starts the file, or adds the heading, when a round needs it. *Non-negotiables* is the owner's too:
+  template 0.23.0 ships it as *None yet.*, the rules asked later by `philosophy`, and the rules a
+  home holds there — an older template's three included — stay as they are, with no *by hand* line.
+  The agent file is theirs as well: a line `interview` now writes into a new agent's body is a *by
+  hand* line too — from 0.16.0, and as 0.23.0 words it, in place of the 0.16.0 sentence that cites
+  `HOW-I-INVEST.md` alone, where the agent has it: *Round files in `Philosophy/Evolution/` are a
+  record of how the owner's answers moved: read them for dates and levels, and cite the owner's file
+  in `Philosophy/` — `HOW-I-WORK.md` or `HOW-I-INVEST.md` — never a round file, as the owner's
+  view.* So is a second, in *You never write*: `philosophy` *to write down how they work or how they
+  invest*, in place of *to write down how they invest*. The researcher's skill is theirs too, unless
+  *Step 4* writes it afresh: the first line goes in its item 2, *Read the home first*, by hand.
+  After either edit, `uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"`
+  deploys it.
 - **`Briefs/` and `Portfolio/`.** From template 0.16.0 the home's `.gitignore` ignores both — the
   daily brief `brief` writes, and the holdings and rules the owner keeps for its *Portfolio* part —
   and `AGENTS.md` gives each a row in its folder table. They are compared like any other lines of

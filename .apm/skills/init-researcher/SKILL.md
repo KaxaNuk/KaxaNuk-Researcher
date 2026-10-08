@@ -6,9 +6,9 @@ description: >
   template inside it by a script, its first version saved — then run the interview in the same
   conversation. Only when the owner runs it by name, or as the step of the install SETUP.md walks
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
-  the owner invests (`philosophy` does, later).
+  the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.6.2
+  version: 0.6.3
 ---
 
 # Init researcher — a home for the library, once
