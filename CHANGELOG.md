@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.3.4] - 2026-10-08
+After you choose your language, the install goes straight on: it no longer asks whether to install.
+
+**What to do differently:** nothing; a new install runs this way.
+### Changed
+- **`SETUP.md`**: the line you pasted is the go. Once the language is chosen, the assistant installs
+  git and uv when missing, then the package, saying in one line what each step does; your
+  assistant's own prompt to allow a command is the only thing you answer.
+
 ## [1.3.3] - 2026-10-08
 Your researcher is named with a warm welcome: one line on what it will be for you, then the name.
 
