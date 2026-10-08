@@ -29,14 +29,14 @@ one conversation. *Removing it*, in the README, undoes either.
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: a few short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and save a first version. The install in [`SETUP.md`](SETUP.md) runs this for you |
+| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: two short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and save a first version. The install in [`SETUP.md`](SETUP.md) runs this for you |
 | 2 | the home | `read` | your first note: attach a document, or name it, and it is copied into `Sources/` on your go; the first `read` asks which question it serves, and keeps it as question 1 |
-| 3 | the home | `philosophy`, `brief setup` | when you like: your investment philosophy, at your level, and a daily brief |
+| 3 | the home | `philosophy`, `brief setup` | when you like: how you work or how you invest, in your words, and a daily brief |
 | 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
 | 5 | the strategy | `objective` | the strategy's claims, before any paper — then the order of work, A to H, in the template's README, which the strategy's links to |
 
-The questions of `philosophy` and the reading map cover investment research; a researcher for
-another field skips `philosophy`, or answers *not sure yet* where it must, and grows by reading.
+The reading map covers investment research; `philosophy` asks how the owner invests or how they
+work, in any field, and a researcher for another field grows by reading.
 
 **The researcher is in every folder** once the interview has run: open your assistant in a
 strategy's folder, or any other project's, and it is there, by name, on whichever assistant APM
@@ -178,12 +178,12 @@ git -C "$K/lib2" grep -n -e kn_python_library_template -e kn-python-library-temp
 
 **Before a release, make the install above with the commit to be tagged.** It should deploy exactly
 22 skills, 9 commands, 3 rules and 1 agent, with no warning. Then, if the release changes a skill, a
-command or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which
-runs `interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter,
-`brief setup` and `brief`, and `init-strategy`; `init-python-library`, and `next` in the folder it
-makes, when the release changes them — once in Spanish with a researcher whose name has an accent,
-*Sofía*, whose skill must deploy as `~/.claude/skills/sofia/`, and once on an assistant with no
-question tool, such as Codex. Delete the scratch folder afterwards: under the throwaway home,
+command or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
+`interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter and one on how
+you work, `brief setup` and `brief`, and `init-strategy`; `init-python-library`, and `next` in the
+folder it makes, when the release changes them — once in Spanish with a researcher whose name has an
+accent, *Sofía*, whose skill must deploy as `~/.claude/skills/sofia/`, and once on an assistant with
+no question tool, such as Codex. Delete the scratch folder afterwards: under the throwaway home,
 nothing the walk installed or scheduled reached your own. A newer APM is adopted only when this
 install passes with it, on Windows.
 

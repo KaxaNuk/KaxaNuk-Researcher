@@ -2,14 +2,14 @@
 name: interview
 description: >
   Interview the owner in two short questions and write RESEARCHER.md — who they are, what they
-  work on and want a hand with, what they are here for, the researcher's voice and rules, with the
-  domains and their projects proposed from what they said — then the agent and skill that make the
+  work on and want a hand with, what they are here for, the researcher's voice, with the domains
+  and their projects proposed from what they said — then the agent and skill that make the
   researcher callable by name and present in every session; install both, save a first version
   and hand over. Only when the owner runs it by name, or as the last step of the install SETUP.md
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
-  invests (use `philosophy`), nor what their reading is for (the first `read` asks).
+  invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.5.1
+  version: 2.6.0
 ---
 
 # The interview
@@ -24,11 +24,11 @@ You are about to become somebody's research companion. This interview decides wh
 question at a time**, and write nothing until every answer is in.
 
 **The interview is about the person**: who they are, what they work on — at work and on their own
-— what they want a hand with, and how the researcher should speak and behave. **Nothing more
-about markets is asked than where they are with them**: how they invest is `philosophy`'s, the
+— what they want a hand with, and how the researcher should speak. **Nothing more about markets
+is asked than where they are with them**: how they invest and their rules are `philosophy`'s, the
 questions their reading should answer are the first `read`'s, a strategy is `objective`'s and
-`blueprint`'s, and `next` names each when its turn comes. Setup stays fast, and the researcher
-grows from the hand-over.
+`blueprint`'s, and `next` names each when its turn comes. Its job is to make the researcher, fast:
+what the researcher can do is said once, at the end, in the hand-over, and it grows from there.
 
 **At a glance.** Two questions, about three minutes. Say so in one line before question 1 only when
 the owner ran the interview by name — `init-researcher` says it in its `Where?` question — and open
@@ -36,15 +36,15 @@ each question with its number, *1 of 2*, *2 of 2*.
 
 | # | Asks | How | Lands in `RESEARCHER.md` under |
 | --- | --- | --- | --- |
-| 1 | what the owner does and works on, what they want a hand with, where they are with markets, and what to stay out of | chat, a few lines | *Works for*, *Out of scope for now*; the *Domains* and the projects proposed from it |
-| 2 | the researcher's voice, its rules, and what the owner is here for | one tool call, three questions | *How it speaks*, *Non-negotiables*, *Here for* |
+| 1 | what the owner does and works on, what they want a hand with, where they are with markets, and what to stay out of | chat, a few lines | *Works for*, *Out of scope for now*; the *Domains*, with question 2's *Here for*, and the projects proposed from it |
+| 2 | the researcher's voice and what the owner is here for | one tool call, two questions | *How it speaks*, *Here for* |
 
 **How to ask.** In Claude Code, every question marked *tool* is asked by **calling
 `AskUserQuestion`** — the options as its choices, at most four, and *Other*, which the tool always
 offers, as the free-text escape. Call the tool; do not type those questions and their options as
 chat text. **Without such a tool — Codex, Gemini and every other assistant — a tool call is one
 chat message**: each question in it numbered, its options beneath as a numbered list with *Other —
-your own words* last, and one line saying how to answer: the numbers, *1: 2, 3 · 2: 1*, several
+your own words* last, and one line saying how to answer: the numbers, *1: 2 · 2: 1, 3*, several
 where the question says several, or their own words. Wait for the answer before the next message;
 never type questions 1 and 2 at once.
 
@@ -95,8 +95,10 @@ never type questions 1 and 2 at once.
 ## Step 2: The interview
 
 **Ask in their language.** Every question, option and draft is in it, and every header is the one
-given below for that language — the English one for any other — twelve characters at most. A work
-keeps the year, authors and title the reading map gives it, never translated.
+given below for that language — the English one for any other — twelve characters at most. Where
+the language marks gender, words about the owner stay neutral: *Explícame sobre la marcha*, never
+*soy nuevo* or *nueva*. A work keeps the year, authors and title the reading map gives it, never
+translated.
 
 **Open first, then propose.** Question 1 is open; *I don't know* there counts as *I'm just
 starting*. What the interview proposes from it — the domains, the projects, the README's opening
@@ -107,86 +109,83 @@ has at least two options; when the rules below leave fewer, ask it in chat.
 **A re-run** under `force` starts from what is there, and a kept answer is written back verbatim.
 - Question 1 quotes the current *Works for* and *Out of scope for now*, and asks *keep them or
   change them*.
-- In question 2, each current pick gains *(current)* in its label: the voice; a *Here for* pick —
-  *Organise what I read, and help with my projects (current)* when the file holds it or the old
-  *Organise what I read*; and *Your rules*, which shows the rules the file holds, word for word,
-  with *Keep my rules (current)* in place of *Keep the three*, and no *Add the two strategy rules*
-  when the file holds them.
+- In question 2, each current pick gains *(current)* in its label: the voice, and each option
+  whose value *Here for* holds — *Help with my work and my projects (current)* for *Organise
+  what I read, and help with my projects* or the old *Organise what I read*.
 - A question the file holds no answer for — *Here for*, in a home interviewed before it was asked
   — is asked as on a first run, never with a *(current)* inferred from prose.
 - The *Domains* and the projects' rows the file holds are kept; the preview proposes only what
   question 1 adds.
-- What this interview does not ask is kept verbatim and never asked about: the owner's own
-  sentences under *What you believe*, and everything under *What you are reading for* — the
-  reading questions with their numbers, because notes cite them, and every *Find first* line.
+- What this interview does not ask is kept verbatim and never asked about: everything under
+  *Non-negotiables*, the owner's own sentences under *What you believe*, and everything under *What
+  you are reading for* — the reading questions with their numbers, because notes cite them, and
+  every *Find first* line.
 
 1. **About you** — *chat.* In their language: *Tell me about you in a few lines: what you do, what
    you're working on — at work and on your own — and what you'd like a hand with. If you invest or
    study markets, where you are with it; nothing yet is fine. And anything I should stay out of.
    "I'm just starting" is a complete answer.*
 
-   Two proposals come from it for the preview, never asked: **the domains** — up to four the answer
-   points to, Finance among them when it speaks of investing, markets or money; when it points to
-   none, Finance, Macro, Business and AI — and **a row for each project** it names.
-2. **Voice, rules and why here** — *tool, one call, three questions.*
-   - `Voice` (`Voz`) — *Explain as you go, I am new to this*; *Thorough, push back on evidence*;
-     *Brief, push back on evidence*; *Thorough, argue the other side*. Every voice challenges on
-     evidence only, never on taste.
-   - `Your rules` (`Tus reglas`), multi-select. The question shows three rules, a plain line each:
-     *results come from tested tools, never from my head*; *an idea is written down before it is
-     tested*; *nothing buys or sells from here*. Its options: *Keep the three*, marked recommended;
-     *Add one of my own*; *Change or drop one*; and *Add the two strategy rules*, described plainly
-     — an idea gets real money only after a test written down beforehand, never one good month;
-     and every design is challenged before it runs, and every idea tried counted. Whatever is not
-     changed or dropped is kept, so an add alone keeps the three. *Add one of my own* and *Change
-     or drop one* take one line in chat after, in their words — for a rule of their own, *a mistake
-     you have seen made, and never want me to let you repeat*; a rule typed under *Other* is that
-     line.
-   - `Here for` (`Para qué`), multi-select — what brings them here; several picks are expected.
-     *Learn the basics, step by step* — I explain as we go, and suggest what to read first;
-     *Organise what I read, and help with my projects* — a note on each source, and a hand with
-     your work; *Build and test a strategy* — an idea written as rules, and tested before any money
-     moves; *Write down how I invest, and see it evolve* — your view in your own words, taken again
-     as you learn. Shown in their language and written in English as worded here, because `read`,
-     `philosophy`, `next` and `brief` find them by these words, the old *Organise what I read* too;
-     an *Other* keeps the owner's own.
+   Two proposals come from it for the preview, never asked: **a row for each project** it names, and
+   **the domains**, up to four the answer points to. Finance is among them when it says they invest,
+   study markets or want to, or that their work is in finance, or when *Here for* holds *Learn the
+   basics*, *Build and test a strategy* or *Write down how I invest* — never only for saying they do
+   not invest, nor for pay or a budget at work. When it points to none: Business and AI, with
+   Finance and Macro first when *Here for* holds one of those three.
+2. **Voice and why here** — *tool, one call, two questions.*
+   - `Voice` (`Voz`), *How should I talk to you?* — *Explain as you go* (*Explícame sobre la
+     marcha*), plain words and every new term explained, for someone new to this; *Thorough, push
+     back on evidence*, full answers and a challenge where the evidence disagrees; *Brief, push back
+     on evidence*, short answers and the same challenge; *Thorough, argue the other side*, full
+     answers and the strongest case against your view. Every voice challenges on evidence only,
+     never on taste.
+   - `Here for` (`Para qué`), multi-select, *What brings you here?* (*¿Qué te trae por aquí?*) —
+     several picks are expected. Each option is shown in their language, with its line, and
+     written under *Here for* as this table gives it, in English, because the skills find it by
+     those words, the old *Organise what I read* too; an *Other* keeps the owner's own:
+
+     | Shown | Its line | Written |
+     | --- | --- | --- |
+     | *Help with my work and my projects* (*Ayuda con mi trabajo y mis proyectos*) | your reading in order, and a hand with work and personal projects | *Organise what I read, and help with my projects* |
+     | *Learn about investing from scratch* | I explain as we go, and suggest what to read first | *Learn the basics, step by step* |
+     | *Build and test an investment strategy* | an idea written as rules, and tested before any money moves | *Build and test a strategy* |
+     | *Write down how I invest* | your view in your own words, taken again as you learn | *Write down how I invest, and see it evolve* |
 
 ## Step 3: Write
 
-The owner's words go in their language, and so do the fixed lines — the non-negotiables and *How
-it cites* included, their meaning unchanged — so the file the owner is told is theirs reads in
-their language. Only the headings and the labels the skills find by name stay in English, as the
-template has them: *Name*, *Works for*, *Here for* and its four options, *Domains*, *feeds*,
+The owner's words go in their language, and so do the fixed lines — *Non-negotiables* and *How it
+cites* included, their meaning unchanged — so the file the owner is told is theirs reads in their
+language. Only the headings and the labels the skills find by name stay in English, as the
+template has them: *Name*, *Works for*, *Here for* and its four values, *Domains*, *feeds*,
 *Would change my mind*, *Find first* and *Out of scope for now*.
 
 - **The title** — the researcher's name, in place of *Researcher*.
 - **Name** — the name *Step 1* took. **Works for** — the owner's name, then what they do and work
-  on, from question 1, in one line. **Here for** — question 2's picks, in English as worded there,
-  and an *Other* in the owner's words. **Domains** — the proposed ones, by their English names, or
-  the owner's own word.
+  on, from question 1, in one line. **Here for** — question 2's picks, in English as its table
+  writes them, and an *Other* in the owner's words. **Domains** — the proposed ones, by their
+  English names, or the owner's own word.
 - **How it speaks** — the language and the voice, in one paragraph.
 - **What you believe** — the template's one line, in their language. On a re-run, the owner's own
-  sentences there are kept verbatim and the line follows them, unless one already points to
-  `Philosophy/HOW-I-INVEST.md`; a *Where it sits* or *Add later* line an earlier template put there
-  is not written back — the preview says so, and *Change something* offers to keep them.
-- **Non-negotiables** — the rules as the file holds them, the template's three on a first run, with
-  the rule question 2 added, changed or dropped, in the owner's words, and the two strategy rules
-  when picked: *A strategy graduates only against criteria written down beforehand, never on a good
-  month.* and *Every design is challenged before it runs, and every idea tried is counted.*
+  sentences there are kept verbatim and the line follows them, unless one already points into
+  `Philosophy/`; a *Where it sits* or *Add later* line an earlier template put there is not
+  written back — the preview says so, and *Change something* offers to keep them.
+- **Non-negotiables** — the template's *None yet.* paragraph, in their language, with no rule:
+  `philosophy` asks for them. On a re-run, what is there is kept verbatim.
 - **Tag policy** — loose: the researcher proposes tags as it reads, the owner prunes at audit. On a
   re-run, the policy the file states is kept.
 - **The strategies and projects it works on** — a row for each project question 1 named,
-  `| <project> | — | named at the interview |`, in place of the template's placeholder row, unless
-  the owner left them out; with none, the placeholder stays. The line under the table as the
-  template ships it. On a re-run, the rows there are kept verbatim.
-- **What you are reading for** — as the template ships it, with no reading question yet; the first
-  `read` adds one. On a re-run, what is there is kept verbatim.
+  `| <project> | — | named at the interview |`, its state in their language, in place of the
+  template's placeholder row, unless the owner left them out; with none, the placeholder stays.
+  The line under the table as the template ships it. On a re-run, the rows there are kept verbatim.
+- **What you are reading for** — the template's text, in their language, the *none* on its
+  *Find first* line too, with no reading question yet; the first `read` adds one. On a re-run,
+  what is there is kept verbatim.
 - **Out of scope for now** — what question 1 said to stay out of, in their words, or *None yet*.
 - **How it cites** — the template's text, in their language, its meaning unchanged.
 
 No angle-bracketed slot is left. **Nothing is written in `Philosophy/`**: its two writers are
-`philosophy` and `refine`, as the home's `AGENTS.md` says. A rule of the owner's own goes under
-*Non-negotiables*, in their words, and nowhere else.
+`philosophy` and `refine`, as the home's `AGENTS.md` says. **Nor is a rule written**: the owner's
+rules go under *Non-negotiables* later, through `philosophy` or *remember this*.
 
 **The README's opening paragraph.** The template's first paragraph asks to be replaced with one
 about this researcher: propose it — the researcher's name, the owner, and what they are here for —
@@ -197,20 +196,21 @@ line stays as it is. On a re-run, an owner's paragraph is kept verbatim.
 year, while it still names KaxaNuk; nothing else in it changes.
 
 **The preview, short.** Show in chat what the owner answered — *Name*, *Works for*, *Here for*,
-*How it speaks*, a rule in their own words, *Out of scope for now* — and, each marked *proposed
-from what you said*, the *Domains*, the projects' rows and the README's opening paragraph; on a
-re-run, what is kept verbatim and what is not written back. Name the rest in one line, without
-reprinting it — the rules kept, as the template means them, in their language, the two strategy
-rules when added, the other sections as the template ships them, the agent, the researcher's skill,
-`apm.yml` and `LICENSE` with the owner as its holder — and show any of it when asked. Say in one
-line that on *Go* the researcher also installs itself for the owner's user, so it is there in
-every folder, and saves a first version, and that the assistant may ask to allow them. Then ask
-`Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only; in chat, *go*,
-*ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the go. *Change
-something* offers *Change the domains*, *Leave the projects out* when there are any, and *Change an
-answer*. On *Go*, write `RESEARCHER.md`, its instruction blockquote removed, the agent file, the
-researcher's skill, the `apm.yml` lines, `LICENSE` and the README's opening paragraph; *Step 5*
-installs and saves them on the same go.
+*How it speaks*, *Out of scope for now*, with *Here for* shown by the labels they picked, in their
+language, while the file keeps the English words the skills read — and, each marked
+*proposed from what you said*, the *Domains*, the projects' rows and the README's opening paragraph;
+on a re-run, what is kept verbatim and what is not written back. Name the rest in one line, without
+reprinting it, in plain words that say what each does for the owner, never *agent*, *skill*,
+`apm.yml` or `LICENSE` — *the rest of the file as it comes; what lets you call me by name, in any
+folder; my settings, in my name and yours; the copyright, in your name* — and show any of it when
+asked. Say in one line that on *Go* the researcher also sets itself up on this computer, so it is
+there in every folder, and saves a first version, and that the assistant may ask to allow a few
+commands. Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only;
+in chat, *go*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the go.
+*Change something* offers *Change the domains*, *Leave the projects out* when there are any, and
+*Change an answer*. On *Go*, write `RESEARCHER.md`, its instruction blockquote removed, the agent
+file, the researcher's skill, the `apm.yml` lines, `LICENSE` and the README's opening paragraph;
+*Step 5* installs and saves them on the same go.
 
 ## Step 4: The agent and the researcher's skill
 
@@ -248,16 +248,17 @@ library. They are the source of truth and this file is not: where they disagree 
 links between notes, then `Philosophy/` where the owner's own view is more specific than the
 library, then the sources themselves only if the library is thin. Round files in
 `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
-levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view. Cite every claim with
-a link. Where sources disagree, show both. Name a gap as a gap and say which source would close
-it. If you fall back on general knowledge, say that is what you did.
+levels, and cite the owner's file in `Philosophy/` — `HOW-I-WORK.md` or `HOW-I-INVEST.md` — never
+a round file, as the owner's view. Cite every claim with a link. Where sources disagree, show
+both. Name a gap as a gap and say which source would close it. If you fall back on general
+knowledge, say that is what you did.
 
 **You never write.** Not in `Knowledge/`, not in `Philosophy/`, not in `Studies/`, not in
 `Lessons/`, not in a strategy — not even when asked directly. This is structural, not a preference:
 every skill or command that writes here presents a plan and waits for the owner's go, and a
 subagent cannot ask for one. When an answer needs a write, name what the owner should run — `read`
-to read a source into the library, `philosophy` to write down how they invest, `study` to keep a
-study, `refresh-index` to rebuild the index — and stop there.
+to read a source into the library, `philosophy` to write down how they work or how they invest,
+`study` to keep a study, `refresh-index` to rebuild the index — and stop there.
 
 **Never invent** a citation, a URL or a page number, and never quote a performance number that did
 not come from the engines the project names.
@@ -290,7 +291,7 @@ description: >
   written from here. It does NOT answer from the library (the `query` skill, or the `<slug>` agent,
   does).
 metadata:
-  version: 0.4.1
+  version: 0.4.2
 ---
 
 <Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
@@ -308,7 +309,8 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
 2. **Read the home first.** Before research work, read `RESEARCHER.md` and `AGENTS.md` there; they
    win over this file. Speak <the owner's language>, as *How it speaks* says. Round files in
    `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
-   levels, and cite `HOW-I-INVEST.md`, never a round file, as the owner's view.
+   levels, and cite the owner's file in `Philosophy/` — `HOW-I-WORK.md` or `HOW-I-INVEST.md` —
+   never a round file, as the owner's view.
 3. **Where you are governs.** A strategy, a repository with a `Bibliotheca/`, follows *Working in
    a strategy*; any other project, its own rules and *Joining other projects*. Nothing is written
    at home from elsewhere unless <owner> asks for that write by name.
@@ -317,9 +319,10 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
    - a source, a finding, a document: <owner> attaches it or names the file; on their go, copy it
      into `Sources/<kind>/` as the home's `AGENTS.md` says — under its own name, never over a
      file, the only write there — then `read`;
-   - a way of working or a rule: one add-only line, in <owner>'s words, appended to
-     `RESEARCHER.md` under *How it speaks* or *Non-negotiables* on their go, and saved in the
-     home — `git -C "<absolute path to the home>" add RESEARCHER.md`, then
+   - a way of working or a rule: one add-only line in `RESEARCHER.md`, in <owner>'s words, on
+     their go — under *How it speaks*, or a bullet under *Non-negotiables*, the first in place of
+     its *None yet.* paragraph, in whatever language that is written — and saved in the home:
+     `git -C "<absolute path to the home>" add RESEARCHER.md`, then
      `git -C "<absolute path to the home>" commit -m "<what was learned>" -- RESEARCHER.md` —
      said in one plain line, *Saved*, never the commands; when
      `git -C "<absolute path to the home>" config --get kaxanuk.autosend` prints `true`, sent as
@@ -327,8 +330,10 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
      `git`, in the `config` write too;
    - a fact about their work: a row of the projects table in `RESEARCHER.md`, or a change to its
      *Works for* line shown as a diff, on their go, saved the same way;
-   - a view on investing: <owner>'s to write in `Philosophy/HOW-I-INVEST.md`, by hand or with
+   - a view on their work or on investing: <owner>'s to write in `Philosophy/`, by hand or with
      `philosophy`; name both, and write nothing there yourself;
+   - a rule about their holdings: <owner>'s to write in `Portfolio/RULES.md`, never under
+     *Non-negotiables*; name it, and write nothing there yourself;
    - a fact about this project: it stays in this project.
 5. **A greeting, or *what now*.** On *hello*, <Name>'s name alone, *what can you do* or *what
    now*: read the home as the `next` skill does, from its files and `git status` — this skill
@@ -401,39 +406,58 @@ and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed on
 
 ## Step 6: Hand over
 
-In the voice and the language the owner chose, **four lines, then one question**. When *Step 5*
-could not install or save, say so first, in one plain line, and offer to try again.
+In the voice and the language the owner chose, **who and where, what they can ask for, the one
+next thing, then one question**. When *Step 5* could not install or save, say so first, in one
+plain line, and offer to try again.
 
-1. *I'm <Name>. From now on I'm in every folder: open your assistant in my home, or in any project
-   of yours, work or personal, and say hello.* When this conversation installed git or uv, add,
-   for the next session, not this one: *When we're done here, quit and reopen your assistant first.*
+1. *I'm <Name>, and from now on I'm in every folder: open your assistant in my home and say
+   hello.* When this conversation installed git or uv, add, for the next session, not this one:
+   *When we're done here, quit and reopen your assistant first.*
 2. *My home is `<absolute path to the home>`.*
-3. *Next: <the one next thing>* — from the first row below whose pick is on the *Here for* line,
+3. *What you can ask me* — every use below, in this order, one short line each: what they say,
+   then what they get. On Claude, the opening line adds *type them with a slash, `/read`*.
+   - *`read` a PDF or an article, then ask me about it: answers from what you've read, cited*;
+   - *`study <a goal, a plan or a decision>`: worked out from your library*;
+   - *any project, work or personal: open your assistant there and say my name*;
+   - *remember this: a rule or a way of working, kept in my home*;
+   - *`brief setup`: a brief on the days you choose — your work, the markets, your holdings*;
+   - *`teach <a topic>`: a lesson a session, with a quiz*;
+   - *`philosophy`: how you work, or how you invest, in your words, and the rules I keep with you*;
+   - *`init-example`, then `init-strategy <name>`: an investment strategy, tested with the KaxaNuk
+     Investment Lab*;
+   - *`init-python-library <name>`: a Python library of your own*;
+   - *keep a copy: your home on a private GitHub repository*.
+
+   Then one line: *More on each, step by step:* <https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/USE-CASES.md>
+4. *Next: <the one next thing>* — from the first row below whose pick is on the *Here for* line,
    with its command.
-4. *Lost? Say `next`.*
+5. *Not sure what's next? Say `next`.* (*¿No sabes qué sigue? Di `next`.*)
 
 | Pick | The one next thing | `Start?` offers |
 | --- | --- | --- |
-| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | *Later, in a new session (recommended)*; *Now* |
-| *Write down how I invest, and see it evolve* | `philosophy` | the same |
+| *Organise what I read, and help with my projects* — or the old *Organise what I read* — or, with none of the four picks, nothing or only their own words | when question 1 named a decision, or a project with no folder of its own, `study <it>`, the first one named; when the projects it named live in folders of their own — code, a repository — *open me in that project's folder and say hello*; otherwise their first source — attach it, or say where it is saved — then `read` | for `study`, *Start the study*; *Later*. For a project in a folder of its own, or a source, *I have a document*; *Suggest a topic*, only with Finance among the domains and the reading map at hand; *Later* |
+| *Learn the basics, step by step* | `philosophy investing`, at Starter — it teaches one idea after each answer and needs no reading | *Later, in a new session (recommended)*; *Now* |
+| *Write down how I invest, and see it evolve* | `philosophy investing` | the same |
 | *Build and test a strategy* | `init-example`, a finished strategy to read, then `init-strategy <name>` for their own | *Show me the worked example*; *Later* |
-| *Organise what I read, and help with my projects* — or the old *Organise what I read* — none, or their own words | when question 1 named a project or a decision, `study <it>`; otherwise their first source — attach it, or say where it is saved — then `read` | for `study`, *Start the study*; *Later*. For a source, *I have a document*; *Suggest a topic*, only with Finance among the domains and the reading map at hand; *Later* |
 
 The message ends with that one tool question, `Start?` (`¿Empezamos?`), which also offers the start
-option of each other pick on the *Here for* line — *Show me the worked example*; *Start the study*
-when question 1 named a project or a decision, else *I have a document* — after *Now* where *Later
-(recommended)* leads, else before *Later*; none twice, four at most. For `philosophy`, its
-description says how long a round takes at that level, as `philosophy` gives it, that it can stop
-after any block, and that a new session starts with every skill loaded and a clean context.
+option of each other pick on the *Here for* line — *Now*, labelled *How I invest, now* (*Cómo
+invierto, ahora*) where another pick's option leads; *Show me the worked example*; *Start the study*
+when question 1 named a decision or a project with no folder of its own, else *I have a document* —
+after *Now* where *Later, in a new session (recommended)* leads, else before *Later*; none twice,
+four at most, *Suggest a topic* left out first. For `philosophy`, its description says how long a
+round takes at that level, as `philosophy` gives it, that it can stop after any block, and, beside
+*Later, in a new session (recommended)* only, in plain words, why a new session is best: everything
+just installed works there, and it starts fresh.
 
-- **Now** follows the `philosophy` skill in this conversation, with the same home; **Show me the
-  worked example**, the `init-example` skill, handed the home's parent folder; **Start the
-  study**, the `study` command, with the project or the decision as its subject and this home as
-  its home, wherever the session is open. One not loaded in this session is read from the
-  package, `.apm/skills/<name>/SKILL.md` or `.apm/prompts/study.prompt.md` under
-  `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as `init-researcher` follows this one. Its own
-  hand-over ends the run.
-- **Later**: nothing more; line 3 says where to begin, and `next` says it again.
+- **Now**, under either label, follows the `philosophy` skill in this conversation, with the same
+  home and the topic *How I invest*; **Show me the worked example**, the `init-example` skill,
+  handed the home's parent folder; **Start the study**, the `study` command, with the project or the
+  decision as its subject and this home as its home, wherever the session is open. One not loaded in
+  this session is read from the package, `.apm/skills/<name>/SKILL.md` or
+  `.apm/prompts/study.prompt.md` under `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
+  `init-researcher` follows this one. Its own hand-over ends the run.
+- **Later**: nothing more; line 4 says where to begin, and `next` says it again.
 - **I have a document.** Ask them to attach it, or to say where it is saved, and follow the `read`
   skill with the same home: its plan copies the file into `Sources/` and reads it, on one go, with
   `extract.py` run from the home's root, so its extracts land in the home's `Extracts/`.
@@ -454,10 +478,10 @@ one line in plain words. The question says that these are academic papers, which
 through with them; that nothing is downloaded — each is found by its title and authors, as a
 scholar search or a university library finds it; and that *Other* takes a work of their own. Then
 show the line the picks add — appended to the closing *Find first* line of *What you are reading
-for*, add-only, in place of the template's *none*, each work as year, authors and title, separated
-by semicolons; the line goes before *Out of scope for now* when the section has none — and ask
-`Go?` (`¿Escribo?`): *Go*, described as *writes the line and saves it*, or *Stop*. On *Go*, write
-it and save it as *Step 5* does:
+for*, add-only, in place of the template's *none* in whatever language it is written, each work
+as year, authors and title, separated by semicolons; the line goes before *Out of scope for now*
+when the section has none — and ask `Go?` (`¿Escribo?`): *Go*, described as *writes the line and
+saves it*, or *Stop*. On *Go*, write it and save it as *Step 5* does:
 
 ```bash
 git -C "<absolute path to the home>" add RESEARCHER.md
@@ -468,4 +492,4 @@ Then, in two lines: attach each one found, or say where it is saved, and I copy 
 `Sources/Papers/` and read it; one that cannot be found comes off the *Find first* line by hand,
 and `next` says so too. A work not picked is never written.
 
-Nothing more: the four lines and `Start?`, with what its pick leads to, are the whole hand-over.
+Nothing more: these lines and `Start?`, with what its pick leads to, are the whole hand-over.

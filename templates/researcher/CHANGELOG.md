@@ -6,6 +6,34 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.23.0 (2026-10-08)
+
+**MINOR** — a new home ships no investing file and no rules of its own: `philosophy` writes down
+how you work or how you invest, and asks your rules.
+
+**What to do differently:** run `update` in your home; the changes to `AGENTS.md` and `README.md`
+come as a diff, and *What you believe* in `RESEARCHER.md` as a line to change by hand, if you like.
+Your `HOW-I-INVEST.md` and the rules you hold stay yours.
+
+### Changed
+
+* **`Philosophy/`** ships empty: `philosophy` starts `HOW-I-WORK.md`, how you work, or
+  `HOW-I-INVEST.md`, how you invest, with its title and headings, when a round needs it; or you
+  write your own by hand.
+* **`RESEARCHER.md`**: *What you believe* names both files in `Philosophy/`; *Here for* lists your
+  work and projects first; *Non-negotiables* starts as *None yet.* — say *remember this* to add a
+  rule of your own, and `philosophy` asks for your rules; the first one written takes its place.
+* **`AGENTS.md`**: `Philosophy/` holds how you work and how you invest, each your view;
+  `philosophy` writes the rules you approve under *Non-negotiables*, on your go; a rule about your
+  holdings goes to `Portfolio/RULES.md`, yours to write; the hard don'ts add placing an order and
+  moving money. Still at most 6,541 words.
+* **`README.md`**: two short questions at the start; `philosophy` writes down how you work or how
+  you invest.
+
+### Removed
+
+* **`Philosophy/HOW-I-INVEST.md`** from the template: a home that has it keeps it.
+
 ## 0.22.1 (2026-10-08)
 
 **PATCH** — a domain of two words gets one folder name, and the Lab is said as one offer.

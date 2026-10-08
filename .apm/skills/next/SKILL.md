@@ -10,7 +10,7 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.8.2
+  version: 1.8.3
 ---
 
 # Next — where you stand, and what to do next
@@ -69,22 +69,23 @@ test, the marker alone on its line, tells the worked example from a strategy of 
 
 | Pick | The one next thing | Done when |
 | --- | --- | --- |
-| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | a round file exists in `Philosophy/Evolution/` |
-| *Write down how I invest, and see it evolve* | `philosophy`; once a round exists, `brief setup`, for a daily brief of the markets and holdings they follow, leads the *also* line until `Briefs/` exists | a round file exists in `Philosophy/Evolution/` |
-| *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, a download of about an hour and a half, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
-| *Organise what I read, and help with my projects*, or the older *Organise what I read*, none, or their own words — when *Works for* or the projects table names a project or a decision of theirs, not a strategy | `study <it>` at home; or, for work in a folder of its own, *open me in that project's folder and say hello* | `Studies/` holds a study, or the project's row names its path |
+| *Organise what I read, and help with my projects*, or the older *Organise what I read*, or, with none of the four picks, nothing or only their own words — when *Works for* or the projects table names a project or a decision of theirs, not a strategy | `study <it>` at home, for a decision or a project with no folder of its own; for work in a folder of its own, *open me in that project's folder and say hello*, and its row takes the path when the owner says *remember this: <project> lives at <its path>* | `Studies/` holds a study, or the project's row names its path |
 | The same picks, with or without a project | a source into `Sources/` — they attach it or name it, and the researcher copies it into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` on their go — then `read`, which asks which question it serves | `Knowledge/` holds a note |
+| *Learn the basics, step by step* | `philosophy investing`, at Starter — it teaches one idea after each answer and needs no reading | a round on investing — a level, not `Field`, on its first line — exists in `Philosophy/Evolution/` |
+| *Write down how I invest, and see it evolve* | `philosophy investing`; once a round on investing exists, `brief setup`, for a daily brief of the markets and holdings they follow, leads the *also* line until `Briefs/` exists | a round on investing — a level, not `Field`, on its first line — exists in `Philosophy/Evolution/` |
+| *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, a download of about an hour and a half, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
 
-When every pick's thing is done, the one next thing is, with no note in `Knowledge/` yet, the last
-row's; otherwise the first of these whose pick is on the line — *Learn the basics*,
-`teach <topic>` on a topic the notes cover; *Write down how I invest*, a new source, and
-`philosophy` again once notes came in since the last round; *Build and test a strategy*,
-`next <its path>`; the rest, a new source, or `query`. Up to three more on one line as *also*: a
-question added under *What you are reading for*, `study <subject>` to work out an idea from the
-library — `study` alone lists the studies — `teach <topic>`, `brief setup` for a daily brief,
-`init-strategy <name>`, or teaching it a tool: its documentation into `Sources/Clippings/`, then
-`read` — *Growing your researcher* in the home's README.
-Philosophy is never a row that fails: for the other picks, *Step 4* may close with it in one line.
+When every pick's thing is done, the one next thing is, with no note in `Knowledge/` yet, the second
+row's; otherwise the first of these whose pick is on the line — *Learn the basics*, `teach <topic>`
+on a topic the notes cover; *Write down how I invest*, a new source, and `philosophy investing`
+again once a note read since its last round is a work the *Bears on* table lists, as *Step 4* item 4
+says; *Build and test a strategy*, `next <its path>`; the rest, a new source, or `query`. Up to
+three more on one line as *also*: a question added under *What you are reading for*,
+`study <subject>` to work out an idea from the library — `study` alone lists the studies —
+`teach <topic>`, `brief setup` for a daily brief, `init-strategy <name>`, or teaching it a tool: its
+documentation into `Sources/Clippings/`, then `read` — *Growing your researcher* in the home's
+README. Philosophy is never a row that fails: for the other picks, *Step 4* may close with it in one
+line.
 
 ## Step 3: In a strategy
 
@@ -127,15 +128,19 @@ In chat, short:
    at home, one line when rows 0 to 6 pass, *setup: all good*, else the failing row alone.
 3. **Next:** one line — the part, the command or skill by name, and what it will ask for; any
    *also*, one line after it.
-4. **Your philosophy**, at home only, one closing line, offered and never pressed, and only when
-   *Domains* holds Finance or *Here for* holds *Learn the basics*, *Build and test a strategy* or
-   *Write down how I invest*; left out when *Next* names `philosophy`. With no round file in
-   `Philosophy/Evolution/`: *`philosophy` writes down how you invest, in your words, at your level —
-   round 1, whenever you like.* With one or more: the last round's date and level — the newest file
+4. **Your philosophy**, at home only, one closing line, offered and never pressed; left out when
+   *Next* names `philosophy`. With no round file in `Philosophy/Evolution/`, when *Domains* holds
+   Finance or *Here for* holds *Learn the basics*, *Build and test a strategy* or *Write down how I
+   invest*: *`philosophy` writes down how you invest, in your words, at your level, and sets the
+   rules I keep with you — round 1, whenever you like.* Otherwise: *`philosophy` writes down how you
+   work, in your words, and sets the rules I keep with you — round 1, whenever you like.* With one
+   or more: the latest round's date, of either topic, and its level or *field* — the newest file
    name, `YYYY-MM-DD-2.md` after `YYYY-MM-DD.md` — and how many notes came in since: the notes the
    `read` entries of `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as
-   written, a book's `INDEX.md` and concept pages aside. When notes came in, add that `philosophy`
-   takes the round again; else end with *no notes since*.
+   written, a book's `INDEX.md` and concept pages aside. With no notes since, end with *no notes
+   since*; when notes came in, add that `philosophy` takes the round again — for a round on
+   investing, only when one of them is a work the *Bears on* table of `philosophy`'s
+   `references/questions.md` lists, matched as the reading map's *Match before proposing* says.
 5. **A new version**, last, and only when there is one: never a line saying there is none. It
    updates nothing itself, and a failure — offline, a command failing or declined — is silent.
    Every line here is in the owner's language.

@@ -12,7 +12,7 @@ your researcher, it proposes a paragraph about it to replace this one, on your g
 | Folder or file | What it holds | What you do with it |
 | --- | --- | --- |
 | `RESEARCHER.md` | who the researcher is: your name, what you are here for, its voice, your rules, what you are reading for | edit it whenever you like — it is yours. Your first `read` adds your first reading question, on your go |
-| `Philosophy/HOW-I-INVEST.md` | your view of investing, in your words | write freely, or build it with `philosophy`, at your level; `refine` tidies it, diff first |
+| `Philosophy/` | how you work, in `HOW-I-WORK.md`, and how you invest, in `HOW-I-INVEST.md` — your view, in your words; none until you or `philosophy` start one | write freely, or build them with `philosophy`; `refine` tidies them, diff first |
 | `Philosophy/Evolution/` | one file per `philosophy` round: your answers that day, word for word | nothing to do — the record of how your view moved, never edited; it appears with your first round |
 | `Sources/Papers/`, `Sources/Books/`, `Sources/Clippings/` | the PDFs and clippings you read | attach or name a file and the researcher copies it in, on your go — or drop it in yourself — then `read` |
 | `Knowledge/` | the researcher's notes on what you read, with `INDEX.md` and `LOG.md` | written by `read`, on your go; ask it with `query` |
@@ -30,11 +30,11 @@ copy*, or run `backup`; the PDFs, `Briefs/` and `Portfolio/` never go in it.
 
 ## The path
 
-1. **Set up, once:** `interview`, if the install has not run it yet — a few short questions about
-   you, about three minutes: what you do and work on, what you'd like a hand with, why you are here,
-   the researcher's voice and your rules. It writes `RESEARCHER.md`, the agent that makes your
-   researcher callable by name and the skill that makes it present in every session, installs both
-   for your user and saves a first version.
+1. **Set up, once:** `interview`, if the install has not run it yet — two short questions about
+   you, about three minutes: what you do and work on, what you'd like a hand with, why you are here
+   and the researcher's voice. It writes `RESEARCHER.md`, the agent that makes your researcher
+   callable by name and the skill that makes it present in every session, installs both for your
+   user and saves a first version.
 2. **Start learning.** Attach a PDF, or a text or Markdown file, in chat — or name one on your
    computer — and say *read it*: the researcher copies it into `Sources/Papers/`, `Sources/Books/`
    or `Sources/Clippings/` on your go. Save a Word document, an e-book or a web page as PDF first.
@@ -42,10 +42,11 @@ copy*, or run `backup`; the PDFs, `Briefs/` and `Portfolio/` never go in it.
    question 1. For a book it asks which chapters serve your questions and reads only those; on your
    go it writes one note per chapter into `Knowledge/`. With nothing to read yet, `read` proposes a
    few works to start from.
-3. **Write down how you invest,** whenever you like: `philosophy`, a second interview, optional and
-   pitched at what you already know. It starts with why you invest and what you already believe,
-   teaches as it asks, and adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, on
-   your go. Take it again after you have read, and see how your view moved.
+3. **Write down how you work, or how you invest,** whenever you like: `philosophy`, a second
+   interview, optional. It starts with why you do it, what you already believe and your rules — on
+   investing, at your level, teaching as it asks — and adds what you typed, word for word, to
+   `Philosophy/HOW-I-WORK.md` or `HOW-I-INVEST.md`, starting the file you lack, and your rules to
+   `RESEARCHER.md`, on your go. Take it again after you have read, and see how your view moved.
 4. **A daily brief,** if you want one: `brief setup` chooses the parts — your work, the markets you
    follow, your portfolio — the days and the time, and schedules it on the Claude desktop app;
    elsewhere `brief` writes the day's file when you run it. Each lands in `Briefs/`, every figure
@@ -69,7 +70,8 @@ off. In Claude, type the commands with a slash, `/read`; anywhere else, ask for 
 
 - **One task per conversation**; start a new one when the subject changes.
 - **Give it the file**, not a summary from memory: attach it, or say where it is.
-- **Say *remember this*** when you want a rule kept; it goes in `RESEARCHER.md`, on your go.
+- **Say *remember this*** when you want a rule kept; it goes in `RESEARCHER.md`, on your go — one
+  about your holdings is yours to write, in `Portfolio/RULES.md`.
 - **Ask it to argue the other side**, or what would change your mind.
 - **Click the links**: every claim names its note, and a claim without one is a lead.
 - **After an install or an update**, open a new conversation.
@@ -186,8 +188,9 @@ this field. `CHANGELOG.md` holds the template's changelog, then this home's.
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: studies and lessons
 are built from the notes, and no note is ever built from a study. `Philosophy/` is cited, never
 compiled into notes, so your judgement stays yours; its rounds in `Philosophy/Evolution/` are a
-record of how your view moved, and `HOW-I-INVEST.md`, never a round, is what is cited as your
-view. A brief is never cited: a figure in one enters the library only as a source in `Sources/`.
+record of how your view moved, and the files you keep there, never a round, are what is cited as
+your view. A brief is never cited: a figure in one enters the library only as a source in
+`Sources/`.
 
 ---
 

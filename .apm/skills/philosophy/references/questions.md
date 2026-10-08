@@ -7,13 +7,16 @@
 >   `RESEARCHER.md`. Everything said or shown is translated: the welcome and the explainers, every
 >   *Ask*, *Plain*, *Example* and *Teaches* line, option labels and their descriptions, the closing
 >   line of every open question, the checkpoints and the retake's lines.
+> - Words for the owner never mark their gender: in Spanish, *recién empiezo*, never *soy nuevo*
+>   or *soy nueva*.
 > - A work keeps its year, authors and title exactly as the reading map gives them, untranslated.
 > - Headers are given as English (Spanish), twelve characters at most. Any other language
 >   translates the English.
 > - IDs are stable and never renumbered; a retake compares by ID. O is the opening, Q a question,
->   S a stance pick, C the closing. IDs stay in English in every file, with the other labels the
->   skills parse: the level names, *Round*, *(round N)*, *kept*, *changed*, *new*, *still open*,
->   and the statuses *not sure yet*, *skipped* and *explained*.
+>   S a stance pick, C the closing, W a question on another field. IDs stay in English in every
+>   file, with the other labels the skills parse: the level names, *Field*, *Round*, *(round N)*,
+>   *kept*, *changed*, *new*, *still open*, and the statuses *not sure yet*, *skipped* and
+>   *explained*.
 >
 > **Works are leads, never sources.**
 >
@@ -49,7 +52,9 @@
 > - *Teaches* lines are said as written: orientation from the map, an idea to check.
 > - They are never improvised and never a verdict on the answer.
 > - Only what the owner types reaches `Philosophy/`. A pick, an example, a placement and every line
->   of this file stay in chat.
+>   of this file stay out of it: in either topic, O4's rules — but one about holdings, as O4 says
+>   — and C2's works — in a field round, only one typed under *Other* — go to `RESEARCHER.md`,
+>   and the rest stays in chat.
 
 ## How a card reads
 
@@ -68,7 +73,8 @@
   - Starter names no paper.
   - Building names at most one work, as a lead.
   - Researching gives the placement and the other side.
-- **Lands under.** The heading of `Philosophy/HOW-I-INVEST.md` where a typed answer goes.
+- **Lands under.** The heading of `Philosophy/HOW-I-INVEST.md` where a typed answer goes — of
+  `Philosophy/HOW-I-WORK.md` for a W card, section 10.
 - **Behind it.** Shown at Researching only, or when the owner asks *show me the paper*.
   - These are the map's leads.
   - *A gap* means the map holds no work, and the gap is said out loud.
@@ -86,8 +92,9 @@
   four options, plus *Other*.
   - Without a question tool (Codex, Gemini), the question is one chat message, with the options
     numbered and *Other — your own words* last.
-- **After every pick**, one optional line: *Want to say that in your own words? One line, or
-  skip.* Only that typed line reaches the file.
+- **After a hunch, O2, or the stance picks, S1–S4**, one optional line: *Want to say that in your
+  own words? One line, or skip.* Only that typed line reaches the file. No other pick takes one:
+  O3, O4, the calibration, the checkpoints and C2 land nowhere a typed line could go.
 - **The escapes**, available on every question, are recognised in the owner's language and in
   their own wording too. A message that is only an escape is the escape and writes nothing; a
   message with more than that is a typed answer. When it could be either, ask once.
@@ -105,18 +112,19 @@
 | *show me the paper* | *muéstrame el estudio* | Show *Behind it*, as leads, at any level. |
 | *stop* | *para* | Works at any time, and goes straight to the preview with what is already answered. A question it leaves unreached is open: a retake's *Only what I left open* picks it up. |
 | *keep*, on a retake | *igual*, *mantener* | The earlier answer stands; nothing is added to `HOW-I-INVEST.md`. |
+| *my rules*, on a retake | *mis reglas* | Once the current question is answered, ask O4; its rules go in the preview. |
 
 ---
 
 ## 0 · Before the first question (said, not asked)
 
-> No test, and no right answers. I'll ask why you invest and what you already believe, then a few
-> questions at your level. Say *simpler*, *harder*, *skip* or *stop* any time; *not sure yet* is a
-> complete answer.
+> No test, and no right answers. I'll ask why you invest, what you already believe and the rules
+> you want kept, then a few questions at your level. Say *simpler*, *harder*, *skip* or *stop* any
+> time; *not sure yet* is a complete answer.
 >
-> Only what you type goes into your file, word for word, after you've seen it and said go. I never
-> tell you what to buy, sell or hold. Take this again after you've read something, and you'll see
-> how your view moved.
+> Only what you type goes into your file, word for word, and the rules you keep into
+> `RESEARCHER.md`, after you've seen them and said go. I never tell you what to buy, sell or hold.
+> Take this again after you've read something, and you'll see how your view moved.
 
 Then the question `Ready?` (`¿Comenzamos?`), with *Start* or *Not now*. On *Not now*, nothing is
 written; say how to start later. Handed over by `interview`'s `Start?` *Now*, that pick was the
@@ -213,6 +221,53 @@ On a retake, use the opening in section 7 instead.
 
   - Say the result, and let the owner change it.
 
+### O4 · Your rules
+- *Asked at:* round 1, every level, right after the explainer of section 2, as a multi-select tool
+  question. On a retake, after O3 and any explainer said again, while *Non-negotiables* holds no
+  rule, and otherwise only when the owner says *my rules*. Never in a home whose `AGENTS.md`
+  predates it, as the skill's *step 1* says.
+- *Lands under:* never `Philosophy/`, and no line in the round file. On the round's go, the rules
+  it settles go under *Non-negotiables* in `RESEARCHER.md`, as the skill's *step 11* says; *skip*
+  or *stop* leaves that section as it is.
+- Say first: *One more thing before the questions. A process keeps a few rules, decided on a calm
+  day; these are the ones I'll keep to with you.*
+- Header: `Your rules` (`Tus reglas`).
+- **Ask:** Which rules should I keep to with you? The question shows three, a plain line each, as
+  they will be written, but for *my*, which the file gives as the researcher's name:
+  - *Every result comes from a tested tool, never from my head.*
+  - *An idea is written down before it is tested, and every claim names its source — one without
+    a source is marked as a guess.*
+  - *Nothing is bought or sold from here, and no money moves.*
+- **Options:**
+
+| Option | Description shown |
+| --- | --- |
+| *Keep these three* (recommended) | All three, as written above. |
+| *Add one of my own* | A mistake you never want to repeat — one line, in chat, after. |
+| *Change or drop one* | Which one, and how — one line, in chat, after. |
+| *Add the two for strategies* | For when you test a strategy: *An idea gets real money only after a test written down beforehand, never after one good month.* *Every plan is challenged before it is tested, and every idea tried is counted, the failed ones too.* |
+
+- **The two for strategies** are an option only when *Here for* holds *Build and test a strategy*,
+  or when the owner asks for them, in any words.
+- **What is kept.** Whatever is not changed or dropped is kept, so an add alone keeps the three. A
+  rule typed under *Other* is a rule of the owner's own. No *in your own words?* follows O4: after
+  *Keep these three* alone nothing more is asked, and after *Add one of my own* or *Change or drop
+  one* only its one line in chat.
+- **A rule about holdings** — how much in one place, when to sell, when to look again — is not
+  written under *Non-negotiables*, where no brief reads it. Say in one line that it belongs in
+  `Portfolio/RULES.md`, the file `brief` quotes, which `brief setup` starts and the owner writes;
+  the preview shows it apart, and the hand-over names `brief setup`. `philosophy` never writes in
+  `Portfolio/`.
+- **A home with rules already** — from an older interview, or added with *remember this* — shows
+  them first, word for word, and they stay unless *Change or drop one* names one. When they hold
+  the three in any words — an older template's three count — *Keep my rules (current)* takes the
+  place of *Keep these three*; when they hold the two for strategies, that option is left out. A
+  rule held in any words is never added again.
+- **Plain:** A rule is a choice made before the moment it is for, so the moment can't make it for
+  you.
+- **Plain words only.** Every rule is written as plainly as here, in the owner's language — never a
+  strategy's term the owner did not use: engines, a book, an analyzer measurement.
+
 ---
 
 ## 2 · The idea the rest builds on (said once, after O3, never asked)
@@ -289,7 +344,7 @@ The levels are nested: each asks everything the level before it asks, in harder 
 
 | Block | Starter | Building | Researching |
 | --- | --- | --- | --- |
-| Opening | O1, O2, O3 | O1, O2, O3 | O1, O2, O3 |
+| Opening | O1, O2, O3; O4 as its card says | O1, O2, O3; O4 as its card says | O1, O2, O3; O4 as its card says |
 | Your scoreboard | Q2 (O1's follow-up, when needed), Q1, Q3 | Q2, Q1, Q3 | Q2, Q1, Q3 |
 | Your edge | — | S1, S4 (one call), Q4 | S1–S4 (one call), Q4, Q5 |
 | You | Q6, Q8 | Q6, Q7, Q8 | Q6, Q7, Q8 |
@@ -805,12 +860,12 @@ leads the placement.
 
 | Heading in `HOW-I-INVEST.md` | IDs |
 | --- | --- |
-| **Why I invest** — the template's first heading | O1, Q2, Q1 |
+| **Why I invest** — the first heading | O1, Q2, Q1 |
 | **What I believe about markets** | O2, Q4, Q5, Q9, Q10, and S1–S3 in the owner's own words |
 | **What I have learned** | Q8, Q15 |
 | **How I decide** | Q3, Q6, Q7, Q11, Q14, Q16, and S4 in the owner's own words |
 | **What would change my mind** | Q12, Q13, C1 |
-| *never written to `HOW-I-INVEST.md`* | O3 (the level), every pick, C2, placements, *not sure yet*, *skipped*, *explained* |
+| *never written to `HOW-I-INVEST.md`* | O3 (the level), O4 (its rules go under *Non-negotiables* in `RESEARCHER.md`, but one about holdings, which the owner writes in `Portfolio/RULES.md`), every pick, C2, placements, *not sure yet*, *skipped*, *explained* |
 
 - Each typed answer is one bullet, word for word, tagged *(round N)*. Headings are matched by name
   or position, as the skill's *step 11* says, so a translated heading is never duplicated.
@@ -829,6 +884,8 @@ leads the placement.
 > for word>".
 >
 > <k> questions at <level> were never reached; *Only what I left open* picks up from there.
+>
+> Your rules in `RESEARCHER.md` stay as they are; say *my rules* to change them.
 
 - *a* counts the questions with words, kept ones included; *b* the questions the round asked.
 - The works are matched to IDs by section 8, and only the IDs the last round asked are named; if
@@ -837,21 +894,24 @@ leads the placement.
 - The C1 line is said only when a round holds typed words for C1, quoting the latest, with its
   round: that is the promise C1's *Teaches* makes.
 - The last line is said only when there are such questions: those of the last round's level, O3,
-  C2 and Starter's Q2 aside, since they may take no line, that no round file has a line for, which
-  the skill's *step 1* finds. *k* counts them.
+  O4, C2 and Starter's Q2 aside, since they may take no line, that no round file has a line for,
+  which the skill's *step 1* finds. *k* counts them.
+- The rules line is said only when *Non-negotiables* holds a rule and O4 can be asked; with none,
+  O4 is asked after O3, as its card says.
 
 ### The scope question
 `Retake?` (`¿Repetir?`). Every scope is applied after O3, against the questions of the level chosen
 there: a question that level does not ask is left out, whatever section 8 lists, and Q5, S2 and S3
 are never asked below Researching.
 
-- *What my reading touched* — suggested when anything was read and no question is unreached, and
-  left out when nothing was read: the IDs section 8 gives for the notes read since, kept only where
-  the level chosen asks them, in block order, then C1 and C2.
+- *What my reading touched* — suggested when a note read since is a work section 8 lists and no
+  question is unreached, and left out when none is: the IDs section 8 gives for the notes read
+  since, kept only where the level chosen asks them, in block order, then C1 and C2.
 - *The whole round* — every question of the level chosen.
-- *Only what I left open* — suggested when a question is unreached: the questions whose latest
-  status is *not sure yet*, *skipped* or *explained*, and those the level chosen asks that no round
-  file has a line for — a round stopped early never reached them — in block order, then C2.
+- *Only what I left open* — suggested when a question is unreached, and left out when none is open:
+  the questions whose latest status is *not sure yet*, *skipped* or *explained*, and those the level
+  chosen asks that no round file has a line for — a round stopped early never reached them — in
+  block order, then C2.
 - *Just show me what changed* — no questions, and nothing written.
 
 *Not now* or *stop*, typed under *Other*, ends the run with nothing written.
@@ -952,3 +1012,113 @@ words, and names no work at all:
   for a work of the owner's own, which goes on *Find first* in their words.
 - A retake still scopes by section 8, which is in this file: a note is matched to a work by its
   authors' surnames and the distinctive words of its title.
+
+---
+
+## 10 · Another field
+
+For a round about how the owner works — law, medicine, teaching, a trade, a business — or another
+topic they name, asked as the skill's *step 2* says and run as its *Another field* says. Everything
+above holds but what is about markets, with `HOW-I-WORK.md` where it says `HOW-I-INVEST.md`: only
+typed words are written, no answer is right or wrong, words for the owner never mark their gender,
+the escapes work, and section 9 holds as if the reading map were missing, so no work from the map is
+named, and C2 is this section's own, below. There is no level, no explainer, no hunch, no stance
+pick, no placement and no *Behind it*: each card is worded once, in plain words; *simpler* puts the
+*Plain* line and the *Example* under every question left, and *harder* is answered with the rest of
+the round in one message.
+
+### Before the first question (said, not asked)
+
+> No test, and no right answers. I'll ask why you do this work, what you believe about it and the
+> rules you want kept, then a few questions on how you work — about ten minutes, in one go. Say
+> *skip* or *stop* any time; *not sure yet* is a complete answer.
+>
+> Only what you type goes into `Philosophy/HOW-I-WORK.md`, word for word, and the rules you keep
+> into `RESEARCHER.md`, after you've seen them and said go. Take this again after you've read
+> something, and you'll see how your view moved.
+
+Then `Ready?`, as after section 0. On a retake, use the opening in section 7, as *A retake* below
+says.
+
+### W1 · Why you do it
+- *Lands under:* **Why I do this work**.
+- **Ask:** Why do you do this work, or why do you want to? Who is it for, and what would doing it
+  well change?
+- **Plain:** This is about you, not about your field. Any reason counts.
+- **Example:** "So people get a fair hearing." · "I like the problems nobody else wants." · "It
+  pays the bills, and I want it to do more than that."
+- **Teaches:** Why you do it decides what *doing it well* means to you: the yardstick the rest of
+  your answers lean on.
+
+### W2 · What you believe about your field
+- *Lands under:* **What I believe about my field**.
+- **Ask:** What do you believe about your field that not everyone in it would agree with?
+- **Plain:** A hunch counts, and it doesn't have to be right.
+- **Example:** "Most disputes are settled before anyone reaches a courtroom." · "Experience
+  beats credentials."
+- **Teaches:** A belief written down can be checked against what you read and what happens; one
+  kept in your head only gets confirmed.
+
+**O4 follows W2**, its card as written — on a retake, after W2 while *Non-negotiables* holds no
+rule, otherwise on *my rules* — said first as: *One more thing before the questions: a few rules,
+decided on a calm day — the ones I'll keep to with you.* The two for strategies are offered only
+when the owner asks for them.
+
+### W3 · What you have learned
+- *Lands under:* **What I have learned**.
+- **Ask:** What has experience taught you that you would tell yourself ten years ago?
+- **Plain:** One lesson is enough; a mistake you won't repeat counts.
+- **Example:** "Read the whole file before forming a view." · "Ask what people need, not only what
+  they asked for."
+- **Teaches:** A lesson is evidence you already own; written down, memory can't quietly rewrite it.
+
+### W4 · How you decide
+- *Lands under:* **How I decide**.
+- **Ask:** When the evidence is mixed, how do you decide — what do you need to see, whom do you
+  ask, and when do you stop looking?
+- **Plain:** Think of the last hard call you made at work.
+- **Example:** "I write the best argument against my position first." · "I sleep on anything I
+  can't explain in two sentences."
+- **Teaches:** A way of deciding you can name is one you can improve; one you can't name repeats
+  its mistakes quietly.
+
+### W5 · What would change your mind
+- *Lands under:* **What would change my mind**.
+- **Ask:** You said you believe "<the line typed for W2, quoted>". What would you need to see to
+  stop believing it? With no W2 line, ask about any belief on their work they'd like to test, or
+  skip.
+- **Plain:** A belief you could drop on evidence is one you can test.
+- **Example:** "If the cases I settle early turned out worse for the people I represent." · "If
+  newcomers with other training kept doing better than me."
+- **Teaches:** A belief you'd drop on evidence is one you can test. Your answer here is the line
+  I'll quote first when you take this again.
+
+Then C2, `Read next` (`Aprender`), single-select, with no work from the map: up to two files *in
+your Sources/, not yet read*, which only need `read` and go on no *Find first* line — the hand-over
+names the one picked by its file name; `teach <a topic the owner's notes cover>` when `Knowledge/`
+holds a note, otherwise *Learn one idea with me — after your first reading*; *Not now*; and *Other*
+for a work of the owner's own, which goes on *Find first* in their words. Then the preview.
+
+### The file, and a retake
+
+A `HOW-I-WORK.md` that `Philosophy/` lacks is created on the round's go, as the skill's *step 11*
+says, with `# How I work — <the topic, in the owner's words>` and these five headings, in this
+order, in the owner's language, and nothing else; then the lines go in as *step 11* says. A home
+keeps one `HOW-I-WORK.md`: a round on any topic but investing adds to it, as its next round, as the
+skill's *step 2* says.
+
+| Heading in `HOW-I-WORK.md` | IDs |
+| --- | --- |
+| **Why I do this work** | W1 |
+| **What I believe about my field** | W2 |
+| **What I have learned** | W3 |
+| **How I decide** | W4 |
+| **What would change my mind** | W5 |
+| *never written to `HOW-I-WORK.md`* | O4 (its rules go under *Non-negotiables* in `RESEARCHER.md`, but one about holdings, which the owner writes in `Portfolio/RULES.md`), C2, *not sure yet*, *skipped*, *explained* |
+
+The round file's first line has `Field` where a level goes: `# Round <N> · <YYYY-MM-DD> · Field`.
+**A retake** reads the field rounds only and runs as section 7 does, with these differences: no
+level is asked, said or compared; W5 is quoted where C1 is, and O4 follows W2; the opening leaves
+out the IDs the reading bears on, and the scope question *What my reading touched*, every scope
+taking this section's questions in its order, then C2; and the comparison lists the notes read
+between the two rounds once, never under an answer.

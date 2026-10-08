@@ -4,18 +4,18 @@
 |---|
 | [![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Gemini%20CLI-blue)](#install--three-steps-no-coding) [![License](https://img.shields.io/github/license/KaxaNuk/KaxaNuk-Researcher?color=blue)](LICENSE) |
 | [![Version](https://img.shields.io/github/v/tag/KaxaNuk/KaxaNuk-Researcher?sort=semver&label=version&logo=github)](CHANGELOG.md) [![APM](https://img.shields.io/badge/installs%20with-APM%200.33.0-blue)](https://github.com/microsoft/apm) |
-| [![Languages](https://img.shields.io/badge/README-English%20%7C%20Espa%C3%B1ol-blue)](#instalación-en-español) [![Powered by KaxaNuk](https://img.shields.io/badge/powered%20by-KaxaNuk-orange?colorB=orange)](https://kaxanuk.mx) |
+| [![Languages](https://img.shields.io/badge/speaks-any%20language%20you%20choose-blue)](#install--three-steps-no-coding) [![Powered by KaxaNuk](https://img.shields.io/badge/powered%20by-KaxaNuk-orange?colorB=orange)](https://kaxanuk.mx) |
 
-**Train your own research companion.** You name it and teach it who you are, how you like to work
-and the rules you never break. It keeps a library of what you read and answers from it, every claim
-pointing to its source; it helps you think through your ideas, plans and decisions, and can brief
-you each morning. It comes with you: open your assistant in any folder — a report, a valuation, a
-plan — call it by name, and it brings what it knows. Its home ground is investment research:
-building and testing a strategy with the KaxaNuk Investment Lab. One researcher per person, in any
-language.
+**Train your own research companion** for your work and personal projects. You name it and teach it
+who you are, how you like to work and the rules you never break. It keeps a library of what you read
+and answers from it, every claim pointing to its source; it helps you think through your ideas,
+plans and decisions, and can brief you each morning. It comes with you: open your assistant in any
+folder, call it by name, and it brings what it knows. It teaches you to invest when you want, and if
+investing is why you came, it has every tool: building and testing a strategy with the KaxaNuk
+Investment Lab. One researcher per person, in any language.
 
-> **You:** Ada, what have I read about index funds?\
-> **Ada:** Two notes, both linked — and a gap: nothing yet on their cost after tax.\
+> **You:** Ada, what have I read about pricing my services?\
+> **Ada:** Two notes, both linked — and a gap: nothing yet on raising prices.\
 > **You:** Remember this: always show me the strongest case against first.\
 > **Ada:** That goes in `RESEARCHER.md`, in your words, under *How it speaks*. Add it?
 
@@ -37,49 +37,19 @@ through your assistant; what it reads goes to the company behind that assistant,
    Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
    ```
 
-3. Answer its questions. It asks your language first, then everything happens in the same
-   conversation: it installs what it needs — allow the commands it asks about, that is all you do —
-   asks what to call your researcher and where to keep it, `C:\Research\Ada` for example, asks two
-   short questions about you, about three minutes, and tells you where it lives and the one thing
-   to do next.
+3. Answer its questions. It asks your language first — any language you choose, and your researcher
+   speaks it from then on — then everything happens in the same conversation: it installs what it
+   needs — allow the commands it asks about, that is all you do — asks what to call your researcher
+   and where to keep it, `C:\Research\Ada` for example, asks two short questions about you, about
+   three minutes, and tells you where it lives, what to ask it, and where to start.
 
 With Claude, installing also gives your assistant three house rules on this computer — two for
 KaxaNuk's Python style, only in KaxaNuk projects — the Lab's libraries and what you build on
 KaxaNuk's templates — and one to read only what a task needs; *Removing it* below undoes them.
 
-Then quit and reopen your assistant, and open your researcher's folder in a **new** conversation —
-in the Claude desktop app, a new **Code** session on that folder; in the Codex app, that folder; in
-a terminal, `claude`, `codex` or `gemini` run in it — and say hello, by its name.
-
-### Instalación en español
-
-**Qué es.** Una herramienta de investigación y aprendizaje, nunca asesoría de inversión. Funciona
-en tu computadora, con tu asistente; lo que lee va a la empresa detrás de él, nunca a KaxaNuk.
-
-1. Abre una de estas: la pestaña **Code** de la app de escritorio de **Claude**, **Claude Code**,
-   la app o el CLI de **Codex**, o el **Gemini CLI** — en cada una necesitas haber iniciado sesión.
-   Un chat en la web — claude.ai, ChatGPT, Gemini — no puede instalarlo: no puede ejecutar comandos
-   en tu computadora.
-2. Pega esta línea y envíala:
-
-   ```text
-   Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
-   ```
-
-3. Responde sus preguntas. Primero te pregunta el idioma — elige *Español* — y todo sigue en la
-   misma conversación: instala lo necesario (solo permite los comandos que te pida), te pregunta el
-   nombre de tu investigador y dónde guardarlo, te hace dos preguntas cortas sobre ti, unos tres
-   minutos, y te dice dónde quedó y lo primero que conviene hacer.
-
-Con Claude, instalarlo también le da a tu asistente tres reglas de la casa en esta computadora —
-dos para el estilo de Python de KaxaNuk, solo en proyectos de KaxaNuk — las bibliotecas del Lab y
-lo que construyas con las plantillas de KaxaNuk — y una para leer solo lo que una tarea necesita;
-*Removing it*, abajo, las quita.
-
-Después cierra y vuelve a abrir tu asistente, y abre la carpeta de tu investigador en una
-conversación **nueva** — en la app de escritorio de Claude, una sesión nueva de **Code** en esa
-carpeta; en la app de Codex, esa carpeta; en una terminal, `claude`, `codex` o `gemini` en
-ella — y salúdalo por su nombre.
+Then quit and reopen your assistant, open your researcher's folder in a **new** conversation — in
+the Claude desktop app, a new **Code** session on that folder; in the Codex app, that folder; in a
+terminal, `claude`, `codex` or `gemini` in it — and say hello, by its name.
 
 ## What you can use it for
 
@@ -91,19 +61,19 @@ ella — y salúdalo por su nombre.
 | work out an idea, a plan, a goal or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, where it stands |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules — never advice |
-| write down how you invest, and see it evolve | `philosophy` | an interview at your level; your typed answers, word for word, in `Philosophy/HOW-I-INVEST.md` |
+| write down how you work or invest, and see it evolve | `philosophy` | a short interview; your typed answers, word for word, in `Philosophy/` |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
 | see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read; running it needs keys and licences |
-| build a Python library of your own | `init-python-library <name>` | a folder laid out like the KaxaNuk Data Curator: `src/`, tests, docs, a workflow that tests and publishes |
-| know what to do next | `next`, in the folder you are in | where you stand, and the one thing to do next |
+| build a Python library of your own | `init-python-library <name>` | a folder laid out like the KaxaNuk Data Curator: tests, docs, a workflow that tests and publishes |
+| know what to do next | `next`, wherever you are | where you stand, and the one thing to do next |
 
 In Claude, type these with a slash, `/read`; anywhere else, say them. **It grows with you**: it
-reads for your questions, speaks in your voice and keeps your rules, all in its own folder, where
-you can edit them; the package brings only hints, offered as options — never a position to adopt.
-Its home's `README.md` says how to work well with it; [`USE-CASES.md`](USE-CASES.md) shows twelve
-uses, step by step.
+reads for your questions, speaks in your voice and keeps your rules, all in its folder, yours to
+edit; the package brings only hints, offered as options — never a position to adopt. Its home's
+`README.md` says how to work well with it; [`USE-CASES.md`](USE-CASES.md) shows twelve uses, step by
+step.
 
-## Its home ground: investment research
+## The KaxaNuk Investment Lab
 
 The researcher needs nothing beyond this package. The Data Curator is open source and free; a
 strategy needs a key for it from a data provider — the worked example uses FMP's. The Backtest
@@ -131,8 +101,8 @@ uvx --from apm-cli==0.33.0 apm uninstall -g "_local/<your home, as deps list nam
 ```
 
 On Claude Code, `~/.claude/skills`, `commands`, `agents` and `rules` then hold no KaxaNuk file. A
-daily brief's task stays in the Claude desktop app's scheduled tasks until you delete it there.
-Your home folder and its saved versions stay: they are yours to delete.
+daily brief's task stays in the Claude desktop app's scheduled tasks until you delete it there. Your
+home folder and its saved versions stay, yours to delete.
 
 **A question, or a problem to report:** `lab@kaxanuk.mx`, with the versions your researcher names
 when you ask *which version are you?*
@@ -156,7 +126,7 @@ which running it by name approves.
 | `query <question>` | answers from the library, every claim cited and every gap named |
 | `init-researcher`, `init-strategy`, `init-example`, `init-python-library` | make a folder — your home, a strategy, the worked example, or a Python library — copied by a script, never from memory |
 | `interview` | two short questions about you, then `RESEARCHER.md` and the agent and skill that make it yours; `interview force` starts over |
-| `philosophy` | an optional interview on how you invest, at your level; your typed answers in `Philosophy/`, word for word |
+| `philosophy` | an optional interview on how you work or how you invest — investing at your level; your typed answers in `Philosophy/`, word for word, your rules in `RESEARCHER.md` |
 | `brief [setup]` | a dated file in `Briefs/` on the days you choose — your work, markets, holdings — every figure quoted from a dated source |
 | `next [strategy]` | where you stand and the one thing to do next; at home, it offers to save what you changed by hand |
 | `backup` | keeps a copy of your home, or of a strategy, on a private GitHub repository — only when you ask |
@@ -217,7 +187,7 @@ The researcher's part is **the hypothesis**, and it stops where the numbers star
   in a `BIBLIOGRAPHY.md` without one is a lead.
 - **It never advises on a holding.** A brief quotes dated sources and names the rules in your
   `Portfolio/RULES.md` worth a look; it never says buy, sell, trim, add or hold, and never computes
-  a weight, a P&L or a return. `philosophy` writes only what you typed.
+  a weight, a P&L or a return. `philosophy` writes into `Philosophy/` only what you typed.
 
 ## Licence
 

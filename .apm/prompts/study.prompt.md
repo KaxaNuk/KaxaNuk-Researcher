@@ -31,8 +31,8 @@ that writes.
   on the same go.
 - **Something another command owns:** say which, and stop unless the owner says it is a study. A
   source to read is `read`'s, a question about what the library holds is `query`'s, a belief is the
-  owner's to write in `Philosophy/HOW-I-INVEST.md`, by hand or with `philosophy`, a topic to learn
-  is `teach`'s, and work on a strategy or on a project with a repository of its own happens there.
+  owner's to write in `Philosophy/`, by hand or with `philosophy`, a topic to learn is `teach`'s,
+  and work on a strategy or on a project with a repository of its own happens there.
 
 ## Step 2: The owner's words first
 

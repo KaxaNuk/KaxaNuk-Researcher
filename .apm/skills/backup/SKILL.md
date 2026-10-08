@@ -8,15 +8,16 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.3
+  version: 0.1.4
 ---
 
 # Backup — a copy of your researcher off this computer
 
 Every go saves a version of what it wrote, on this computer only, as the home's `AGENTS.md` says
 under *Plan first, then write*. This skill keeps a second copy, on a private GitHub repository,
-when the owner asks for one, and only then: no skill reminds them of it, and no hand-over mentions
-it. It is also where a failed send points — *say* back up *when you want me to look*.
+when the owner asks for one, and only then: no skill reminds them of it, and no hand-over offers
+it; the interview's list of uses names it in one line. It is also where a failed send points —
+*say* back up *when you want me to look*.
 
 **Plain words.** To the owner a version is never a *commit*, and git is named only when they name
 it: *a saved version*, *your copy on GitHub*, *send*. You run every command; show one when asked.
