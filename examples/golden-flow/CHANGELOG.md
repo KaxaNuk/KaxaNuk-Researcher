@@ -41,6 +41,26 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.4 (2026-10-08)
+
+**PATCH** — the shared lines of `AGENTS.md` and `SETUP.md` move as the template's 0.15.0 does, and
+a marked line in `SETUP.md` says an untracked `uv.lock` after `uv sync` is expected here. No number
+moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`**, *The blueprint is committed before the rule*: a document the researcher writes on
+  the owner's go — a note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a line in
+  `Bibliotheca/LOG.md` — is saved as its own version on that go, with no `CHANGELOG.md` entry,
+  version bump or ruff gate; the blueprint is saved alone; the go is the owner's signature, on
+  which the assistant removes the template's blockquote. *Before any commit to `main`* names those
+  saves as the exception.
+- **`SETUP.md`**: the paragraph about publishing the repository and the hand-over's line about a
+  remote leave — a copy off the computer is made only when the owner asks, with `backup`; the git
+  name and e-mail are asked for in plain words.
+
 ## 0.15.3 (2026-10-08)
 
 **PATCH** — the shared lines of `SETUP.md` and `AGENTS.md` name APM 0.33.0 and the update in full,

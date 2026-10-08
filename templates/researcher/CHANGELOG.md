@@ -6,6 +6,32 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.19.0 (2026-10-08)
+
+**MINOR** — your researcher saves your work for you: every go also saves a version of what it
+wrote, said in one word, *Saved*, and no skill asks *Commit?* any more. A copy off this computer is
+made only when you ask — *keep a copy* — with the package's new `backup` skill.
+
+**What to do differently:** run `update` in your home — it shows the changes to `AGENTS.md` and
+`README.md` as a diff, and brings them across on your go.
+
+### Changed
+
+* **`AGENTS.md`**, *Plan first, then write*: every go also saves a version — files by name, never
+  `--all` — said in one line; `Save?` (*Save this version* / *Not now*) only where no go covers a
+  save — changes made by hand, which `next` finds, and an unsaved home before `update`. A new
+  paragraph, **Versions**: to you a saved version is never a *commit*; `backup` makes a private
+  GitHub copy only when asked; with `kaxanuk.autosend` at `true` each saved version is sent there,
+  never forced, and a failed send pauses sending until you say *back up*.
+* **`AGENTS.md`**, *Working in a strategy*: the go on the plan is your review and signature and
+  saves the version; the blueprint is saved alone, before the rule. *Studies* and *Joining other
+  projects*: what holds a private project's material keeps any copy of the home private. `backup`
+  joins the skills you run by name.
+* **`README.md`**: *Save a copy off this computer* becomes *Keep a copy off this computer*, in plain
+  words with no command, saying what the copy holds and what stays on this computer; the folder
+  table says *kept on this computer only* where it said *committed*; the Windows line-ending note,
+  which was for the assistant, leaves (the package's `SETUP.md` keeps it).
+
 ## 0.18.2 (2026-10-08)
 
 **PATCH** — the commands this home names run APM 0.33.0, which installs the package on Windows as

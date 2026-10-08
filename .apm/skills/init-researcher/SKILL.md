@@ -3,12 +3,12 @@ name: init-researcher
 description: >
   Create a KaxaNuk researcher's home, once per person — ask the language, the researcher's name and
   where to put it, bring the package to its newest version with apm update -g, copy the home
-  template inside it by a script and make it a git repository — then run the interview in the same
+  template inside it by a script, its first version saved — then run the interview in the same
   conversation. Only when the owner runs it by name, or as the step of the install SETUP.md walks
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
   the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.5.3
+  version: 0.5.4
 ---
 
 # Init researcher — a home for the library, once
@@ -82,10 +82,10 @@ what happens in a sentence, and never ask them to type a command: you run every 
    is not found on its own: pass `--package <its install folder>`. A git step that fails leaves the
    copy in place — the script still exits 0 — and prints every command that finishes the
    repository from that step on. If git is missing, install it on the owner's go, then run the
-   printed commands in the new folder. If the first commit fails for want of a git identity, ask for
-   the name and email — never invent them — set them in that repository only,
-   `git config user.name "<name>"` and `git config user.email "<email>"`, then run the printed
-   commands there.
+   printed commands in the new folder. If the first commit fails for want of a git identity, ask
+   for *a name and an email to sign the versions your researcher saves; they stay on this
+   computer*, never invented; set them in that folder only, `git config user.name "<name>"` and
+   `git config user.email "<email>"`, then run the printed commands there.
 
 7. **Run the interview now**, in this conversation, in the language chosen: follow the `interview`
    skill — from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` when
@@ -96,8 +96,7 @@ what happens in a sentence, and never ask them to type a command: you run every 
    `init-example` when the owner picks one there.
 
    If the owner would rather stop here, the hand-over is two lines: open `<full path>` in a new
-   session, and there type `/interview` — elsewhere, ask for the interview by name. The library is
-   private: nothing in `Sources/` is pushed anywhere public, and the `.gitignore` keeps PDFs out.
+   session, and there type `/interview` — elsewhere, ask for the interview by name.
 
 ## References
 

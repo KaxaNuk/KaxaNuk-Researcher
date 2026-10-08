@@ -42,9 +42,8 @@ place: `Grinold_Kahn_ND_Active_Portfolio_Management` for a copy that prints no y
 At home, a book folder is the only kind of subfolder a domain has, and its `INDEX.md` the only
 per-folder index. A clipping or a transcript — `Sources/Clippings/` at home, `Bibliotheca/Notes/`
 in a strategy — is a paper for these purposes; in a strategy its note goes in `Papers/`. In a
-strategy the PDF sits beside its note, gitignored; at home it stays in `Sources/`. A clipping in
-markdown or plain text is not ignored: in a strategy it is committed with the notes unless the
-owner ignores it, and `read` says so in its plan.
+strategy the PDF sits beside its note, kept on this computer only; at home it stays in `Sources/`.
+A clipping in markdown or plain text is saved with its note, and `read` says so in its plan.
 
 ## Frontmatter — the template's four fields, and `tags`
 
@@ -62,7 +61,7 @@ tags: [expected-returns, risk-premia]
   itself — its title page, its header — or from the row in `BIBLIOGRAPHY.md`; never invented.
 - `citation` — the reference, with the date the link was last checked.
 - `local_copy` — the file read, by path inside this repository, or `none`. At home, the path under
-  `Sources/`; in a strategy, the PDF beside the note, gitignored.
+  `Sources/`; in a strategy, the PDF beside the note, kept on this computer only.
 - `read` — the date, and what was read: the whole paper, the abstract, the chapters.
 - `tags` — by the owner's tag policy in `RESEARCHER.md`. Optional in a strategy.
 
@@ -277,5 +276,5 @@ A `query` whose answer drew on three or more notes may be kept, on the owner's g
 page in the domain folder: `type: synthesis`, `updated`, `sources` and `tags` in the frontmatter;
 the question as its title; the answer as its body, every claim linked to the note or the concept
 page it rests on; `## Open` at the end. A synthesis cites notes and concept pages; a note never
-cites a synthesis. In a strategy the synthesis is `OBJECTIVE.md`, which `objective` drafts and the
-owner commits.
+cites a synthesis. In a strategy the synthesis is `OBJECTIVE.md`, which `objective` drafts on the
+owner's go.

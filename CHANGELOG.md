@@ -6,6 +6,63 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.36.0] - 2026-10-08
+Your researcher saves your work for you, and keeps a copy on GitHub only when you ask. Testers
+asked what *commit* means: no skill asks it any more. The go you give a plan also saves a version
+of what it wrote, at home and in a strategy, and the researcher says *Saved*; a new skill,
+`backup`, puts the home — or a strategy — on a private GitHub repository when you say *keep a
+copy*, and brings it back on a new computer.
+
+**What to do differently:** say `update` in your home — it shows the changes to `AGENTS.md` and
+`README.md` as a diff (home template 0.19.0).
+### Added
+- **`backup`**, a new skill: on *keep a copy*, *back up*, *a new computer* or *what is a commit*,
+  it makes a private GitHub repository of the home or of one strategy — with `gh` when it is signed
+  in, else an empty private repository the owner creates on github.com, else GitHub Desktop —
+  offers GitHub's private *noreply* e-mail, asks once whether to send each new version there
+  (`git config kaxanuk.autosend`), and says what the copy holds and what stays on the computer by
+  design (the PDFs, `Extracts/`, `Briefs/`, `Portfolio/`, any `.env`). A send never forces, pulls
+  or merges; a failed one keeps the version here, says so in one line and pauses sending. An
+  existing copy is checked to be private before anything is sent to it. It is never offered
+  unasked, and no hand-over mentions it. The package deploys 21 skills.
+### Changed
+- **Every write saves a version on its own go**: `read`, `philosophy`, `query`, `interview`,
+  `study`, `teach`, `refine`, `refresh-index`, `audit` (on the go of running it), `update`,
+  `objective`, `blueprint` and `challenge` add the files they wrote by name, never `--all` and never
+  an ignored path, commit them and say *Saved* — the `Commit?` question, *Commit it for me*, *I'll
+  review it first* and the git commands shown to the owner are gone. `Save?` (*Save this version* /
+  *Not now*) is asked only where no go covers a save: changes made by hand, which `next` finds, and
+  an unsaved home before `update`. A missing name and e-mail are asked for in plain words and set in
+  that folder only; a folder with no versions is told so, and `next` starts them on the owner's
+  word. Each skill says it replaces an older home's *Commit?* question.
+- **In a strategy** (`AGENTS.md` of the template and the example, `how-we-work`): a document the
+  researcher writes on the owner's go — a note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a journal entry, a
+  log line — is saved as its own version with no `CHANGELOG.md` entry, bump or ruff gate; the
+  blueprint is saved alone, before any rule is coded (*Saved: your proof the idea came before the
+  result*); the go is the owner's signature, on which the assistant removes the template's
+  blockquote. `next`'s row E and `experiment-lifecycle` say the same.
+- **No hand-over mentions a copy**: `init-researcher`, `init-strategy` and the strategy's
+  `SETUP.md` lose their lines about pushing, a remote or publishing; the root README and the home
+  README say once that `backup` exists.
+- **Plain words for git's identity**: the install and every `init-*` ask for *a name and an e-mail
+  to sign the versions your researcher saves*.
+- **The home template** (0.19.0): `AGENTS.md`'s *Plan first, then write* says every go saves a
+  version, and a new *Versions* paragraph gives the words to use and the send; `README.md`'s *Save
+  a copy off this computer*, which asked the owner to type `git remote` and `git push`, becomes
+  *Keep a copy off this computer*, with no command.
+- **The strategy template** (0.15.0) and **the example** (0.15.4): the shared `AGENTS.md` and
+  `SETUP.md` lines above; in the example only, a marked line says an untracked `uv.lock` after
+  `uv sync` is expected.
+### Fixed
+- **`read`'s save** names only files git keeps, so an image or office file copied into `Sources/`
+  no longer makes it fail.
+- **`challenge`, check 10** dated the blueprint by the commit that added its file — for Experiment 1
+  the template's first commit, so every cited note came out as read too late. It reads the commit
+  that wrote the *Written* line instead.
+### Removed
+- **`teach`'s by-hand `mkdir` and `git mv`** for a topic still in `Projects/Teach/`: `update` moves
+  it, on the owner's go.
+
 ## [0.35.0] - 2026-10-08
 APM moves to 0.33.0, which installs the package on Windows as cleanly as 0.29.0 did. APM 0.29.1
 to 0.31.0 failed the install on Windows, its staging folders pushing the worked example's longest

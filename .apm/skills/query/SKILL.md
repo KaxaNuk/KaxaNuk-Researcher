@@ -8,25 +8,19 @@ description: >
   in Philosophy/Evolution/. It walks the index and the links before reading, and cites every claim.
   It does NOT write code or answer questions about files outside the library.
 metadata:
-  version: 0.8.1
+  version: 0.9.0
 ---
 
 # Query — answer from what was read, and say where it came from
-
-The owner asks what their library says, what they have read about a topic, how two sources relate,
-or what evidence there is for a claim — any factual or comparative question that the library,
-`Philosophy/` and the sources should answer rather than general knowledge. The question is what the
-owner asked, in their words. It is not for writing code, nor for questions about files outside the
-library.
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
 repository with a `Bibliotheca/`, or the owner named one by path — *Working in a strategy* in
 `AGENTS.md` says where each of these paths lands.
 
-The owner built this library so that answers rest on sources they chose. Answering from general
-knowledge defeats the point; answering from one note in isolation misses the connections that
-are the library's value.
+The question is what the owner asked, in their words. They built this library so that answers
+rest on sources they chose. Answering from general knowledge defeats the point; answering from one
+note in isolation misses the connections that are the library's value.
 
 1. **Index first.** Read the library's index end to end — `Knowledge/INDEX.md` at home,
    `Bibliotheca/BIBLIOGRAPHY.md` in a strategy, where a row without a note is a lead and not a
@@ -54,14 +48,19 @@ are the library's value.
    claim has been superseded — report the newer one.
 7. **Offer to keep the answer.** At home, when the answer drew on three or more notes, ask through
    the question tool whether to keep it as a synthesis page — the shape is in `references/note.md`
-   in the `read` skill's folder — and write it on *Go* only: the page itself, under the domain;
-   its one line under *Concepts* in `Knowledge/INDEX.md`, title and one-line definition; and one
-   entry appended to `Knowledge/LOG.md`, `## [YYYY-MM-DD] query | kept a synthesis page`, with the
-   page's path. Nothing else. **Then offer the commit**, as the home's `AGENTS.md` says: `git add`
-   with those three files, by name, never `--all`, and `git commit -m "Query: kept <page>"`; ask
-   `Commit?` (`¿Confirmo?`): *Commit it for me* runs them; after *I'll review it first*, they
-   commit, or say *commit it* and you run them. Never commit unasked. In a strategy, never a page:
-   `OBJECTIVE.md` is the strategy's synthesis, which `objective` drafts and the owner commits.
+   in the `read` skill's folder — its *Go* described as *write it and save a version*, and write
+   it on *Go* only: the page itself, under the domain; its one line under *Concepts* in
+   `Knowledge/INDEX.md`, title and one-line definition; and one entry appended to
+   `Knowledge/LOG.md`, `## [YYYY-MM-DD] query | kept a synthesis page`, with the page's path.
+   Nothing else. **Then save a version**, on that go, with no second question: `git add` those
+   three files by name, never `--all`, and `git commit -m "Query: kept <page>"`; one plain line,
+   *Saved*, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it is also
+   sent to the owner's copy on GitHub, as the `backup` skill says. This
+   replaces the *Commit?* question an older home's `AGENTS.md` describes. A save refused for want
+   of a name and an e-mail asks for both in one plain line — *a name and an e-mail to sign the
+   versions your researcher saves; they stay on this computer* — sets them in the home only, never
+   invented, and saves again; a home with no `.git/` gets one line, that it keeps no versions yet.
+   In a strategy, never a page: `OBJECTIVE.md` is the strategy's synthesis.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
    suggest the source that would close it: by year, authors and title when
    `references/reading-map.md` in the `read` skill's folder lists one — labelled *a lead from the
@@ -106,8 +105,8 @@ and it is quoted as the record of a round, never as the owner's standing view.
 
 With no round file, say so in one line, and that `philosophy` takes round 1; with one, quote it
 with its date and level, and say there is nothing to compare yet. In a strategy the rounds are read
-at home and named in prose. Nothing is written: the comparison lives in chat, as `philosophy`'s own
-does, and is never kept as a synthesis page.
+at home and named in prose. Nothing is written: the comparison lives in chat, and is never kept as a
+synthesis page.
 
 ## Numbers
 
@@ -122,11 +121,9 @@ strategy's.
 
 ## What this skill will not let you do
 
-- Invent a source, a page or a URL. If it is not in the library, `Philosophy/` or the sources, the
-  honest answer is that the library does not know, followed by what the researcher would read to
-  find out.
-- Modify the library, `Philosophy/`, `Studies/` or the sources while answering, beyond what step 7
-  offers and the owner approves — the synthesis page, its one line in `INDEX.md` and its one entry
-  in `LOG.md`, never a note — and in a strategy, write anything at home.
+- Invent a source, a page or a URL. Where the library, `Philosophy/` and the sources hold nothing,
+  the honest answer is that the library does not know, and what to read to find out.
+- Modify the library, `Philosophy/`, `Studies/` or the sources while answering, beyond the three
+  files step 7 writes on the owner's go, never a note — and in a strategy, write anything at home.
 - Quote a performance number that did not come from the engines the project names, or from
   anywhere but the file that owns it — *Numbers*, above.

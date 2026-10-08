@@ -4,13 +4,13 @@ description: >
   Load this skill whenever work in a KaxaNuk repository is about to be committed, branched, merged,
   versioned or released. Use it when the user asks where work lands, how to name a branch, what to
   check before a commit, how to write a changelog entry, which version number a change takes, or
-  how to publish a release. It covers where work lands (on `main`; an issue, a branch and a pull
-  request only when a review is wanted), the `issues/<number>` convention for a branch, the
-  checklist before a commit, the changelog format and Semantic Versioning as KaxaNuk applies it.
-  It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style (the
-  `python-bloom-code` and `python-pep8` instructions).
+  how to publish a release. It covers where work lands — on `main`, a branch only when a review
+  is wanted — the `issues/<number>` branch name, the checklist before a commit and which saves
+  made on the owner's go skip it, the changelog format and Semantic Versioning as KaxaNuk applies
+  it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
+  (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.3.1
+  version: 0.4.0
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -24,22 +24,19 @@ entry is reviewable at any hour; a change proposed in a call is not.
 Work is committed on `main`: small commits whose messages say what moved and why, each
 change-set with its `CHANGELOG.md` entry and its version bump. An issue, a branch and a pull
 request are tools for a change you want a second pair of eyes on, or for two lines of work that
-must not mix — never a gate. Nobody opens an issue to fix a sentence, and a change that carries
-its changelog entry has its reasoning with it.
+must not mix — never a gate. Nobody opens an issue to fix a sentence.
 
 When you do want them:
 
 1. **Open the issue.** State the question or the problem, not the solution.
-2. **Cut the branch** from `main`: `git switch -c issues/<number> main`. Use `issues/27-B` and
-   `issues/27-C` when one issue needs a second attempt or splits into parallel lines of work — same
-   issue, same discussion, separate history.
-3. **Work**, committing against the issue. Small commits with messages that say what moved and why.
+2. **Cut the branch** from `main`: `git switch -c issues/<number> main` — `issues/27-B` and
+   `issues/27-C` for a second attempt or a parallel line of work on the same issue.
+3. **Work**, committing against the issue.
 4. **Open the pull request into `main`**, and delete the branch once it is merged or abandoned:
    `main` is the only branch that stays.
 
-Long-lived branches other than `main` exist only when a repository says so in its `AGENTS.md`
-or `README.md` — a product may keep a `dev` branch that is deployed. Never merge into such a
-branch by accident: read the repository's own rule first.
+A long-lived branch other than `main`, such as a deployed `dev`, exists only where a repository's
+`AGENTS.md` or `README.md` says so: read its rule before merging into one.
 
 ## 2. Before any commit to `main`
 
@@ -51,8 +48,16 @@ branch by accident: read the repository's own rule first.
   entry, the change-set is not finished.
 - **No secrets, no binaries.** Nothing from a `.env` file, no keys in a notebook output or a log
   line, no charts, workbooks or PDFs unless the repository explicitly keeps them.
-- **If a published number or a public interface moved, the commit message says which** — the pull
-  request too, when there is one — and the documents that cite it changed in the same change-set.
+- **If a published number or a public interface moved, the commit message says which** — the
+  pull request too, when there is one — and the documents that cite it changed in the same
+  change-set.
+
+**A version saved on the owner's go is not a change-set.** At a researcher's home, the versions its
+skills save take no changelog entry or version bump. In a strategy, a document the researcher
+writes on the owner's go — a note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a
+line in `Bibliotheca/LOG.md` — is saved as its own version on that go, with no `CHANGELOG.md`
+entry, version bump or ruff gate: the next change-set's entry names it. The blueprint is saved
+alone, before any rule is coded.
 
 ## 3. The changelog
 
@@ -99,8 +104,7 @@ strategy that reaches paper trading with its results reproduced from a clean clo
 ## 5. Releasing
 
 1. Bump the version where the repository keeps it — `pyproject.toml`, `apm.yml`, or both — in the
-   same commit as the changelog entry, and run `uv lock` where the repository commits a `uv.lock`,
-   so the lock records the new version too.
+   same commit as the changelog entry, and run `uv lock` where the repository commits a `uv.lock`.
 2. Tag on `main` once the version's commit is there, and push the tag:
 
    ```bash
@@ -108,13 +112,11 @@ strategy that reaches paper trading with its results reproduced from a clean clo
    git push origin vX.Y.Z
    ```
 
-   One tag per release, `v` and the version the repository declares at its root: a strategy tags
-   the version its `pyproject.toml` declares, and the KaxaNuk Researcher tags its package's, while
-   its template, example and home keep their own numbers in their folders.
+   One tag per release, `v` and the version the repository declares at its root: the KaxaNuk
+   Researcher tags its package's, while its template, example and home keep their own numbers.
 3. **Tag the commit where the version became the state of `main`** — when a branch was used, the
-   merge, not the commit on the branch that wrote the bump. A version bump authored early on a long
-   branch names a tree that never existed on `main`, and a tag is the one thing that cannot be
-   corrected in place once somebody has pinned to it.
+   merge, not the commit on the branch that wrote the bump: a tag cannot be corrected in place once
+   somebody has pinned to it.
 4. For a package published to an index, the release job builds from the tag, never from a working
    copy.
 

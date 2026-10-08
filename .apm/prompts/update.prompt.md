@@ -41,12 +41,13 @@ agent's file name and `name:` with it, nothing else in the agent.
 
 ## Step 1: Pre-flight
 
-1. **The working tree must be clean, for the update.** `git status --short`. Anything uncommitted
-   — name it and offer its commit as `next`'s row 0 does, `Commit?` (`¿Confirmo?`), *Commit it
-   for me*, *I'll review it first*; on *Commit it for me*, run it and go on; otherwise stop. In
-   `check` mode, which changes nothing, a dirty tree does not stop the check: report it as one
-   line and go on. A home with no `.git/` is not a repository yet: the update stops and the check
-   reports it, naming the commands `next` gives to finish it.
+1. **Everything must be saved, for the update.** `git status --short`. Anything unsaved — name it
+   in plain words, file by file (*your note on Fama 1970*, *RESEARCHER.md*), never the commands,
+   and ask `Save?` (`¿Guardo?`): *Save this version*, *Stop*. On *Save this version*, save it as
+   `next`'s row 0 does — `git add` each file by name, never `--all`, and `git commit` — and go on;
+   on *Stop*, stop. In `check` mode, which changes nothing, unsaved files do not stop the check:
+   report them as one line and go on. A home with no `.git/` keeps no versions yet: the update
+   stops and the check says so in one line; `next` offers to start them.
 2. **A home from before the user-scope install.** Any of these means the home predates it, and this
    update is the migration, which *Step 4* carries out:
    - `.apm/skills/` or `.apm/prompts/` holding `read`, `query` or the researcher's commands;
@@ -116,11 +117,11 @@ agent's file name and `name:` with it, nothing else in the agent.
   daily brief `brief` writes, and the holdings and rules the owner keeps for its *Portfolio* part —
   and `AGENTS.md` gives each a row in its folder table. They are compared like any other lines of
   those two files, and the `.gitignore` lines are said first in the plan, so they are in place
-  before a first `brief setup` and no holding is ever committed. When either folder exists already
-  and `git ls-files Briefs Portfolio` lists a file, say so: a line in `.gitignore` does not take a
-  committed file out of the history, and what to do about it is the owner's. `update` never writes
-  in either folder, and the template ships neither: `brief setup` creates `Portfolio/` when the
-  owner opts into its *Portfolio* part, and the first brief `Briefs/`.
+  before a first `brief setup` and no holding is ever saved in a version. When either folder exists
+  already and `git ls-files Briefs Portfolio` lists a file, say so: a line in `.gitignore` does not
+  take a file out of the versions already saved, and what to do about it is the owner's. `update`
+  never writes in either folder, and the template ships neither: `brief setup` creates
+  `Portfolio/` when the owner opts into its *Portfolio* part, and the first brief `Briefs/`.
 - **`Projects/`, whenever the home still has one**, whatever template version it is at, so a move
   the owner declined once is offered again. Until 0.10.0 the template shipped an empty `Projects/`;
   from 0.10.0 `teach` keeps its lessons in `Lessons/<topic>/`, and from 0.12.0 the owner's own work
@@ -174,8 +175,8 @@ what stays there; the researcher's skill, shown whole when new and as a diff whe
 the agent's move when the slug changes, the install for the user and each copy to delete; and what
 the owner will have to do by hand afterwards, one line for each heading, line or blockquote of
 their own files that the template changed. Then ask for the go through the question tool — *Go*,
-*Change something*, *Stop* — and update on *Go* only; in chat, any of the go words in the home's
-`AGENTS.md` is the go.
+described as *update it and save a version*; *Change something*; *Stop* — and update on *Go* only;
+in chat, any of the go words in the home's `AGENTS.md` is the go.
 
 ## Step 4: Update
 
@@ -255,12 +256,14 @@ their own files that the template changed. Then ask for the go through the quest
    skill when it was written — whatever the owner declined, so the file names the version the home
    is now at and the next `update` reports only the versions after it. Nothing else in the file
    changes: it is the home's history.
-7. **Then offer the commit**, as the home's `AGENTS.md` says. Show `git add` with every file
-   written above, by name, never `--all`, since what `git mv` and `git rm` did is staged already,
-   and `git commit -m "Update: brought to template X.Y.Z"`, and ask `Commit?` (`¿Confirmo?`):
-   *Commit it for me* runs them; after *I'll review it first*, they commit, or say *commit it* and
-   you run them. Never commit unasked. The copies deleted in item 5 are git-ignored or outside the
-   home, and leave nothing to commit.
+7. **Then save a version**, on the plan's go, with no second question: `git add` every file
+   written above, by name, never `--all` — what `git mv` and `git rm` did is staged already — and
+   `git commit -m "Update: brought to template X.Y.Z"`; to the owner, *Saved*, in one plain line,
+   never the commands. The copies deleted in item 5 are git-ignored or outside the home, and leave
+   nothing to save. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their
+   copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in
+   one plain line, set them in this folder only, never invented, and save again. This replaces an
+   older home's *Commit?* question.
 
 ## Step 5: Report
 

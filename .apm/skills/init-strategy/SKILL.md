@@ -2,13 +2,12 @@
 name: init-strategy
 description: >
   Create a new KaxaNuk strategy repository in a new folder, from the KaxaNuk Strategy Template that
-  ships inside the researcher package — copied by a script, byte for byte, then made a git
-  repository with its first commit. Only when the owner runs it by name, with the strategy's name.
-  It does NOT set up the environment or the keys (the new folder's SETUP.md does), does NOT copy
-  the worked example (use `init-example`), and does NOT create a researcher (use
-  `init-researcher`).
+  ships inside the researcher package — copied by a script, byte for byte, its first version
+  saved. Only when the owner runs it by name, with the strategy's name. It does NOT set up the
+  environment or the keys (the new folder's SETUP.md does), does NOT copy the worked example (use
+  `init-example`), and does NOT create a researcher (use `init-researcher`).
 metadata:
-  version: 0.2.3
+  version: 0.2.4
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -44,9 +43,9 @@ every strategy made from the same package version starts identical.
    errors such as `WinError 3`. Say the full path you will create.
 
 2. **The plan.** In chat: the path, that it will hold the KaxaNuk Strategy Template at this
-   package's version, that it becomes a git repository on branch `main` with the first commit
-   *Start from the KaxaNuk Strategy Template*, and that nothing else on the machine changes. Ask
-   for the go — *Go*, *Change something*, *Stop* — and run on *Go* only.
+   package's version, that it keeps dated versions from the start, the first saved now, and that
+   nothing else on the machine changes. Ask for the go — *Go*, *Change something*, *Stop* — and
+   run on *Go* only.
 
 3. **Copy.** The script is in this skill's folder:
 
@@ -64,14 +63,14 @@ every strategy made from the same package version starts identical.
    on its own: pass `--package <its install folder>`. A git step that fails leaves the copy in place
    — the script still exits 0 — and prints every command that finishes the repository from that step
    on. If git is missing, install it on the owner's go, then run the printed commands in the new
-   folder. If the first commit fails for want of a git identity, ask for the name and email — never
-   invent them — set them in that repository only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, then run the printed commands there.
+   folder. If the first commit fails for want of a git identity, ask for *a name and an email to
+   sign the versions your researcher saves; they stay on this computer*, never invented; set them
+   in that folder only, `git config user.name "<name>"` and `git config user.email "<email>"`,
+   then run the printed commands there.
 
 4. **Hand over.** Tell the owner to open the new folder in a **new** session and follow its
    `SETUP.md` from step 2 — the environment, the keys, and the strategy's own README, into which
-   their one sentence goes. Then `OBJECTIVE.md` comes first, before any paper. Say that the
-   repository has no remote yet: publishing it to GitHub is theirs, one repository per strategy.
+   their one sentence goes. Then `OBJECTIVE.md` comes first, before any paper.
 
 ## References
 

@@ -8,7 +8,7 @@ description: >
   runs it by name, or as the task its setup created. It does NOT compute a figure about the book or
   add to the library, never says buy, sell, trim, add or hold, and never sends, posts or trades.
 metadata:
-  version: 1.0.2
+  version: 1.0.3
 ---
 
 # Brief — one dated file a day: work, markets, portfolio
@@ -42,7 +42,8 @@ writes. Running either by name is the owner asking for that write by name.
 - **The scheduled task**, on the Claude desktop app — created, or changed, by `brief setup` on its
   go. Elsewhere nothing is scheduled.
 
-Both folders are gitignored, so a brief and a holding stay on this machine.
+Both folders are gitignored, and this skill saves no version: a brief and a holding stay on this
+computer.
 
 **The contract.** `references/brief-contract.md`, in this skill's folder, is the one set of steps
 a brief follows: the scheduled task's prompt, and what `brief` by name follows. It has slots for
@@ -67,9 +68,8 @@ one for any other — twelve characters at most.
    *Who* or *How it speaks* — has no name and no language to brief in. Say so, offer `interview`,
    and stop.
 2. **The two folders are ignored.** `.gitignore` lists `Briefs/` and `Portfolio/`. When it does
-   not, say so, give the two lines for the owner to add at its end — or `update`, which brings them
-   as a diff — and stop. A brief, or a holding, that git does not ignore is one `git add --all`
-   from a commit.
+   not, say so in one plain line — briefs and holdings could end up in a saved version — offer
+   `update`, which brings the two lines, and stop.
 3. **What this session can reach.**
    - **The web** — a web search tool. Without one, *Markets* and the news under *Portfolio* cannot
      run: say so.
@@ -148,8 +148,8 @@ In chat, short:
 - the task, *<Name> daily brief*, new or changed — its prompt, the contract filled, shown only when
   the owner asks; elsewhere, that nothing is scheduled and no file keeps these choices: the brief
   is run by name each morning with the line *Step 4* gives, and *brief* alone takes the defaults;
-- one line on privacy: `Briefs/` and `Portfolio/` are gitignored and stay on this machine, and
-  *Work* quotes no more of a message than the line that says what it asks.
+- one line on privacy: `Briefs/` and `Portfolio/` stay on this computer, never in a saved version,
+  and *Work* quotes no more of a message than the line that says what it asks.
 
 Then ask for the go — header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat,
 any of the go words in the home's `AGENTS.md` is the go. **On *Change something*, ask again with
@@ -217,7 +217,7 @@ Short, in the owner's voice and language:
    prompt between its markers: it is the run's whole instruction, and its safety lines hold here as
    they hold in the task.
 5. **Report** in chat: the file's path, its closing *Sources read* line, and each part left out and
-   why. Nothing to commit: `Briefs/` is gitignored.
+   why. No version is saved: a brief stays on this computer.
 
 ## What this skill will not let you do
 

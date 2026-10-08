@@ -92,8 +92,8 @@ set. Rules:
 - **Include the source that argues against the idea** if the library holds one — in the first pass
   as a lead to read, in a fine-tuning pass as a note. An objective that cites only agreement is a
   pitch.
-- Replace the italic guidance in the body with the draft, and leave the template's blockquote at
-  the top: the owner deletes it when they commit, and its absence is their signature.
+- Replace the italic guidance in the body with the draft; the template's blockquote stays until
+  the go.
 
 ## Step 4: Show, wait, then write
 
@@ -101,8 +101,19 @@ Show the draft in chat and list the leads it depends on — the questions to rea
 write with `read` — and the claims the owner should sharpen, with any part of a claim's anatomy
 they skipped and may still want to answer. After a first pass, say what comes next
 in the order of work: `read` for those questions, then this command again, then the investable
-universe. Wait for the go. Then write it into the strategy's `OBJECTIVE.md`, keeping every line the
-owner wrote. The owner reviews the diff and commits; that commit is what makes the objective theirs.
+universe. Wait for the go, described as *sign it, write it and save a version*: it is the owner's
+signature, what makes the objective theirs. On it, write the draft into the strategy's
+`OBJECTIVE.md`, keeping every line the owner wrote, and remove the template's blockquote, if it is
+still there.
+
+**Then save it as a version of its own**, on the same go, with no second question and no
+`CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names it:
+`git add OBJECTIVE.md` and `git commit -m "Objective: <first pass, or the claims it moved>"`; to
+the owner, *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend`
+prints `true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill
+says. If git wants a name and an e-mail, ask for both in one plain line, set them in this folder
+only, never invented, and save again; with no `.git/`, say in one line that the strategy keeps no
+versions yet. This replaces the owner's own commit an older home's `AGENTS.md` asks for.
 
 Never write into the researcher's home from here. Never compute or promise a number. The objective
 is a capability and a set of claims; the numbers arrive later, from the engines the project names.

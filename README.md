@@ -46,8 +46,8 @@ Then open your researcher's folder in a **new** conversation and say hello, by i
 - Codex: open the folder in the Codex app, or run `codex` in it;
 - the Gemini CLI: run `gemini` in the folder.
 
-Your researcher is saved on your computer; to keep a copy somewhere else too, on a private GitHub
-repository, read *Save a copy off this computer* in its own `README.md`.
+Your researcher lives on your computer. When you want a private copy on GitHub too, say *keep a
+copy* to it.
 
 ### Instalación en español
 
@@ -73,8 +73,8 @@ Después abre la carpeta de tu investigador en una conversación **nueva** y sal
 - Codex: abre la carpeta en la app de Codex, o ejecuta `codex` en ella;
 - el Gemini CLI: ejecuta `gemini` en la carpeta.
 
-Tu investigador se guarda en tu computadora; para tener también una copia en otro lugar, en un
-repositorio privado de GitHub, lee *Save a copy off this computer* en su propio `README.md`.
+Tu investigador vive en tu computadora. Si quieres también una copia privada en GitHub, dile
+*guarda una copia*.
 
 ## What you can use it for
 
@@ -107,8 +107,8 @@ files are KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and
 <https://www.kaxanuk.mx/lab> shows the Lab. Without them a strategy still runs up to its portfolios
 — an equal-weight book needs nothing more — and the backtest and attribution say what is missing and
 skip; the worked example reads its universe from the Analytics Factory, so without those files only
-its download runs. Every key goes in the strategy's `Config/.env`, which only you fill in and nobody
-commits; the strategy's own `SETUP.md` says how.
+its download runs. Every key goes in the strategy's `Config/.env`, which only you fill in and which
+never leaves your computer; the strategy's own `SETUP.md` says how.
 
 **A question, or a problem to report:** the same address — a problem report names the version
 `update check` shows.
@@ -139,7 +139,7 @@ one conversation.
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: a few short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and commit. The install in [`SETUP.md`](SETUP.md) runs this for you |
+| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: a few short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and save a first version. The install in [`SETUP.md`](SETUP.md) runs this for you |
 | 2 | the home | `read` | your first note: attach a document, or name it, and it is copied into `Sources/` on your go; the first `read` asks which question it serves, and keeps it as question 1 |
 | 3 | the home | `philosophy`, `brief setup` | when you like: your investment philosophy, at your level, and a daily brief |
 | 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
@@ -158,20 +158,21 @@ app's add-folder button — for it to read the library without asking each time.
 
 ## The skills and commands
 
-Every one that writes shows its plan first and waits for your go — and, at home, offers to commit
-it for you. Two writes need no go of their own: `audit`'s log line and the day's brief — running
-`audit` or `brief` by name is the go, and the go you gave `brief setup` covers every brief its
-schedule writes.
+Every one that writes shows its plan first and waits for your go, and saves a version of what it
+wrote on that same go — a brief aside, which stays on your computer. Two writes need no go of their
+own: `audit`'s log line and the day's brief — running `audit` or `brief` by name is the go, and the
+go you gave `brief setup` covers every brief its schedule writes.
 
 | Skill | What it does |
 | --- | --- |
 | `read` | reads sources into the library — `Sources/` into `Knowledge/` at home; in a strategy, once `OBJECTIVE.md` has claims, into notes beside the PDFs in its `Bibliotheca/`. A script extracts a PDF by chapter; you pick the chapters that serve your questions; one note per chapter read. At home with no reading question yet, it asks first which question the source serves, and adds it as question 1. It carries the reading map, `references/reading-map.md`, that it, the interview's hand-over and `philosophy` propose works from |
 | `query <question>` | answers from the library — concept pages, then the notes they cite, then your `Philosophy/`, then the sources; every claim cited, gaps named |
 | `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example `golden-flow` to read or run — copied by a script, byte for byte, after a plan and your go, never from memory. A file a strategy made before template 0.10.0 lacks comes back from the template: `init-strategy`'s script with `--only <path>`, which never overwrites |
-| `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, commits, and ends with where the home is and the one next thing for what you came for. `init-researcher` runs it straight after making the home; `interview force` starts over |
+| `interview` | a few short questions about you — what you do, what you are here for, the researcher's voice and your rules — about three minutes, that make the researcher yours; writes `RESEARCHER.md`, the agent that makes it callable by name and the researcher's skill that puts it in every folder, installs them for your user, saves a first version, and ends with where the home is and the one next thing for what you came for. `init-researcher` runs it straight after making the home; `interview force` starts over |
 | `philosophy` | a second interview, optional and as often as you like, on your investment philosophy, pitched at your level — Starter, Building or Researching. It starts with why you invest and what you already believe, teaches one idea after each answer, never a verdict, and after your go adds what you typed to `Philosophy/HOW-I-INVEST.md`, word for word, and keeps the round in `Philosophy/Evolution/`. Taken again after reading, it shows how your answers moved |
 | `brief [setup]` | a daily brief in `Briefs/`, one file a day in up to three parts — your work, the markets you follow, news on your holdings — every figure quoted from a dated source, never computed, never advice. `brief setup` chooses the parts, the measures and the time, and on the Claude desktop app schedules it; `brief` writes today's now |
-| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing; at home it offers to commit what a skill left |
+| `next [strategy]` | where you stand — at home or in a strategy — and the one thing to do next, with the command or skill that does it; reads the folder, writes nothing; at home it offers to save what you changed by hand |
+| `backup` | keeps a copy of your researcher — or of a strategy — on a private GitHub repository, when you ask for one: *keep a copy*. It walks you through it, can send each new version there, and brings the copy back on a new computer |
 
 | Command | What it does |
 | --- | --- |
@@ -342,7 +343,7 @@ file once `git add` has staged it — and with nothing uncommitted the archive i
 the commit would hold, with LF endings and none of the ignored folders a working tree has. Open a
 new session in the `check` folder, from that shell.
 
-**Before a release, do the same with the commit to be tagged.** It should deploy exactly 20 skills,
+**Before a release, do the same with the commit to be tagged.** It should deploy exactly 21 skills,
 9 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
 or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
 `interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, `brief setup`

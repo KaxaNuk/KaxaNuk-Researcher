@@ -9,7 +9,7 @@ description: >
   HOW-I-INVEST.md holds (`refine` does) or write RESEARCHER.md beyond Find first, and never says
   what to buy, sell or hold.
 metadata:
-  version: 1.0.3
+  version: 1.1.0
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -29,7 +29,7 @@ library says, use `query`; for a lesson on an idea, `teach`.
 skill and `refine` are `Philosophy/`'s two writers, as the home's `AGENTS.md` says. Beyond
 `Philosophy/`, the works the owner picks at the close of a round go on the closing *Find first*
 line of `RESEARCHER.md`, add-only, unless they leave that line alone in the preview. Nothing else,
-anywhere. It commits only when the owner picks *Commit it for me*.
+anywhere. The same go saves a version of what it wrote.
 
 **Only typed words reach `Philosophy/`.** Nothing the owner picks — a hunch, a stance, a level, an
 example, a work — is written there: this is stricter than the rule for other proposals, where a
@@ -245,12 +245,12 @@ Show in chat, before anything is written:
   *both will stand; edit it by hand, or run `refine`, if one no longer holds.*
 - **The round file**, whole, under its path.
 - **`RESEARCHER.md`**: the works to add to the closing *Find first* line, or *left alone*.
-- **Privacy**, one line: the home is a git repository, so what is written here is committed when
-  they commit, and a public remote would show their goals and answers to anyone; keep the remote
-  private, or leave a line out.
+- **Privacy**, one line: these lines are saved in your researcher's versions; leave out any you
+  would rather not keep.
 
-Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat, any of the go words in
-the home's `AGENTS.md` is the go. **A round with no typed answer** says *nothing typed, so
+Then ask `Go?` (`¿Escribo?`) — *Go*, described as *write it and save a version* (*escribirlo y
+guardar una versión*), *Change something*, *Stop*; in chat, any of the go words in the home's
+`AGENTS.md` is the go. **A round with no typed answer** says *nothing typed, so
 `HOW-I-INVEST.md` stays as it is*, and asks instead `Keep it?` (`¿Lo guardo?`) — *Keep this round
 as a record*, *Change something*, *Write nothing* — because a kept round counts as round *N* and
 makes the next run a retake.
@@ -319,17 +319,16 @@ not kept, and the next run starts as this one did, as round *N* again.
    or already read. A section with no such line takes one as its last line, before *Out of scope
    for now*: `**Find first:** <the works>`. Nothing else in that file changes.
 
-Then show the two commands it takes:
-
-```bash
-git add Philosophy/HOW-I-INVEST.md Philosophy/Evolution/<the round file> RESEARCHER.md
-git commit -m "Philosophy: round <N>, <level>"
-```
-
-And ask `Commit?` (`¿Confirmo?`) — *Commit it for me*, *I'll review it first*. On *Commit it for
-me*, run the two commands: the owner's pick is the human act, as the go on the preview is for the
-write. On *I'll review it first*, nothing more: they commit, or say *commit it* when ready and you
-run the commands then. Never commit unasked.
+**Then save a version**, in the home, on the go that wrote — it covers the save, and no second
+question is asked: `git add` each file this run wrote, by name, never `--all` —
+`Philosophy/HOW-I-INVEST.md`, the round file, `RESEARCHER.md` when it changed — and
+`git commit -m "Philosophy: round <N>, <level>"`. Say it in one plain line, *Saved*, never the
+commands. When `git config --get kaxanuk.autosend` prints `true`, the version is also sent to the
+owner's copy on GitHub, as the `backup` skill says. This replaces the
+*Commit?* question an older home's `AGENTS.md` describes. A save refused for want of a name and an
+e-mail asks for both in one plain line — *a name and an e-mail to sign the versions your researcher
+saves; they stay on this computer* — sets them in the home only, never invented, and saves again;
+a home with no `.git/` gets one line, that it keeps no versions yet.
 
 ## 12. Hand over
 
@@ -339,9 +338,8 @@ Short, in the owner's language and voice, in this order:
    and how many lines went into `HOW-I-INVEST.md`.
 2. **The first thing to `read`.** The first work picked in C2 — in `Sources/` already, `read` it;
    otherwise find it by its title and authors, then attach it or say where it is saved, and I copy
-   it into `Sources/Papers/`, or `Sources/Books/` for a book, on your go, and read it. A work that
-   cannot be found comes off the *Find first* line by hand: it is the owner's file. With nothing
-   picked, any source: attach it or say where it is saved, and I copy it in on your go.
+   it into `Sources/` on your go and read it; one that cannot be found comes off the *Find first*
+   line by hand, the owner's file. With nothing picked, any source, the same way.
 3. **When to come back.** Name two or three works from this round's reading list — the works
    picked in C2 first, then the list's *Start here* works in the map's order; at Starter, in the
    plain words of C2's *Three classic studies* — and say: once two of them have notes,
@@ -391,20 +389,16 @@ The bank's escape table holds on every question. What it leaves to this skill:
 - Cite a round file as the owner's view, or as evidence of anything.
 - Propose a product, a ticker, an allocation or a benchmark; compute a return; say buy, sell or
   hold.
-- Commit unless the owner picks *Commit it for me*, or asks; write on a *Stop*, on silence or on a
-  closed session.
+- Write, or save a version, on a *Stop*, on silence or on a closed session.
 - Write at home from a strategy or another project without saying so first in the preview.
 - Write a plan, a comparison or a report as a file. The chat is the record, and the round file is
   the owner's answers only.
 
 ## References
 
-- [`references/questions.md`](references/questions.md), in this skill's folder: the bank — the
-  welcome and the explainers, the opening, the levels and their blocks, every question with its
-  plain line, examples, teaching line, heading and leads, where each answer lands, how a retake
-  runs, what holds without the reading map, and the *Bears on* table that `read`'s report reads to
-  offer the next round.
+- [`references/questions.md`](references/questions.md), in this skill's folder: the bank, as *The
+  bank* above says, what holds without the reading map, and the *Bears on* table that `read`'s
+  report reads to offer the next round.
 - `references/reading-map.md`, in the `read` skill's folder: the one list a work may be proposed
   from besides the owner's library — where a belief sits and its other side, the beliefs people
-  type, the ten papers of the two timelines, and the hints this skill puts to the owner as
-  questions about them. A work in it is a lead, never a citation.
+  type, the ten papers of the two timelines, the hints. A work in it is a lead, never a citation.

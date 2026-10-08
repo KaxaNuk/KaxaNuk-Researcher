@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.10.2
+  version: 0.11.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -123,8 +123,9 @@ in `Extracts/<slug>/` at home and `Bibliotheca/Extracts/<slug>/` in a strategy �
 root, the slug is the PDF's name without `.pdf`, its ASCII words joined by underscores, and the
 script's *extracts in* line names the folder — one markdown file per chapter, a marker before every
 page, with `OUTLINE.md` beside them listing every chapter the run knows of, written or not. They
-are a cache: regenerable, gitignored, never cited. If the strategy's `.gitignore` does not ignore
-`Bibliotheca/Extracts/`, say so in the plan; the owner adds the line.
+are a cache: regenerable, kept on this computer only, never cited. If the strategy's `.gitignore`
+does not keep out `Bibliotheca/Extracts/`, say so in the plan, which adds that one line to it on
+the same go.
 
 - **A PDF with no outline.** The script says so and gives the page count. Read the pages that carry
   the table of contents — the first ten to fifteen, through the assistant's PDF reader — and
@@ -232,11 +233,11 @@ to `BIBLIOGRAPHY.md` or the lead it replaces, under the part it bears on; at hom
 it creates and the ones it updates, one line each; links; `Philosophy/` files to cite, never a
 round file in `Philosophy/Evolution/`; contradictions found; new domain folders at home, if any;
 questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log line. In a
-strategy, a clipping in markdown or plain text under `Notes/` is committed with the strategy unless
-the owner ignores it — the `.gitignore` keeps out PDFs and extracts, not clippings — so the plan
-says so, beside the note it becomes. Then ask for the go through the question tool — *Go*, *Change
-something*, *Stop* — or in chat where there is none; any of the go words in the home's
-`AGENTS.md` is the go. **On *Change something*, ask again with options, never with an open
+strategy, a clipping in markdown or plain text under `Notes/` is saved with its note, as a PDF or
+an extract never is, so the plan says so, beside the note it becomes. Then ask for the go through
+the question tool — *Go*, described as *write it and save a version* (*escribirlo y guardar una
+versión*), *Change something*, *Stop* — or in chat where there is none; any of the go words in the
+home's `AGENTS.md` is the go. **On *Change something*, ask again with options, never with an open
 question**: the changes this plan admits, as concrete alternatives — fewer notes or pages, different
 names, only the notes this run, a different domain — and ask for the go again on the revised plan.
 **Never write on silence or on a rejection.**
@@ -244,17 +245,13 @@ names, only the notes this run, a different domain — and ask for the go again 
 ## 6. Write, on approval only
 
 - At home, the copy into `Sources/` first, when the plan has one, as *step 2* says.
-- The notes, in the shape `references/note.md` gives and under its names: frontmatter with `source`,
-  `citation`, `local_copy`, `read`, and `tags` where the owner's policy asks; the provenance line;
-  `## Why it is here` with the question or claim by number and the owner's reason in their words;
-  the chapter's claims as headings with the implication as a blockquote under each; and
-  `## What it changes` at the end, measured against the question. For a book, its `INDEX.md` with
-  every chapter's status.
-- At home, the concept pages, in the shape `references/note.md` gives: `type`, `updated`, `sources`
-  and `tags` in the frontmatter; every claim linked to the chapter note and its page; a
-  contradiction kept under a `> [!WARNING]` callout naming both notes; the page's `## For the
-  owner's questions` and `## Open` brought up to date. In a strategy, none: `OBJECTIVE.md` is its
-  synthesis.
+- The notes, in the shape `references/note.md` gives and under its names: its frontmatter, `tags`
+  where the owner's policy asks; the provenance line; `## Why it is here` with the question or
+  claim by number and the owner's reason in their words; the claims as headings, a blockquote under
+  each; `## What it changes` last. For a book, its `INDEX.md` with every chapter's status.
+- At home, the concept pages, in the shape `references/note.md` gives and as *step 4* decided,
+  their `## For the owner's questions` and `## Open` brought up to date. In a strategy, none:
+  `OBJECTIVE.md` is its synthesis.
 - For every contradiction the owner confirmed: keep the original claim in the older note and place
   a `> [!WARNING]` callout above it naming the newer note by link. Never delete the claim.
 - At home, when the plan added questions: write them under *What you are reading for* in
@@ -262,10 +259,8 @@ names, only the notes this run, a different domain — and ask for the go again 
   section with none is question 1, in place of the template's *None yet.* paragraph — each
   followed by *feeds: nothing yet* and *Would change my mind: not yet known*, the labels a question
   carries there, for the owner to fill by hand. Nothing else in that file changes.
-- The index. At home, `Knowledge/INDEX.md`, under the domain: *Concepts* first — one line per
-  concept page, title and one-line definition — then *Sources*: one line per paper; one line per
-  book linking its `INDEX.md`, saying which chapters were read of how many, with one indented line
-  per chapter read.
+- The index. At home, `Knowledge/INDEX.md`, under the domain, as *What the indexes show* in
+  `references/note.md` gives it: *Concepts* first, then *Sources*.
   In a strategy, `BIBLIOGRAPHY.md`: the note's row under the part it bears on — replacing the
   *No note yet* of a lead, or added where the source was not listed — and nothing else in that
   file: its parts and its prose are the owner's.
@@ -292,11 +287,18 @@ its ID and short name. With a round in `Philosophy/Evolution/`, the line gives t
 date and offers the next round with `philosophy`; with none, it offers round 1. A work the table
 does not list, or a table that cannot be read because the skill is not installed, gets no line.
 
-**Then offer the commit,** at home, as the home's `AGENTS.md` says. Show `git add` with every file
-this run wrote, by name, never `--all`, leaving out the extracts and any PDF, which git ignores, and
-`git commit -m "Read: <Author Year, short title>"`, and ask `Commit?` (`¿Confirmo?`): *Commit it
-for me* runs them; after *I'll review it first*, they commit, or say *commit it* and you run them.
-Never commit unasked. In a strategy the owner reviews the diff and commits, as its `AGENTS.md` says.
+**Then save a version**, on the plan's go, with no second question: `git add` each file this run
+wrote — in a strategy, with the clipping a note was read from — by name, never `--all`, never an
+extract or a PDF, leaving out any path the folder's `.gitignore` keeps out, and
+`git commit -m "Read: <Author Year, short title>"`. Say it in one plain line, *Saved*, never the
+commands. When `git config --get kaxanuk.autosend` prints `true`, the version is also sent to the
+owner's copy on GitHub, as the `backup` skill says. This replaces the
+*Commit?* question, and in a strategy the owner's own commit, that an older home's `AGENTS.md`
+describes. A save refused for want of a name and an e-mail asks for both in one plain line — *a
+name and an e-mail to sign the versions your researcher saves; they stay on this computer* — sets
+them in this folder only, never invented, and saves again; a folder with no `.git/` gets one line,
+that it keeps no versions yet. In a strategy the version takes no `CHANGELOG.md` entry, version
+bump or ruff gate: the next change-set's entry names it.
 
 ## What this skill will not let you do
 
@@ -332,16 +334,13 @@ Never commit unasked. In a strategy the owner reviews the diff and commits, as i
 - `scripts/check_numbers.py`, in this skill's folder: each figure a note states beside a page
   citation, looked up in the extract on the cited page, elsewhere, or nowhere; `audit deep` runs it,
   and it edits nothing. `--help` has every option.
-- `references/note.md`, in this skill's folder: the shape of every note — paths and
-  names, frontmatter, the chapter note, the paper note, the book's `INDEX.md`, what the indexes
-  show, how a home note travels into a strategy — and of the concept page and the synthesis page.
+- `references/note.md`, in this skill's folder: the shape of every note, book index, index line,
+  concept page and synthesis page, and how a home note travels into a strategy.
 - `references/reading-map.md`, in this skill's folder: the evolution of investment research and
-  where alpha comes from, distilled from Sections 01 and 02 of the KaxaNuk bootcamp's *Intro to
-  Investment Research* — the ten papers of the two timelines, where each belief sits and its other
-  side, the six acts with the arc's 21 questions and their works, who argues with whom, and, as
-  hints, the five sources of edge, where ideas come from, seven questions before any backtest and
-  an idea's anatomy. The one list a work to read may be proposed from besides the owner's library;
-  a work in it is a lead, never a citation.
+  where alpha comes from, distilled from the KaxaNuk bootcamp's *Intro to Investment Research* —
+  the ten papers of the two timelines, where each belief sits and its other side, the arc's 21
+  questions and their works, and hints. The one list a work to read may be proposed from besides
+  the owner's library; a work in it is a lead, never a citation.
 - `references/questions.md`, in the **`philosophy` skill's** folder, not this one: its *Bears on*
   table, which works touch which of the owner's philosophy questions, read on demand for the one
   line in *step 7*. It is that skill's file; this skill reads it and never copies it.

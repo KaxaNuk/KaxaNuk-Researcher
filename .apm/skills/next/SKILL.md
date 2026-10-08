@@ -3,12 +3,11 @@ name: next
 description: >
   Say where the owner stands — in the researcher's home or in a strategy — and the one thing to do
   next, with the command or skill that does it, read from the files on disk as a checklist; nothing
-  is written, save the commit of what a skill left at home, run only when the owner picks *Commit
-  it for me*. Takes an optional path to a strategy, when the session is not open in it. Only when
-  the owner runs it by name, or when the researcher's skill answers a greeting; never on its own
-  otherwise.
+  is written but a version the owner asks it to save. Takes an optional path to a strategy, when
+  the session is not open in it. Only when the owner runs it by name, or when the researcher's
+  skill answers a greeting; never on its own otherwise.
 metadata:
-  version: 1.3.2
+  version: 1.4.0
 ---
 
 # Next — where you stand, and what to do next
@@ -16,9 +15,9 @@ metadata:
 This skill is the map of the process and of the researcher's skills and commands: it reads the
 folder, says which parts are done, and names **the one thing to do next** with the command or skill
 that does it. It writes nothing and never starts the next thing itself — doing it is a different
-request, by the name this skill gives — save one: at home, the commit *Step 2* offers, run when the
-owner picks *Commit it for me*. It is a skill, not a command, so every assistant APM deploys to has
-it, Codex included.
+request, by the name this skill gives — save one: the version row 0 or row E offers, on the
+owner's pick. It is a skill, not a command, so every assistant APM deploys to has it, Codex
+included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
 — *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
@@ -28,7 +27,7 @@ session is open in.
 
 | It holds | It is | What follows |
 | --- | --- | --- |
-| `Bibliotheca/`, `Universe/` and `Experiments/`, and a line reading `<!-- example: begin -->` in `README.md` or `AGENTS.md` — the example's own lines, which `init-example` copies byte for byte and a strategy from the template never has | the worked example, made by `init-example` | say so, and quote its status line, which says how far it went: it is for reading, never built on; a strategy of the owner's own is `init-strategy <name>`. No part of *Step 3* is offered |
+| `Bibliotheca/`, `Universe/` and `Experiments/`, and a line reading `<!-- example: begin -->` in `README.md` or `AGENTS.md`, which a strategy from the template never has | the worked example, made by `init-example` | say so, and quote its status line, which says how far it went: it is for reading, never built on; a strategy of the owner's own is `init-strategy <name>`. No part of *Step 3* is offered |
 | `Bibliotheca/`, `Universe/` and `Experiments/` | a strategy | *Step 3* |
 | `RESEARCHER.md` | a researcher's home | *Step 2* |
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
@@ -42,15 +41,14 @@ skill — read the strategy: the home is the library it brought along.
 
 Check in this order and stop at the first that fails; that is the next thing. `<slug>` is the
 researcher's name in `RESEARCHER.md` made safe for a folder, as `interview` *Step 4* says: accents
-and marks removed — *á* to *a*, *ñ* to *n*, *ü* to *u* — lowercase, every character that is not a
-letter a to z or a digit turned into a hyphen, repeated hyphens collapsed and none at either end:
-`Ada Lovelace` becomes `ada-lovelace`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`. In rows 2 and
-3 a file or a folder of another name counts when its `name:` is the one the home's agent carries,
-as an older `interview` wrote them, so a home already installed is not sent to install again.
+removed, lowercase, anything but a to z or a digit a hyphen, hyphens collapsed and none at either
+end — `Begoña Ruiz` becomes `begona-ruiz`. In rows 2 and 3 a file or a folder of another name
+counts when its `name:` is the one the home's agent carries, as an older `interview` wrote them, so
+a home already installed is not sent to install again.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
-| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, the commands `scaffold.py` prints to finish a repository, run in the folder: `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"`; otherwise the commit of what came in: name it, file by file, show the two commands it takes — `git add` with each file by name, never `--all`, and `git commit -m "<message>"`, the message the skill that wrote them gives, such as *Philosophy: round N, <level>* or *Read: <Author Year, short title>*, or one saying what came in — and ask `Commit?` (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question tool, the two as a numbered list in chat. On *Commit it for me*, run them — the owner's pick is the go — and go on from row 1; on *I'll review it first*, nothing more |
+| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, say in one line that this folder keeps no versions yet, and offer to start them; on the owner's word, run what `scaffold.py` prints to finish a repository — `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"` — and say *Saved*. Otherwise, name the changes made by hand in plain words, file by file — *your note on Fama 1970*, *RESEARCHER.md* — never the commands, and ask `Save?` (`¿Guardo?`): *Save this version*, *Not now*, listed in chat without a question tool. On *Save this version*, `git add` each file by name, never `--all`, and `git commit -m "<what changed>"`; say *Saved* — sent too when `git config --get kaxanuk.autosend` prints `true`, as the `backup` skill says — and go on from row 1; on *Not now*, nothing more. A save refused for want of a name and an e-mail asks for both in one plain line, sets them in this folder only, never invented, and saves again |
 | 1 | `RESEARCHER.md` has no angle-bracketed slot left. *What you are reading for* with no numbered question is not a slot: the template ships it so, and the first `read` asks for question 1 | `interview` — the interview |
 | 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, its folder named in a to z, digits and hyphens only, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved — or its folder's name holds anything but a to z, digits and hyphens, such as an accent, which APM deletes on install |
 | 3 | the home is installed for the user: the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code — or, where that folder cannot be read, `uvx --from apm-cli==0.33.0 apm deps list -g` names `_local/<this folder's name>`, its accents possibly dropped | `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
@@ -74,10 +72,10 @@ row's; otherwise the first of these whose pick is on the line — *Learn the bas
 `teach <topic>` on a topic the notes cover; *Write down how I invest*, a new source, and
 `philosophy` again once notes came in since the last round; *Build and test a strategy*,
 `next <its path>`; the rest, a new source, or `query`. Up to three more on one line as *also*: a
-question added under *What you are reading for*, `study <subject>` to work out an idea, a plan or
-a decision from the library — `study` alone lists the studies in `Studies/` — `teach <topic>`,
-`brief setup` for a daily brief, `init-strategy <name>`, or teaching it a tool: its documentation
-into `Sources/Clippings/`, then `read` — *Growing your researcher* in the home's README.
+question added under *What you are reading for*, `study <subject>` to work out an idea from the
+library — `study` alone lists the studies — `teach <topic>`, `brief setup` for a daily brief,
+`init-strategy <name>`, or teaching it a tool: its documentation into `Sources/Clippings/`, then
+`read` — *Growing your researcher* in the home's README.
 Philosophy is never a row that fails: for the other picks, *Step 4* closes with it in one line.
 
 ## Step 3: In a strategy
@@ -102,7 +100,7 @@ empty after the work was done.
 | B | The reading | every claim's evidence is one of three kinds — a note in `Bibliotheca/` by relative path, with a row in `BIBLIOGRAPHY.md`; `RESULTS.md` or the `FINDINGS_N.md` that measured it; or the claim is **true by construction** — or the owner has recorded the claim's evidence in `OBJECTIVE.md` as a lead carried into the blueprint, where E counts it; a claim that still names only the question that would settle it is a lead | `read <source>` for the first claim without a note, then `objective` again to rewrite its evidence from the notes |
 | C | The universe | `Universe/Investable_Universe.csv` has rows under `main_identifier` | fill the seed, delisted names included — the `universe-point-in-time` skill says what belongs in it |
 | D | The data | on this machine: `Data/Curator/Time_Series/` has files, `Universe/Security_Master.csv` exists, `Data/Refinery/Time_Series/` has files; and `RESULTS.md` has a measurement under *Before any experiment* with the analyzer section it came from | the first of `Data/curator.py`, `Universe/universe.ipynb`, `Data/refinery.py`, `Data/analyzer.ipynb` whose output is missing, in that order — `data-curator-custom-calculations`, `universe-point-in-time`, `data-analyzer-runs` |
-| E | The blueprint | `JOURNAL_1.md` has the entry choosing the benchmark — in a strategy that still keeps `BRAINSTORMING_1.md`, its first entry counts; `Experiments/Experiment_N/BLUEPRINT_N.md` carries the line `blueprint` writes under the experiment's heading, `**Written YYYY-MM-DD, before any rule was coded.**`, and every prediction names a note or an analyzer section, and it is committed before the rule cell of `experiment_N.ipynb` holds code | the benchmark, chosen with the owner in chat and appended to `JOURNAL_1.md` on their go, when that entry is missing; else `blueprint N`; else the owner's commit |
+| E | The blueprint | `JOURNAL_1.md` has the entry choosing the benchmark — in a strategy that still keeps `BRAINSTORMING_1.md`, its first entry counts; `Experiments/Experiment_N/BLUEPRINT_N.md` carries the line `blueprint` writes under the experiment's heading, `**Written YYYY-MM-DD, before any rule was coded.**`, and every prediction names a note or an analyzer section, and it is saved as a version of its own before the rule cell of `experiment_N.ipynb` holds code | the benchmark, chosen with the owner in chat and appended to `JOURNAL_1.md` on their go, when that entry is missing; else `blueprint N`; else the blueprint saved alone, before the rule — on `blueprint`'s go, or here on *Save this version*, asked and said as row 0 does: `git add` it, then `git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md` |
 | F | The broad reading | the leads the blueprint counted are read or recorded as leads in `BIBLIOGRAPHY.md` | `read` for the first lead |
 | G | The cycle | section 2 of `experiment_N.ipynb` holds the rule; on this machine `Portfolio/`, `Backtest/` and `Attribution/` hold output; `FINDINGS_N.md` reports, every prediction of the blueprint evaluated | the first of `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs` whose output is missing; `alpha-decomposition` to read it; then `challenge N` once `FINDINGS_N.md` reports. When the engine or the attribution library is not installed, which the notebook's guarded import reports, say the step is skipped for want of a licence and give the access line from the Lab's access facts, `references/investment-lab.md` in this skill's folder: *A licence for the Backtest Engine or Attribution Analysis is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows the Lab.* When the library is installed and attribution reports its index or factor files missing instead, give the facts file's Analytics Factory line: *KaxaNuk's Analytics Factory ships the benchmark and the factor model files attribution reads, <https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them.* Then move on to what can still be done — `FINDINGS_N.md` for the book, and the journal's open threads |
 | H | The results | `RESULTS.md` has the experiment's row citing `FINDINGS_N.md`; the claim has moved — where `BLUEPRINT_N.md` names one under *The claim this moves*, `OBJECTIVE.md` gives that claim the status `FINDINGS_N.md` says it reached, and so does the row's *Claim moved* where `RESULTS.md` has that column; where the blueprint names none, the statuses in `OBJECTIVE.md` of the claims it tests have moved; and `CHANGELOG.md` has the entry | the missing one of those three |
@@ -124,13 +122,12 @@ In chat, short:
 4. **Your philosophy**, at home only, one closing line, offered and never pressed, and left out
    when *Next* names `philosophy`. With no round file in `Philosophy/Evolution/`: *`philosophy`
    writes down how you invest, in your words, at your level — round 1, whenever you like.* With
-   one or more: the last round's date and level — the latest date in the file names,
-   `YYYY-MM-DD.md`, and on that date the highest suffix, `YYYY-MM-DD-2.md` — and how many notes
-   came in since: the notes the `read` entries of `Knowledge/LOG.md` dated on or after it — a read
-   the same day counts — list as written, a book's `INDEX.md` and concept pages aside. When notes
-   came in, add that `philosophy` takes the round again; when none did, the date, the level and
-   *no notes since* are the whole line.
+   one or more: the last round's date and level — the newest file name, `YYYY-MM-DD-2.md` after
+   `YYYY-MM-DD.md` — and how many notes came in since: the notes the `read` entries of
+   `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as written, a book's
+   `INDEX.md` and concept pages aside. When notes came in, add that `philosophy` takes the round
+   again; when none did, the date, the level and *no notes since* are the whole line.
 
 Nothing else. No file is written, no log entry appended, no number computed and no plan drafted:
 when the owner says *do it*, that is the named command's or skill's own plan and go, not this one's.
-Row 0's commit, on *Commit it for me*, is the one thing this skill runs.
+Row 0's and row E's saves are all it runs.
