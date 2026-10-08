@@ -1,26 +1,28 @@
 # Agents — how this repository is changed
 
 This repository is the KaxaNuk Researcher: one APM package that carries every KaxaNuk skill,
-instruction and command in `.apm/`, with its one agent, `blueprint-critic`, and the three starting
-points its `init-*` skills copy — `templates/strategy/`, `templates/researcher/` and
-`examples/golden-flow/`. Read this before changing anything. The rules a researcher works
-by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy works by are in
-`templates/strategy/AGENTS.md`. This file is about changing the package.
+instruction and command in `.apm/`, with its one agent, `blueprint-critic`, and the four starting
+points its `init-*` skills copy — `templates/strategy/`, `templates/researcher/`,
+`templates/python-library/` and `examples/golden-flow/`. Read this before changing anything. The
+rules a researcher works by in its home are in `templates/researcher/AGENTS.md`; the rules a
+strategy works by are in `templates/strategy/AGENTS.md`, and a Python library's in
+`templates/python-library/AGENTS.md`. This file is about changing the package.
 
 ## What lives where
 
 | Path | What it is | Changed how |
 | --- | --- | --- |
-| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as `CONTRIBUTING.md`'s *Development* shows, and a new session there; before a release, that install deploys exactly 21 skills, 9 commands, 3 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
-| the skills' `scripts/` | `scaffold.py`, `extract.py`, `check_numbers.py`, `bloom_code_check.py`: what `init-*`, `read`, `audit deep` and `bloom-code-lint` run for every user | nothing tests them: a change is tried by running the skill that uses it in a scratch folder before the commit |
+| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as `CONTRIBUTING.md`'s *Development* shows, and a new session there; before a release, that install deploys exactly 22 skills, 9 commands, 3 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
+| the skills' `scripts/` | `scaffold.py`, `name_library.py`, `extract.py`, `check_numbers.py`, `bloom_code_check.py`: what `init-*`, `read`, `audit deep` and `bloom-code-lint` run for every user | nothing tests them: a change is tried by running the skill that uses it in a scratch folder before the commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `pyproject.toml`, which declares its version, and `CHANGELOG.md` move together |
 | `examples/golden-flow/` | one strategy worked through the template | the same; it commits no `uv.lock`, so its library versions resolve when `uv sync` runs |
 | `templates/researcher/` | the researcher's home, copied by `init-researcher` | its `apm.yml` version leads its `CHANGELOG.md`; `update` compares a home against it |
+| `templates/python-library/` | the KaxaNuk Python Library Template, laid out like the KaxaNuk Data Curator, <https://github.com/KaxaNuk/Data-Curator>: copied by `init-python-library`, then named by its `name_library.py`, which only puts in the names, the holder and the one sentence the owner chose, and moves the package folder | a change here is a template release: the number in the first sentence of its `CHANGELOG.md`'s `## [Unreleased]` entry, *Started from the KaxaNuk Python Library Template X.Y.Z*, moves, and the root `CHANGELOG.md` says what changed — the rest of its `CHANGELOG.md`, and its `__version__`, 0.1.0, are the new library's own. A placeholder changed here changes `name_library.py` in the same commit, and a change to its dependency groups updates `TOOL_DISTRIBUTIONS` and `TOOL_IMPORT_NAMES` there; a change to its first-commit message, in `scaffold.py`'s `STARTING_POINTS`, updates `FIRST_COMMIT`. Ruff and the Bloom Code check, at 120, run in place; `uv sync`, the tests, the documentation and `uv build` only in a copy outside the repository, as `CONTRIBUTING.md` shows, never inside `templates/` |
 
-**The template and the example share every file the example does not mark.** A change to the
-template's description of a file changes the example's copy in the same commit; only the lines
+**The strategy template and the example share every file the example does not mark.** A change to
+the template's description of a file changes the example's copy in the same commit; only the lines
 between `<!-- example: begin -->` and `<!-- example: end -->` — `# --- example: begin ---` in
 Python, `# EXAMPLE-ONLY CELL` on a notebook cell — are the example's own, and every other line is
 the same in both copies. A marker stands alone on its line, at column 0. The only exceptions are
@@ -34,14 +36,16 @@ marked.
 ## Rules
 
 - **A file of a starting point is never written from memory** — not by a skill, not by the script,
-  not by an agent helping here. `scaffold.py` copies byte for byte.
+  not by an agent helping here. `scaffold.py` copies byte for byte; `name_library.py` then only puts
+  the owner's names and words into a Python library's copy.
 - **Every change carries its `CHANGELOG.md` entry**, and a version bump in the same commit: in
-  `apm.yml` for the package at the root and for the home, in `pyproject.toml` for the template and
-  the example. The entry opens with one plain sentence a newcomer understands — the line the
-  researcher's weekly word on a new version quotes — and its *What to do differently* says what the
-  owner says (*say `update` in your home*), never the `apm` command `update` runs for them. Tag
-  `vX.Y.Z` on `main` once the release's commit is there, with the message
-  `X.Y.Z: <that sentence>`.
+  `apm.yml` for the package at the root and for the home, in `pyproject.toml` for the strategy
+  template and the example, and in the *Started from* sentence of the Python library template's
+  `CHANGELOG.md`, whose changes the root's entry records. The entry opens with one plain
+  sentence a newcomer understands — the line the researcher's weekly word on a new version quotes —
+  and its *What to do differently* says what the owner says (*say `update` in your home*), never
+  the `apm` command `update` runs for them. Tag `vX.Y.Z` on `main` once the release's commit is
+  there, with the message `X.Y.Z: <that sentence>`.
 - **Work lands on `main`**, as the `how-we-work` skill says: a branch and a pull request only for a
   change you want reviewed, deleted once merged. `main` is the only branch that stays, and
   `apm update -g` installs it as it stands, so nothing reaches `main` without its version.
@@ -49,9 +53,11 @@ marked.
   a change to a library's API changes its skill in the same release, and the worked example where
   it uses that library — with a new example version and a journal entry, re-run where a figure
   moves.
-- **A new starting point** — valuation, M&A, a budget — is a folder under `templates/` that
-  `scaffold.py` copies, a kind in its `STARTING_POINTS`, and an `init-<kind>` skill that runs it as
-  `init-strategy` does. Its `AGENTS.md` names it in a marker line that survives its setup,
+- **A new starting point** — valuation, M&A, a budget — is, as `python-library` is, a folder under
+  `templates/` that `scaffold.py` copies, a kind in its `STARTING_POINTS`, and an `init-<kind>`
+  skill that runs it as `init-strategy` does; a copy that takes names gets them from a script of
+  that skill's that only puts them in, as `init-python-library`'s `name_library.py` does. Its
+  `AGENTS.md` names it in a marker line that survives its setup,
   `<!-- kaxanuk-starting-point: <kind> -->`, alone at column 0, and carries a `## Next` table,
   *Done when* and *The next thing*, that `next` reads for any kind other than a strategy. No folder
   in it is named `Bibliotheca/`: that is a strategy's word only, and every skill that finds one

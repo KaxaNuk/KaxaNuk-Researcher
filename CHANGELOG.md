@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.2.0] - 2026-10-08
+Start a Python library of your own, laid out like the KaxaNuk Data Curator: tests, docs and a
+workflow that publishes it, ready from the first day.
+
+**What to do differently:** say `update` in your home. Then `init-python-library <name>` makes a
+new Python library beside your other folders, and `next`, in it, names the one next thing.
+### Added
+- **`init-python-library`** (0.1.0) and **`templates/python-library/`**, the KaxaNuk Python Library
+  Template 0.1.0, laid out like the KaxaNuk Data Curator, <https://github.com/KaxaNuk/Data-Curator>:
+  `src/` with one example module and its error, pytest, ruff and mypy, Sphinx with MyST for Read
+  the Docs, and a GitHub Actions workflow that tests Python 3.12 to 3.14 and publishes a `vX.Y.Z`
+  tag to PyPI by trusted publishing, with no stored token. Its `AGENTS.md` names Bloom Code and
+  carries the starting-point marker and a `## Next` table that `next` reads.
+- **Naming it**: the skill shows the four names one name gives and whether PyPI has it;
+  `scaffold.py` copies the template, and the skill's own `scripts/name_library.py` names the copy —
+  it moves the package folder and substitutes names only, writing no text of its own. It refuses
+  the template itself, anything but a fresh copy, a name another project holds on PyPI (unless the
+  library stays unpublished), a reserved, built-in or Windows device name, a tool's own name, and a
+  name over 40 characters.
+### Changed
+- **`scaffold.py`** copies a fourth starting point, `python-library`, and its texts and cache list
+  say so (`init-strategy` 0.3.3).
+- **`next`** (1.8.2) names `init-python-library` among the skills that make a folder.
+- **The README**'s use and skills tables gain it, and *Coming next* keeps valuation, M&A and
+  budgets; **`USE-CASES.md`** gains a twelfth way; **`CONTRIBUTING.md`** shows the layout, how to
+  try the template and the release check at 22 skills; the root **`AGENTS.md`** gives the
+  template's row, what changes together, and the starting-point rule its example;
+  **`how-we-work`** (0.5.2) says a Python library keeps Keep a Changelog and its version in
+  its `__init__.py`.
+- **The root `.gitignore`** keeps a template's `uv.lock` out of the package.
+
 ## [1.1.0] - 2026-10-08
 Eleven ways to use your researcher, a safer copy on GitHub, and a worked example made of tickers
 and dates only. Two people walked the install end to end, in English on Claude and in Spanish on

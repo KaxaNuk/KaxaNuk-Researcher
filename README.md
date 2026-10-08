@@ -44,8 +44,8 @@ through your assistant; what it reads goes to the company behind that assistant,
    to do next.
 
 With Claude, installing also gives your assistant three house rules on this computer — two for
-KaxaNuk's Python style, only in KaxaNuk projects — the Lab's libraries and the strategies you build
-on its template — and one to read only what a task needs; *Removing it* below undoes them.
+KaxaNuk's Python style, only in KaxaNuk projects — the Lab's libraries and what you build on
+KaxaNuk's templates — and one to read only what a task needs; *Removing it* below undoes them.
 
 Then quit and reopen your assistant, and open your researcher's folder in a **new** conversation —
 in the Claude desktop app, a new **Code** session on that folder; in the Codex app, that folder; in
@@ -73,8 +73,8 @@ en tu computadora, con tu asistente; lo que lee va a la empresa detrás de él, 
 
 Con Claude, instalarlo también le da a tu asistente tres reglas de la casa en esta computadora —
 dos para el estilo de Python de KaxaNuk, solo en proyectos de KaxaNuk — las bibliotecas del Lab y
-las estrategias que construyas con su plantilla — y una para leer solo lo que
-una tarea necesita; *Removing it*, abajo, las quita.
+lo que construyas con las plantillas de KaxaNuk — y una para leer solo lo que una tarea necesita;
+*Removing it*, abajo, las quita.
 
 Después cierra y vuelve a abrir tu asistente, y abre la carpeta de tu investigador en una
 conversación **nueva** — en la app de escritorio de Claude, una sesión nueva de **Code** en esa
@@ -88,19 +88,20 @@ ella — y salúdalo por su nombre.
 | keep what you read, and ask it later | `read`, then `query <question>` | a note per paper or chapter you chose; answers that cite them and name what is missing |
 | teach it how you work | *remember this* or *learn this*, anywhere | a rule added to `RESEARCHER.md`, or a source to your library — on your go |
 | bring it into any project | open your assistant in that folder and say its name | your researcher, with what it knows; it writes there only on your go |
-| work out an idea, a plan, a goal or a decision | `study <subject>`; `study` alone lists them | a study in `Studies/`: your words, what your library says for and against, where it stands |
+| work out an idea, a plan, a goal or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, where it stands |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules — never advice |
 | write down how you invest, and see it evolve | `philosophy` | an interview at your level; your typed answers, word for word, in `Philosophy/HOW-I-INVEST.md` |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
-| see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read; running it needs keys and licences, as its `SETUP.md` says |
+| see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read; running it needs keys and licences |
+| build a Python library of your own | `init-python-library <name>` | a folder laid out like the KaxaNuk Data Curator: `src/`, tests, docs, a workflow that tests and publishes |
 | know what to do next | `next`, in the folder you are in | where you stand, and the one thing to do next |
 
-In Claude, type these with a slash, `/read`; anywhere else, ask for them by name. **It grows with
-you**: it reads for your questions, speaks in your voice and keeps your rules, all in its own
-folder, where you can edit them; the package brings only hints, offered as options — never a
-position to adopt. Its home's `README.md` says how to work well with it;
-[`USE-CASES.md`](USE-CASES.md) shows eleven uses, step by step.
+In Claude, type these with a slash, `/read`; anywhere else, say them. **It grows with you**: it
+reads for your questions, speaks in your voice and keeps your rules, all in its own folder, where
+you can edit them; the package brings only hints, offered as options — never a position to adopt.
+Its home's `README.md` says how to work well with it; [`USE-CASES.md`](USE-CASES.md) shows twelve
+uses, step by step.
 
 ## Its home ground: investment research
 
@@ -110,15 +111,14 @@ Engine, Attribution Analysis and Portfolio Construction — and the Data Refiner
 when they ship — come together, with their licences, in the KaxaNuk Investment Lab, which KaxaNuk
 sells. Attribution reads the benchmark and factor model files of KaxaNuk's Analytics Factory,
 <https://www.kaxanuk.mx/analytics>. Without the licences a strategy still runs up to its
-portfolios, and the rest says what is missing. Keys stay on your computer, in the strategy's
-`Config/.env` — Portfolio Construction's in the environment or a `.kaxanuk_license` file. For a
-licence, access or the Analytics Factory's files, write to `lab@kaxanuk.mx`, saying which library
-and what it is for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab>
-shows the Lab. [Each library's status](.apm/skills/next/references/investment-lab.md).
+portfolios, and the rest says what is missing. Keys stay on your computer; the strategy's
+`SETUP.md` says where. For a licence, access or the Analytics Factory's files, write to
+`lab@kaxanuk.mx`, saying which library and what it is for, with *via KaxaNuk Researcher* in the
+subject — <https://www.kaxanuk.mx/lab> shows the Lab.
+[Each library's status](.apm/skills/next/references/investment-lab.md).
 
-**Coming next.** Starting points for valuation (DCF, multiples), M&A and budgets, and a template
-for building a Python library of your own — each a folder your researcher makes as `init-strategy`
-does. Tell us what you would use: `lab@kaxanuk.mx`.
+**Coming next.** Starting points for valuation (DCF, multiples), M&A and budgets — each a folder
+your researcher makes as `init-strategy` does. Tell us what you would use: `lab@kaxanuk.mx`.
 
 ## Removing it
 
@@ -154,7 +154,7 @@ which running it by name approves.
 | --- | --- |
 | `read` | files a source into the library, one note per chapter you pick; in a strategy, into its `Bibliotheca/` |
 | `query <question>` | answers from the library, every claim cited and every gap named |
-| `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example — copied by a script, never from memory |
+| `init-researcher`, `init-strategy`, `init-example`, `init-python-library` | make a folder — your home, a strategy, the worked example, or a Python library — copied by a script, never from memory |
 | `interview` | two short questions about you, then `RESEARCHER.md` and the agent and skill that make it yours; `interview force` starts over |
 | `philosophy` | an optional interview on how you invest, at your level; your typed answers in `Philosophy/`, word for word |
 | `brief [setup]` | a dated file in `Briefs/` on the days you choose — your work, markets, holdings — every figure quoted from a dated source |

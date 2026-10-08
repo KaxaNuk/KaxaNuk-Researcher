@@ -1,17 +1,19 @@
 """
-Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy, or the example.
+Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy, the example, or a Python library.
 
-The three starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
-`templates/strategy/` and `examples/golden-flow/` — and this script copies one of them
-byte for byte, so every folder made from the same package version starts identical.  Nothing is
-written from memory and nothing is generated; what a checkout, an install or an agent may leave in
-a starting point — a cache folder, an agent's folder, `apm_modules/`, `uv.lock`, `Config/.env` — is
-left behind, by a whole copy and by `--only` alike.
+The four starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
+`templates/strategy/`, `templates/python-library/` and `examples/golden-flow/` — and this script
+copies one of them byte for byte, so every folder made from the same package version starts
+identical.  Nothing is written from memory and nothing is generated; what a checkout, an install, a
+build or an agent may leave in a starting point — a cache folder, an agent's folder,
+`apm_modules/`, `uv.lock`, `Config/.env`, `dist/`, `docs/_build/` — is left behind, by a whole copy
+and by `--only` alike.
 
 Usage:
     uv run --no-project python scaffold.py researcher <destination>
     uv run --no-project python scaffold.py strategy <destination>
     uv run --no-project python scaffold.py example <destination>
+    uv run --no-project python scaffold.py python-library <destination>
     uv run --no-project python scaffold.py strategy <strategy root> --only Data/analyzer.ipynb
     uv run --no-project python scaffold.py example <a folder of its own> --only Experiments/Experiment_1
 
@@ -54,7 +56,8 @@ import subprocess
 import sys
 
 # Folders never copied, at any depth: every folder made from one version of the package must start
-# identical, so no run may carry a cache, an agent's settings or an install it happens to hold.
+# identical, so no run may carry a cache, a build's output, an agent's settings or an install it
+# happens to hold.
 AGENT_FOLDERS = frozenset({
     '.agents',
     '.claude',
@@ -67,10 +70,14 @@ AGENT_FOLDERS = frozenset({
 })
 CACHE_FOLDERS = frozenset({
     '.ipynb_checkpoints',
+    '.mypy_cache',
+    '.pdm-build',
     '.pytest_cache',
     '.ruff_cache',
     '.venv',
     '__pycache__',
+    '_build',
+    'dist',
 })
 # Files Finder or Explorer leaves in a folder it shows: a folder holding only these is still empty,
 # and the first commit leaves them out, since a strategy's .gitignore before template 0.13.4 does
@@ -86,7 +93,10 @@ NEVER_COPIED_FILES = frozenset({
     'Config/.env',
     'uv.lock',
 })
-# Each starting point: where it sits inside the package, and the first commit of a copy of it.
+# Each starting point: where it sits inside the package, and the first commit of a copy of it.  The
+# python-library message must equal `FIRST_COMMIT` in the init-python-library skill's
+# `name_library.py`, which names only a copy whose history is that commit alone, so the two change
+# together.
 STARTING_POINTS = {
     'researcher': (
         'templates/researcher',
@@ -99,6 +109,10 @@ STARTING_POINTS = {
     'example': (
         'examples/golden-flow',
         'Start from the KaxaNuk example strategy, golden-flow',
+    ),
+    'python-library': (
+        'templates/python-library',
+        'Start from the KaxaNuk Python Library Template',
     ),
 }
 # Where APM puts the package, relative to an `apm_modules/` folder: from GitHub, then from a path.
@@ -351,7 +365,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         'kind',
         choices=sorted(STARTING_POINTS),
-        help='researcher, strategy or example',
+        help='researcher, strategy, example or python-library',
     )
     parser.add_argument(
         'destination',
@@ -622,7 +636,7 @@ def _is_package(
     candidate: pathlib.Path,
 ) -> bool:
     """
-    Whether a folder holds the three starting points.
+    Whether a folder holds every starting point.
     """
     holds_all = all(
         (candidate / relative_source).is_dir()

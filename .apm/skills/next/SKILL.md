@@ -10,7 +10,7 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.8.1
+  version: 1.8.2
 ---
 
 # Next — where you stand, and what to do next
@@ -38,7 +38,7 @@ elsewhere.
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
 | `AGENTS.md` with the line `<!-- kaxanuk-starting-point: <kind> -->` alone at column 0 | a project from another KaxaNuk starting point, made by `init-<kind>` | say which kind, and quote its status line where there is one; then its `AGENTS.md`'s `## Next` table, read as *Step 2*'s rows are, from the files on disk — the first *Done when* that fails gives *The next thing* — and reported as a strategy's parts are. With no such table, say its `AGENTS.md` governs, and stop |
 | none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, with the project's own rules. Name the home and its one next thing, *Step 2* read at the home's path; here, `query` answers from the library, and what the project teaches goes home as a source, then `read`. No `init-*` command is suggested for this folder |
-| none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test, the marker alone on its line, to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which of the three skills makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-example` to read the worked example — and stop |
+| none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test, the marker alone on its line, to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which skill makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-python-library <name>` for a Python library of their own, `init-example` to read the worked example — and stop |
 
 When a home and a strategy, or a project from another starting point, are both in the session —
 added to it, or named by the researcher's skill — read the strategy or the project: the home is the

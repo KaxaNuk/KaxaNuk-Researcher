@@ -1,0 +1,147 @@
+# A Python library laid out like the KaxaNuk Data Curator, https://github.com/KaxaNuk/Data-Curator:
+# pdm-backend builds it, its version is read from the package's __init__.py, and uv runs the rest.
+[build-system]
+requires = ["pdm-backend>=2.4"]
+build-backend = "pdm.backend"
+
+
+[project]
+name = "kn-python-library-template"
+description = "[One sentence on what the library does.]"
+authors = [{name = "KaxaNuk SC"}]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Typing :: Typed",
+]
+dependencies = []
+dynamic = ["version"]
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.12"
+
+[project.urls]
+Changelog = "https://github.com/github-owner/kn-python-library-template/blob/main/CHANGELOG.md"
+Documentation = "https://kn-python-library-template.readthedocs.io/en/latest/"
+Issues = "https://github.com/github-owner/kn-python-library-template/issues"
+Repository = "https://github.com/github-owner/kn-python-library-template"
+
+
+# `uv sync` installs the dev group, so every tool below; Read the Docs installs `docs` alone.
+[dependency-groups]
+dev = [
+    {include-group = "docs"},
+    {include-group = "lint"},
+    {include-group = "test"},
+    {include-group = "typing"},
+]
+docs = [
+    "myst-parser>=4.0",
+    "pydata-sphinx-theme>=0.16",
+    "sphinx>=8.1",
+    "sphinx-copybutton>=0.5.2",
+]
+lint = [
+    "ruff>=0.12",
+]
+test = [
+    "pytest>=8.3",
+]
+typing = [
+    "mypy>=1.13",
+]
+
+
+[tool.mypy]
+files = ["src"]
+
+
+[tool.pdm.build]
+source-includes = [
+    "CHANGELOG.md",
+    "tests/",
+]
+
+[tool.pdm.version]
+source = "file"
+path = "src/kn_python_library_template/__init__.py"
+
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-config --strict-markers"
+testpaths = ["tests"]
+
+
+[tool.ruff]
+indent-width = 4
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+# The KaxaNuk Data Curator's selection. Every rule: https://docs.astral.sh/ruff/rules/
+select = [
+    # Indispensable linters:
+    "A",    # flake8-builtins: check for python builtins being used as variables or parameters
+    "C4",   # flake8-comprehensions: helps you write better list/set/dict comprehensions
+    "E",    # pycodestyle errors
+    "F",    # pyflakes: checks Python source files for errors
+    "FBT",  # flake8-boolean-trap: detect boolean traps
+    "INP",  # flake8-no-pep420: ban PEP-420 implicit namespace packages
+    "ISC",  # flake8-implicit-str-concat: encourage correct string literal concatenation
+    "N",    # PEP8 naming
+    "PLC",  # pylint conventions
+    "PLE",  # pylint errors
+    "PLW",  # pylint warnings
+    "S",    # flake8-bandit: automated security testing
+    "SIM",  # flake8-simplify: helps you simplify your code
+    "T10",  # flake8-debugger: check for debug code
+    "T20",  # flake8-print: check for print statements in python files
+    "W",    # pycodestyle warnings
+
+    # Rigorous linters:
+    "ANN",  # flake8-annotations: detect the absence of PEP 3107-style function annotations
+    "ASYNC",# check for bad async / asyncio practices
+    "B",    # bugbear: find likely bugs and design problems
+    "BLE",  # flake8-blind-except: check for blind, catch-all except: and except Exception: statements
+    "DTZ",  # flake8-datetimez: ban the usage of unsafe naive datetime class
+    "EM",   # flake8-errmsg: helps format nice error messages
+    "G",    # flake8-logging-format: validate (lack of) logging format strings
+    "INT",  # flake8_gettext: check for incorrect use of gettext
+    "PERF", # perflint: detect performance anti-patterns
+    "PIE",  # flake8-pie: miscellaneous lints, such as an unnecessary pass
+    "PLR",  # pylint refactor rules
+    "PT",   # flake8-pytest-style: check common style issues or inconsistencies with pytest-based tests
+    "PTH",  # flake8-use-pathlib: find use of functions that can be replaced by pathlib module
+    "RET",  # flake8-return: checks return values
+    "RUF",  # Ruff-specific rules
+    "RSE",  # flake8-raise: finds improvements for raise statements
+    "SLF",  # flake8-self: check for private member access
+    "SLOT", # flake8-slots: require __slots__ to be defined for subclasses of immutable types
+    "TID",  # flake8-tidy-imports: better control imports
+    "UP",   # pyupgrade: upgrade syntax for newer versions of the language
+    "YTT",  # flake8-2020: checks for misuse of sys.version or sys.version_info
+]
+ignore = [
+    "ANN204",   # a special method's return type is fixed by Python
+    "ANN401",   # Any has valid uses
+    "PLR09",    # the "too many" limits
+    "RET504",   # Bloom Code keeps the variable a function returns, so a debugger can see it
+    "RET505",   # an explicit else after return, raise, continue or break reads more clearly
+    "RET506",
+    "RET507",
+    "RET508",
+]
+
+[tool.ruff.lint.flake8-tidy-imports.banned-api]
+"unittest.mock".msg = "use pytest's monkeypatch fixture instead"
+
+[tool.ruff.lint.per-file-ignores]
+"docs/**" = [
+    "INP001",   # docs/source holds conf.py alone; it is not a package
+]
+"tests/**" = [
+    "PLR2004",  # a value a test checks against is clearer written out than named
+    "S101",     # assert is how pytest checks
+    "SLF001",   # a test may reach a private member
+]

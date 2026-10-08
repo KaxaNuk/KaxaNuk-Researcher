@@ -1,0 +1,46 @@
+# --- Agent tooling ---------------------------------------------------------------------------
+# What an assistant or APM writes per machine: the skills come with the KaxaNuk Researcher,
+# installed once for the user, never here.
+.agents/
+.claude/
+.codex/
+.cursor/
+.gemini/
+.opencode/
+.windsurf/
+# The copilot target writes inside .github/ - only what APM puts there is ignored, so the workflow
+# committed there still shows up.
+.github/skills/
+.github/prompts/
+.github/agents/
+.github/instructions/
+.github/copilot-instructions.md
+/apm_modules/
+.mcp.json
+apm.lock.yaml
+CLAUDE.local.md
+
+# --- Python ----------------------------------------------------------------------------------
+# uv.lock is committed: the workflow installs exactly what it names.
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# --- What a build writes ---------------------------------------------------------------------
+# Anchored to this folder, so a package of the same name under src/ is never ignored.
+/dist/
+/.pdm-build/
+/docs/_build/
+
+# --- Secrets ---------------------------------------------------------------------------------
+.env
+
+# --- IDE and file managers -------------------------------------------------------------------
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini

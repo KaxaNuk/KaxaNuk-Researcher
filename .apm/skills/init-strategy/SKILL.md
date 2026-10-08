@@ -5,9 +5,10 @@ description: >
   ships inside the researcher package — copied by a script, byte for byte, its first version
   saved. Only when the owner runs it by name, with the strategy's name. It does NOT set up the
   environment or the keys (the new folder's SETUP.md does), does NOT copy the worked example (use
-  `init-example`), and does NOT create a researcher (use `init-researcher`).
+  `init-example`), does NOT create a researcher (use `init-researcher`), and does NOT create a
+  Python library (use `init-python-library`).
 metadata:
-  version: 0.3.2
+  version: 0.3.3
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -79,5 +80,5 @@ every strategy made from the same package version starts identical.
 ## References
 
 - `scripts/scaffold.py`, in this skill's folder — copies `templates/strategy/` from the
-  KaxaNuk Researcher package; `--help` has every option. `init-researcher` and `init-example` run
-  the same script.
+  KaxaNuk Researcher package; `--help` has every option. `init-researcher`, `init-example` and
+  `init-python-library` run the same script.

@@ -10,7 +10,7 @@ description: >
   it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
   (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.5.1
+  version: 0.5.2
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -61,7 +61,7 @@ alone, before any rule is coded.
 
 ## 3. The changelog
 
-One entry per change-set, newest first, in the KaxaNuk Data Curator convention:
+One entry per change-set, newest first:
 
 ```
 ## X.Y.Z (YYYY-MM-DD)
@@ -76,8 +76,9 @@ One entry per change-set, newest first, in the KaxaNuk Data Curator convention:
 ```
 
 A repository whose `CHANGELOG.md` names another format in its header keeps it: the KaxaNuk
-Researcher's own root `CHANGELOG.md` uses Keep a Changelog, `## [X.Y.Z] - YYYY-MM-DD`. Every
-strategy made from the template, and every researcher's home, uses the one above.
+Researcher's own root `CHANGELOG.md`, the KaxaNuk Data Curator's and that of a Python library
+made with `init-python-library` use Keep a Changelog, `## [X.Y.Z] - YYYY-MM-DD`. Every strategy
+made from the template, and every researcher's home, uses the one above.
 
 Each item is written for somebody who was not in the room: **say what moved and why, not what file
 you touched**. "The regime model lives in the Refinery so a penalty sweep costs no download" is an
@@ -103,8 +104,10 @@ book on paper trading, its results reproduced from a clean clone.
 
 ## 5. Releasing
 
-1. Bump the version where the repository keeps it — `pyproject.toml`, `apm.yml`, or both — in the
-   same commit as the changelog entry, and run `uv lock` where the repository commits a `uv.lock`.
+1. Bump the version where the repository keeps it — `pyproject.toml`, `apm.yml`, or both, or the
+   package's `__init__.py`, as a Python library laid out like the KaxaNuk Data Curator keeps it —
+   in the same commit as the changelog entry, and run `uv lock` where the repository commits a
+   `uv.lock`.
 2. Tag on `main` once the version's commit is there, and push the tag:
 
    ```bash
@@ -113,8 +116,8 @@ book on paper trading, its results reproduced from a clean clone.
    ```
 
    One tag per release, `v` and the version the repository declares at its root: the KaxaNuk
-   Researcher tags its package's, while its template, example and home keep their own numbers. The
-   message is the version and the first sentence of its `CHANGELOG.md` entry, word for word.
+   Researcher tags its package's, while its templates, example and home keep their own numbers.
+   The message is the version and the first sentence of its `CHANGELOG.md` entry, word for word.
 3. **Tag the commit where the version became the state of `main`** — when a branch was used, the
    merge, not the commit on the branch that wrote the bump: a tag cannot be corrected in place once
    somebody has pinned to it.

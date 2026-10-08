@@ -1,0 +1,2 @@
+# Normalise line endings so a clone on Windows, macOS or Linux sees exactly what was committed.
+* text=auto eol=lf

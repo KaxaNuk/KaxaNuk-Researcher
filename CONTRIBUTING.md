@@ -54,9 +54,12 @@ app's add-folder button — for it to read the library without asking each time.
 templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folders; its README is the
                       process, and the order of work a strategy follows
 templates/researcher/ the researcher's home, empty
+templates/python-library/
+                      the KaxaNuk Python Library Template — a Python library laid out like the
+                      KaxaNuk Data Curator, named for its owner by init-python-library
 examples/golden-flow/ one strategy worked through every folder of the template
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
-USE-CASES.md          eleven ways to use the researcher, step by step
+USE-CASES.md          twelve ways to use the researcher, step by step
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the ruff settings for the skills' scripts
 AGENTS.md, CLAUDE.md  the rules for changing this repository
@@ -67,9 +70,9 @@ LICENSE               MIT
 ```
 
 **What this repository owns, and what a copy owns.** This repository owns what is written once and
-copied or installed everywhere; a copy owns what its owner writes in it. A strategy made from the
-template is its owner's from the first commit and never merges back; the skills keep updating with
-`uvx --from apm-cli==0.33.0 apm update -g`.
+copied or installed everywhere; a copy owns what its owner writes in it. A strategy, or a Python
+library, made from a template is its owner's from the first commit and never merges back; the
+skills keep updating with `uvx --from apm-cli==0.33.0 apm update -g`.
 
 ## Development
 
@@ -77,16 +80,20 @@ template is its owner's from the first commit and never merges back; the skills 
 uvx ruff check .
 (cd templates/strategy && uvx ruff check .)
 (cd examples/golden-flow && uvx ruff check .)
+(cd templates/python-library && uvx ruff check .)
 uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py .apm/skills/*/scripts
 (cd templates/strategy && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100)
 (cd examples/golden-flow && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100)
+(cd templates/python-library && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 120)
 ```
 
-Ruff lints the skills' scripts, the template and the worked example, each with its own settings;
-the Bloom Code check runs on the scripts at its default 120 columns and, from inside each strategy
-— so it finds the strategy's own packages — at the strategy's 100. Each runs through `uv` alone: no
-Python of your own is needed. They run on your machine before a commit; there is no CI, so nothing
-runs them for you.
+Ruff lints the skills' scripts, the strategy and Python library templates and the worked example,
+each with its own settings; the Bloom Code check runs on the scripts at its default 120 columns
+and, from inside each template and the example — so it finds their own packages — at the line
+length each sets: 100 for a strategy, 120 for the Python library template. Each runs through `uv`
+alone: no Python of your own is needed. They run on your machine before a commit; there is no CI,
+so nothing runs them for you. Nothing else runs inside `templates/`: `uv sync`, `uv build` or
+Sphinx there would write a `.venv/`, a `uv.lock` or a `dist/` into the package.
 
 **The template and the example in step.** Nothing else is automated: they are kept in step by
 hand, as `AGENTS.md` says. For each file `git ls-files templates/strategy` lists, the example's
@@ -146,11 +153,35 @@ file once `git add` has staged it — and with nothing uncommitted the archive i
 the commit would hold, with LF endings and none of the ignored folders a working tree has. Open a
 new session in the `check` folder, from that shell.
 
-**Before a release, do the same with the commit to be tagged.** It should deploy exactly 21 skills,
-9 commands, 3 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
-or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
-`interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, `brief setup`
-and `brief`, and `init-strategy` — once in Spanish with a researcher whose name has an accent,
+**To try the Python library template** — before a release that changes it, `scaffold.py` or
+`init-python-library` — build a copy of it in that throwaway shell, under `$K`: nothing else
+catches a broken build. From the repository's root:
+
+```bash
+R=$(pwd)
+uv run --no-project python .apm/skills/init-strategy/scripts/scaffold.py python-library "$K/lib"
+cd "$K/lib"
+uv sync
+uv run ruff check . && uv run mypy && uv run pytest
+uv run --no-project python "$R/.apm/skills/bloom-code-lint/scripts/bloom_code_check.py" . --max-line-length 120
+uv run sphinx-build -W -b html docs/source docs/_build/html
+uv build
+```
+
+Then the same in a second copy, `$K/lib2`, named first with the longest name it accepts — by its
+`scripts/name_library.py`, run as the `init-python-library` skill runs it — where every check
+passes too, and this prints nothing:
+
+```bash
+git -C "$K/lib2" grep -n -e kn_python_library_template -e kn-python-library-template -e KnPythonLibraryTemplate -e "KN Python Library Template" -e "KaxaNuk SC" -- ':!AGENTS.md'
+```
+
+**Before a release, make the install above with the commit to be tagged.** It should deploy exactly
+22 skills, 9 commands, 3 rules and 1 agent, with no warning. Then, if the release changes a skill, a
+command or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which
+runs `interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter,
+`brief setup` and `brief`, and `init-strategy`; `init-python-library`, and `next` in the folder it
+makes, when the release changes them — once in Spanish with a researcher whose name has an accent,
 *Sofía*, whose skill must deploy as `~/.claude/skills/sofia/`, and once on an assistant with no
 question tool, such as Codex. Delete the scratch folder afterwards: under the throwaway home,
 nothing the walk installed or scheduled reached your own. A newer APM is adopted only when this
