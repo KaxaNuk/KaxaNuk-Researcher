@@ -194,6 +194,12 @@ of `RESULTS.md`, and the 37 books two earlier versions priced count in the trial
   second, lighter simulator: one that disagrees just lets the reader pick the number they prefer.
 - **Do not change a committed result to make it agree with a new run.** If the numbers moved, find
   out why first, and record it.
+- **A new Lab library build is a change-set, between experiments**, never during one. The
+  researcher says when one is out; it keeps the date of that weekly check in this repository's git
+  config, `kaxanuk.labnext`, never saved. Upgrade with `uv lock --upgrade-package <name>`, then
+  `uv sync --group notebook --inexact` — a licensed library as its skill says — re-run from a wiped
+  copy, and write the `CHANGELOG.md` entry naming any number that moved. A book on paper runs on
+  the Data Curator it was frozen with.
 - **Do not quietly drop a bad run.** A run that cannot be believed is excluded **by name**, with its
   reason, in `RESULTS.md`.
 - **Do not commit binaries or notebook outputs.** No charts, no engine workbooks, no PDFs.

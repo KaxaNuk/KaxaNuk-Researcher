@@ -2,22 +2,25 @@
 name: next
 description: >
   Say where the owner stands — in the researcher's home or in a strategy — and the one thing to do
-  next, with the command or skill that does it, read from the files on disk as a checklist; nothing
-  is written but a version the owner asks it to save. Takes an optional path to a strategy, when
-  the session is not open in it. Only when the owner runs it by name, or when the researcher's
-  skill answers a greeting; never on its own otherwise.
+  next, with the command or skill that does it, read from the files on disk as a checklist; at most
+  once a week, one line more when a new version of the researcher, or in a strategy of a Lab
+  library, is out. Nothing is written but a version the owner picks to save and the dates of that
+  weekly check, in git config, never saved or sent anywhere. Takes an optional path to a strategy,
+  when the session is not open in it. Only when the owner runs it by name, when the researcher's
+  skill answers a greeting, or when the owner answers its version line — not now, stop reminding
+  me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.4.1
+  version: 1.5.0
 ---
 
 # Next — where you stand, and what to do next
 
 This skill is the map of the process and of the researcher's skills and commands: it reads the
 folder, says which parts are done, and names **the one thing to do next** with the command or skill
-that does it. It writes nothing and never starts the next thing itself — doing it is a different
-request, by the name this skill gives — save one: the version row 0 or row E offers, on the
-owner's pick. It is a skill, not a command, so every assistant APM deploys to has it, Codex
-included.
+that does it. It never starts the next thing itself — doing it is a different request, by the name
+this skill gives — and writes two things only: the version row 0 or row E offers, on the owner's
+pick, and the dates of its weekly version check, *Step 4* item 5, in git config. It is a skill, not
+a command, so every assistant APM deploys to has it, Codex included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
 — *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
@@ -127,7 +130,75 @@ In chat, short:
    `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as written, a book's
    `INDEX.md` and concept pages aside. When notes came in, add that `philosophy` takes the round
    again; when none did, the date, the level and *no notes since* are the whole line.
+5. **A new version**, last, and only when there is one: never a line saying there is none. It
+   updates nothing itself, and a failure — offline, a command failing or declined — is silent.
+   Every line here is in the owner's language.
+   - **Due?** The home is this folder when it is one, else the one the researcher's skill names,
+     wherever `next` runs; none readable, or no `.git/` in it, means no check. Read
+     `<home>/.git/config` with the file-reading tool, never a shell, so a week with nothing due asks
+     no permission: under `[kaxanuk]`, `updatereminder = off` is never; an
+     `updatenext = YYYY-MM-DD` after today is not yet; none, today or past is due.
+   - **Installed:** in `~/.apm/apm.lock.yaml`, read the same way, the entry under `dependencies:`
+     whose `repo_url` or `materialization_repo_url` is `KaxaNuk/KaxaNuk-Researcher`, ignoring
+     case — never a `source: local` entry, which is a home — and its `version:`.
+   - **Newest:** the first tag this prints, as written in Git Bash; in PowerShell, put
+     `$env:GIT_TERMINAL_PROMPT=0;` in place of `GIT_TERMINAL_PROMPT=0`:
 
-Nothing else. No file is written, no log entry appended, no number computed and no plan drafted:
-when the owner says *do it*, that is the named command's or skill's own plan and go, not this one's.
-Row 0's and row E's saves are all it runs.
+     ```bash
+     GIT_TERMINAL_PROMPT=0 git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=10 ls-remote --tags --refs --sort=-v:refname https://github.com/KaxaNuk/KaxaNuk-Researcher
+     ```
+
+     Only a newer minor or major version counts — 0.37.0 over 0.36.x, 1.0.0 over 0.x — never a
+     patch alone.
+   - **Headline**, when one is newer, and only if it comes: this prints the top of the newest
+     changelog entry, the same in Git Bash and PowerShell; its first sentence is the headline.
+
+     ```bash
+     uv run --no-project python -X utf8 -c "import urllib.request as r; L=r.urlopen('https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/CHANGELOG.md', timeout=10).read(16384).decode('utf-8', 'replace').splitlines(); i=[k for k, x in enumerate(L) if x.startswith('## [')][0]; print(*L[i:i + 12], sep=chr(10))"
+     ```
+
+   - **The line:** *A new version of me is out, X (you have Y): <headline>. Say `update` when you
+     like — `not now` waits a month.* With no headline, the same without it.
+   - **Then**, whatever happened — a line or none, offline, a command failed or declined — run
+     `git -C "<home>" config kaxanuk.updatenext <today + 7 days>`, the date as `YYYY-MM-DD`, so a
+     failure costs one silent try a week. When the owner answers, then or later: *not now* sets
+     it to today + 30 days; *stop reminding me* runs
+     `git -C "<home>" config kaxanuk.updatereminder off`; *remind me about updates* runs
+     `git -C "<home>" config --unset kaxanuk.updatereminder`.
+   - **The researcher's skill behind the package**, on every `next` wherever the home is readable,
+     never gated by the date or the network: when the home's skill, row 2's file, has a
+     `metadata.version` below the `version:` of the skill template in `interview`'s *Step 4* —
+     `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md`, not that
+     file's own — one line: *Your researcher's skill is behind the package — say `update` to bring
+     it.*
+   - **In a strategy, the Lab libraries too**, never in the worked example. The same rules, on the
+     strategy's own date, `[kaxanuk] labnext` in `<strategy>/.git/config`, written with
+     `git -C "<strategy>" config kaxanuk.labnext <date>`; the home's `updatereminder = off` stops
+     it too. Not due without `.venv/`, nor while an experiment is under way — its blueprint saved,
+     as part E checks, and no `FINDINGS_N.md` reporting yet, as part G does — since one experiment
+     runs on one set of builds; then nothing is written. From the strategy's root, both read-only:
+
+     ```bash
+     uv pip list --format freeze
+     uv lock --upgrade-package kaxanuk-data-curator --dry-run
+     ```
+
+     The first, read for the `kaxanuk-*` names and versions only, gives each installed build; the
+     second names a newer Data Curator — `Update kaxanuk-data-curator v0.50.0 -> v0.51.0` —
+     without writing the lock. Each Lab library installed is compared, minor and major only, with
+     the *Latest* column of `references/investment-lab.md` in this skill's folder — a newer build
+     is out — and with its skill's `library_version` — the skill's traps were checked on another
+     build. One line per library behind:
+     - The Data Curator: *Data Curator X is out (you have Y): between experiments,
+       `uv lock --upgrade-package kaxanuk-data-curator`, then
+       `uv sync --group notebook --inexact`.* Where `Paper_Trading/` holds a `FREEZE.json`, add:
+       *a book on paper stops on any other Data Curator than its frozen one.*
+     - Portfolio Construction, the Backtest Engine or Attribution Analysis: *<Library> X is out
+       (you have Y): between experiments — its skill says how to install a new build.*
+     - A build newer than its skill's `library_version`, with nothing newer out: *Your <Library> is
+       Y; its skill was checked on Z, so its traps are unproven on Y.*
+
+Nothing else. No log entry is appended, no number computed and no plan drafted: when the owner
+says *do it*, that is the named command's or skill's own plan and go, not this one's. It writes
+only row 0's and row E's saves, on the owner's pick, and item 5's dates in git config, which are
+never saved or sent anywhere.

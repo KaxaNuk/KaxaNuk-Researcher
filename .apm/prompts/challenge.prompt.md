@@ -119,15 +119,17 @@ it shows — the version that wrote the blueprint, as check 10 finds it, and whe
 before the one that put the rule into `experiment_N.ipynb`. A blueprint saved with its rule, or
 after it, cannot be told from one written afterwards; say so. The log is read, never changed.
 
-The process can move under an experiment too: `blueprint`, `blueprint-critic` and this command
-come from one package, updated for every strategy at once. Read the version this run uses as
-`blueprint` does — `~/.apm/apm.lock.yaml`, the entry named `kaxanuk-researcher` — and compare it
-with the blueprint's stamp. The same version is one line of the report. A different one names
-both, and the entries of the package's `CHANGELOG.md`, beside that `apm.yml`, between them that
-touch `blueprint`, `blueprint-critic` or `challenge` — so the owner sees what changed in the
-checks, not only that something did. No stamp: say the blueprint predates it, and that the
-question cannot be answered from the files. A mismatch is disclosed, never a failure: the
-verdicts stand or fall on the blueprint as written.
+The process can move under an experiment too: `blueprint`, `blueprint-critic` and this command come
+from one package, updated for every strategy at once. Read the version this run uses as `blueprint`
+does — `~/.apm/apm.lock.yaml`, the entry under `dependencies:` whose `repo_url` or
+`materialization_repo_url` is `kaxanuk/kaxanuk-researcher`, ignoring case, as `next` reads it — a
+`source: local` entry only when its `local_path` holds `templates/researcher/`, the package's own
+checkout, never a home — and compare it with the blueprint's stamp. The same version is one line of
+the report. A different one names both, and the entries of the package's `CHANGELOG.md`, beside that
+`apm.yml`, between them that touch `blueprint`, `blueprint-critic` or `challenge` — so the owner
+sees what changed in the checks, not only that something did. No stamp: say the blueprint predates
+it, and that the question cannot be answered from the files. A mismatch is disclosed, never a
+failure: the verdicts stand or fall on the blueprint as written.
 
 ## Step 4: Report, and offer the one line it may write
 

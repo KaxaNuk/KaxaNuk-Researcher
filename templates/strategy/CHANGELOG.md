@@ -41,6 +41,24 @@ for somebody who was not in the room:
 
 ---
 
+## 0.16.0 (2026-10-08)
+
+**MINOR** — the researcher says, at most once a week, when a newer build of a Lab library this
+strategy runs on is out, and a new build is taken between experiments as a change-set of its own.
+Nothing about any result changes.
+
+**What to do differently:** take a new library build between experiments, as `AGENTS.md` says.
+
+### Changed
+
+- **`AGENTS.md`**, *Other standing rules*: a new Lab library build is a change-set, between
+  experiments, never during one — the researcher says when one is out, keeping the date of that
+  weekly check in this repository's git config (`kaxanuk.labnext`), never saved; `uv lock
+  --upgrade-package <name>`, then `uv sync --group notebook --inexact`, a re-run from a wiped copy
+  and a `CHANGELOG.md` entry naming any number that moved; a book on paper runs on the Data Curator
+  it was frozen with.
+- **`SETUP.md`**, step 2: *A newer Lab library*, the same in three lines.
+
 ## 0.15.1 (2026-10-08)
 
 **PATCH** — Portfolio Construction needs a licence since its 2.0.0, and the template says where its

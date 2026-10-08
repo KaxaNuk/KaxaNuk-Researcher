@@ -114,13 +114,15 @@ as the example's.
 - Add one line under the experiment's heading, with today's date, as the example's blueprint does:
   `**Written YYYY-MM-DD, before any rule was coded.**` — and after it, on the same line, the
   package the draft was made with: `Drafted with KaxaNuk-Researcher X.Y.Z, commit abc1234.` Read
-  both from `~/.apm/apm.lock.yaml`, the entry named `kaxanuk-researcher`: its `version`, and the
-  first seven characters of its `resolved_commit`. Installed from a local path, the entry has no
-  commit: write `local` in its place. With no such entry, read `version:` in
-  `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/apm.yml` and write no commit; with neither,
-  write `version unknown` and say so in *Step 5*. Never a version from memory: the stamp is how
-  `challenge` tells whether the process changed between the blueprint and its run. The template's
-  blockquote stays, whole, until the go.
+  both from `~/.apm/apm.lock.yaml`, the entry under `dependencies:` whose `repo_url` or
+  `materialization_repo_url` is `kaxanuk/kaxanuk-researcher`, ignoring case, as `next` reads it — a
+  `source: local` entry only when its `local_path` holds `templates/researcher/`, the package's own
+  checkout, never a home: its `version`, and the first seven characters of its `resolved_commit`.
+  Installed from a local path, the entry has no commit: write `local` in its place. With no such
+  entry, read `version:` in `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/apm.yml` and write no
+  commit; with neither, write `version unknown` and say so in *Step 5*. Never a version from memory:
+  the stamp is how `challenge` tells whether the process changed between the blueprint and its run.
+  The template's blockquote stays, whole, until the go.
 
 ## Step 4: Put the draft to its critic
 

@@ -70,9 +70,10 @@ folder outside this one.
    this folder too, from the KaxaNuk Strategy Template.
 
 **Lost?** `next`, here or in a strategy, names the one next thing and the command for it — here,
-for what you came for. **Stay current:** `update` brings new skills and new versions of the
-researcher — it runs the package's update for you and shows any change to your home as a diff
-first. In Claude, type these with a slash, `/read`; anywhere else, ask for them by name.
+for what you came for. **Stay current:** when a new version is out, your researcher says so in one
+line, at most once a week; say `update` and it brings it — the package for every folder, and any
+change to this home shown as a diff first. *Not now* waits a month; *stop reminding me* turns it
+off. In Claude, type the commands with a slash, `/read`; anywhere else, ask for them by name.
 
 ## The KaxaNuk Investment Lab
 
@@ -80,7 +81,8 @@ A strategy you build from here can use KaxaNuk's Lab libraries: the Data Curator
 Backtest Engine and Attribution Analysis are licensed; Portfolio Construction is on request, and
 licensed since its 2.0.0; the Data Refinery and the Data Analyzer are coming.
 <https://www.kaxanuk.mx/lab> shows them. Write to `lab@kaxanuk.mx` for a licence or access, or to
-report a problem with your researcher — with the version `update check` shows.
+report a problem with your researcher — with the versions your researcher names when you ask
+*which version are you?*
 
 ---
 

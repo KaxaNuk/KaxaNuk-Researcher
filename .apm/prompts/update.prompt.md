@@ -1,16 +1,21 @@
 ---
-description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, and writing the researcher's skill for a home that lacks it or holds one behind the template; plan first, the owner's go, then update. Home only. Only when the owner runs it by name.
+description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, and writing the researcher's skill for a home that lacks it or holds one behind the template; plan first, the owner's go, then update. From a strategy, the package only and a report of the Lab libraries, nothing written there. Only when the owner runs it by name.
 input:
   - mode: "Optional: check, to report what is new without changing anything"
 ---
 
 # Update the researcher
 
-Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
-it first and read its `RESEARCHER.md` and `AGENTS.md`.
+Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`, the
+one the researcher's skill names when the session is elsewhere. Find it first and read its
+`RESEARCHER.md` and `AGENTS.md`.
 
-**Home only.** A strategy has nothing to update: it installs no skills, and its files are its own
-from the day `init-strategy` made it. In a strategy, say so and stop.
+**From a strategy, the package only.** A strategy installs no skills, and its files are its own
+from the day `init-strategy` made it: `update` writes nothing in it. Run there, it brings the
+package — *Step 1* item 3, *Step 2*'s first item and *Step 4* item 1, with *Step 3*'s plan and go
+between and *Step 5*'s package lines after — and reports the Lab libraries the strategy runs on as
+`next`'s *Step 4* item 5 does, whatever its weekly date says; each upgrade is the owner's, between
+experiments. The home's own files are updated from the home: say so in one line.
 
 The researcher arrives in two parts, and each updates its own way:
 
@@ -73,29 +78,48 @@ agent's file name and `name:` with it, nothing else in the agent.
 
 ## Step 2: What is new
 
-- **The package.** `uvx --from apm-cli==0.33.0 apm outdated -g` says whether a newer commit is
-  out, and `uvx --from apm-cli==0.33.0 apm deps list -g` names the installed version. The copy
-  under `~/.apm/apm_modules/` stays at that version until *Step 4*, so read the newest from GitHub
-  instead: the `main` that `apm update -g` brings, under
-  `https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/`, with `curl -fsSL` or the
-  agent's web fetch. Read `CHANGELOG.md` there and take every entry above the installed version.
+- **The package.** The installed version is the `version:` of the package's entry in
+  `~/.apm/apm.lock.yaml`, read with the file tool — the entry whose `repo_url` or
+  `materialization_repo_url` is `kaxanuk/kaxanuk-researcher` in any case, never a `source: local`
+  one; `uvx --from apm-cli==0.33.0 apm deps list -g` names the same. The newest is the first tag
+  this prints, `v` and the version:
+
+  ```bash
+  git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=10 ls-remote --tags --refs --sort=-v:refname https://github.com/KaxaNuk/KaxaNuk-Researcher
+  ```
+
+  The copy under `~/.apm/apm_modules/` stays at the installed version until *Step 4*, so what is
+  new is read on GitHub, in the `main` that `apm update -g` brings, by two commands that run the
+  same in Git Bash and PowerShell. The first prints the entries of a changelog there above a
+  version, newest first, and nothing when there are none — never the whole root `CHANGELOG.md`,
+  past 140 KB. Run it with `CHANGELOG.md` and the installed version, and take every entry it
+  prints. The second prints one file of that `main` whole, by its path in the package.
+
+  ```bash
+  uv run --no-project python -X utf8 -c "import sys,urllib.request as u;f,v=sys.argv[1:3];t=u.urlopen('https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/'+f,timeout=10).read().decode().splitlines();h=[i for i,l in enumerate(t) if l[:3]=='## '];e=[i for i in h if t[i].split()[1:2] in ([v],['['+v+']'])];print('\n'.join(t[h[0]:e[0]]) if e else 'No entry for '+v+' in '+f)" CHANGELOG.md <installed version>
+  uv run --no-project python -X utf8 -c "import sys,urllib.request as u;sys.stdout.write(u.urlopen('https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/'+sys.argv[1],timeout=10).read().decode())" templates/researcher/AGENTS.md
+  ```
+
+  Offline, or a command that fails: say so in one line and stop, since nothing can be compared.
 - **The home's files.** The home's `CHANGELOG.md` names the template version it is at — its newest
-  *Brought to template* entry, or else the newest template version in it — and
-  `templates/researcher/CHANGELOG.md` on GitHub names the current one. For each of the home's own
-  files above, compare the home's copy with the one under `templates/researcher/` on GitHub,
-  section by section and in both directions: what the package's copy says that the home's does
-  not, and what the home's copy carries that the package's dropped or renamed — a `.gitignore`
-  line, a section, a product or file name — because a home that has run `update` four times can
-  still carry lines the template removed. A rename of a product or a file name is substance; the
-  owner's renaming of *the researcher* and *the owner* is not: such a home differs everywhere in
-  wording, and its `README.md` opens with a paragraph of its own, so report what changed in
-  substance, not in names. In `apm.yml` compare `includes` and `dependencies` as well as the
-  comments.
+  *Brought to template* entry, or else the newest template version in it. The first command, run
+  with `templates/researcher/CHANGELOG.md` and that version, prints the template's entries above
+  it, and the newest heading it prints is the current template version. For each of the home's own
+  files above, compare the home's copy with the package's under `templates/researcher/`, which the
+  second command prints, section by section and in both directions: what the package's copy says
+  that the home's does not, and what the home's copy carries that the package's dropped or renamed
+  — a `.gitignore` line, a section, a product or file name — because a home that has run `update`
+  four times can still carry lines the template removed. A rename of a product or a file name is
+  substance; the owner's renaming of *the researcher* and *the owner* is not: such a home differs
+  everywhere in wording, and its `README.md` opens with a paragraph of its own, so report what
+  changed in substance, not in names. In `apm.yml` compare `includes` and `dependencies` as well
+  as the comments.
 - **A home at or ahead of the template.** When the home's template version is at or above the one
-  `templates/researcher/CHANGELOG.md` names on GitHub — a home made from a checkout with
-  `--package`, or from a release not yet pushed — the home is current: say so. Nothing it has is
-  proposed for removal, because what the GitHub copy lacks may be what a newer template added. A
-  `Projects/` it still holds is listed all the same, as the next item says.
+  `templates/researcher/CHANGELOG.md` names on GitHub — the first command prints nothing, or *No
+  entry for* that version: a home made from a checkout with `--package`, or from a release not yet
+  pushed — the home is current: say so. Nothing it has is proposed for removal, because what the
+  GitHub copy lacks may be what a newer template added. A `Projects/` it still holds is listed all
+  the same, as the next item says.
 - **The owner's files, read and never written.** The template's `RESEARCHER.md` headings — not its
   slots, nor the blockquote the interview deletes — the headings of `Philosophy/HOW-I-INVEST.md`,
   and the blockquotes of `Knowledge/INDEX.md` and `Knowledge/LOG.md`, each against the home's.
@@ -145,17 +169,19 @@ agent's file name and `name:` with it, nothing else in the agent.
   names a folder other than this one, is behind the template — its `metadata.version` below the
   one `interview`'s *Step 4* gives, as a skill without the items *A greeting, or what now* and *A
   command, where the assistant has none* is — or has a slug that breaks the rule, such as an
-  accent, when it moves to `.apm/skills/<slug>/`. Written again, it is shown as a diff against the
-  home's: a line there that no template gave is the owner's, kept where it stands and shown as
-  kept. A slug that changes moves the agent with it, on the same go: its file to
-  `.apm/agents/<slug>.agent.md` and its `name:` to `<slug>`, the only edit to that file. When the
-  skill is written, or the user's folder of the assistant in use lacks the agent or the skill, as
-  `next`'s row 3 checks, the home is to be installed for the user. And an agent an install inside
-  the home deployed there — `.claude/agents/<slug>.md`, or the agent's file in another assistant's
-  folder inside the home — is to be deleted: it is git-ignored, it shadows the user's copy in every
-  session at home, and it goes stale the first time the agent changes; so are the copies a changed
-  slug leaves in the user's folder, the skill and the agent there whose `name:` is the old slug,
-  under the name APM gave them — `~/.claude/skills/sofa/` for `sofía`.
+  accent, when it moves to `.apm/skills/<slug>/`. The version `interview` gives is read on GitHub,
+  in `.apm/skills/interview/SKILL.md`, by the second command, since the installed copy is the old
+  one until *Step 4*. Written again, it is shown as a diff against the home's: a line there that
+  no template gave is the owner's, kept where it stands and shown as kept. A slug that changes
+  moves the agent with it, on the same go: its file to `.apm/agents/<slug>.agent.md` and its
+  `name:` to `<slug>`, the only edit to that file. When the skill is written, or the user's folder
+  of the assistant in use lacks the agent or the skill, as `next`'s row 3 checks, the home is to
+  be installed for the user. And an agent an install inside the home deployed there —
+  `.claude/agents/<slug>.md`, or the agent's file in another assistant's folder inside the home —
+  is to be deleted: it is git-ignored, it shadows the user's copy in every session at home, and it
+  goes stale the first time the agent changes; so are the copies a changed slug leaves in the
+  user's folder, the skill and the agent there whose `name:` is the old slug, under the name APM
+  gave them — `~/.claude/skills/sofa/` for `sofía`.
 - **Report in chat:** first the installed package version, as `apm deps list -g` names it, and the
   home's template version — the two a problem report to `lab@kaxanuk.mx` names; then the versions
   crossed, newest first, one line each on what changed, and every **What to do differently**
@@ -174,9 +200,13 @@ missing; what a migration removes; each move out of `Projects/` and its removal,
 what stays there; the researcher's skill, shown whole when new and as a diff when written again,
 the agent's move when the slug changes, the install for the user and each copy to delete; and what
 the owner will have to do by hand afterwards, one line for each heading, line or blockquote of
-their own files that the template changed. Then ask for the go through the question tool — *Go*,
-described as *update it and save a version*; *Change something*; *Stop* — and update on *Go* only;
-in chat, any of the go words in the home's `AGENTS.md` is the go.
+their own files that the template changed. When a strategy the session is in, or one the table
+*The strategies and projects it works on* in `RESEARCHER.md` lists, has a `BLUEPRINT_N.md` saved
+and no `FINDINGS_N.md` that reports yet, one more line, with the version its *Drafted with* stamp
+names: *Experiment N was drafted with X.Y.Z; `challenge` will name both versions — update now, or
+after its findings.* Then ask for the go through the question tool — *Go*, described as *update
+it and save a version*; *Change something*; *Stop* — and update on *Go* only; in chat, any of the
+go words in the home's `AGENTS.md` is the go.
 
 ## Step 4: Update
 
@@ -198,6 +228,14 @@ in chat, any of the go words in the home's `AGENTS.md` is the go.
 
    ```bash
    uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the owner's agent>
+   ```
+
+   Either way, the date `next` keeps for its weekly version line then moves a week on, in the
+   home's git config — from a strategy too, at the home the researcher's skill names; it is never
+   saved or sent anywhere:
+
+   ```bash
+   git -C "<home>" config kaxanuk.updatenext <today + 7 days, YYYY-MM-DD>
    ```
 
 2. **The migration, for a home from before the user-scope install.** `git rm -r` the researcher's

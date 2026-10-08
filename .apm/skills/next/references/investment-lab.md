@@ -24,8 +24,9 @@ strategy repository's, made from the KaxaNuk Strategy Template.
 | **Attribution Analysis** | 6 | splits the return into factor exposure and the part that is the strategy's own | 0.3.0 (2026-09-27) | licensed, as the Backtest Engine |
 
 *Latest* is this package's record of each library's newest build, updated at each library
-release. Each library's skill names in its `library_version` the build its traps were checked on,
-which can be older; the skill says what a newer build installed in a strategy means.
+release; `next` holds a strategy's builds against it once a week. Each library's skill names in its
+`library_version` the build its traps were checked on, which can be older; the skill says what a
+newer build installed in a strategy means.
 
 Without the licensed libraries a strategy still runs up to its portfolios; the backtest and the
 attribution say what is missing and skip. The worked example, `init-example`, is read without any
@@ -43,5 +44,5 @@ ask `lab@kaxanuk.mx` for them. A strategy reads them in place from the folder it
 `KN_ANALYTICS_PATH` names, or from copies dropped into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`, as its `SETUP.md` says.
 
-**To report a problem or suggest a change to the researcher:** the same address, with the
-researcher's version — `update check` reports it — and what happened.
+**To report a problem or suggest a change to the researcher:** the same address, with the versions
+your researcher names when you ask *which version are you?*, and what happened.

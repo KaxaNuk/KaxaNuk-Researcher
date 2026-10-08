@@ -10,7 +10,7 @@ description: >
   it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
   (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.4.0
+  version: 0.5.0
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -108,12 +108,13 @@ strategy that reaches paper trading with its results reproduced from a clean clo
 2. Tag on `main` once the version's commit is there, and push the tag:
 
    ```bash
-   git tag -a vX.Y.Z -m "X.Y.Z"
+   git tag -a vX.Y.Z -m "X.Y.Z: <the entry's first sentence>"
    git push origin vX.Y.Z
    ```
 
    One tag per release, `v` and the version the repository declares at its root: the KaxaNuk
-   Researcher tags its package's, while its template, example and home keep their own numbers.
+   Researcher tags its package's, while its template, example and home keep their own numbers. The
+   message is the version and the first sentence of its `CHANGELOG.md` entry, word for word.
 3. **Tag the commit where the version became the state of `main`** — when a branch was used, the
    merge, not the commit on the branch that wrote the bump: a tag cannot be corrected in place once
    somebody has pinned to it.

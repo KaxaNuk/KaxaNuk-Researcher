@@ -41,6 +41,23 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.6 (2026-10-08)
+
+**PATCH** — the shared `AGENTS.md` and `SETUP.md` lines move as the template's 0.16.0 does. No
+number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`**, *Other standing rules*: a new Lab library build is a change-set, between
+  experiments, never during one — the researcher says when one is out, keeping the date of that
+  weekly check in this repository's git config (`kaxanuk.labnext`), never saved; `uv lock
+  --upgrade-package <name>`, then `uv sync --group notebook --inexact`, a re-run from a wiped copy
+  and a `CHANGELOG.md` entry naming any number that moved; a book on paper runs on the Data Curator
+  it was frozen with.
+- **`SETUP.md`**, step 2: *A newer Lab library*, the same in three lines.
+
 ## 0.15.5 (2026-10-08)
 
 **PATCH** — the shared `Config/.env.template` and `SETUP.md` lines move as the template's 0.15.1
