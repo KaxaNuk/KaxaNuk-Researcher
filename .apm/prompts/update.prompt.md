@@ -1,5 +1,5 @@
 ---
-description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, and writing the researcher's skill for a home that lacks it or holds one behind the template; plan first, the owner's go, then update. From a strategy, the package only and a report of the Lab libraries, nothing written there. Only when the owner runs it by name.
+description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, but for the agent's name and path, and writing the researcher's skill for a home that lacks it or holds one behind the template; plan first, the owner's go, then update. From a strategy, the package only and a report of the Lab libraries, nothing written there. Only when the owner runs it by name.
 input:
   - mode: "Optional: check, to report what is new without changing anything"
 ---

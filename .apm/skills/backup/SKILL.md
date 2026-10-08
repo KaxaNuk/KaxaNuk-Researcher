@@ -40,11 +40,12 @@ a dated snapshot of the files, signed with your name.* A question alone ends the
 
 The researcher's home, by default — the folder that holds `RESEARCHER.md`. When the session is open
 in a strategy — `Bibliotheca/`, `Universe/` and `Experiments/` — that strategy: one strategy, one
-repository, never inside the home's copy. The worked example, whose `README.md` or `AGENTS.md`
-carries `<!-- example: begin -->`, is for reading and takes no copy. Name the folder, by path. A
-folder with no `.git/` keeps no versions yet: say so in one line — at home `next` offers to start
-them — and stop. Changes not saved yet stay out of the copy: at home `next` offers to save them; in
-a strategy they are the owner's to save, as its `AGENTS.md` says.
+repository, never inside the home's copy. The worked example, whose `README.md` or `AGENTS.md` holds
+the line `<!-- example: begin -->` alone at column 0, as `next` tells it, is for reading and takes
+no copy. Name the folder, by path. A folder with no `.git/` keeps no versions yet: say so in one
+line — at home `next` offers to start them — and stop. Changes not saved yet stay out of the copy:
+at home `next` offers to save them; in a strategy they are the owner's to save, as its `AGENTS.md`
+says.
 
 ## Step 3: A copy already?
 
@@ -122,14 +123,15 @@ ask*: `git config kaxanuk.autosend true` or `false`, in this folder only. With *
 
 What every skill that saves does when `git config --get kaxanuk.autosend` prints `true`, and what
 this skill does when asked — with no prompt that nobody can answer, and given up when the network
-stalls for twenty seconds — in bash or zsh, on Windows, macOS or Linux:
+stalls for twenty seconds, on an https address or an ssh one — in bash or zsh, on Windows, macOS or
+Linux:
 
 ```bash
-GIT_TERMINAL_PROMPT=0 git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
+GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND='ssh -o BatchMode=yes -o ConnectTimeout=20' git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
 ```
 
 ```powershell
-$env:GIT_TERMINAL_PROMPT = '0'; git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
+$env:GIT_TERMINAL_PROMPT = '0'; $env:GIT_SSH_COMMAND = 'ssh -o BatchMode=yes -o ConnectTimeout=20'; git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
 ```
 
 The fetch of *Step 3* runs the same way, `fetch` in place of `push`.

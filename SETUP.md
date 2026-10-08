@@ -51,7 +51,7 @@ Two tools. Python is **not** one of them — `uv` fetches what it needs itself. 
 On macOS, `xcode-select --install` opens a dialog: ask the user to click *Install* and to say when
 it has finished; `xcode-select -p` printing a folder confirms it. A tool just installed is not on
 this shell's path yet, so call it by its full path for the rest of the conversation: `uv` and `uvx`
-in `$HOME/.local/bin/`, which PowerShell and Git Bash expand, and git at
+in `$HOME/.local/bin/` — in PowerShell, `& "$HOME/.local/bin/uv"` — and git at
 `C:\Program Files\Git\cmd\git.exe` on Windows. A command that runs git itself, APM and
 `scaffold.py` among them, finds it when `C:\Program Files\Git\cmd` is put first on the path in
 that same command.
