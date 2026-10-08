@@ -8,7 +8,7 @@ description: >
   init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.1.1
+  version: 2.1.2
 ---
 
 # The interview
@@ -73,7 +73,7 @@ before the next. Never type the questions of two steps at once.
    under `~/.claude/skills/` or the user's folder for the agent in use, or in the package under
    `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/` when the install ran in this
    same conversation. If it is missing, say so and give the fix —
-   `uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
+   `uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
    new session — and say that until then `read` cannot extract a PDF and has no note shape to
    follow. Never write any of the three from memory: `note.md` is the one convention both
    repositories share, a map from memory would invent citations, and `extract.py` is code.
@@ -353,7 +353,7 @@ run both commands yourself — the owner types nothing, and may not know what ei
    `targets:`:
 
    ```bash
-   uvx --from apm-cli==0.29.0 apm install -g "<absolute path to the home>"
+   uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"
    ```
 
    APM copies the whole home into `~/.apm/apm_modules/_local/<folder name>/`, on this machine only,

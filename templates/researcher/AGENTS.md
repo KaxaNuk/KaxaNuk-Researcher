@@ -13,7 +13,7 @@ relative to the home, never to wherever the session happened to open.
 **The researcher is in every session, in every folder.** `interview` writes two files of the home's
 own, the agent in `.apm/agents/` and the researcher's skill in `.apm/skills/<slug>/`, and installs
 the home for the owner's user, beside the package, with
-`uvx --from apm-cli==0.29.0 apm install -g "<the home>"`. The skill's description names the
+`uvx --from apm-cli==0.33.0 apm install -g "<the home>"`. The skill's description names the
 researcher, the owner and the home by path, so every session on the machine, in any folder and on
 any assistant `~/.apm/apm.yml` lists under `targets:`, knows who it is before anything is loaded,
 and the agent is callable by name from any folder. Add an assistant to `targets:`, run the same
@@ -336,10 +336,10 @@ own version in `apm.yml` is the owner's, as `README.md`'s *Installing and updati
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |
 | **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the four house instructions — Bloom Code and PEP 8 for every Python file, test writing for Python tests, filesystem boundaries for every file the assistant reads, in any project — on the assistants that receive them: Claude Code in `~/.claude/rules/`, and not every assistant takes one, as *Troubleshooting* in the package's `SETUP.md` says. The home adds none: one in its `.apm/instructions/` would be rendered by `apm compile` over this file, which is written by hand |
 
-- **`uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`
+- **`uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`
   deploys the package once per machine**, into the user's folders — `~/.claude/skills/` and
   `~/.claude/commands/` for Claude Code, the matching folders for the rest — and keeps it in
-  `~/.apm/apm_modules/`. **`uvx --from apm-cli==0.29.0 apm install -g "<the home>"` deploys this
+  `~/.apm/apm_modules/`. **`uvx --from apm-cli==0.33.0 apm install -g "<the home>"` deploys this
   home's own** — the agent, the researcher's skill and any skill or command of its own — into the
   same user folders, `~/.claude/agents/` and `~/.claude/skills/` for Claude Code, for every target
   `~/.apm/apm.yml` lists. It first copies the whole home — `.git/`, `Sources/`, `Extracts/`,

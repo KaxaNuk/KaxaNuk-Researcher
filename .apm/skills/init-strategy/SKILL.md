@@ -8,7 +8,7 @@ description: >
   the worked example (use `init-example`), and does NOT create a researcher (use
   `init-researcher`).
 metadata:
-  version: 0.2.2
+  version: 0.2.3
 ---
 
 # Init strategy — a new strategy, one folder, one repository

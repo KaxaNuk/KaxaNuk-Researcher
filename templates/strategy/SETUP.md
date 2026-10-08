@@ -132,18 +132,19 @@ experiment is structured, how attribution is read, the house rules — and the
 are installed once for your user, not per repository, by the same command that gave you step 1:
 
 ```bash
-uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 `--target codex`, `cursor` or another assistant in place of `claude`; the researcher package's
 [`SETUP.md`](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/SETUP.md) says what each
 receives.
 
-They are then available in every folder, this one included, and `apm update -g` keeps every
-strategy current at once. **A strategy installs nothing.** Your researcher's home, made once with
-`init-researcher`, can be invited into this folder for its library — `claude --add-dir <the
-researcher's folder>`, `/add-dir` once inside, or the desktop app's add-folder button; for its
-identity to load with it, follow *In a strategy or another project* in the researcher's own README.
+They are then available in every folder, this one included, and
+`uvx --from apm-cli==0.33.0 apm update -g` keeps every strategy current at once. **A strategy
+installs nothing.** Your researcher's home, made once with `init-researcher`, can be invited into
+this folder for its library — `claude --add-dir <the researcher's folder>`, `/add-dir` once
+inside, or the desktop app's add-folder button; for its identity to load with it, follow *In a
+strategy or another project* in the researcher's own README.
 
 **Nothing in the pipeline imports a skill either.** The repository runs, the notebooks run and the
 results are the same with or without them.

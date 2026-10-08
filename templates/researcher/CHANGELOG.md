@@ -6,6 +6,18 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.18.2 (2026-10-08)
+
+**PATCH** — the commands this home names run APM 0.33.0, which installs the package on Windows as
+cleanly as 0.29.0 did.
+
+**What to do differently:** run `update` in your home — it shows the changed lines of `AGENTS.md`
+and `README.md` as a diff — then install the new APM once, `uv tool install apm-cli==0.33.0`.
+
+### Changed
+
+* **`AGENTS.md`** and **`README.md`**: every `apm` command names `apm-cli==0.33.0`.
+
 ## 0.18.1 (2026-10-07)
 
 **PATCH** — the worked example `init-example` copies is `golden-flow`: one strategy taken from the

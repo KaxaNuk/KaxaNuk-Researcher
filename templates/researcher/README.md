@@ -132,7 +132,7 @@ It grows four ways, each governed by a section of `AGENTS.md`:
    files reach `Sources/` and how they are cited.
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
    `.apm/prompts/`, written as below, then
-   `uvx --from apm-cli==0.29.0 apm install -g "<this folder>"` and a new session. *Where the
+   `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` and a new session. *Where the
    skills, the commands and the agent live* says where it deploys.
 3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`, by hand or
    through `read`, which asks for your first. The paragraph after the folder table in *What each
@@ -168,12 +168,12 @@ the way KaxaNuk's own APM packages write theirs, under a name the package does n
 
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
 folder: they are installed once for your user and updated with
-`uvx --from apm-cli==0.29.0 apm update -g`; `update`, run here, brings what changed in this home's
+`uvx --from apm-cli==0.33.0 apm update -g`; `update`, run here, brings what changed in this home's
 own files across. On a new machine, or after adding an assistant under `targets:` in
 `~/.apm/apm.yml`, install this home yourself, once:
 
 ```bash
-uvx --from apm-cli==0.29.0 apm install -g "<this folder>"
+uvx --from apm-cli==0.33.0 apm install -g "<this folder>"
 ```
 
 APM first copies this whole folder — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/`

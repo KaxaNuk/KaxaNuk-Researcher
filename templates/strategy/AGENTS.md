@@ -25,7 +25,8 @@ Three rules from `SETUP.md` apply from the first command:
 - **Never open, read back, print or echo `Config/.env`**, and never put a value from it into a
   command that gets recorded. You may say which keys are still empty, **by name only**.
 - **Install no skills here.** They are installed once for the user, with `apm install -g`, as
-  *step 4* of `SETUP.md` says, and `apm update -g` keeps them current for every strategy.
+  *step 4* of `SETUP.md` says, and `uvx --from apm-cli==0.33.0 apm update -g` keeps them current
+  for every strategy.
 - **Skills are discoverable in a new session**, not the one in which they were installed. Say so
   rather than claiming they are already active.
 

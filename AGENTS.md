@@ -11,7 +11,7 @@ by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy wor
 
 | Path | What it is | Changed how |
 | --- | --- | --- |
-| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of the working tree from a short scratch folder, with the pinned APM — `uvx --from apm-cli==0.29.0 apm install <path to this repository> --target claude`, as the README's *Development* shows — and a new session there; before a release, that install deploys exactly 20 skills, 9 commands, 4 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME; when ignored folders make the scratch install fail too, copy the files `git ls-files` lists to a short folder and install that |
+| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as the README's *Development* shows, and a new session there; before a release, that install deploys exactly 20 skills, 9 commands, 4 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
 | the skills' `scripts/` | `scaffold.py`, `extract.py`, `check_numbers.py`, `bloom_code_check.py`: what `init-*`, `read`, `audit deep` and `bloom-code-lint` run for every user | nothing tests them: a change is tried by running the skill that uses it in a scratch folder before the commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
@@ -26,8 +26,9 @@ Python, `# EXAMPLE-ONLY CELL` on a notebook cell — are the example's own, and 
 the same in both copies. A marker stands alone on its line, at column 0. The only exceptions are
 these: the example's status banner in `AGENTS.md`; the `init-example` lines of `SETUP.md`; the body
 of `OBJECTIVE.md`; the entries of `CHANGELOG.md`; the name and version in `pyproject.toml`; and,
-whole, the example's seed CSV and every file only the example has — its notes, `Universe/seed.py`
-and a frozen book's `FREEZE.json` with the files it hashes. `paper_trading_N.py` stays shared and
+whole, the example's `README.md`, which is its own as a strategy's is after `SETUP.md` step 5, the
+example's seed CSV and every file only the example has — its notes, `Universe/seed.py` and a
+frozen book's `FREEZE.json` with the files it hashes. `paper_trading_N.py` stays shared and
 marked.
 
 ## Rules
@@ -44,11 +45,12 @@ marked.
   a change to a library's API changes its skill in the same release, and the worked example where
   it uses that library — with a new example version and a journal entry, re-run where a figure
   moves.
-- **A fork changes every line that names `KaxaNuk-Researcher`** — `git grep KaxaNuk-Researcher`
-  finds them, `scaffold.py`'s `INSTALLED_PACKAGE_PATHS` included — and installs as the one
-  researcher package on its user's machine. Two packages with skills or commands of the same names
-  do not share a user: a `-g` install of the second replaces a same-named skill of the first, with
-  a warning, and overwrites a same-named command silently. The last install wins.
+- **A fork changes every line that names `KaxaNuk-Researcher`**, in either case —
+  `git grep -i kaxanuk-researcher` finds them, `scaffold.py`'s `INSTALLED_PACKAGE_PATHS` included —
+  and installs as the one researcher package on its user's machine. Two packages with skills or
+  commands of the same names do not share a user: a `-g` install of the second replaces a
+  same-named skill of the first, with a warning, and overwrites a same-named command silently. The
+  last install wins.
 - **Ruff and the Bloom Code check pass before any commit,** run as the README's *Development*
   section shows. There is no CI: nothing runs them for you.
 - **Markdown you write or change is wrapped at 100 columns**, with no literal tab and LF line

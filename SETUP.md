@@ -66,13 +66,13 @@ git config --global user.email "<their email>"
 ## Step 2 — Install the package
 
 ```bash
-uv tool install apm-cli==0.29.0
-uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the assistant you are>
+uv tool install apm-cli==0.33.0
+uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the assistant you are>
 ```
 
 The target is the assistant you are: `claude`, `codex`, `gemini`, `cursor`, `copilot`, `opencode`
 or `windsurf`. Run both without asking: installing is what you were asked to do. `-g` installs for
-the user, whatever folder you are in. Every command that runs APM names `apm-cli==0.29.0` itself;
+the user, whatever folder you are in. Every command that runs APM names `apm-cli==0.33.0` itself;
 *Troubleshooting* below says why, and what to do if the install fails. Tell the user in one line
 that the researcher is installed, and go straight on.
 
@@ -131,12 +131,12 @@ strategy's folder beside the home, from the KaxaNuk Strategy Template; open that
 session, and its own `SETUP.md` builds the environment and the keys. `init-example` copies a
 finished strategy to read first.
 
-**Updating.** `uvx --from apm-cli==0.29.0 apm update -g` brings every new version to every folder
+**Updating.** `uvx --from apm-cli==0.33.0 apm update -g` brings every new version to every folder
 at once; then `update`, in the home, brings what changed in the home's own files. Always with `-g`:
 a bare `apm update` outside an APM project updates APM itself.
 
 **A new machine, or another assistant.** Step 2 with the new target, then install the home, once:
-`uvx --from apm-cli==0.29.0 apm install -g "<the home>"`.
+`uvx --from apm-cli==0.33.0 apm install -g "<the home>"`.
 
 ---
 
@@ -160,15 +160,16 @@ once the interview has run, the researcher's own skill does this for the user: t
 command, and it follows the file. Assistants without a question tool, such as Codex and Gemini,
 ask each question in chat as a numbered list; the user answers with the numbers.
 
-**Why APM is pinned at 0.29.0.** APM 0.29.0 installs this package cleanly. From 0.29.1 on, APM
-stages every package it installs under about 148 more characters of folders —
+**Why APM is pinned at 0.33.0.** APM 0.33.0 installs this package cleanly, on Windows too. APM
+0.29.1 to 0.31.0 staged every package under about 148 more characters of folders —
 `apm_modules/.apm-resolution-staging/` and two long hashes — and on Windows the worked example's
-longest paths then pass the 260-character limit: the install fails with `WinError 3` or
-`WinError 206`, at project scope and with `-g` alike. No setting of git's fixes that. Hence the pin,
-written into every command that runs APM. `uv tool upgrade` keeps it. **Never run
-`apm self-update`**, nor a bare `apm update` outside an APM project, which forwards to it: both
-bring the newest APM back. A machine already on a newer APM runs the same
-`uv tool install apm-cli==0.29.0` over it. If `apm` is *command not found*, run
+longest paths passed the 260-character limit: the install failed with `WinError 3` or
+`WinError 206`, at project scope and with `-g` alike. APM 0.32.0 shortened those hashes
+(microsoft/apm#2941). A version is adopted only once the package's release check passes with it on
+Windows, so the pin is written into every command that runs APM. `uv tool upgrade` keeps it.
+**Never run `apm self-update`**, nor a bare `apm update` outside an APM project, which forwards to
+it: both bring the newest APM back. A machine on any other APM runs the same
+`uv tool install apm-cli==0.33.0` over it. If `apm` is *command not found*, run
 `uv tool update-shell` and open a new terminal; every command here runs through `uvx` and does not
 need it.
 
@@ -179,7 +180,7 @@ need it.
 git config --global core.longpaths true
 ```
 
-**What installing the home copies.** `uvx --from apm-cli==0.29.0 apm install -g "<the home>"`,
+**What installing the home copies.** `uvx --from apm-cli==0.33.0 apm install -g "<the home>"`,
 which the interview runs, copies the whole home — `.git/`, `Sources/`, `Extracts/`, `Briefs/` and
 `Portfolio/` included — into `~/.apm/apm_modules/_local/<the home's folder name>/`, on the same
 machine, and deploys only its `.apm/`: the researcher's agent and skill. Nothing leaves the

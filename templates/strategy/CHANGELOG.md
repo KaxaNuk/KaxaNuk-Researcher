@@ -41,6 +41,20 @@ for somebody who was not in the room:
 
 ---
 
+## 0.14.1 (2026-10-08)
+
+**PATCH** — the commands that install and update the KaxaNuk skills run APM 0.33.0, and the update
+is named in full: a bare `apm update -g` is not on the path after a `uvx` install. Nothing about
+any result changes.
+
+**What to do differently:** nothing in a strategy; the skills are updated from your researcher's
+home.
+
+### Changed
+
+- **`README.md`, `SETUP.md`, `AGENTS.md`**: `uvx --from apm-cli==0.33.0 apm install -g` and
+  `uvx --from apm-cli==0.33.0 apm update -g`.
+
 ## 0.14.0 (2026-10-07)
 
 **MINOR** — the contract learns what the first strategy to reach paper trading found, and the

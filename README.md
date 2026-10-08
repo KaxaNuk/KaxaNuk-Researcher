@@ -120,16 +120,17 @@ commits; the strategy's own `SETUP.md` says how.
 ### Installing by hand, in a terminal
 
 ```bash
-uv tool install apm-cli==0.29.0
-uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uv tool install apm-cli==0.33.0
+uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 `--target codex`, `gemini`, `cursor` or another in place of `claude`; Claude Code receives
 everything, and *Troubleshooting* in [`SETUP.md`](SETUP.md) says what the others miss. The skills
 are then in every folder you open, so **a strategy installs nothing of its own**;
-`uvx --from apm-cli==0.29.0 apm update -g` brings every new version. **APM stays at 0.29.0, and
-every command that runs it names that version**: from 0.29.1 on, the install fails on Windows with
-`WinError 3` or `WinError 206`. Never run `apm self-update`. The skills appear only in a new
+`uvx --from apm-cli==0.33.0 apm update -g` brings every new version. **APM stays at 0.33.0, and
+every command that runs it names that version**: APM 0.29.1 to 0.31.0 fail the install on Windows
+with `WinError 3` or `WinError 206`, and a newer APM is adopted only once it passes the release
+check. Never run `apm self-update`. The skills appear only in a new
 session: open one, anywhere, and `init-researcher Ada` makes the home and runs the interview. This
 is the path by hand; an assistant asked to install follows [`SETUP.md`](SETUP.md) instead, all in
 one conversation.
@@ -182,7 +183,7 @@ schedule writes.
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
 | `study [subject]` | works out an idea, a plan or a decision from your library and keeps it in `Studies/` — every claim linked to its note, anything from outside it marked as not checked; with no subject, lists your studies |
 | `teach <topic>` | tutors you on a topic from your library, one lesson per session |
-| `update [check]` | brings a new version into your home — `uvx --from apm-cli==0.29.0 apm update -g`, and what changed in the home's own files, shown as a diff |
+| `update [check]` | brings a new version into your home — `uvx --from apm-cli==0.33.0 apm update -g`, and what changed in the home's own files, shown as a diff |
 
 How a researcher grows beyond the Lab — a tool, a project, a field of its own — is *Growing your
 researcher* in the home's README: four moves, each with the file it changes.
@@ -262,7 +263,7 @@ LICENSE               MIT
 **What this repository owns, and what a copy owns.** This repository owns what is written once and
 copied or installed everywhere; a copy owns what its owner writes in it. A strategy made from the
 template is its owner's from the first commit and never merges back; the skills keep updating with
-`uvx --from apm-cli==0.29.0 apm update -g`.
+`uvx --from apm-cli==0.33.0 apm update -g`.
 
 ---
 
@@ -270,30 +271,76 @@ template is its owner's from the first commit and never merges back; the skills 
 
 ```bash
 uvx ruff check .
+(cd templates/strategy && uvx ruff check .)
 (cd examples/golden-flow && uvx ruff check .)
-uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py \
-  .apm/skills/*/scripts examples/golden-flow
+uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py .apm/skills/*/scripts
+(cd templates/strategy && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100)
+(cd examples/golden-flow && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100)
 ```
 
-Ruff lints the skills' scripts, the worked example with its own settings, and the last command
-checks the Bloom Code style of both. Each runs through `uv` alone: no Python of your own is needed.
-They run on your machine before a commit; there is no CI, so nothing runs them for you. Nothing else
-is automated: the template and the example are kept in step by hand, as `AGENTS.md` says.
+Ruff lints the skills' scripts, the template and the worked example, each with its own settings;
+the Bloom Code check runs on the scripts at its default 120 columns and, from inside each strategy
+— so it finds the strategy's own packages — at the strategy's 100. Each runs through `uv` alone: no
+Python of your own is needed. They run on your machine before a commit; there is no CI, so nothing
+runs them for you.
 
-To try a change to a skill, a command, an instruction or the agent, install the working tree at
-project scope, from a short scratch folder, with the APM the package is pinned to — never `-g` of
-the working tree:
+**The template and the example in step.** Nothing else is automated: they are kept in step by
+hand, as `AGENTS.md` says. For each file `git ls-files templates/strategy` lists, the example's
+copy with its own lines removed — those between `<!-- example: begin -->` and
+`<!-- example: end -->` or `# --- example: begin ---` and `# --- example: end ---`, and in a
+notebook every cell that starts `# EXAMPLE-ONLY CELL` and every marked block inside a markdown
+cell — equals the template's but for blank lines and the exceptions `AGENTS.md` lists. For the
+Markdown and Python files:
 
 ```bash
-mkdir -p D:/tmp/check
-cd D:/tmp/check
-uvx --from apm-cli==0.29.0 apm install "<path to this repository>" --target claude
+for f in $(git ls-files templates/strategy | grep -E '\.(md|py)$'); do
+  e="examples/golden-flow/${f#templates/strategy/}"
+  [ -f "$e" ] || continue
+  awk '/^(<!-- example: begin -->|# --- example: begin ---)$/{s=1;next} /^(<!-- example: end -->|# --- example: end ---)$/{s=0;next} !s' "$e" \
+    | diff -B <(awk 1 "$f") - > /dev/null || echo "differs: $f"
+done
 ```
 
-with the path to your clone in place of the placeholder, and any short folder of your own in place
-of `D:/tmp/check`. Open a new session in that folder. If the working tree carries ignored folders
-deep enough to fail the install, copy the files `git ls-files` lists to a short folder and install
-that instead.
+For the notebooks, cell by cell, by cell id:
+
+```bash
+for nb in $(git ls-files templates/strategy | grep '\.ipynb$'); do
+  uv run --no-project python - "$nb" "examples/golden-flow/${nb#templates/strategy/}" <<'PY' || echo "differs: $nb"
+import json, re, sys
+marked = re.compile(r'^(<!-- example: begin -->|# --- example: begin ---)$.*?^(<!-- example: end -->|# --- example: end ---)$\n?', re.M | re.S)
+def cells(path):
+    kept = [c for c in json.load(open(path, encoding='utf-8'))['cells'] if not ''.join(c['source']).startswith('# EXAMPLE-ONLY CELL')]
+    return [(c.get('id'), c['cell_type'], [l for l in marked.sub('', ''.join(c['source'])).splitlines() if l.strip()]) for c in kept]
+sys.exit(cells(sys.argv[1]) != cells(sys.argv[2]))
+PY
+done
+```
+
+Any file either names that `AGENTS.md` does not list as an exception is a fault.
+
+**To try a change** to a skill, a command, an instruction or the agent, install it at project scope,
+from a short scratch folder, with the APM the package is pinned to — never `-g` of the working
+tree — **in a shell whose home is a short, empty throwaway folder**. A skill installed for your
+user wins over a project skill of the same name, so on a machine where the package is installed the
+check would otherwise run the installed copy, and the walk below would change your real setup.
+From the repository's root:
+
+```bash
+K=C:/k   # an absolute, short path of your own: /tmp/k on macOS or Linux, never ~
+mkdir -p "$K/home" "$K/check"
+REV=$(git stash create)
+git -c core.autocrlf=false archive --format=tar --prefix=KaxaNuk-Researcher/ "${REV:-HEAD}" | tar -x -C "$K"
+export HOME="$K/home"
+export USERPROFILE="$HOME"
+git config --global user.name "Tester"; git config --global user.email "tester@example.invalid"
+cd "$K/check"
+uvx --from apm-cli==0.33.0 apm install "$K/KaxaNuk-Researcher" --target claude
+```
+
+`git stash create` takes your uncommitted changes to tracked files without touching them — a new
+file once `git add` has staged it — and with nothing uncommitted the archive is `HEAD`: the files
+the commit would hold, with LF endings and none of the ignored folders a working tree has. Open a
+new session in the `check` folder, from that shell.
 
 **Before a release, do the same with the commit to be tagged.** It should deploy exactly 20 skills,
 9 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
@@ -301,7 +348,8 @@ or a script, walk the newcomer's path by hand in that folder — `init-researche
 `interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, `brief setup`
 and `brief`, and `init-strategy` — once in Spanish with a researcher whose name has an accent,
 *Sofía*, whose skill must deploy as `~/.claude/skills/sofia/`, and once on an assistant with no
-question tool, such as Codex. Delete the folder afterwards. A newer APM is adopted only when this
+question tool, such as Codex. Delete the scratch folder afterwards: under the throwaway home,
+nothing the walk installed or scheduled reached your own. A newer APM is adopted only when this
 install passes with it, on Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is

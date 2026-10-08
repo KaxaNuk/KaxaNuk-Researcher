@@ -1,11 +1,5 @@
 # This repository's ruff settings, for the skills' scripts. The worked example in `examples/`
 # carries its own `pyproject.toml`, which governs it alone.
-[project]
-name = "kaxanuk-researcher"
-version = "0.19.0"
-requires-python = ">=3.12"
-dependencies = []
-
 [tool.ruff]
 line-length = 120
 target-version = "py312"
