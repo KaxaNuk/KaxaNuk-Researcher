@@ -76,13 +76,14 @@ step.
 ## The KaxaNuk Investment Lab
 
 The researcher needs nothing beyond this package. The Data Curator is open source and free; a
-strategy needs a key for it from a data provider — the worked example uses FMP's. The Backtest
-Engine, Attribution Analysis and Portfolio Construction — and the Data Refinery and Data Analyzer
-when they ship — come together, with their licences, in the KaxaNuk Investment Lab, which KaxaNuk
-sells. Attribution reads the benchmark and factor model files of KaxaNuk's Analytics Factory,
-<https://www.kaxanuk.mx/analytics>. Without the licences a strategy still runs up to its
-portfolios, and the rest says what is missing. Keys stay on your computer; the strategy's
-`SETUP.md` says where. For a licence, access or the Analytics Factory's files, write to
+strategy needs a key for it from a data provider — the worked example uses FMP's. A wrong value in
+downloaded data is usually the provider's, not the library's: your researcher tells them apart and
+says where to report it. The Backtest Engine, Attribution Analysis and Portfolio Construction — and
+the Data Refinery and Data Analyzer when they ship — come together, with their licences, in the
+KaxaNuk Investment Lab, which KaxaNuk sells. Attribution reads the benchmark and factor model files
+of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>. Without the licences a strategy
+still runs up to its portfolios, and the rest says what is missing. Keys stay on your computer; the
+strategy's `SETUP.md` says where. For a licence, access or the Analytics Factory's files, write to
 `lab@kaxanuk.mx`, saying which library and what it is for, with *via KaxaNuk Researcher* in the
 subject — <https://www.kaxanuk.mx/lab> shows the Lab.
 [Each library's status](.apm/skills/next/references/investment-lab.md).

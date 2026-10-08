@@ -6,6 +6,23 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.3.2] - 2026-10-08
+When a downloaded value looks wrong, your researcher tells the data provider's error from a
+library's, and says where to report each.
+
+**What to do differently:** say `update` in your home. A wrong value in your data goes to your data
+provider, not to the Data Curator's issues, unless the provider's raw value is right.
+### Changed
+- **`data-curator-custom-calculations`** (0.4.2): *When a value looks wrong* — find the provider's
+  raw value; wrong already, it is the provider's, recorded in `Universe/Data_Issues.csv` and
+  reported to the provider; right, and the Curator's output wrong, it is the library's, reported on
+  its issues. FMP's 2025 split volumes (ORLY, NOW, TPL) are named as a known provider fault, which
+  the Data Curator's maintainers confirmed in KaxaNuk/Data-Curator#36.
+- **`universe-point-in-time`** (0.3.2): a register row is the provider's data, reported to the
+  provider; the split row says it is FMP's.
+- **`next`** (1.8.4): its Lab reference says where a wrong value goes. **The README**'s Lab section
+  says the same in one line.
+
 ## [1.3.1] - 2026-10-08
 Your researcher writes its notes and documents in your language, and keeps code, file names and the
 headings its skills read in English.

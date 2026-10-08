@@ -10,7 +10,7 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.8.3
+  version: 1.8.4
 ---
 
 # Next — where you stand, and what to do next

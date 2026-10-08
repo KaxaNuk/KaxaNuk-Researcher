@@ -48,3 +48,8 @@ ask `lab@kaxanuk.mx` for them. A strategy reads them in place from the folder it
 
 **To report a problem or suggest a change to the researcher:** the same address, with the versions
 your researcher names when you ask *which version are you?*, and what happened.
+
+**A wrong value in a strategy's data** is most often the data provider's: the researcher tells a
+provider's fault from a library's, as `data-curator-custom-calculations` says under *When a value
+looks wrong*, and a provider's fault goes to the provider — never to a library's issues, nor to
+this address.

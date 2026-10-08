@@ -14,7 +14,7 @@ description: >
   `portfolio-construction-runs`), or the research process around the stage (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.3.1
+  version: 0.3.2
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -165,13 +165,15 @@ stage has a work list rather than a chart to interpret.
 | **Status disagreement** | the price history and the provider's listing status disagree: a series ending early on a name the provider calls active is a data gap, not a delisting, and the reverse is a reused symbol |
 | **Unusable values** | zero or negative prices, which break every return calculation downstream |
 | **Impossible daily move** | an adjusted price that multiplies several times over in one day — an unadjusted corporate action or a bad print, not a return. Set the threshold above real squeezes, so a flag means the series is wrong rather than merely wild |
-| **Traded value broken at a split** | a provider whose unadjusted volume before a split is already in post-split shares: the split adjustment counts it twice, so traded value — and every rank or weight taken on it — is too large by the split factor over the security's whole history before the split. At every split, compare the median traded value of the thirty trading days after with the thirty before: a correct series stays near one whatever the factor; a break near the factor, or its inverse, is this fault. Fill prices are not affected. Found on FMP files of 2026-09-23 for ORLY (15:1, 2025-06-10), NOW (5:1, 2025-12-18) and TPL (3:1, 2025-12-23) |
+| **Traded value broken at a split** | a provider whose unadjusted volume before a split is already in post-split shares: the split adjustment counts it twice, so traded value — and every rank or weight taken on it — is too large by the split factor over the security's whole history before the split. At every split, compare the median traded value of the thirty trading days after with the thirty before: a correct series stays near one whatever the factor; a break near the factor, or its inverse, is this fault. Fill prices are not affected. Found on FMP files of 2026-09-23 for ORLY (15:1, 2025-06-10), NOW (5:1, 2025-12-18) and TPL (3:1, 2025-12-23). It is FMP's data, not the Data Curator's — its maintainers confirmed it, <https://github.com/KaxaNuk/Data-Curator/issues/36> — so it is reported to FMP |
 | **No usable signal** | a history shorter than the strategy's longest warm-up, so the name can never be selected |
 
 Give each row a severity, and **sort blocking first**. A register nobody can triage is a chart with
 extra steps. **A blocking row is a label until a stage reads it:** each experiment excludes the
-names the blocking rows list, by name, read from the register and never typed, and its Verify
-raises if one is ever held.
+names the blocking rows list, by name, read from the register and never typed, and its Verify raises
+if one is ever held. **A row here is the provider's data**, reported to the provider — the security,
+the date, the field, the value — never as an issue on a library, as
+`data-curator-custom-calculations` says under *When a value looks wrong*.
 
 ## 4. When the universe is actually usable
 
