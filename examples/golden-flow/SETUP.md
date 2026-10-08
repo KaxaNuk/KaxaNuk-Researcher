@@ -13,7 +13,11 @@ strategy runs in, and so a person can read it in a few minutes.
 >
 > - **An FMP key**, `KNDC_API_KEY_FMP`. FMP is this experiment's provider, and its symbols are the
 >   seed's main identifier. A later experiment may use another provider, with the main identifier
->   KaxaNuk supplies for it.
+>   KaxaNuk supplies for it. **Without one, Yahoo Finance can run it for learning**, with no key,
+>   through the Data Curator's Yahoo Finance extension, after the changes the README's *Run it*
+>   names — but it has no data for the 178 names in the seed that left the market, and no
+>   unadjusted price or VWAP, from which the record builds the traded value, the fill and the
+>   commission. For a precise experiment use FMP, which the record used, or Sharadar or LSEG.
 > - **Three products of KaxaNuk's Analytics Factory**, below. No provider sells them.
 >   `Data/hand_supplied.py` reads them under the Factory's own names, from where step 3 says.
 > - **The Backtest Engine and Attribution Analysis licences.** Every performance and attribution
@@ -40,7 +44,7 @@ strategy runs in, and so a person can read it in a few minutes.
 >
 > **Times recorded on 2026-10-06.** The curator took 1 hour 37 minutes for 892 names, and 2 minutes
 > for its second pass. The universe notebook took 17 seconds, once `seed.py` had filled the profile
-> cache; a copy skips `seed.py`, so it first asks FMP for the profiles of the seed's 888 symbols.
+> cache; a copy skips `seed.py`, so it first asks FMP for the profiles of the seed's 883 symbols.
 > The refinery took 3 minutes. The analyzer's and the experiment's times were not recorded; the
 > experiment prices 47 weight files in ten engine processes.
 
@@ -151,9 +155,9 @@ licences: the process runs without them up to portfolio construction, and the ba
 attribution report what is missing and skip. `KNPC_API_KEY_KAXANUK` is the Portfolio Construction
 licence, since its 2.0.0 — the library reads it from the environment or a `.kaxanuk_license` file,
 not from this file, as `portfolio-construction-runs` says: an equal-weight book needs neither the
-key nor the library. A licence for any of the three, or access to Portfolio Construction, is
-KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
-<https://www.kaxanuk.mx/lab> shows the Lab.
+key nor the library. The three come together, with their licences, in the KaxaNuk Investment
+Lab, which KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is for,
+with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
 
 `KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships its
 benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark and

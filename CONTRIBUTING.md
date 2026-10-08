@@ -56,6 +56,7 @@ templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folde
 templates/researcher/ the researcher's home, empty
 examples/golden-flow/ one strategy worked through every folder of the template
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
+USE-CASES.md          eleven ways to use the researcher, step by step
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the ruff settings for the skills' scripts
 AGENTS.md, CLAUDE.md  the rules for changing this repository

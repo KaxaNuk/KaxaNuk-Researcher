@@ -91,10 +91,11 @@ def attach_index_weight(
     """
     Map the index's weight on each date onto the panel, zero for a name not in the index that day.
 
-    The holdings arrive keyed by the index's tickers and are renamed through the seed, so a listing
-    whose two names differ is still a member.  A date the holdings do not cover -- before the file
-    starts, or after it ends -- carries no weight: membership is never carried forward past the
-    last date the Analytics Factory wrote.
+    The holdings arrive keyed by the index's tickers and are renamed through the seed.  A listing
+    the seed does not map, such as `BRK.B`, carries no weight here and is named in the register,
+    `Universe/Data_Issues.csv`.  A date the holdings do not cover -- before the file starts, or
+    after it ends -- carries no weight: membership is never carried forward past the last date the
+    Analytics Factory wrote.
     """
     specification = importlib.util.spec_from_file_location(
         "hand_supplied",

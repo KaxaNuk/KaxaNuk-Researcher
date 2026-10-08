@@ -7,8 +7,9 @@ input:
 # Update the researcher
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`, the
-one the researcher's skill names when the session is elsewhere. Find it first and read its
-`RESEARCHER.md` and `AGENTS.md`.
+one the researcher's skill names when the session is elsewhere — and every git command runs there,
+the `backup` skill's send included, as `git -C "<absolute path to the home>"` when the session is
+open elsewhere. Find it first and read its `RESEARCHER.md` and `AGENTS.md`.
 
 **From a strategy, the package only.** A strategy installs no skills, and its files are its own
 from the day `init-strategy` made it: `update` writes nothing in it. Run there, it brings the
@@ -272,9 +273,9 @@ through the question tool — *Go*, described as *update it and save a version*;
    history — once `Studies/.gitkeep` has come across in the item above:
 
    ```bash
-   mkdir -p Lessons
+   mkdir -p "<home>/Lessons"
    git mv Projects/Teach/<topic> Lessons/<topic>
-   rmdir Projects/Teach
+   rmdir "<home>/Projects/Teach"
    git mv Projects/<name> Studies/<name>
    git rm Projects/.gitkeep
    ```
@@ -314,7 +315,7 @@ through the question tool — *Go*, described as *update it and save a version*;
    never the commands. The copies deleted in item 5 are git-ignored or outside the home, and leave
    nothing to save. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their
    copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in
-   one plain line, set them in this folder only, never invented, and save again. This replaces an
+   one plain line, set them in the home only, never invented, and save again. This replaces an
    older home's *Commit?* question.
 
 ## Step 5: Report

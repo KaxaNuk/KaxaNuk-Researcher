@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.5.0
+  version: 2.5.1
 ---
 
 # The interview
@@ -204,7 +204,7 @@ reprinting it — the rules kept, as the template means them, in their language,
 rules when added, the other sections as the template ships them, the agent, the researcher's skill,
 `apm.yml` and `LICENSE` with the owner as its holder — and show any of it when asked. Say in one
 line that on *Go* the researcher also installs itself for the owner's user, so it is there in
-every folder, and saves a first version, and that the assistant may ask to allow both. Then ask
+every folder, and saves a first version, and that the assistant may ask to allow them. Then ask
 `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only; in chat, *go*,
 *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the go. *Change
 something* offers *Change the domains*, *Leave the projects out* when there are any, and *Change an
@@ -345,11 +345,11 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
 ```
 
 Write it in English, as the agent, with the owner's language named in item 2 as the one it
-speaks, and name the researcher as `RESEARCHER.md` does; `<engine and model>`, `<kind>`,
-`<what was learned>` and `<command>` stay as written, for the session to fill. **It copies nothing
-else from `RESEARCHER.md`**: its description carries who and where, its body only what to do, and
-the rest is read from the home. The home's path ties it to this machine: if the home moves,
-`update` writes it again.
+speaks, and name the researcher as `RESEARCHER.md` does; `<engine and model>`, `<engine>`,
+`<kind>`, `<what was learned>` and `<command>` stay as written, for the session to fill. **It
+copies nothing else from `RESEARCHER.md`**: its description carries who and where, its body only
+what to do, and the rest is read from the home. The home's path ties it to this machine: if the
+home moves, `update` writes it again.
 
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
 the package's name, which this home is not. On the same go, set its `name:` to `<slug>`, its
@@ -361,7 +361,7 @@ in it changes.
 ## Step 5: Install it, and save a first version
 
 The agent and the skill are files until APM deploys them. On the same go, once they are written,
-run both commands yourself — the owner types nothing, and may not know what either means:
+run these yourself — the owner types nothing, and may not know what any of them means:
 
 1. **Install the home for the owner's user**, beside the package — the same user scope, so the
    agent and the skill reach every folder, for every assistant listed under `targets:` both in
@@ -391,6 +391,10 @@ run both commands yourself — the owner types nothing, and may not know what ei
    versions your researcher saves*, never invented; set them in the home only,
    `git -C "<absolute path to the home>" config user.name "<name>"` and the same for `user.email`,
    and save again.
+3. **Move the weekly version check a week on**, when `init-researcher` handed over after its update
+   succeeded, or skipped it because the package was installed in this conversation — the package is
+   the newest — as `update` does, and never say it:
+   `git -C "<absolute path to the home>" config kaxanuk.updatenext <today + 7 days, YYYY-MM-DD>`.
 
 Nothing else is installed: the home's `apm.yml` declares no dependency, and every KaxaNuk skill
 and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user.
@@ -401,8 +405,8 @@ In the voice and the language the owner chose, **four lines, then one question**
 could not install or save, say so first, in one plain line, and offer to try again.
 
 1. *I'm <Name>. From now on I'm in every folder: open your assistant in my home, or in any project
-   of yours, work or personal, and say hello.* When this conversation installed tools, add *Quit
-   and reopen your assistant first.*
+   of yours, work or personal, and say hello.* When this conversation installed git or uv, add,
+   for the next session, not this one: *When we're done here, quit and reopen your assistant first.*
 2. *My home is `<absolute path to the home>`.*
 3. *Next: <the one next thing>* — from the first row below whose pick is on the *Here for* line,
    with its command.

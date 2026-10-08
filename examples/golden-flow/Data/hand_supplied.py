@@ -233,9 +233,9 @@ def read_listing_keys() -> dict[str, str]:
     file.
 
     Read from the seed, the one place both keys are written.  A listing the seed does not carry --
-    one FMP does not price, or the older half of a recycled symbol -- is absent from the map, and
-    the caller decides what absence means; the universe notebook writes every such listing into
-    `Universe/Data_Issues.csv`.
+    one with no FMP symbol, or one FMP prices under another ticker, such as `BRK.B` -- is absent
+    from the map, and the caller decides what absence means; the universe notebook writes every such
+    listing into `Universe/Data_Issues.csv`.
     """
     seed = pandas.read_csv(
         SEED_PATH,

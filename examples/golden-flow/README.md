@@ -48,9 +48,10 @@ Factory. "The worked example" in text dated before 2026-10-07 is the package's e
 - **Book**: the portfolio a rule holds day by day — which stocks, and how much of each.
 - **Paper trading**: the frozen book run on days after the freeze, with no money in it.
 - **Sharpe**: return per unit of risk taken, as the Backtest Engine reports it; higher is better.
-- **Seed**: `Universe/Investable_Universe.csv`, every listing in the index at any time from
-  2015-01-02, delisted ones included; every stock the book holds comes from it, and its cash is
-  `BIL`.
+- **Seed**: `Universe/Investable_Universe.csv`, the listings in the index at any time from
+  2015-01-02 whose FMP symbol, verified or not, is the index's own ticker, delisted ones included;
+  FMP does not carry about 80 of them, and the register names them as missing. Every stock the
+  book holds comes from it, and its cash is `BIL`.
 - **Control**: the same rule with one ingredient off, here the golden cross, on the rule's dates.
 - **Factor exposure**: return the factor model explains, such as the market, size and momentum.
 - **Idiosyncratic**: the return left once factor exposure is taken out.
@@ -86,9 +87,9 @@ quoted in `JOURNAL_1.md`; rebalancing and cash are in the plan the owner approve
 | Step | Lab library or Factory file | What Golden Flow does | Skill for your own strategy |
 | --- | --- | --- | --- |
 | 1. Bibliotheca | — | the idea in the owner's words, three claims, and the notes that argue with them | `read`, `objective` |
-| 2. Universe | the KN US Equity Core's daily holdings, from the Analytics Factory | the committed seed lists every member listing, 888 of its 896 with an FMP symbol; `Universe/universe.ipynb` fixes the window's first day | `universe-point-in-time` |
-| 3. Data | **Data Curator**, open source; **Data Refinery** and **Data Analyzer**, coming | the Curator downloads FMP prices; until the other two ship, `Data/refinery.py` builds the two features and `Data/analyzer.ipynb` screens them | `data-curator-custom-calculations`, `data-analyzer-runs` |
-| 4. Portfolio | **Portfolio Construction**, on request: not installed | the strategy's own `bounded_book` sizes the book; `weigh` shows where the library's call goes | `portfolio-construction-runs` |
+| 2. Universe | the KN US Equity Core's daily holdings, from the Analytics Factory | the record's seed listed every member listing, 888 of its 896 with an FMP symbol; this copy's keeps 883 of the 896, tickers and dates only; `Universe/universe.ipynb` fixes the window's first day | `universe-point-in-time` |
+| 3. Data | **Data Curator**, open source and free; **Data Refinery** and **Data Analyzer**, coming | the Curator downloads FMP prices; until the other two ship, `Data/refinery.py` builds the two features and `Data/analyzer.ipynb` screens them | `data-curator-custom-calculations`, `data-analyzer-runs` |
+| 4. Portfolio | **Portfolio Construction**, licensed: not installed | the strategy's own `bounded_book` sizes the book; `weigh` shows where the library's call goes | `portfolio-construction-runs` |
 | 5. Backtest | **Backtest Engine**, licensed | prices the book, its control and the other books it is compared with, net of costs, against the KN US Equity Core and `SPY` | `backtest-engine-runs` |
 | 6. Attribution | **Attribution Analysis**, licensed; the Core's holdings and returns and the KN US Equity Factor Model, from the Analytics Factory | Brinson-Fachler, then the factor model, then Brinson-Fachler on what the factors leave | `attribution-analysis-runs`, `alpha-decomposition` |
 | 7. Paper trading | the Data Curator, the Backtest Engine and the Factory's files, when a book runs | the book was frozen on 2026-10-06 and is kept here as a record, not run | `paper-trading-gate` |
@@ -97,9 +98,10 @@ quoted in `JOURNAL_1.md`; rebalancing and cash are in the plan the owner approve
 `experiment-lifecycle` holds the documents around the steps: the blueprint, the journal and the
 findings. When a library ships, the example moves to it in a new version.
 
-> A licence for the Backtest Engine or Attribution Analysis is KaxaNuk's to give: write to
-> `lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows
-> the Lab.
+> The Data Curator is open source and free. The Backtest Engine and Attribution Analysis come
+> together, with Portfolio Construction and their licences, in the KaxaNuk Investment Lab, which
+> KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is for, with *via
+> KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
 
 **The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;
@@ -119,6 +121,21 @@ as steps 2 and 3 of [`SETUP.md`](SETUP.md) set out:
   download runs, and **its KN US Equity Factor Model**, for step 6.
 - **The Backtest Engine and Attribution Analysis licences**, for steps 5 and 6. Without them the
   experiment writes the book's weights and skips the rest.
+
+**Without an FMP key, Yahoo Finance can run it for learning, though not as it stands.** The Data
+Curator's Yahoo Finance extension needs no key:
+`uv pip install kaxanuk.data_curator_extensions.yahoo_finance`, then, in `Data/curator.py`,
+`kaxanuk.data_curator_extensions.yahoo_finance.YahooFinance()` in place of both
+`FinancialModelingPrep(...)` calls. Two things do not work as they stand, and your assistant can
+change them with you. `Universe/universe.ipynb` asks FMP for each symbol's profile, with the FMP
+key. And Yahoo sends split-adjusted prices and volume and the adjusted close, with no unadjusted
+price and no VWAP, from which the record builds the traded value the rule ranks and sizes by, the
+fill at the adjusted VWAP and the commission, charged per share on the unadjusted VWAP: those
+columns come back empty until they are built another way, and the trades are then not costed as
+the record costed them. Yahoo also has no data for the 178 names in the seed that left the market,
+so the run carries the survivorship bias those names are kept to prevent. It teaches the process,
+not the result; for a precise experiment, use another provider: FMP, which the record used, or
+Sharadar or LSEG.
 
 From the repository root, each command reading what the one before it wrote:
 
@@ -142,21 +159,26 @@ uv run jupyter nbconvert --to notebook --execute --output-dir ../golden-flow-run
   the reasons [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) gives: `promote.py 1`
   refuses, and `daily_update.py --dry-run --skip-refresh` stops and exits 2 — with no data at its
   first check, and with the data on `unfrozen-input`: the frozen security master is not in the copy,
-  and `Data/Curator/custom_calculations.py` no longer matches `FREEZE.json`. Without
+  and neither the book's seed, rewritten in this copy as tickers and dates, nor
+  `Data/Curator/custom_calculations.py` matches `FREEZE.json`, which is never edited. Without
   `--skip-refresh` it first downloads every price again.
 
 ## What a correct run shows
 
 These are the record run's figures, of 2026-10-06, from a wiped working copy. A fresh download
-rebases the adjusted columns, so a run lands near these, not on them.
+rebases the adjusted columns, and a run of this copy lands further from these than that alone
+would: its seed leaves out 13 of the record's listings, `BRK-B` among them, and on 2015-01-02 the
+members it prices hold, by estimate, near 91% of the index's weight against the record's 92.97%,
+close to the 90% floor. The window may open later than 2015-01-02; then every figure after it
+moves, and the experiment's Verify stops on "the window is the universe notebook's".
 
 | Stage | A correct run shows | Recorded in |
 | --- | --- | --- |
 | The index's holdings | 1,399 listings, 2000-01-03 to 2026-08-14 | `JOURNAL_1.md` |
-| `Data/curator.py` | 890 names asked on the committed seed: 888 symbols, `BIL` and `SPY`. The record's seed, still holding `CY` and `NBL`, asked 892: 809 downloaded, 83 that FMP does not carry | `JOURNAL_1.md`, `CHANGELOG.md` |
-| `Universe/universe.ipynb` | `CY` and `NBL` without a symbol, their FMP prices contradicting their membership | `JOURNAL_1.md`, `CHANGELOG.md` |
-| `Universe/universe.ipynb` | the window opening on 2015-01-02, when priced members held 92.97% of the index's weight | `RESULTS.md` |
-| `Universe/universe.ipynb` | `MNKKQ`, `NE`, `PCP` and `RAI` excluded by name, as blocking rows of `Universe/Data_Issues.csv` | `JOURNAL_1.md`, `BITACORA.md` |
+| `Data/curator.py` | 885 names asked on this copy's seed: 883 symbols, about 80 of them not carried by FMP, `BIL` and `SPY`. The record's seed asked 892: 809 downloaded, 83 that FMP does not carry | `JOURNAL_1.md`, `CHANGELOG.md` |
+| `Universe/universe.ipynb` | the 13 listings the seed leaves out named in `Universe/Data_Issues.csv`, `CY` and `NBL` among them, which the record dropped for FMP prices contradicting their membership | `JOURNAL_1.md`, `CHANGELOG.md` |
+| `Universe/universe.ipynb` | the record's window opening on 2015-01-02, when priced members held 92.97% of the index's weight; this copy's may open later, as above | `RESULTS.md` |
+| `Universe/universe.ipynb` | `MNKKQ`, `PCP` and `RAI` excluded by name, as blocking rows of `Universe/Data_Issues.csv`; the record's fourth, `NE`, is not in this copy's seed | `JOURNAL_1.md`, `BITACORA.md` |
 | `Universe/universe.ipynb` | its last line, `verified: 13 checks …` | its Verify section |
 | `Data/refinery.py` | 803 securities refined | `JOURNAL_1.md`, `RESULTS.md` |
 | `Data/analyzer.ipynb` | its last line, `verified: 9 checks …` | its Verify section |
@@ -164,9 +186,9 @@ rebases the adjusted columns, so a run lands near these, not on them.
 | `experiment_1.ipynb` | its last line, `verified: 113 checks …` | `FINDINGS_1.md` |
 | `git status` | the seed unchanged; new only `uv.lock`, which `uv sync` writes | `SETUP.md` |
 
-The committed seed keeps `CY` and `NBL` as rows with no FMP symbol, so a copy does not ask for them,
-and the notebook rewrites the seed only when it drops a name. A fresh download can add a blocking
-row to `Universe/Data_Issues.csv`; the experiment's Verify then stops on "the exclusions are the
-blueprint's" — that is the provider's data moving, not the example breaking: read the new row first.
+The notebook rewrites the seed only when it drops a name whose FMP prices contradict its
+membership. A fresh download can add a blocking row to `Universe/Data_Issues.csv`; the
+experiment's Verify then stops on "the exclusions are the blueprint's" — that is the provider's
+data moving, not the example breaking: read the new row first.
 
 <!-- example: end -->

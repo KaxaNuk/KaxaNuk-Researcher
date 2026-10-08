@@ -347,4 +347,7 @@ The single highest-value run outstanding, and what it would settle.
 | 6 | The index's holdings and returns files disagree slightly | the first cut reconciles within the blueprint's 1.0-point tolerance once its weights are aligned |
 | 7 | **The provider's volume for `KLAC` is about ten times too high from 2026-05-13**, the 21 trading days before its 10-for-1 split of 2026-06-12, while its price stays unsplit, so its traded value — the rule's score — is inflated over the window's last 13 trading days. Found after the run, by the paper book's first-day checks | `KLAC` re-entered the book on 2026-05-14, having dropped out on 2026-05-07 at about 1.1%, and reached 2.6% on 2026-06-01. Its prices are right and the engine priced them; the weights of those days were chosen on a bad input. Not corrected: the rules are frozen, and the frozen book carries it |
 
+Caveat 1's figures are the record's: this copy's seed keeps 883 of the record's 896 listings,
+tickers and dates only, so a run on it prices less of the index.
+
 <!-- example: end -->

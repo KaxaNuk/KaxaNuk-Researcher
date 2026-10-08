@@ -41,6 +41,57 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.0 (2026-10-08)
+
+**MINOR** — the example's list of stocks is tickers and dates only, 883 of the record's 896
+listings, and the example can run on Yahoo Finance with no key, for learning, after the changes its
+README names. The record's figures stay as they were; a run on this list lands further from them
+than before, and its window may open later.
+
+**What to do differently:** quote the record's figures as the record's; to run without an FMP key,
+follow *Run it* in the README, and read that run as a lesson, not a result.
+
+### Changed
+
+- **`Universe/Investable_Universe.csv`**, and the frozen book's copy, the same file: four columns,
+  `main_identifier`, `index_identifier`, `valid_from` and `valid_to`, and the 883 rows whose FMP
+  symbol, verified or not, is the index's own (Sharadar) ticker, departed names included, in the
+  same order; FMP does not carry about 80 of them, and the register names them as missing. The 13
+  left out: eight with no FMP symbol, `AET`, `CBI`, `COL`, `CPN`, `CVC`, `CY`, `EVHC` and `NBL`, and
+  five FMP prices under another ticker, `BF.B`, `BRK.B`, `NEBLQ`, `WLL2` and `WOLF2`. No ISIN,
+  company name or match column is left in this version of the example. The frozen copy no longer
+  matches its hash in `FREEZE.json`, which is never edited: `daily_update.py` reports it as
+  `unfrozen-input`.
+- **`Universe/seed.py`** writes those four columns, and only a listing whose FMP symbol, verified
+  or not, is the index's own ticker.
+- **`Universe/universe.ipynb`** reads no name, ISIN or match from the seed: the master takes the
+  name and the ISIN from FMP's profile; every symbol, not only an unverified one, is checked against
+  its listing's membership, and one its prices contradict leaves the seed; the register's first
+  row, *not in the seed*, names every weighted listing the seed lacks. Verify accepts a weighted
+  listing the register names, and checks that it names none the seed holds: still 13 checks.
+- **`experiment_1.ipynb`**: the exclusions it expects are the blueprint's but `NE`, which the seed
+  no longer holds.
+- **`Data/hand_supplied.py`**: `read_listing_keys` says which listings the seed lacks.
+- **`Data/refinery.py`**, marked: a listing the seed does not map, such as `BRK.B`, carries no
+  weight in the panel and is named in the register.
+- **`README.md`**: Yahoo Finance can run the example with no key, for learning, through the Data
+  Curator's extension, once `Data/curator.py` is switched to it and two things that do not work as
+  they stand are changed: the universe notebook's FMP profiles, and the traded value, fill and
+  commission, built from a VWAP Yahoo does not send. It loses the 178 names that left the market;
+  FMP, Sharadar or LSEG for a precise experiment. *Seed*, the universe's row and *What a correct
+  run shows* describe this seed beside the record's, and say a run lands further from the record:
+  near 91% of the index's weight priced on 2015-01-02, against the 90% floor, so the window may
+  open later. The paper book's seed joins what fails `FREEZE.json`; the Lab line as the template's.
+- **`SETUP.md`**, marked: Yahoo Finance in *What a run needs*, after the changes the README names,
+  and 883 profiles for a copy. Shared: the access line moves as the template's 0.18.2.
+- **`RESULTS.md`** and **`FINDINGS_1.md`**, marked: one line each, that their coverage figures are
+  the record's.
+- **`AGENTS.md`**, marked, row 1: a member FMP does not price under the index's ticker is named in
+  the register rather than raised on, and the 92.97% of 2015-01-02 is the record's.
+- **`Paper_Trading/BITACORA.md`**, marked: a dated line *in this copy* says the book's seed was
+  rewritten and `daily_update.py` reports `unfrozen-input`.
+- **`LICENSE`**: as the template's 0.18.2.
+
 ## 0.16.1 (2026-10-08)
 
 **PATCH** — the README explains three more of its words, *book*, *paper trading* and *Sharpe*, and

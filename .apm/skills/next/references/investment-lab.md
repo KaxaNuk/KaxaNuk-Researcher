@@ -8,20 +8,21 @@
 > anything. Whether the owner needs any of it is the owner's call. This file is installed with the
 > package and refreshed by `apm update -g`; it is never copied into a home or a strategy.
 
-The Investment Lab is KaxaNuk's six libraries — Data Curator, Data Refinery, Data Analyzer,
-Portfolio Construction, Backtest Engine, Attribution Analysis — that run steps 3 to 6 of the
-research process, with a web front end: KaxaNuk's platform, <https://www.kaxanuk.mx/lab>, drives
-the same pipeline from a workspace instead of a terminal. Steps 1 to 7 of the process are the
-strategy repository's, made from the KaxaNuk Strategy Template.
+KaxaNuk's six libraries run steps 3 to 6 of the research process. The Data Curator is open source
+and free. The Backtest Engine, Attribution Analysis and Portfolio Construction — and the Data
+Refinery and the Data Analyzer when they ship — come together, with their licences, in the KaxaNuk
+Investment Lab, which KaxaNuk sells; its web front end, <https://www.kaxanuk.mx/lab>, drives the
+same pipeline from a workspace instead of a terminal. Steps 1 to 7 of the process are the strategy
+repository's, made from the KaxaNuk Strategy Template.
 
 | Library | Step | What it does | Latest | How to get it |
 | --- | --- | --- | --- | --- |
-| **Data Curator** | 3 | pulls market and fundamental data from a provider — FMP, Sharadar or LSEG — and aligns it on one calendar | 0.50.0 (2026-08-28) | open source, on [PyPI](https://pypi.org/project/kaxanuk.data-curator/); a strategy's `uv sync` installs it. The provider's key comes from the provider |
-| **Data Refinery** | 3 | cleans, adjusts and reshapes the curated data | *coming* | until it lands, a strategy's own `Data/refinery.py` does it |
-| **Data Analyzer** | 3 | tests whether a feature carries signal, before any book is built | *coming* | until it lands, a strategy's own `Data/analyzer.ipynb` does it |
-| **Portfolio Construction** | 4 | turns a signal into weights, limits and a rebalancing rule | 2.0.0 (2026-09-27) | on request: access to KaxaNuk's private repository, `KaxaNuk/Portfolio-Construction`, and, since 2.0.0, a licence (`lab@kaxanuk.mx`). An equal-weight book needs neither |
-| **Backtest Engine** | 5 | prices a book over history, with costs and no look-ahead | 0.67.0 (2026-09-26) | licensed: a licence brings a welcome email with an index URL and a key |
-| **Attribution Analysis** | 6 | splits the return into factor exposure and the part that is the strategy's own | 0.3.0 (2026-09-27) | licensed, as the Backtest Engine |
+| **Data Curator** | 3 | pulls market and fundamental data from a provider — FMP, Sharadar or LSEG — and aligns it on one calendar | 0.50.0 (2026-08-28) | open source and free, on [PyPI](https://pypi.org/project/kaxanuk.data-curator/); a strategy's `uv sync` installs it. The provider's key comes from the provider |
+| **Data Refinery** | 3 | cleans, adjusts and reshapes the curated data | *coming* | in the Lab when it ships; until then, a strategy's own `Data/refinery.py` does it |
+| **Data Analyzer** | 3 | tests whether a feature carries signal, before any book is built | *coming* | in the Lab when it ships; until then, a strategy's own `Data/analyzer.ipynb` does it |
+| **Portfolio Construction** | 4 | turns a signal into weights, limits and a rebalancing rule | 2.0.0 (2026-09-27) | in the Lab: access to KaxaNuk's private repository, `KaxaNuk/Portfolio-Construction`, and, since 2.0.0, a licence. An equal-weight book needs neither |
+| **Backtest Engine** | 5 | prices a book over history, with costs and no look-ahead | 0.67.0 (2026-09-26) | in the Lab: its licence brings a welcome email with an index URL and a key |
+| **Attribution Analysis** | 6 | splits the return into factor exposure and the part that is the strategy's own | 0.3.0 (2026-09-27) | in the Lab, as the Backtest Engine |
 
 *Latest* is this package's record of each library's newest build, updated at each library
 release; `next` holds a strategy's builds against it once a week. Each library's skill names in its
@@ -34,9 +35,10 @@ of them.
 
 **The access line**, said wherever access comes up — a skill about one library names that library:
 
-> A licence for the Backtest Engine, Attribution Analysis or Portfolio Construction, or access to
-> Portfolio Construction, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library
-> and what it is for — <https://www.kaxanuk.mx/lab> shows the Lab.
+> The Data Curator is open source and free; the Backtest Engine, Attribution Analysis and
+> Portfolio Construction come, with their licences, in the KaxaNuk Investment Lab, which KaxaNuk
+> sells. For a licence or access, write to `lab@kaxanuk.mx`, saying which library and what it is
+> for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
 
 **The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;

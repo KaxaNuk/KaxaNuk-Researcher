@@ -6,21 +6,25 @@ that seed was built: the seed is committed, and running this script overwrites i
 For each listing that was a member at any time from 2015-01-02, it finds the symbol FMP sells the
 listing's prices under and proves it is the same security before it writes it down: by CUSIP
 first; by CIK only for a common share that is not a fund; by FMP's search for the security's
-CUSIP; and, last, `unverified` under the index's own ticker, which the universe notebook checks
-against the security's price dates once the Curator has fetched it.  Two listings never share a
-price file: the stronger proof keeps a disputed symbol.
+CUSIP; and, last, unproved under the index's own ticker.  The universe notebook checks every
+symbol against the security's price dates once the Curator has fetched it, because the seed keeps
+no record of the proof.  Two listings never share a price file: the stronger proof keeps a
+disputed symbol.
 
-Every member listing is a row, matched or not: a row with no `main_identifier` is a member FMP does
-not price.  `valid_from` and `valid_to` are the security's first and last price dates in the
-index's master of listings; a listing still trading on the master's last date has no `valid_to`.
+A row is a listing whose FMP symbol, verified or not, is the index's own (Sharadar) ticker, departed
+or not.  FMP does not carry about 80 of them, and the universe notebook's register names them as
+missing files.  A listing with no FMP symbol, or one FMP prices under another ticker, has no row,
+and the universe notebook names it as one this repository does not price.  `valid_from` and
+`valid_to` are the security's first and last price dates in the index's master of listings; a
+listing still trading on the master's last date has no `valid_to`.
 
 It needs that master, `--index-master <path>`, a file of KaxaNuk's Analytics Factory that its
 published folders do not hold (ask lab@kaxanuk.mx), and `KNDC_API_KEY_FMP` in `Config/.env`.
 FMP profiles are cached in `Universe/Provider_Cache/`.  Another provider means another builder,
 with the main identifier KaxaNuk supplies for it.
 
-It produces `Universe/Investable_Universe.csv`: `main_identifier`, `index_identifier`, `name`,
-`isin`, `valid_from`, `valid_to`, `match`.
+It produces `Universe/Investable_Universe.csv`, tickers and dates only: `main_identifier`,
+`index_identifier`, `valid_from`, `valid_to`.
 """
 
 import argparse
@@ -75,18 +79,15 @@ NOT_COMMON_PATTERN = re.compile(r"(-P\w*$|\.P\w*$|-W\w*$|\.W\w*$|-U$|\.U$|-R$|\.
 SEED_COLUMNS = (
     "main_identifier",
     "index_identifier",
-    "name",
-    "isin",
     "valid_from",
     "valid_to",
-    "match",
 )
 SUFFIX_PATTERN = re.compile(r"\d+$")
 
 
 def main() -> int:
     """
-    Build the seed from the index's members since the floor, and say how many FMP prices.
+    Build the seed from the index's members since the floor, and say how many keep their ticker.
     """
     parser = argparse.ArgumentParser(description="Build the seed from the index's members.")
     parser.add_argument(
@@ -153,17 +154,20 @@ def main() -> int:
         index_master,
     )
     ordered = opened.sort_values("index_identifier")
-    ordered.to_csv(
+    # A listing with no FMP symbol, or one under another ticker, is left out: the seed is tickers
+    # and dates, and its two keys are one ticker.
+    same_ticker = ordered[ordered["main_identifier"] == ordered["index_identifier"]]
+    same_ticker.to_csv(
         SEED_PATH,
         index=False,
         columns=list(SEED_COLUMNS),
         lineterminator="\n",
     )
-    matched = ordered[ordered["main_identifier"] != ""]
     listing_count = len(ordered)
-    matched_count = len(matched)
-    print(f"wrote {SEED_PATH.name}: {listing_count} listings, {matched_count} with an FMP symbol")
-    match_counts = ordered["match"].value_counts()
+    written_count = len(same_ticker)
+    written = f"{written_count} of {listing_count} listings"
+    print(f"wrote {SEED_PATH.name}: {written}, whose FMP symbol is the index's own ticker")
+    match_counts = same_ticker["match"].value_counts()
     print(match_counts.to_string())
 
     return 0
@@ -250,21 +254,18 @@ def _claim(
     listing: str,
     security: dict[str, str],
     symbol: str,
-    profile: dict,
     match: str,
 ) -> dict[str, str]:
     """
-    One row of the seed: the listing, the symbol it is matched to, and how.
+    One row of the seed: the listing, the symbol it is matched to, and how, which is reported and
+    not written.
     """
-    name = security.get("name") or profile.get("companyName") or ""
 
     return {
         "index_identifier": listing,
-        "isin": profile.get("isin") or "",
         "last_price_date": security.get("last_price_date", ""),
         "main_identifier": symbol,
         "match": match,
-        "name": name.strip(),
         "valid_from": security.get("first_price_date", ""),
         "valid_to": security.get("last_price_date", ""),
     }
@@ -388,7 +389,6 @@ def _match_listing(
                 listing,
                 security,
                 symbol,
-                profile,
                 "cusip",
             )
 
@@ -412,7 +412,6 @@ def _match_listing(
                 listing,
                 security,
                 symbol,
-                profile,
                 "cik",
             )
 
@@ -435,13 +434,11 @@ def _match_listing(
         ]
 
         if len(found) > 0:
-            found_profile = profiles.get(found[0]) or {}
 
             return _claim(
                 listing,
                 security,
                 found[0],
-                found_profile,
                 "cusip search",
             )
 
@@ -453,7 +450,6 @@ def _match_listing(
             listing,
             security,
             own_symbol,
-            {},
             "unverified",
         )
 
@@ -461,7 +457,6 @@ def _match_listing(
         listing,
         security,
         "",
-        {},
         "no FMP symbol",
     )
 
@@ -472,8 +467,8 @@ def _one_to_one(
     """
     Give each symbol to one listing: the stronger proof, then the security still trading.
 
-    The listing that loses keeps its row, with no symbol and the name of the one that won, so the
-    universe notebook counts its weight as a member this repository cannot price.
+    The listing that loses is left with no symbol, and so out of the seed, which the universe
+    notebook counts as a member this repository does not price.
     """
     frame = pandas.DataFrame(claims)
     frame["strength"] = frame["match"].map(MATCH_STRENGTH).fillna(0)
@@ -493,7 +488,6 @@ def _one_to_one(
         symbol = frame.at[loser, "main_identifier"]
         winner = winners.loc[winners["main_identifier"] == symbol, "index_identifier"].iloc[0]
         resolved.at[loser, "main_identifier"] = ""
-        resolved.at[loser, "isin"] = ""
         resolved.at[loser, "match"] = f"symbol {symbol} taken by {winner}"
 
     return resolved.drop(columns=["strength", "last_price_date"])

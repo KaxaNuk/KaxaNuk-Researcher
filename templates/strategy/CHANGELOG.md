@@ -41,6 +41,26 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.2 (2026-10-08)
+
+**PATCH** — the README and the setup say plainly how the Lab's libraries are had: the Data Curator
+is open source and free, and the others come together, with their licences, in the KaxaNuk
+Investment Lab, which KaxaNuk sells. Nothing about any result changes.
+
+**What to do differently:** nothing in a strategy already set up; to ask for the Lab, write to
+`lab@kaxanuk.mx` with *via KaxaNuk Researcher* in the subject, as `SETUP.md` says.
+
+### Changed
+
+- **`README.md`**, *The six Lab modules*: the Data Curator is *open source and free*, and Portfolio
+  Construction *licensed since its 2.0.0*, no longer *on request*. The access line says the three,
+  and the Data Refinery and the Data Analyzer when they ship, come together in the KaxaNuk
+  Investment Lab.
+- **`SETUP.md`**, *Step 3*: the access line says the same in its own words. Both end as one: write
+  to `lab@kaxanuk.mx`, saying which library and what it is for, with *via KaxaNuk Researcher* in
+  the subject.
+- **`LICENSE`**: KaxaNuk SC holds the copyright, since 2026; the terms are MIT's, unchanged.
+
 ## 0.18.1 (2026-10-08)
 
 **PATCH** — the line that schedules the daily run on Windows works in every shell and from a folder

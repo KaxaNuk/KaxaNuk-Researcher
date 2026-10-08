@@ -129,17 +129,19 @@ from `read`, `audit` and `refresh-index`, and from `query` when the owner keeps 
 whose index line `query` adds on the same go — so a page whose line `query` added is not a
 stale-index finding.
 
-**Then save a version**, at home and in a strategy alike, once the log line is in and any fix the
-owner approved is written — running `audit` by name is the go for the line, a fix's plan had its
-own go, and no question is asked: `git add` the library's `LOG.md` and every file a fix changed, by
-name, never `--all`, and `git commit -m "Audit: <the log line's summary>" -- <the same files>`; to
-the owner, *Saved*, in one plain line, never the commands. In a strategy it is a version of its own,
-with no `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it. When
-`git config --get kaxanuk.autosend` prints `true` in that folder, it also goes to the owner's copy
-on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain
-line, set them in this folder only, never invented, and save again; with no `.git/`, say in one line
-that the folder keeps no versions yet. This replaces an older home's *Commit?* question, and the
-owner's own commit in a strategy.
+**Then save a version**, in the folder whose library this is, at home and in a strategy alike, once
+the log line is in and any fix the owner approved is written — running `audit` by name is the go
+for the line, a fix's plan had its own go, and no question is asked. Every git command, the
+`backup` skill's send included, runs as `git -C "<that folder>"` when the session is open
+elsewhere: `git add` the library's `LOG.md` and every file a fix changed, by name, never `--all`,
+and `git commit -m "Audit: <the log line's summary>" -- <the same files>`; to the owner, *Saved*,
+in one plain line, never the commands. In a strategy it is a version of its own, with no
+`CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it. When
+`git config --get kaxanuk.autosend` prints `true`, it also goes to the owner's copy on GitHub, as
+the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain line, set
+them in that folder only, never invented, and save again; with no `.git/`, say in one line that the
+folder keeps no versions yet. This replaces an older home's *Commit?* question, and the owner's own
+commit in a strategy.
 
 Never touch `Philosophy/`, `Studies/` or the sources. Never fix silently. In a strategy, never write
 at home.

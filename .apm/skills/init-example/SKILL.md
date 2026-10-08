@@ -8,7 +8,7 @@ description: >
   bring back a template file a strategy lacks (`init-strategy`'s script with `--only` does), and
   never builds on the example.
 metadata:
-  version: 0.4.2
+  version: 0.4.3
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -44,7 +44,9 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
    `golden-flow` in the folder a caller hands it, else beside the researcher's home — the folder
    holding `RESEARCHER.md` here, or the one the researcher's skill names — else beside the folder
    the session is open in. Never into a strategy: its file of the same name is the template's
-   description, for the owner to fill.
+   description, for the owner to fill. When the whole example is asked for where it already is —
+   `<!-- example: begin -->` alone at column 0 in its `README.md` or `AGENTS.md` — say so, and
+   offer to open it, with *step 5*'s hand-over, or another folder: the script would refuse it.
 
 2. **The plan.** In chat: what will be copied and where; for one piece, that the folder is made if
    it is not there, that the piece keeps its path inside it, that nothing already there is
@@ -85,9 +87,11 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
    - *Read*, with nothing installed: `OBJECTIVE.md`, `RESULTS.md`, then `BLUEPRINT_1.md` and
      `FINDINGS_1.md` in `Experiments/Experiment_1/`, then `Paper_Trading/BITACORA.md`.
    - *Run*: its README's *Run it*, in a **new** session opened in the folder — an FMP key of their
-     own; and, from `lab@kaxanuk.mx`, saying what they are for, the Analytics Factory's KN US Equity
-     Core and factor model files and the Backtest Engine and Attribution Analysis licences
-     (<https://www.kaxanuk.mx/lab> shows the Lab); the download takes about an hour and a half.
+     own, the Analytics Factory's KN US Equity Core and factor model files, and the Backtest Engine
+     and Attribution Analysis, which come with their licences in the KaxaNuk Investment Lab, sold by
+     KaxaNuk. For the files and the licences, write to `lab@kaxanuk.mx`, saying which library and
+     what it is for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab>
+     shows the Lab. The download takes about an hour and a half.
    - *Own*: a strategy of your own is `init-strategy <name>`; nothing is built on the example, and
      its paper book, `Paper_Trading/Paper_Trading_1/`, is a record that does not run.
 

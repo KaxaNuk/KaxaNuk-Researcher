@@ -196,17 +196,19 @@ signature. On it, append the read-back entry to `JOURNAL_N.md`, dated today, the
 into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy, under the template's headings, and
 remove the template's blockquote.
 
-**Then save the entry, then the blueprint, each alone**, on the same go, **before any rule is
-coded** — no rule cell, no code, no second question, and no `CHANGELOG.md` entry, version bump or
-ruff gate: the next change-set's entry names them. `git add` each, then
+**Then save the entry, then the blueprint, each alone**, in the strategy's folder, on the same go,
+**before any rule is coded** — no rule cell, no code, no second question, and no `CHANGELOG.md`
+entry, version bump or ruff gate: the next change-set's entry names them. Every git command, the
+`backup` skill's send included, runs as `git -C "<that folder>"` when the session is open elsewhere:
+`git add` each, then
 `git commit -m "Experiment N: the rule read back" -- Experiments/Experiment_N/JOURNAL_N.md` and
 `git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md`, so
 nothing else staged goes with either; to the owner, one plain line, never the commands: *Saved: your
-proof the idea came before the result.* When `git config --get kaxanuk.autosend` prints `true` in
-the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants
-a name and an e-mail, ask for both in one plain line, set them in this folder only, never invented,
-and save again; with no `.git/`, say in one line that the strategy keeps no versions yet. This
-replaces the owner's own commit an older home's `AGENTS.md` asks for.
+proof the idea came before the result.* When `git config --get kaxanuk.autosend` prints `true`, it
+also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name and an
+e-mail, ask for both in one plain line, set them in that folder only, never invented, and save
+again; with no `.git/`, say in one line that the strategy keeps no versions yet. This replaces the
+owner's own commit an older home's `AGENTS.md` asks for.
 
 Then say what comes next in the order of work: the broad reading, for what the blueprint left as
 leads; and the cycle — portfolio construction, backtest, attribution — until it is finished.

@@ -9,7 +9,7 @@ description: >
   HOW-I-INVEST.md holds (`refine` does) or write RESEARCHER.md beyond Find first, and never says
   what to buy, sell or hold.
 metadata:
-  version: 1.2.1
+  version: 1.2.2
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -321,16 +321,17 @@ not kept, and the next run starts as this one did, as round *N* again.
    or already read. A section with no such line takes one as its last line, before *Out of scope
    for now*: `**Find first:** <the works>`. Nothing else in that file changes.
 
-**Then save a version**, in the home, on the go that wrote — it covers the save, and no second
-question is asked: `git add` each file this run wrote, by name, never `--all` —
-`Philosophy/HOW-I-INVEST.md`, the round file, `RESEARCHER.md` when it changed — and
-`git commit -m "Philosophy: round <N>, <level>" -- <the same files>`. Say it in one plain line,
-*Saved*, never the commands. When `git config --get kaxanuk.autosend` prints `true`, the version is
-also sent to the owner's copy on GitHub, as the `backup` skill says. This replaces the *Commit?*
-question an older home's `AGENTS.md` describes. A save refused for want of a name and an e-mail asks
-for both in one plain line — *a name and an e-mail to sign the versions your researcher saves* —
-sets them in the home only, never invented, and saves again; a home with no `.git/` gets one line,
-that it keeps no versions yet.
+**Then save a version**, in the home, on the go that wrote, which covers the save, with no second
+question — every git command, the `backup` skill's send included, as
+`git -C "<absolute path to the home>"` when the session is open elsewhere: `git add` each file this
+run wrote, by name, never `--all` — `Philosophy/HOW-I-INVEST.md`, the round file, `RESEARCHER.md`
+when it changed — and `git commit -m "Philosophy: round <N>, <level>" -- <the same files>`. Say it
+in one plain line, *Saved*, never the commands. When `git config --get kaxanuk.autosend` prints
+`true`, the version is also sent to the owner's copy on GitHub, as the `backup` skill says. This
+replaces the *Commit?* question an older home's `AGENTS.md` describes. A save refused for want of a
+name and an e-mail asks for both in one plain line — *a name and an e-mail to sign the versions
+your researcher saves* — sets them in the home only, never invented, and saves again; a home with
+no `.git/` gets one line, that it keeps no versions yet.
 
 ## 12. Hand over
 
@@ -343,11 +344,11 @@ Short, in the owner's language and voice, in this order:
    it into `Sources/` on your go and read it; one that cannot be found comes off the *Find first*
    line by hand, the owner's file. With nothing picked, any source, the same way.
 3. **When to come back.** Name two or three works from this round's reading list — the works
-   picked in C2 first, then the list's *Start here* works in the map's order; at Starter, in the
-   plain words of C2's *Three classic studies* — and say: once two of them have notes,
-   `philosophy` again, in a new session; what was left *not sure yet*, skipped or never reached
-   waits for them there. Without the reading map, no work is named: *once you have read a source
-   or two*.
+   picked in C2 first, or, on a stop before C2, the one behind the belief O2 placed; then the
+   list's *Start here* works in the map's order; at Starter, in the plain words of C2's *Three
+   classic studies* — and say: once two of them have notes, `philosophy` again, in a new session;
+   what was left *not sure yet*, skipped or never reached waits for them there. Without the
+   reading map, no work is named: *once you have read a source or two*.
 4. **`refine Philosophy/HOW-I-INVEST.md`**, when *Leave my old line* was picked, with the old lines
    to bring to it, each by its *(round N)*.
 

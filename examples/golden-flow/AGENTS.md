@@ -266,10 +266,11 @@ The part of the process that has nothing to do with Python.
 
 - **Row 1 is accepted and quantified, not removed.** FMP is this experiment's only price provider,
   by the owner's decision of 2026-10-05. A member of the KN US Equity Core that FMP does not carry
-  is dropped and counted in `Universe/Data_Issues.csv`. The share of the index's weight it held is
+  under the index's own ticker is dropped, and the universe notebook names it in
+  `Universe/Data_Issues.csv` rather than raising. The share of the index's weight it held is
   published per date as the survivorship cost. The window opens on the later of 2015-01-02 and the
   first date on which the members FMP prices hold at least 90% of that weight. On 2015-01-02 they
-  held 92.97%.
+  held 92.97% in the record, and near 91%, by estimate, on this copy's seed.
 - **Row 2's exit is `portfolio_construction.exit_before_price_stops`**, the owner's rule of
   2026-10-06. It applies to every book alike.
 - **Row 4's capacity is a participation bound only.** At 1% of a name's 63-day traded value, the

@@ -112,9 +112,9 @@ licences: the process runs without them up to portfolio construction, and the ba
 attribution report what is missing and skip. `KNPC_API_KEY_KAXANUK` is the Portfolio Construction
 licence, since its 2.0.0 — the library reads it from the environment or a `.kaxanuk_license` file,
 not from this file, as `portfolio-construction-runs` says: an equal-weight book needs neither the
-key nor the library. A licence for any of the three, or access to Portfolio Construction, is
-KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
-<https://www.kaxanuk.mx/lab> shows the Lab.
+key nor the library. The three come together, with their licences, in the KaxaNuk Investment
+Lab, which KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is for,
+with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
 
 `KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships its
 benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark and

@@ -8,7 +8,7 @@
 #
 # and `uvx --from apm-cli==0.33.0 apm update -g` brings every new version to every folder.
 name: kaxanuk-researcher
-version: 1.0.0
+version: 1.1.0
 description: The KaxaNuk Researcher — train your own research companion; you name and teach it, it keeps a library of what you read and answers from it with sources, works out your ideas and plans, briefs you each morning and comes with you to every project; its home ground is investment research with the KaxaNuk Strategy Template and Investment Lab — every Lab skill, init-researcher, init-strategy and init-example, and the template, worked example and home they copy.
 author: KaxaNuk
 license: MIT

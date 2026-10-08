@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.2
+  version: 0.1.3
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -42,10 +42,11 @@ The researcher's home, by default — the folder that holds `RESEARCHER.md`. Whe
 in a strategy — `Bibliotheca/`, `Universe/` and `Experiments/` — that strategy: one strategy, one
 repository, never inside the home's copy. The worked example, whose `README.md` or `AGENTS.md` holds
 the line `<!-- example: begin -->` alone at column 0, as `next` tells it, is for reading and takes
-no copy. Name the folder, by path. A folder with no `.git/` keeps no versions yet: say so in one
-line — at home `next` offers to start them — and stop. Changes not saved yet stay out of the copy:
-at home `next` offers to save them; in a strategy they are the owner's to save, as its `AGENTS.md`
-says.
+no copy. Name the folder, by path: every git command below but *Step 10*'s clone runs in it, as
+`git -C "<it>"` when the session is open elsewhere. A folder with no `.git/` keeps no versions yet:
+say so in one line — at home `next` offers to start them — and stop. Changes not saved yet stay out
+of the copy: at home `next` offers to save them; in a strategy they are the owner's to save, as its
+`AGENTS.md` says.
 
 ## Step 3: A copy already?
 
@@ -72,24 +73,44 @@ saves knows how to send. Then ask, in one call:
 - `Go?` (`¿Adelante?`) — *Go*, *Change something*, *Stop*; in chat, any of the go words in the
   home's `AGENTS.md`. On *Change something*, ask again with options: another name, another way.
   Never act on silence or on a *Stop*.
-- `E-mail` (`Correo`), as *Step 6* says, and `Send?` (`¿Envío?`), as *Step 7* says.
+- `Send?` (`¿Envío?`), as *Step 7* says.
 
-On *Go*: the e-mail first, then the way, then the setting *Send?* chose, once the copy exists.
+On *Go*: the way; once the copy exists, *Step 6*'s `E-mail`, then the setting *Send?* chose.
 
 ## Step 5: Three ways, in this order
 
 1. **`gh`, installed and signed in** — `gh auth status` succeeds:
-   `gh repo create <name> --private --source . --remote origin --push`, always `--private`.
-   `<name>` is `<slug>-researcher` for a home, the researcher's name made safe as `interview`'s
-   *Step 4* says — `Sofía` gives `sofia-researcher` — or the strategy's folder name.
+   `gh repo create <name> --private --source "<the folder>" --remote origin --push`, always
+   `--private`. `<name>` is `<slug>-researcher` for a home, the researcher's name made safe as
+   `interview`'s *Step 4* says — `Sofía` gives `sofia-researcher` — or the strategy's folder name.
 2. **github.com** — the owner signs in, or creates a free account: theirs to do. They create an
    **empty private** repository at <https://github.com/new>, by that name, with no README, licence
-   or `.gitignore`, and paste its address. Then `git remote add origin <the address>` and
-   `git push -u origin main`, with `GIT_TERMINAL_PROMPT=0` set as *Step 8* shows for each shell, so
-   git never waits on a prompt in the terminal that no one can answer. The first send may open a
-   browser window asking them to sign in to GitHub, once: that is expected, and theirs to do.
+   or `.gitignore`, and paste its address. Before anything is sent, make sure it is private: with
+   `gh` signed in, *Step 3*'s `gh repo view`; without, a probe that uses no stored sign-in, on its
+   https address, `https://github.com/<owner>/<name>`, whatever form was pasted:
+
+   ```bash
+   GIT_ASKPASS= GIT_TERMINAL_PROMPT=0 git -c credential.helper= -c core.askPass= -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 ls-remote <it>
+   ```
+
+   ```powershell
+   if (Test-Path Env:GIT_ASKPASS) { Remove-Item Env:GIT_ASKPASS }; $env:GIT_TERMINAL_PROMPT = '0'; git -c credential.helper= -c core.askPass= -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 ls-remote <it>
+   ```
+
+   Exit code 0, with nothing printed for an empty repository, is a public one: *Step 3*'s one
+   line, and nothing is sent or set. It is private only when the probe fails with git's own
+   `could not read Username for 'https://github.com': terminal prompts disabled` — GitHub's answer
+   to an anonymous request for a private or missing repository. Any other failure — the network, a
+   stall, GitHub busy — is one plain line, *I could not check that your copy on GitHub is private
+   (<the reason in plain words>), so nothing was sent*, and nothing is sent or set. Once it is
+   private, `git remote add origin <the address>` and `git push -u origin main`, with
+   `GIT_TERMINAL_PROMPT=0` set as *Step 8* shows for each shell, so git never waits on a prompt in
+   the terminal that no one can answer. The first send may open a browser window asking them to
+   sign in to GitHub, once: that is expected, and theirs to do. When it fails with
+   `Repository not found` — the address mistyped, or the repository not made yet —
+   `git remote remove origin`, say so in one plain line, and ask for the address again.
 3. **GitHub Desktop** — when the second fails for want of a sign-in, or they prefer it: *File → Add
-   local repository*, this folder, then *Publish repository* with *Keep this code private* ticked.
+   local repository*, the folder, then *Publish repository* with *Keep this code private* ticked.
    `git remote get-url origin` then names the copy.
 
 **Git must be able to sign in to send on its own.** After the first way, `gh auth setup-git`, so
@@ -105,10 +126,11 @@ sign-in, in the browser it opens. Then the first way.
 ## Step 6: Their e-mail
 
 Every saved version is signed with `git config user.name` and `user.email`, and on GitHub both
-travel with it. Before the first send, offer GitHub's private *noreply* address, shown in GitHub's
-e-mail settings, <https://github.com/settings/emails>: *Use GitHub's private address
-(recommended)*, *Keep the one I have*. Set for this folder only, `git config user.email <it>`, it
-signs new versions only: those already saved keep theirs, and history is never rewritten.
+travel with it. Once they are signed in, ask `E-mail` (`Correo`): *Use GitHub's private address
+(recommended)*, *Keep the one I have*. The private one, ending in `@users.noreply.github.com`, is
+on <https://github.com/settings/emails>: ask them to copy it from there and paste it here. Set for
+that folder only, `git config user.email <it>`, it signs new versions only: those already saved
+keep theirs, and history is never rewritten.
 
 If GitHub refuses a send because it would publish a private e-mail — error `GH007` — say so plainly,
 and give the two choices: allow it once in GitHub's e-mail settings, or keep the copy as it is.
@@ -116,7 +138,7 @@ and give the two choices: allow it once in GitHub's e-mail settings, or keep the
 ## Step 7: Sending each new version
 
 Asked once, `Send?` (`¿Envío?`) — *Send each new version automatically (recommended)*, *Only when I
-ask*: `git config kaxanuk.autosend true` or `false`, in this folder only. With *Only when I ask*,
+ask*: `git config kaxanuk.autosend true` or `false`, in that folder only. With *Only when I ask*,
 *back up* sends what has piled up, as *Step 3* does.
 
 ## Step 8: Sending a version

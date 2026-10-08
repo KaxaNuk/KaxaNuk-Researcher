@@ -103,15 +103,16 @@ owner collected — articles, transcripts, threads — never the owner's own wri
 
 ## Knowledge conventions
 
-- **One note per unit read, inside a domain folder** (`Knowledge/Finance/`, `Knowledge/AI/`, the
-  domains `RESEARCHER.md` lists). A paper is one file. A book is a folder — the only kind of
-  subfolder a domain has — with an `INDEX.md` for its chapters and one file per chapter read;
-  nothing is written for a chapter the owner did not choose, and no other per-folder index exists.
-  Beside the notes, the **wiki**: one **concept page** per idea the library holds, small and
-  specific, created and updated by `read` as chapters come in — never for a passing mention, never
-  from memory — every claim on it citing a note and its page; and **synthesis pages**, a `query`
-  answer the owner chose to keep. Pages cite notes; a note never cites a page. A strategy has no
-  pages: `OBJECTIVE.md` is its synthesis. Their shapes: the `read` skill's `references/note.md`.
+- **One note per unit read, inside a domain folder**: one `RESEARCHER.md` lists or `read` added on
+  the owner's go, its words joined by underscores (`Knowledge/Personal_Finance/`, headed
+  `## Personal Finance` in `INDEX.md`); an existing folder keeps its name. A paper is one file. A
+  book is a folder — the only kind of subfolder a domain has — with an `INDEX.md` for its chapters
+  and one file per chapter read, none for one the owner did not choose; no other per-folder index
+  exists. Beside the notes, the **wiki**: one **concept page** per idea, small and specific, created
+  and updated by `read` as chapters come in — never for a passing mention, never from memory — every
+  claim on it citing a note and its page; and **synthesis pages**, a `query` answer the owner chose
+  to keep. Pages cite notes; a note never cites a page. A strategy has no pages: `OBJECTIVE.md` is
+  its synthesis. Their shapes: the `read` skill's `references/note.md`.
 - **Frontmatter, the four fields the KaxaNuk Strategy Template's note carries, and one more:**
   `source` (a DOI, a URL, a publisher; never invented), `citation` (with the date the link was last
   checked), `local_copy` (the file read, by path in this repository, or `none`), `read` (the date,
@@ -128,11 +129,11 @@ owner collected — articles, transcripts, threads — never the owner's own wri
   invented; then the source's claims as headings, each with its implication for that question as a
   blockquote, the only part that is the researcher's; last `## What it changes` — three to seven
   bullets measured against that question, and one line on what it does not settle.
-- **Contradictions are recorded, never smoothed.** When a new source conflicts with or supersedes
-  a claim in an existing note, keep the original claim and put a `> [!WARNING]` callout above it
-  naming the newer note. Time-bound claims carry their date inline.
+- **Contradictions are recorded, never smoothed.** When a new source conflicts with or supersedes a
+  note's claim, keep that claim and put a `> [!WARNING]` callout above it naming the newer note.
+  Time-bound claims carry their date inline.
 - **Never invent a citation, a URL or a page number.** If it is not in `Sources/`, `Knowledge/` or
-  `Philosophy/`, say so. A gap is reported as a gap, and the fix is a source in `Sources/`.
+  `Philosophy/`, say so: a gap is reported as a gap, its fix a source in `Sources/`.
 
 ## The log
 
@@ -148,8 +149,7 @@ owner collected — articles, transcripts, threads — never the owner's own wri
 ```
 
 Name files by path in backticks, never as links. Record file-level actions on `Knowledge/` only —
-never query content, never answers. Read the last few entries at the start of a read or an audit to
-know what happened recently.
+never query content, never answers. Read the last few entries at the start of a read or an audit.
 
 ## Studies
 
@@ -394,11 +394,11 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
 - Don't advise on a holding. A brief, a round or an answer never says buy, sell, trim, add or
   hold, and `Portfolio/` is read, never written, except the two files `brief setup` starts.
 - Don't name the KaxaNuk Investment Lab as advice: it is named as a fact, and naming its engines as
-  where a strategy's numbers come from is one. What a library does and how to get it — a licence or
-  access is KaxaNuk's to give, at `lab@kaxanuk.mx`, and <https://www.kaxanuk.mx/lab> shows the Lab —
-  is said only when a step needs a library the owner lacks, or when the owner asks; never added
-  unasked to `RESEARCHER.md`, `Philosophy/`, a brief, a study, a round of `philosophy` or a *Find
-  first* line, and never as a reason to invest in anything.
+  where a strategy's numbers come from is one. What a library does and how to get it — the access
+  line in the `next` skill's `references/investment-lab.md` — is said only when a step needs a
+  library the owner lacks, or when the owner asks; never added unasked to `RESEARCHER.md`,
+  `Philosophy/`, a brief, a study, a round of `philosophy` or a *Find first* line, and never as a
+  reason to invest in anything.
 - Don't compute a return, a Sharpe or an attribution yourself: they come from the engines the
   project names, in a KaxaNuk strategy the Lab's libraries; a number with no engine is not quoted.
 - Don't rewrite a note in generic voice; match the library's existing notes.

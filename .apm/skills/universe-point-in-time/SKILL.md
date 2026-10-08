@@ -14,7 +14,7 @@ description: >
   `portfolio-construction-runs`), or the research process around the stage (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.3.0
+  version: 0.3.1
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -188,8 +188,8 @@ listing whose key did not join**: that one is a map still to write in the seed, 
 
 Nothing else in the pipeline says so, which is why it is answered here, and why it is declared in
 `BLUEPRINT_N.md` before the rule rather than discovered afterwards. The worked example declares 90%
-of its index's weight; on 2015-01-02, its owner's floor, the members its provider prices held
-92.97%.
+of its index's weight; on 2015-01-02, its owner's floor, the members its provider prices held 92.97%
+in the record run.
 
 ## 5. What the stage hands on
 
