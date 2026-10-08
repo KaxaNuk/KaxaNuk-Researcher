@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.3.3] - 2026-10-08
+Your researcher is named with a warm welcome: one line on what it will be for you, then the name.
+
+**What to do differently:** nothing; a new researcher is named this way.
+### Changed
+- **`init-researcher`** (0.6.4): before *What would you like to call it?*, one warm line in your
+  language — your researcher will be your companion for your work and your projects, called by its
+  name in any folder — and each of the three names it proposes says a few words on its feel. The
+  language menu before it is unchanged.
+
 ## [1.3.2] - 2026-10-08
 When a downloaded value looks wrong, your researcher tells the data provider's error from a
 library's, and says where to report each.

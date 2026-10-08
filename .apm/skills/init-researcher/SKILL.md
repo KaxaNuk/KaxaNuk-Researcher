@@ -8,7 +8,7 @@ description: >
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
   the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.6.3
+  version: 0.6.4
 ---
 
 # Init researcher — a home for the library, once
@@ -34,9 +34,13 @@ what happens in a sentence, and never ask them to type a command: you run every 
    Spanish and English together, through the question tool: `Idioma/Lang` — *Español*,
    *English*; *Other* for another. Everything after is in that language, the interview included.
 
-2. **The name.** "What will you call your researcher?" — through the question tool, three short
-   names proposed and *Other* for theirs; a name given with the command is used without asking.
-   Never pick one for them.
+2. **The name, with a welcome.** One warm line first, in their language — *Your researcher will be
+   your companion for your work and your projects, and you'll call it by its name in any folder.*
+   (*Tu investigador será tu compañero para tu trabajo y tus proyectos, y lo llamarás por su nombre
+   en cualquier carpeta.*) — then *What would you like to call it?* (*¿Cómo te gustaría llamarlo?*),
+   through the question tool: three short names proposed, each with a few words on its feel, and
+   *Other* for theirs. A name given with the command is used without asking. Never pick one for
+   them.
 
 3. **The place and the go, in one question.** `Where?` (`¿Dónde?`), through the question tool:
    - *Go — make it at <path>*, described as *creates your researcher's home there, then two quick
