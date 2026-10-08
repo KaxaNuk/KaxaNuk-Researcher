@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.4.1
+  version: 2.5.0
 ---
 
 # The interview
@@ -290,7 +290,7 @@ description: >
   written from here. It does NOT answer from the library (the `query` skill, or the `<slug>` agent,
   does).
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 <Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
@@ -320,9 +320,11 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
    - a way of working or a rule: one add-only line, in <owner>'s words, appended to
      `RESEARCHER.md` under *How it speaks* or *Non-negotiables* on their go, and saved in the
      home — `git -C "<absolute path to the home>" add RESEARCHER.md`, then
-     `git -C "<absolute path to the home>" commit -m "<what was learned>"` — said in one plain
-     line, *Saved*, never the commands, and sent as the `backup` skill says when
-     `git -C "<absolute path to the home>" config --get kaxanuk.autosend` prints `true`;
+     `git -C "<absolute path to the home>" commit -m "<what was learned>" -- RESEARCHER.md` —
+     said in one plain line, *Saved*, never the commands; when
+     `git -C "<absolute path to the home>" config --get kaxanuk.autosend` prints `true`, sent as
+     the `backup` skill's *Step 8* says, `git -C "<absolute path to the home>"` in place of its
+     `git`, in the `config` write too;
    - a fact about their work: a row of the projects table in `RESEARCHER.md`, or a change to its
      *Works for* line shown as a diff, on their go, saved the same way;
    - a view on investing: <owner>'s to write in `Philosophy/HOW-I-INVEST.md`, by hand or with
@@ -378,16 +380,15 @@ run both commands yourself — the owner types nothing, and may not know what ei
 2. **Save what the interview wrote**, in the home, by name and nothing else in the folder:
 
    ```bash
-   git add RESEARCHER.md README.md apm.yml LICENSE .apm/agents/<slug>.agent.md .apm/skills/<slug>/SKILL.md
-   git commit -m "Interview: <Name>, <owner>'s research companion"
+   git -C "<absolute path to the home>" add RESEARCHER.md README.md apm.yml LICENSE .apm/agents/<slug>.agent.md .apm/skills/<slug>/SKILL.md
+   git -C "<absolute path to the home>" commit -m "Interview: <Name>, <owner>'s research companion" -- RESEARCHER.md README.md apm.yml LICENSE .apm/agents/<slug>.agent.md .apm/skills/<slug>/SKILL.md
    ```
 
    The go on the preview covers it, with no second question. Say *Saved* in one plain line, never
    the commands; when `git config --get kaxanuk.autosend` prints `true`, send it as the `backup`
    skill says. If the commit fails for want of a git identity, ask for *a name and an email to sign
-   the versions your researcher saves; they stay on this computer*, never invented; set them in
-   this folder only, `git config user.name "<name>"` and `git config user.email "<email>"`, and
-   save again.
+   the versions your researcher saves*, never invented; set them in this folder only,
+   `git config user.name "<name>"` and `git config user.email "<email>"`, and save again.
 
 Nothing else is installed: the home's `apm.yml` declares no dependency, and every KaxaNuk skill
 and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user.
@@ -397,9 +398,9 @@ and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed on
 In the voice and the language the owner chose, **four lines, then one question**. When *Step 5*
 could not install or save, say so first, in one plain line, and offer to try again.
 
-1. *I'm <Name>. From now on I'm in every folder: open your assistant here, in a work project or a
-   personal one, and say hello.* When this conversation installed tools, add *Quit and reopen
-   your assistant first.*
+1. *I'm <Name>. From now on I'm in every folder: open your assistant in my home, or in any project
+   of yours, work or personal, and say hello.* When this conversation installed tools, add *Quit
+   and reopen your assistant first.*
 2. *My home is `<absolute path to the home>`.*
 3. *Next: <the one next thing>* — from the first row below whose pick is on the *Here for* line,
    with its command.
@@ -407,21 +408,25 @@ could not install or save, say so first, in one plain line, and offer to try aga
 
 | Pick | The one next thing | `Start?` offers |
 | --- | --- | --- |
-| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | *Later, in a new session (recommended)*; *Now* |
+| *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | *Now*; *Later, in a new session (recommended)* |
 | *Write down how I invest, and see it evolve* | `philosophy` | the same |
 | *Build and test a strategy* | `init-example`, a finished strategy to read, then `init-strategy <name>` for their own | *Show me the worked example*; *Later* |
 | *Organise what I read, and help with my projects* — or the old *Organise what I read* — none, or their own words | when question 1 named a project or a decision, `study <it>`; otherwise their first source — attach it, or say where it is saved — then `read` | for `study`, *Start the study*; *Later*. For a source, *I have a document*; *Suggest a topic*, only with Finance among the domains and the reading map at hand; *Later* |
 
-The message ends with that one tool question, `Start?` (`¿Empezamos?`). For `philosophy`, its
-description says how long a round takes at that level, as `philosophy` gives it, that it can stop
-after any block, and that a new session starts with every skill loaded and a clean context.
+The message ends with that one tool question, `Start?` (`¿Empezamos?`), which also offers, before
+*Later*, each other pick's start option — *Show me the worked example*; *Start the study* when
+question 1 named a project or a decision, else *I have a document* — none twice, four at most. For
+`philosophy`, its description says how long a round takes at that level, as `philosophy` gives it,
+that it can stop after any block, and that a new session starts with every skill loaded and a
+clean context.
 
 - **Now** follows the `philosophy` skill in this conversation, with the same home; **Show me the
-  worked example**, the `init-example` skill; **Start the study**, the `study` command, with the
-  project or the decision as its subject and this home as its home, wherever the session is open.
-  One not loaded in this session is read from the package, `.apm/skills/<name>/SKILL.md` or
-  `.apm/prompts/study.prompt.md` under `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
-  `init-researcher` follows this one. Its own hand-over ends the run.
+  worked example**, the `init-example` skill, handed the home's parent folder; **Start the
+  study**, the `study` command, with the project or the decision as its subject and this home as
+  its home, wherever the session is open. One not loaded in this session is read from the
+  package, `.apm/skills/<name>/SKILL.md` or `.apm/prompts/study.prompt.md` under
+  `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as `init-researcher` follows this one. Its own
+  hand-over ends the run.
 - **Later**: nothing more; line 3 says where to begin, and `next` says it again.
 - **I have a document.** Ask them to attach it, or to say where it is saved, and follow the `read`
   skill with the same home: its plan copies the file into `Sources/` and reads it, on one go, with
@@ -450,7 +455,7 @@ it and save it as *Step 5* does:
 
 ```bash
 git add RESEARCHER.md
-git commit -m "Find first: <the works, by authors and year>"
+git commit -m "Find first: <the works, by authors and year>" -- RESEARCHER.md
 ```
 
 Then, in two lines: attach each one found, or say where it is saved, and I copy it into

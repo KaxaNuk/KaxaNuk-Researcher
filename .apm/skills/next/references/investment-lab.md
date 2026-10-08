@@ -34,9 +34,9 @@ of them.
 
 **The access line**, said wherever access comes up — a skill about one library names that library:
 
-> A licence for the Backtest Engine or Attribution Analysis, or access to Portfolio Construction,
-> is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
-> <https://www.kaxanuk.mx/lab> shows the Lab.
+> A licence for the Backtest Engine, Attribution Analysis or Portfolio Construction, or access to
+> Portfolio Construction, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library
+> and what it is for — <https://www.kaxanuk.mx/lab> shows the Lab.
 
 **The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;

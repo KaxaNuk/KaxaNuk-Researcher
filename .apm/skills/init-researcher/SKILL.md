@@ -8,7 +8,7 @@ description: >
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
   the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.6.0
+  version: 0.6.1
 ---
 
 # Init researcher — a home for the library, once
@@ -87,9 +87,9 @@ what happens in a sentence, and never ask them to type a command: you run every 
    copy in place — the script still exits 0 — and prints every command that finishes the
    repository from that step on. If git is missing, install it on the owner's go, then run the
    printed commands in the new folder. If the first commit fails for want of a git identity, ask
-   for *a name and an email to sign the versions your researcher saves; they stay on this
-   computer*, never invented; set them in that folder only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, then run the printed commands there.
+   for *a name and an email to sign the versions your researcher saves*, never invented; set them
+   in that folder only, `git config user.name "<name>"` and `git config user.email "<email>"`,
+   then run the printed commands there.
 
 7. **Run the interview now**, in this conversation, in the language chosen: follow the `interview`
    skill — from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` when

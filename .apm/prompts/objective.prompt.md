@@ -108,12 +108,13 @@ still there.
 
 **Then save it as a version of its own**, on the same go, with no second question and no
 `CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names it:
-`git add OBJECTIVE.md` and `git commit -m "Objective: <first pass, or the claims it moved>"`; to
-the owner, *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend`
-prints `true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill
-says. If git wants a name and an e-mail, ask for both in one plain line, set them in this folder
-only, never invented, and save again; with no `.git/`, say in one line that the strategy keeps no
-versions yet. This replaces the owner's own commit an older home's `AGENTS.md` asks for.
+`git add OBJECTIVE.md` and
+`git commit -m "Objective: <first pass, or the claims it moved>" -- OBJECTIVE.md`; to the owner,
+*Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
+`true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If
+git wants a name and an e-mail, ask for both in one plain line, set them in this folder only, never
+invented, and save again; with no `.git/`, say in one line that the strategy keeps no versions yet.
+This replaces the owner's own commit an older home's `AGENTS.md` asks for.
 
 Never write into the researcher's home from here. Never compute or promise a number. The objective
 is a capability and a set of claims; the numbers arrive later, from the engines the project names.

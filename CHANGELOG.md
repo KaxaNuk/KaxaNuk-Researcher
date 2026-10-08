@@ -13,8 +13,8 @@ folder. The first stable release: the README says in one page what it is, how to
 to remove it, and your home's README teaches six habits for working well with it.
 
 **What to do differently:** say `update` in your home, then once more in a new conversation — the
-first brings this version, and the second, run by it, adds what the first could not: on Gemini or
-Windsurf, your researcher itself (home template 0.22.0).
+first brings this version, and the second, run by it, brings your researcher's skill as this
+version writes it and, on Gemini or Windsurf, your researcher itself (home template 0.22.0).
 
 **Since 0.34.1**, one line each:
 - **0.35.0** — APM moves to 0.33.0, which installs the package cleanly on Windows.
@@ -46,7 +46,7 @@ Windsurf, your researcher itself (home template 0.22.0).
   research*, what a strategy needs from outside the package and `lab@kaxanuk.mx`; *Coming next*,
   starting points for valuation (DCF, multiples), M&A and budgets; and *Removing it*, two pinned
   `apm uninstall -g` lines — tried with APM 0.33.0 on the package installed from GitHub and a home
-  named *Sofía* — and the daily brief's task to delete in the app. 1,381 words up to the developers'
+  named *Sofía* — and the daily brief's task to delete in the app. 1,397 words up to the developers'
   link, where 0.34.1's ran 3,632 whole; *Qué es* moves into the Spanish install.
 - **The skills and commands tables** keep one short line a row; the reading-map sentence, the
   pre-0.10.0 note and the two-writes paragraph leave the README, their rules staying in the home's
@@ -64,6 +64,40 @@ Windsurf, your researcher itself (home template 0.22.0).
 - **The home template** (0.22.0): its README teaches *Working well with your researcher* and folds
   the advanced sections away; its `AGENTS.md` says the install mechanics once, 6,518 words where
   0.34.1's held 6,541; the Lab section names the Analytics Factory.
+- **What you came for stays one click away.** `interview` (2.5.0) keeps one next thing at its
+  hand-over, but `Start?` also offers, before *Later*, the start of each other thing you picked —
+  the worked example, the study of a project you named, or a document — four options at most. Its
+  first line says where to open your assistant: in your researcher's home, or in any project of
+  yours. `init-example` (0.4.2) puts `golden-flow` beside your researcher's home, which the
+  interview hands it, not beside whatever folder the install conversation was open in.
+- **The researcher's skill** (template 0.4.1, in `interview`) saves and sends what it learns in its
+  home from any folder, and pauses the automatic sending there too.
+- **Each save takes only its own files**: `objective`, `challenge`, `audit`, `refine`,
+  `refresh-index`, `study`, `teach`, `read`, `philosophy` (1.2.1), `query` (0.9.1), `interview`,
+  the researcher's skill and `next` end their save with the files they wrote, so a file staged by
+  hand or by an editor never rides in a *Read:* or *Challenge:* version. `update` still saves the
+  moves it staged.
+- **`read`** (0.12.1): at home as in a strategy, the text clipping a note was read from is saved
+  with its note — never a PDF, an extract or an ignored file — so the copy `backup` keeps holds it.
+- **`update`**: for a home that moved or came back on a new computer, the agent's *on this
+  machine* path is set to the home on the same go, shown in the plan; `backup` (0.1.2) says so for
+  a new computer.
+- **The name and e-mail that sign your versions** are no longer said to stay on this computer,
+  since `backup` sends them with the copy: `SETUP.md`, `interview`, `init-researcher` (0.6.1),
+  `init-strategy` (0.3.2), `init-example`, `read`, `philosophy`, `query`. `init-strategy` repeats
+  your one sentence on the idea at its hand-over, to give again in the new strategy.
+- **`SETUP.md` and the README**: uv's folder is written `$HOME/.local/bin/`, which PowerShell and
+  Git Bash expand, and `scaffold.py` is named among the commands that need git first on the path;
+  the README's example rule is about how your researcher speaks, its house rules apply *only in
+  KaxaNuk's own projects*, it says to quit and reopen your assistant after the install, and it
+  names `audit`'s log line beside the brief.
+- **The home's `AGENTS.md`**: while the researcher's skill is behind the package, every greeting
+  adds one line saying so, not only once a week.
+- **Strategy template 0.18.1 and worked example 0.16.1**: git is installed with one command,
+  `winget install --id Git.Git -e --accept-source-agreements --accept-package-agreements`, never
+  through GitHub Desktop, whose git is not on the command line; the example's README explains
+  *book*, *paper trading* and *Sharpe*, and no longer offers Portfolio Construction, which it does
+  not install; `experiment-lifecycle` (0.14.2) names template 0.18.1.
 ### Fixed
 - **Gemini and Windsurf now get your researcher.** Installing a home deploys only to the assistants
   its own `apm.yml` lists under `targets:`, with APM 0.29.0 as with 0.33.0, and the template listed
@@ -73,6 +107,26 @@ Windsurf, your researcher itself (home template 0.22.0).
   again; `next` sends a home missing the assistant in use to `update`; `interview` (2.4.1),
   `SETUP.md` and the home's `AGENTS.md` say an assistant must be in both lists. OpenCode stays
   out: it rejects the agent APM writes for it, as `SETUP.md` now says.
+- **`backup`'s send works on macOS** (0.1.2): it used `timeout`, which macOS does not ship, so
+  every automatic send there would fail and pause; git's own stall limit,
+  `-c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20`, replaces it, tried in Git Bash and
+  PowerShell 5.1.
+- **`next`** (1.8.0) tells the worked example by `<!-- example: begin -->` alone on its line, so a
+  strategy still holding the template's README, which quotes the marker, is not taken for it. A
+  blueprint stamped 0.39.0 or later and saved without its read-back has a way through part E: the
+  read-back is appended on your go and saved alone, and E passes with a line saying it came after.
+  The weekly line quotes the headline of the version it names, not whatever tops the changelog on
+  GitHub; with no installed version to compare it says nothing; the next week's date is set only
+  after a check that was due. In PowerShell, `next`'s and `update`'s one-liners are preceded by
+  `[Console]::OutputEncoding = [Text.Encoding]::UTF8;`, so dashes and accents come through.
+- **`audit`** names three writes made without a go of their own, as the home's `AGENTS.md` does.
+- **`references/investment-lab.md`** and the template's README name Portfolio Construction's
+  licence in the access line.
+- **The daily run's Windows schedule** (template 0.18.1, example 0.16.1) is for Command Prompt, its
+  days quoted; it starts `schtasks --%` in PowerShell and `MSYS_NO_PATHCONV=1 schtasks` in Git
+  Bash, and the folder's path is quoted there and in the cron line, so a path with a space works.
+- **`brief`** (1.0.3, since 0.36.0) and its `portfolio-rules.md`: a brief and a holding stay on this
+  computer, never in a saved version.
 
 ## [0.41.0] - 2026-10-08
 Getting started is shorter and warmer: two questions about you, then one next thing. The interview

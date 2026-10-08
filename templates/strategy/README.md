@@ -53,11 +53,11 @@ that leaves it.
 
 ## The tools
 
-Three jobs, one tool for each — either option does the job. Install once, use for every strategy.
+Three jobs, one tool for each. Install once, use for every strategy.
 
-| Job | What it is for | Pick one |
+| Job | What it is for | Use |
 | --- | --- | --- |
-| **Versions** | where your work lives, and how you get it back after you break it | [GitHub Desktop](https://desktop.github.com), or the [git](https://git-scm.com) command line |
+| **Versions** | where your work lives, and how you get it back after you break it | the [git](https://git-scm.com) command line, which setup and every save need; [GitHub Desktop](https://desktop.github.com) can sit on top, not in its place |
 | **Code and debug** | your pair for the parts you have not written before | [Claude](https://claude.ai/download), or [Codex](https://openai.com/codex) |
 | **Read and run** | where you write and run Python; the free editions are enough | [PyCharm](https://www.jetbrains.com/pycharm/), or [VS Code](https://code.visualstudio.com) |
 
@@ -241,14 +241,14 @@ installs the Data Curator.
 The **licensed** engines — Backtest Engine and Attribution Analysis — are deliberately absent
 from `pyproject.toml`, so their index URLs and keys never enter version control. **Portfolio
 Construction** is absent too: it is KaxaNuk's own library, not distributed publicly yet, and
-licensed since its 2.0.0. A licence for either engine, or access to Portfolio Construction, is
-KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
+licensed since its 2.0.0. A licence for either engine or for Portfolio Construction, or access to
+it, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
 <https://www.kaxanuk.mx/lab> shows the Lab. Install each by hand, as the
 `portfolio-construction-runs`, `backtest-engine-runs` and `attribution-analysis-runs` skills
 describe, and **guard their imports**: a notebook that uses one reports what is missing and skips.
 Without Portfolio Construction an equal-weight book still needs nothing but the eligible set;
-without the engines the pipeline still builds its portfolios and produces no backtest or
-attribution results until they are there.
+without the engines the pipeline still builds its portfolios and produces no backtest or attribution
+results until they are there.
 
 ---
 

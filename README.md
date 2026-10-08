@@ -10,8 +10,8 @@ language.
 
 > **You:** Ada, what have I read about index funds?\
 > **Ada:** Two notes, both linked — and a gap: nothing yet on their cost after tax.\
-> **You:** Remember this: never more than 5% in one stock.\
-> **Ada:** That is a rule for `RESEARCHER.md`, in your words, under *Non-negotiables*. Add it?
+> **You:** Remember this: always show me the strongest case against first.\
+> **Ada:** That goes in `RESEARCHER.md`, in your words, under *How it speaks*. Add it?
 
 **What it is.** A research and learning tool, never investment advice. It runs on your computer,
 through your assistant; what it reads goes to the company behind that assistant, never to KaxaNuk.
@@ -38,12 +38,12 @@ through your assistant; what it reads goes to the company behind that assistant,
    to do next.
 
 With Claude, installing also gives your assistant three house rules on this computer — two for
-KaxaNuk's Python style, in KaxaNuk repositories only, and one to read only what a task needs;
+KaxaNuk's Python style, only in KaxaNuk's own projects, and one to read only what a task needs;
 *Removing it* below undoes them.
 
-Then open your researcher's folder in a **new** conversation — in the Claude desktop app, a new
-**Code** session on that folder; in the Codex app, that folder; in a terminal, `claude`, `codex` or
-`gemini` run in it — and say hello, by its name.
+Then quit and reopen your assistant, and open your researcher's folder in a **new** conversation —
+in the Claude desktop app, a new **Code** session on that folder; in the Codex app, that folder; in
+a terminal, `claude`, `codex` or `gemini` run in it — and say hello, by its name.
 
 ### Instalación en español
 
@@ -66,12 +66,13 @@ en tu computadora, con tu asistente; lo que lee va a la empresa detrás de él, 
    minutos, y te dice dónde quedó y lo primero que conviene hacer.
 
 Con Claude, instalarlo también le da a tu asistente tres reglas de la casa en esta computadora —
-dos para el estilo de Python de KaxaNuk, solo en repositorios de KaxaNuk, y una para leer solo lo
-que una tarea necesita; *Removing it*, abajo, las quita.
+dos para el estilo de Python de KaxaNuk, solo en proyectos de KaxaNuk, y una para leer solo lo que
+una tarea necesita; *Removing it*, abajo, las quita.
 
-Después abre la carpeta de tu investigador en una conversación **nueva** — en la app de escritorio
-de Claude, una sesión nueva de **Code** en esa carpeta; en la app de Codex, esa carpeta; en una
-terminal, `claude`, `codex` o `gemini` en ella — y salúdalo por su nombre.
+Después cierra y vuelve a abrir tu asistente, y abre la carpeta de tu investigador en una
+conversación **nueva** — en la app de escritorio de Claude, una sesión nueva de **Code** en esa
+carpeta; en la app de Codex, esa carpeta; en una terminal, `claude`, `codex` o `gemini` en
+ella — y salúdalo por su nombre.
 
 ## What you can use it for
 
@@ -135,7 +136,8 @@ checked: [`CONTRIBUTING.md`](CONTRIBUTING.md).
 ## The skills and commands
 
 Every one that writes shows its plan first, waits for your go, and on that go saves a version of
-what it wrote, on your computer — the daily brief aside, which is never saved.
+what it wrote, on your computer — except the daily brief, never saved, and `audit`'s one log line,
+which running it by name approves.
 
 | Skill | What it does |
 | --- | --- |

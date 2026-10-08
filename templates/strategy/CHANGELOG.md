@@ -41,6 +41,28 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.1 (2026-10-08)
+
+**PATCH** — the line that schedules the daily run on Windows works in every shell and from a folder
+whose path has a space, and git is installed with one command, not with GitHub Desktop. Nothing
+about any result changes.
+
+**What to do differently:** nothing in a strategy already set up; to schedule a book on Windows,
+take the line from this version's `Paper_Trading/BITACORA.md`.
+
+### Changed
+
+- **`Paper_Trading/BITACORA.md`**, *Running it daily*: the Windows line is for Command Prompt, its
+  days quoted, `"MON,TUE,WED,THU,FRI"`, which PowerShell split at the commas; it starts
+  `schtasks --%` in PowerShell, and `MSYS_NO_PATHCONV=1 schtasks` in Git Bash, which turned
+  `/Create` into a path. The folder's path is quoted there and in the cron line.
+- **`SETUP.md`**, *What you need first*: git from `winget install --id Git.Git -e
+  --accept-source-agreements --accept-package-agreements`, which does not stop to ask; GitHub
+  Desktop leaves as a way to get it, since the git it brings is not on the command line.
+- **`Universe/universe.ipynb`**, section 1: a line of 160 characters wrapped at 100.
+- **`README.md`**, *The tools*: versions are the git command line; GitHub Desktop can sit on top,
+  not in its place. Its access line names Portfolio Construction's licence beside the two engines'.
+
 ## 0.18.0 (2026-10-08)
 
 **MINOR** — a new strategy says what to expect: nothing runs yet, and the assistant writes each file

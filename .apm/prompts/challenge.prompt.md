@@ -146,12 +146,13 @@ against a blueprint drafted with W.W.W*, or *with no stamp*.
 
 **Then save it as a version of its own**, on the same go, with no second question and no
 `CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names it:
-`git add Experiments/Experiment_N/JOURNAL_N.md` and `git commit -m "Challenge: Experiment N"`; to
-the owner, *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend`
-prints `true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill
-says. If git wants a name and an e-mail, ask for both in one plain line, set them in this folder
-only, never invented, and save again; with no `.git/`, say in one line that the strategy keeps no
-versions yet. This replaces the owner's own commit an older home's `AGENTS.md` asks for.
+`git add Experiments/Experiment_N/JOURNAL_N.md` and
+`git commit -m "Challenge: Experiment N" -- Experiments/Experiment_N/JOURNAL_N.md`; to the owner,
+*Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
+`true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If
+git wants a name and an e-mail, ask for both in one plain line, set them in this folder only, never
+invented, and save again; with no `.git/`, say in one line that the strategy keeps no versions yet.
+This replaces the owner's own commit an older home's `AGENTS.md` asks for.
 
 **What it never does, whatever the argument:**
 

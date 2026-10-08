@@ -105,11 +105,11 @@ no line in `Knowledge/INDEX.md`, no entry in `Knowledge/LOG.md`, which record th
 owner's work.
 
 **Then save a version**, on the same go, with no second question: `git add` the study's files, by
-name, never `--all`, and `git commit -m "Study: <subject>"`; to the owner, *Saved*, in one plain
-line, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to
-their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in
-one plain line, set them in this folder only, never invented, and save again; with no `.git/`, say
-in one line that the home keeps no versions yet.
+name, never `--all`, and `git commit -m "Study: <subject>" -- <the same files>`; to the owner,
+*Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
+`true`, it also goes to their copy on GitHub, as the `backup` skill says. If git wants a name and an
+e-mail, ask for both in one plain line, set them in this folder only, never invented, and save
+again; with no `.git/`, say in one line that the home keeps no versions yet.
 
 Never move, rename or delete a study on your own, never write outside `Studies/`, and never cite a
 study as a source — in a note, a concept page or a strategy.

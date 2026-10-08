@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.1
+  version: 0.1.2
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -42,8 +42,9 @@ The researcher's home, by default — the folder that holds `RESEARCHER.md`. Whe
 in a strategy — `Bibliotheca/`, `Universe/` and `Experiments/` — that strategy: one strategy, one
 repository, never inside the home's copy. The worked example, whose `README.md` or `AGENTS.md`
 carries `<!-- example: begin -->`, is for reading and takes no copy. Name the folder, by path. A
-folder with no `.git/` keeps no versions yet: say so in one line — `next` offers to start them —
-and stop. Changes not saved yet stay out of the copy; `next` offers to save them.
+folder with no `.git/` keeps no versions yet: say so in one line — at home `next` offers to start
+them — and stop. Changes not saved yet stay out of the copy: at home `next` offers to save them; in
+a strategy they are the owner's to save, as its `AGENTS.md` says.
 
 ## Step 3: A copy already?
 
@@ -120,15 +121,15 @@ ask*: `git config kaxanuk.autosend true` or `false`, in this folder only. With *
 ## Step 8: Sending a version
 
 What every skill that saves does when `git config --get kaxanuk.autosend` prints `true`, and what
-this skill does when asked — with no prompt that nobody can answer, and in bash under a timeout of
-about a minute:
+this skill does when asked — with no prompt that nobody can answer, and given up when the network
+stalls for twenty seconds — in bash or zsh, on Windows, macOS or Linux:
 
 ```bash
-GIT_TERMINAL_PROMPT=0 timeout 60 git -c credential.interactive=never push
+GIT_TERMINAL_PROMPT=0 git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
 ```
 
 ```powershell
-$env:GIT_TERMINAL_PROMPT = '0'; git -c credential.interactive=never push
+$env:GIT_TERMINAL_PROMPT = '0'; git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
 ```
 
 The fetch of *Step 3* runs the same way, `fetch` in place of `push`.
@@ -155,12 +156,13 @@ external disk — never in this copy, and never force a kept-out file into it.
 
 ## Step 10: A new computer
 
-Install the package as the package's `SETUP.md` says — git and uv in its step 1, the package in
-its step 2. Then, in a new session, clone the copy into a short folder —
-`git clone <the address> <folder>` — run `update` there, which rewrites the researcher's skill for
-the new path and installs the home for the user, and open a new session; a strategy's clone takes
-its own `SETUP.md` instead. The name, the e-mail and *Send?* do not travel: set them again, as
-*Step 6* and *Step 7* say. The PDFs and `Portfolio/` come from wherever they were kept.
+Install the package as the package's `SETUP.md` says — git and uv in its step 1, the package in its
+step 2. Then, in a new session, clone the copy into a short folder —
+`git clone <the address> <folder>` — run `update` there, which rewrites the researcher's skill and
+the agent's path for the new folder and installs the home for the user, and open a new session; a
+strategy's clone takes its own `SETUP.md` instead. The name, the e-mail and *Send?* do not travel:
+set them again, as *Step 6* and *Step 7* say. The PDFs and `Portfolio/` come from wherever they were
+kept.
 
 ## Never
 
@@ -172,5 +174,6 @@ the owner did not ask; offering a copy, or reminding the owner of one, unasked.
 ## References
 
 - The home's `AGENTS.md`, *Versions*: what a saved version is, and the send each saving skill makes.
-- `next`: starts the versions in a folder with none, and saves changes made by hand.
-- `update`: on a new computer, rewrites the researcher's skill for the path and installs the home.
+- `next`: at home, starts the versions where there are none, and saves changes made by hand.
+- `update`: on a new computer, rewrites the researcher's skill and the agent's path for the new
+  folder, and installs the home.

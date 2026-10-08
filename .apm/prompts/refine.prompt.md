@@ -33,10 +33,10 @@ pass. `${input:path}` is one file under `Philosophy/`.
 5. Show the diff in chat and wait for an explicit go, *write it and save a version*.
 6. Apply exactly the approved diff. Report what changed.
 7. **Then save a version**, on the same go, with no second question: `git add` the file, by name,
-   never `--all`, and `git commit -m "Refine: <file>"`; to the owner, *Saved*, in one plain line,
-   never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to
-   their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for
-   both in one plain line, set them in this folder only, never invented, and save again; with no
+   never `--all`, and `git commit -m "Refine: <file>" -- <file>`; to the owner, *Saved*, in one
+   plain line, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also
+   goes to their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask
+   for both in one plain line, set them in this folder only, never invented, and save again; with no
    `.git/`, say in one line that the home keeps no versions yet. This replaces an older home's
    *Commit?* question.
 
