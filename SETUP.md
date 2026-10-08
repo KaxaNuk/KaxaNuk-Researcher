@@ -54,9 +54,10 @@ in `%USERPROFILE%\.local\bin\` on Windows and `~/.local/bin/` elsewhere, and git
 `C:\Program Files\Git\cmd\git.exe` on Windows. A command that runs git itself, APM among them,
 finds it when `C:\Program Files\Git\cmd` is put first on the path in that same command.
 
-Every folder the researcher makes starts as a git repository with a first commit, which needs a
-name and an email. If `git config --global user.name` prints nothing, ask the user for both —
-**never invent them** — and set them:
+Every folder the researcher makes keeps dated versions of its files, each signed with a name and
+an email. If `git config --global user.name` prints nothing, ask the user for both in plain words —
+*a name and an email to sign the versions your researcher saves; they stay on this computer* —
+**never invent them**, and set them:
 
 ```bash
 git config --global user.name "<their name>"
@@ -92,7 +93,7 @@ Two questions, one at a time:
 
 Follow `init-researcher` from its installed path, from its step 4, with the language, the name and
 the place already chosen: it skips the update — the package was installed a minute ago — and copies
-the researcher's home with `scaffold.py`, as a git repository with its first commit.
+the researcher's home with `scaffold.py`, with its first saved version.
 
 ## Step 5 — The interview
 
@@ -100,8 +101,8 @@ Follow `interview` from its installed path, in the same conversation, with the n
 home: a few short questions about the user — what they do, what they are here for, the
 researcher's voice and their rules — about three minutes, in the user's language. Nothing about
 markets is asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by
-name and the skill that puts it in every session, installs them for the user and commits — the
-user answers and gives one go.
+name and the skill that puts it in every session, installs them for the user and saves a first
+version — the user answers and gives one go.
 
 ## Step 6 — Hand over
 
@@ -112,11 +113,10 @@ is, how to add a first source, the one next thing for what the user came for, an
 from its installed path.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
-`.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and `git status` is clean — save
-what a `read` or a `philosophy` round taken now leaves for the user to review first. For
-Claude Code, `~/.claude/skills/` holds `init-strategy`, `read`, `query`, `interview`, `next`,
-`philosophy`, `brief` and the researcher's own skill, and `~/.claude/agents/` holds
-`blueprint-critic.md` and the researcher's agent.
+`.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and everything is saved:
+`git status` is clean. For Claude Code, `~/.claude/skills/` holds `init-strategy`, `read`, `query`,
+`interview`, `next`, `philosophy`, `brief`, `backup` and the researcher's own skill, and
+`~/.claude/agents/` holds `blueprint-critic.md` and the researcher's agent.
 
 ---
 

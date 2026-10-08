@@ -37,10 +37,10 @@ Three rules from `SETUP.md` apply from the first command:
 
 ## How work reaches `main`
 
-Work is committed on `main`, in small commits whose messages say what moved and why, each with its
-`CHANGELOG.md` entry. A branch and a pull request are for a change you want reviewed, or for two
-lines of work that must not mix — never a gate — and the branch is deleted once it is merged or
-abandoned: `main` is the only branch that stays.
+Work is committed on `main`, in small commits whose messages say what moved and why, each
+change-set with its `CHANGELOG.md` entry. A branch and a pull request are for a change you want
+reviewed, or for two lines of work that must not mix — never a gate — and the branch is deleted
+once it is merged or abandoned: `main` is the only branch that stays.
 
 **The template and the worked example, `golden-flow`, live in the
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package. The example is for
@@ -60,10 +60,15 @@ strategy of your own starts with `init-strategy`.
 
 ### The blueprint is committed before the rule
 
-For an experiment, `BLUEPRINT_N.md` is committed in a commit of its own before the rule cell of
-`experiment_N.ipynb` holds code; for Experiment 1 only the `JOURNAL_1.md` entry choosing the
-benchmark comes before it. The commit order is what shows the hypothesis was written before the
+For an experiment, `BLUEPRINT_N.md` is committed alone — no rule cell, no code — before the rule
+cell of `experiment_N.ipynb` holds code; for Experiment 1 only the `JOURNAL_1.md` entry choosing
+the benchmark comes before it. The commit order is what shows the hypothesis was written before the
 answer, so the two never share a commit.
+
+**A document the researcher writes on the owner's go is saved as its own version on that go** — a
+note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a line in `Bibliotheca/LOG.md` —
+with no `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it. The
+go on the plan is the owner's signature: the assistant removes the template's blockquote on that go.
 
 <!-- example: begin -->
 
@@ -80,7 +85,8 @@ entries of that day in `JOURNAL_1.md`.
 - **Notebook outputs are stripped.** The committed notebook is the method; `FINDINGS_N.md` is the
   record.
 - The `CHANGELOG.md` entry is part of the change-set, not a follow-up. If you cannot write the
-  entry, the change-set is not finished.
+  entry, the change-set is not finished. A document saved on the owner's go, as above, is the
+  exception.
 - **A result is committed once the pipeline has re-run end to end from a wiped working copy**, and
   every notebook has reached the end of its Verify section.
 - **If a published number moved, the commit message says which** — and `FINDINGS_N.md` changed

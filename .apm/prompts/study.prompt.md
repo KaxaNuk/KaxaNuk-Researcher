@@ -97,16 +97,19 @@ Rules:
 ## Step 5: Show, wait, then write
 
 Show the draft in chat — for a revision, the change — with its path and the leads it depends on.
-Ask for the go through the question tool — *Go*, *Change something*, *Stop* — and write on *Go*
-only; in chat, any of the go words in the home's `AGENTS.md` is the go. On *Change something*,
-offer as options the changes the draft admits: a narrower subject, a part left out, another name.
-Then write the study and nothing else — no note, no line in `Knowledge/INDEX.md`, no entry in
-`Knowledge/LOG.md`, which record the library, not the owner's work.
+Ask for the go through the question tool — *Go*, described as *write it and save a version*;
+*Change something*; *Stop* — and write on *Go* only; in chat, any of the go words in the home's
+`AGENTS.md` is the go. On *Change something*, offer as options the changes the draft admits: a
+narrower subject, a part left out, another name. Then write the study and nothing else — no note,
+no line in `Knowledge/INDEX.md`, no entry in `Knowledge/LOG.md`, which record the library, not the
+owner's work.
 
-**Then offer the commit**, as the home's `AGENTS.md` says. Show `git add` with the study's files, by
-name, never `--all`, and `git commit -m "Study: <subject>"`, and ask `Commit?` (`¿Confirmo?`):
-*Commit it for me* runs them; after *I'll review it first*, they commit, or say *commit it* and you
-run them. Never commit unasked.
+**Then save a version**, on the same go, with no second question: `git add` the study's files, by
+name, never `--all`, and `git commit -m "Study: <subject>"`; to the owner, *Saved*, in one plain
+line, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to
+their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in
+one plain line, set them in this folder only, never invented, and save again; with no `.git/`, say
+in one line that the home keeps no versions yet. This replaces an older home's *Commit?* question.
 
 Never move, rename or delete a study on your own, never write outside `Studies/`, and never cite a
 study as a source — in a note, a concept page or a strategy.

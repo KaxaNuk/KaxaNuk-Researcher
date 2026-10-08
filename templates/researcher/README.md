@@ -18,44 +18,33 @@ your researcher, it proposes a paragraph about it to replace this one, on your g
 | `Knowledge/` | the researcher's notes on what you read, with `INDEX.md` and `LOG.md` | written by `read`, on your go; ask it with `query` |
 | `Studies/` | ideas, plans and decisions worked out from what you read | `study <subject>`; `study` alone lists them |
 | `Lessons/` | lessons from `teach`, a folder per topic | appears with your first `teach <topic>` |
-| `Briefs/` | your daily brief, one file a day — work, markets, portfolio — every figure quoted from a dated source, never advice | `brief setup` once — on the Claude desktop app it then comes on its schedule; `brief` writes today's now. Kept on this machine, never committed |
-| `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them. Kept on this machine, never committed |
+| `Briefs/` | your daily brief, one file a day — work, markets, portfolio — every figure quoted from a dated source, never advice | `brief setup` once — on the Claude desktop app it then comes on its schedule; `brief` writes today's now. Kept on this computer only, never in a saved version |
+| `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them. Kept on this computer only, never in a saved version |
 | `AGENTS.md`, `CLAUDE.md` | the rules the researcher works by | nothing to do |
 | `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
-| `Extracts/` | text pulled out of the PDFs, for `read`; regenerable, never committed | nothing to do |
+| `Extracts/` | text pulled out of the PDFs, for `read`; remade when needed, kept on this computer only | nothing to do |
 
-The library is private: nothing in `Sources/` should ever be pushed anywhere public, and the
-`.gitignore` keeps PDFs out. Clippings and the notes read from them are committed with the home, so
-a home that holds a private project's material stays a private repository. `Philosophy/` is
-committed too, your rounds included: on a public remote, your goals and answers are public.
-`Briefs/` and `Portfolio/` never leave this machine — the `.gitignore` keeps them out.
+## Keep a copy off this computer
 
-## Save a copy off this computer
+Each go saves a dated version of what your researcher wrote, on this computer only: a broken or
+lost laptop would take your library with it. Say *keep a copy*, or run `backup`, and your
+researcher puts this folder on a private GitHub repository — a copy only you can see — sends each
+new version there, and brings it back on a new computer. You need a free GitHub account; signing
+in is yours to do, and the rest it does for you or walks you through.
 
-This folder is a git repository. Every skill that writes here offers to commit — pick *Commit it
-for me* — and the interview commits at its end: each saves a version **on this computer only**, and
-a broken or lost laptop takes your library with it. Learning a little git is worth it, so your
-researcher is also kept somewhere else and can follow you to another computer:
-
-1. Create an empty **private** repository on GitHub, or a service like it.
-2. Connect this folder to it and send what you have — or ask your researcher to walk you through
-   it:
-
-   ```bash
-   git remote add origin <the URL of your private repository>
-   git push -u origin main
-   ```
-
-3. From then on, `git push` after a commit sends the new version too.
-
-Keep that repository private: your sources, your notes and your answers in `Philosophy/` are in it.
+The copy holds your notes, studies, lessons, clippings kept as text, `RESEARCHER.md` and
+`Philosophy/`, your answers included: keep it private. It never holds the PDFs, images and office
+files in `Sources/`, nor `Extracts/`, `Briefs/` or `Portfolio/` — they stay on this computer. Keep
+the PDFs and `Portfolio/` somewhere private of your own: an external disk, or a personal cloud
+folder outside this one.
 
 ## The path
 
 1. **Set up, once:** `interview`, if the install has not run it yet — a few short questions about
    you, about three minutes: what you do, what you are here for, the researcher's voice and your
    rules. It writes `RESEARCHER.md`, the agent that makes your researcher callable by name and the
-   skill that makes it present in every session, installs both for your user and commits.
+   skill that makes it present in every session, installs both for your user and saves a first
+   version.
 2. **Start learning.** Attach a PDF, or a text or Markdown file, in chat — or name one on your
    computer — and say *read it*: the researcher copies it into `Sources/Papers/`, `Sources/Books/`
    or `Sources/Clippings/` on your go. Save a Word document, an e-book or a web page as PDF first.
@@ -191,9 +180,6 @@ are built from the notes, and no note is ever built from a study. `Philosophy/` 
 compiled into notes, so your judgement stays yours; its rounds in `Philosophy/Evolution/` are a
 record of how your view moved, and `HOW-I-INVEST.md`, never a round, is what is cited as your
 view. A brief is never cited: a figure in one enters the library only as a source in `Sources/`.
-
-**On Windows,** `git diff` prints a CRLF warning for files the researcher wrote; it is expected and
-harmless, `.gitattributes` normalises on commit.
 
 ---
 

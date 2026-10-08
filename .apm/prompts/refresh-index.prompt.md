@@ -27,16 +27,17 @@ the files.
    standard markdown link and the description on every line. Domains in alphabetical order; pages
    and notes alphabetical inside a domain; chapters in book order. No per-folder indexes beyond a
    book's own.
-4. Show the diff against the current `INDEX.md` in chat and wait for a go. **Never write on a
-   rejected or unanswered plan.**
+4. Show the diff against the current `INDEX.md` in chat and wait for a go, *write it and save a
+   version*. **Never write on a rejected or unanswered plan.**
 5. Write `INDEX.md`, and append to the library's `LOG.md`: `## [YYYY-MM-DD] refresh-index | <N>
    notes indexed`.
-6. **Then offer the commit.** Show the two commands it takes — `git add Knowledge/INDEX.md
-   Knowledge/LOG.md`, never `--all`, and `git commit -m "Refresh the index"` — and ask `Commit?`
-   (`¿Confirmo?`): *Commit it for me*, *I'll review it first*; without a question tool, the two as
-   a numbered list in chat. On *Commit it for me*, run them: the owner's pick is the human act, as
-   the go was for the write. On *I'll review it first*, nothing more: they commit, or say *commit
-   it* and you run the commands then. Never commit unasked.
+6. **Then save a version**, on the same go, with no second question:
+   `git add Knowledge/INDEX.md Knowledge/LOG.md`, never `--all`, and
+   `git commit -m "Refresh the index"`; to the owner, *Saved*, in one plain line, never the
+   commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their copy on
+   GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain
+   line, set them in this folder only, never invented, and save again; with no `.git/`, say in one
+   line that the home keeps no versions yet. This replaces an older home's *Commit?* question.
 
 Never modify a note during a refresh. Never index anything under `Philosophy/`, `Sources/` or
 `Extracts/`.

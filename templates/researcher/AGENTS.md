@@ -169,8 +169,8 @@ owner's go, and nothing else writes in `Studies/`.
   them, or an idea ready to be a strategy, moves out — to `init-strategy <name>`, where the study
   is the owner's words for `objective`'s first pass, named in prose, or to a repository the owner
   invites the researcher into — and stays behind as the record, its state *moved to `<path>`*.
-- **Committed with the home**, like every file here: a study that holds a private project's
-  material keeps the home a private repository, as a clipping does.
+- **Saved with the home**, like every file here: a study holding a private project's material
+  keeps any copy private, as a clipping does.
 
 ## Working in a strategy
 
@@ -198,8 +198,8 @@ from another template keeps or maps them in its own `AGENTS.md`.
   and the owner's go — a note into `Bibliotheca/Papers/` or `Books/` with its row in
   `BIBLIOGRAPHY.md`, the claims into `OBJECTIVE.md`, the hypothesis into `BLUEPRINT_N.md`, a line
   in `Bibliotheca/LOG.md` from `read` and `audit`, and a dated entry appended to `JOURNAL_N.md` —
-  the benchmark's choice in `JOURNAL_1.md`, or `challenge`'s. The owner reviews the diff and
-  commits — the human act; a blueprint's commit is one of its own, before the rule.
+  the benchmark's choice in `JOURNAL_1.md`, or `challenge`'s. The go, the owner's review and
+  signature, saves the version; the blueprint is saved alone, before the rule.
 - **Nothing flows back.** The researcher is one per person and shared by every strategy; what it
   learns in one experiment must not leak into the next through its own library. While it works on
   a strategy it writes nothing at home — no note, no index line, no log entry, no extract — unless
@@ -277,8 +277,7 @@ organisation as the author, the year of the release read. A private repository i
 "private repository; link not checked", never by a link the researcher could not open. The read
 is tied to a numbered question under *What you are reading for* in `RESEARCHER.md`, as every read
 is. The project's own skills and commands are installed or read there, never imitated at home.
-Clippings and the notes read from them are committed with the home, so a home that holds a private
-project's material stays a private repository.
+Clippings and the notes read from them are saved with the home, whose copy stays private.
 
 ## Plan first, then write
 
@@ -292,8 +291,11 @@ folder table: `teach`'s `progress.md` in `Lessons/`, the round file `philosophy`
 their own:** the single line `audit` appends to the library's `LOG.md` when it reports, and the
 day's file `brief` writes in `Briefs/`. Running `audit` or `brief` by name is the go for that
 write, the go on `brief setup`'s plan is the go for every brief its schedule writes, and neither
-writes anything else. At home, a skill that wrote then offers the commit — `Commit?`, *Commit it
-for me* or *I'll review it first* — and the owner's pick is the go for it; never a commit unasked.
+writes anything else. **Every go also saves a version** of what it wrote — `git add` by name,
+never `--all` or an ignored path, then `git commit` — said in one line, *Saved*, with no second
+question. Where no go covers a save — the owner's edits, which `next` finds, or a tree `update`
+finds unsaved — it asks `Save?`: *Save this version* or *Not now* (*Stop*, in `update`). Running
+`audit` saves its line; a brief never is. No version is saved unasked.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool
 — Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
@@ -316,6 +318,13 @@ one install and one check; one task per session, what matters kept in the files;
 reading — grep for the lines, a wide sweep sent to a subagent that returns the conclusion; short
 replies — a large diff summarised, no recap of what the owner has seen, depth when they ask.
 
+**Versions.** To the owner a saved version is never a *commit*, and git is named only if they name
+it. Only `backup` makes a copy off this computer, when they ask: a private GitHub repository.
+When `git config --get kaxanuk.autosend` prints `true`, every saved version is sent there too —
+`git -c credential.interactive=never push` with `GIT_TERMINAL_PROMPT=0`, never `--force`, a pull
+or a merge on its own; a failed send keeps the version here, says so in one line and sets
+`kaxanuk.autosend` to `paused` until they say *back up*.
+
 **The agent never writes at all**, and that follows from this rule rather than sitting beside it.
 A subagent reports back once and cannot ask for a go, so there is no way for it to write with the
 owner's consent. It answers, it cites, and it names the skill or command the owner should run.
@@ -330,7 +339,7 @@ own version in `apm.yml` is the owner's, as `README.md`'s *Installing and updati
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read` and `query`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy` and `brief`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
+| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read` and `query`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, in its `.apm/agents/`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |

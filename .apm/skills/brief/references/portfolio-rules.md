@@ -4,8 +4,8 @@
 > this file and, under *Rules to look at*, quotes a rule the day's news bears on, word for word and
 > with no verdict on it. It never says buy, sell, trim, add or hold, and never computes a weight, a
 > P&L, a return or a risk figure: those come from the engines the project names. A heading that
-> still holds its angle-bracketed prompt says nothing yet, and is skipped. This folder is
-> gitignored, so it stays on this machine. Delete this note once you start.
+> still holds its angle-bracketed prompt says nothing yet, and is skipped. This folder stays on
+> this computer, never in a saved version. Delete this note once you start.
 
 ## What this portfolio is for
 

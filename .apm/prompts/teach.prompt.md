@@ -33,16 +33,16 @@ When `Philosophy/Evolution/` holds a round of `philosophy`, read the newest one'
 one line for them to correct; the newest is the latest date in the file names, and on that date
 the highest suffix, `YYYY-MM-DD-2.md`. Then show the plan in chat — the mission, the preferences,
 the folder and the files it creates — and ask for the go through the question tool where the
-harness has one: *Go*, *Change something*, *Stop*. On the go, write the mission and the
-preferences into `progress.md`. Never skip the interview; never re-interview an existing topic
-unless the owner says the mission has changed.
+harness has one: *Go*, described as *write it and save a version*; *Change something*; *Stop*. On
+the go, write the mission and the preferences into `progress.md` and save it alone, as item 5
+says, with the message `Teach: <topic>, mission`. Never skip the interview; never re-interview an
+existing topic unless the owner says the mission has changed.
 
 **An existing topic**: read `progress.md` — mission, track, preferences — and pick the next lesson
 just beyond what stuck last time.
 
 **A topic still in `Projects/Teach/<topic-slug>/`** is never started afresh in `Lessons/`. Say so
-and point at `update`, which moves it to `Lessons/<topic-slug>/` on the owner's go; or by hand,
-`mkdir -p Lessons`, then `git mv Projects/Teach/<topic-slug> Lessons/<topic-slug>`. With a
+and point at `update`, which moves it to `Lessons/<topic-slug>/` on the owner's go. With a
 `Lessons/<topic-slug>/` as well, the owner merges the two by hand; teach it from `Lessons/` then.
 
 **Every lesson:**
@@ -55,14 +55,17 @@ and point at `update`, which moves it to `Lessons/<topic-slug>/` on the owner's 
 2. One tightly scoped concept, tied to the mission and, where it fits, to a strategy the owner is
    building.
 3. Show the lesson's plan first — the one concept, the notes it will cite, the file name — and wait
-   for the go. Then write it as `sessions/NNNN-<name>.md`, run it interactively in chat, and close
-   with a short retrieval quiz that also touches earlier sessions.
+   for the go, *write it and save a version*. Then write it as `sessions/NNNN-<name>.md`, run it
+   interactively in chat, and close with a short retrieval quiz that also touches earlier sessions.
 4. Append one row to the track in `progress.md`: date, lesson, what stuck, what did not. That row
    is part of the same run, on the same go, the way a `LOG.md` entry is; it needs no second go.
-5. **Then offer the commit**, as the home's `AGENTS.md` says. Show `git add` with the session file
-   and `progress.md`, by name, never `--all`, and `git commit -m "Teach: <topic>, session <N>"`,
-   and ask `Commit?` (`¿Confirmo?`): *Commit it for me* runs them; after *I'll review it first*,
-   they commit, or say *commit it* and you run them. Never commit unasked.
+5. **Then save a version**, on the same go, with no second question: `git add` the session file
+   and `progress.md`, by name, never `--all`, and `git commit -m "Teach: <topic>, session <N>"`;
+   to the owner, *Saved*, in one plain line, never the commands. When
+   `git config --get kaxanuk.autosend` prints `true`, it also goes to their copy on GitHub, as the
+   `backup` skill says. If git wants a name and an e-mail, ask for both in one plain line, set them
+   in this folder only, never invented, and save again; with no `.git/`, say in one line that the
+   home keeps no versions yet. This replaces an older home's *Commit?* question.
 6. Close the lesson with one line, offered and never pressed: a round of `philosophy` — round 1
    when `Philosophy/Evolution/` holds none, else the next, naming the last round's date — for
    whenever they want to write down how they invest, in their words, as what they learn moves it.

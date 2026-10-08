@@ -3,12 +3,12 @@ name: interview
 description: >
   Interview the owner in two short steps and write RESEARCHER.md — who they are, what they are
   here for, the researcher's domains, voice and rules — then the agent and skill that make the
-  researcher callable by name and present in every session; install both, commit and hand over.
-  Only when the owner runs it by name, or as the last step of the install SETUP.md or
-  init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
+  researcher callable by name and present in every session; install both, save a first version
+  and hand over. Only when the owner runs it by name, or as the last step of the install SETUP.md
+  or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.1.2
+  version: 2.2.0
 ---
 
 # The interview
@@ -207,13 +207,13 @@ design rule when added, *How it cites* and the other sections as the template sh
 agent file, the researcher's skill and the `apm.yml` lines of *Step 4*, written from those, in one
 line each. Show any of it, or the full file, when the owner asks. Say, in one line, that on *Go*
 the researcher also installs itself for the owner's user, so it is there in every folder, and
-commits what it wrote, and that the assistant may ask to allow those two commands. Then ask for the
-go — header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only; in
-chat, *go*, *proceed*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language,
-is the go. On *Change something*, offer the changes the preview admits as options. Then write
+saves a first version, and that the assistant may ask to allow both. Then ask for the go — header
+`Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only; in chat, *go*,
+*proceed*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the go.
+On *Change something*, offer the changes the preview admits as options. Then write
 `RESEARCHER.md`, the agent file, the researcher's skill, the `apm.yml` lines and the README's
 opening paragraph, and remove the instruction blockquote at the top of `RESEARCHER.md`; *Step 5*
-deploys and commits them on the same go.
+installs and saves them on the same go.
 
 ## Step 4: The agent and the researcher's skill
 
@@ -343,7 +343,7 @@ colon in it, for the reason above, its `author:` to the owner, and its `version:
 owner's from then on, as the home's `README.md` says under *Installing and updating*. Nothing else
 in it changes.
 
-## Step 5: Deploy it, and commit
+## Step 5: Install it, and save a first version
 
 The agent and the skill are files until APM deploys them. On the same go, once they are written,
 run both commands yourself — the owner types nothing, and may not know what either means:
@@ -362,9 +362,9 @@ run both commands yourself — the owner types nothing, and may not know what ei
    changes. Gemini, OpenCode and Windsurf take the skill and not the agent: say so in one line.
    Codex takes the agent without its tool list, which is why its body says it never writes. Say
    this, and where else the boundary holds, only if the owner asks; the home's `AGENTS.md` has it.
-   If it fails, say so in one plain line, give the owner that command to run later, and go on; on
-   Windows, a path in that copy past 260 characters fails it, and a shorter home path fixes it.
-2. **Commit what the interview wrote**, by name and nothing else in the folder — `RESEARCHER.md`,
+   If it fails, go on: the hand-over says so. On Windows, a path in that copy past 260 characters
+   fails it, and a shorter home path fixes it.
+2. **Save what the interview wrote**, by name and nothing else in the folder — `RESEARCHER.md`,
    `README.md`, `apm.yml`, the agent file and the skill:
 
    ```bash
@@ -372,10 +372,12 @@ run both commands yourself — the owner types nothing, and may not know what ei
    git commit -m "Interview: <Name>, <owner>'s research companion"
    ```
 
-   The owner's go on the preview is their review, and the commit records it, so `next` starts from
-   a clean tree. If the commit fails for want of a git identity, ask for the name and email —
-   never invent them — set them in this repository only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, and commit again.
+   The go on the preview covers it, with no second question. Say *Saved* in one plain line, never
+   the commands, and when `git config --get kaxanuk.autosend` prints `true`, send it as the
+   `backup` skill says. If the commit fails for want of a git identity, ask for *a
+   name and an email to sign the versions your researcher saves; they stay on this computer*,
+   never invented; set them in this folder only, `git config user.name "<name>"` and
+   `git config user.email "<email>"`, and save again.
 
 Nothing else is installed: the home's `apm.yml` declares no dependency, and every KaxaNuk skill
 and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed once for the user.
@@ -385,12 +387,12 @@ the owner's, to put themselves there or choose another licence.
 ## Step 6: Hand over
 
 In the voice and the language the owner chose, **15 lines or fewer before the closing
-questions**, in this order. When *Step 5* could not deploy or commit, say so first, with the one
-command the owner runs.
+questions**, in this order. When *Step 5* could not install or save, say so first, in one plain
+line, and offer to try again.
 
 1. **Who I am now**, in one sentence — and that in a new session, in this folder or any other,
-   they ask for the researcher by name; if this conversation installed git or uv, they quit and
-   reopen the assistant first.
+   they ask for the researcher by name; if this conversation installed tools, they quit and reopen
+   the assistant first.
 2. **Your home**, in one or two lines: its full path, and that its `README.md` maps every folder;
    no table of folders here.
 3. **Your first source**, in one line: attach a PDF here, or say where one is saved, and I copy it
@@ -444,8 +446,8 @@ scholar search or a university library finds it; and that *Other* takes a work o
 show the line the picks add — appended to the closing *Find first* line of *What you are reading
 for*, add-only, in place of the template's *none*, each work as year, authors and title,
 separated by semicolons; the line goes before *Out of scope for now* when the section has none —
-and ask for the go, `Go?` (`¿Escribo?`), *Go* — described as *writes the line and commits it* —
-*Stop*. On *Go*, write it and commit it by name:
+and ask for the go, `Go?` (`¿Escribo?`), *Go* — described as *writes the line and saves it* —
+*Stop*. On *Go*, write it and save it as *Step 5* does:
 
 ```bash
 git add RESEARCHER.md

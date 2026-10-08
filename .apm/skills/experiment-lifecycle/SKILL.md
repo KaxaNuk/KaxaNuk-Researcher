@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.12.1
+  version: 0.13.0
 ---
 
 # The research process — how a strategy repository is worked in
@@ -215,8 +215,9 @@ its path: `--only Universe` stops over the seed, which is already the strategy's
    `.gitkeep`. The template's `.gitignore` already covers them.
 2. Copy the three templates from `references/`, replacing `N`. **Write `BLUEPRINT_N.md` before any
    code**, stating the economic mechanism, the claim it moves, its control and the one condition
-   that would falsify it, and citing every prediction's source. The blueprint template is the
-   first experiment's; delete the sentences that only apply to Experiment 1.
+   that would falsify it, and citing every prediction's source; on the owner's go it is saved
+   alone, before the rule. The blueprint template is the first experiment's; delete the sentences
+   that only apply to Experiment 1.
 3. Copy `references/experiment-notebook.ipynb` to `experiment_N.ipynb`. It too is Experiment 1's:
    retitle it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that
    only apply to Experiment 1. Then declare the experiment's columns in section 0; import the

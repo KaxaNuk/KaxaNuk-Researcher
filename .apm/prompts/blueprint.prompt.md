@@ -51,7 +51,8 @@ The owner runs it, and the draft continues from there.
 **For N > 1 there is no file yet.** The blank is the `experiment-lifecycle` skill's
 `references/blueprint-template.md` — the example's file with its own lines stripped — copied to
 `Experiments/Experiment_N/BLUEPRINT_N.md` with `N` replaced, as that skill's section 6 says. Offer
-the copy as the plan, make it on the owner's go, and the draft continues from there.
+the copy as the plan, make it on the owner's go — it is saved with the blueprint, in *Step 5* — and
+the draft continues from there.
 
 ## Step 2: Read, in this order
 
@@ -118,10 +119,8 @@ as the example's.
   commit: write `local` in its place. With no such entry, read `version:` in
   `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/apm.yml` and write no commit; with neither,
   write `version unknown` and say so in *Step 5*. Never a version from memory: the stamp is how
-  `challenge` tells whether the process changed between the blueprint and its run. Leave the
-  template's blockquote at the top,
-  whole, its last line included: *delete this blockquote* is addressed to the owner, who deletes it
-  when they commit — never you, before or after the go.
+  `challenge` tells whether the process changed between the blueprint and its run. The template's
+  blockquote stays, whole, until the go.
 
 ## Step 4: Put the draft to its critic
 
@@ -168,11 +167,23 @@ sections still to run, the seven questions they left open and whether the kill s
 still the draft's, and **anything the bar in `AGENTS.md` asks for that the draft does not have**
 — a control differing in exactly one thing on the rule's own dates, a trial count if variants will
 be ranked, the one falsification condition — so the owner meets now what graduation will ask, not at
-the gate. Wait for the go. Then write it into `Experiments/Experiment_N/BLUEPRINT_N.md` in the
-strategy, under the template's headings and its blockquote. The owner edits and commits it **before
-writing the rule** — in a commit of its own, so the history shows the order. Then say what comes
-next in the order of work: the broad reading, for what the blueprint left as leads; and the cycle
-— portfolio construction, backtest, attribution — until it is finished.
+the gate. Wait for the go, described as *sign it, write it and save a version*: it is the owner's
+signature. On it, write the draft into `Experiments/Experiment_N/BLUEPRINT_N.md` in the strategy,
+under the template's headings, and remove the template's blockquote.
+
+**Then save the blueprint alone**, on the same go, **before any rule is coded** — no rule cell, no
+code, no second question, and no `CHANGELOG.md` entry, version bump or ruff gate: the next
+change-set's entry names it. `git add Experiments/Experiment_N/BLUEPRINT_N.md`, then
+`git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md`, so
+nothing else staged goes with it; to the owner, one plain line, never the commands: *Saved: your
+proof the idea came before the result.* When `git config --get kaxanuk.autosend` prints `true` in
+the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants
+a name and an e-mail, ask for both in one plain line, set them in this folder only, never invented,
+and save again; with no `.git/`, say in one line that the strategy keeps no versions yet. This
+replaces the owner's own commit an older home's `AGENTS.md` asks for.
+
+Then say what comes next in the order of work: the broad reading, for what the blueprint left as
+leads; and the cycle — portfolio construction, backtest, attribution — until it is finished.
 
 Never write into the researcher's home from here. Never state a performance number as a prediction
 unless an analyzer measurement supports it; the engine has not run, and the blueprint must not

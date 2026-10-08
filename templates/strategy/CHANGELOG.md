@@ -41,6 +41,27 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.0 (2026-10-08)
+
+**MINOR** — the researcher saves the documents it writes on your go, each as its own version, and
+the blueprint alone before the rule: nobody has to commit by hand for the order the process rests
+on to hold. Nothing about any result changes.
+
+**What to do differently:** nothing; the researcher saves what it writes. Code and data
+change-sets keep their `CHANGELOG.md` entry, as before.
+
+### Changed
+
+- **`AGENTS.md`**, *The blueprint is committed before the rule*: a document the researcher writes on
+  the owner's go — a note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a line in
+  `Bibliotheca/LOG.md` — is saved as its own version on that go, with no `CHANGELOG.md` entry,
+  version bump or ruff gate; the blueprint is saved alone; the go is the owner's signature, on
+  which the assistant removes the template's blockquote. *Before any commit to `main`* names those
+  saves as the exception.
+- **`SETUP.md`**: the paragraph about publishing the repository and the hand-over's line about a
+  remote leave — a copy off the computer is made only when the owner asks, with `backup`; the git
+  name and e-mail are asked for in plain words.
+
 ## 0.14.1 (2026-10-08)
 
 **PATCH** — the commands that install and update the KaxaNuk skills run APM 0.33.0, and the update

@@ -8,7 +8,7 @@ description: >
   bring back a template file a strategy lacks (`init-strategy`'s script with `--only` does), and
   never builds on the example.
 metadata:
-  version: 0.3.0
+  version: 0.3.1
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -64,9 +64,10 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
    `--package <its install folder>`. A git step that fails leaves the copy in place — the script
    still exits 0 — and prints every command that finishes the repository from that step on. If git
    is missing, install it on the owner's go, then run the printed commands in the new folder. If the
-   first commit fails for want of a git identity, ask for the name and email — never invent them —
-   set them in that repository only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, then run the printed commands there.
+   first commit fails for want of a git identity, ask for *a name and an email to sign the versions
+   your researcher saves; they stay on this computer*, never invented; set them in that folder
+   only, `git config user.name "<name>"` and `git config user.email "<email>"`, then run the
+   printed commands there.
 
 4. **For one piece, say what it shows.** Everything between the markers in what was copied is
    `golden-flow`'s own work, and so, whole, are its seed and every file only the example has — its

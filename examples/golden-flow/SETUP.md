@@ -105,9 +105,9 @@ A strategy of your own is not made from here: `init-strategy <strategy-name>` ma
 template, which already holds every file this example works through, as a description of what
 belongs in it. Never build on it.
 
-> **For the agent.** If the first commit refuses for want of an identity, on a machine that has
-> never committed, ask the user for the name and email to use — never invent them — and set them
-> for this repository only: `git config user.name "<name>"` then `git config user.email "<email>"`.
+> **For the agent.** If the first commit refuses for want of an identity, ask the user, in plain
+> words, for *a name and an e-mail to sign the versions saved here* — never invent them — and set
+> them for this folder only: `git config user.name "<name>"` then `git config user.email "<email>"`.
 > Then commit again: `git commit -m "Start from the KaxaNuk example strategy, golden-flow"`.
 
 ---
@@ -266,20 +266,20 @@ Everything else the commands produced — `.venv/`, `Config/.env`, and whatever 
 writes per machine, such as `.claude/` — is ignored.
 **Anything showing up means something was written in the wrong place.**
 
-**The repository exists only on this machine until you publish it.** Nothing is lost and nothing
-is wrong — but it is not backed up and nobody else can see it. One strategy is one repository. In
-GitHub Desktop, *Add* → *Add existing repository*, then *Publish repository*. From the git command
-line, create an empty repository on GitHub, then `git remote add origin <its URL>` and
-`git push -u origin HEAD`. Either is the whole of it, and it is the user's to do, not the agent's.
+<!-- example: begin -->
+
+**In this example, `uv.lock` shows up untracked,** and nothing is wrong: the example commits none,
+so its library versions resolve when `uv sync` runs.
+
+<!-- example: end -->
 
 Then open **this folder** — not a parent of it — in your editor, PyCharm or VS Code, and in your
 assistant, Claude or Codex.
 
 > **For the agent — the hand-over.** Say the absolute path of the root, that it is the whole project
 > and the folder to open, that the README is now the strategy's, which `.env` keys are still empty
-> by name, that the skills are installed once for the user and nothing is installed here, whether
-> the repository has a remote yet, and that the next step is `OBJECTIVE.md`. Then stop.
-> Starting research work is a different request.
+> by name, that the skills are installed once for the user and nothing is installed here, and that
+> the next step is `OBJECTIVE.md`. Then stop. Starting research work is a different request.
 
 ---
 
