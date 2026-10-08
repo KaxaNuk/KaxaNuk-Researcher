@@ -41,6 +41,29 @@ for somebody who was not in the room:
 
 ---
 
+## Unreleased
+
+**MINOR, when released** — attribution holds every weight overnight and reconciles its benchmark
+before any figure is read. The engine's daily book and the index's holdings are both struck at a
+day's close, after that day's return has moved them, and the attribution library pairs a weight
+with the return of its own date: handed over unmoved, every book, the index's too, is credited with
+the day's move its weights already hold, in every pass. The template computes no figure, so none
+moves here; a strategy's attribution computed the old way does.
+
+**What to do differently:** in `Experiments/attribution_analysis.py`, move both weight tables one
+day on before any pass, after the asset returns are read on the engine's own days; in section 8,
+raise unless the first cut's benchmark comes within a point a year of the index's own returns file.
+Run an attribution computed without them again before quoting it.
+
+### Changed
+
+- **`Experiments/attribution_analysis.py`**: its contract holds both weight tables overnight, so
+  the close of t−1 earns day t, and reconciles the first cut's benchmark with the index's own
+  returns before any figure is read.
+- **`Experiments/Experiment_1/experiment_1.ipynb`**: section 5 says the weights are held
+  overnight; section 8 raises unless the benchmark reconciles within a point a year.
+- **`README.md`**: the row for `attribution_analysis.py` says both.
+
 ## 0.13.4 (2026-10-06)
 
 **PATCH** — the way to a licence, to access and to the index and factor files is written where a

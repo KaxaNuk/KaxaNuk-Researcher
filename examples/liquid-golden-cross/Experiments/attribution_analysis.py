@@ -19,6 +19,17 @@ What is expected here:
   file the engine read is exactly what it refuses.  The book it attributes is the one the engine
   held each trading day, drift and the cash proxy included; the benchmark's holdings follow the
   same rule.
+- Hold both weight tables overnight.  The engine's daily weights and the index's holdings are
+  struck at a day's close, after that day's return has moved them, and the library pairs a weight
+  with the return of its own date.  Paired as they arrive, a weight that already holds a day's
+  move earns that move again, and every book -- the index's too -- is credited with the
+  cross-section's daily variance, several points a year, in every pass.  Move both tables one day
+  on, so the close of t-1 earns day t, after the asset returns are read on the engine's own days.
+- Reconcile the benchmark before any figure is read.  The first cut's benchmark return, mean daily
+  times 252, against the index's own returns file over the same days: more than a point a year
+  apart, and the benchmark the book was compared with is not the index -- weights a day out,
+  members unpriced, a book not widened -- so the notebook's Verify section raises.  The returns
+  file never enters the library, which is what makes it the check.
 - Widen the book to the benchmark before handing it over: every benchmark constituent the book
   does not hold, added at zero weight, each with its own price series.  The library prices only
   the securities named in the book, and the first cut computes the benchmark's return from those
@@ -57,12 +68,14 @@ reasoning.
 It produces `Attribution/` -- the figures and the two decompositions -- for `FINDINGS_N.md`, and
 the answer to graduation criterion 2.
 
-It prevents selling factor beta as if it were alpha, and a run that stops at its first file because
-a header carries the name a provider gave it rather than the one the loader expects.
+It prevents selling factor beta as if it were alpha, crediting a book with a day's return its
+weights already held, and a run that stops at its first file because a header carries the name a
+provider gave it rather than the one the loader expects.
 """
 
 # --- example: begin ---
 
+import dataclasses
 import importlib.util
 import pathlib
 import types
@@ -73,11 +86,15 @@ import pyarrow
 __all__ = [
     "DATE_HEADER",
     "LIBRARY_INSTALLED",
+    "RECONCILIATION_TOLERANCE_POINTS",
     "RESERVED_FACTOR_NAMES",
+    "BenchmarkReconciliation",
+    "held_overnight",
     "load_asset_returns",
     "load_benchmark_holdings",
     "load_benchmark_weights",
     "load_factor_returns",
+    "reconcile_benchmark",
     "report_missing_inputs",
     "to_arrow",
     "widen_to_benchmark",
@@ -88,6 +105,11 @@ __all__ = [
 DATE_HEADER = "date_column"
 HAND_SUPPLIED_PATH = pathlib.Path(__file__).parent.parent / "Data" / "hand_supplied.py"
 LIBRARY_INSTALLED = importlib.util.find_spec("kaxanuk.attribution_analysis") is not None
+# How far apart, in points a year, the first cut's benchmark and the index's own returns file may
+# be before Verify refuses the attribution.  Held overnight, over Experiment 1's nine years, the two
+# agree to a fraction of a point; paired with the day's return, they part by several.  It is a
+# tolerance for a window of years: over a few months the daily noise alone can exceed it.
+RECONCILIATION_TOLERANCE_POINTS = 1.0
 # The library's names for the model's own series, which are totals rather than factors and are
 # dropped from its percentage decomposition; `Data/hand_supplied.py` gives the desk's files them.
 RESERVED_FACTOR_NAMES = (
@@ -96,6 +118,51 @@ RESERVED_FACTOR_NAMES = (
     "f_total_excess_returns",
     "f_total_factor_returns",
 )
+# A daily mean is put in points a year by this, on both sides of the reconciliation alike.
+TRADING_DAYS_A_YEAR = 252
+
+
+@dataclasses.dataclass(frozen=True)
+class BenchmarkReconciliation:
+    """
+    The first cut's benchmark set beside the index's own returns file, each in points a year.
+
+    Both are the mean daily return times 252, over the days both carry.  The returns file never
+    enters the library, which rebuilds the benchmark from the weights and prices it was handed, so
+    a gap between the two says those weights and prices are not the index.
+    """
+
+    days: int
+    index_points: float
+    reconstructed_points: float
+
+    @property
+    def gap_points(self) -> float:
+        """
+        The rebuilt benchmark less the index's own: positive when the first cut overstates it.
+        """
+        gap = self.reconstructed_points - self.index_points
+
+        return gap
+
+
+def held_overnight(
+    weights: "pandas.DataFrame",
+) -> "pandas.DataFrame":
+    """
+    The weights that earn each day's return: the ones standing at the previous close.
+
+    The engine's daily weights and the index's holdings are both struck at a day's close, after
+    that day's return has moved them, and the library pairs a weight with the return of its own
+    date.  Paired as they arrive, a weight that already holds a day's move earns that move again,
+    and every book is credited with the cross-section's daily variance -- the index's own too, by
+    several points a year.  Moved one day on, the close of t-1 earns day t, and the first day,
+    which has no previous close, is dropped.  Read the asset returns on the engine's days before
+    moving, so the first day kept still carries its own return.
+    """
+    moved = weights.shift(1)
+
+    return moved.iloc[1:]
 
 
 def load_asset_returns(
@@ -173,6 +240,32 @@ def load_factor_returns() -> dict[str, "pandas.DataFrame"]:
     hand_supplied = _load_hand_supplied()
 
     return hand_supplied.read_factor_returns()
+
+
+def reconcile_benchmark(
+    brinson_daily: "pandas.DataFrame",
+) -> "BenchmarkReconciliation":
+    """
+    Set the first cut's benchmark beside the index's own daily returns, over the days both carry.
+
+    The rebuilt side is the library's own `benchmark_returns` column, the other the returns file
+    `Data/hand_supplied.py` reads; nothing is recomputed from weights here.  Verify raises when
+    the two are more than `RECONCILIATION_TOLERANCE_POINTS` apart, before any figure of the
+    attribution is believed.
+    """
+    hand_supplied = _load_hand_supplied()
+    index_returns = hand_supplied.read_benchmark_returns()
+    reconstructed = brinson_daily["benchmark_returns"]
+    index_on_dates = index_returns.reindex(reconstructed.index)
+    matched = index_on_dates.notna()
+    index_mean = index_on_dates[matched].mean()
+    reconstructed_mean = reconstructed[matched].mean()
+
+    return BenchmarkReconciliation(
+        days=int(matched.sum()),
+        index_points=index_mean * TRADING_DAYS_A_YEAR * 100,
+        reconstructed_points=reconstructed_mean * TRADING_DAYS_A_YEAR * 100,
+    )
 
 
 def report_missing_inputs() -> list[str]:
