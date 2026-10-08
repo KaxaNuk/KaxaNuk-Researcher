@@ -1,6 +1,6 @@
 # Ways to use your researcher
 
-Eleven things you can ask for today. In Claude, type a command with a slash, `/study`; anywhere
+Twelve things you can ask for today. In Claude, type a command with a slash, `/study`; anywhere
 else, say it. Whatever writes a file shows its plan first and writes only on your go, except a
 brief: running `brief`, or the schedule you approved, writes it.
 
@@ -48,8 +48,8 @@ The first `read` asks what you are reading for. Next time, it picks up where you
 ## What have I read about index funds?
 
 Ask in plain words, or `query <question>`. It links every claim to its note and names what is
-missing. An answer drawn from three notes or more can become a page in your library, on your go.
-Ask *how has my view changed?* and it compares your rounds of `philosophy`.
+missing. An answer drawn from three notes or more can become a page in your library. Ask *how has
+my view changed?* and it compares your rounds of `philosophy`.
 
 *Never:* general knowledge passed off as your library.
 
@@ -95,15 +95,19 @@ from outside marked *not checked*. It ends with what you decided, or what you wo
 
 ## Build and test an investment strategy
 
-Say `init-strategy <name>`: a new folder from the KaxaNuk Strategy Template, which its `SETUP.md`
-finishes. Then `objective` writes your idea's claims before any paper; `read` adds a note for each
-claim; once the universe and data are in, `blueprint` drafts the thesis, rules and predictions,
-each prediction citing a note or a measurement or counted as a lead, and a critic reads it cold;
-`challenge` checks the finished experiment against it; `next` names what comes next. `init-example`
+Say `init-strategy <name>`: a folder from the KaxaNuk Strategy Template, which its `SETUP.md`
+finishes. `objective` writes your idea's claims before any paper; `read` adds a note for each
+claim; `blueprint` drafts the thesis, rules and predictions, each citing a note or a measurement,
+and a critic reads it cold; `challenge` checks the finished experiment against it. `init-example`
 shows a finished one.
 
 *Never:* a return or a drawdown of its own: those come from the KaxaNuk Investment Lab's engines. A
-strategy needs a data provider's key; the Backtest Engine, Attribution Analysis and, beyond an
-equal-weight book, Portfolio Construction need a licence: write to `lab@kaxanuk.mx`, saying which
-library and what it is for, with *via KaxaNuk Researcher* in the subject —
-<https://www.kaxanuk.mx/lab> shows the Lab.
+strategy needs a key from a data provider, and the engines a licence from `lab@kaxanuk.mx`.
+
+## Build a Python library of my own
+
+Say `init-python-library fcf-screen`: a folder laid out like the KaxaNuk Data Curator — code,
+tests, docs, a workflow publishing to PyPI — named for you. In a new conversation there, `next`
+leads from your first module to the first release.
+
+*Never:* anything put online without your go.

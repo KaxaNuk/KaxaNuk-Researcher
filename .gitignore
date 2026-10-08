@@ -29,5 +29,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# Python: the package has no lock of its own
+# Python: the package has no lock of its own, nor does a template inside it: a `uv sync` tried in
+# one would leave a lock that `git add --all` commits
 /uv.lock
+/templates/*/uv.lock
