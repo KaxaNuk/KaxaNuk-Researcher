@@ -15,7 +15,7 @@ need to: the assistant runs every command.
 >   and that their assistant may ask them to allow a command — allowing it is all they do.
 > - **One conversation, start to finish.** Steps 1 to 6 run here, one after the other, stopping
 >   only for the user's answers. The skills installed in step 2 appear only in a new session, so
->   steps 4 to 6 follow the package's files by their installed path, as the table below gives.
+>   steps 3 to 6 follow the package's files by their installed path, as the table below gives.
 > - **Nothing is cloned.** This repository is a package: it is installed once for the user, and
 >   its files then make every folder they need.
 
@@ -24,12 +24,13 @@ need to: the assistant runs every command.
 
 | For | Follow or run |
 | --- | --- |
-| step 4, the researcher's home | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md` |
+| steps 3 and 4, the researcher's home | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md` |
 | the copy it makes | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-strategy/scripts/scaffold.py` |
 | step 5, the interview | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` |
 | step 6, `read`, only if the user brings a document now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` |
 | step 6, `philosophy`, only if the user takes it now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/philosophy/SKILL.md` |
 | step 6, `init-example`, only if the user asks for the worked example now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-example/SKILL.md` |
+| step 6, `study`, only if the user starts the study now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/study.prompt.md` |
 
 ---
 
@@ -79,38 +80,31 @@ that the researcher is installed, and go straight on.
 
 ## Step 3 — The researcher's name, and where it lives
 
-Two questions, one at a time:
-
-1. **"What will you call your researcher?"** — propose three short names, and take theirs. Never
-   pick one for them.
-2. **Where.** Propose one folder, built from the name: `C:\Research\<Name>` on Windows —
-   `D:\Research\<Name>` when a `D:` drive exists — `/Users/<you>/Research/<Name>` on macOS and
-   `/home/<you>/Research/<Name>` on Linux, passed to the script spelled out, never with `~`. They
-   answer *yes*, or name another parent folder, and the researcher's folder goes inside it. Keep it
-   short and out of synced folders such as OneDrive: on Windows a long path breaks the copy.
+Follow `init-researcher` from its installed path, from its step 2, with the language already
+chosen. Its own questions take the name, then the place and the go in one.
 
 ## Step 4 — Make the home
 
-Follow `init-researcher` from its installed path, from its step 4, with the language, the name and
-the place already chosen: it skips the update — the package was installed a minute ago — and copies
-the researcher's home with `scaffold.py`, with its first saved version.
+`init-researcher` goes on, on that go: it skips its update — the package was installed a minute
+ago — and copies the researcher's home with `scaffold.py`, its first version saved.
 
 ## Step 5 — The interview
 
 Follow `interview` from its installed path, in the same conversation, with the new folder as the
-home: a few short questions about the user — what they do, what they are here for, the
-researcher's voice and their rules — about three minutes, in the user's language. Nothing about
-markets is asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by
-name and the skill that puts it in every session, installs them for the user and saves a first
-version — the user answers and gives one go.
+home: two questions about the user — what they do and work on, at work and on their own, what they'd
+like a hand with, then the researcher's voice, their rules and why they are here — in the user's
+language; the domains and the projects are proposed from what they say. Nothing about markets is
+asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by name and the
+skill that puts it in every session, installs them for the user and saves a first version — the user
+answers and gives one go.
 
 ## Step 6 — Hand over
 
-The interview's own hand-over ends the conversation, short: who the researcher is, where its home
-is, how to add a first source, the one next thing for what the user came for, and *lost? say
-`next`*. When the user brings a document now, follow `read` from its installed path; when they take
-`philosophy` *now* rather than in a new session, or ask for the worked example, follow that skill
-from its installed path.
+The interview's own hand-over ends the conversation: four lines — who the researcher is and that it
+is in every folder, where its home is, the one next thing for what the user came for, and *lost? say
+`next`* — and one question, `Start?`, whose options follow that next thing. On *Now*, *Show me the
+worked example*, *Start the study* or *I have a document*, follow that skill or command from its
+installed path, in this conversation.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
 `.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and everything is saved:

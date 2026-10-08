@@ -8,15 +8,14 @@ description: >
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
   the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.5.4
+  version: 0.6.0
 ---
 
 # Init researcher — a home for the library, once
 
 A researcher is one per person, not per strategy: its library — `Sources/`, `Knowledge/`,
-`Philosophy/` — grows across every strategy, and a second home would split it. So this runs once.
-The home is named after the researcher — `Ada`, not `my-researcher` — and the owner opens it
-in a session of its own, or adds it to a strategy's session to bring the library in.
+`Philosophy/` — grows across every strategy and project, and a second home would split it. So this
+runs once. The home is named after the researcher — `Ada`, not `my-researcher`.
 
 **Plain words throughout.** The owner may never have used a terminal. Ask one thing at a time, say
 what happens in a sentence, and never ask them to type a command: you run every one.
@@ -24,7 +23,7 @@ what happens in a sentence, and never ask them to type a command: you run every 
 ## When to Use
 
 - The owner runs `init-researcher` by name — *init-researcher Ada*, *set up my researcher* — or
-  `SETUP.md` reaches its step 4, in the conversation that installed the package.
+  `SETUP.md` reaches its step 3, in the conversation that installed the package.
 - **Not when a home already exists.** If the owner already has one — a folder with a filled
   `RESEARCHER.md` — say where, and stop: a second home splits the library. A home made before the
   researcher was a package is brought forward by `update`, not replaced.
@@ -39,19 +38,24 @@ what happens in a sentence, and never ask them to type a command: you run every 
    names proposed and *Other* for theirs; a name given with the command is used without asking.
    Never pick one for them.
 
-3. **The place, in one question.** Propose one folder, built from the name, short and outside any
-   synced folder: `C:\Research\<Name>` on Windows — `D:\Research\<Name>` when a `D:` drive exists —
-   `/Users/<you>/Research/<Name>` on macOS and `/home/<you>/Research/<Name>` on Linux. The path
-   handed to the script is absolute, the home folder spelled out — never `~`. Options:
-   *Here — <that path>*; *Choose another folder*, which asks for the parent folder only, in chat,
-   and puts `<Name>` inside it. Never a deep path such as `C:\Users\<you>\OneDrive\...`: on Windows
-   a copied path may pass the path limit. The folder always takes the researcher's name.
+3. **The place and the go, in one question.** `Where?` (`¿Dónde?`), through the question tool:
+   - *Go — make it at <path>*, described as *creates your researcher's home there, then two quick
+     questions about you, about three minutes*, *after bringing the package up to date* added when
+     step 5 will run;
+   - *Another folder*, which asks for the parent folder only, in chat, puts `<Name>` inside it, and
+     asks `Where?` again with that path;
+   - *Stop*, and nothing is made.
 
-4. **The go, in two lines.** "I will update the researcher package, create `<full path>` with your
-   researcher's library, and then ask you a few short questions about you, about three minutes.
-   Your assistant may ask you to allow a few commands; allowing them is all you need to do." The
-   update is said only when step 5 will run. Ask for the go — *Go*, *Change something*, *Stop* —
-   and run on *Go* only; what the copy contains is said in the hand-over, not here.
+   The path proposed is built from the name, short and outside any synced folder:
+   `C:\Research\<Name>` on Windows — `D:\Research\<Name>` when a `D:` drive exists —
+   `/Users/<you>/Research/<Name>` on macOS and `/home/<you>/Research/<Name>` on Linux, handed to
+   the script absolute, the home folder spelled out, never `~`. Never a deep path such as
+   `C:\Users\<you>\OneDrive\...`: on Windows a copied path may pass the path limit. The folder
+   always takes the researcher's name. *About three minutes* is said here and nowhere else on the
+   way in. Run on *Go* only.
+
+4. **On *Go*, one line**, before anything runs: *Your assistant may ask you to allow a few
+   commands; allowing them is all you need to do.*
 
 5. **Bring the package up to date**, on the same go, before anything is copied — the owner types
    nothing:
@@ -90,13 +94,12 @@ what happens in a sentence, and never ask them to type a command: you run every 
 7. **Run the interview now**, in this conversation, in the language chosen: follow the `interview`
    skill — from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` when
    it is not loaded in this session — with `<full path>` as the home. Say one line first: *Your
-   researcher's home is ready at `<full path>`. Now two short steps about you, about three minutes,
-   so it is yours.* What it asks, and what it leaves to `philosophy` and the first `read`, is the
-   interview's to say; its own hand-over ends the run, or hands on to `read`, `philosophy` or
-   `init-example` when the owner picks one there.
+   researcher's home is ready at `<full path>`. Now two quick questions about you, so it is yours.*
+   The interview says the rest; its own hand-over ends the run, or goes on into what the owner
+   picks there.
 
-   If the owner would rather stop here, the hand-over is two lines: open `<full path>` in a new
-   session, and there type `/interview` — elsewhere, ask for the interview by name.
+   If the owner would rather stop here, one line: *When you're ready, open `<full path>` in a new
+   session and say `interview`.*
 
 ## References
 

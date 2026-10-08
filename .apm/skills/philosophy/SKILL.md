@@ -9,7 +9,7 @@ description: >
   HOW-I-INVEST.md holds (`refine` does) or write RESEARCHER.md beyond Find first, and never says
   what to buy, sell or hold.
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -59,7 +59,8 @@ type a pick and its options as chat. **Without one** — Codex, Gemini — a pic
 the home's `AGENTS.md` says, *Other — your own words* last. Every header is the one the bank gives
 for that language, the English one for any other, twelve characters at most. Wait for each answer.
 
-**A round at a glance.** About 10, 20 or 30 minutes by level, and it can stop after any block.
+**A round at a glance.** About 10 to 15, 20 to 25 or 30 to 40 minutes by level, and it can stop
+after any block.
 
 | # | Step | How |
 | --- | --- | --- |
@@ -101,8 +102,8 @@ for that language, the English one for any other, twelve characters at most. Wai
    deleted or renamed by hand leaves no gap to fill, because *N* is read, never counted. From the
    round files, gather each ID's latest typed answer and its round, and its latest status; and
    the questions the last round's level asks, section 3 of the bank, that no round file has a
-   line for — O3 and C2 aside, since neither ever takes a line — which a round stopped early
-   never reached: they are open, as a skip is.
+   line for — O3, C2 and Starter's Q2 aside, since they may take no line — which a round stopped
+   early never reached: they are open, as a skip is.
    A file there whose first line is not a round line is no round: ignore it, and name it once.
 4. **Read what the owner has read.** `Knowledge/INDEX.md` end to end; on a retake, also the `read`
    entries of `Knowledge/LOG.md` dated on or after the last round's date — a read the same day
@@ -128,7 +129,7 @@ for that language, the English one for any other, twelve characters at most. Wai
 ## 2. Welcome
 
 **Round 1.** Say section 0 of the bank, then ask `Ready?` (`¿Comenzamos?`) — *Start*, *Not now*.
-Handed over by `interview`'s `Philosophy?` *Now*, that pick was the start: say section 0 and go
+Handed over by `interview`'s `Start?` *Now*, that pick was the start: say section 0 and go
 straight to O1. `Ready?` is asked only when the owner ran `philosophy` by name.
 **A retake.** Say the opening of the bank's section 7 instead, then ask its scope question,
 `Retake?` (`¿Repetir?`); *not now* or *stop* under *Other* is *Not now*. The scope is applied
@@ -162,8 +163,8 @@ option is marked *(suggested)* — never picked for the owner — by the first r
 
 *Not sure — help me place myself* opens the calibration, `Which fits?` (`¿Cuál va?`): short labels,
 the question in each description, nothing checked. Say the level that results, and let the owner
-change it. Then say the round's length — *about 10 minutes, in three blocks* — and that it can
-stop after any block.
+change it. Then say the round's length, from section 3 of the bank — at Starter, *about 10 to 15
+minutes, in three blocks* — and that it can stop after any block.
 
 ## 5. The idea the rest builds on
 
@@ -173,7 +174,7 @@ under O2 says — nothing for *not sure yet*. Then the level's explainer, sectio
 tied to their goal; and why a **process** — how they find out whether they do better than it.
 It is worded so that it settles nothing the owner answers later: whether anyone can do better than
 the market is their question, not the explainer's. Its purpose line is the bank's and the only
-one: *KaxaNuk built me so that more people can make better investment decisions.* Its caveat
+one: *I'm here so you can make better investment decisions, by your own yardstick.* Its caveat
 stays beside it: nothing on the reading map shows that a process makes more money; a process is
 how you find out whether a result is yours, or luck.
 
@@ -188,6 +189,7 @@ where it stands — *block 2 of 3 · You · 2 questions* — so the owner knows 
 
 - **An open question** is its *Ask* at the level, ending with the bank's closing line, one per
   message. At Starter after *None yet* in the calibration, its *Example* comes under it unasked.
+  At Starter, Q2 is only O1's one-line follow-up, and only when O1 named no goal or no date.
 - **After every answer** — *not sure yet* and *skip* included — the question's *Teaches* line, as
   written: one idea, never a verdict on the answer. Starter names no work; Building at most one,
   as a lead; Researching the placement and the other side.
@@ -351,30 +353,17 @@ Short, in the owner's language and voice, in this order:
 
 ## Escapes and exits
 
-The bank's escape table holds on every question. What it leaves to this skill:
+The bank's escape table holds on every question, at any time: *explain* climbs from the *Plain*
+line to the *Example* to *explained*; *not sure yet* is a complete answer; *stop* goes straight to
+the preview, and a question it leaves unreached is open for the next round.
 
-- **In the owner's language too.** *explain* — *explica*; *example* — *ejemplo*; *not sure yet* —
-  *no sé todavía*; *skip* — *salta*; *simpler* — *más simple*; *harder* — *más difícil*; *stop* —
-  *para*; on a retake, *keep* — *igual*, *mantener*; and their usual words in any other language.
-  A message that is only an escape, in any wording — *no sé*, *I don't know*, *ni idea* — is that
-  escape, and writes nothing; a message with more than that is a typed answer, written as typed.
-  When it could be either, ask once: *write that as your answer, or mark it not sure yet?* A
-  number, or *that one*, after an example is a pick, not typed words: ask for their own words, or
-  a skip.
-- **Explain climbs a ladder.** The *Plain* line and the question in its plainest form; then the
-  *Example*; then *skip, we'll come back after you read*, recorded as *explained*. *Explain* on
-  two different questions in one block offers `Simpler?` (`¿Más simple?`) — *Yes*, *Keep this
-  level* — once the current question is answered; at Starter, *Yes* puts the *Plain* line and the
-  *Example* under every question left.
-- **Not sure yet is a complete answer.** Nothing is written to `HOW-I-INVEST.md`, the round file
-  records it, and the question's *Behind it* work becomes a reading suggestion in C2 at Building
-  and Researching; at Starter, C2 keeps its four options, and *Three classic studies* covers it
-  when the work is one of the three.
-- **Skip** is recorded, and asked first in the next round. **Simpler** and **harder** work at any
-  time, for the rest of the round: at Starter, *simpler* does what `Simpler?` *Yes* does; at
-  Researching, *harder* has no set above it — say so, and offer the rest of the block in one
-  message. **Stop** works at any time, and goes straight to the preview with what is already
-  answered; a question it leaves unreached is open, and the next round picks it up.
+**In the owner's language too.** *explain* — *explica*; *example* — *ejemplo*; *not sure yet* —
+*no sé todavía*; *skip* — *salta*; *simpler* — *más simple*; *harder* — *más difícil*; *stop* —
+*para*; on a retake, *keep* — *igual*, *mantener*; and their usual words in any other language. A
+message that is only an escape, in any wording — *no sé*, *I don't know*, *ni idea* — is that
+escape, and writes nothing; a message with more than that is a typed answer, written as typed.
+When it could be either, ask once: *write that as your answer, or mark it not sure yet?* A number,
+or *that one*, after an example is a pick, not typed words: ask for their own words, or a skip.
 
 ## What this skill will not let you do
 

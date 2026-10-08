@@ -51,10 +51,12 @@ me* turns it off.
 **What is learned goes home.** An engine's own memory is read by one engine in one folder; the home
 is read by all of them. When the owner says *learn this* or *remember this*, anywhere, sort it and
 plan it: a source, a finding or a document is copied into `Sources/` on the owner's go, and then
-`read`; a way of working or a rule is one line for `RESEARCHER.md`, under *How it speaks* or
-*Non-negotiables*, in the owner's words, shown in chat for them to add; a view on investing is
-theirs to write in `Philosophy/HOW-I-INVEST.md`, by hand or with `philosophy`; a fact about one
-project stays in that project, in the file its rules give it.
+`read`; a way of working or a rule is one line the researcher appends to `RESEARCHER.md`, under
+*How it speaks* or *Non-negotiables*, in the owner's words, on their go; a fact about their work —
+a new project, a new role — is a row of the projects table, or a change to *Works for* shown as a
+diff, on their go; a view on investing is theirs to write in `Philosophy/HOW-I-INVEST.md`, by hand
+or with `philosophy`; a fact inside one project stays there, in the file its rules give it. From
+another folder, the write is saved in the home, with `git -C "<the home>"`.
 
 ## What each folder is, and who may write in it
 
@@ -77,15 +79,15 @@ the assistant offers one, and is never written as a file unless they keep it as 
 the owner invites the researcher — *Working in a strategy* and *Joining other projects* say how.
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from the
-interview, and nothing else writes it but two additions, each after the owner's go: `read`, at
-home, may add a question under *What you are reading for*, in the owner's words; and the works the
+owner's answers and the proposals the preview's go accepts — the domains, a row for each project
+named — and nothing else writes it but three additions, each after the owner's go: `read`, at
+home, may add a question under *What you are reading for*, in the owner's words; the works the
 owner picks — at the interview's hand-over, or at the close of a round of `philosophy` unless they
 leave *Find first* alone in that round's preview — are appended to the closing *Find first* line,
-add-only. The owner edits it by hand whenever they like: to teach the researcher how to behave,
-they add a line by hand under *How it speaks* or *Non-negotiables*, which every skill and the agent
-read first. The same holds for `Philosophy/HOW-I-INVEST.md`, which the template ships as headings
-to fill: a prompt in angle brackets is never the owner's view, and a heading holding nothing but
-its prompt says nothing yet.
+add-only; and what they teach with *learn this*, as above. The owner edits it by hand whenever they
+like, and the same holds for `Philosophy/HOW-I-INVEST.md`, which the template ships as headings to
+fill: a prompt in angle brackets is never the owner's view, and a heading holding nothing but its
+prompt says nothing yet.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`. Notes are born from
 sources, never from `Philosophy/` alone and never from a study; studies and lessons are built from
