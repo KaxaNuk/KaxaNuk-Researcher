@@ -1,5 +1,5 @@
 ---
-description: A multi-session tutor grounded in Knowledge/ — the library checked for the topic first, then an interview, then one lesson per session with a retrieval quiz; state in Lessons/<topic>/; with no topic, list the topics. Only when the owner runs it by name.
+description: A multi-session tutor grounded in Knowledge/ — the library checked for the topic first, and a first work read when it holds none, then an interview, then one lesson per session with a retrieval quiz; state in Lessons/<topic>/; with no topic, list the topics. Only when the owner runs it by name.
 input:
   - topic: "Optional: the topic to teach; with none, the topics in Lessons/"
 ---
@@ -20,11 +20,14 @@ topic its own folder in it.
 for a topic.
 
 **First, the library.** Before any question on a new topic, walk `Knowledge/INDEX.md` for it, the
-concept pages first. With no note bearing on it, say so in one line, write nothing, and offer,
-through the question tool: `read` a source for it — a work on a *Find first* line of
-`RESEARCHER.md`, or a lead from the reading map in the `read` skill's folder; `philosophy`, when
-the topic is about investing and `Philosophy/Evolution/` holds no round; or a plain answer through
-`query`, labelled as general knowledge, not the library's. Then stop.
+concept pages first. With no note bearing on it, say so in one line, then offer up to three works to
+read first, and *Later*, through the question tool: from the reading map in the `read` skill's
+folder when Finance is among the domains and the map has the topic, matched first as its *Match
+before proposing* says; otherwise a *Find first* work that bears on it, or ask the owner for one.
+Never download a work: on a pick, the owner attaches it or says where it is saved, and `read` copies
+it into `Sources/` and writes its note, on its one go. Then go straight on into the interview below,
+in the same session, so the first lesson stands on a note; *Later* stops here. Nothing is taught
+from memory.
 
 **A new topic** (no `progress.md` yet), with notes that bear on it: interview the owner first —
 why this topic, what for, what they already know, how they like to learn. Two to four questions.
@@ -41,9 +44,8 @@ existing topic unless the owner says the mission has changed.
 **An existing topic**: read `progress.md` — mission, track, preferences — and pick the next lesson
 just beyond what stuck last time.
 
-**A topic still in `Projects/Teach/<topic-slug>/`** is never started afresh in `Lessons/`. Say so
-and point at `update`, which moves it to `Lessons/<topic-slug>/` on the owner's go. With a
-`Lessons/<topic-slug>/` as well, the owner merges the two by hand; teach it from `Lessons/` then.
+**A topic still in `Projects/Teach/<topic-slug>/`** is never started afresh: `update` moves it to
+`Lessons/`. With both, teach from `Lessons/`.
 
 **Every lesson:**
 
@@ -66,9 +68,11 @@ and point at `update`, which moves it to `Lessons/<topic-slug>/` on the owner's 
    `backup` skill says. If git wants a name and an e-mail, ask for both in one plain line, set them
    in this folder only, never invented, and save again; with no `.git/`, say in one line that the
    home keeps no versions yet. This replaces an older home's *Commit?* question.
-6. Close the lesson with one line, offered and never pressed: a round of `philosophy` — round 1
-   when `Philosophy/Evolution/` holds none, else the next, naming the last round's date — for
-   whenever they want to write down how they invest, in their words, as what they learn moves it.
+6. Close the lesson with one line, offered and never pressed, only when *Domains* holds Finance or
+   *Here for* holds *Learn the basics*, *Build and test a strategy* or *Write down how I invest*: a
+   round of `philosophy` — round 1 when `Philosophy/Evolution/` holds none, else the next, naming
+   the last round's date — for whenever they want to write down how they invest, in their words.
 
-Never edit a past session file. Never write outside `Lessons/<topic-slug>/` — a round of
-`philosophy` is that skill's own run, with its own preview and go, never part of a lesson.
+Never edit a past session file. Never write outside `Lessons/<topic-slug>/` — a first work's
+`read`, or a round of `philosophy`, is that skill's own run, with its own plan and go, never part of
+a lesson.

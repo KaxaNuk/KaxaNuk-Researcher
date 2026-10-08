@@ -25,12 +25,13 @@ The researcher arrives in two parts, and each updates its own way:
 - **The home's own files** — `AGENTS.md`, `CLAUDE.md`, `README.md`, `LICENSE`, `apm.yml`,
   `.gitignore` and `.gitattributes` — were copied from `templates/researcher/` in the KaxaNuk
   Researcher package when the home was made. When the package's copy changes, the difference is
-  shown, never merged: the owner's home may have renamed its prose. In `apm.yml` the comments,
-  `includes` and `dependencies` are compared: its `name`, `version`, `description`, `author` and
-  `targets` are the owner's — the version by a rule of its own, which the report in *Step 5* gives
-  in these words: "The home's own version in `apm.yml` is yours: `interview` sets it to 0.1.0, you
-  bump it with each entry you add to `CHANGELOG.md`, and `update` reads the *Brought to template*
-  line there, never this field."
+  shown, never merged: the owner's home may have renamed its prose. `LICENSE` is compared without
+  its copyright line, which is the owner's to keep and never proposed back to KaxaNuk. In
+  `apm.yml` the comments, `includes` and `dependencies` are compared: its `name`, `version`,
+  `description`, `author` and `targets` are the owner's — the version by a rule of its own, which
+  the report in *Step 5* gives in these words: "The home's own version in `apm.yml` is yours:
+  `interview` sets it to 0.1.0, you bump it with each entry you add to `CHANGELOG.md`, and `update`
+  reads the *Brought to template* line there, never this field."
 
 The owner's files are never touched: `RESEARCHER.md`, `Philosophy/` — its round files in
 `Philosophy/Evolution/` included, which nothing edits once `philosophy` has written them —
@@ -128,7 +129,9 @@ agent's file name and `name:` with it, nothing else in the agent.
   *by hand* line, quoted from the template, when the home has no such line: *Here for* under *Who*
   in `RESEARCHER.md` — what the owner is here for, one of the four the interview offers or their
   own words — and `## Why I invest`, the new first heading of `Philosophy/HOW-I-INVEST.md`, which
-  the owner may write in their own language. The same release points *What you believe* to
+  the owner may write in their own language. A *Here for* holding the older *Organise what I read*
+  is no *by hand* line: every skill reads it as *Organise what I read, and help with my projects*.
+  The same release points *What you believe* to
   `HOW-I-INVEST.md` and takes *Where it sits* and its *Add later* line out of the template: the
   home's own prose there is the owner's, and stays unless they take it out by hand. The agent file
   is theirs as well: a line `interview` now writes into a new agent's body is a *by hand* line too

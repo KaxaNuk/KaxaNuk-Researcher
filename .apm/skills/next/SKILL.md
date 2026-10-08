@@ -10,7 +10,7 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.6.1
+  version: 1.7.0
 ---
 
 # Next — where you stand, and what to do next
@@ -68,7 +68,8 @@ test tells the worked example from a strategy of the owner's own.
 | *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading | a round file exists in `Philosophy/Evolution/` |
 | *Write down how I invest, and see it evolve* | `philosophy`; once a round exists, `brief setup`, for a daily brief of the markets and holdings they follow, leads the *also* line until `Briefs/` exists | a round file exists in `Philosophy/Evolution/` |
 | *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, a download of about an hour and a half, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
-| *Organise what I read*, none, or their own words | a source into `Sources/` — they attach it or name it, and the researcher copies it into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` on their go — then `read`, which asks which question it serves | `Knowledge/` holds a note |
+| *Organise what I read, and help with my projects*, or the older *Organise what I read*, none, or their own words — when *Works for* or the projects table names a project or a decision of theirs, not a strategy | `study <it>` at home; or, for work in a folder of its own, *open me in that project's folder and say hello* | `Studies/` holds a study, or the project's row names its path |
+| The same picks, with or without a project | a source into `Sources/` — they attach it or name it, and the researcher copies it into `Sources/Papers/`, `Sources/Books/` or `Sources/Clippings/` on their go — then `read`, which asks which question it serves | `Knowledge/` holds a note |
 
 When every pick's thing is done, the one next thing is, with no note in `Knowledge/` yet, the last
 row's; otherwise the first of these whose pick is on the line — *Learn the basics*,
@@ -79,7 +80,7 @@ question added under *What you are reading for*, `study <subject>` to work out a
 library — `study` alone lists the studies — `teach <topic>`, `brief setup` for a daily brief,
 `init-strategy <name>`, or teaching it a tool: its documentation into `Sources/Clippings/`, then
 `read` — *Growing your researcher* in the home's README.
-Philosophy is never a row that fails: for the other picks, *Step 4* closes with it in one line.
+Philosophy is never a row that fails: for the other picks, *Step 4* may close with it in one line.
 
 ## Step 3: In a strategy
 
@@ -122,14 +123,16 @@ In chat, short:
    at home, one line when rows 0 to 6 pass, *setup: all good*, else the failing row alone.
 3. **Next:** one line — the part, the command or skill by name, and what it will ask for; any
    *also*, one line after it.
-4. **Your philosophy**, at home only, one closing line, offered and never pressed, and left out
-   when *Next* names `philosophy`. With no round file in `Philosophy/Evolution/`: *`philosophy`
-   writes down how you invest, in your words, at your level — round 1, whenever you like.* With
-   one or more: the last round's date and level — the newest file name, `YYYY-MM-DD-2.md` after
-   `YYYY-MM-DD.md` — and how many notes came in since: the notes the `read` entries of
-   `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as written, a book's
-   `INDEX.md` and concept pages aside. When notes came in, add that `philosophy` takes the round
-   again; when none did, the date, the level and *no notes since* are the whole line.
+4. **Your philosophy**, at home only, one closing line, offered and never pressed, and only when
+   *Domains* holds Finance or *Here for* holds *Learn the basics*, *Build and test a strategy* or
+   *Write down how I invest*; left out when *Next* names `philosophy`. With no round file in
+   `Philosophy/Evolution/`: *`philosophy` writes down how you invest, in your words, at your level —
+   round 1, whenever you like.* With one or more: the last round's date and level — the newest file
+   name, `YYYY-MM-DD-2.md` after `YYYY-MM-DD.md` — and how many notes came in since: the notes the
+   `read` entries of `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as
+   written, a book's `INDEX.md` and concept pages aside. When notes came in, add that `philosophy`
+   takes the round again; when none did, the date, the level and *no notes since* are the whole
+   line.
 5. **A new version**, last, and only when there is one: never a line saying there is none. It
    updates nothing itself, and a failure — offline, a command failing or declined — is silent.
    Every line here is in the owner's language.

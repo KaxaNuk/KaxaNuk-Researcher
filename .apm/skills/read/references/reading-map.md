@@ -56,8 +56,8 @@ evolve by replacement; it evolved by addition (page 48).
 
 ### The argument, dated (page 49)
 
-Five papers, thirty-four years. The deck's conclusion — KaxaNuk's view, a view to test, not a
-position to adopt: read in order, the case for research makes itself.
+Five papers, thirty-four years. The deck's conclusion, a view to test, not a position to adopt:
+read in order, the case for research makes itself.
 
 1. **The claim** — 1970, Fama, *Efficient Capital Markets: A Review of Theory and Empirical Work*.
    Prices already reflect what is known; beating the market is luck.
@@ -72,9 +72,9 @@ position to adopt: read in order, the case for research makes itself.
 5. **Why it keeps moving** — 2004, Lo, *The Adaptive Markets Hypothesis*. Edges get crowded and
    decay, the environment shifts, new ones appear; nothing stays put.
 
-The deck's conclusion — KaxaNuk's view, a view to test, not a position to adopt: alpha has to
-exist. It has a source. It persists. And it keeps moving. Therefore research cannot be a one-time
-effort: the edge is in the process that finds the next one, not in any single signal.
+The deck's conclusion, a view to test, not a position to adopt: alpha has to exist. It has a
+source. It persists. And it keeps moving. Therefore research cannot be a one-time effort: the edge
+is in the process that finds the next one, not in any single signal.
 
 ### The evidence, dated (page 50)
 
@@ -96,8 +96,8 @@ being fought over.
 10. **The rebuttal** — 2023, Jensen, Kelly & Pedersen, *Is There a Replication Crisis in Finance?*
     Model the factors jointly and 82% replicate, in 13 themes across 93 countries.
 
-The deck's conclusion — KaxaNuk's view, a view to test, not a position to adopt: real. Decaying.
-And still contested. Nobody will settle the factor fight for you: deciding which edges are real,
+The deck's conclusion, a view to test, not a position to adopt: real. Decaying. And still
+contested. Nobody will settle the factor fight for you: deciding which edges are real,
 and for how long, is the job, and it never finishes.
 
 ## Where a belief sits
@@ -119,14 +119,14 @@ the deck's own pages, and where the deck names no one, the entry says so.
   exist); Pedersen, 2015, *Efficiently Inefficient* (page 23). Act III, question 09, "If nobody
   beats the market… why does anyone still pay for research?" (page 22). Tested: the deck names no
   test. Other side: Berk & Green, 2004, *Mutual Fund Flows and Performance in Rational Markets* —
-  "alpha exists" is not "the client gets it" (pages 17 and 52). KaxaNuk's position, point 01
+  "alpha exists" is not "the client gets it" (pages 17 and 52). The deck's conclusion, point 01
   (page 52).
 - **For a while — edges crowd and move.** Holds it: Lo, 2004 (page 49, why it keeps moving). Act
   V, question 14, "So markets are rational… and emotional. What survives both — and for how long?"
   (page 32). Tested: the evidence timeline — Khandani & Lo, 2011; Daniel & Moskowitz, 2016;
   McLean & Pontiff, 2016 (page 50). Its mechanism: Farmer, 2002 (page 35). Other side: the deck
   sets no paper against Lo. Fama, 1970, is the nearest, and the frame makes it a special case, not
-  a rival (page 51); KaxaNuk's own caveat is that the frame is hard to falsify, so make it
+  a rival (page 51); the deck's own caveat is that the frame is hard to falsify, so make it
   operational (page 52).
 - **Not sure yet.** No placement. Start at the claim and read the argument in order, 1970 to 2004
   (page 49).
@@ -236,8 +236,8 @@ tested or revised an earlier one.
   publication, because the market reads the papers too (pages 39 and 50).
 - **Harvey, Liu & Zhu (2016) against Jensen, Kelly & Pedersen (2023)** — most findings false, or
   most replicate (pages 39 and 50).
-- **Lo (2004)** — no paper against it; KaxaNuk's own caveat, the frame is hard to falsify, so make
-  it operational (page 52).
+- **Lo (2004)** — no paper against it; the deck's own caveat, the frame is hard to falsify, so
+  make it operational (page 52).
 
 ## Questions to read for, from the evidence
 
@@ -495,7 +495,10 @@ keeps its job; the frame is what lets them stop contradicting each other.
 - **Reflexivity** — Soros, 1987. Feedback between participants and prices, part of what changes the
   environment.
 
-## Why we say alpha has to exist — KaxaNuk's position (page 52)
+## Why alpha has to exist — the deck's conclusion (page 52)
+
+Kept for the researcher's own orientation, a view to test: never quoted to the owner as a position
+to hold.
 
 1. **Alpha has to exist.** Grossman & Stiglitz, 1980 — if information is costly, someone is paid to
    gather it.
@@ -515,9 +518,8 @@ Said before anyone else does:
 - **Berk & Green cut the other way.** "Alpha exists" is not "the client gets it": capital chases
   skill until the net return is gone. Say which claim you are making.
 
-The edge is in the process, not in any single signal. What KaxaNuk builds: research infrastructure
-as the adaptive capacity, not a fixed strategy. The research process is discretionary at design and
-systematic at scale; scientific principles are what connect the two (page 54).
+The edge is in the process, not in any single signal. The research process is discretionary at
+design and systematic at scale; scientific principles are what connect the two (page 54).
 
 ## Act VII is unwritten — four open problems (page 53)
 
@@ -528,19 +530,16 @@ a work, or a work without its title, the researcher proposes nothing by title.
 1. **Regimes you can see coming.** Regimes are named confidently after the fact; forecasting the
    turn in time to act is the difference between surviving a shift and explaining one. Who is on
    it: Hamilton, 1989 · Ang & Timmermann, 2012 · the regime-switching and jump-model literature —
-   no titles given. In the bootcamp: session 03, features that carry regime information.
+   no titles given.
 2. **A census of the crowd.** Who else holds this, with how much capital, on what horizon? The data
    is thin, late or proprietary, so crowding gets measured after it hurts. Who is on it: Khandani &
-   Lo, 2007 · flow and positioning research. In the bootcamp: session 05, capacity, costs and
-   position limits.
+   Lo, 2007 · flow and positioning research.
 3. **Learning that generalizes.** Machine learning fits the past extremely well; the binding
    constraint is economic structure and sample size, not compute. Who is on it: Gu, Kelly & Xiu,
-   2020 · Arnott, Harvey & Markowitz, 2019 · Jensen, Kelly & Pedersen, 2023. In the bootcamp:
-   session 04, the backtest protocol, written before the test.
+   2020 · Arnott, Harvey & Markowitz, 2019 · Jensen, Kelly & Pedersen, 2023.
 4. **Research that runs itself.** If edges decay, the asset is the pipeline — data, features, tests
    and attribution, re-runnable on tomorrow's idea. Automate the process, not the signal. Who is on
-   it: Guo, Wang, Ni & Shum, 2022 — Quant 4.0 · knowledge-driven AI. In the bootcamp: all six
-   sessions, the process repository you fork.
+   it: Guo, Wang, Ni & Shum, 2022 — Quant 4.0 · knowledge-driven AI.
 
 ## Where alpha comes from — Section 02 (pages 55 to 60)
 

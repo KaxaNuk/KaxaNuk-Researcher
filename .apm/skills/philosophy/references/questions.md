@@ -110,21 +110,17 @@
 
 ## 0 · Before the first question (said, not asked)
 
-> This isn't a test, and there are no right answers. I'll ask why you invest and what you already
-> believe, then a few questions that match what you already know.
+> No test, and no right answers. I'll ask why you invest and what you already believe, then a few
+> questions at your level. Say *simpler*, *harder*, *skip* or *stop* any time; *not sure yet* is a
+> complete answer.
 >
-> Say *simpler*, *harder*, *skip* or *stop* at any time. *Not sure yet* is a complete answer:
-> nothing is written for it.
->
-> What you type goes into your own file, called *How I invest*, word for word — and only after
-> you've seen it and said go. Say *stop* at any time and I'll show you what I have before anything
-> is written. I never tell you what to buy, sell or hold.
->
-> Take this again after you've read something, and you'll see how your view has moved.
+> Only what you type goes into your file, word for word, after you've seen it and said go. I never
+> tell you what to buy, sell or hold. Take this again after you've read something, and you'll see
+> how your view moved.
 
 Then the question `Ready?` (`¿Comenzamos?`), with *Start* or *Not now*. On *Not now*, nothing is
-written; say how to start later. Handed over by `interview`'s `Philosophy?` *Now*, that pick was
-the start: `Ready?` is not asked, and O1 follows section 0.
+written; say how to start later. Handed over by `interview`'s `Start?` *Now*, that pick was the
+start: `Ready?` is not asked, and O1 follows section 0.
 
 On a retake, use the opening in section 7 instead.
 
@@ -243,7 +239,7 @@ the market?* least of all. The purpose line is the same in all three, and the on
 > - test it before money is at stake;
 > - decide what you'll do before you feel it.
 >
-> KaxaNuk built me so that more people can make better investment decisions.
+> I'm here so you can make better investment decisions, by your own yardstick.
 >
 > One honest caveat: none of the studies I start from shows that a process makes more money. A
 > process is how you find out whether a result is yours, or luck.
@@ -262,7 +258,7 @@ reading map's.
 > A **process** is how you find out whether you did: what you believe written down, a yardstick
 > chosen in advance, ideas tested before money is at stake.
 >
-> KaxaNuk built me so that more people can make better investment decisions. Nothing on the
+> I'm here so you can make better investment decisions, by your own yardstick. Nothing on the
 > reading map shows that a process makes more money; it's how you find out whether a result is
 > yours, or luck.
 
@@ -281,9 +277,9 @@ reading map's.
 > chosen later, at part E, and is a different thing. Whether anyone does better than yours after
 > costs is a question you'll answer, not one I assume.
 >
-> KaxaNuk built me so that more people can make better investment decisions. The map holds no paper
-> showing that a process makes more money. A process is how you find out whether a result is yours,
-> or luck.
+> I'm here so you can make better investment decisions, by your own yardstick. The map holds no
+> paper showing that a process makes more money. A process is how you find out whether a result is
+> yours, or luck.
 
 ---
 
@@ -294,16 +290,16 @@ The levels are nested: each asks everything the level before it asks, in harder 
 | Block | Starter | Building | Researching |
 | --- | --- | --- | --- |
 | Opening | O1, O2, O3 | O1, O2, O3 | O1, O2, O3 |
-| Your scoreboard | Q2, Q1, Q3 | Q2, Q1, Q3 | Q2, Q1, Q3 |
+| Your scoreboard | Q2 (O1's follow-up, when needed), Q1, Q3 | Q2, Q1, Q3 | Q2, Q1, Q3 |
 | Your edge | — | S1, S4 (one call), Q4 | S1–S4 (one call), Q4, Q5 |
 | You | Q6, Q8 | Q6, Q7, Q8 | Q6, Q7, Q8 |
 | The world moves | — | Q10 | Q9, Q10, Q11 |
 | Your proof | Q14 | Q12, Q14 | Q12, Q13, Q14 |
 | Your process | Q15 (one block with Q14) | Q15 | Q15, Q16 |
 | Closing | C1, C2 | C1, C2 | C1, C2 |
-| **After the opening** | **8 typed, 1 pick** | **12 typed, 3 picks** | **17 typed, 5 picks** |
+| **After the opening** | **7 or 8 typed, 1 pick** | **12 typed, 3 picks** | **17 typed, 5 picks** |
 | **Blocks** | **3** | **6** | **6** |
-| **About** | **10 minutes** | **20 minutes** | **30 minutes** |
+| **About** | **10 to 15 minutes** | **20 to 25 minutes** | **30 to 40 minutes** |
 
 **Checkpoints.** After each block except the last, ask one tool question, `Continue?`
 (`¿Seguimos?`):
@@ -336,11 +332,12 @@ changes the wording of a question the level asks; it never adds one the level do
 ### Your scoreboard
 
 #### Q2 · Your goal
-- *Asked at:* every level.
+- *Asked at:* every level; at Starter, only when O1 named no goal or no date. A Starter round that
+  does not ask it gives it no line, and no retake counts it as never reached.
 - *Lands under:* **Why I invest**.
 - **Ask, by level:**
-  - **Starter:** What do you want your money to do for you, and by when? If you have no savings
-    yet, what would you save for?
+  - **Starter:** a one-line follow-up to O1, first in the block: *You said "<O1>". And by when?* —
+    *What for, and by when?* when O1 named no goal, without the quote when it has no typed words.
   - **Building:** What is this money for, by when, and what happens if it isn't there in time?
   - **Researching:** What do you want this money to do for you, and by when? Which yardstick
     follows from that goal?
@@ -719,8 +716,7 @@ leads the placement.
   before buying."
 - **Teaches:** Making the next decision better than the last one, on purpose, is the reason a
   process exists. Writing a lesson down as *I have learned that…* keeps it.
-- **Behind it:** *a gap*; no paper. The map's *KaxaNuk's position* holds that the edge is in the
-  process, not in any single signal. That is a fact about the deck, never evidence.
+- **Behind it:** *a gap*; no paper.
 
 #### Q16 · What you'd need to keep it
 - *Asked at:* Researching.
@@ -840,9 +836,9 @@ leads the placement.
   with no nudge.
 - The C1 line is said only when a round holds typed words for C1, quoting the latest, with its
   round: that is the promise C1's *Teaches* makes.
-- The last line is said only when there are such questions: those of the last round's level, O3
-  and C2 aside, since neither ever takes a line, that no round file has a line for, which the
-  skill's *step 1* finds. *k* counts them.
+- The last line is said only when there are such questions: those of the last round's level, O3,
+  C2 and Starter's Q2 aside, since they may take no line, that no round file has a line for, which
+  the skill's *step 1* finds. *k* counts them.
 
 ### The scope question
 `Retake?` (`¿Repetir?`). Every scope is applied after O3, against the questions of the level chosen

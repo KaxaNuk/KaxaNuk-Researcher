@@ -6,6 +6,28 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.21.0 (2026-10-08)
+
+**MINOR** — your researcher learns from you directly: say *remember this* and it adds the rule to
+`RESEARCHER.md` itself, on your go. The interview proposes your domains and projects from what you
+said.
+
+**What to do differently:** run `update` in your home — it shows the changes to `RESEARCHER.md`'s
+headings, `AGENTS.md` and `README.md` as a diff; the `RESEARCHER.md` lines are yours to carry across
+by hand.
+
+### Changed
+
+* **`RESEARCHER.md`**: *Works for* asks what you do and what you work on, at work and on your own;
+  *Here for* names *organise what I read, and help with my projects*; *Domains* are proposed by the
+  interview, yours to change; *Non-negotiables* offers the two strategy rules; a projects row may
+  come from the interview.
+* **`AGENTS.md`**: on *learn this*, the researcher appends one line in your words under *How it
+  speaks* or *Non-negotiables*, on your go, and saves it in the home; a fact about your work becomes
+  a projects row or a *Works for* change shown as a diff.
+* **`README.md`**: *remember this* in *Growing your researcher*; the interview's questions as they
+  now are.
+
 ## 0.20.1 (2026-10-08)
 
 **PATCH** — in a strategy, `blueprint` now reads the rule back before its go and saves your yes as a

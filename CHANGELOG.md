@@ -6,6 +6,49 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.41.0] - 2026-10-08
+Getting started is shorter and warmer: two questions about you, then one next thing. The interview
+now asks what you work on — at work and on your own — and what you would like a hand with,
+proposes your domains and projects from what you said instead of asking for them, and hands over
+in four lines and one question. Your researcher learns from you directly: say *remember this* and
+it adds the rule to its own file, on your go.
+
+**What to do differently:** say `update` in your home, then once more in a new session — the second
+brings the researcher's skill that adds what you tell it to remember (home template 0.21.0).
+### Changed
+- **`interview`** (2.4.0): question 1 asks what you do, what you work on at work and on your own,
+  what you would like a hand with, where you are with markets — *nothing yet* is fine — and what to
+  stay out of; question 2 is one call of three — the voice, your rules (*Keep the three*, *Add one
+  of my own*, *Change or drop one*, *Add the two strategy rules*) and why you are here. The domains
+  and a row for each project named are proposed from the answer, Finance among them when it speaks
+  of investing, markets or money or names no domain at all, and taken on the preview's go. The
+  hand-over is four lines — who I am and that I am in every folder, my home, the one next thing,
+  *lost? say `next`* — and one `Start?` question whose options follow that next thing; `Philosophy?`
+  is gone. The owner becomes the holder in the home's `LICENSE`; a researcher named like a package
+  skill gets another file name. *About three minutes* is said once, by `init-researcher`.
+- **The *Here for* pick** *Organise what I read* becomes *Organise what I read, and help with my
+  projects*, the old wording still matching in `next` (1.7.0), `read` (0.12.0), `update` and the
+  interview; a project or decision named leads to `study`, which now takes the home its caller
+  names.
+- **The researcher's skill** (template 0.4.0) loads when you ask for help with any project, and on
+  *learn this* or *remember this* appends one line to `RESEARCHER.md` itself — under *How it speaks*
+  or *Non-negotiables*, in your words, on your go — and saves it in the home.
+- **`init-researcher`** (0.6.0) asks the place and the go in one question; `SETUP.md`'s steps 3 and
+  4 follow it, and its step 6 describes the new hand-over.
+- **`philosophy`** (1.2.0): a shorter welcome; at Starter, *your goal* is a one-line follow-up to
+  *why you invest* — *And by when?*, or *What for, and by when?* — asked only when that answer named
+  no goal or no date; honest times (about 10 to 15 minutes at Starter, 20 to 25 at Building, 30 to
+  40 at Researching); the purpose line is yours — *I'm here so you can make better investment
+  decisions, by your own yardstick* — and Q15 no longer quotes KaxaNuk's position.
+- **Philosophy is offered only to an investor**: `next`'s, `teach`'s and `read`'s philosophy lines
+  appear when *Domains* holds Finance or *Here for* holds *Learn the basics*, *Build and test a
+  strategy* or *Write down how I invest*.
+- **`teach`**: a topic with no note no longer stops there — it offers up to three works, reads the
+  one picked and goes straight into the topic, so the first lesson stands on a note.
+- **The reading map**: the deck's conclusions are the deck's, never KaxaNuk's; the product line and
+  the bootcamp-session pointers leave.
+- **`update`**: the home's `LICENSE` copyright line is the owner's, never proposed back.
+
 ## [0.40.0] - 2026-10-08
 A new strategy now says what to expect on its first day, and the worked example does what its
 pages promise. The template's setup tells a newcomer that nothing runs yet and that the assistant

@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.11.0
+  version: 0.12.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -173,7 +173,8 @@ every proposal is in everyday words — *can anyone do better than the market, y
 *why do people make the same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build
 and test a strategy*, one may come from the reading map's *Questions to read for, from the
 evidence*; with *Write down how I invest, and see it evolve*, one asks about the owner's own way of
-investing; with *Organise what I read*, they follow the source's own subject. The question the
+investing; with *Organise what I read, and help with my projects* — or the older *Organise what I
+read* — they follow the source's own subject and the projects *Works for* names. The question the
 owner picks or types is theirs: the plan offers to add it as question 1 under *What you are reading
 for*, in their words — with the copy of *step 2*, the only write this skill makes outside the
 library and the extracts, at home only, said in the plan. Then the table of contents is shown
@@ -279,7 +280,9 @@ by hand or in a round of `philosophy`; and, at home, the strategy a note could s
 `read <strategy> <source>` that would carry it there, and a study in `Studies/`, still *idea* or
 *active*, that the note bears on, with the `study <its name>` that would revise it.
 
-At home, one more line: **the questions of the owner's philosophy the new note bears on.** Match
+At home, where `philosophy` is offered at all — *Domains* holding Finance, or *Here for* holding
+*Learn the basics*, *Build and test a strategy* or *Write down how I invest* — one more line:
+**the questions of the owner's philosophy the new note bears on.** Match
 the note's work, by its authors' surnames as the reading map's *Match before proposing* says,
 against the *Bears on* table of `references/questions.md` in the `philosophy` skill's folder —
 another skill's reference, read on demand for that table only — and name each question it lists by

@@ -41,10 +41,10 @@ folder outside this one.
 ## The path
 
 1. **Set up, once:** `interview`, if the install has not run it yet — a few short questions about
-   you, about three minutes: what you do, what you are here for, the researcher's voice and your
-   rules. It writes `RESEARCHER.md`, the agent that makes your researcher callable by name and the
-   skill that makes it present in every session, installs both for your user and saves a first
-   version.
+   you, about three minutes: what you do and work on, what you'd like a hand with, why you are here,
+   the researcher's voice and your rules. It writes `RESEARCHER.md`, the agent that makes your
+   researcher callable by name and the skill that makes it present in every session, installs both
+   for your user and saves a first version.
 2. **Start learning.** Attach a PDF, or a text or Markdown file, in chat — or name one on your
    computer — and say *read it*: the researcher copies it into `Sources/Papers/`, `Sources/Books/`
    or `Sources/Clippings/` on your go. Save a Word document, an e-book or a web page as PDF first.
@@ -128,8 +128,9 @@ It grows four ways, each governed by a section of `AGENTS.md`:
 3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`, by hand or
    through `read`, which asks for your first. The paragraph after the folder table in *What each
    folder is, and who may write in it* says who writes that file.
-4. **How it behaves.** A line by hand under *How it speaks* or *Non-negotiables* in
-   `RESEARCHER.md`, which every skill and the agent read first. The same paragraph governs it.
+4. **How it behaves.** Say *remember this*, anywhere, and your researcher adds the line under *How
+   it speaks* or *Non-negotiables* in `RESEARCHER.md` on your go — or add it by hand; every skill
+   and the agent read it first. The same paragraph governs it.
 
 ### Writing a skill or a command of your own (advanced)
 
