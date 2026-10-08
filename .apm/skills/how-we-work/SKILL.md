@@ -10,7 +10,7 @@ description: >
   it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
   (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.5.0
+  version: 0.5.1
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -98,8 +98,8 @@ actually depend on:
 Three conventions follow: a result or contract that changes is MAJOR even if the diff was one line —
 severity is what a reader has to throw away, not the size of the diff; re-running a pipeline on
 refreshed data is not a bump; while on `0.x`, a breaking change bumps MINOR, and `1.0.0` is reserved
-for the first version somebody outside the team depends on — for a research repository, the first
-strategy that reaches paper trading with its results reproduced from a clean clone.
+for the first version somebody outside the team depends on — for a research repository, its first
+book on paper trading, its results reproduced from a clean clone.
 
 ## 5. Releasing
 

@@ -12,7 +12,7 @@ repository with a `Bibliotheca/`, or the owner named one by path — *Working in
 `AGENTS.md` says where each of these paths lands. With no home in the session, work from the
 strategy alone, with no library contrast, and say so.
 
-`OBJECTIVE.md` is the first thing a CIO reads and the last thing that changes, and A, the first
+`OBJECTIVE.md` is the first thing a reader reads and the last thing that changes, and A, the first
 part of *The order of work* in `AGENTS.md`: **the objective comes before any paper**. This command
 runs on the same file in two kinds of pass — the first before anything is read, the fine-tuning
 ones as the notes for each claim arrive — so every claim ends up pointing back to a source without

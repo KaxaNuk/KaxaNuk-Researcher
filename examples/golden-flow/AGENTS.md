@@ -13,7 +13,6 @@ survive before anyone believes it.
 > Net of costs, 2015-01-02 to 2026-06-01: 20.33% a year at a Sharpe of 0.842, against 19.73% and
 > 0.763 without the golden cross and 13.05% and 0.713 for the KN US Equity Core. Nine tenths of the
 > excess is factor exposure, and the control won 2023 to 2026.
-> Replace this line as the strategy moves, and the banner at the top of the README with it.
 
 <!-- example: end -->
 
@@ -28,7 +27,14 @@ never create a folder around this one: one folder is the whole project, as `SETU
 Three rules from `SETUP.md` apply from the first command:
 
 - **Never open, read back, print or echo `Config/.env`**, and never put a value from it into a
-  command that gets recorded. You may say which keys are still empty, **by name only**.
+  command that gets recorded. You may say which keys are still empty, **by name only**, with the
+  one check allowed, which prints names and never values — Git Bash, then PowerShell:
+
+  ```
+  grep -E '^[A-Z_]+=$' Config/.env | cut -d= -f1
+  Select-String -Pattern '^[A-Z_]+=$' Config/.env | ForEach-Object { $_.Line.TrimEnd('=') }
+  ```
+
 - **Install no skills here.** They are installed once for the user, with `apm install -g`, as
   *step 4* of `SETUP.md` says, and `uvx --from apm-cli==0.33.0 apm update -g` keeps them current
   for every strategy.

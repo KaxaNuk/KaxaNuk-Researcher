@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -65,8 +65,8 @@ ships `Paper_Trading_1/` as the contract of a frozen book, named for the experim
 mirror: it becomes Experiment 1's book if Experiment 1 graduates, and a later experiment that
 graduates takes its own number. In the worked example it is that book, frozen.
 
-A strategy's `1.0.0` waits for more than its first graduation: the changelog reserves it for the
-first strategy that reaches paper trading with its results reproduced from a clean clone.
+A strategy's `1.0.0` waits for more than its first graduation: the changelog reserves it for this
+strategy's first book on paper trading, its results reproduced from a clean clone.
 
 ## The freeze
 

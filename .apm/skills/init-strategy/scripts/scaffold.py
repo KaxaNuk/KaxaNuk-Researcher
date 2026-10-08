@@ -4,8 +4,9 @@ Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy
 The three starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
 `templates/strategy/` and `examples/golden-flow/` — and this script copies one of them
 byte for byte, so every folder made from the same package version starts identical.  Nothing is
-written from memory and nothing is generated; a cache folder a checkout or a local install carries
-is left behind.
+written from memory and nothing is generated; what a checkout, an install or an agent may leave in
+a starting point — a cache folder, an agent's folder, `apm_modules/`, `uv.lock`, `Config/.env` — is
+left behind, by a whole copy and by `--only` alike.
 
 Usage:
     uv run --no-project python scaffold.py researcher <destination>
@@ -27,7 +28,8 @@ of its own, never into a strategy, whose file of the same name is the template's
 The package is found beside this script when it runs from a checkout of KaxaNuk-Researcher, then
 under `apm_modules/` in the folder it runs from or any folder above it, then under `~/.apm/`, where
 `apm install -g` puts it.  `--package` names it outright.  A destination or a `--package` that
-starts with `~` starts in the user's home folder.
+starts with `~` starts in the user's home folder.  The first line printed names the package found
+and the version its `apm.yml` gives, so a copy from a stale install shows it.
 
 On Windows, unless long paths are enabled, a path stops at 259 characters and a folder at 247.  A
 copy whose longest path would reach 260 characters, or whose deepest folder would reach 248, is
@@ -51,8 +53,18 @@ import shutil
 import subprocess
 import sys
 
-# Folders never copied: a checkout or a local install carries them, and every folder made from one
-# version of the package must start identical, so no run may carry a cache it happens to hold.
+# Folders never copied, at any depth: every folder made from one version of the package must start
+# identical, so no run may carry a cache, an agent's settings or an install it happens to hold.
+AGENT_FOLDERS = frozenset({
+    '.agents',
+    '.claude',
+    '.codex',
+    '.cursor',
+    '.gemini',
+    '.opencode',
+    '.windsurf',
+    'apm_modules',
+})
 CACHE_FOLDERS = frozenset({
     '.ipynb_checkpoints',
     '.pytest_cache',
@@ -67,6 +79,12 @@ FILE_MANAGER_FILES = frozenset({
     '.DS_Store',
     'Thumbs.db',
     'desktop.ini',
+})
+# Files never copied, as POSIX paths from a starting point's root: the lock `uv sync` writes on one
+# machine, and the keys, which never leave the folder they were typed into.
+NEVER_COPIED_FILES = frozenset({
+    'Config/.env',
+    'uv.lock',
 })
 # Each starting point: where it sits inside the package, and the first commit of a copy of it.
 STARTING_POINTS = {
@@ -92,8 +110,10 @@ INSTALLED_PACKAGE_PATHS = [
 SCRIPT_PATH = pathlib.Path(__file__).resolve()
 SOURCE_PACKAGE = SCRIPT_PATH.parents[4]
 USER_SCOPE_MODULES = pathlib.Path.home() / '.apm' / 'apm_modules'
-# What is said when git cannot be run at all.
+# What is said when git cannot be run at all, and the version the first line gives a package whose
+# `apm.yml` names none.
 GIT_NOT_FOUND = 'git was not found on this computer; install it first'
+UNKNOWN_VERSION = 'unknown'
 # Windows without long paths: a path of 260 characters, its terminating null included, is too long,
 # and a folder takes 12 fewer, room for a short file name inside it.
 WINDOWS_MAX_PATH = 260
@@ -197,6 +217,8 @@ def main(
 
         return 1
 
+    version = _package_version(package)
+    print(f'The package at {package.resolve()}, version {version}')
     relative_source, first_commit = STARTING_POINTS[parsed.kind]
     source_root = package / relative_source
     destination = parsed.destination.resolve()
@@ -220,6 +242,7 @@ def main(
     plan = plan_copy(
         source_root,
         destination,
+        source_root,
     )
     too_long = _long_path_problem(
         plan,
@@ -252,20 +275,22 @@ def main(
 def plan_copy(
     source_root: pathlib.Path,
     destination_root: pathlib.Path,
+    starting_point: pathlib.Path,
 ) -> CopyPlan:
     """
     Every file under the source, in a stable order, paired with the path it lands at.
 
-    A file inside one of the `CACHE_FOLDERS` is left out.
+    The source is the starting point, or one folder of it for `--only`; a file `_is_left_behind`
+    names is left out, judged from the starting point's root either way.
     """
     sources = sorted(
         path
         for path
         in source_root.rglob('*')
         if path.is_file()
-        and not _is_in_cache_folder(
+        and not _is_left_behind(
             path,
-            source_root,
+            starting_point,
         )
     )
     files = tuple(
@@ -363,7 +388,8 @@ def _copy_one_path(
     Copy one file or folder of the starting point into an existing folder, overwriting nothing.
 
     A path that is absolute, or that leads outside the starting point or the folder once `..` and
-    links are resolved, is refused before anything is read.
+    links are resolved, is refused before anything is read; so is one `_is_left_behind` names, and
+    a folder's copy leaves out what it names inside.
     """
     source = source_root / only
     target = destination / only
@@ -396,6 +422,16 @@ def _copy_one_path(
 
         return 1
 
+    left_behind = _is_left_behind(
+        source,
+        source_root,
+    )
+
+    if left_behind:
+        print(f'{only} is never copied: no copy of a starting point carries it')
+
+        return 1
+
     if source.is_file():
         plan = CopyPlan(
             source_root=source.parent,
@@ -406,6 +442,7 @@ def _copy_one_path(
         plan = plan_copy(
             source,
             target,
+            source_root,
         )
 
     different = [
@@ -545,21 +582,40 @@ def _installed_candidates(
     return candidates
 
 
-def _is_in_cache_folder(
+def _is_left_behind(
     path: pathlib.Path,
-    source_root: pathlib.Path,
+    starting_point: pathlib.Path,
 ) -> bool:
     """
-    Whether a file under the source sits inside one of the `CACHE_FOLDERS`.
-    """
-    parts = path.relative_to(source_root).parts
-    inside = any(
-        part in CACHE_FOLDERS
-        for part
-        in parts
-    )
+    Whether no copy carries this file or folder: one inside a folder of `AGENT_FOLDERS` or
+    `CACHE_FOLDERS`, or one of `NEVER_COPIED_FILES`.
 
-    return inside
+    The path is read from the starting point's root, whatever `--only` named, once `..`, links and
+    the name Windows opens are resolved, and with case ignored, so `--only Config` and
+    `--only config/.ENV` both leave `Config/.env` behind.  A link that leads outside the starting
+    point is read as it is spelled.
+    """
+    resolved_root = starting_point.resolve()
+    resolved_path = path.resolve()
+    relative_path = (
+        resolved_path.relative_to(resolved_root)
+        if resolved_path.is_relative_to(resolved_root)
+        else path.relative_to(starting_point)
+    )
+    relative = relative_path.as_posix().casefold()
+    never_copied = {
+        file_path.casefold()
+        for file_path
+        in NEVER_COPIED_FILES
+    }
+    in_left_folder = any(
+        part in AGENT_FOLDERS or part in CACHE_FOLDERS
+        for part
+        in relative.split('/')
+    )
+    left_behind = in_left_folder or relative in never_copied
+
+    return left_behind
 
 
 def _is_package(
@@ -707,6 +763,31 @@ def _make_repository(
             return
 
     print(f'Made it a git repository, first commit: "{first_commit}"')
+
+
+def _package_version(
+    package: pathlib.Path,
+) -> str:
+    """
+    The version the package's `apm.yml` names on its top-level `version:` line, or `unknown`.
+
+    The line is read as text: the script runs with no project, so no YAML library is at hand.
+    """
+    try:
+        manifest = (package / 'apm.yml').read_text(encoding='utf-8')
+    except OSError:
+
+        return UNKNOWN_VERSION
+
+    versions = [
+        line.removeprefix('version:').strip()
+        for line
+        in manifest.splitlines()
+        if line.startswith('version:')
+    ]
+    version = versions[0] if versions else UNKNOWN_VERSION
+
+    return version
 
 
 def _path_limit_applies() -> bool:

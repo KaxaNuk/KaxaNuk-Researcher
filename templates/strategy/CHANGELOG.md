@@ -24,9 +24,9 @@ Three conventions follow from reading it that way:
   change; only the data did. Say so in the entry and leave the number alone.
 - **While on `0.x`, a result-invalidating change bumps MINOR** — the standard pre-1.0 convention.
 
-**1.0.0 is reserved** for the first strategy that reaches **paper trading** (step 7) with its
-results reproduced from a clean clone. Until then the leading zero is doing real work: it says the
-results are still moving.
+**1.0.0 is reserved** for this strategy's first book on **paper trading** (step 7), its results
+reproduced from a clean clone. Until then the leading zero is doing real work: it says the results
+are still moving.
 
 ## How to write an entry
 
@@ -40,6 +40,32 @@ for somebody who was not in the room:
 - **A removal is a change-set too.** Deleting a stage that nobody could trace is worth an entry.
 
 ---
+
+## 0.18.0 (2026-10-08)
+
+**MINOR** — a new strategy says what to expect: nothing runs yet, and the assistant writes each file
+with you. Its setup is shorter, its words plainer, and pandas is capped below 3. Nothing about any
+result changes.
+
+**What to do differently:** nothing to do in a strategy already set up; read the new `SETUP.md`
+and `Paper_Trading/BITACORA.md` when a book goes on paper.
+
+### Changed
+
+- **`SETUP.md`**: nothing runs yet, and why; the hand-over names `objective`; *a few minutes*;
+  *What you need first* names the assistant and the KaxaNuk Researcher; one allowed check of
+  `Config/.env`, names only, and a plain line on opening it; *Paper trading, daily* moves to
+  `Paper_Trading/BITACORA.md` as *Running it daily*, the cron line with uv's full path and the dry
+  run described as it behaves; `daily_update.py` and `.gitignore` point there.
+- **`AGENTS.md`**: the `Config/.env` rule gives that one check.
+- **Experiment 1 is the first rule**, not *the benchmark*, in `RESULTS.md`, `FINDINGS_1.md` and
+  `experiment_1.ipynb`; the notebook's section 5 names `KN_ANALYTICS_PATH`, and its section table
+  the benchmark reconciliation. `OBJECTIVE.md` speaks to its owner. The `CHANGELOG.md` head reserves
+  1.0.0 for this strategy's first book on paper trading.
+- **`pyproject.toml`**: `pandas>=2.3.3,<3` — every published figure ran on pandas 2; the cap lifts
+  once the example runs on pandas 3, and a Data Curator that needs 3 lifts it first.
+
+- **`README.md`**: the note for strategies made before 0.10.0 leaves; *a few minutes*.
 
 ## 0.17.0 (2026-10-08)
 

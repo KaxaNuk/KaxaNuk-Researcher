@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.14.0
+  version: 0.14.1
 ---
 
 # The research process — how a strategy repository is worked in
@@ -25,9 +25,9 @@ root, and inside the folders each driver, module, notebook and document as a des
 belongs there — a `.py` file as its docstring, a notebook as its markdown cells — to be filled in
 with the strategy's own. The worked example beside it, `examples/golden-flow/`, works one strategy,
 `golden-flow`, through the same files, with the strategy's own lines between example markers. The
-fixed shape buys comparability and legibility: any experiment looks like any other, every
-experiment is measured against the same named benchmark, and a CIO reads the whole state of a
-project from two files, `OBJECTIVE.md` and `RESULTS.md`.
+fixed shape buys comparability and legibility: any experiment looks like any other, every experiment
+is measured against the same named benchmark, and a reader takes in the whole state of a project
+from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
 Work in English: notebook narrative, documents, function names and comments.
 

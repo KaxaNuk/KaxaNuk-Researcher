@@ -89,11 +89,10 @@ def bounded_book(
     """
     The target book on every date: the eligible names by score, the bounds setting how many.
 
-    The score is cut here, once, to the value it had at the close before each date -- the matrix
-    is moved one row down its own calendar, which is the panel's trading calendar -- so no notebook
-    writes a `.shift(1)` of its own.  Each date is then sized by `bounded_by_score`.  The book on
-    every date, not only on rebalance dates, is what lets a rule re-strike exactly when the held set
-    changes.
+    The score a date is sized on is the prior close's: the matrix is moved one row down its own
+    calendar, the panel's trading calendar, here; the rule lags its eligibility itself.  Each date
+    is then sized by `bounded_by_score`.  The book on every date, not only on rebalance dates, is
+    what lets a rule re-strike exactly when the held set changes.
     """
     scores_before = scores.shift(1)
     rows = {}

@@ -24,9 +24,9 @@ Three conventions follow from reading it that way:
   change; only the data did. Say so in the entry and leave the number alone.
 - **While on `0.x`, a result-invalidating change bumps MINOR** — the standard pre-1.0 convention.
 
-**1.0.0 is reserved** for the first strategy that reaches **paper trading** (step 7) with its
-results reproduced from a clean clone. Until then the leading zero is doing real work: it says the
-results are still moving.
+**1.0.0 is reserved** for this strategy's first book on **paper trading** (step 7), its results
+reproduced from a clean clone. Until then the leading zero is doing real work: it says the results
+are still moving.
 
 ## How to write an entry
 
@@ -40,6 +40,43 @@ for somebody who was not in the room:
 - **A removal is a change-set too.** Deleting a stage that nobody could trace is worth an entry.
 
 ---
+
+## 0.16.0 (2026-10-08)
+
+**MINOR** — the example does what its pages say: without the Backtest Engine, or with a licence
+that does not validate, the experiment skips step 5 and reaches its Verify, where it stopped on a
+`KeyError`. No number moves: the path with the engine is unchanged.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`SETUP.md`**: nothing runs yet, and why; the hand-over names `objective`; *a few minutes*;
+  *What you need first* names the assistant and the KaxaNuk Researcher; one allowed check of
+  `Config/.env`, names only, and a plain line on opening it; *Paper trading, daily* moves to
+  `Paper_Trading/BITACORA.md` as *Running it daily*, the cron line with uv's full path and the dry
+  run described as it behaves; `daily_update.py` and `.gitignore` point there.
+- **`AGENTS.md`**: the `Config/.env` rule gives that one check.
+- **Experiment 1 is the first rule**, not *the benchmark*, in `RESULTS.md`, `FINDINGS_1.md` and
+  `experiment_1.ipynb`; the notebook's section 5 names `KN_ANALYTICS_PATH`, and its section table
+  the benchmark reconciliation. `OBJECTIVE.md` speaks to its owner. The `CHANGELOG.md` head reserves
+  1.0.0 for this strategy's first book on paper trading.
+- **`pyproject.toml`**: `pandas>=2.3.3,<3` — every published figure ran on pandas 2; the cap lifts
+  once the example runs on pandas 3, and a Data Curator that needs 3 lifts it first.
+
+- **The example's own code**: `experiment_1.ipynb` guards every cell that reads the engine's runs
+  (`ENGINE_READY`), prints *step 5 skipped* with the reason, runs attribution only after a priced
+  rule, and checks the weight files when the engine is absent; `WORKERS` is at most the machine's
+  cores; `universe.ipynb` retries a profile up to four times, 30 seconds apart, on HTTP 429 or a
+  dropped connection, as `Universe/seed.py` does; `portfolio_construction.py`'s `bounded_book`
+  docstring says the score a date is sized on is the prior close's.
+- **`README.md`**: three plain sentences under the title, figures copied from `RESULTS.md`; the
+  glossary after *How to read it*, with *golden cross* and *seed*, and *the first rule's book*;
+  *Run it* starts with the environment and the keys; *What a correct run shows* gives 890 names on
+  the committed seed (892 on the record's), each notebook's Verify line and what a fresh download
+  can add; the daily run in a copy stops and exits 2. The banners lose *Replace this line*.
+- **`SETUP.md`**, marked: the hand-over sends the reader to the README, and *Next* says nothing is
+  written here.
 
 ## 0.15.7 (2026-10-08)
 

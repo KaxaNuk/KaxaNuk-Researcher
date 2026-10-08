@@ -6,6 +6,43 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.40.0] - 2026-10-08
+A new strategy now says what to expect on its first day, and the worked example does what its
+pages promise. The template's setup tells a newcomer that nothing runs yet and that the assistant
+writes each file with them; the example skips the backtest cleanly without the licensed engine,
+retries a rate-limited download, and opens with three plain sentences; and the copy script never
+carries a key, a lock or an assistant's folder into a new strategy.
+
+**What to do differently:** say `update` in your home. Then, in a strategy, read the template's
+0.18.0 entry; run `init-example` again for the corrected example.
+### Changed
+- **The strategy template** (0.18.0): `SETUP.md` says nothing runs yet — every `.py` file and
+  notebook says what belongs in it, and the assistant writes each with the owner in the order of
+  parts A to H, reading the example's copy — and hands over to `objective`; it reads in a few
+  minutes, names the assistant and the KaxaNuk Researcher among what is needed first, gives one
+  allowed check of `Config/.env` that prints names and never values (Git Bash and PowerShell) and
+  one plain line on opening the file; *Paper trading, daily* moves to `Paper_Trading/BITACORA.md` as
+  *Running it daily*, its cron line giving uv by its full path. Experiment 1 is *the first rule*,
+  not *the benchmark*, in `RESULTS.md`, `FINDINGS_1.md` and the notebook (as 0.12.0 decided); the
+  notebook names `KN_ANALYTICS_PATH` and the benchmark reconciliation; `OBJECTIVE.md` speaks to its
+  owner, not to a CIO; a strategy's 1.0.0 is its own first book on paper; `pandas` is capped below
+  3, since every published figure ran on pandas 2 (today the lock resolves 2.3.3 either way).
+- **The worked example** (0.16.0): without the Backtest Engine, or with a licence that does not
+  validate, the experiment writes every weight file, prints *step 5 skipped* and reaches its Verify,
+  which checks the weight files — where it used to stop on a `KeyError` though four pages said it
+  skips; the universe notebook asks FMP for a profile up to four times on a rate limit; the engine
+  runs on at most as many workers as the machine has cores; its README opens with three plain
+  sentences, its glossary follows *How to read it*, *Run it* starts with the environment and the
+  keys, and *What a correct run shows* gives each notebook's Verify line and what a copy asks.
+- **`scaffold.py`** (`init-strategy` 0.3.1): a copy, whole or with `--only`, never carries
+  `.claude`, `.agents`, `.codex`, `.cursor`, `.gemini`, `.opencode`, `.windsurf`, `apm_modules`,
+  `uv.lock` or `Config/.env`; its first line names the package and the version it copies from.
+- **`init-example`** (0.4.1) hands over in three lines, *Read*, *Run* and *Own*; the example's
+  download is *about an hour and a half* wherever a skill gives it (`next`, `interview`).
+- **`experiment-lifecycle`** (0.14.1), **`objective`**, **`paper-trading-gate`** (0.4.1) and
+  **`how-we-work`** (0.5.1): the same
+  words — a reader, not a CIO; 1.0.0 is a strategy's own first book on paper.
+
 ## [0.39.0] - 2026-10-08
 Three traps a live strategy fell into are now caught for every strategy: keys that do not join,
 volume counted twice at a split, and a rule written differently from the one meant. They were

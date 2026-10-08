@@ -8,7 +8,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.3.0
+  version: 2.3.1
 ---
 
 # The interview
@@ -412,7 +412,7 @@ line, and offer to try again.
    | --- | --- |
    | *Learn the basics, step by step* | `philosophy`, at Starter — it teaches one idea after each answer and needs no reading |
    | *Write down how I invest, and see it evolve* | `philosophy`; `brief setup` after it, for a daily brief of the markets and holdings they follow, as *also* |
-   | *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, hours of downloads, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own |
+   | *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, a download of about an hour and a half, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own |
    | *Organise what I read*, none, or their own words | item 3's first source, then `read`: say that item 3 is it, without repeating it |
 
 5. **Lost? say `next`; `update` keeps me current** — one line.

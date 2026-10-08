@@ -146,14 +146,12 @@ rounding, so a margin can differ by 0.001 from the difference of the two printed
 
 <!-- example: end -->
 
-## What the benchmark actually is, structurally
+## What the book actually is, structurally
 
 Rebalance frequency, turnover, holdings, concentration, invested share, and any structural tilt —
 each with a reading of what a bad value would have meant.
 
 <!-- example: begin -->
-
-### What the book actually is, structurally
 
 | Measure | Value | What a bad value would have meant |
 | --- | ---: | --- |

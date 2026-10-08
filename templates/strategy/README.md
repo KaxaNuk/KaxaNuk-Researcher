@@ -19,9 +19,9 @@ uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target cl
 **Then ask Claude or Codex to run `init-strategy <strategy-name>`.** It copies this template into
 one new folder named after the strategy and makes it a git repository; [`SETUP.md`](SETUP.md),
 inside it, is what the assistant follows from there — the environment, the keys, the strategy's own
-README — and it is written so a person can read it in two minutes too. The skills are installed for
-your user, not in a strategy, so a strategy installs nothing. Issues and pull requests are welcome:
-the process improves in public, the way KaxaNuk's open-source Data Curator did.
+README — and it is written so a person can read it in a few minutes too. The skills are installed
+for your user, not in a strategy, so a strategy installs nothing. Issues and pull requests are
+welcome: the process improves in public, the way KaxaNuk's open-source Data Curator did.
 
 This template is the shape and every file the process expects in it: six folders, the documents at
 the root, and inside the folders each driver, module, notebook and document as a description of
@@ -215,8 +215,6 @@ init-example
 Never build on it: the seed in `Universe/` and everything between the markers is that strategy's,
 and so, whole, is every file only the example has — its notes, `Universe/seed.py`, and a frozen
 book's `FREEZE.json` with the files it hashes.
-A strategy made from a template before 0.10.0 lacks these files; `init-strategy`'s script brings
-each back from the template, `scaffold.py strategy . --only <path>`, and never overwrites.
 
 ---
 

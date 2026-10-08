@@ -42,8 +42,8 @@ What one run does, in order:
 
 Configured in `Config/.env`: `PAPER_TRADING_INPUT` (`provider` or `database`),
 `PAPER_TRADING_SINKS` (`local`, `database` or both), `PAPER_TRADING_DATABASE` and
-`PAPER_TRADING_PUBLISH_DATA`; each has a flag that overrides it for one run.  `SETUP.md` says how
-to schedule it.
+`PAPER_TRADING_PUBLISH_DATA`; each has a flag that overrides it for one run.
+`Paper_Trading/BITACORA.md` says how to schedule it.
 
 Every performance figure it writes comes from the engine.  See `BITACORA.md` for the gate a book
 passes to get here.

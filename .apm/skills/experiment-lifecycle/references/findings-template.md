@@ -32,7 +32,7 @@ window. Then the book against every benchmark it reports against, and against th
 blueprint names, on the rule's own rebalance dates: CAGR, volatility, Sharpe, Sortino, maximum
 drawdown.
 
-## What the benchmark actually is, structurally
+## What the book actually is, structurally
 
 Rebalance frequency, turnover, holdings, concentration, invested share, and any structural tilt —
 each with a reading of what a bad value would have meant.

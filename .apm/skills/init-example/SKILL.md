@@ -8,7 +8,7 @@ description: >
   bring back a template file a strategy lacks (`init-strategy`'s script with `--only` does), and
   never builds on the example.
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -79,16 +79,15 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
    markers is the template's description, which the strategy's copy already holds. Name the path
    it landed at, to read beside the strategy's file; never copy its lines into the strategy.
 
-5. **Hand over.** For the whole example: reading it needs nothing — `OBJECTIVE.md`, then
-   `RESULTS.md`, then `Experiments/Experiment_1/`, its `BLUEPRINT_1.md` and `FINDINGS_1.md`, then
-   `Paper_Trading/BITACORA.md`. Running it needs an FMP key (this experiment's provider), the
-   Analytics Factory's KN US Equity Core holdings and returns and its KN US Equity Factor Model
-   files, and the licensed Backtest Engine and Attribution Analysis — the files and the licences
-   are KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying what it is for —
-   <https://www.kaxanuk.mx/lab> shows the Lab; its `SETUP.md`, from step 2, says how, in a **new**
-   session opened in the folder. The download took 1 hour 37 minutes for 892 names on 2026-10-06,
-   and its frozen paper book, `Paper_Trading/Paper_Trading_1/`, is a record that does not run in a
-   copy. Never build a strategy on it; a strategy of their own is `init-strategy`.
+5. **Hand over**, for the whole example, in three short lines:
+   - *Read*, with nothing installed: `OBJECTIVE.md`, `RESULTS.md`, then `BLUEPRINT_1.md` and
+     `FINDINGS_1.md` in `Experiments/Experiment_1/`, then `Paper_Trading/BITACORA.md`.
+   - *Run*: its README's *Run it*, in a **new** session opened in the folder — an FMP key of their
+     own; and, from `lab@kaxanuk.mx`, saying what they are for, the Analytics Factory's KN US Equity
+     Core and factor model files and the Backtest Engine and Attribution Analysis licences
+     (<https://www.kaxanuk.mx/lab> shows the Lab); the download takes about an hour and a half.
+   - *Own*: a strategy of your own is `init-strategy <name>`; nothing is built on the example, and
+     its paper book, `Paper_Trading/Paper_Trading_1/`, is a record that does not run.
 
 ## References
 
