@@ -11,7 +11,7 @@ description: >
   which books to price and how to read the numbers that come back. Shaping the attribution library's
   inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 # Alpha decomposition — is the signal doing anything?
@@ -117,8 +117,11 @@ each.
 Same names, same dates, every held position at equal weight. Side and gross unchanged.
 
 ```python
-held = target_weights > 0
-sizing_counterfactual = held.astype(float).div(held.sum(axis=1), axis=0).fillna(0.0)
+held_positions = target_weights > 0
+held_counts = held_positions.sum(axis=1)
+held_indicator = held_positions.astype(float)
+equal_weights = held_indicator.div(held_counts, axis=0)
+sizing_counterfactual = equal_weights.fillna(0.0)
 ```
 
 **Sharpe(real) − Sharpe(equal-weighted) is what sizing contributed.** Positive means the big
@@ -129,20 +132,35 @@ equal weight, sizing skill is zero by construction and should be reported as suc
 ### 3b. Selection skill — a random draw from the eligible pool at the same sizes
 
 Same dates, same number of names, same weight vector — but the names are drawn at random from
-what was eligible that day. Repeat K times; K is a trial count and is published.
+what was eligible that day. Repeat K times (`draw_count`); K is a trial count and is published.
 
 ```python
-rng = numpy.random.default_rng(seed)
-draws = []
-for _ in range(K):
-    rows = []
-    for date in REBALANCE_DATES:
-        real = target_weights.loc[date]
-        weights = numpy.sort(real[real > 0].to_numpy())[::-1]          # the real size distribution
-        pool = eligible_matrix.loc[date]
-        picked = rng.choice(pool.index[pool], size=len(weights), replace=False)
-        rows.append(pandas.Series(weights, index=picked, name=date))
-    draws.append(pandas.DataFrame(rows).reindex(columns=target_weights.columns).fillna(0.0))
+random_generator = numpy.random.default_rng(seed)
+random_books = []
+for draw_number in range(draw_count):
+    drawn_rows = []
+    for rebalance_date in REBALANCE_DATES:
+        real_row = target_weights.loc[rebalance_date]
+        real_sizes = real_row[real_row > 0]
+        size_values = real_sizes.to_numpy()
+        descending_sizes = numpy.sort(size_values)[::-1]
+        eligible_row = eligible_matrix.loc[rebalance_date]
+        eligible_names = eligible_row.index[eligible_row]
+        picked_names = random_generator.choice(
+            eligible_names,
+            size=real_sizes.size,
+            replace=False,
+        )
+        drawn_row = pandas.Series(
+            descending_sizes,
+            index=picked_names,
+            name=rebalance_date,
+        )
+        drawn_rows.append(drawn_row)
+    drawn_frame = pandas.DataFrame(drawn_rows)
+    widened_frame = drawn_frame.reindex(columns=target_weights.columns)
+    random_book = widened_frame.fillna(0.0)
+    random_books.append(random_book)
 ```
 
 Price every draw. **The real book's percentile among the K random books is the selection skill**;

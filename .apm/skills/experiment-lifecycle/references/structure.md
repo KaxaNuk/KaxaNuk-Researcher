@@ -11,7 +11,7 @@ between example markers. **The template is the source of truth for this tree; th
 of what it looked like at the version named below**, kept by hand. When they disagree, the template
 wins.
 
-Template version: **0.15.0**. The template ships `Experiments/Experiment_1/` and
+Template version: **0.15.1**. The template ships `Experiments/Experiment_1/` and
 `Paper_Trading/Paper_Trading_1/`; the blanks for every experiment after the first are this skill's
 `references/`. `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note.
 
@@ -29,7 +29,7 @@ Template version: **0.15.0**. The template ships `Experiments/Experiment_1/` and
 ├── .gitignore                   # everything regenerable, everything APM installs, everything binary, Config/.env
 ├── .gitattributes               # text=auto eol=lf, so a Windows checkout commits LF
 ├── Config/
-│   └── .env.template            # three data-provider keys, one is enough, and the two engine licences; copy to .env
+│   └── .env.template            # three data-provider keys, one is enough, and the three Lab licences; copy to .env
 ├── Bibliotheca/                 # step 1
 │   ├── BIBLIOGRAPHY.md          #   the index of sources and the leads, in Parts 0-5; no notes yet
 │   ├── LOG.md                   #   what was read here, and when; empty until the first read

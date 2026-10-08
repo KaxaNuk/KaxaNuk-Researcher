@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -83,9 +83,9 @@ On *Go*: the e-mail first, then the way, then the setting *Send?* chose, once th
 2. **github.com** — the owner signs in, or creates a free account: theirs to do. They create an
    **empty private** repository at <https://github.com/new>, by that name, with no README, licence
    or `.gitignore`, and paste its address. Then `git remote add origin <the address>` and
-   `git push -u origin main`, with `GIT_TERMINAL_PROMPT=0` set as *Step 8* shows for each shell,
-   so git never waits on a prompt in the terminal that no one can answer. The first send may open a browser window asking them to sign in to GitHub, once:
-   that is expected, and theirs to do.
+   `git push -u origin main`, with `GIT_TERMINAL_PROMPT=0` set as *Step 8* shows for each shell, so
+   git never waits on a prompt in the terminal that no one can answer. The first send may open a
+   browser window asking them to sign in to GitHub, once: that is expected, and theirs to do.
 3. **GitHub Desktop** — when the second fails for want of a sign-in, or they prefer it: *File → Add
    local repository*, this folder, then *Publish repository* with *Keep this code private* ticked.
    `git remote get-url origin` then names the copy.

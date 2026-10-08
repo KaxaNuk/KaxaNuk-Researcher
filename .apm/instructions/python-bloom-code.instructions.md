@@ -2,9 +2,13 @@
 description: Python Bloom Code Style Guide
 applyTo: "**/*.py"
 metadata:
-  version: 2.1.2
+  version: 2.2.0
 ---
 # Python "Bloom Code" Style Guide
+Apply this in a KaxaNuk repository — a Lab library, a strategy, the KaxaNuk Researcher package, or
+any repository whose `AGENTS.md`, `CLAUDE.md` or README names Bloom Code.
+Elsewhere, follow the project's own style.
+
 Strict superset of PEP 8 whose single objective is reading speed for someone unfamiliar with the
 codebase.
 The mechanical part is enforced by a script (see below); this file keeps only what needs judgment.

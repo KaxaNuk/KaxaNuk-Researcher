@@ -7,7 +7,7 @@ description: >
   the session is not open in it. Only when the owner runs it by name, or when the researcher's
   skill answers a greeting; never on its own otherwise.
 metadata:
-  version: 1.4.0
+  version: 1.4.1
 ---
 
 # Next — where you stand, and what to do next

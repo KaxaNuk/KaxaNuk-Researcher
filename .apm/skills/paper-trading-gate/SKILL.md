@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -105,6 +105,12 @@ writes the record through `record.py` to local CSV files, a DuckDB database or b
 day, exit 2 with its traceback in the day's log: Python's own exit code for it is 1, which a
 scheduler reads as flagged. A frozen file missing or changed, or a shared input that no longer
 matches `FREEZE.json`, stops the book with `unfrozen-input`.
+
+**A library upgrade is a change to every frozen book.** The Data Curator's version is a shared
+input: upgrading it in the strategy stops every frozen book with `unfrozen-input`. The Backtest
+Engine's version is recorded in `FREEZE.json` but not enforced, so an engine upgrade reprices the
+record, and what it moves shows as restatements. Neither upgrade is made without the owner's go,
+and a book that must move to a new build is frozen again as a new book, with its own number.
 
 **What the checks do not see.** They read each file's newest day alone: a security's file that
 ends before the day, or a bad bar on a day between two runs — an unadjusted corporate action, say —

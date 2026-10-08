@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.13.0
+  version: 0.13.1
 ---
 
 # The research process — how a strategy repository is worked in
@@ -40,9 +40,9 @@ nor any KaxaNuk in-house strategy other than the package's worked example, `gold
 
 ## 1. The eight steps
 
-Steps 1 to 7 are the Investment Lab and live in the repository. Step 8 does not: a strategy leaves
-the Lab when it is funded, outside the repository. Each stage owns its outputs and reads only from
-the stage above it.
+Steps 1 to 7 are the strategy repository's, and steps 3 to 6 run on the Investment Lab's
+libraries. Step 8 is not: a strategy leaves the repository when it is funded. Each stage owns its
+outputs and reads only from the stage above it.
 
 | # | Step | In plain words | It produces | It prevents | Where |
 | --- | --- | --- | --- | --- | --- |
@@ -60,19 +60,20 @@ the number matches: the next experiment computes it slightly differently and the
 comparable. A step is finished when its output is reproducible from the step above by re-running
 one command or one notebook.
 
-The six Lab modules map one to one onto the stages: Data Curator (`Data/curator.py`), Data Refinery
+The Investment Lab is KaxaNuk's six libraries that run steps 3 to 6, with a web front end, and
+each maps onto one module of the strategy: Data Curator (`Data/curator.py`), Data Refinery
 (`Data/refinery.py`), Data Analyzer (`Data/analyzer.ipynb`), Portfolio Construction
 (`Experiments/portfolio_construction.py`), Backtest Engine (`Experiments/backtest_engine.py`),
-Attribution Analysis (`Experiments/attribution_analysis.py`). Four have libraries — the Data
+Attribution Analysis (`Experiments/attribution_analysis.py`). Four have shipped — the Data
 Curator, Portfolio Construction, the Backtest Engine and Attribution Analysis — and two, the
-Refinery and the Analyzer, are hand-rolled until theirs land; a hand-rolled stage says so in its
-docstring and names the interface its library will replace. A skill says how each library is called:
-`data-curator-custom-calculations`, `portfolio-construction-runs`, `backtest-engine-runs` and
-`attribution-analysis-runs`, with `universe-point-in-time` for step 2, `data-analyzer-runs` for the
-hand-rolled Analyzer, and `paper-trading-gate` for step 7. **Step 1 is the KaxaNuk
-Researcher's**, `KaxaNuk/KaxaNuk-Researcher`, whose home `init-researcher` makes: its `objective`
-drafts the claims, its `read` writes the notes in `Bibliotheca/`, and its `blueprint` drafts
-`BLUEPRINT_N.md` with every prediction citing a note.
+Refinery and the Analyzer, are coming, hand-rolled in the strategy until they land; a hand-rolled
+stage says so in its docstring and names the interface its library will replace. A skill says how
+each library is called: `data-curator-custom-calculations`, `portfolio-construction-runs`,
+`backtest-engine-runs` and `attribution-analysis-runs`, with `universe-point-in-time` for step 2,
+`data-analyzer-runs` for the hand-rolled Analyzer, and `paper-trading-gate` for step 7. **Step 1 is
+the KaxaNuk Researcher's**, `KaxaNuk/KaxaNuk-Researcher`, whose home `init-researcher` makes: its
+`objective` drafts the claims, its `read` writes the notes in `Bibliotheca/`, and its `blueprint`
+drafts `BLUEPRINT_N.md` with every prediction citing a note.
 
 ## 2. The control documents
 

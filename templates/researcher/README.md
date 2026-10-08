@@ -76,11 +76,11 @@ first. In Claude, type these with a slash, `/read`; anywhere else, ask for them 
 
 ## The KaxaNuk Investment Lab
 
-A strategy you build from here can use KaxaNuk's Lab libraries: the Data Curator is open source;
-the Backtest Engine and Attribution Analysis are licensed; Portfolio Construction is on request;
-the Data Refinery and the Data Analyzer are coming. <https://www.kaxanuk.mx/lab> shows them.
-Write to `lab@kaxanuk.mx` for a licence or access, or to report a problem with your researcher —
-with the version `update check` shows.
+A strategy you build from here can use KaxaNuk's Lab libraries: the Data Curator is open source; the
+Backtest Engine and Attribution Analysis are licensed; Portfolio Construction is on request, and
+licensed since its 2.0.0; the Data Refinery and the Data Analyzer are coming.
+<https://www.kaxanuk.mx/lab> shows them. Write to `lab@kaxanuk.mx` for a licence or access, or to
+report a problem with your researcher — with the version `update check` shows.
 
 ---
 

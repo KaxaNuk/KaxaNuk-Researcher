@@ -101,14 +101,16 @@ needs a key from a data provider the Data Curator reads — FMP, Sharadar or LSE
 itself; the worked example uses FMP — before it can download anything, the worked example included.
 Three of the Lab libraries are not public: the Backtest Engine and Attribution Analysis each need a
 KaxaNuk licence, and Portfolio Construction needs access to KaxaNuk's private
-`KaxaNuk/Portfolio-Construction` repository. Attribution also reads the benchmark and factor model
-files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>. A licence, access or those
-files are KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
-<https://www.kaxanuk.mx/lab> shows the Lab. Without them a strategy still runs up to its portfolios
-— an equal-weight book needs nothing more — and the backtest and attribution say what is missing and
-skip; the worked example reads its universe from the Analytics Factory, so without those files only
-its download runs. Every key goes in the strategy's `Config/.env`, which only you fill in and which
-never leaves your computer; the strategy's own `SETUP.md` says how.
+`KaxaNuk/Portfolio-Construction` repository and, since its 2.0.0, a licence too. Attribution also
+reads the benchmark and factor model files of KaxaNuk's Analytics Factory,
+<https://www.kaxanuk.mx/analytics>. A licence, access or those files are KaxaNuk's to give: write to
+`lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows the
+Lab. Without them a strategy still runs up to its portfolios — an equal-weight book needs nothing
+more — and the backtest and attribution say what is missing and skip; the worked example reads its
+universe from the Analytics Factory, so without those files only its download runs. Every key goes
+in the strategy's `Config/.env` — Portfolio Construction's in the environment or a
+`.kaxanuk_license` file — which only you fill in and which never leaves your computer; the
+strategy's own `SETUP.md` says how.
 
 **A question, or a problem to report:** the same address — a problem report names the version
 `update check` shows.
@@ -204,11 +206,12 @@ strategy, in the order of its steps:
 | `alpha-decomposition` | reading attribution: is the signal doing anything, or is it a factor exposure |
 | `paper-trading-gate` | step 7, graduation: the five criteria, how each is evidenced, the freeze, and the daily run and its record |
 
-**The house rules**: `how-we-work` (where work lands, changelogs, versions), `bloom-code-lint`,
-and four instructions, on the assistants that receive them — *Troubleshooting* in `SETUP.md` says
-which: Bloom Code and PEP 8, for every Python file on the machine; test writing, for Python tests;
-and filesystem boundaries, in any project, for every file the assistant reads: outside the folder
-it works in, only the places the task needs. `bloom-code-lint` is the check to run by hand.
+**The house rules**: `how-we-work` (where work lands, changelogs, versions), `bloom-code-lint`, and
+three instructions, on the assistants that receive them — *Troubleshooting* in `SETUP.md` says
+which: Bloom Code and PEP 8, for Python in a KaxaNuk repository — a Lab library, a strategy, this
+package, or any repository whose `AGENTS.md`, `CLAUDE.md` or README names Bloom Code — and nowhere
+else; and filesystem boundaries, in any project, for every file the assistant reads: outside the
+folder it works in, only the places the task needs. `bloom-code-lint` is the check to run by hand.
 
 **One agent**, deployed for your user with the skills: `blueprint-critic` reads a drafted
 `BLUEPRINT_N.md` cold, before your go, against the strategy's `AGENTS.md`, `OBJECTIVE.md`, the
@@ -246,7 +249,7 @@ The researcher's part is **the hypothesis**, and it stops where the numbers star
 ```
 .apm/skills/          every skill: the researcher's, the Investment Lab's and the house rules'
 .apm/prompts/         the commands
-.apm/instructions/    the house style: Bloom Code, PEP 8, test writing, filesystem boundaries
+.apm/instructions/    the house style: Bloom Code, PEP 8, filesystem boundaries
 .apm/agents/          the one agent, blueprint-critic
 templates/strategy/   the KaxaNuk Strategy Template — the eight steps as folders; its README is the
                       process, and the order of work a strategy follows
@@ -344,7 +347,7 @@ the commit would hold, with LF endings and none of the ignored folders a working
 new session in the `check` folder, from that shell.
 
 **Before a release, do the same with the commit to be tagged.** It should deploy exactly 21 skills,
-9 commands, 4 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
+9 commands, 3 rules and 1 agent, with no warning. Then, if the release changes a skill, a command
 or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
 `interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter, `brief setup`
 and `brief`, and `init-strategy` — once in Spanish with a researcher whose name has an accent,

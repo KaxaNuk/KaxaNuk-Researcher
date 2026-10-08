@@ -8,12 +8,13 @@ description: >
   to reconcile a provider against the seed, what a recycled identifier is, why classifications are
   prefixed `current_`, what belongs in `Data_Issues.csv`, or from which date a universe is usable.
   It covers the seed's contract, the two-layer master, the checks and the usable date. It does NOT
-  cover downloading prices (use `data-curator-custom-calculations`), the refinery's cross-sectional
-  panel (the worked example's `Data/refinery.py` shows it), screening a feature (use
-  `data-analyzer-runs`), sizing a book (use `portfolio-construction-runs`), or the research
-  process around the stage (use `experiment-lifecycle`).
+  cover downloading prices (the Data stage, `Data/curator.py`, with
+  `data-curator-custom-calculations`), the refinery's cross-sectional panel (see the example's
+  `Data/refinery.py`), screening a feature (use `data-analyzer-runs`), sizing a book (use
+  `portfolio-construction-runs`), or the research process around the stage (use
+  `experiment-lifecycle`).
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today

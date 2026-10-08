@@ -11,7 +11,7 @@ by in its home are in `templates/researcher/AGENTS.md`; the rules a strategy wor
 
 | Path | What it is | Changed how |
 | --- | --- | --- |
-| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as the README's *Development* shows, and a new session there; before a release, that install deploys exactly 21 skills, 9 commands, 4 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
+| `.apm/skills/`, `.apm/prompts/`, `.apm/instructions/`, `.apm/agents/` | every skill, command, instruction and agent an install receives: the researcher's, the process's (`experiment-lifecycle`, `alpha-decomposition`), each Lab library's, the house rules and `blueprint-critic`, deployed for the user with the skills | edited here, then tried by a project-scope install of an archive of the tree — LF endings, no ignored folders — from a short scratch folder, with the pinned APM, in a shell whose home is a short throwaway folder, because a skill installed for the user wins over a project skill of the same name: `uvx --from apm-cli==0.33.0 apm install <the archive> --target claude`, as the README's *Development* shows, and a new session there; before a release, that install deploys exactly 21 skills, 9 commands, 3 rules and 1 agent with no warning. Never `apm install -g <this folder>`, which on Windows stages the whole working tree, ignored folders included, at a depth past the path limit under HOME |
 | the skills' `scripts/` | `scaffold.py`, `extract.py`, `check_numbers.py`, `bloom_code_check.py`: what `init-*`, `read`, `audit deep` and `bloom-code-lint` run for every user | nothing tests them: a change is tried by running the skill that uses it in a scratch folder before the commit |
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
@@ -61,3 +61,28 @@ marked.
 - **No secrets, no binaries.** The worked example, `golden-flow`, is the only strategy this
   repository names, as a curated copy; nothing in it is taken from a live strategy repository after
   the copy.
+
+## When a Lab library or an Analytics Factory file changes
+
+1. **Read the library's changelog** from the build its skill names as `library_version` to the new
+   one, `[Unreleased]` aside: what changes for the install, a caller, a key or a trap. Copy names
+   and behaviour only — a private index, host or key stays a `{SERVER}` placeholder.
+2. **Record the new build** in the *Latest* column of
+   `.apm/skills/next/references/investment-lab.md` and, in the library's skill, a short *Changed in
+   <build>* paragraph: from its changelog, not yet checked by a run.
+3. **Check it by a run** before `library_version` moves: in a scratch copy of the worked example on
+   a short path outside this repository, with the new build, every line that says *checked*,
+   *verified* or *measured on <old build>* (`git grep -n "<old build>" .apm templates examples`),
+   the example re-run from a wiped copy. Only then does `library_version` move, and the paragraph
+   become the skill's own text.
+4. **One release carries it all**: the skill and its `references/`, `investment-lab.md`, the
+   template's `pyproject.toml` floor or `Config/.env.template` key with the example's copy, and,
+   where a figure moves, a new example version with its journal entry, `FINDINGS_1.md` and
+   `RESULTS.md`, and every skill that quotes the figure; the CHANGELOG's *What to do differently*
+   names the build to install.
+5. **An Analytics Factory change** — a folder, a file name, a header, a date order — changes
+   `Data/hand_supplied.py` in the template and the example, which keeps reading the older names,
+   `attribution-analysis-runs` and `investment-lab.md`; a frozen book's copy stays as it was.
+6. **A library that replaces a hand-rolled stage** (the Data Refinery, the Data Analyzer) gets its
+   own `*-runs` skill with a `library_version`, and the stage's seam file, `experiment-lifecycle`
+   and `investment-lab.md` move with it.

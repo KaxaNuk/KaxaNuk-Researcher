@@ -41,6 +41,25 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.5 (2026-10-08)
+
+**PATCH** — the shared `Config/.env.template` and `SETUP.md` lines move as the template's 0.15.1
+does. No number moves: the record's book was sized by `Experiments/portfolio_construction.py`
+itself, without the library, which it does not need.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`Config/.env.template`**: `KNPC_API_KEY_KAXANUK`, Portfolio Construction's licence since its
+  2.0.0 — the library reads it from the environment or a `.kaxanuk_license` file, and a driver that
+  loads this file into the environment first passes it on.
+- **`SETUP.md`** step 3 names it beside the other two licences, and says the library reads it from
+  the environment or `.kaxanuk_license`; *Paper trading, daily* says a saved licence check covers 3
+  days offline from Backtest Engine 0.67.0 (7 before), the first run on it needing the network.
+- **`Paper_Trading/BITACORA.md`**: paper trading is the last step inside this repository, not
+  inside the Investment Lab, whose libraries run steps 3 to 6.
+
 ## 0.15.4 (2026-10-08)
 
 **PATCH** — the shared lines of `AGENTS.md` and `SETUP.md` move as the template's 0.15.0 does, and
