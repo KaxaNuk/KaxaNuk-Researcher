@@ -98,3 +98,13 @@ marked.
 6. **A library that replaces a hand-rolled stage** (the Data Refinery, the Data Analyzer) gets its
    own `*-runs` skill with a `library_version`, and the stage's seam file, `experiment-lifecycle`
    and `investment-lab.md` move with it.
+7. **The worked example's seed follows its index.** When the KN US Equity Core's membership changes,
+   rebuild `examples/golden-flow/Universe/Investable_Universe.csv` with its `Universe/seed.py`: the
+   listings whose FMP symbol, verified or not, is the index's own ticker, departed names included,
+   with their first and last price dates — tickers and dates only, never an ISIN, a name or any
+   other vendor field. It is an example release, re-run where a figure moves; the frozen book keeps
+   its seed as example 0.17.0 rewrote it, tickers and dates only; never restore the hashed original
+   to satisfy `FREEZE.json`.
+8. **A new worked example** — an ETF strategy, or one users ask for — is a folder of its own under
+   `examples/`, curated as `golden-flow` is: the template's shared lines, its own marked lines, a
+   seed of tickers and dates only, an `init-example` choice, and its own version and changelog.

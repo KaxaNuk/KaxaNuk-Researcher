@@ -6,6 +6,75 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.1.0] - 2026-10-08
+Eleven ways to use your researcher, a safer copy on GitHub, and a worked example made of tickers
+and dates only. Two people walked the install end to end, in English on Claude and in Spanish on
+Codex; what they stumbled on is fixed, and the new `USE-CASES.md` shows, step by step, a brief on
+the days you choose, working toward a goal, watching your holdings beside your own rules and more.
+
+**What to do differently:** say `update` in your home, then once more in a new conversation (home
+template 0.22.1). For the new worked example, run `init-example` again, into a new folder. A clone
+of this repository made before 2026-10-08 is cloned again: its history was rewritten to take
+vendor data out, and every tag now points at the rewritten commit with the same files.
+### Added
+- **`USE-CASES.md`**: eleven ways to use your researcher, each with what you say, what it writes
+  and what it never does; the README links it and `CONTRIBUTING.md` lists it.
+- **The README** opens with a table of badges, as the Data Curator's does — the assistants it works
+  with, the licence, the version, the APM it installs with, its two languages — and *Coming next*
+  adds a template for building a Python library of your own.
+- **Licence requests carry *via KaxaNuk Researcher* in their subject**, in every line that sends
+  you to `lab@kaxanuk.mx` for a licence or access, so a request the researcher brings can be told.
+- **Root `AGENTS.md`**, for maintainers: the worked example's seed follows its index, refreshed as
+  an example release; a new worked example — an ETF strategy, or one users ask for — is a folder of
+  its own under `examples/`.
+### Changed
+- **The Investment Lab, said the same way everywhere**: the Data Curator is open source and free;
+  the Backtest Engine, Attribution Analysis and Portfolio Construction — and the Data Refinery and
+  the Data Analyzer when they ship — come together, with their licences, in the KaxaNuk Investment
+  Lab, which KaxaNuk sells. `references/investment-lab.md`, `backtest-engine-runs` (0.3.1),
+  `attribution-analysis-runs` (0.4.1), `portfolio-construction-runs` (0.4.1), `init-example`, the
+  README, the home's README and the strategy template and worked example. An access line that
+  names more than one library asks which library and what it is for.
+- **The worked example** (0.17.0) carries tickers and dates only: its seed is the 883 listings
+  whose FMP symbol is the index's own ticker, departed names included, in four columns —
+  `main_identifier`, `index_identifier`, `valid_from`, `valid_to` — with no ISIN, company name or
+  match label; `Universe/seed.py` writes it so. The frozen book's seed is the same file, so it no
+  longer matches `FREEZE.json`, and the daily run reports it. The example says it can run, for
+  learning, on Yahoo Finance through the Data Curator's extension — with the survivorship bias of
+  the 178 names that left the index, and without the unadjusted prices and VWAP its traded value,
+  fills and commission need; a precise experiment uses another provider. The strategy template
+  (0.18.2) changes in wording only. `universe-point-in-time` (0.3.1) and `experiment-lifecycle`
+  (0.14.3) follow.
+- **The `LICENSE`** of the package, the strategy template and the worked example takes the Data
+  Curator's form, *Copyright since 2026 KaxaNuk SC*, with the same MIT terms.
+- **Your first hello after the install asks nothing**: `interview` (2.5.1) moves the weekly version
+  check a week on when `init-researcher`'s update succeeded. *Quit and reopen your assistant* is
+  said only when the setup installed git or uv, and only for the next conversation.
+- **Every save lands in the right folder, wherever the conversation is open**: `read` (0.12.2),
+  `query` (0.9.2), `study`, `teach`, `refine`, `refresh-index`, `audit`, `objective`, `blueprint`,
+  `challenge`, `philosophy` (1.2.2), `update`, `next` (1.8.1) and `backup` run every git command
+  in your home or the strategy, the send included, and set a name and an e-mail there only; each
+  save takes only its own files. At home, `read` saves the text clipping a note was read from.
+- **A domain of two words gets one folder name**, `Knowledge/Personal_Finance/`, headed as
+  `RESEARCHER.md` spells it — in the home's `AGENTS.md`, `read`'s note convention and
+  `refresh-index`.
+### Fixed
+- **`backup`** (0.1.3): a copy made on github.com without `gh` is checked private before anything
+  is sent — counted private only when GitHub refuses it to an anonymous request; any other failure
+  sends nothing and says so; no sign-in prompt opens on the way; a mistyped address is forgotten
+  and asked for again; the e-mail question comes once the copy exists.
+- **`init-researcher`** (0.6.2): a folder that already ends in the researcher's name becomes the
+  home itself, never nested. **`init-example`** (0.4.3): where a copy already is, it says so and
+  offers it. **`philosophy`** (1.2.2): a round stopped early still names the study it promised.
+  **`objective`**: its leads stay in `OBJECTIVE.md`, as it says. **`next`** (1.8.1): from a
+  project the researcher joined, it reads and saves your home.
+- **The 1.0.0 entry** says the README ran 1,397 words before the developers' link; at 1.0.0 it ran
+  1,423.
+### Removed
+- **Vendor data, from the files and from history**: the FMP ISINs, company names and match labels
+  of the worked example's seed, and the FMP security master an older example committed on
+  2026-09-25 and deleted the same day. The repository's history is rewritten without them.
+
 ## [1.0.0] - 2026-10-08
 Your own research companion, for every project you work on, with investment research as its home
 ground. You teach it who you are and how you work; it keeps what you read and comes with you to any

@@ -94,7 +94,9 @@ numbers out of them is the line the non-negotiables draw. Every number in the re
 10. **The reading before the blueprint.** A note read after the blueprint cannot have informed its
     predictions, and a prediction that cites one is look-ahead in the research itself. Read the
     commit that wrote the blueprint's *Written* line — `BLUEPRINT_1.md` itself came in blank with
-    the template — and the one that brought in each note a prediction cites, with its date:
+    the template — and the one that brought in each note a prediction cites, with its date. Every
+    git command of this check runs in the strategy's folder, as `git -C "<that folder>"` from a
+    session open elsewhere:
 
     ```bash
     git log -S'before any rule was coded' --reverse --format='%h %cs' -- Experiments/Experiment_N/BLUEPRINT_N.md
@@ -113,11 +115,12 @@ numbers out of them is the line the non-negotiables draw. Every number in the re
 Two things cannot be checked from the working tree, and the report says so when they matter: the
 falsifiers are prose, so pairing *a beta at or above one* with *beta is 1.028* is a judgement made
 in words; and the ordering the whole process rests on — the blueprint saved before the rule, the
-counterfactuals before the engine — lives in the git log, not in the files. So read the log:
-run `git log --oneline -- Experiments/Experiment_N` and quote in the report, in plain words, what
-it shows — the version that wrote the blueprint, as check 10 finds it, and whether it was saved
-before the one that put the rule into `experiment_N.ipynb`. A blueprint saved with its rule, or
-after it, cannot be told from one written afterwards; say so. The log is read, never changed.
+counterfactuals before the engine — lives in the git log, not in the files. So read the log: run
+`git log --oneline -- Experiments/Experiment_N` in the strategy's folder, as check 10 does, and
+quote in the report, in plain words, what it shows — the version that wrote the blueprint, as
+check 10 finds it, and whether it was saved before the one that put the rule into
+`experiment_N.ipynb`. A blueprint saved with its rule, or after it, cannot be told from one written
+afterwards; say so. The log is read, never changed.
 
 The process can move under an experiment too: `blueprint`, `blueprint-critic` and this command come
 from one package, updated for every strategy at once. Read the version this run uses as `blueprint`
@@ -144,15 +147,16 @@ because the journal is appended and never edited, and a look-across is already r
 *What we tried / considered* names both packages: *`challenge` with KaxaNuk-Researcher X.Y.Z,
 against a blueprint drafted with W.W.W*, or *with no stamp*.
 
-**Then save it as a version of its own**, on the same go, with no second question and no
-`CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names it:
-`git add Experiments/Experiment_N/JOURNAL_N.md` and
+**Then save it as a version of its own**, in the strategy's folder, on the same go, with no second
+question and no `CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names
+it. Every git command, the `backup` skill's send included, runs as `git -C "<that folder>"` when
+the session is open elsewhere: `git add Experiments/Experiment_N/JOURNAL_N.md` and
 `git commit -m "Challenge: Experiment N" -- Experiments/Experiment_N/JOURNAL_N.md`; to the owner,
 *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
-`true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If
-git wants a name and an e-mail, ask for both in one plain line, set them in this folder only, never
-invented, and save again; with no `.git/`, say in one line that the strategy keeps no versions yet.
-This replaces the owner's own commit an older home's `AGENTS.md` asks for.
+`true`, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name
+and an e-mail, ask for both in one plain line, set them in that folder only, never invented, and
+save again; with no `.git/`, say in one line that the strategy keeps no versions yet. This replaces
+the owner's own commit an older home's `AGENTS.md` asks for.
 
 **What it never does, whatever the argument:**
 

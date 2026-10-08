@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.12.1
+  version: 0.12.2
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -290,18 +290,19 @@ its ID and short name. With a round in `Philosophy/Evolution/`, the line gives t
 date and offers the next round with `philosophy`; with none, it offers round 1. A work the table
 does not list, or a table that cannot be read because the skill is not installed, gets no line.
 
-**Then save a version**, on the plan's go, with no second question: `git add` each file this run
-wrote — with the text clipping a note was read from — by name, never `--all`, never an extract or a
-PDF, leaving out any path the folder's `.gitignore` keeps out, and
-`git commit -m "Read: <Author Year, short title>" -- <the same files>`. Say it in one plain line,
-*Saved*, never the commands. When `git config --get kaxanuk.autosend` prints `true`, the version is
-also sent to the owner's copy on GitHub, as the `backup` skill says. This replaces the *Commit?*
-question, and in a strategy the owner's own commit, that an older home's `AGENTS.md` describes. A
-save refused for want of a name and an e-mail asks for both in one plain line — *a name and an
-e-mail to sign the versions your researcher saves* — sets them in this folder only, never invented,
-and saves again; a folder with no `.git/` gets one line, that it keeps no versions yet. In a
-strategy the version takes no `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's
-entry names it.
+**Then save a version**, on the plan's go, with no second question, in the folder whose library
+this is — every git command, the `backup` skill's send included, as `git -C "<that folder>"` when
+the session is open elsewhere: `git add` each file this run wrote — with the text clipping a note
+was read from — by name, never `--all`, never an extract or a PDF, leaving out any path the folder's
+`.gitignore` keeps out, and `git commit -m "Read: <Author Year, short title>" -- <the same files>`.
+Say it in one plain line, *Saved*, never the commands. When `git config --get kaxanuk.autosend`
+prints `true`, the version is also sent to the owner's copy on GitHub, as the `backup` skill says.
+This replaces the *Commit?* question, and in a strategy the owner's own commit, that an older home's
+`AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one plain
+line — *a name and an e-mail to sign the versions your researcher saves* — sets them in that folder
+only, never invented, and saves again; a folder with no `.git/` gets one line, that it keeps no
+versions yet. In a strategy the version takes no `CHANGELOG.md` entry, version bump or ruff gate:
+the next change-set's entry names it.
 
 ## What this skill will not let you do
 

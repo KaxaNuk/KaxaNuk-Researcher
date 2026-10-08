@@ -76,13 +76,16 @@ off. In Claude, type the commands with a slash, `/read`; anywhere else, ask for 
 
 ## The KaxaNuk Investment Lab
 
-A strategy you build from here can use KaxaNuk's Lab libraries: the Data Curator is open source; the
-Backtest Engine and Attribution Analysis are licensed; Portfolio Construction is on request, and
-licensed since its 2.0.0; the Data Refinery and the Data Analyzer are coming. Attribution reads the
-benchmark and factor model files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>;
-<https://www.kaxanuk.mx/lab> shows the libraries. Write to `lab@kaxanuk.mx` for a licence, access
-or those files, or to report a problem with your researcher — with the versions your researcher
-names when you ask *which version are you?*
+A strategy you build from here can use KaxaNuk's libraries. The Data Curator is open source and
+free; its data provider's key comes from the provider. The Backtest Engine, Attribution Analysis and
+Portfolio Construction — and the Data Refinery and the Data Analyzer when they ship — come together,
+with their licences, in the KaxaNuk Investment Lab, which KaxaNuk sells; attribution also reads the
+benchmark and factor model files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>.
+Without the licences a strategy still runs up to its portfolios, and the rest says what is missing.
+For a licence, access or those files, write to `lab@kaxanuk.mx`, saying which library and what it is
+for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab. To
+report a problem with your researcher, write to the same address, with the versions it names when
+you ask *which version are you?*
 
 ---
 

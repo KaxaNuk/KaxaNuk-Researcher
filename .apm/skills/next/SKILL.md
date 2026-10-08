@@ -10,7 +10,7 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.8.0
+  version: 1.8.1
 ---
 
 # Next — where you stand, and what to do next
@@ -22,8 +22,11 @@ given — and writes only what its last paragraph lists. It is a skill, not a co
 assistant APM deploys to has it, Codex included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
-— *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
-session is open in.
+— *next ../fcf-yield-quality* — because the session is not open in it; the home, at the path the
+researcher's skill names, when *Step 1* reads *Step 2* from a project the researcher joined;
+otherwise the folder the session is open in. Rows 0 and E run every git command there, the
+`backup` skill's send included, as `git -C "<the folder being read>"` when the session is open
+elsewhere.
 
 ## Step 1: Which folder this is
 
@@ -52,7 +55,7 @@ a home already installed is not sent to install again.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
-| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, say in one line that this folder keeps no versions yet, and offer to start them; on the owner's word, run what `scaffold.py` prints to finish a repository — `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"` — and say *Saved*. Otherwise name the changes made by hand in plain words, file by file — *your note on Fama 1970*, *RESEARCHER.md* — never the commands, and ask `Save?` (`¿Guardo?`): *Save this version*, *Not now*, listed in chat without a question tool. On *Save this version*, `git add` each file by name, never `--all`, then `git commit -m "<what changed>" -- <those files>`, say *Saved* — sent too when `git config --get kaxanuk.autosend` prints `true`, as `backup` says — and go on from row 1; on *Not now*, nothing more. Wanting a name and an e-mail, ask for both in one plain line, set them in this folder only, never invented, and save again |
+| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, say in one line that the home keeps no versions yet, and offer to start them; on the owner's word, run what `scaffold.py` prints to finish a repository — `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"` — and say *Saved*. Otherwise name the changes made by hand in plain words, file by file — *your note on Fama 1970*, *RESEARCHER.md* — never the commands, and ask `Save?` (`¿Guardo?`): *Save this version*, *Not now*, listed in chat without a question tool. On *Save this version*, `git add` each file by name, never `--all`, then `git commit -m "<what changed>" -- <those files>`, say *Saved* — sent too when `git config --get kaxanuk.autosend` prints `true`, as `backup` says — and go on from row 1; on *Not now*, nothing more. Wanting a name and an e-mail, ask for both in one plain line, set them in that folder only, never invented, and save again |
 | 1 | `RESEARCHER.md` has no angle-bracketed slot left. *What you are reading for* with no numbered question is not a slot: the template ships it so, and the first `read` asks for question 1 | `interview` — the interview |
 | 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, its folder named in a to z, digits and hyphens only, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved — or its folder's name holds anything but a to z, digits and hyphens, such as an accent, which APM deletes on install |
 | 3 | the home is installed for the user: its `apm.yml` lists the assistant in use under `targets:`, and the skill, and the agent where the assistant takes one — not on Gemini or Windsurf — are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code — or, where that folder cannot be read, `uvx --from apm-cli==0.33.0 apm deps list -g` names `_local/<this folder's name>`, its accents possibly dropped. On OpenCode, which the home's `apm.yml` leaves out, the row passes, with one line: the researcher's own skill does not reach OpenCode | `update`, when the home's `apm.yml` does not list the assistant in use under `targets:` — it proposes the line and installs again; otherwise `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |

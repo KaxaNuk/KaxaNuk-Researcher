@@ -6,6 +6,24 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.22.1 (2026-10-08)
+
+**PATCH** — a domain of two words gets one folder name, and the Lab is said as one offer.
+
+**What to do differently:** run `update` in your home; the changes to `AGENTS.md` and `README.md`
+come as a diff.
+
+### Changed
+
+* **`AGENTS.md`**: a domain folder joins the words of its name with underscores,
+  `Knowledge/Personal_Finance/`, headed in `INDEX.md` as `RESEARCHER.md` spells it, and a folder
+  already there keeps its name; how to get a Lab licence is read from the access line in `next`'s
+  `references/investment-lab.md`, not restated. Still at most 6,541 words.
+* **`README.md`**: the Lab section says the Data Curator is open source and free, and that the
+  other libraries come together, with their licences, in the KaxaNuk Investment Lab; a request to
+  `lab@kaxanuk.mx` names the library and what it is for, with *via KaxaNuk Researcher* in the
+  subject.
+
 ## 0.22.0 (2026-10-08)
 
 **MINOR** — the README teaches six habits for working well with your researcher, and your

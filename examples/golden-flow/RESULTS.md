@@ -392,6 +392,9 @@ Eight more, specific to this example:
 | 13 | **Attribution points are daily returns summed**, not compounded | They compare within a table, not with a CAGR |
 | 14 | **FMP's volume for `KLAC` is about ten times too high from 2026-05-13 to its 10-for-1 split of 2026-06-12** | Its traded value, the rule's score, is inflated over the window's last 13 trading days: `KLAC` re-entered the book on 2026-05-14 and reached 2.6% by 2026-06-01, from about 1.1%. Prices are right; found after the run and not corrected ([`FINDINGS_1.md`](Experiments/Experiment_1/FINDINGS_1.md), caveat 7) |
 
+Row 7's figures are the record's: this copy's seed keeps 883 of the record's 896 listings, tickers
+and dates only, so a run on it prices less of the index.
+
 <!-- example: end -->
 
 > **Under the bar in [`AGENTS.md`](AGENTS.md), most numbers above are a reason to run an experiment

@@ -51,10 +51,10 @@ Walk `Knowledge/INDEX.md` at home and the links for the domains the strategy tou
 owner's `Philosophy/` on how they invest. Round files in `Philosophy/Evolution/` are a record of how
 the owner's answers moved: read them for dates and levels, and cite `HOW-I-INVEST.md`, never a round
 file, as the owner's view. Where the home library or a note says something the strategy's
-`Bibliotheca/` does not, that is either a lead for `BIBLIOGRAPHY.md` or a warning for the claim —
-never a citation, because links stay inside the strategy. In the first pass this is where the
-questions come from: what the home library already holds on each claim, and what argues against it,
-names what the strategy should read for.
+`Bibliotheca/` does not, that is either a lead or a warning for the claim — never a citation,
+because links stay inside the strategy. In the first pass this is where the questions come from:
+what the home library already holds on each claim, and what argues against it, names what the
+strategy should read for.
 
 ## Step 3: Draft, in the file's own shape
 
@@ -73,9 +73,9 @@ set. Rules:
   construction**.
   **In the first pass there are none, and that is the order working, not a gap:** each claim's
   evidence is the question that would settle it — *does the effect survive inside the screened
-  universe?* — marked as a lead, with the sources worth reading for it named as leads for
-  `BIBLIOGRAPHY.md`. A claim that rests only on a home note is written with no link **and marked
-  as a lead**: *write the note for X before this claim stands.*
+  universe?* — marked as a lead, with the sources worth reading for it named as leads. A claim
+  that rests only on a home note is written with no link **and marked as a lead**: *write the note
+  for X before this claim stands.*
 - **Name the columns.** Each claim says which `c_*` or `r_*` column will carry it, if the owner
   already knows; otherwise a slot.
 - **Offer each claim its anatomy, never require it.** The reading map, `references/reading-map.md`
@@ -106,15 +106,16 @@ signature, what makes the objective theirs. On it, write the draft into the stra
 `OBJECTIVE.md`, keeping every line the owner wrote, and remove the template's blockquote, if it is
 still there.
 
-**Then save it as a version of its own**, on the same go, with no second question and no
-`CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names it:
-`git add OBJECTIVE.md` and
+**Then save it as a version of its own**, in the strategy's folder, on the same go, with no second
+question and no `CHANGELOG.md` entry, version bump or ruff gate — the next change-set's entry names
+it. Every git command, the `backup` skill's send included, runs as `git -C "<that folder>"` when
+the session is open elsewhere: `git add OBJECTIVE.md` and
 `git commit -m "Objective: <first pass, or the claims it moved>" -- OBJECTIVE.md`; to the owner,
 *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
-`true` in the strategy, it also goes to the owner's copy on GitHub, as the `backup` skill says. If
-git wants a name and an e-mail, ask for both in one plain line, set them in this folder only, never
-invented, and save again; with no `.git/`, say in one line that the strategy keeps no versions yet.
-This replaces the owner's own commit an older home's `AGENTS.md` asks for.
+`true`, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name
+and an e-mail, ask for both in one plain line, set them in that folder only, never invented, and
+save again; with no `.git/`, say in one line that the strategy keeps no versions yet. This replaces
+the owner's own commit an older home's `AGENTS.md` asks for.
 
 Never write into the researcher's home from here. Never compute or promise a number. The objective
 is a capability and a set of claims; the numbers arrive later, from the engines the project names.

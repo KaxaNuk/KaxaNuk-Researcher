@@ -1,5 +1,11 @@
 # KaxaNuk Researcher
 
+| |
+|---|
+| [![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Gemini%20CLI-blue)](#install--three-steps-no-coding) [![License](https://img.shields.io/github/license/KaxaNuk/KaxaNuk-Researcher?color=blue)](LICENSE) |
+| [![Version](https://img.shields.io/github/v/tag/KaxaNuk/KaxaNuk-Researcher?sort=semver&label=version&logo=github)](CHANGELOG.md) [![APM](https://img.shields.io/badge/installs%20with-APM%200.33.0-blue)](https://github.com/microsoft/apm) |
+| [![Languages](https://img.shields.io/badge/README-English%20%7C%20Espa%C3%B1ol-blue)](#instalación-en-español) [![Powered by KaxaNuk](https://img.shields.io/badge/powered%20by-KaxaNuk-orange?colorB=orange)](https://kaxanuk.mx) |
+
 **Train your own research companion.** You name it and teach it who you are, how you like to work
 and the rules you never break. It keeps a library of what you read and answers from it, every claim
 pointing to its source; it helps you think through your ideas, plans and decisions, and can brief
@@ -82,9 +88,9 @@ ella — y salúdalo por su nombre.
 | keep what you read, and ask it later | `read`, then `query <question>` | a note per paper or chapter you chose; answers that cite them and name what is missing |
 | teach it how you work | *remember this* or *learn this*, anywhere | a rule added to `RESEARCHER.md`, or a source to your library — on your go |
 | bring it into any project | open your assistant in that folder and say its name | your researcher, with what it knows; it writes there only on your go |
-| work out an idea, a plan or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, what to check next |
+| work out an idea, a plan, a goal or a decision | `study <subject>`; `study` alone lists them | a study in `Studies/`: your words, what your library says for and against, where it stands |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
-| start each day informed | `brief setup`, then `brief` | a dated file each morning: your work, your markets, news on your holdings — never advice |
+| stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules — never advice |
 | write down how you invest, and see it evolve | `philosophy` | an interview at your level; your typed answers, word for word, in `Philosophy/HOW-I-INVEST.md` |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
 | see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read; running it needs keys and licences, as its `SETUP.md` says |
@@ -93,22 +99,26 @@ ella — y salúdalo por su nombre.
 In Claude, type these with a slash, `/read`; anywhere else, ask for them by name. **It grows with
 you**: it reads for your questions, speaks in your voice and keeps your rules, all in its own
 folder, where you can edit them; the package brings only hints, offered as options — never a
-position to adopt. Its home's `README.md` says how to work well with it.
+position to adopt. Its home's `README.md` says how to work well with it;
+[`USE-CASES.md`](USE-CASES.md) shows eleven uses, step by step.
 
 ## Its home ground: investment research
 
-The researcher needs nothing beyond this package. A strategy also needs a data provider's key for
-the Data Curator, from the provider — the worked example uses FMP's. The Backtest Engine and
-Attribution Analysis need a KaxaNuk licence; Portfolio Construction is on request, and licensed
-since its 2.0.0; and attribution reads the benchmark and factor model files of KaxaNuk's Analytics
-Factory, <https://www.kaxanuk.mx/analytics>. Without the licences a strategy still runs up to its
+The researcher needs nothing beyond this package. The Data Curator is open source and free; a
+strategy needs a key for it from a data provider — the worked example uses FMP's. The Backtest
+Engine, Attribution Analysis and Portfolio Construction — and the Data Refinery and Data Analyzer
+when they ship — come together, with their licences, in the KaxaNuk Investment Lab, which KaxaNuk
+sells. Attribution reads the benchmark and factor model files of KaxaNuk's Analytics Factory,
+<https://www.kaxanuk.mx/analytics>. Without the licences a strategy still runs up to its
 portfolios, and the rest says what is missing. Keys stay on your computer, in the strategy's
 `Config/.env` — Portfolio Construction's in the environment or a `.kaxanuk_license` file. For a
 licence, access or the Analytics Factory's files, write to `lab@kaxanuk.mx`, saying which library
-and what for. [Each library's status](.apm/skills/next/references/investment-lab.md).
+and what it is for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab>
+shows the Lab. [Each library's status](.apm/skills/next/references/investment-lab.md).
 
-**Coming next.** Starting points for valuation (DCF, multiples), M&A and budgets, each a folder
-your researcher makes as `init-strategy` does. Tell us what you would use: `lab@kaxanuk.mx`.
+**Coming next.** Starting points for valuation (DCF, multiples), M&A and budgets, and a template
+for building a Python library of your own — each a folder your researcher makes as `init-strategy`
+does. Tell us what you would use: `lab@kaxanuk.mx`.
 
 ## Removing it
 
@@ -147,7 +157,7 @@ which running it by name approves.
 | `init-researcher`, `init-strategy`, `init-example` | make a folder — your home, a strategy, or the worked example — copied by a script, never from memory |
 | `interview` | two short questions about you, then `RESEARCHER.md` and the agent and skill that make it yours; `interview force` starts over |
 | `philosophy` | an optional interview on how you invest, at your level; your typed answers in `Philosophy/`, word for word |
-| `brief [setup]` | a daily file in `Briefs/` — your work, markets, holdings — every figure quoted from a dated source |
+| `brief [setup]` | a dated file in `Briefs/` on the days you choose — your work, markets, holdings — every figure quoted from a dated source |
 | `next [strategy]` | where you stand and the one thing to do next; at home, it offers to save what you changed by hand |
 | `backup` | keeps a copy of your home, or of a strategy, on a private GitHub repository — only when you ask |
 
@@ -159,7 +169,7 @@ which running it by name approves.
 | `audit [deep]` | reviews the library — links, duplicates, index, orphans, frontmatter, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
-| `study [subject]` | works out an idea, a plan or a decision in `Studies/`; with no subject, lists your studies |
+| `study [subject]` | works out an idea, a plan, a goal or a decision in `Studies/`; with no subject, lists your studies |
 | `teach <topic>` | tutors you on a topic from your library, one lesson per session |
 | `update [check]` | brings a new version — the package, and what changed in your home's own files, as a diff |
 

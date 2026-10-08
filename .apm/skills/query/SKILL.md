@@ -8,7 +8,7 @@ description: >
   in Philosophy/Evolution/. It walks the index and the links before reading, and cites every claim.
   It does NOT write code or answer questions about files outside the library.
 metadata:
-  version: 0.9.1
+  version: 0.9.2
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -52,14 +52,16 @@ note in isolation misses the connections that are the library's value.
    it on *Go* only: the page itself, under the domain; its one line under *Concepts* in
    `Knowledge/INDEX.md`, title and one-line definition; and one entry appended to
    `Knowledge/LOG.md`, `## [YYYY-MM-DD] query | kept a synthesis page`, with the page's path.
-   Nothing else. **Then save a version**, on that go, with no second question: `git add` those
-   three files by name, never `--all`, and `git commit -m "Query: kept <page>" -- <the same files>`;
-   one plain line, *Saved*, never the commands. When `git config --get kaxanuk.autosend` prints
-   `true`, it is also sent to the owner's copy on GitHub, as the `backup` skill says. This replaces
-   the *Commit?* question an older home's `AGENTS.md` describes. A save refused for want of a name
-   and an e-mail asks for both in one plain line — *a name and an e-mail to sign the versions your
-   researcher saves* — sets them in the home only, never invented, and saves again; a home with no
-   `.git/` gets one line, that it keeps no versions yet.
+   Nothing else. **Then save a version**, in the home, on that go, with no second question — every
+   git command, the `backup` skill's send included, as `git -C "<absolute path to the home>"` when
+   the session is open elsewhere: `git add` those three files by name, never `--all`, and
+   `git commit -m "Query: kept <page>" -- <the same files>`; one plain line, *Saved*, never the
+   commands. When `git config --get kaxanuk.autosend` prints `true`, it is also sent to the owner's
+   copy on GitHub, as the `backup` skill says. This replaces the *Commit?* question an older home's
+   `AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one plain
+   line — *a name and an e-mail to sign the versions your researcher saves* — sets them in the home
+   only, never invented, and saves again; a home with no `.git/` gets one line, that it keeps no
+   versions yet.
    In a strategy, never a page: `OBJECTIVE.md` is the strategy's synthesis.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
    suggest the source that would close it: by year, authors and title when

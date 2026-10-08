@@ -34,6 +34,11 @@ own capitals: `Ilmanen_2011_Expected_Returns`, `DeMiguel_Garlappi_Uppal_2009_Opt
 `03_The_Equity_Premium.md`; a long chapter title may be shortened to its first distinctive words,
 to keep the path short.
 
+`<Domain>` is a domain `RESEARCHER.md` lists, or one a read's plan added on the owner's go, its
+words joined by underscores the same way, `Personal_Finance`; a domain folder already there keeps
+its name. `Knowledge/INDEX.md` heads it as `RESEARCHER.md` spells it, or else by the folder's name
+with underscores read as spaces: `## Personal Finance`.
+
 A source with no author, such as a tool's README clipping, takes the organisation or the project
 that published it as its author; one with no year printed takes `ND`, for *no date*, in the year's
 place: `Grinold_Kahn_ND_Active_Portfolio_Management` for a copy that prints no year. Its

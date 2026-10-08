@@ -32,13 +32,14 @@ pass. `${input:path}` is one file under `Philosophy/`.
    new words are already in the file, under their own tag.
 5. Show the diff in chat and wait for an explicit go, *write it and save a version*.
 6. Apply exactly the approved diff. Report what changed.
-7. **Then save a version**, on the same go, with no second question: `git add` the file, by name,
-   never `--all`, and `git commit -m "Refine: <file>" -- <file>`; to the owner, *Saved*, in one
-   plain line, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also
-   goes to their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask
-   for both in one plain line, set them in this folder only, never invented, and save again; with no
-   `.git/`, say in one line that the home keeps no versions yet. This replaces an older home's
-   *Commit?* question.
+7. **Then save a version**, in the home, on the same go, with no second question — every git
+   command, the `backup` skill's send included, as `git -C "<absolute path to the home>"` when the
+   session is open elsewhere: `git add` the file, by name, never `--all`, and
+   `git commit -m "Refine: <file>" -- <file>`; to the owner, *Saved*, in one plain line, never the
+   commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their copy on
+   GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain
+   line, set them in the home only, never invented, and save again; with no `.git/`, say in one line
+   that the home keeps no versions yet. This replaces an older home's *Commit?* question.
 
 Never restructure, reorder or paraphrase. Never move a `Philosophy/` file's content into
 `Knowledge/` as a side effect. Never invent content to resolve an ambiguity — flag it.

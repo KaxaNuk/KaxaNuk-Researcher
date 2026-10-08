@@ -8,7 +8,7 @@ description: >
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
   the owner invests (`philosophy` does, later).
 metadata:
-  version: 0.6.1
+  version: 0.6.2
 ---
 
 # Init researcher — a home for the library, once
@@ -42,8 +42,8 @@ what happens in a sentence, and never ask them to type a command: you run every 
    - *Go — make it at <path>*, described as *creates your researcher's home there, then two quick
      questions about you, about three minutes*, *after bringing the package up to date* added when
      step 5 will run;
-   - *Another folder*, which asks for the parent folder only, in chat, puts `<Name>` inside it, and
-     asks `Where?` again with that path;
+   - *Another folder*, which asks for the parent folder only, in chat, puts `<Name>` inside it — a
+     path already ending in `<Name>` is used as is, never nested — and asks `Where?` again with it;
    - *Stop*, and nothing is made.
 
    The path proposed is built from the name, short and outside any synced folder:

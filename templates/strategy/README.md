@@ -225,10 +225,10 @@ pipeline wherever your work already is.
 
 | Module | Step | What it does | Status |
 | --- | --- | --- | --- |
-| **Data Curator** | 3 | pulls raw market and fundamental data from any provider and aligns it on one calendar | open source, on [PyPI](https://pypi.org/project/kaxanuk.data-curator/) |
+| **Data Curator** | 3 | pulls raw market and fundamental data from any provider and aligns it on one calendar | open source and free, on [PyPI](https://pypi.org/project/kaxanuk.data-curator/) |
 | **Data Refinery** | 3 | cleans, adjusts and reshapes the curated data into analysis-ready series | coming; hand-rolled in `Data/refinery.py` until then |
 | **Data Analyzer** | 3 | builds features and tests whether they carry signal, before you model anything | coming; hand-rolled in `Data/analyzer.ipynb` until then |
-| **Portfolio Construction** | 4 | turns a signal into weights, position limits and a rebalancing rule | on request, from a private repository; licensed since its 2.0.0 |
+| **Portfolio Construction** | 4 | turns a signal into weights, position limits and a rebalancing rule | licensed since its 2.0.0 |
 | **Backtest Engine** | 5 | runs the rules over history with costs and no look-ahead, and returns the track record | licensed |
 | **Attribution Analysis** | 6 | splits the return into known factor exposure and the part that is actually yours | licensed |
 
@@ -238,17 +238,18 @@ public on [PyPI](https://pypi.org/project/kaxanuk.data-curator/) and
 [GitHub](https://github.com/KaxaNuk), no account and no platform login required, and `uv sync`
 installs the Data Curator.
 
-The **licensed** engines — Backtest Engine and Attribution Analysis — are deliberately absent
-from `pyproject.toml`, so their index URLs and keys never enter version control. **Portfolio
+The **licensed** engines — Backtest Engine and Attribution Analysis — are deliberately absent from
+`pyproject.toml`, so their index URLs and keys never enter version control. **Portfolio
 Construction** is absent too: it is KaxaNuk's own library, not distributed publicly yet, and
-licensed since its 2.0.0. A licence for either engine or for Portfolio Construction, or access to
-it, is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
-<https://www.kaxanuk.mx/lab> shows the Lab. Install each by hand, as the
+licensed since its 2.0.0. The three — and the Data Refinery and the Data Analyzer when they ship —
+come together, with their licences, in the KaxaNuk Investment Lab, which KaxaNuk sells: write to
+`lab@kaxanuk.mx`, saying which library and what it is for, with *via KaxaNuk Researcher* in the
+subject — <https://www.kaxanuk.mx/lab> shows the Lab. Install each by hand, as the
 `portfolio-construction-runs`, `backtest-engine-runs` and `attribution-analysis-runs` skills
 describe, and **guard their imports**: a notebook that uses one reports what is missing and skips.
 Without Portfolio Construction an equal-weight book still needs nothing but the eligible set;
-without the engines the pipeline still builds its portfolios and produces no backtest or attribution
-results until they are there.
+without the engines the pipeline still builds its portfolios and produces no backtest or
+attribution results until they are there.
 
 ---
 

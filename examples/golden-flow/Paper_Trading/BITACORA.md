@@ -321,6 +321,10 @@ not locked, and the frozen reader names the files `KN_US_Equity_Core_Holdings.cs
 `daily_update.py` stops the book here: it is a record, frozen on 2026-10-06, and the frozen copies
 keep the comments they had then.
 
+**2026-10-08 — in this copy.** The book's seed, `Paper_Trading_1/Universe/Investable_Universe.csv`,
+was rewritten as tickers and dates in example 0.17.0 and no longer matches `FREEZE.json`, so
+`daily_update.py` reports `unfrozen-input`.
+
 ### What is frozen here
 
 `Paper_Trading_1/` is the one book frozen here, by `promote.py 1` on 2026-10-06, and the one
