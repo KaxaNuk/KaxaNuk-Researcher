@@ -10,17 +10,16 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.7.0
+  version: 1.8.0
 ---
 
 # Next — where you stand, and what to do next
 
 This skill is the map of the process and of the researcher's skills and commands: it reads the
 folder, says which parts are done, and names **the one thing to do next** with the command or skill
-that does it. It never starts the next thing itself — doing it is a different request, by the name
-this skill gives — and writes two things only: the version row 0 or row E offers, on the owner's
-pick, and the dates of its weekly version check, *Step 4* item 5, in git config. It is a skill, not
-a command, so every assistant APM deploys to has it, Codex included.
+that does it. It never starts that thing itself — doing it is a different request, by the name
+given — and writes only what its last paragraph lists. It is a skill, not a command, so every
+assistant APM deploys to has it, Codex included.
 
 Every path below is relative to the folder being read: a strategy's path when the owner gives one
 — *next ../fcf-yield-quality* — because the session is not open in it; otherwise the folder the
@@ -34,11 +33,13 @@ session is open in.
 | `Bibliotheca/`, `Universe/` and `Experiments/` | a strategy | *Step 3* |
 | `RESEARCHER.md` | a researcher's home | *Step 2* |
 | `.apm/skills/init-strategy/` and `templates/` | the KaxaNuk Researcher package itself | say so: nothing is worked on here; `AGENTS.md` has its rules |
-| none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, and the project's own rules apply. Name the home and its one next thing, *Step 2* read at the home's path; here, `query` answers from the library, and what the project teaches goes home as a source, then `read`. No `init-*` command is suggested for this folder |
+| `AGENTS.md` with the line `<!-- kaxanuk-starting-point: <kind> -->` alone at column 0 | a project from another KaxaNuk starting point, made by `init-<kind>` | say which kind, and quote its status line where there is one; then its `AGENTS.md`'s `## Next` table, read as *Step 2*'s rows are, from the files on disk — the first *Done when* that fails gives *The next thing* — and reported as a strategy's parts are. With no such table, say its `AGENTS.md` governs, and stop |
+| none of those, and a home is in the session through `--add-dir`, or readable at the path the researcher's skill names | a project the researcher joined | *Joining other projects* in the home's `AGENTS.md` governs, with the project's own rules. Name the home and its one next thing, *Step 2* read at the home's path; here, `query` answers from the library, and what the project teaches goes home as a source, then `read`. No `init-*` command is suggested for this folder |
 | none of those | not a KaxaNuk folder | when a subfolder one level down holds `RESEARCHER.md` or a strategy's three folders, name it so the owner can open it, applying the first row's test to it: a subfolder that passes it is named as the worked example, for reading, never as a strategy to work in; otherwise say which of the three skills makes one — `init-researcher <name>` once per person, `init-strategy <name>` once per strategy, `init-example` to read the worked example — and stop |
 
-When both a strategy and a home are in the session — added to it, or named by the researcher's
-skill — read the strategy: the home is the library it brought along.
+When a home and a strategy, or a project from another starting point, are both in the session —
+added to it, or named by the researcher's skill — read the strategy or the project: the home is the
+library it brought along.
 
 ## Step 2: At home
 
@@ -51,10 +52,10 @@ a home already installed is not sent to install again.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
-| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, say in one line that this folder keeps no versions yet, and offer to start them; on the owner's word, run what `scaffold.py` prints to finish a repository — `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"` — and say *Saved*. Otherwise, name the changes made by hand in plain words, file by file — *your note on Fama 1970*, *RESEARCHER.md* — never the commands, and ask `Save?` (`¿Guardo?`): *Save this version*, *Not now*, listed in chat without a question tool. On *Save this version*, `git add` each file by name, never `--all`, and `git commit -m "<what changed>"`; say *Saved* — sent too when `git config --get kaxanuk.autosend` prints `true`, as the `backup` skill says — and go on from row 1; on *Not now*, nothing more. A save refused for want of a name and an e-mail asks for both in one plain line, sets them in this folder only, never invented, and saves again |
+| 0 | the folder is a git repository — it holds `.git/` — and its working tree is clean: `git status --short` prints nothing, untracked files under `Sources/` aside, which row 4 reports and which do not block | with no `.git/`, say in one line that this folder keeps no versions yet, and offer to start them; on the owner's word, run what `scaffold.py` prints to finish a repository — `git init --quiet --initial-branch=main`, `git add --all`, `git commit --quiet -m "Start from the KaxaNuk Researcher template"` — and say *Saved*. Otherwise name the changes made by hand in plain words, file by file — *your note on Fama 1970*, *RESEARCHER.md* — never the commands, and ask `Save?` (`¿Guardo?`): *Save this version*, *Not now*, listed in chat without a question tool. On *Save this version*, `git add` each file by name, never `--all`, then `git commit -m "<what changed>"`, say *Saved* — sent too when `git config --get kaxanuk.autosend` prints `true`, as `backup` says — and go on from row 1; on *Not now*, nothing more. Wanting a name and an e-mail, ask for both in one plain line, set them in this folder only, never invented, and save again |
 | 1 | `RESEARCHER.md` has no angle-bracketed slot left. *What you are reading for* with no numbered question is not a slot: the template ships it so, and the first `read` asks for question 1 | `interview` — the interview |
 | 2 | `.apm/agents/` holds an agent file named for the researcher, and `.apm/skills/<slug>/` the researcher's skill, its folder named in a to z, digits and hyphens only, whose description names this folder as the home | `interview` again when either is missing: it writes it from `RESEARCHER.md` without repeating the interview; `update` when the skill names another folder — the home has moved — or its folder's name holds anything but a to z, digits and hyphens, such as an accent, which APM deletes on install |
-| 3 | the home is installed for the user: the agent and the skill are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code — or, where that folder cannot be read, `uvx --from apm-cli==0.33.0 apm deps list -g` names `_local/<this folder's name>`, its accents possibly dropped | `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
+| 3 | the home is installed for the user: its `apm.yml` lists the assistant in use under `targets:`, and the skill, and the agent where the assistant takes one — not on Gemini or Windsurf — are in the user's folder of the assistant in use — `~/.claude/agents/<slug>.md` and `~/.claude/skills/<slug>/` for Claude Code — or, where that folder cannot be read, `uvx --from apm-cli==0.33.0 apm deps list -g` names `_local/<this folder's name>`, its accents possibly dropped. On OpenCode, which the home's `apm.yml` leaves out, the row passes, with one line: the researcher's own skill does not reach OpenCode | `update`, when the home's `apm.yml` does not list the assistant in use under `targets:` — it proposes the line and installs again; otherwise `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"`, then a new session; a copy still in this folder's `.claude/agents/`, from before the user-scope install, is `update`'s to remove |
 | 4 | every source under `Sources/` — a PDF, a document or a clipping, not a `.gitkeep` — has a note: match by the title's distinctive words and the first author's surname against `Knowledge/INDEX.md`, as the `read` skill's `references/reading-map.md` says under *Match before proposing* | `read <the source>`, naming the question it serves; with no numbered question yet, `read <the source>` alone, which asks the owner which question it serves and adds it as question 1 |
 | 5 | every work on a *Find first* line of `RESEARCHER.md` is in `Sources/`, or the owner took it off the line, which is theirs to edit by hand | find it by its title and authors, then attach it or say where it is saved, and the researcher copies it into `Sources/Papers/` or `Sources/Books/` on the go, then `read`; or, when it cannot be found, take it off the *Find first* line in `RESEARCHER.md` |
 | 6 | `Knowledge/INDEX.md` lists every note and page on disk | `refresh-index` |
@@ -106,7 +107,7 @@ empty after the work was done.
 | D | The data | on this machine: `Data/Curator/Time_Series/` has files, `Universe/Security_Master.csv` exists, `Data/Refinery/Time_Series/` has files; and `RESULTS.md` has a measurement under *Before any experiment* with the analyzer section it came from | the first of `Data/curator.py`, `Universe/universe.ipynb`, `Data/refinery.py`, `Data/analyzer.ipynb` whose output is missing, in that order — `data-curator-custom-calculations`, `universe-point-in-time`, `data-analyzer-runs` |
 | E | The blueprint | `JOURNAL_1.md` has the entry choosing the benchmark — in a strategy that still keeps `BRAINSTORMING_1.md`, its first entry counts; `JOURNAL_N.md` has the entry *the rule read back*, dated no later than the blueprint's *Written* line and saved before it — a blueprint stamped with a package before 0.39.0, or with none, counts without it, said in one line; `Experiments/Experiment_N/BLUEPRINT_N.md` carries the line `blueprint` writes under the experiment's heading, `**Written YYYY-MM-DD, before any rule was coded.**`, and every prediction names a note or an analyzer section, and it is saved as a version of its own before the rule cell of `experiment_N.ipynb` holds code | the benchmark, chosen with the owner in chat and appended to `JOURNAL_1.md` on their go, when that entry is missing; else `blueprint N`; else the read-back entry, when it is not saved yet, then the blueprint, each saved alone, before the rule — on `blueprint`'s go, or here on *Save this version*, asked and said as row 0 does: `git add` each, then `git commit -m "Experiment N: the rule read back" -- Experiments/Experiment_N/JOURNAL_N.md` and `git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md` |
 | F | The broad reading | the leads the blueprint counted are read or recorded as leads in `BIBLIOGRAPHY.md` | `read` for the first lead |
-| G | The cycle | section 2 of `experiment_N.ipynb` holds the rule; on this machine `Portfolio/`, `Backtest/` and `Attribution/` hold output; `FINDINGS_N.md` reports, every prediction of the blueprint evaluated | the first of `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs` whose output is missing; `alpha-decomposition` to read it; then `challenge N` once `FINDINGS_N.md` reports. When the engine or the attribution library is not installed, which the notebook's guarded import reports, say the step is skipped for want of a licence and give the access line from the Lab's access facts, `references/investment-lab.md` in this skill's folder: *A licence for the Backtest Engine or Attribution Analysis is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows the Lab.* When the library is installed and attribution reports its index or factor files missing instead, give the facts file's Analytics Factory line: *KaxaNuk's Analytics Factory ships the benchmark and the factor model files attribution reads, <https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them.* Then move on to what can still be done — `FINDINGS_N.md` for the book, and the journal's open threads |
+| G | The cycle | section 2 of `experiment_N.ipynb` holds the rule; on this machine `Portfolio/`, `Backtest/` and `Attribution/` hold output; `FINDINGS_N.md` reports, every prediction of the blueprint evaluated | the first of `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs` whose output is missing; `alpha-decomposition` to read it; then `challenge N` once `FINDINGS_N.md` reports. When the engine or the attribution library is not installed, which the notebook's guarded import reports, say the step is skipped for want of a licence and give the access line of `references/investment-lab.md`, in this skill's folder, naming that library; when attribution is installed and reports its index or factor files missing instead, that file's Analytics Factory line. Then move on to what can still be done — `FINDINGS_N.md` for the book, and the journal's open threads |
 | H | The results | `RESULTS.md` has the experiment's row citing `FINDINGS_N.md`; the claim has moved — where `BLUEPRINT_N.md` names one under *The claim this moves*, `OBJECTIVE.md` gives that claim the status `FINDINGS_N.md` says it reached, and so does the row's *Claim moved* where `RESULTS.md` has that column; where the blueprint names none, the statuses in `OBJECTIVE.md` of the claims it tests have moved; and `CHANGELOG.md` has the entry | the missing one of those three |
 
 A to H done for the newest experiment: the next thing is either the gate — `Paper_Trading/
@@ -131,8 +132,7 @@ In chat, short:
    name, `YYYY-MM-DD-2.md` after `YYYY-MM-DD.md` — and how many notes came in since: the notes the
    `read` entries of `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as
    written, a book's `INDEX.md` and concept pages aside. When notes came in, add that `philosophy`
-   takes the round again; when none did, the date, the level and *no notes since* are the whole
-   line.
+   takes the round again; else end with *no notes since*.
 5. **A new version**, last, and only when there is one: never a line saying there is none. It
    updates nothing itself, and a failure — offline, a command failing or declined — is silent.
    Every line here is in the owner's language.
@@ -162,7 +162,7 @@ In chat, short:
 
    - **The line:** *A new version of me is out, X (you have Y): <headline>. Say `update` when you
      like — `not now` waits a month.* With no headline, the same without it.
-   - **Then**, whatever happened — a line or none, offline, a command failed or declined — run
+   - **Then**, whatever happened, a line or none, run
      `git -C "<home>" config kaxanuk.updatenext <today + 7 days>`, the date as `YYYY-MM-DD`, so a
      failure costs one silent try a week. When the owner answers, then or later: *not now* sets
      it to today + 30 days; *stop reminding me* runs

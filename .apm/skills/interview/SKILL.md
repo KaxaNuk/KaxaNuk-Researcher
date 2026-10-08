@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.4.0
+  version: 2.4.1
 ---
 
 # The interview
@@ -362,8 +362,8 @@ The agent and the skill are files until APM deploys them. On the same go, once t
 run both commands yourself — the owner types nothing, and may not know what either means:
 
 1. **Install the home for the owner's user**, beside the package — the same user scope, so the
-   agent and the skill reach every folder, for every assistant `~/.apm/apm.yml` lists under
-   `targets:`:
+   agent and the skill reach every folder, for every assistant listed under `targets:` both in
+   `~/.apm/apm.yml` and in the home's `apm.yml`:
 
    ```bash
    uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"

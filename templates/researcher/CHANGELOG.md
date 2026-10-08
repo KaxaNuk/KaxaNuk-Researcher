@@ -6,6 +6,41 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.22.0 (2026-10-08)
+
+**MINOR** — the README teaches six habits for working well with your researcher, and your
+researcher now reaches Gemini and Windsurf.
+
+**What to do differently:** run `update` in your home, then once more in a new conversation — the
+second proposes `gemini` and `windsurf` under `targets:` in `apm.yml` and installs the home again.
+The changes to `AGENTS.md` and `README.md` come as a diff.
+
+### Added
+
+* **`README.md`**: *Working well with your researcher* — one task per conversation, the file rather
+  than a summary, *remember this*, ask for the other side, click the links, a new conversation
+  after an install or an update.
+
+### Changed
+
+* **`README.md`**: *The rules, loaded from the first line*, *Writing a skill or a command of your
+  own* and *Installing and updating* fold away, their text kept; what installing the home copies is
+  said once, in the package's `SETUP.md`. *Keep a copy off this computer* is three lines naming
+  `backup` and what never goes in the copy. The Lab section names the Analytics Factory.
+* **`AGENTS.md`**: *Where the skills, the commands and the agent live* says in three lines that the
+  package and the home's own `.apm/` are installed for the user, never inside the home; the
+  `Philosophy/` row leaves a round file's format to the `philosophy` skill; links between notes are
+  standard Markdown so GitHub renders them. 6,518 words, from 6,793; no rule dropped.
+* **`apm.yml`**: the description follows the package's — your own research companion, which comes
+  with you to every project.
+
+### Fixed
+
+* **`apm.yml`**: `targets:` adds `gemini` and `windsurf`, which take the researcher's skill alone —
+  installing a home reaches only the assistants listed both here and in `~/.apm/apm.yml`, so a
+  Gemini or Windsurf user never had the researcher. OpenCode stays out: it rejects the agent APM
+  writes for it. `AGENTS.md` and `README.md` say an assistant must be in both lists.
+
 ## 0.21.0 (2026-10-08)
 
 **MINOR** — your researcher learns from you directly: say *remember this* and it adds the rule to
