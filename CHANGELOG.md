@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.34.1] - 2026-10-07
+The worked example's changelog lists every figure its copy carries. Its entry for the copy left
+out three figures Golden Flow 0.15.1 had corrected to the record run's outputs — figures the
+example's findings already carried, and its results and a note in part — and its first line said
+no number moved. No file the example reads or runs changes but its version line, and no number
+moves.
+
+**What to do differently:** nothing; `uvx --from apm-cli==0.29.0 apm update -g` brings it.
+### Fixed
+- **`examples/golden-flow/CHANGELOG.md`** (example 0.15.2): the copy's entry lists the realistic
+  commission row's 0.43 points of CAGR, not 0.42; at most 0.12% of the index unpriced in 2022, not
+  under 0.1%; and the two 2023–2026 sub-periods the sell-at-t−1 rule left unchanged. Its first
+  line says the copy carries them, and it says the comment opening a module's marked code, where
+  there is one, was written for the copy. A new entry records the correction; the example's
+  version line is its own, apart from Golden Flow's.
+
 ## [0.34.0] - 2026-10-07
 Golden Flow is the worked example. `init-example` now copies `golden-flow`: the Lab's reference
 strategy, taken from the first note to a book signed into paper trading on 2026-10-06 — the most

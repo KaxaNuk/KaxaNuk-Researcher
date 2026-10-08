@@ -41,9 +41,27 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.2 (2026-10-07)
+
+**PATCH** — the 0.15.1 entry, which records this copy, now lists every figure Golden Flow 0.15.1
+corrected. It left out three, which `FINDINGS_1.md` already carried, and `RESULTS.md` and a note
+in part; its first line said no number moved; and it said Golden Flow's own sentences, where a
+module has them, open its marked code, where each such comment was written for this copy. No
+other file changes but `pyproject.toml`'s version, and no number moves. This version line is the
+example's own: it counts changes to this copy, which stays Golden Flow 0.15.1's.
+
+**What to do differently:** nothing.
+
+### Fixed
+
+- **The 0.15.1 entry** lists the three figures under *Fixed*, says in its first line that the
+  copy carries them, and says the comments opening the marked code were written for this copy.
+
 ## 0.15.1 (2026-10-07)
 
-**PATCH** — Golden Flow, copied into the KaxaNuk Researcher as its worked example. No number moves.
+**PATCH** — Golden Flow, copied into the KaxaNuk Researcher as its worked example. The copy moves
+no number; it carries three figures Golden Flow 0.15.1 corrected to the record run's outputs,
+listed under *Fixed*.
 
 **What to do differently:** nothing to migrate. Copy it with `init-example`; the index and factor
 files come from KaxaNuk's Analytics Factory, as `SETUP.md` says.
@@ -60,8 +78,9 @@ files come from KaxaNuk's Analytics Factory, as `SETUP.md` says.
 - **Eighteen notes are carried, and five are kept only as leads.** Each carried note keeps *What it
   says* word for word. Its implication is rewritten and dated, after `FINDINGS_1.md` reported.
 - **The code is Golden Flow 0.15.1's, with these differences:**
-  - each shared module opens with the template's docstring; Golden Flow's own sentences about a
-    module, where it has them, open its marked code as a comment;
+  - each shared module opens with the template's docstring; where its marked code opens with a
+    comment, the comment was written for this copy, from what Golden Flow's docstrings and
+    records say about the module;
   - each notebook keeps the template's markdown cells, with Golden Flow's paragraphs between
     markers; every code cell is Golden Flow's, starts `# EXAMPLE-ONLY CELL`, and has no outputs;
   - `Data/hand_supplied.py` reads the Analytics Factory's own file names,
@@ -101,6 +120,12 @@ Golden Flow 0.15.1's own fixes, which this copy carries:
   weekday steps after the first day, over 252. The window spans 11.41 calendar years.
 - **`OBJECTIVE.md` quotes the owner with "top 35"**, as the journal records it, and then the answer
   that retired the count. The earlier quote had dropped the number without an ellipsis.
+- **Three figures, to the record run's own outputs.** The realistic commission row adds 0.43
+  points of CAGR, not 0.42: the margin taken before rounding, as every other margin is. The
+  members FMP does not price held at most 0.12% of the index's weight in 2022, on its first 37
+  trading days, not under 0.1%. The sell-at-t−1 rule changed every first-attempt book but two,
+  the rule's and the control's 2023–2026 sub-periods, which came back identical and are read
+  from that attempt's cache. The trial count stands at 107.
 
 ## 0.15.0 (2026-10-06)
 
