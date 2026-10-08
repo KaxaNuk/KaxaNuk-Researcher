@@ -6,6 +6,47 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.35.0] - 2026-10-08
+APM moves to 0.33.0, which installs the package on Windows as cleanly as 0.29.0 did. APM 0.29.1
+to 0.31.0 failed the install on Windows, its staging folders pushing the worked example's longest
+paths past 260 characters; 0.32.0 shortened them (microsoft/apm#2941). Eduardo Ramos (@EERamos)
+found the fix, measured it and proposed the move in pull request #24; this release redoes it on
+the current tree, which had moved past the pull request. The release check now runs in a
+throwaway home, so a copy of the package installed for the user can no longer stand in for the
+one being checked.
+
+**What to do differently:** say `update` in your home; once it is done, install the new APM once,
+`uv tool install apm-cli==0.33.0`. Every command the package gives now names `apm-cli==0.33.0`.
+### Changed
+- **APM is pinned at 0.33.0** in every command that runs it — the README, `SETUP.md`, `AGENTS.md`,
+  `update`, `audit`, `init-researcher`, `interview`, `next`, `philosophy`, `scaffold.py`'s message,
+  `experiment-lifecycle`'s `structure.md`, the home template's `AGENTS.md` and `README.md` (home
+  template 0.18.2), the strategy template's `README.md`, `SETUP.md` and `AGENTS.md` (template
+  0.14.1) and the example's `SETUP.md` and `AGENTS.md` (example 0.15.3). *Why APM is pinned* says
+  which versions failed and why the pin moves only after the release check passes. The commands a
+  strategy names for an update, once bare `apm update -g`, which a `uvx` install leaves off the
+  path, name the pin too. Measured on Windows 11, each APM in its own throwaway home, against
+  0.29.0: a project-scope install, a `-g` install from GitHub and a second over it, the three
+  `scaffold.py` copies from the installed package, a home with an accented name installed `-g`,
+  `deps list`, `outdated` and `update -g --yes`, a user folder made with 0.29.0 updated by the new
+  APM, and APM 0.29.0 reading the new APM's lock: 0.32.0 and 0.33.0 both deploy exactly what
+  0.29.0 deploys — 20 skills, 9 commands, 4 rules, 1 agent — and each adds only two informational
+  lines about inactive experimental targets.
+- **The release check** (README *Development*, `AGENTS.md`): it runs in a shell whose home is a
+  short throwaway folder, because a skill installed for the user wins over a project skill of the
+  same name; it installs an archive of the tree, uncommitted changes included, with LF endings and
+  no ignored folders; ruff runs on the template too, and the Bloom Code check on the template and
+  the example from their own roots, at their 100 columns; and two recipes compare the template and
+  the example, line by line and notebook cell by cell.
+- **The package's author** in `apm.yml` is KaxaNuk, as its licence says.
+- **The fork rule** finds the package's name in either case, `git grep -i kaxanuk-researcher`:
+  APM writes it in lower case in its lock.
+### Fixed
+- **`AGENTS.md`** lists the example's `README.md` among the files the example owns whole.
+### Removed
+- **The root `pyproject.toml`'s `[project]` table**, which nothing read and whose version had
+  stopped at 0.19.0; the file keeps the ruff settings.
+
 ## [0.34.1] - 2026-10-07
 The worked example's changelog lists every figure its copy carries. Its entry for the copy left
 out three figures Golden Flow 0.15.1 had corrected to the record run's outputs — figures the

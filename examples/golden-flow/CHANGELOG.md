@@ -41,6 +41,18 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.3 (2026-10-08)
+
+**PATCH** — the shared lines of `SETUP.md` and `AGENTS.md` name APM 0.33.0 and the update in full,
+as the template's 0.14.1 does. No number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`SETUP.md`, `AGENTS.md`**: `uvx --from apm-cli==0.33.0 apm install -g` and
+  `uvx --from apm-cli==0.33.0 apm update -g`.
+
 ## 0.15.2 (2026-10-07)
 
 **PATCH** — the 0.15.1 entry, which records this copy, now lists every figure Golden Flow 0.15.1

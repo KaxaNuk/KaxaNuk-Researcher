@@ -11,7 +11,7 @@ between example markers. **The template is the source of truth for this tree; th
 of what it looked like at the version named below**, kept by hand. When they disagree, the template
 wins.
 
-Template version: **0.14.0**. The template ships `Experiments/Experiment_1/` and
+Template version: **0.14.1**. The template ships `Experiments/Experiment_1/` and
 `Paper_Trading/Paper_Trading_1/`; the blanks for every experiment after the first are this skill's
 `references/`. `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note.
 
@@ -86,7 +86,7 @@ gitignored by extension and by path. `Config/.env` is gitignored **because it is
 template is committed. Everything APM would install — `.claude/`, `.agents/`, `.codex/`, `.cursor/`,
 `apm_modules/`, `apm.lock.yaml`, `.mcp.json` — is gitignored as well, though a strategy installs
 nothing: the skills are installed once for the user, by
-`uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`.
+`uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`.
 
 Strip notebook outputs before committing. `--group notebook` adds JupyterLab, which a bare
 `uv sync` leaves out; `uv run` adds it without removing a hand-installed engine:

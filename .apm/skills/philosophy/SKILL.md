@@ -9,7 +9,7 @@ description: >
   HOW-I-INVEST.md holds (`refine` does) or write RESEARCHER.md beyond Find first, and never says
   what to buy, sell or hold.
 metadata:
-  version: 1.0.2
+  version: 1.0.3
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -117,7 +117,7 @@ for that language, the English one for any other, twelve characters at most. Wai
    **Without the map**, ask the plain questions only, as section 9 of the bank says: no work is
    named anywhere, and no line is placed. Say why in one line — the map comes with the `read`
    skill, which is not installed here — and give the fix,
-   `uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
+   `uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
    new session. Never write the map, or a work from it, from memory.
 6. **Work out, for later**: the level to suggest (*step 4*); on a retake, the last round's level,
    its reading list and the notes read since; and which *Behind it* works have a note, so a

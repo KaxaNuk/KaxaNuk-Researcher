@@ -64,8 +64,8 @@ strategy of the owner's own is `init-strategy <name>`.
   the body below the frontmatter, and in it the section headings and the prose. APM translates a
   command's input placeholders into the form each harness takes, and rewrites the frontmatter keys
   it knows, so those differences are the install working, not a stale copy. Report a stale install
-  and give the fix: `uvx --from apm-cli==0.29.0 apm update -g` for a skill or a command of the
-  package, `uvx --from apm-cli==0.29.0 apm install -g "<the home>"` for the agent, the
+  and give the fix: `uvx --from apm-cli==0.33.0 apm update -g` for a skill or a command of the
+  package, `uvx --from apm-cli==0.33.0 apm install -g "<the home>"` for the agent, the
   researcher's skill, or a skill or command of the home's own, then a new session.
 - The agent file itself: missing from `.apm/agents/` when `RESEARCHER.md` is filled in, named for
   a researcher `RESEARCHER.md` no longer calls by that name, or carrying a copy of `RESEARCHER.md`

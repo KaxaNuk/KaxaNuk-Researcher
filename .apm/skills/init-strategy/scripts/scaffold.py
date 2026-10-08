@@ -100,7 +100,7 @@ WINDOWS_MAX_PATH = 260
 WINDOWS_FOLDER_MARGIN = 12
 MISSING_PACKAGE = ' '.join([
     'The researcher package was not found. Install it with',
-    '`uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`,',
+    '`uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`,',
     'or pass --package.',
 ])
 

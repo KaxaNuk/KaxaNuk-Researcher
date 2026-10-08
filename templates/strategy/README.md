@@ -13,7 +13,7 @@ same process.**
 such as `codex`, in place of `claude`:
 
 ```bash
-uvx --from apm-cli==0.29.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
+uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
 **Then ask Claude or Codex to run `init-strategy <strategy-name>`.** It copies this template into
@@ -64,8 +64,8 @@ Three jobs, one tool for each — either option does the job. Install once, use 
 process — what each does, how it is called, and what it must never be asked to do. They are one
 package, [`KaxaNuk/KaxaNuk-Researcher`](https://github.com/KaxaNuk/KaxaNuk-Researcher), and **this
 repository installs none of them**: they are installed once for your user, by the command above, and
-are there in every strategy; `apm update -g` keeps them current. Nothing here needs them to be read;
-a filled-in repository is faster with them.
+are there in every strategy; `uvx --from apm-cli==0.33.0 apm update -g` keeps them current. Nothing
+here needs them to be read; a filled-in repository is faster with them.
 
 ### A researcher beside the process
 
