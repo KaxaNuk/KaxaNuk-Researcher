@@ -6,6 +6,46 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [0.39.0] - 2026-10-08
+Three traps a live strategy fell into are now caught for every strategy: keys that do not join,
+volume counted twice at a split, and a rule written differently from the one meant. They were
+issues #13, #14 and #15, found on 2026-09-25 in a copy of the old worked example.
+
+**What to do differently:** say `update` in your home (home template 0.20.1). Then, in a strategy,
+read the template's 0.17.0 entry: make the universe notebook's Verify raise on an index listing with
+no seed row and on a key used twice, read the register's blocking rows as exclusions, check traded
+value at every split, and let `blueprint` read the rule back to you before you say go.
+### Changed
+- **Keys join, or the pipeline stops** (#13): `universe-point-in-time` (0.3.0) names
+  `index_identifier`, the index's own ticker in its holdings' convention, beside `main_identifier`;
+  every join to the index's files goes through the two keys; another provider's convention is a map
+  to write in the seed, never a coverage caveat; a shortfall is a member the provider does not
+  carry, never a listing whose key did not join; and a blocking row of the register is a label until
+  a stage excludes it by name. The template's universe notebook (and the example's shared cells)
+  give every register row a severity, blocking first, and its Verify raises on a weighted listing
+  with no seed row, a key used twice, or one ISIN on two rows over the same dates; the experiment
+  notebook reads the exclusions from the register and its Verify raises if one is ever held; both
+  `AGENTS.md` carry the rule.
+- **Traded value at a split** (#14): the register gains *Traded value broken at a split* — at every
+  split, the median traded value of the thirty trading days after against the thirty before, near
+  one when the series is right, near the split factor when the provider's volume counted the split
+  twice (found on FMP files of 2026-09-23 for ORLY, NOW and TPL). `data-curator-custom-calculations`
+  (0.4.1) checks any volume-based column for it, `input-columns.md` says so beside the volume
+  columns, and `Data/curator.py`'s docstring too. The example says, in a marked line, that its run
+  predates the check.
+- **The rule is read back** (#15): `blueprint` ends its plan with the rule in one plain sentence and
+  one worked date's book from the refined panel — the names held, each one's rank and signal, and
+  why the last name in and the first name out fall where they do, read from the panel by one query
+  never saved and never a weight or a return — asks *Is this the book you mean?*, and on yes saves
+  the owner's words as a `JOURNAL_N.md` entry before the blueprint. `blueprint-critic` objects to a
+  blueprint with no read-back, or to one its *Rules* would not produce, judged against the words of
+  *Rules*, never by recomputing the book. The home's `AGENTS.md` (template 0.20.1) names the entry
+  among those the researcher writes in a strategy. `experiment-lifecycle` (0.14.0), the template's
+  `AGENTS.md`, `JOURNAL_1.md`, README part E and `references/journal-template.md` name it; `next`
+  (1.6.0) checks it in part E, a blueprint stamped before 0.39.0 counting without it. The example's
+  `AGENTS.md` notes, in a marked paragraph, that Golden Flow's rule was read back as a sentence
+  only.
+
 ## [0.38.0] - 2026-10-08
 Your researcher tells you, at most once a week, when a new version of itself — or, in a strategy,
 of a Lab library — is out. Without a word, most people never update; now `next` and the greeting

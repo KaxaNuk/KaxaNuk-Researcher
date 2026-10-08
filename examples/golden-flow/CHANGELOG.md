@@ -41,6 +41,40 @@ for somebody who was not in the room:
 
 ---
 
+## 0.15.7 (2026-10-08)
+
+**PATCH** — the shared lines move as the template's 0.17.0 does; the example's own code is
+unchanged, and marked lines say its record predates the split check and the worked-date read-back.
+No number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`**: *Keys join, or the pipeline stops* — every join between the index's files and
+  the book goes through the seed's two keys (#13); *The rule is read back before its blueprint* —
+  one plain sentence and one worked date's book, the owner's yes a `JOURNAL_N.md` entry saved before
+  the blueprint, so two entries come before Experiment 1's (#15).
+- **`Universe/universe.ipynb`**: every register row has a severity, blocking first, a blocking row
+  excluded by name; a further check, *traded value broken at a split* (#14); a shortfall is a member
+  the provider does not carry, never a listing whose key did not join; Verify, for a seed taken from
+  an index, raises on a weighted listing with no seed row, a key used twice, or one ISIN on two rows
+  over the same dates (#13); section 1 says an ISIN repeats only where a renamed security's rows
+  follow each other in time.
+- **`Experiments/Experiment_1/experiment_1.ipynb`**: section 0 reads the exclusions from the
+  register's blocking rows, never typed; section 8 raises if the book, the control or any arm holds
+  one (#13).
+- **`Experiments/Experiment_1/JOURNAL_1.md`**, its preamble, and **`Data/curator.py`**, its
+  docstring: the read-back entry (#15); traded value checked across every split (#14).
+
+- **Marked, the example's own**: what the record's code does not do, since the checks came after it
+  — its universe register lists its rows as its checks run, not blocking first, and its Verify runs
+  no ISIN check (its seed holds no ISIN twice); its experiment Verify asserts the exclusions on the
+  book, not on the control and each arm, which come from the same eligible set. And: the universe
+  notebook says the split check was added after the record and this copy's run did not perform it;
+  `AGENTS.md` says Golden Flow's rule was read back as a sentence, *bounds set the count*, without a
+  worked date's book.
+
 ## 0.15.6 (2026-10-08)
 
 **PATCH** — the shared `AGENTS.md` and `SETUP.md` lines move as the template's 0.16.0 does. No

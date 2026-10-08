@@ -14,7 +14,7 @@ description: >
   `portfolio-construction-runs`), or the research process around the stage (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.2.1
+  version: 0.3.0
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -61,6 +61,13 @@ unverifiable.
   supplies the map. Every other column is the strategy's own. Replace the rows with equities,
   ETFs, FX crosses, crypto pairs or futures and every stage below still runs: nothing downstream
   names an asset class.
+- **A seed taken from an index carries a second key, `index_identifier`**: the index's own
+  ticker, in its holdings' own convention — `BRK.B`, a digit-suffixed reused ticker — beside
+  `main_identifier`. Every join to the index's files — membership, the benchmark's weights, the
+  factor exposures — goes through the seed's two keys, and `Data/hand_supplied.py` is the one
+  place that maps them. A provider whose tickers follow another convention is **a map to write in
+  the seed, never a coverage caveat**, since a key that does not join raises nothing and makes a
+  member that can never be held.
 - **It is point-in-time, and it retains delisted, acquired and renamed names.** A universe built
   from *today's* members has silently deleted everything that failed, and the backtest then
   discovers that markets go up. If a seed shows 0% delisted, it is not a universe, it is a survivor
@@ -158,10 +165,13 @@ stage has a work list rather than a chart to interpret.
 | **Status disagreement** | the price history and the provider's listing status disagree: a series ending early on a name the provider calls active is a data gap, not a delisting, and the reverse is a reused symbol |
 | **Unusable values** | zero or negative prices, which break every return calculation downstream |
 | **Impossible daily move** | an adjusted price that multiplies several times over in one day — an unadjusted corporate action or a bad print, not a return. Set the threshold above real squeezes, so a flag means the series is wrong rather than merely wild |
+| **Traded value broken at a split** | a provider whose unadjusted volume before a split is already in post-split shares: the split adjustment counts it twice, so traded value — and every rank or weight taken on it — is too large by the split factor over the security's whole history before the split. At every split, compare the median traded value of the thirty trading days after with the thirty before: a correct series stays near one whatever the factor; a break near the factor, or its inverse, is this fault. Fill prices are not affected. Found on FMP files of 2026-09-23 for ORLY (15:1, 2025-06-10), NOW (5:1, 2025-12-18) and TPL (3:1, 2025-12-23) |
 | **No usable signal** | a history shorter than the strategy's longest warm-up, so the name can never be selected |
 
 Give each row a severity, and **sort blocking first**. A register nobody can triage is a chart with
-extra steps.
+extra steps. **A blocking row is a label until a stage reads it:** each experiment excludes the
+names the blocking rows list, by name, read from the register and never typed, and its Verify
+raises if one is ever held.
 
 ## 4. When the universe is actually usable
 
@@ -173,7 +183,8 @@ signalled** — every security in it, or the share of it the strategy declares, 
 published beside every result — and, for a strategy that selects a fixed number of names, the first
 day the eligible pool is at least as deep as the book. Before it the strategy is choosing from a
 smaller menu than it appears to be, and a backtest that starts earlier is quietly comparing books
-drawn from different universes.
+drawn from different universes. **A shortfall is a member the provider does not carry, never a
+listing whose key did not join**: that one is a map still to write in the seed, section 1.
 
 Nothing else in the pipeline says so, which is why it is answered here, and why it is declared in
 `BLUEPRINT_N.md` before the rule rather than discovered afterwards. The worked example declares 90%
@@ -185,7 +196,7 @@ of its index's weight; on 2015-01-02, its owner's floor, the members its provide
 | Output | Consumed by |
 | --- | --- |
 | `Universe/Security_Master.csv` | `Data/refinery.py`, which joins its columns onto the panel as `current_*` |
-| `Universe/Data_Issues.csv` | the caveats table of every `FINDINGS_N.md`, and the Data stage's work list |
+| `Universe/Data_Issues.csv` | the caveats table of every `FINDINGS_N.md`, the Data stage's work list, and each experiment's exclusions: the names its blocking rows list |
 | The usable date | `BLUEPRINT_N.md`, as the declared window |
 
 `Security_Master.csv`, `Data_Issues.csv` and the provider cache are all **regenerable and therefore
@@ -199,6 +210,9 @@ different universe from the one the row count suggests.
   discovers that markets go up.
 - **Let a provider overwrite the seed's identity.** Compare, report the disagreement, and keep the
   seed.
+- **Join on a key the index does not use.** Every listing the index weights from the window's
+  floor is a row of the seed under `index_identifier`, and the universe notebook's Verify raises
+  when one is not.
 - **Close a span on its source's last date.** A listing still trading then has no last date.
 - **Select on a `current_*` column**, or present a classification-bucketed number without saying it
   is a today-snapshot.

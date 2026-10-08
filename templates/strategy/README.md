@@ -124,7 +124,10 @@ condition, and a claim written after the reading is an observation wearing a hyp
   Experiment 1 is the first rule tested against it, a real strategy with a real return. Every
   prediction in the blueprint cites a `Bibliotheca/` note from B, or an analyzer measurement from
   D, and the blueprint names the claim it moves, its control and what would falsify it; a
-  hypothesis edited after its test is not a hypothesis.
+  hypothesis edited after its test is not a hypothesis. Before the blueprint is saved, its rule is
+  read back in one plain sentence and one worked date's book — the names it holds that day and why
+  the names at the edge are in or out — and the owner's yes is the `JOURNAL_1.md` entry *the rule
+  read back*: code can follow a blueprint faithfully and still not be the book its owner meant.
 - **F. The broad reading.** Search for papers — the reading for what the blueprint left open.
   What to try next is written in the journal, as each entry's open threads.
 - **G. The cycle.** Portfolio construction, backtest, attribution — until it is finished and the

@@ -6,6 +6,18 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.20.1 (2026-10-08)
+
+**PATCH** — in a strategy, `blueprint` now reads the rule back before its go and saves your yes as a
+journal entry; the home's `AGENTS.md` names that entry among those the researcher writes there.
+
+**What to do differently:** run `update` in your home — it shows the three changed lines as a diff.
+
+### Changed
+
+* **`AGENTS.md`**, *Working in a strategy* and *The order of work*, part E: `blueprint`'s *the rule
+  read back*, on one worked date before the go, beside the benchmark's entry and `challenge`'s.
+
 ## 0.20.0 (2026-10-08)
 
 **MINOR** — your researcher tells you, at most once a week, when a new version of itself is out,
