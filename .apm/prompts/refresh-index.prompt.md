@@ -33,11 +33,12 @@ the files.
    notes indexed`.
 6. **Then save a version**, on the same go, with no second question:
    `git add Knowledge/INDEX.md Knowledge/LOG.md`, never `--all`, and
-   `git commit -m "Refresh the index"`; to the owner, *Saved*, in one plain line, never the
-   commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their copy on
-   GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain
-   line, set them in this folder only, never invented, and save again; with no `.git/`, say in one
-   line that the home keeps no versions yet. This replaces an older home's *Commit?* question.
+   `git commit -m "Refresh the index" -- Knowledge/INDEX.md Knowledge/LOG.md`; to the owner,
+   *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
+   `true`, it also goes to their copy on GitHub, as the `backup` skill says. If git wants a name and
+   an e-mail, ask for both in one plain line, set them in this folder only, never invented, and save
+   again; with no `.git/`, say in one line that the home keeps no versions yet. This replaces an
+   older home's *Commit?* question.
 
 Never modify a note during a refresh. Never index anything under `Philosophy/`, `Sources/` or
 `Extracts/`.

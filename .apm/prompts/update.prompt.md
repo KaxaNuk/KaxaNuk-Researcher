@@ -42,8 +42,9 @@ The exceptions are three, each on the owner's go: the `Projects/` a home made be
 0.10.0 still has, which *Step 2* reads and *Step 4* moves or removes; the empty `Studies/` a home
 made before template 0.12.0 lacks, whose `.gitkeep` *Step 4* brings from the template; and the
 researcher's skill, `.apm/skills/<slug>/SKILL.md`, which *Step 4* writes as `interview` gives it
-when the home lacks it or *Step 2* finds it behind the template — and, when its slug changes, the
-agent's file name and `name:` with it, nothing else in the agent.
+when the home lacks it or *Step 2* finds it behind the template — and in the agent, its file name
+and `name:` when the slug changes and its *on this machine* path when that is not this folder,
+nothing else.
 `${input:mode}` set to `check` reports what is new and stops, changing nothing.
 
 ## Step 1: Pre-flight
@@ -92,10 +93,11 @@ agent's file name and `name:` with it, nothing else in the agent.
 
   The copy under `~/.apm/apm_modules/` stays at the installed version until *Step 4*, so what is
   new is read on GitHub, in the `main` that `apm update -g` brings, by two commands that run the
-  same in Git Bash and PowerShell. The first prints the entries of a changelog there above a
-  version, newest first, and nothing when there are none — never the whole root `CHANGELOG.md`,
-  past 140 KB. Run it with `CHANGELOG.md` and the installed version, and take every entry it
-  prints. The second prints one file of that `main` whole, by its path in the package.
+  same in Git Bash and PowerShell, with `[Console]::OutputEncoding = [Text.Encoding]::UTF8;` before
+  them in PowerShell 5.1. The first prints the entries of a changelog there above a version, newest
+  first, and nothing when there are none — never the whole root `CHANGELOG.md`, past 140 KB. Run it
+  with `CHANGELOG.md` and the installed version, and take every entry it prints. The second prints
+  one file of that `main` whole, by its path in the package.
 
   ```bash
   uv run --no-project python -X utf8 -c "import sys,urllib.request as u;f,v=sys.argv[1:3];t=u.urlopen('https://raw.githubusercontent.com/KaxaNuk/KaxaNuk-Researcher/main/'+f,timeout=10).read().decode().splitlines();h=[i for i,l in enumerate(t) if l[:3]=='## '];e=[i for i in h if t[i].split()[1:2] in ([v],['['+v+']'])];print('\n'.join(t[h[0]:e[0]]) if e else 'No entry for '+v+' in '+f)" CHANGELOG.md <installed version>
@@ -178,14 +180,15 @@ agent's file name and `name:` with it, nothing else in the agent.
   one until *Step 4*. Written again, it is shown as a diff against the home's: a line there that
   no template gave is the owner's, kept where it stands and shown as kept. A slug that changes
   moves the agent with it, on the same go: its file to `.apm/agents/<slug>.agent.md` and its
-  `name:` to `<slug>`, the only edit to that file. When the skill is written, or the user's folder
-  of the assistant in use lacks the agent or the skill, as `next`'s row 3 checks, the home is to
-  be installed for the user. And an agent an install inside the home deployed there —
-  `.claude/agents/<slug>.md`, or the agent's file in another assistant's folder inside the home —
-  is to be deleted: it is git-ignored, it shadows the user's copy in every session at home, and it
-  goes stale the first time the agent changes; so are the copies a changed slug leaves in the
-  user's folder, the skill and the agent there whose `name:` is the old slug, under the name APM
-  gave them — `~/.claude/skills/sofa/` for `sofía`.
+  `name:` to `<slug>`. An agent whose *on this machine* path is not this folder has it set to this
+  folder on the same go, shown in the plan: beside `name:`, the only edit to that file. When the
+  skill or the agent is written, or the user's folder of the assistant in use lacks the agent or the
+  skill, as `next`'s row 3 checks, the home is to be installed for the user. And an agent an install
+  inside the home deployed there — `.claude/agents/<slug>.md`, or the agent's file in another
+  assistant's folder inside the home — is to be deleted: it is git-ignored, it shadows the user's
+  copy in every session at home, and it goes stale the first time the agent changes; so are the
+  copies a changed slug leaves in the user's folder, the skill and the agent there whose `name:` is
+  the old slug, under the name APM gave them — `~/.claude/skills/sofa/` for `sofía`.
 - **`targets:` in `apm.yml`, whatever template version the home is at.** Installing a home reaches
   only the assistants listed under `targets:` both in its `apm.yml` and in `~/.apm/apm.yml`. Each
   one the template's lists — the second command, run with `templates/researcher/apm.yml` — and the
@@ -198,8 +201,8 @@ agent's file name and `name:` with it, nothing else in the agent.
   never summarise them away.
 - **All current?** Say so, with those two versions, and stop — unless the home still has a
   `Projects/`, lacks `Studies/` or a `targets:` line the template lists, or its researcher's skill
-  or the install for the user is missing or behind, which go on to the plan as the items above list
-  them. **`check` mode?** Stop here.
+  or the install for the user is missing or behind, or the agent names another folder, which go on
+  to the plan as the items above list them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
@@ -208,15 +211,15 @@ for each home file, the sections to bring across, quoted, in the home's own name
 lines to add to `apm.yml`, and each file the home lacks, to bring across whole — `Studies/.gitkeep`
 among them, when the folder is missing; what a migration removes; each move out of `Projects/` and
 its removal, path by path, and what stays there; the researcher's skill, shown whole when new and as
-a diff when written again, the agent's move when the slug changes, the install for the user and each
-copy to delete; and what the owner will have to do by hand afterwards, one line for each heading,
-line or blockquote of their own files that the template changed. When a strategy the session is in,
-or one the table *The strategies and projects it works on* in `RESEARCHER.md` lists, has a
-`BLUEPRINT_N.md` saved and no `FINDINGS_N.md` that reports yet, one more line, with the version its
-*Drafted with* stamp names: *Experiment N was drafted with X.Y.Z; `challenge` will name both
-versions — update now, or after its findings.* Then ask for the go through the question tool — *Go*,
-described as *update it and save a version*; *Change something*; *Stop* — and update on *Go* only;
-in chat, any of the go words in the home's `AGENTS.md` is the go.
+a diff when written again, the agent's move when the slug changes and its path when it names another
+folder, the install for the user and each copy to delete; and what the owner will have to do by hand
+afterwards, one line for each heading, line or blockquote of their own files that the template
+changed. When a strategy the session is in, or one the table *The strategies and projects it works
+on* in `RESEARCHER.md` lists, has a `BLUEPRINT_N.md` saved and no `FINDINGS_N.md` that reports yet,
+one more line, with the version its *Drafted with* stamp names: *Experiment N was drafted with
+X.Y.Z; `challenge` will name both versions — update now, or after its findings.* Then ask for the go
+through the question tool — *Go*, described as *update it and save a version*; *Change something*;
+*Stop* — and update on *Go* only; in chat, any of the go words in the home's `AGENTS.md` is the go.
 
 ## Step 4: Update
 
@@ -282,11 +285,11 @@ in chat, any of the go words in the home's `AGENTS.md` is the go.
    is empty, and `git rm` only when nothing but `Projects/.gitkeep` is left, which removes the
    folder with it. What the owner chose to keep in `Projects/` stays where it is.
 5. **The researcher's skill and the install for the user**, as the owner approved — the install
-   alone, below, when only `targets:` gained a line. When the slug
-   changed, `git mv` the old skill folder to `.apm/skills/<slug>/` and the agent to
-   `.apm/agents/<slug>.agent.md`, so both keep their history, and set the agent's `name:` to
-   `<slug>`. Write `.apm/skills/<slug>/SKILL.md`; install the home beside the package, so the agent
-   and the skill reach every folder —
+   alone, below, when only `targets:` gained a line. When the slug changed, `git mv` the old skill
+   folder to `.apm/skills/<slug>/` and the agent to `.apm/agents/<slug>.agent.md`, so both keep
+   their history, and set the agent's `name:` to `<slug>`. Set the agent's *on this machine* path to
+   this folder when it names another. Write `.apm/skills/<slug>/SKILL.md`; install the home beside
+   the package, so the agent and the skill reach every folder —
 
    ```bash
    uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"
@@ -329,8 +332,8 @@ In chat and nowhere else:
   that a file moved into `Studies/` may want a state on its first line;
 - the sections of the home's files brought across, and those the owner declined;
 - the researcher's skill, when it was written, with the owner's lines it kept, and the agent's new
-  name when the slug changed; and that the home is now installed for the user, so the researcher
-  is in every folder;
+  name or path when either changed; and that the home is now installed for the user, so the
+  researcher is in every folder;
 - that the new skills and commands appear in a **new** session, not this one.
 
 Nothing is appended to `Knowledge/LOG.md`: that log records reads, audits, index refreshes and kept

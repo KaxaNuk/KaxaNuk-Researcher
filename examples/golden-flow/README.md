@@ -45,6 +45,9 @@ Factory. "The worked example" in text dated before 2026-10-07 is the package's e
 
 - **Golden cross**: a stock's 50-day average price above its 200-day one; here, the trend filter
   that makes a name eligible.
+- **Book**: the portfolio a rule holds day by day — which stocks, and how much of each.
+- **Paper trading**: the frozen book run on days after the freeze, with no money in it.
+- **Sharpe**: return per unit of risk taken, as the Backtest Engine reports it; higher is better.
 - **Seed**: `Universe/Investable_Universe.csv`, every listing in the index at any time from
   2015-01-02, delisted ones included; every stock the book holds comes from it, and its cash is
   `BIL`.
@@ -94,9 +97,9 @@ quoted in `JOURNAL_1.md`; rebalancing and cash are in the plan the owner approve
 `experiment-lifecycle` holds the documents around the steps: the blueprint, the journal and the
 findings. When a library ships, the example moves to it in a new version.
 
-> A licence for the Backtest Engine or Attribution Analysis, or access to Portfolio Construction,
-> is KaxaNuk's to give: write to `lab@kaxanuk.mx`, saying which library and what it is for —
-> <https://www.kaxanuk.mx/lab> shows the Lab.
+> A licence for the Backtest Engine or Attribution Analysis is KaxaNuk's to give: write to
+> `lab@kaxanuk.mx`, saying which library and what it is for — <https://www.kaxanuk.mx/lab> shows
+> the Lab.
 
 **The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;

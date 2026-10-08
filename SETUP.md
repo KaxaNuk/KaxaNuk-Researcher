@@ -51,14 +51,15 @@ Two tools. Python is **not** one of them — `uv` fetches what it needs itself. 
 On macOS, `xcode-select --install` opens a dialog: ask the user to click *Install* and to say when
 it has finished; `xcode-select -p` printing a folder confirms it. A tool just installed is not on
 this shell's path yet, so call it by its full path for the rest of the conversation: `uv` and `uvx`
-in `%USERPROFILE%\.local\bin\` on Windows and `~/.local/bin/` elsewhere, and git at
-`C:\Program Files\Git\cmd\git.exe` on Windows. A command that runs git itself, APM among them,
-finds it when `C:\Program Files\Git\cmd` is put first on the path in that same command.
+in `$HOME/.local/bin/`, which PowerShell and Git Bash expand, and git at
+`C:\Program Files\Git\cmd\git.exe` on Windows. A command that runs git itself, APM and
+`scaffold.py` among them, finds it when `C:\Program Files\Git\cmd` is put first on the path in
+that same command.
 
 Every folder the researcher makes keeps dated versions of its files, each signed with a name and
 an email. If `git config --global user.name` prints nothing, ask the user for both in plain words —
-*a name and an email to sign the versions your researcher saves; they stay on this computer* —
-**never invent them**, and set them:
+*a name and an email to sign the versions your researcher saves* — **never invent them**, and set
+them:
 
 ```bash
 git config --global user.name "<their name>"
@@ -102,9 +103,9 @@ answers and gives one go.
 
 The interview's own hand-over ends the conversation: four lines — who the researcher is and that it
 is in every folder, where its home is, the one next thing for what the user came for, and *lost? say
-`next`* — and one question, `Start?`, whose options follow that next thing. On *Now*, *Show me the
-worked example*, *Start the study* or *I have a document*, follow that skill or command from its
-installed path, in this conversation.
+`next`* — and one question, `Start?`, whose options start each thing they came for. On *Now*,
+*Show me the worked example*, *Start the study* or *I have a document*, follow that skill or
+command from its installed path, in this conversation.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
 `.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and everything is saved:

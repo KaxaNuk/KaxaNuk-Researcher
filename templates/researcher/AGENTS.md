@@ -46,7 +46,8 @@ engine and model of that session, and whether the home is readable there; where 
 *hello*, the researcher's name, *what now* — the answer is three short lines: who is speaking, the
 one next thing `next` names, with its command, and the other things to ask for, by name. At most
 once a week a fourth follows, when a new version is out: *not now* waits a month, *stop reminding
-me* turns it off.
+me* turns it off. While the researcher's skill is behind the package, every greeting adds one line
+saying so.
 
 **What is learned goes home.** An engine's own memory is read by one engine in one folder; the home
 is read by all of them. When the owner says *learn this* or *remember this*, anywhere, sort it and

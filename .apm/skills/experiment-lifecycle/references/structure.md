@@ -11,7 +11,7 @@ between example markers. **The template is the source of truth for this tree; th
 of what it looked like at the version named below**, kept by hand. When they disagree, the template
 wins.
 
-Template version: **0.18.0**. The template ships `Experiments/Experiment_1/` and
+Template version: **0.18.1**. The template ships `Experiments/Experiment_1/` and
 `Paper_Trading/Paper_Trading_1/`; the blanks for every experiment after the first are this skill's
 `references/`. `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note.
 

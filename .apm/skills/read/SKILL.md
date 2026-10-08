@@ -233,14 +233,14 @@ In chat: for each source, its copy into `Sources/` when it came from outside, th
 to `BIBLIOGRAPHY.md` or the lead it replaces, under the part it bears on; at home, the concept pages
 it creates and the ones it updates, one line each; links; `Philosophy/` files to cite, never a
 round file in `Philosophy/Evolution/`; contradictions found; new domain folders at home, if any;
-questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log line. In a
-strategy, a clipping in markdown or plain text under `Notes/` is saved with its note, as a PDF or
-an extract never is, so the plan says so, beside the note it becomes. Then ask for the go through
-the question tool — *Go*, described as *write it and save a version* (*escribirlo y guardar una
-versión*), *Change something*, *Stop* — or in chat where there is none; any of the go words in the
-home's `AGENTS.md` is the go. **On *Change something*, ask again with options, never with an open
-question**: the changes this plan admits, as concrete alternatives — fewer notes or pages, different
-names, only the notes this run, a different domain — and ask for the go again on the revised plan.
+questions to add to `RESEARCHER.md` at home, if any, in the owner's words; and the log line. A
+clipping in markdown or plain text is saved with its note, as a PDF or an extract never is, so the
+plan says so, beside the note it becomes. Then ask for the go through the question tool — *Go*,
+described as *write it and save a version* (*escribirlo y guardar una versión*), *Change something*,
+*Stop* — or in chat where there is none; any of the go words in the home's `AGENTS.md` is the go.
+**On *Change something*, ask again with options, never with an open question**: the changes this
+plan admits, as concrete alternatives — fewer notes or pages, different names, only the notes this
+run, a different domain — and ask for the go again on the revised plan.
 **Never write on silence or on a rejection.**
 
 ## 6. Write, on approval only
@@ -291,17 +291,17 @@ date and offers the next round with `philosophy`; with none, it offers round 1. 
 does not list, or a table that cannot be read because the skill is not installed, gets no line.
 
 **Then save a version**, on the plan's go, with no second question: `git add` each file this run
-wrote — in a strategy, with the clipping a note was read from — by name, never `--all`, never an
-extract or a PDF, leaving out any path the folder's `.gitignore` keeps out, and
-`git commit -m "Read: <Author Year, short title>"`. Say it in one plain line, *Saved*, never the
-commands. When `git config --get kaxanuk.autosend` prints `true`, the version is also sent to the
-owner's copy on GitHub, as the `backup` skill says. This replaces the
-*Commit?* question, and in a strategy the owner's own commit, that an older home's `AGENTS.md`
-describes. A save refused for want of a name and an e-mail asks for both in one plain line — *a
-name and an e-mail to sign the versions your researcher saves; they stay on this computer* — sets
-them in this folder only, never invented, and saves again; a folder with no `.git/` gets one line,
-that it keeps no versions yet. In a strategy the version takes no `CHANGELOG.md` entry, version
-bump or ruff gate: the next change-set's entry names it.
+wrote — with the text clipping a note was read from — by name, never `--all`, never an extract or a
+PDF, leaving out any path the folder's `.gitignore` keeps out, and
+`git commit -m "Read: <Author Year, short title>" -- <the same files>`. Say it in one plain line,
+*Saved*, never the commands. When `git config --get kaxanuk.autosend` prints `true`, the version is
+also sent to the owner's copy on GitHub, as the `backup` skill says. This replaces the *Commit?*
+question, and in a strategy the owner's own commit, that an older home's `AGENTS.md` describes. A
+save refused for want of a name and an e-mail asks for both in one plain line — *a name and an
+e-mail to sign the versions your researcher saves* — sets them in this folder only, never invented,
+and saves again; a folder with no `.git/` gets one line, that it keeps no versions yet. In a
+strategy the version takes no `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's
+entry names it.
 
 ## What this skill will not let you do
 

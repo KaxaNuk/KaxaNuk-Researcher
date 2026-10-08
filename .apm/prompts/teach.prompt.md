@@ -62,12 +62,13 @@ just beyond what stuck last time.
 4. Append one row to the track in `progress.md`: date, lesson, what stuck, what did not. That row
    is part of the same run, on the same go, the way a `LOG.md` entry is; it needs no second go.
 5. **Then save a version**, on the same go, with no second question: `git add` the session file
-   and `progress.md`, by name, never `--all`, and `git commit -m "Teach: <topic>, session <N>"`;
-   to the owner, *Saved*, in one plain line, never the commands. When
-   `git config --get kaxanuk.autosend` prints `true`, it also goes to their copy on GitHub, as the
-   `backup` skill says. If git wants a name and an e-mail, ask for both in one plain line, set them
-   in this folder only, never invented, and save again; with no `.git/`, say in one line that the
-   home keeps no versions yet. This replaces an older home's *Commit?* question.
+   and `progress.md`, by name, never `--all`, and
+   `git commit -m "Teach: <topic>, session <N>" -- <the same files>`; to the owner, *Saved*, in one
+   plain line, never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also
+   goes to their copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask
+   for both in one plain line, set them in this folder only, never invented, and save again; with no
+   `.git/`, say in one line that the home keeps no versions yet. This replaces an older home's
+   *Commit?* question.
 6. Close the lesson with one line, offered and never pressed, only when *Domains* holds Finance or
    *Here for* holds *Learn the basics*, *Build and test a strategy* or *Write down how I invest*: a
    round of `philosophy` — round 1 when `Philosophy/Evolution/` holds none, else the next, naming

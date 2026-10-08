@@ -31,6 +31,8 @@ The changes to `AGENTS.md` and `README.md` come as a diff.
   package and the home's own `.apm/` are installed for the user, never inside the home; the
   `Philosophy/` row leaves a round file's format to the `philosophy` skill; links between notes are
   standard Markdown so GitHub renders them. 6,518 words, from 6,793; no rule dropped.
+* **`AGENTS.md`**: while the researcher's skill is behind the package, every greeting adds one line
+  saying so, not only once a week.
 * **`apm.yml`**: the description follows the package's — your own research companion, which comes
   with you to every project.
 

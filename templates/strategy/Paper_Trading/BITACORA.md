@@ -133,18 +133,18 @@ book. Back it up with the record, and bring it across before the first run anywh
 checks every frozen file against its hash in `FREEZE.json`, and stops a book whose files are
 missing or changed.
 
-**Schedule it** after the US close, once the provider has the day. On Windows, from the strategy's
-folder, once:
+**Schedule it** after the US close, once the provider has the day. On Windows, once, in Command
+Prompt; in PowerShell it starts `schtasks --%`, and in Git Bash `MSYS_NO_PATHCONV=1 schtasks`:
 
-```bash
-schtasks /Create /SC WEEKLY /D MON,TUE,WED,THU,FRI /ST 19:00 /TN "<strategy-name> daily update" /TR "cmd /c uv run --directory <full path of this folder> python Paper_Trading/daily_update.py >> <full path of this folder>\Paper_Trading\Logs\scheduled.log 2>&1"
+```bat
+schtasks /Create /SC WEEKLY /D "MON,TUE,WED,THU,FRI" /ST 19:00 /TN "<strategy-name> daily update" /TR "cmd /c uv run --directory \"<full path of this folder>\" python Paper_Trading/daily_update.py >> \"<full path of this folder>\Paper_Trading\Logs\scheduled.log\" 2>&1"
 ```
 
 On macOS or Linux, one line of `crontab -e`, in the machine's own time zone. `cron` does not read
 your shell's `PATH`: give uv by its full path, which `command -v uv` prints.
 
 ```bash
-0 19 * * 1-5 cd <full path of this folder> && <full path of uv> run python Paper_Trading/daily_update.py >> Paper_Trading/Logs/scheduled.log 2>&1
+0 19 * * 1-5 cd "<full path of this folder>" && "<full path of uv>" run python Paper_Trading/daily_update.py >> Paper_Trading/Logs/scheduled.log 2>&1
 ```
 
 The run's log is in `Paper_Trading/Logs/`, one file per day, and its exit code says how the day

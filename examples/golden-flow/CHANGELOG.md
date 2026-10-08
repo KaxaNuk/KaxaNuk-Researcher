@@ -41,6 +41,27 @@ for somebody who was not in the room:
 
 ---
 
+## 0.16.1 (2026-10-08)
+
+**PATCH** — the README explains three more of its words, *book*, *paper trading* and *Sharpe*, and
+the lines shared with the template move as its 0.18.1 does. No number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`Paper_Trading/BITACORA.md`**, *Running it daily*: the Windows line is for Command Prompt, its
+  days quoted, `"MON,TUE,WED,THU,FRI"`, which PowerShell split at the commas; it starts
+  `schtasks --%` in PowerShell, and `MSYS_NO_PATHCONV=1 schtasks` in Git Bash, which turned
+  `/Create` into a path. The folder's path is quoted there and in the cron line.
+- **`SETUP.md`**, *What you need first*: git from `winget install --id Git.Git -e
+  --accept-source-agreements --accept-package-agreements`, which does not stop to ask; GitHub
+  Desktop leaves as a way to get it, since the git it brings is not on the command line.
+- **`Universe/universe.ipynb`**, section 1: a line of 160 characters wrapped at 100.
+
+- **`README.md`**: *book*, *paper trading* and *Sharpe* join *Words used here*; the access line no
+  longer offers Portfolio Construction, which the example does not install.
+
 ## 0.16.0 (2026-10-08)
 
 **MINOR** — the example does what its pages say: without the Backtest Engine, or with a licence

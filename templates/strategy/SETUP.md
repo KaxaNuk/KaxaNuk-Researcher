@@ -12,7 +12,7 @@ itself in step 2.
 
 | Tool | Windows | macOS and Linux |
 | --- | --- | --- |
-| [git](https://git-scm.com) | `winget install --id Git.Git -e` — or install GitHub Desktop, which brings it | `xcode-select --install` on macOS; your package manager on Linux |
+| [git](https://git-scm.com) | `winget install --id Git.Git -e --accept-source-agreements --accept-package-agreements` | `xcode-select --install` on macOS; your package manager on Linux |
 | [uv](https://docs.astral.sh/uv/) | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 
 Open a **new** terminal after installing either, so it is on the path. `git --version` and

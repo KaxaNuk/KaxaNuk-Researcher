@@ -9,7 +9,7 @@ description: >
   HOW-I-INVEST.md holds (`refine` does) or write RESEARCHER.md beyond Find first, and never says
   what to buy, sell or hold.
 metadata:
-  version: 1.2.0
+  version: 1.2.1
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -324,13 +324,13 @@ not kept, and the next run starts as this one did, as round *N* again.
 **Then save a version**, in the home, on the go that wrote — it covers the save, and no second
 question is asked: `git add` each file this run wrote, by name, never `--all` —
 `Philosophy/HOW-I-INVEST.md`, the round file, `RESEARCHER.md` when it changed — and
-`git commit -m "Philosophy: round <N>, <level>"`. Say it in one plain line, *Saved*, never the
-commands. When `git config --get kaxanuk.autosend` prints `true`, the version is also sent to the
-owner's copy on GitHub, as the `backup` skill says. This replaces the
-*Commit?* question an older home's `AGENTS.md` describes. A save refused for want of a name and an
-e-mail asks for both in one plain line — *a name and an e-mail to sign the versions your researcher
-saves; they stay on this computer* — sets them in the home only, never invented, and saves again;
-a home with no `.git/` gets one line, that it keeps no versions yet.
+`git commit -m "Philosophy: round <N>, <level>" -- <the same files>`. Say it in one plain line,
+*Saved*, never the commands. When `git config --get kaxanuk.autosend` prints `true`, the version is
+also sent to the owner's copy on GitHub, as the `backup` skill says. This replaces the *Commit?*
+question an older home's `AGENTS.md` describes. A save refused for want of a name and an e-mail asks
+for both in one plain line — *a name and an e-mail to sign the versions your researcher saves* —
+sets them in the home only, never invented, and saves again; a home with no `.git/` gets one line,
+that it keeps no versions yet.
 
 ## 12. Hand over
 

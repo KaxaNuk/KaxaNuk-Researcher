@@ -8,7 +8,7 @@ description: >
   bring back a template file a strategy lacks (`init-strategy`'s script with `--only` does), and
   never builds on the example.
 metadata:
-  version: 0.4.1
+  version: 0.4.2
 ---
 
 # Init example — the worked strategy, whole or one piece at a time
@@ -41,8 +41,10 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
 1. **Which of the two, and where.** A path of the example — `Data/analyzer.ipynb`,
    `Experiments/Experiment_1` — means that one piece; no path means the whole example. Either lands
    in a folder outside any strategy: ask where through the question tool, defaulting to
-   `golden-flow` beside the folder the session is open in. Never into a strategy: its file
-   of the same name is the template's description, for the owner to fill.
+   `golden-flow` in the folder a caller hands it, else beside the researcher's home — the folder
+   holding `RESEARCHER.md` here, or the one the researcher's skill names — else beside the folder
+   the session is open in. Never into a strategy: its file of the same name is the template's
+   description, for the owner to fill.
 
 2. **The plan.** In chat: what will be copied and where; for one piece, that the folder is made if
    it is not there, that the piece keeps its path inside it, that nothing already there is
@@ -69,9 +71,9 @@ anything, in `examples/golden-flow/` of `KaxaNuk/KaxaNuk-Researcher`.
    still exits 0 — and prints every command that finishes the repository from that step on. If git
    is missing, install it on the owner's go, then run the printed commands in the new folder. If the
    first commit fails for want of a git identity, ask for *a name and an email to sign the versions
-   your researcher saves; they stay on this computer*, never invented; set them in that folder
-   only, `git config user.name "<name>"` and `git config user.email "<email>"`, then run the
-   printed commands there.
+   your researcher saves*, never invented; set them in that folder only,
+   `git config user.name "<name>"` and `git config user.email "<email>"`, then run the printed
+   commands there.
 
 4. **For one piece, say what it shows.** Everything between the markers in what was copied is
    `golden-flow`'s own work, and so, whole, are its seed and every file only the example has — its
