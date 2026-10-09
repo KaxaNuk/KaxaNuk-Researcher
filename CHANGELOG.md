@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.3.5] - 2026-10-08
+The line you paste to install now tells your assistant to go ahead, so it installs straight after
+you choose your language.
+
+**What to do differently:** when you share the install, share the new line in the README's
+*Install* section.
+### Changed
+- **The README's install line** says it in the user's own words: install the repo and everything it
+  needs, no need to ask before installing. An assistant takes permission from what the user says,
+  never from a file it downloads, so the rule in `SETUP.md` alone did not stop it asking.
+- **`SETUP.md`** quotes the new line, and treats the older *please help me install this repo* the
+  same way.
+
 ## [1.3.4] - 2026-10-08
 After you choose your language, the install goes straight on: it no longer asks whether to install.
 
