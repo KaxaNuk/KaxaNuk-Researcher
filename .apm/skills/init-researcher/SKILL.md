@@ -8,7 +8,7 @@ description: >
   through; never per strategy. It does NOT create a strategy (use `init-strategy`), nor ask how
   the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.6.4
+  version: 0.7.0
 ---
 
 # Init researcher — a home for the library, once
@@ -17,15 +17,20 @@ A researcher is one per person, not per strategy: its library — `Sources/`, `K
 `Philosophy/` — grows across every strategy and project, and a second home would split it. So this
 runs once. The home is named after the researcher — `Ada`, not `my-researcher`.
 
-**Plain words throughout.** The owner may never have used a terminal. Ask one thing at a time, say
-what happens in a sentence, and never ask them to type a command: you run every one.
+**Plain words throughout.** The owner may never have used a terminal. Ask one thing at a time, never
+ask them to type a command — you run every one — and say what happens in a sentence, as a progress
+note while you work: from step 1 to the interview's hand-over, a turn ends only on a question.
+Without a question tool — Codex, Gemini — each question marked *through the question tool* is one
+chat message, its options numbered beneath and *Other — your own words* last.
 
 ## When to Use
 
 - The owner runs `init-researcher` by name — *init-researcher Ada*, *set up my researcher* — or
   `SETUP.md` reaches its step 3, in the conversation that installed the package.
 - **Not when a home already exists.** If the owner already has one — a folder with a filled
-  `RESEARCHER.md` — say where, and stop: a second home splits the library. A home made before the
+  `RESEARCHER.md` — say where and make no second: a second home splits the library. Install it for
+  the assistant in use instead, as `SETUP.md`'s *One researcher per person* says — the package with
+  `--target`, `user_targets.py add`, the home, `check` — and hand over. A home made before the
   researcher was a package is brought forward by `update`, not replaced.
 
 ## Steps
@@ -58,21 +63,34 @@ what happens in a sentence, and never ask them to type a command: you run every 
    always takes the researcher's name. *About three minutes* is said here and nowhere else on the
    way in. Run on *Go* only.
 
-4. **On *Go*, one line**, before anything runs: *Your assistant may ask you to allow a few
-   commands; allowing them is all you need to do.*
+4. **On *Go*, one line**, a progress note before anything runs, then the next step at once, in the
+   same turn: *Your assistant may ask you to allow a few commands; allowing them is all you need to
+   do.*
 
 5. **Bring the package up to date**, on the same go, before anything is copied — the owner types
-   nothing:
+   nothing. First put the assistant in use — `claude`, `codex`, `copilot`, `cursor`, `gemini`,
+   `opencode` or `windsurf` — on APM's list in `$HOME/.apm/apm.yml`, so the update keeps its
+   files. The script is in this skill's folder; where the skill is not loaded, run it from the
+   package:
+
+   ```bash
+   uv run --no-project python "<this skill's directory>/scripts/user_targets.py" add <assistant>
+   uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" add <assistant>
+   ```
+
+   Then update:
 
    ```bash
    uvx --from apm-cli==0.33.0 apm update -g --yes
    ```
 
    The go is the confirmation, so `--yes` answers APM's own prompt, which an agent's shell cannot.
-   Skip it when the package was installed in this same conversation: it is already the newest.
-   Old `KaxaNuk-Agent-Skills` packages it may list as orphaned are harmless; leave them
-   unmentioned. If the update fails — no network, GitHub out of reach — say so in one plain line
-   and go on: the home is made from the version installed, and `update` brings it forward later.
+   Skip both when the package was installed in this same conversation: it is already the newest,
+   and `SETUP.md`'s step 2 listed the assistant. If `add` exits 1, skip the update too — it could
+   delete this assistant's files — and say why in one plain line. Old `KaxaNuk-Agent-Skills`
+   packages the update may list as orphaned are harmless; leave them unmentioned. If the update
+   fails — no network, GitHub out of reach — say so in one plain line. Either way, go on: the home
+   is made from the version installed, and `update` brings it forward later.
 
 6. **Copy.** The script is in the `init-strategy` skill's folder, beside this one; in the
    conversation that installed the package, where the skill is not loaded yet, run it from the
@@ -96,11 +114,11 @@ what happens in a sentence, and never ask them to type a command: you run every 
    then run the printed commands there.
 
 7. **Run the interview now**, in this conversation, in the language chosen: follow the `interview`
-   skill — from `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` when
-   it is not loaded in this session — with `<full path>` as the home. Say one line first: *Your
-   researcher's home is ready at `<full path>`. Now two quick questions about you, so it is yours.*
-   The interview says the rest; its own hand-over ends the run, or goes on into what the owner
-   picks there.
+   skill — from `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md`
+   when it is not loaded in this session — with `<full path>` as the home. No turn ends between the
+   copy and question 1: *Your researcher's home is ready at `<full path>`. Now two quick questions
+   about you, so it is yours.* opens question 1's message. The interview says the rest; its own
+   hand-over ends the run, or goes on into what the owner picks there.
 
    If the owner would rather stop here, one line: *When you're ready, open `<full path>` in a new
    session and say `interview`.*
@@ -109,6 +127,9 @@ what happens in a sentence, and never ask them to type a command: you run every 
 
 - `apm update -g`, with the APM the package is pinned to, 0.33.0 — the update its `SETUP.md` and
   the `update` command run.
+- `scripts/user_targets.py`, in this skill's folder — puts an assistant on APM's list in
+  `~/.apm/apm.yml`, which an install or update without `--target` keeps, and checks the
+  researcher's files for it; `SETUP.md`, `interview`, `next` and `update` run it too.
 - `scripts/scaffold.py`, in the `init-strategy` skill's folder — copies `templates/researcher/`
   from the KaxaNuk Researcher package.
 - The `interview` skill, beside this one.

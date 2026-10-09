@@ -28,7 +28,6 @@ Sources/**/*.jpeg
 apm_modules/
 apm.lock.yaml
 .mcp.json
-GEMINI.md
 
 # Secrets: a key kept in a .env file stays on this machine and never reaches a push
 .env

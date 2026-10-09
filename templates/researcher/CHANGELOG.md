@@ -6,6 +6,31 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.24.0 (2026-10-08)
+
+**MINOR** — your home is read by every assistant, Gemini included, and keeps the assistants you
+use on APM's list.
+
+**What to do differently:** say `update` in your home; the changes to `AGENTS.md`, `README.md`,
+`apm.yml` and `.gitignore` come as a diff, and `GEMINI.md` is brought across. Then paste the
+README's install line once in each other assistant you use.
+
+### Added
+
+* **`GEMINI.md`**: `@./AGENTS.md` and `@./RESEARCHER.md`, so Gemini loads the rules and who your
+  researcher is, as `CLAUDE.md` does for Claude; `.gitignore` no longer hides it.
+
+### Changed
+
+* **`AGENTS.md`**: it opens by saying to read it and `RESEARCHER.md` before the first answer, a
+  greeting included — Codex, Cursor and Copilot load `AGENTS.md`, not `CLAUDE.md`. *Working in a
+  strategy*, *The order of work* and *Joining other projects* move after *Hard don'ts*, so the rules
+  fall within the first 32 KB Codex reads. Adding an assistant names its order: the package with
+  `--target`, `user_targets.py add`, then the home. What `apm compile` writes is corrected. No rule
+  dropped; still at most 6,541 words.
+* **`README.md`** and **`apm.yml`**: installing for an assistant is three commands — the package
+  with `--target`, `user_targets.py add`, the home — and says why the list matters.
+
 ## 0.23.1 (2026-10-08)
 
 **PATCH** — notes are written in your language, and the names the skills read stay in English.

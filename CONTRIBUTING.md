@@ -15,8 +15,15 @@ uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target cl
 ```
 
 `--target codex`, `gemini`, `cursor` or another in place of `claude`; Claude Code receives
-everything, and *Troubleshooting* in [`SETUP.md`](SETUP.md) says what the others miss. The skills
-are then in every folder you open, so **a strategy installs nothing of its own**;
+everything, and *Troubleshooting* in [`SETUP.md`](SETUP.md) says what the others miss. A second
+assistant installed so keeps its files through the next update only once it is on APM's list in
+`~/.apm/apm.yml`:
+
+```bash
+uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" add codex
+```
+
+The skills are then in every folder you open, so **a strategy installs nothing of its own**;
 `uvx --from apm-cli==0.33.0 apm update -g` brings every new version. **APM stays at 0.33.0, and
 every command that runs it names that version**: APM 0.29.1 to 0.31.0 fail the install on Windows
 with `WinError 3` or `WinError 206`, and a newer APM is adopted only once it passes the release
@@ -177,15 +184,37 @@ git -C "$K/lib2" grep -n -e kn_python_library_template -e kn-python-library-temp
 ```
 
 **Before a release, make the install above with the commit to be tagged.** It should deploy exactly
-22 skills, 9 commands, 3 rules and 1 agent, with no warning. Then, if the release changes a skill, a
-command or a script, walk the newcomer's path by hand in that folder — `init-researcher`, which runs
-`interview`, then `next`, `read` on one clipping, a round of `philosophy` at Starter and one on how
-you work, `brief setup` and `brief`, and `init-strategy`; `init-python-library`, and `next` in the
-folder it makes, when the release changes them — once in Spanish with a researcher whose name has an
-accent, *Sofía*, whose skill must deploy as `~/.claude/skills/sofia/`, and once on an assistant with
-no question tool, such as Codex. Delete the scratch folder afterwards: under the throwaway home,
-nothing the walk installed or scheduled reached your own. A newer APM is adopted only when this
-install passes with it, on Windows.
+22 skills, 9 commands, 3 rules and 1 agent, with no warning. **Then install it for the user twice**,
+from the archive — never `-g` of the working tree — each time from a new shell whose `HOME` and
+`USERPROFILE` are a new empty folder under `$K`: once Claude, then Codex; once Codex, then Claude.
+On the first assistant, install the package as `SETUP.md`'s step 2 does, the archive in place of
+`KaxaNuk/KaxaNuk-Researcher`, and run `init-researcher` there, which runs `interview`, to a
+researcher whose name has an accent, *Sofía*, its home under `$K` and its files deployed as `sofia`.
+The archive installs as `_local/KaxaNuk-Researcher`, so wherever the files name
+`$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, tell the assistant to read
+`$HOME/.apm/apm_modules/_local/KaxaNuk-Researcher/` instead. On the second, install the package and
+the home for it, as `SETUP.md`'s *another assistant* does, then update:
+
+```bash
+S="$K/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py"
+uvx --from apm-cli==0.33.0 apm install -g "$K/KaxaNuk-Researcher" --target <the second assistant>
+uv run --no-project python "$S" add <the second assistant>
+uvx --from apm-cli==0.33.0 apm install -g "<Sofía's home>"
+uvx --from apm-cli==0.33.0 apm update -g --yes
+uv run --no-project python "$S" check claude sofia
+uv run --no-project python "$S" check codex sofia
+```
+
+Both checks pass, and on disk `~/.claude/` holds the package's 22 skills and `sofia` in `skills/`,
+9 commands, 3 rules and 2 agents, `blueprint-critic.md` and `sofia.md`; `~/.agents/skills/` the same
+23 skills; and `~/.codex/agents/` 2 agents, `blueprint-critic.toml` and `sofia.toml`. Then, if the
+release changes a skill, a command or a script, walk the rest of the newcomer's path by hand on each
+run's first assistant — `next`, `read` on one clipping, a round of `philosophy` at Starter and one
+on how you work, `brief setup` and `brief`, and `init-strategy`; `init-python-library`, and `next`
+in the folder it makes, when the release changes them — once in Spanish, and once on an assistant
+with no question tool, Codex. Delete the scratch folder afterwards: under the throwaway home,
+nothing the walk installed or scheduled reached your own. A newer APM is adopted only when these
+installs pass with it, on Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.

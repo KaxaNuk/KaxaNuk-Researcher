@@ -1,14 +1,20 @@
 # Setup
 
 From nothing to a researcher you can talk to, in one conversation. This file is written for the
-assistant — Claude, Codex, Gemini, Cursor — that was told *please install this repo for me, with
-everything it needs — no need to ask before installing:*
-`https://github.com/KaxaNuk/KaxaNuk-Researcher`, or, from an older README, *please help me install
-this repo*. A person can read it in two minutes, but does not need to: the assistant runs every
-command.
+assistant — Claude, Codex, Gemini, Cursor, Copilot — that was told *please install this repo for
+me and set up my researcher, start to finish in this conversation — install everything it needs
+without asking first:* `https://github.com/KaxaNuk/KaxaNuk-Researcher`, or, from an older README,
+*please install this repo for me, with everything it needs* or *please help me install this repo*:
+all three ask for the same, a researcher set up from start to finish. A person can read it in two
+minutes, but does not need to: the assistant runs every command.
 
 > **For the agent, read this first.**
 >
+> - **Done is step 6, not step 2.** Installing the package is a means; what the user asked for is
+>   a researcher they can talk to. Never end your turn between steps 0 and 6 except with a question
+>   the user must answer — never with a report that something is installed: a line on what a step
+>   does is a progress note, sent while you keep working. With a plan tool, list steps 0 to 6 in it
+>   first.
 > - **Ask the language before anything else**, in Spanish and English together — *¿En qué idioma
 >   prefieres que hablemos? / Which language would you like to use?* — *Español*, *English*, or
 >   another. From then on every message, question and explanation is in that language.
@@ -18,26 +24,32 @@ command.
 >   the package, and go straight on, saying in one line what each step does. Their assistant's own
 >   prompt to allow a command is the only thing they answer.
 > - **The user may never have used a terminal.** Plain words, one question at a time, and you run
->   every command yourself; never ask them to type one. Say in one sentence what each step does,
->   and that their assistant may ask them to allow a command — allowing it is all they do.
-> - **One conversation, start to finish.** Steps 1 to 6 run here, one after the other, stopping
->   only for the user's answers. The skills installed in step 2 appear only in a new session, so
->   steps 3 to 6 follow the package's files by their installed path, as the table below gives.
+>   every command yourself; never ask them to type one. Without a question tool — Codex, Gemini —
+>   each pick is one chat message, its options a numbered list, *Other — your own words* last; the
+>   user answers with the number. Say in one sentence what each step does, and that their
+>   assistant may ask them to allow a command — allowing it is all they do.
+> - **One conversation, start to finish.** Steps 0 to 6 run here, one after the other, stopping
+>   only for the user's answers. Never ask the user to restart their assistant, open a new session
+>   or a new terminal before step 6, even when a tool's output says to: a tool just installed is
+>   called by its full path, as step 1 says, and steps 3 to 6 follow the package's files by their
+>   installed path, as the table below gives.
 > - **Nothing is cloned.** This repository is a package: it is installed once for the user, and
 >   its files then make every folder they need.
 
-**The files you follow**, once step 2 has installed the package. `~` is the user's home folder —
-`$HOME` in a shell, `C:\Users\<user>` on Windows — and the paths are the same on every assistant:
+**The files you follow**, once step 2 has installed the package. `$HOME` is the user's home folder
+— `C:\Users\<user>` on Windows — and expands in PowerShell, bash and zsh alike, also in a path
+handed to a program, where `~` does not; the paths are the same on every assistant:
 
 | For | Follow or run |
 | --- | --- |
-| steps 3 and 4, the researcher's home | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md` |
-| the copy it makes | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-strategy/scripts/scaffold.py` |
-| step 5, the interview | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` |
-| step 6, `read`, only if the user brings a document now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` |
-| step 6, `philosophy`, only if the user takes it now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/philosophy/SKILL.md` |
-| step 6, `init-example`, only if the user asks for the worked example now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-example/SKILL.md` |
-| step 6, `study`, only if the user starts the study now | `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/study.prompt.md` |
+| step 2 and the done check, the assistants APM keeps | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py` |
+| steps 3 and 4, the researcher's home | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md` |
+| the copy it makes | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-strategy/scripts/scaffold.py` |
+| step 5, the interview | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md` |
+| step 6, `read`, only if the user brings a document now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/SKILL.md` |
+| step 6, `philosophy`, only if the user takes it now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/philosophy/SKILL.md` |
+| step 6, `init-example`, only if the user asks for the worked example now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-example/SKILL.md` |
+| step 6, `study`, only if the user starts the study now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/study.prompt.md` |
 
 ---
 
@@ -56,12 +68,12 @@ Two tools. Python is **not** one of them — `uv` fetches what it needs itself. 
 | [uv](https://docs.astral.sh/uv/) | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 
 On macOS, `xcode-select --install` opens a dialog: ask the user to click *Install* and to say when
-it has finished; `xcode-select -p` printing a folder confirms it. A tool just installed is not on
-this shell's path yet, so call it by its full path for the rest of the conversation: `uv` and `uvx`
-in `$HOME/.local/bin/` — in PowerShell, `& "$HOME/.local/bin/uv"` — and git at
-`C:\Program Files\Git\cmd\git.exe` on Windows. A command that runs git itself, APM and
-`scaffold.py` among them, finds it when `C:\Program Files\Git\cmd` is put first on the path in
-that same command.
+it has finished; `xcode-select -p` printing a folder confirms it. When they say it has finished, go
+straight on to the next step. A tool just installed is not on this shell's path yet, so call it by
+its full path for the rest of the conversation: `uv` and `uvx` in `$HOME/.local/bin/` — in
+PowerShell, `& "$HOME/.local/bin/uv"` — and git at `C:\Program Files\Git\cmd\git.exe` on Windows. A
+command that runs git itself, APM and `scaffold.py` among them, finds it when
+`C:\Program Files\Git\cmd` is put first on the path in that same command.
 
 Every folder the researcher makes keeps dated versions of its files, each signed with a name and
 an email. If `git config --global user.name` prints nothing, ask the user for both in plain words —
@@ -78,18 +90,30 @@ git config --global user.email "<their email>"
 ```bash
 uv tool install apm-cli==0.33.0
 uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <the assistant you are>
+uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" add <the assistant you are>
 ```
 
-The target is the assistant you are: `claude`, `codex`, `gemini`, `cursor`, `copilot`, `opencode`
-or `windsurf`. Run both without asking: installing is what you were asked to do. `-g` installs for
-the user, whatever folder you are in. Every command that runs APM names `apm-cli==0.33.0` itself;
-*Troubleshooting* below says why, and what to do if the install fails. Tell the user in one line
-that the researcher is installed, and go straight on.
+The target is the assistant you are: `claude`, `codex`, `gemini`, `cursor`, `copilot`, `opencode` or
+`windsurf`. Run all three without asking. `-g` installs for the user, whatever folder you are in,
+and `add` keeps your assistant in APM's list, `~/.apm/apm.yml`, so that a later install or update
+does not remove what it put there. uv may warn that its tool folder is not on the PATH; leave it.
+**If `add` cannot find the script**, an older package was already installed, and an install keeps
+the version it had: run `uvx --from apm-cli==0.33.0 apm update -g --yes`, then the install above
+again, then `add`. If `add` exits 1, say why in one line at the opening of step 3's question, and go
+on. Every command that runs APM names `apm-cli==0.33.0` itself; *Troubleshooting* below says why,
+and what to do if the install fails. **The package is not the researcher yet:** never report the
+install on its own. Go on to step 3 in the same turn, and let your next message to the user be step
+3's first question, opening with one line: *The package is installed; now your researcher.*
 
 ## Step 3 — The researcher's name, and where it lives
 
-Follow `init-researcher` from its installed path, from its step 2, with the language already
-chosen. Its own questions take the name, then the place and the go in one.
+If `$HOME/.apm/apm_modules/_local/` holds a home already — a folder with a filled `RESEARCHER.md` —
+follow *One researcher per person*, below, instead. Otherwise read `init-researcher` now, in the
+same turn, and follow it from its step 2, with the language already chosen; its file is
+`$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md`, and its
+own questions take the name, then the place and the go in one. If the file is not there, list
+`$HOME/.apm/apm_modules` to find it; if it still cannot be found, say so in one line and offer to
+install again — never tell the user to restart.
 
 ## Step 4 — Make the home
 
@@ -117,9 +141,15 @@ command from its installed path, in this conversation.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
 `.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and everything is saved:
-`git status` is clean. For Claude Code, `~/.claude/skills/` holds `init-strategy`, `read`, `query`,
-`interview`, `next`, `philosophy`, `brief`, `backup` and the researcher's own skill, and
-`~/.claude/agents/` holds `blueprint-critic.md` and the researcher's agent.
+`git status` is clean. The researcher reaches the assistant in use when this exits 0; it prints one
+line for each file missing:
+
+```bash
+uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" check <the assistant you are> <slug>
+```
+
+On Claude Code, `$HOME/.claude/skills/` also holds `init-strategy`, `read`, `query`, `interview`,
+`philosophy`, `brief` and `backup`, and `$HOME/.claude/agents/` holds `blueprint-critic.md`.
 
 ---
 
@@ -134,13 +164,14 @@ strategy's folder beside the home, from the KaxaNuk Strategy Template; open that
 session, and its own `SETUP.md` builds the environment and the keys. `init-example` copies a
 finished strategy to read first.
 
-**Updating.** `uvx --from apm-cli==0.33.0 apm update -g` brings every new version to every folder
-at once; then `update`, in the home, brings what changed in the home's own files. Always with `-g`:
-a bare `apm update` outside an APM project updates APM itself.
+**Updating.** `update`, in the home, brings every new version: the package, with
+`uvx --from apm-cli==0.33.0 apm update -g`, to every folder at once, then what changed in the
+home's own files. Always with `-g`: a bare `apm update` outside an APM project updates APM itself.
 
-**A new machine, or another assistant.** Step 2 with the new target, then install the home, once,
-the assistant added under `targets:` in the home's `apm.yml` first, OpenCode aside:
-`uvx --from apm-cli==0.33.0 apm install -g "<the home>"`.
+**A new machine, or another assistant.** Step 2 with the new target, which adds it to APM's list;
+then install the home, once, the assistant added under `targets:` in the home's `apm.yml` first,
+OpenCode aside: `uvx --from apm-cli==0.33.0 apm install -g "<the home>"`; then the done check's
+`check`, with that target.
 
 ---
 
@@ -150,21 +181,20 @@ the assistant added under `targets:` in the home's `apm.yml` first, OpenCode asi
 agents and the three instructions, which land in `~/.claude/rules/` — Bloom Code and PEP 8 for
 Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries, in any project, for
 every file the assistant reads: outside the folder it works in, only the places the task needs.
-Copilot receives the same, its instructions merged into `~/.copilot/copilot-instructions.md`.
-Cursor, Gemini, OpenCode and Windsurf get the skills and the commands but not the instructions, and
-Gemini and Windsurf take no agent: there the researcher is its skill. OpenCode takes the package
-but not the researcher's own agent and skill: it rejects the agent APM writes for it, so the home's
-`apm.yml` leaves it out of `targets:`. **Codex gets the skills and the agents, and no commands.**
-The skills land in `.agents/skills/` and each agent in
-`.codex/agents/<name>.toml`, without its tool list: APM warns that it drops it, so on Codex an agent
-has no tool boundary. No instruction lands either: APM asks for `apm compile`, which writes them
-into a project's `AGENTS.md`. So the steps a newcomer needs — `init-researcher`, `interview`,
-`next`, `read`, `query`, `philosophy`, `brief` — are all skills. A command, such as `objective` or
-`blueprint`, is run there by naming its file — *follow
-`~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and once the
-interview has run, the researcher's own skill does this for the user: they name the command, and it
-follows the file. Assistants without a question tool, such as Codex and Gemini, ask each question in
-chat as a numbered list; the user answers with the numbers.
+Copilot receives the same, its instructions as files in `~/.copilot/instructions/`. Cursor, Gemini,
+OpenCode and Windsurf get the skills and the commands but not the instructions, and Gemini and
+Windsurf take no agent: there the researcher is its skill. OpenCode takes the package but not the
+researcher's own agent and skill: it rejects the agent APM writes for it, so the home's `apm.yml`
+leaves it out of `targets:`; APM's hint to run `apm compile` is printed for OpenCode alone.
+**Codex gets the skills and the agents, and no commands.** The skills land in `~/.agents/skills/`
+and each agent in `~/.codex/agents/<name>.toml`, without its tool list: APM warns that it drops
+it, so on Codex an agent has no tool boundary. No instruction lands either. So the steps a newcomer
+needs — `init-researcher`, `interview`, `next`, `read`, `query`, `philosophy`, `brief` — are all
+skills. A command, such as `objective` or `blueprint`, is run there by naming its file — *follow
+`$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and once
+the interview has run, the researcher's own skill does this for the user: they name the command,
+and it follows the file. Without a question tool, each pick is a numbered list in chat, as the box
+at the top says.
 
 **Why APM is pinned at 0.33.0.** APM 0.33.0 installs this package cleanly, on Windows too. APM
 0.29.1 to 0.31.0 staged every package under long folders, and on Windows the worked example's
@@ -174,9 +204,9 @@ package's release check passes with it on Windows, so the pin is written into ev
 runs APM. `uv tool upgrade` keeps it.
 **Never run `apm self-update`**, nor a bare `apm update` outside an APM project, which forwards to
 it: both bring the newest APM back. A machine on any other APM runs the same
-`uv tool install apm-cli==0.33.0` over it. If `apm` is *command not found*, run
-`uv tool update-shell` and open a new terminal; every command here runs through `uvx` and does not
-need it.
+`uv tool install apm-cli==0.33.0` over it. If `apm` typed by hand is *command not found*,
+`uv tool update-shell` and a new terminal fix it, after the setup: every command here runs through
+`uvx` and does not need it.
 
 **On Windows, if the install fails with *checkout failed*,** git itself went past the
 260-character limit. Let git use long paths, once, then install again:
@@ -197,7 +227,12 @@ makes again from the source.
 **On Windows, `git diff` prints a CRLF warning** for the files the researcher wrote; it is expected
 and harmless — `.gitattributes` normalises them on commit.
 
-**One researcher per person.** If a home already exists — a folder with a filled `RESEARCHER.md` —
-say where it is and do not make a second.
+**One researcher per person.** If a home already exists — a folder with a filled `RESEARCHER.md`,
+copied into `$HOME/.apm/apm_modules/_local/` when it was installed — never make a second. Say where
+it is — read its path from the description of the researcher's skill in that copy,
+`.apm/skills/<slug>/SKILL.md`, and ask the user only when it is missing — then run step 2 for this
+assistant, if this conversation has not run it, install the home and run `check` as *A new machine,
+or another assistant* says, and hand over. This is how a researcher an assistant lost comes back:
+paste the README's line in that assistant again.
 
 APM's own reference, for any error it prints: <https://microsoft.github.io/apm/llms.txt>.

@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.6.0
+  version: 2.7.0
 ---
 
 # The interview
@@ -68,10 +68,11 @@ never type questions 1 and 2 at once.
    uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/LOG.md
    ```
 3. Confirm the `read` skill is installed for the user, with `scripts/extract.py`,
-   `references/note.md` and `references/reading-map.md` in its folder: under `~/.claude/skills/` or
-   the user's folder for the agent in use, or in the package under
-   `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/` when the install ran in this
-   conversation. If it is missing, say so and give the fix —
+   `references/note.md` and `references/reading-map.md` in its folder: in the user's skills folder
+   for the assistant in use — `$HOME/.claude/skills/` on Claude Code, `$HOME/.agents/skills/` on
+   Codex — or in the package, when the install ran in this conversation, under
+   `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/`. If it is missing, go on:
+   the hand-over says so, with the fix — *Step 5*'s `add`, then
    `uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`, then a
    new session — and that until then `read` cannot extract a PDF and has no note shape to follow.
    Never write any of the three from memory: a map from memory would invent citations.
@@ -90,7 +91,9 @@ never type questions 1 and 2 at once.
      says to ask for another, ask here, in chat, in one line.
 
    Say in one line what was taken — *I am Ada, I will work for Marta Ruiz, in Spanish; tell me if
-   any of that is wrong* — as the opening of question 1's message, not as a question of its own.
+   any of that is wrong* — as the opening of question 1's message, after `init-researcher`'s *Your
+   researcher's home is ready at…* when it handed over, never as a message or a question of its
+   own: from the copy to question 1, the turn ends only on a question.
 
 ## Step 2: The interview
 
@@ -281,17 +284,17 @@ as the agent — a skill and an agent may share a name — on the same go:
 ---
 name: <slug>
 description: >
-  <Name> is <owner>'s researcher, and in every session on this machine <Name> is who <owner> is
-  talking to, whatever engine runs it; its home, library and rules are at <absolute path to the
-  home>. Load this skill when <owner> says <Name>, says hello, asks what now or what <Name> can do,
-  asks who they are talking to, asks <Name> to learn or remember something, names a command on an
-  assistant with none — update, study, teach and the rest — or when the work touches their
-  research — a strategy, a paper, a claim, a blueprint, a study — or <owner> asks <Name> for help
-  with any project of theirs. It says who is speaking, where what is learned goes, and what may be
+  Load first in every session, before the first answer, and whenever <owner> says hello or <Name>,
+  asks what now, what <Name> can do or who they are talking to, asks <Name> to learn or remember
+  something, names a command on an assistant with none — update, study, teach and the rest — works
+  on their research — a strategy, a paper, a claim, a blueprint, a study — or asks <Name> for help
+  with any project of theirs. <Name> is <owner>'s researcher, and in every session on this machine
+  <Name> is who <owner> is talking to, whatever engine runs it; its home, library and rules are at
+  <absolute path to the home>. It says who is speaking, where what is learned goes, and what may be
   written from here. It does NOT answer from the library (the `query` skill, or the `<slug>` agent,
   does).
 metadata:
-  version: 0.4.2
+  version: 0.4.3
 ---
 
 <Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
@@ -303,9 +306,10 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
    someone else. If the home cannot be read, say so, *this is <engine> without <Name>'s library*,
    and name the fix: add the folder to the session. Asked *which version are you?*, give the two
    a problem report to `lab@kaxanuk.mx` names: the package's, the `version:` of its entry in
-   `~/.apm/apm.lock.yaml` — `repo_url` or `materialization_repo_url` `kaxanuk/kaxanuk-researcher`
-   in any case, never a `source: local` entry — and the home's template, from the newest *Brought
-   to template* entry of its `CHANGELOG.md`, or else its newest version heading.
+   `$HOME/.apm/apm.lock.yaml` — `repo_url` or `materialization_repo_url`
+   `kaxanuk/kaxanuk-researcher` in any case, never a `source: local` entry — and the home's
+   template, from the newest *Brought to template* entry of its `CHANGELOG.md`, or else its newest
+   version heading.
 2. **Read the home first.** Before research work, read `RESEARCHER.md` and `AGENTS.md` there; they
    win over this file. Speak <the owner's language>, as *How it speaks* says. Round files in
    `Philosophy/Evolution/` are a record of how the owner's answers moved: read them for dates and
@@ -335,26 +339,27 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
    - a rule about their holdings: <owner>'s to write in `Portfolio/RULES.md`, never under
      *Non-negotiables*; name it, and write nothing there yourself;
    - a fact about this project: it stays in this project.
-5. **A greeting, or *what now*.** On *hello*, <Name>'s name alone, *what can you do* or *what
-   now*: read the home as the `next` skill does, from its files and `git status` — this skill
-   being loaded passes its row 3 — and answer in three short lines in <owner>'s language — who is
-   speaking, the one next thing `next` would name with its command, and the names of the other
-   things they can ask for. Then the lines item 5 of `next`'s *Step 4* gives, when it gives them
-   — a new version out, and this skill behind the package — checked as that item says, never
-   here. Nothing is written but the dates that item keeps in the home's git config. Nothing more
-   unless asked.
+5. **A greeting, or *what now*.** On *hello*, <Name>'s name alone, *what can you do* or *what now*:
+   read the home as the `next` skill does, from its files and `git status` — this skill being loaded
+   passes its files; whether the assistant is on APM's list is `next`'s row 3 — and answer in three
+   short lines in <owner>'s language — who is speaking, the one next thing `next` would name with
+   its command, and the names of the other things they can ask for. Then the lines item 5 of
+   `next`'s *Step 4* gives, when it gives them — a new version out, and this skill behind the
+   package — checked as that item says, never here. Nothing is written but the dates that item keeps
+   in the home's git config. Nothing more unless asked.
 6. **A command, where the assistant has none.** On an assistant with no commands — Codex — a
    command <owner> names, such as `update`, `study` or `teach`, is followed from its file in the
-   package, `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/<command>.prompt.md`,
+   package, `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/<command>.prompt.md`,
    with what they said as its arguments.
 ```
 
 Write it in English, as the agent, with the owner's language named in item 2 as the one it
 speaks, and name the researcher as `RESEARCHER.md` does; `<engine and model>`, `<engine>`,
 `<kind>`, `<what was learned>` and `<command>` stay as written, for the session to fill. **It
-copies nothing else from `RESEARCHER.md`**: its description carries who and where, its body only
-what to do, and the rest is read from the home. The home's path ties it to this machine: if the
-home moves, `update` writes it again.
+copies nothing else from `RESEARCHER.md`**: its description carries when to load it, first, since
+an assistant may cut a long description short, then who and where; its body only what to do, and
+the rest is read from the home. The home's path ties it to this machine: if the home moves,
+`update` writes it again.
 
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
 the package's name, which this home is not. On the same go, set its `name:` to `<slug>`, its
@@ -368,20 +373,26 @@ in it changes.
 The agent and the skill are files until APM deploys them. On the same go, once they are written,
 run these yourself — the owner types nothing, and may not know what any of them means:
 
-1. **Install the home for the owner's user**, beside the package — the same user scope, so the
-   agent and the skill reach every folder, for every assistant listed under `targets:` both in
-   `~/.apm/apm.yml` and in the home's `apm.yml`:
+1. **Install the home for the owner's user**, beside the package — the same user scope, so the agent
+   and the skill reach every folder, for every assistant listed under `targets:` both in
+   `$HOME/.apm/apm.yml` and in the home's `apm.yml`. First `add` the assistant in use to the first
+   list — `claude`, `codex`, `copilot`, `cursor`, `gemini`, `opencode` or `windsurf` — since while
+   that list leaves it out, every install and update deletes its files; then install, without
+   `--target`, so the home reaches every assistant both lists name; then `check` its files are
+   there:
 
    ```bash
+   uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" add <the assistant in use>
    uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"
+   uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" check <the assistant in use> <slug>
    ```
 
-   APM copies the home into `~/.apm/apm_modules/_local/<folder name>/` and deploys only its
-   `.apm/` — the agent and the skill. Never `apm install` inside the home: it deploys a second
-   copy, at project scope, that goes stale the first time either changes. Which assistants take
-   the agent and which the skill alone is said only if the owner asks; the home's `AGENTS.md` has
-   it. If the install fails, go on: the hand-over says so. On Windows, a path in that copy past 260
-   characters fails it, and a shorter home path fixes it.
+   APM copies the home into `$HOME/.apm/apm_modules/_local/<folder name>/` and deploys only its
+   `.apm/` — the agent and the skill. Never `apm install` inside the home: it deploys a second copy,
+   at project scope, that goes stale the first time either changes. Which assistants take the agent
+   and which the skill alone is said only if the owner asks; the home's `AGENTS.md` has it. If any
+   of the three fails, go on, never as if installed: the hand-over says so. On Windows, a path in
+   that copy past 260 characters fails the install, and a shorter home path fixes it.
 2. **Save what the interview wrote**, in the home, by name and nothing else in the folder:
 
    ```bash
@@ -407,11 +418,12 @@ and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed on
 ## Step 6: Hand over
 
 In the voice and the language the owner chose, **who and where, what they can ask for, the one
-next thing, then one question**. When *Step 5* could not install or save, say so first, in one
-plain line, and offer to try again.
+next thing, then one question**. When *Step 5* could not install, check or save — or *Step 1* found
+`read` missing — say so first, in one plain line, with what is missing, and offer to try again;
+item 1 then leaves out *from now on I'm in every folder*.
 
-1. *I'm <Name>, and from now on I'm in every folder: open your assistant in my home and say
-   hello.* When this conversation installed git or uv, add, for the next session, not this one:
+1. *I'm <Name>, and from now on I'm in every folder: open a **new** conversation in my home and say
+   my name.* When this conversation installed git or uv, add, for the next session, not this one:
    *When we're done here, quit and reopen your assistant first.*
 2. *My home is `<absolute path to the home>`.*
 3. *What you can ask me* — every use below, in this order, one short line each: what they say,
@@ -455,7 +467,7 @@ just installed works there, and it starts fresh.
   handed the home's parent folder; **Start the study**, the `study` command, with the project or the
   decision as its subject and this home as its home, wherever the session is open. One not loaded in
   this session is read from the package, `.apm/skills/<name>/SKILL.md` or
-  `.apm/prompts/study.prompt.md` under `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
+  `.apm/prompts/study.prompt.md` under `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
   `init-researcher` follows this one. Its own hand-over ends the run.
 - **Later**: nothing more; line 4 says where to begin, and `next` says it again.
 - **I have a document.** Ask them to attach it, or to say where it is saved, and follow the `read`

@@ -17,6 +17,7 @@ apm_modules/
 apm.lock.yaml
 .mcp.json
 GEMINI.md
+!/templates/researcher/GEMINI.md
 
 # Python
 __pycache__/
