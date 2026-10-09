@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.7.1] - 2026-10-09
+When your interview ends, your researcher first recommends a document to read together, and tells
+you everything else it can do only at the end.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The hand-over recommends a first document, and keeps the rest for the end** (`interview`
+  2.10.0). After who and where, the one question, `First step`, opens with *My first
+  recommendation: give me something to read*, says where your `Sources` folder is, and offers *I
+  have a document (recommended)*, *Suggest a reading* (with Finance among your domains) and
+  *Later*. Only once that is done or put off does it list what else you can ask for, the link to
+  `USE-CASES.md`, the one next thing — a `philosophy` round named for a new conversation — and
+  `next`. `philosophy` (1.3.2), the reading map (`read` 0.12.5) and `SETUP.md` follow.
+
 ## [1.7.0] - 2026-10-09
 Your first interview no longer asks for a go: it writes your researcher once you answer its two
 questions, and then invites your first books and papers into its library.

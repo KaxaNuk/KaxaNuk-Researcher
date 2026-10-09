@@ -11,7 +11,7 @@ description: >
   does) or write RESEARCHER.md beyond Find first and those rules, and never says what to buy, sell
   or hold.
 metadata:
-  version: 1.3.1
+  version: 1.3.2
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -178,7 +178,7 @@ strategy* or *Write down how I invest*, else *How I work*; once a topic has roun
 round's topic is marked *(current)* and suggested instead, so either topic is always one pick away.
 A topic named with the run — `philosophy my work`, `philosophy investing`, in any words, typed by
 the owner, as `next`'s Learn and Write rows name `philosophy investing` — is the answer, and
-`About?` is not asked; handed over by `interview`'s `First step` *Now*, the topic is *How I invest*.
+`About?` is not asked.
 A closing line of `next`, `teach` or `read` names no topic, so `About?` follows it. Any topic but
 investing is a field round, *Another field*, its file titled with the topic in the owner's words —
 for *How I work*, what *Works for* says they do, never their name. The answer decides whether this
@@ -190,9 +190,7 @@ topic>; this round adds to it, and its title is yours to change by hand* — and
 that file's next round, a retake once it has one, never a second file.
 
 **Round 1.** Say section 0 of the bank — section 10's opening in a field round — then ask `Ready?`
-(`¿Comenzamos?`) — *Start*, *Not now*. Handed over by `interview`'s `First step` *Now*, that pick
-was the start: say section 0 and go straight to O1. `Ready?` is asked only when the owner ran
-`philosophy` by name.
+(`¿Comenzamos?`) — *Start*, *Not now*.
 **A retake.** Say the opening of the bank's section 7 instead, then ask its scope question,
 `Retake?` (`¿Repetir?`); *not now* or *stop* under *Other* is *Not now*. The scope is applied
 after O3, against the questions of the level chosen there: a question that level does not ask is

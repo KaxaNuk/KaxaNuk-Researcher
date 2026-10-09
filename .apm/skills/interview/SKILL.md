@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.9.0
+  version: 2.10.0
 ---
 
 # The interview
@@ -453,10 +453,11 @@ and command comes in the one package, `KaxaNuk/KaxaNuk-Researcher`, installed on
 
 ## Step 6: Hand over
 
-In the voice and the language the owner chose, **who and where, what they can ask for, the one
-next thing, then one question**. When *Step 5* could not install, check or save — or *Step 1* found
-`read` missing — say so first, in one plain line, with what is missing, and offer to try again;
-item 1 then leaves out *from now on I'm in every folder*.
+In the voice and the language the owner chose, **who and where, then one question that recommends
+a first document; what else they can ask for, and the one next thing, only at the end**. When *Step
+5* could not install, check or save — or *Step 1* found `read` missing — say so first, in one plain
+line, with what is missing, and offer to try again; item 1 then leaves out *from now on I'm in
+every folder*.
 
 1. *I'm <Name>, and from now on I'm in every folder: open a **new** conversation in my home and say
    my name.* When this conversation installed git or uv, add, for the next session, not this one:
@@ -464,8 +465,41 @@ item 1 then leaves out *from now on I'm in every folder*.
 2. *My home is `<absolute path to the home>`.* On a first run, one more line: what was written
    from the answers, in plain words, and what was proposed — *your domains: Finance, AI; your
    projects: …; the opening of your README* — *tell me to change any of it, any time*.
-3. *What you can ask me* — every use below, in this order, one short line each: what they say,
-   then what they get. On Claude, the opening line adds *type them with a slash, `/read`*.
+
+The message ends there, with one tool question, header `First step` (`Primer paso`): nothing else
+the researcher can do is said before it. Its question recommends a first document and says where
+documents live, in the owner's language and voice, the folder's full path written out with this
+computer's separator: *My first recommendation: give me something to read — I learn from what you
+give me. Put the books, papers, articles and notes you want me to read in your `Sources` folder —
+`<the full path of the home's Sources folder>`, in `Books`, `Papers` or `Clippings` — or attach one
+here, and we read it together now. Shall we start with one?* (*Mi primera recomendación: dame algo
+para leer — aprendo de lo que me das. Pon los libros, papers, artículos y notas que quieras que lea
+en tu carpeta `Sources` — `<…>`, en `Books`, `Papers` o `Clippings` — o adjunta uno aquí y lo
+leemos juntos ahora. ¿Empezamos con uno?*). Its options, in this order:
+
+- *I have a document (recommended)* (*Tengo un documento (recomendado)*), first — described as *a
+  book, a paper, an article or your notes: attach them here, or say where they're saved; I copy
+  them into `Sources` and read them with you, one at a time*;
+- *Suggest a reading* (*Sugiéreme una lectura*), only with Finance among the domains and the
+  reading map at hand — described as *a few papers on what you came for, found by their titles*;
+- *Later*, last — described as *put files in `Sources` any time, or attach them, and say `read`*.
+
+What each pick leads to:
+
+- **I have a document.** Ask them to attach it, or to say where it is saved — several are welcome,
+  read one at a time, the others copied into `Sources/` for the next `read` — and follow the `read`
+  skill with the same home: its plan copies the file into `Sources/` and reads it, on one go, with
+  `extract.py` run from the home's root, so its extracts land in the home's `Extracts/`.
+- **Suggest a reading**: as the paragraph below says.
+- **Later**: nothing more but the end, at once.
+
+**At the end, what else.** Once the pick has run its course — the first document read, after
+`read`'s own report and *Saved*; the *Find first* line saved, or *Stop*; or *Later* at once — the
+same message closes with these lines, and never before:
+
+3. *What else you can ask me* (*Qué más puedes pedirme*) — every use below, in this order, one
+   short line each: what they say, then what they get. On Claude, the opening line adds *type them
+   with a slash, `/read`*.
    - *`read` a PDF or an article, then ask me about it: answers from what you've read, cited*;
    - *`study <a goal, a plan or a decision>`: worked out from your library*;
    - *any project, work or personal: open your assistant there and say my name*;
@@ -483,53 +517,17 @@ item 1 then leaves out *from now on I'm in every folder*.
    with its command.
 5. *Not sure what's next? Say `next`.* (*¿No sabes qué sigue? Di `next`.*)
 
-| Pick | The one next thing | `First step` offers |
-| --- | --- | --- |
-| *Organise what I read, and help with my projects* — or the old *Organise what I read* — or, with none of the four picks, nothing or only their own words | when question 1 named a decision, or a project with no folder of its own, `study <it>`, the first one named; when the projects it named live in folders of their own — code, a repository — *open me in that project's folder and say hello*; otherwise their first source — attach it, or say where it is saved — then `read` | for `study`, *Start the study*; *Later*. For a project in a folder of its own, or a source, *I have a document*; *Suggest a topic*, only with Finance among the domains and the reading map at hand; *Later* |
-| *Learn the basics, step by step* | `philosophy investing`, at Starter — it teaches one idea after each answer and needs no reading | *Later, in a new session (recommended)*; *Now* |
-| *Write down how I invest, and see it evolve* | `philosophy investing` | the same |
-| *Build and test a strategy* | `init-example`, a finished strategy to read, then `init-strategy <name>` for their own | *Show me the worked example*; *Later* |
+| Pick | The one next thing |
+| --- | --- |
+| *Organise what I read, and help with my projects* — or the old *Organise what I read* — or, with none of the four picks, nothing or only their own words | when question 1 named a decision, or a project with no folder of its own, `study <it>`, the first one named; when the projects it named live in folders of their own — code, a repository — *open me in that project's folder and say hello*; otherwise, with a document just read, *ask me about it*, and with none, their first source — put it in `Sources` or attach it — then `read` |
+| *Learn the basics, step by step* | in a new conversation, `philosophy investing` — at Starter, it teaches one idea after each answer and needs no reading |
+| *Write down how I invest, and see it evolve* | in a new conversation, `philosophy investing` |
+| *Build and test a strategy* | `init-example`, a finished strategy to read, then `init-strategy <name>` for their own |
 
-The message ends with that one tool question, header `First step` (`Primer paso`), its question an
-invitation to start the library that says where it lives, in the owner's language and voice, the
-folder's full path written out with this computer's separator: *I learn from what you give me. Put
-the books, papers, articles and notes you want me to read in your `Sources` folder — `<the full
-path of the home's Sources folder>`, in `Books`,
-`Papers` or `Clippings` — or attach them here and I'll put them there. Shall we start your library
-now?* (*Aprendo de lo que me das. Pon los libros, papers, artículos y notas que quieras que lea en
-tu carpeta `Sources` — `<…>`, en `Books`, `Papers` o `Clippings` — o adjúntalos aquí y
-yo los guardo ahí. ¿Empezamos tu biblioteca ahora?*). Its options, four at most, in this order:
+A `philosophy` round is named for a new conversation, saying in plain words why: everything just
+installed works there, and it starts fresh.
 
-- *I have a document*, always, first — described as *a book, a paper, an article or your notes:
-  attach them here, or say where they're saved; I copy them into `Sources` and read them with you,
-  one at a time*;
-- the start option of each pick on the *Here for* line, as the table gives it — *Start the study*
-  when question 1 named a decision or a project with no folder of its own; *Now*, labelled *How I
-  invest, now* (*Cómo invierto, ahora*) where another option comes before it; *Show me the worked
-  example*; *Suggest a topic* — none twice, *Suggest a topic* left out first when there are more
-  than four;
-- *Later*, last — described as *put files in `Sources` any time, or attach them, and say `read`*,
-  or as *Later, in a new session (recommended)* where a `philosophy` round is the one next thing.
-
-For `philosophy`, *Now*'s description says how long a round takes at that level, as `philosophy`
-gives it, and that it can stop after any block; beside *Later, in a new session (recommended)*
-only, it says in plain words why a new session is best: everything just installed works there,
-and it starts fresh.
-
-- **Now**, under either label, follows the `philosophy` skill in this conversation, with the same
-  home and the topic *How I invest*; **Show me the worked example**, the `init-example` skill,
-  handed the home's parent folder and the word `strategy`; **Start the study**, the `study` command,
-  with the project or the decision as its subject and this home as its home, wherever the session is
-  open. One not loaded in this session is read from the package, `.apm/skills/<name>/SKILL.md` or
-  `.apm/prompts/study.prompt.md` under `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
-  `init-researcher` follows this one. Its own hand-over ends the run.
-- **Later**: nothing more; line 4 says where to begin, and `next` says it again.
-- **I have a document.** Ask them to attach it, or to say where it is saved — several are welcome,
-  read one at a time, the others copied into `Sources/` for the next `read` — and follow the `read`
-  skill with the same home: its plan copies the file into `Sources/` and reads it, on one go, with
-  `extract.py` run from the home's root, so its extracts land in the home's `Extracts/`.
-
-**Suggest a topic.** One more tool question, `Find first` (`Buscar`), multi-select: up to four
+**Suggest a reading.** One more tool question, `Find first` (`Buscar`), multi-select: up to four
 works from the reading map, `references/reading-map.md` in the `read` skill's folder — never from
 memory, and never a work the map gives without a title. Match them first against `Sources/` and
 `Knowledge/INDEX.md`, as the map's *Match before proposing* says: a work *read* is never offered;
@@ -557,11 +555,11 @@ git -C "<absolute path to the home>" commit -m "Find first: <the works, by autho
 
 Then, in two lines: attach each one found, or say where it is saved, and I copy it into
 `Sources/Papers/` and read it; one that cannot be found comes off the *Find first* line by hand,
-and `next` says so too. A work not picked is never written.
+and `next` says so too. A work not picked is never written. Then the end, as above.
 
 **A change asked for at the hand-over** — in `First step`'s *Other*, or in chat — is written as the
 owner says, the changed lines shown, saved as *Step 5* saves with `-m "Interview: <what
 changed>"`, and `First step` asked again; never a `Go?` for it.
 
-Nothing more: these lines, `First step` and a change asked for there, with what its pick leads to,
-are the whole hand-over.
+Nothing more: these lines, `First step` and a change asked for there, what its pick leads to and
+the end are the whole hand-over.
