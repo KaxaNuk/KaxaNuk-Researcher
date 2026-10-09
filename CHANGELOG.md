@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.6.0] - 2026-10-09
+After you name your researcher and choose its folder, the interview starts by itself again.
+
+**What to do differently:** say `update` in your home. If you already have a researcher, saying
+`init-researcher` now asks whether to use it here or make a second one.
+### Fixed
+- **No stop between *Go* and the interview's first question.** `init-researcher` (0.8.0) runs the
+  update, the copy and the interview in the same turn: the first message after *Go* is question 1,
+  never a report that the home is made or an offer to stop. Its progress notes go out with a
+  command; a failed update or `add` is a note, then it goes on; a folder refused, or copied into
+  already, is answered at once; a file it cannot find is looked for, never a stop. The interview
+  (2.8.0), handed over, checks without a word of its own, takes the name already chosen, and asks a
+  missing owner name inside question 1, reading and writing the new home by its full path wherever
+  the session is open. `SETUP.md` says the same.
+### Changed
+- **A researcher already made is offered first.** `init-researcher` and `SETUP.md` look for one
+  and ask once, `Another?`: *Use <Name>* (installs it for this assistant), *Make a second one* (a
+  test, or another person — a second researcher in every session until removed) or *Stop*. Asking
+  for a test researcher skips the question. A second one can never take the first one's name or
+  file names, case and all, so a test cannot overwrite your researcher.
+- **`CONTRIBUTING.md`**'s release walk makes a second researcher in the throwaway home and checks
+  the first is untouched.
+
 ## [1.5.0] - 2026-10-09
 The worked examples now sit by kind, like the templates, so more can join golden-flow, and `init-
 example` asks which when there is more than one.

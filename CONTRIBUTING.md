@@ -219,9 +219,12 @@ release changes a skill, a command or a script, walk the rest of the newcomer's 
 run's first assistant — `next`, `read` on one clipping, a round of `philosophy` at Starter and one
 on how you work, `brief setup` and `brief`, and `init-strategy`; `init-python-library`, and `next`
 in the folder it makes, when the release changes them — once in Spanish, and once on an assistant
-with no question tool, Codex. Delete the scratch folder afterwards: under the throwaway home,
-nothing the walk installed or scheduled reached your own. A newer APM is adopted only when these
-installs pass with it, on Windows.
+with no question tool, Codex. When it changes `init-researcher` or `interview`, last, say
+`init-researcher` there again: it asks `Another?`, and *Make a second one*, named *Sofia*, makes a
+second home under `$K` whose files take a name other than `sofia`, with Sofía's untouched. A second
+researcher is tried there and only there, never beside your own. Delete the scratch folder
+afterwards: under the throwaway home, nothing the walk installed or scheduled reached your own. A
+newer APM is adopted only when these installs pass with it, on Windows.
 
 `AGENTS.md` has the rules for changing this repository: work lands on `main`, and a release is
 tagged `vX.Y.Z` there. `CHANGELOG.md` has one entry per version.

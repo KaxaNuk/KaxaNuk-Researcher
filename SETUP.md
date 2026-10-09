@@ -38,7 +38,9 @@ minutes, but does not need to: the assistant runs every command.
 
 **The files you follow**, once step 2 has installed the package. `$HOME` is the user's home folder
 — `C:\Users\<user>` on Windows — and expands in PowerShell, bash and zsh alike, also in a path
-handed to a program, where `~` does not; the paths are the same on every assistant:
+handed to a program, where `~` does not; a file-reading tool expands neither, so give it the path
+with the home folder spelled out. The paths are the same on every assistant; a package installed
+from an archive or a folder sits at `$HOME/.apm/apm_modules/_local/KaxaNuk-Researcher/` instead:
 
 | For | Follow or run |
 | --- | --- |
@@ -107,9 +109,11 @@ install on its own. Go on to step 3 in the same turn, and let your next message 
 
 ## Step 3 — The researcher's name, and where it lives
 
-If `$HOME/.apm/apm_modules/_local/` holds a home already — a folder with a filled `RESEARCHER.md` —
-follow *One researcher per person*, below, instead. Otherwise read `init-researcher` now, in the
-same turn, and follow it from its step 2, with the language already chosen; its file is
+First look in `$HOME/.apm/apm_modules/_local/` for a home already made — a folder with a filled
+`RESEARCHER.md` — and at a researcher's skill loaded in this session, which names its home. With
+one, follow *One researcher per person*, below: it asks whether to use it, unless the user already
+asked for another. Otherwise read `init-researcher` now, in the same turn, and follow it from its
+step 2, with the language already chosen; its file is
 `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md`, and its
 own questions take the name, then the place and the go in one. If the file is not there, list
 `$HOME/.apm/apm_modules` to find it; if it still cannot be found, say so in one line and offer to
@@ -117,18 +121,23 @@ install again — never tell the user to restart.
 
 ## Step 4 — Make the home
 
-`init-researcher` goes on, on that go: it skips its update — the package was installed a minute
-ago — and copies the researcher's home with `scaffold.py`, its first version saved.
+`init-researcher` goes on, on that go, in the same turn: it skips its update — the package was
+installed a minute ago — copies the researcher's home with `scaffold.py`, its first version saved,
+and goes straight into step 5. Never end the turn after the copy: the user's next message to read is
+the interview's question 1. A folder the script refuses is `Where?` again, with the reason, never a
+stop.
 
 ## Step 5 — The interview
 
-Follow `interview` from its installed path, in the same conversation, with the new folder as the
-home: two questions about the user — what they do and work on, at work and on their own, what
-they'd like a hand with, then the researcher's voice and why they are here — in the user's
-language; the domains and the projects are proposed from what they say. Nothing about how they
-invest is asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by
-name and the skill that puts it in every session, installs them for the user and saves a first
-version — the user answers and gives one go.
+Read the whole `interview` skill from its installed path and follow it in the same turn as step 4,
+from its *Step 1*, with the new folder as the home, by its absolute path, whatever folder the
+session is open in — its question 1 is the next message the user reads. It asks two questions about
+the user — what they do and work on, at work and on their own, what they'd like a hand with, then
+the researcher's voice and why they are here — in the user's language; the domains and the projects
+are proposed from what they say. Nothing about how they invest is asked here. It writes
+`RESEARCHER.md`, the agent that makes the researcher callable by name and the skill that puts it in
+every session, installs them for the user and saves a first version — the user answers and gives one
+go.
 
 ## Step 6 — Hand over
 
@@ -227,12 +236,25 @@ makes again from the source.
 **On Windows, `git diff` prints a CRLF warning** for the files the researcher wrote; it is expected
 and harmless — `.gitattributes` normalises them on commit.
 
-**One researcher per person.** If a home already exists — a folder with a filled `RESEARCHER.md`,
-copied into `$HOME/.apm/apm_modules/_local/` when it was installed — never make a second. Say where
-it is — read its path from the description of the researcher's skill in that copy,
-`.apm/skills/<slug>/SKILL.md`, and ask the user only when it is missing — then run step 2 for this
-assistant, if this conversation has not run it, install the home and run `check` as *A new machine,
-or another assistant* says, and hand over. This is how a researcher an assistant lost comes back:
-paste the README's line in that assistant again.
+**One researcher per person.** A home already made — a folder with a filled `RESEARCHER.md`, copied
+into `$HOME/.apm/apm_modules/_local/` when it was installed, or the home a researcher's skill loaded
+in this session names — is used, not made again: one library, grown in one place. Say where it is in
+one line — read its path from the description of the researcher's skill in that copy,
+`.apm/skills/<slug>/SKILL.md`, and ask the user only when it is missing; <Name> below is the *Name*
+in its `RESEARCHER.md`. Unless the user already asked for another — *a test researcher*, *a second
+one*, *another one*, in any words — ask once, through the question tool, `Another?` (`¿Otro?`):
+
+- *Use <Name> (recommended)* — run step 2 for this assistant, if this conversation has not run it,
+  install the home and run `check` as *A new machine, or another assistant* says, and hand over:
+  who and where, as the interview's hand-over says it, and *say `next`*;
+- *Make a second one* — a test, or another person on this computer: a second library, and a second
+  researcher in every session until it is removed — then `init-researcher` from its step 2, as step
+  3 says, the interview included, under a name other than <Name>;
+- *Stop*.
+
+When the user already asked for another, ask nothing: `init-researcher` runs from its step 2, under
+a name other than <Name>, and its `Where?` says once, in *Go*'s description, that the new home will
+sit beside <Name>, a second researcher in every session until it is removed. *Use <Name>* is how a
+researcher an assistant lost comes back: paste the README's line in that assistant again.
 
 APM's own reference, for any error it prints: <https://microsoft.github.io/apm/llms.txt>.
