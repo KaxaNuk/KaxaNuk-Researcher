@@ -11,7 +11,7 @@ description: >
   which books to price and how to read the numbers that come back. Shaping the attribution library's
   inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
 metadata:
-  version: 0.4.1
+  version: 0.4.2
 ---
 
 # Alpha decomposition — is the signal doing anything?
@@ -215,12 +215,12 @@ column". That is worth knowing and belongs in `OBJECTIVE.md` as a falsified clai
 ## 5. The worked example — `golden-flow`
 
 The KaxaNuk Strategy Template works one strategy through the process in its worked example,
-`examples/golden-flow/` in `KaxaNuk/KaxaNuk-Researcher`, which `init-example` copies into a folder
-of its own: **Golden Flow** — own the KN US Equity Core members whose 50-day simple moving average
-is above the 200-day, ranked and weighted by 63-day traded value, none above 20% and none below 1%,
-re-struck only when the held set changes. Steps 1 to 7 have run: criteria 1 to 4 of the gate
-passed, and the book was signed into paper trading on 2026-10-06. So the numbers below are real:
-priced by the engine over 2015-01-02 to 2026-06-01, reported in
+`examples/strategy/golden-flow/` in `KaxaNuk/KaxaNuk-Researcher`, which `init-example` copies into a
+folder of its own: **Golden Flow** — own the KN US Equity Core members whose 50-day simple moving
+average is above the 200-day, ranked and weighted by 63-day traded value, none above 20% and none
+below 1%, re-struck only when the held set changes. Steps 1 to 7 have run: criteria 1 to 4 of the
+gate passed, and the book was signed into paper trading on 2026-10-06. So the numbers below are
+real: priced by the engine over 2015-01-02 to 2026-06-01, reported in
 `Experiments/Experiment_1/FINDINGS_1.md`.
 
 | Arm | What it removes | CAGR | Sharpe | **Idiosyncratic** |

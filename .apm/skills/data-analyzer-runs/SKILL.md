@@ -13,7 +13,7 @@ description: >
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.2.3
+  version: 0.2.4
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -50,9 +50,9 @@ signal built on it carries anything. It builds no book, runs no engine and sizes
 ## The notebook, section by section
 
 The template ships `Data/analyzer.ipynb` as its markdown cells — each section says what is expected
-in it — and the worked example, `examples/golden-flow/` in the KaxaNuk Researcher package, fills
-every one. Read the example's copy before writing a cell; `init-example` puts it in a folder of
-its own. Sections 0 to 4 are what any strategy needs; 5 depends on the signal; 7, Verify, ends
+in it — and the worked example, `examples/strategy/golden-flow/` in the KaxaNuk Researcher package,
+fills every one. Read the example's copy before writing a cell; `init-example` puts it in a folder
+of its own. Sections 0 to 4 are what any strategy needs; 5 depends on the signal; 7, Verify, ends
 every one.
 
 | Section | Measures | The trap it catches |
@@ -119,9 +119,9 @@ the one that passed: count them, and publish the count beside the winner.
 
 ## References
 
-- `Data/analyzer.ipynb` in the worked example, `examples/golden-flow/` in the KaxaNuk Researcher
-  package — every section filled, with the strategy's own cells marked `# EXAMPLE-ONLY CELL`. The
-  template's copy is the same notebook with those cells removed.
+- `Data/analyzer.ipynb` in the worked example, `examples/strategy/golden-flow/` in the KaxaNuk
+  Researcher package — every section filled, with the strategy's own cells marked
+  `# EXAMPLE-ONLY CELL`. The template's copy is the same notebook with those cells removed.
 - `RESULTS.md` in the same example, *Before any experiment* — what a filled table looks like.
 - The strategy's `AGENTS.md`, *The bar any new signal must clear* and *Research integrity — the
   five ways a backtest lies*, which this stage serves.

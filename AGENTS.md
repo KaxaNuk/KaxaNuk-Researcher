@@ -1,12 +1,14 @@
 # Agents — how this repository is changed
 
 This repository is the KaxaNuk Researcher: one APM package that carries every KaxaNuk skill,
-instruction and command in `.apm/`, with its one agent, `blueprint-critic`, and the four starting
+instruction and command in `.apm/`, with its one agent, `blueprint-critic`, and the starting
 points its `init-*` skills copy — `templates/strategy/`, `templates/researcher/`,
-`templates/python-library/` and `examples/golden-flow/`. Read this before changing anything. The
-rules a researcher works by in its home are in `templates/researcher/AGENTS.md`; the rules a
-strategy works by are in `templates/strategy/AGENTS.md`, and a Python library's in
-`templates/python-library/AGENTS.md`. This file is about changing the package.
+`templates/python-library/` and the worked examples, organised by kind as the templates are, one
+folder each under `examples/<kind>/<name>/`: today one, `examples/strategy/golden-flow/`. Read this
+before changing anything. The rules a researcher works by in its home are in
+`templates/researcher/AGENTS.md`; the rules a strategy works by are in
+`templates/strategy/AGENTS.md`, and a Python library's in `templates/python-library/AGENTS.md`.
+This file is about changing the package.
 
 ## What lives where
 
@@ -17,7 +19,7 @@ strategy works by are in `templates/strategy/AGENTS.md`, and a Python library's 
 | `.apm/skills/experiment-lifecycle/references/` | the experiment documents and notebook, as the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | the `Bibliotheca/` index and log, the drivers, modules, notebooks and experiment and paper-trading files in `templates/strategy/` | the example's with its own lines stripped | by hand, in the same commit as the example's change |
 | `templates/strategy/` | the KaxaNuk Strategy Template, copied into every new strategy | a change here is a template release: its `pyproject.toml`, which declares its version, and `CHANGELOG.md` move together |
-| `examples/golden-flow/` | one strategy worked through the template | the same; it commits no `uv.lock`, so its library versions resolve when `uv sync` runs |
+| `examples/strategy/golden-flow/` | one strategy worked through the template, the one worked example today | the same; it commits no `uv.lock`, so its library versions resolve when `uv sync` runs |
 | `templates/researcher/` | the researcher's home, copied by `init-researcher` | its `apm.yml` version leads its `CHANGELOG.md`; `update` compares a home against it |
 | `templates/python-library/` | the KaxaNuk Python Library Template, laid out like the KaxaNuk Data Curator, <https://github.com/KaxaNuk/Data-Curator>: copied by `init-python-library`, then named by its `name_library.py`, which only puts in the names, the holder and the one sentence the owner chose, and moves the package folder | a change here is a template release: the number in the first sentence of its `CHANGELOG.md`'s `## [Unreleased]` entry, *Started from the KaxaNuk Python Library Template X.Y.Z*, moves, and the root `CHANGELOG.md` says what changed — the rest of its `CHANGELOG.md`, and its `__version__`, 0.1.0, are the new library's own. A placeholder changed here changes `name_library.py` in the same commit, and a change to its dependency groups updates `TOOL_DISTRIBUTIONS` and `TOOL_IMPORT_NAMES` there; a change to its first-commit message, in `scaffold.py`'s `STARTING_POINTS`, updates `FIRST_COMMIT`. Ruff and the Bloom Code check, at 120, run in place; `uv sync`, the tests, the documentation and `uv build` only in a copy outside the repository, as `CONTRIBUTING.md` shows, never inside `templates/` |
 
@@ -105,12 +107,17 @@ marked.
    own `*-runs` skill with a `library_version`, and the stage's seam file, `experiment-lifecycle`
    and `investment-lab.md` move with it.
 7. **The worked example's seed follows its index.** When the KN US Equity Core's membership changes,
-   rebuild `examples/golden-flow/Universe/Investable_Universe.csv` with its `Universe/seed.py`: the
-   listings whose FMP symbol, verified or not, is the index's own ticker, departed names included,
-   with their first and last price dates — tickers and dates only, never an ISIN, a name or any
-   other vendor field. It is an example release, re-run where a figure moves; the frozen book keeps
-   its seed as example 0.17.0 rewrote it, tickers and dates only; never restore the hashed original
-   to satisfy `FREEZE.json`.
-8. **A new worked example** — an ETF strategy, or one users ask for — is a folder of its own under
-   `examples/`, curated as `golden-flow` is: the template's shared lines, its own marked lines, a
-   seed of tickers and dates only, an `init-example` choice, and its own version and changelog.
+   rebuild `examples/strategy/golden-flow/Universe/Investable_Universe.csv` with its
+   `Universe/seed.py`: the listings whose FMP symbol, verified or not, is the index's own ticker,
+   departed names included, with their first and last price dates — tickers and dates only, never an
+   ISIN, a name or any other vendor field. It is an example release, re-run where a figure moves;
+   the frozen book keeps its seed as example 0.17.0 rewrote it, tickers and dates only; never
+   restore the hashed original to satisfy `FREEZE.json`.
+8. **A new worked example** — an ETF strategy, or one users ask for — is a folder of its own,
+   `examples/<kind>/<name>/`, its kind the template it is worked through as `templates/<kind>/`
+   names it — `examples/strategy/<name>/` for an ETF strategy — curated as `golden-flow` is: the
+   template's shared lines, its own marked lines, a seed of tickers and dates only, and its own
+   version and changelog. `init-example` offers it with nothing registered: `scaffold.py` finds
+   every folder `examples/<kind>/<name>/` that holds a `README.md`, and shows for it the line that
+   README marks, `<!-- kaxanuk-example: <one line> -->` alone at column 0, or else its first
+   paragraph's first sentence — written to say, to a newcomer choosing, what the example shows.

@@ -41,6 +41,24 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.1 (2026-10-09)
+
+**PATCH** — the example now lives at `examples/strategy/golden-flow/` in the package; prose only,
+nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`**, the example's own lines under *How work reaches `main`*: the folder is
+  `examples/strategy/golden-flow/` of the KaxaNuk Researcher, which keeps its examples by kind, as
+  it keeps its templates. The strategy is still `golden-flow`.
+- **`SETUP.md`**, *Step 1*: the link that reads the example on GitHub points to
+  `examples/strategy/golden-flow`, and the new folder is `golden-flow` *unless you choose another
+  place* — `init-example <name>` now names an example.
+
+The template moves to 0.18.3 for the same reason; no line shared with it changes.
+
 ## 0.17.0 (2026-10-08)
 
 **MINOR** — the example's list of stocks is tickers and dates only, 883 of the record's 896

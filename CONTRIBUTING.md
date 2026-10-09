@@ -64,7 +64,10 @@ templates/researcher/ the researcher's home, empty
 templates/python-library/
                       the KaxaNuk Python Library Template — a Python library laid out like the
                       KaxaNuk Data Curator, named for its owner by init-python-library
-examples/golden-flow/ one strategy worked through every folder of the template
+examples/<kind>/<name>/
+                      the worked examples, one folder each, examples/<kind>/<name>/, by kind as
+                      the templates are: today one, a strategy worked through every folder of the
+                      template
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 USE-CASES.md          twelve ways to use the researcher, step by step
 apm.yml               the package: what apm install reads; it depends on nothing
@@ -86,44 +89,48 @@ skills keep updating with `uvx --from apm-cli==0.33.0 apm update -g`.
 ```bash
 uvx ruff check .
 (cd templates/strategy && uvx ruff check .)
-(cd examples/golden-flow && uvx ruff check .)
+for e in examples/strategy/*/; do (cd "$e" && uvx ruff check .); done
 (cd templates/python-library && uvx ruff check .)
 uv run --no-project python .apm/skills/bloom-code-lint/scripts/bloom_code_check.py .apm/skills/*/scripts
 (cd templates/strategy && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100)
-(cd examples/golden-flow && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100)
+for e in examples/strategy/*/; do (cd "$e" && uv run --no-project python ../../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 100); done
 (cd templates/python-library && uv run --no-project python ../../.apm/skills/bloom-code-lint/scripts/bloom_code_check.py . --max-line-length 120)
 ```
 
-Ruff lints the skills' scripts, the strategy and Python library templates and the worked example,
-each with its own settings; the Bloom Code check runs on the scripts at its default 120 columns
-and, from inside each template and the example — so it finds their own packages — at the line
-length each sets: 100 for a strategy, 120 for the Python library template. Each runs through `uv`
-alone: no Python of your own is needed. They run on your machine before a commit; there is no CI,
-so nothing runs them for you. Nothing else runs inside `templates/`: `uv sync`, `uv build` or
-Sphinx there would write a `.venv/`, a `uv.lock` or a `dist/` into the package.
+Ruff lints the skills' scripts, the strategy and Python library templates and every strategy
+example, each with its own settings; the Bloom Code check runs on the scripts at its default 120
+columns and, from inside each template and each example — so it finds their own packages — at the
+line length each sets: 100 for a strategy, its template and its examples alike, 120 for the Python
+library template. An example of another kind, three folders down in `examples/<kind>/<name>/`,
+runs as its template does, with one more `../`. Each runs through `uv` alone: no Python of your
+own is needed. They run on your machine before a commit; there is no CI, so nothing runs them for
+you. Nothing else runs inside `templates/`: `uv sync`, `uv build` or Sphinx there would write a
+`.venv/`, a `uv.lock` or a `dist/` into the package.
 
-**The template and the example in step.** Nothing else is automated: they are kept in step by
-hand, as `AGENTS.md` says. For each file `git ls-files templates/strategy` lists, the example's
-copy with its own lines removed — those between `<!-- example: begin -->` and
-`<!-- example: end -->` or `# --- example: begin ---` and `# --- example: end ---`, and in a
-notebook every cell that starts `# EXAMPLE-ONLY CELL` and every marked block inside a markdown
-cell — equals the template's but for blank lines and the exceptions `AGENTS.md` lists. For the
-Markdown and Python files:
+**The template and the example in step.** Nothing else is automated: they are kept in step by hand,
+as `AGENTS.md` says. For each file `git ls-files templates/strategy` lists, the copy in each
+strategy example, `examples/strategy/<name>/`, with its own lines removed — those between
+`<!-- example: begin -->` and `<!-- example: end -->` or `# --- example: begin ---` and
+`# --- example: end ---`, and in a notebook every cell that starts `# EXAMPLE-ONLY CELL` and every
+marked block inside a markdown cell — equals the template's but for blank lines and the exceptions
+`AGENTS.md` lists. For the Markdown and Python files:
 
 ```bash
-for f in $(git ls-files templates/strategy | grep -E '\.(md|py)$'); do
-  e="examples/golden-flow/${f#templates/strategy/}"
-  [ -f "$e" ] || continue
-  awk '/^(<!-- example: begin -->|# --- example: begin ---)$/{s=1;next} /^(<!-- example: end -->|# --- example: end ---)$/{s=0;next} !s' "$e" \
-    | diff -B <(awk 1 "$f") - > /dev/null || echo "differs: $f"
+for x in examples/strategy/*/; do
+  for f in $(git ls-files templates/strategy | grep -E '\.(md|py)$'); do
+    e="$x${f#templates/strategy/}"
+    [ -f "$e" ] || continue
+    awk '/^(<!-- example: begin -->|# --- example: begin ---)$/{s=1;next} /^(<!-- example: end -->|# --- example: end ---)$/{s=0;next} !s' "$e" \
+      | diff -B <(awk 1 "$f") - > /dev/null || echo "differs: $e"
+  done
 done
 ```
 
 For the notebooks, cell by cell, by cell id:
 
 ```bash
-for nb in $(git ls-files templates/strategy | grep '\.ipynb$'); do
-  uv run --no-project python - "$nb" "examples/golden-flow/${nb#templates/strategy/}" <<'PY' || echo "differs: $nb"
+for x in examples/strategy/*/; do for nb in $(git ls-files templates/strategy | grep '\.ipynb$'); do
+  uv run --no-project python - "$nb" "$x${nb#templates/strategy/}" <<'PY' || echo "differs: $x${nb#templates/strategy/}"
 import json, re, sys
 marked = re.compile(r'^(<!-- example: begin -->|# --- example: begin ---)$.*?^(<!-- example: end -->|# --- example: end ---)$\n?', re.M | re.S)
 def cells(path):
@@ -131,7 +138,7 @@ def cells(path):
     return [(c.get('id'), c['cell_type'], [l for l in marked.sub('', ''.join(c['source'])).splitlines() if l.strip()]) for c in kept]
 sys.exit(cells(sys.argv[1]) != cells(sys.argv[2]))
 PY
-done
+done; done
 ```
 
 Any file either names that `AGENTS.md` does not list as an exception is a fault.
