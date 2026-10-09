@@ -9,19 +9,25 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.7.1
+  version: 2.8.0
 ---
 
 # The interview
 
 **Where it runs.** In the researcher's home, the folder that holds `RESEARCHER.md`, and every path
 below is relative to it. `init-researcher` — run by name, or as a step of the install `SETUP.md`
-walks through — hands over to this skill in the same conversation, with the session open
-elsewhere: then every path is relative to the home's absolute path, which it names. `force` —
-*interview force* — starts over when `RESEARCHER.md` is already filled.
+walks through — hands over to this skill in the same conversation, with the session open elsewhere:
+then the home is the folder it just made, which it names, and every path below, `RESEARCHER.md`
+first, is read and written under that absolute path, whatever folder the session is open in — even
+one holding another researcher's `RESEARCHER.md`. *Step 1* never reads the session's folder for the
+home's. `force` — *interview force* — starts over when `RESEARCHER.md` is already filled.
 
 You are about to become somebody's research companion. This interview decides who. Ask **one
-question at a time**, and write nothing until every answer is in.
+question at a time**, and write nothing until every answer is in. **Handed over by
+`init-researcher`, start at once**: run *Step 1*'s checks without a word of their own and send
+question 1 in the same turn. *Step 1* then asks nothing on its own: what the checks found, and what
+they still need — the owner's name, a name for the files — goes into question 1's message or the
+hand-over, never a message, a question, a report or a pause of its own.
 
 **The interview is about the person**: who they are, what they work on — at work and on their own
 — what they want a hand with, and how the researcher should speak. **Nothing more about markets
@@ -48,9 +54,17 @@ your own words* last, and one line saying how to answer: the numbers, *1: 2 · 2
 where the question says several, or their own words. Wait for the answer before the next message;
 never type questions 1 and 2 at once.
 
+**The package's files.** Where a step below looks for, reads or runs a file under
+`$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, a package installed from an archive or a
+folder is under `$HOME/.apm/apm_modules/_local/KaxaNuk-Researcher/` instead; a file in neither is
+found by listing `$HOME/.apm/apm_modules`, never by ending the turn on it. A file-reading tool takes
+the full path, `$HOME` spelled out — `C:\Users\<user>\…`, `/Users/<user>/…` — since it does not
+expand it.
+
 ## Step 1: Pre-flight
 
-1. If `RESEARCHER.md` has no angle-bracketed slots left and the owner did not say `force`:
+1. If the home's `RESEARCHER.md` has no angle-bracketed slots left and the owner did not say
+   `force`:
    - **If `.apm/agents/` holds no agent file, or `.apm/skills/` no researcher's skill**, this
      researcher predates it. Say so, skip the interview, and go straight to *Step 4*, taking every
      answer from `RESEARCHER.md` as it stands; show the file or files it lacks and ask for the go —
@@ -60,12 +74,13 @@ never type questions 1 and 2 at once.
 2. Confirm the folders exist — `Sources/` with `Books/`, `Papers/` and `Clippings/`, `Knowledge/`,
    `Philosophy/` — and the two files `Knowledge/INDEX.md` and `Knowledge/LOG.md`. Create any
    folder that is missing. A missing `INDEX.md` or `LOG.md` is a file of the home template, so it
-   is brought from the package by the script in the `init-strategy` skill's folder, run from the
-   home's root — never written from memory, and never over an existing file:
+   is brought from the package by the script in the `init-strategy` skill's folder, beside this
+   skill's own — the package's `.apm/skills/init-strategy/` where it is not loaded — never written
+   from memory, and never over an existing file:
 
    ```bash
-   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/INDEX.md
-   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only Knowledge/LOG.md
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher "<absolute path to the home>" --only Knowledge/INDEX.md
+   uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher "<absolute path to the home>" --only Knowledge/LOG.md
    ```
 3. Confirm the `read` skill is installed for the user, with `scripts/extract.py`,
    `references/note.md` and `references/reading-map.md` in its folder: in the user's skills folder
@@ -80,20 +95,28 @@ never type questions 1 and 2 at once.
    - **The language** the owner has been speaking in this conversation — `init-researcher` asks it
      first. With nothing to go on, ask it before anything else, alone, in Spanish and English
      together: `Idioma/Lang` — *Español*, *English*; *Other* for another.
-   - **The researcher's name**: the home's folder name, as `init-researcher` made it — `Ada` for
-     `D:\Research\Ada`, `Ada Lovelace` for `ada-lovelace`; on a re-run, the *Name* in
-     `RESEARCHER.md`. When the folder's name is not a name — `my-researcher`, `home` — ask it in
-     chat, with three proposals, and never pick one for them.
-   - **The owner's name**: `git -C "<the home>" config user.name`, since the session may be open
-     elsewhere. With none, or a single word that reads as a handle, ask it in chat in one line,
-     offering that word if there is one. Never make one up.
+   - **The researcher's name**: handed over by `init-researcher`, the name it took in this
+     conversation, the home's folder named after it — used as given, never judged or asked again.
+     Run by name, the home's folder name — `Ada` for `D:\Research\Ada`, `Ada Lovelace` for
+     `ada-lovelace`; on a re-run, the *Name* in `RESEARCHER.md`. When the folder's name is not a
+     name — `my-researcher`, `home` — ask it in chat, with three proposals, and never pick one for
+     them.
+   - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
+     session may be open elsewhere. With none, or a single word that reads as a handle, it is asked
+     inside question 1's message, in one line, offering that word if there is one — *and your
+     name? I only have `artur`* — never in a message of its own. Never make one up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
-     says to ask for another, ask here, in chat, in one line.
+     says to ask for another, it is asked inside question 1's message, in one line, with the reason
+     — *`ada` is already taken on this computer: a short name in Latin letters for my files?* —
+     never in a message of its own.
+
+   When the answer to question 1 leaves out the owner's name or the name for the files that its
+   message asked for, ask for it once more, alone, before question 2.
 
    Say in one line what was taken — *I am Ada, I will work for Marta Ruiz, in Spanish; tell me if
-   any of that is wrong* — as the opening of question 1's message, after `init-researcher`'s *Your
-   researcher's home is ready at…* when it handed over, never as a message or a question of its
-   own: from the copy to question 1, the turn ends only on a question.
+   any of that is wrong* — with what is still needed, as the opening of question 1's message, after
+   the line `init-researcher` opens it with when it handed over, never as a message or a question of
+   its own: from the copy to question 1, the turn ends only on question 1.
 
 ## Step 2: The interview
 
@@ -226,11 +249,17 @@ name — *ask Ada what we have read about momentum crashes* — with its own too
 into a hyphen, repeated hyphens collapsed and none at either end: `Ada` becomes `ada`,
 `Ada Lovelace` `ada-lovelace`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`. APM deletes any other
 character from a folder name — `sofía` would deploy as `sofa`, a researcher that never installs
-under its own name. *Step 1* asks for another short name in Latin letters for the files, the name
-itself unchanged, when nothing is left — a name in another script — or when the slug is taken: a
-folder in the package's `.apm/skills/` or a command in its `.apm/prompts/` — `next`, `read`,
-`brief`, `study`, `teach` and the rest — or `blueprint-critic`. The name keeps its accents
-everywhere else: `RESEARCHER.md`, the title, the text of the agent and the skill.
+under its own name. *Step 1* asks for another short name in Latin letters for the files, inside
+question 1's message, the name itself unchanged, when nothing is left — a name in another script —
+or when the slug is taken: a folder in the package's `.apm/skills/` or a command in its
+`.apm/prompts/` — `next`, `read`, `brief`, `study`, `teach` and the rest — or `blueprint-critic`; or
+the slug of a researcher already installed for the user, so a second one — a test, or another person
+on this computer — never replaces the first: a `.apm/skills/<slug>/` folder in another home's copy
+under `$HOME/.apm/apm_modules/_local/` — a folder there that holds a `RESEARCHER.md`, other than the
+copy whose researcher's skill names this home's absolute path — or a `<slug>` folder in the user's
+skills folders, `$HOME/.claude/skills/` and `$HOME/.agents/skills/`, both, whatever the assistant in
+use, whose `SKILL.md` does not name this home. The name keeps its accents everywhere else:
+`RESEARCHER.md`, the title, the text of the agent and the skill.
 
 ```markdown
 ---
