@@ -127,8 +127,7 @@
 > Take this again after you've read something, and you'll see how your view moved.
 
 Then the question `Ready?` (`¿Comenzamos?`), with *Start* or *Not now*. On *Not now*, nothing is
-written; say how to start later. Handed over by `interview`'s `First step` *Now*, that pick was the
-start: `Ready?` is not asked, and O1 follows section 0.
+written; say how to start later.
 
 On a retake, use the opening in section 7 instead.
 

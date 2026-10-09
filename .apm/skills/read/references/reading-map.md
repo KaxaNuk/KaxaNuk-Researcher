@@ -31,7 +31,7 @@ evolve by replacement; it evolved by addition (page 48).
   *What you are reading for*: as *Find first* under the question it serves or, when it serves no
   numbered question, on the section's closing *Find first* line, which is added to and never
   rewritten — its *none*, in whatever language it is written, gives way to the first work.
-  `interview` writes a work picked from *Suggest a topic* there, and `philosophy` the works picked
+  `interview` writes a work picked from *Suggest a reading* there, and `philosophy` the works picked
   at a round's close. Never download it: the owner finds it by its title and authors, puts the PDF
   in `Sources/Papers/`, or `Sources/Books/` for a book, and runs `read`; a work that cannot be found
   comes off the line by hand.

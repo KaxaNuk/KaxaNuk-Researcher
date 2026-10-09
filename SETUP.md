@@ -143,12 +143,11 @@ when git has none.
 ## Step 6 — Hand over
 
 The interview's own hand-over ends the conversation: who the researcher is and that it is in every
-folder, where its home is, what the user can ask it for — one short line a use, and a link to
-`USE-CASES.md` — the one next thing for what they came for, and *not sure what's next? say `next`*;
-then one question, `First step`, which invites them to put their first books, papers or notes in the
-home's `Sources` folder, or attach them, and whose options start each thing they came for. On *Now*,
-under either label, *Show me the worked example*, *Start the study* or *I have a document*, follow
-that skill or command from its installed path, in this conversation.
+folder, where its home is, then one question, `First step`, which recommends a first document — put
+in the home's `Sources` folder, or attached. On *I have a document*, follow `read` from its
+installed path, in this conversation. Only at the end, once that is done or put off: what the user
+can ask it for — one short line a use, and a link to `USE-CASES.md` — the one next thing for what
+they came for, and *not sure what's next? say `next`*.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
 `.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and everything is saved:
