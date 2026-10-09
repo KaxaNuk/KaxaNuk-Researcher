@@ -5,21 +5,22 @@ description: >
   reading — in a new folder, from the KaxaNuk Python Library Template inside the researcher
   package, laid out like the KaxaNuk Data Curator: copied by a script byte for byte, its first
   version saved, then named by a second script and saved again. Only when the owner runs it by
-  name, with the Python library's name, or in a copy not yet named. It does NOT build the
+  name, or in a copy not yet named; its name is always theirs — with none given, it asks what the
+  library will do and suggests names to pick. It does NOT build the
   environment or publish anything (`next`, in the new folder, leads there), does NOT create a
   strategy (use `init-strategy`), and does NOT add a source to the library of reading (`read` does).
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Init Python library — a new Python library, one folder, one repository
 
-The owner starts a Python library of their own: code others install with `pip` and import. What
-they said carries the arguments: its name — `fcf-screen` — which becomes the folder, the repository
-and the name on PyPI; where to put it; and optionally one sentence on what it does. One Python
-library is one repository: never inside a strategy, the researcher's home, another project or this
-package. Here *library* means code; the researcher's library of reading is `Knowledge/`, which this
-skill never touches.
+The owner starts a Python library of their own: code others install with `pip` and import. What they
+said carries the arguments: its name — `fcf-screen`, always theirs — which becomes the folder, the
+repository and the name on PyPI; where to put it; and optionally one sentence on what it does. One
+Python library is one repository: never inside a strategy, the researcher's home, another project or
+this package. Here *library* means code; the researcher's library of reading is `Knowledge/`, which
+this skill never touches.
 
 **The copy and the naming are the scripts', never yours.** `scaffold.py` copies the template byte
 for byte, so every Python library made from the same package version starts identical;
@@ -36,7 +37,8 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
 - The session is open in a copy not yet named — its `AGENTS.md` holds
   `<!-- kaxanuk-starting-point: python-library -->` alone at column 0, and `src/` still holds
   `kn_python_library_template/` — and the owner runs it there, as `next` says: step 1 without the
-  place, the plan, then step 4 on this folder.
+  place — its name the folder's own, checked as one of theirs, with no question before it — the
+  plan, then step 4 on this folder.
 - Not in the template itself: a folder that is not the top of a git repository of its own, such as
   `templates/python-library/` inside the package, is never named — the script refuses it. Copy it
   with step 3 instead.
@@ -54,12 +56,40 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
 
 ## Steps
 
-1. **The name, and the names it gives.** Ask through the question tool for what is missing: the
-   name — lowercase letters, digits and single hyphens, starting with a letter, at most 40
-   characters — and the parent folder, defaulting to the parent of the folder the session is open
-   in, so the Python library lands beside the owner's other projects: `D:\Research\fcf-screen`.
-   On Windows, keep it short: a deep synced path such as `C:\Users\<you>\OneDrive\...` breaks tools
-   later with misleading errors such as `WinError 3`. Say the full path. Then check the name:
+1. **What it does, then its name — always the owner's — and the names it gives.** The name becomes
+   the folder, the repository and the name on PyPI: lowercase ASCII letters, digits and single
+   hyphens, starting with a letter, at most 40 characters. Any name of theirs — with the command,
+   `init-python-library fcf-screen`, in their words or under *Other* — is put in that form,
+   *Contabilidad Project* giving `contabilidad-project`, checked with the command below and shown
+   in the plan. Without one, when what they said does not yet tell what it will do, first ask in
+   one short chat message — *Tell me in a sentence or two what it will do, and I'll suggest a few
+   names* (*Cuéntame en una o dos frases qué hará y te sugiero unos nombres*) — with nothing else
+   asked or run before the answer. Words after the command that are not one name are what it does;
+   a name in the answer is theirs. From their words, make up to three names — *a screen of stocks
+   by free cash flow* gives `fcf-screen` — check each with the command below, and offer those it
+   passes through the question tool, header `Name` (`Nombre`), each described by its import name
+   and *free on PyPI*, none whose folder is already there; *Other* takes a name of their own. With
+   one passing, offer it in one chat line instead — *`fcf-screen` is free on PyPI: take it, or type
+   your own*; with no question tool, the names are a numbered list in chat, *or type your own*.
+   When none passes, say why in one line and ask for one of their own; when PyPI could not be
+   asked, offer them anyway, each *not checked on PyPI*, and the pick takes the never-publish
+   question below. Never a name they did not pick or type, and never a placeholder such as
+   `my-library` or a literal `<name>`.
+
+   **Their sentence** on what it does — the first one, as they wrote it, never one that only names
+   it — is step 4's `--description`, shown in the plan; with none, it is left out. Check it once the
+   name is settled, with that name, adding `--description "<the sentence>"` to the command below — a
+   refused sentence is no verdict on the name: one the script refuses — over 200 characters, or
+   holding a double quote or a backslash — is said in one line, and a shorter one asked for in their
+   words, or left out on their word; never shortened by you.
+
+   The place: the parent of the folder the session is open in, so the Python library lands beside
+   the owner's other projects, `D:\Research\fcf-screen`, unless they say another. A folder of that
+   name already there and not empty is said in one line, and another name or place asked for —
+   theirs, typed or picked from names offered as above, what it does asked first if not yet said;
+   never a suffix such as `-2`. On Windows, keep it short: a deep synced path such as
+   `C:\Users\<you>\OneDrive\...` breaks tools later with misleading errors such as `WinError 3`. Say
+   the full path. The check:
 
    ```bash
    uv run --no-project python "<this skill's directory>/scripts/name_library.py" --check-name <name>
@@ -99,19 +129,20 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
    ```
 
    It takes a leading `~` as the home folder, and refuses a folder that exists and is not empty,
-   saying why; go back to step 1 rather than around it. On Windows without long paths, it also
-   refuses a destination so deep that a copied path would pass 259 characters, names that path and
-   the longest destination that fits, and writes nothing; choose a shorter place. A copy the system
-   stops partway — a full disk, a file refused — ends in one line naming the file and the reason;
-   the partial folder can be deleted. If it cannot find the package, it prints the install command —
-   give it to the owner. A fork of the package, or a clone in a folder of another name, is not found
-   on its own: pass `--package <its install folder>`. A git step that fails leaves the copy in place
-   — the script still exits 0 — and prints every command that finishes the repository from that step
-   on. If git is missing, install it on the owner's go, then run the printed commands in the new
-   folder. If the first commit fails for want of a git identity, ask for *a name and an email to
-   sign the versions your researcher saves*, never invented; set them in that folder only,
-   `git config user.name "<name>"` and `git config user.email "<email>"`, then run the printed
-   commands there. The naming waits for that first version.
+   saying why; then ask, as step 1 does, for another name or place, rather than going around it. On
+   Windows without long paths, it also refuses a destination so deep that a copied path would pass
+   259 characters, names that path and the longest destination that fits, and writes nothing; ask
+   for a shorter place. A copy the system stops partway — a full disk, a file refused — ends in one
+   line naming the file and the reason; the partial folder can be deleted. If it cannot find the
+   package, it prints the install command — give it to the owner. A fork of the package, or a clone
+   in a folder of another name, is not found on its own: pass `--package <its install folder>`. A
+   git step that fails leaves the copy in place — the script still exits 0 — and prints every
+   command that finishes the repository from that step on. If git is missing, install it on the
+   owner's go, then run the printed commands in the new folder. If the first commit fails for want
+   of a git identity, ask for *a name and an email to sign the versions your researcher saves*,
+   never invented; set them in that folder only, `git config user.name "<name>"` and
+   `git config user.email "<email>"`, then run the printed commands there. The naming waits for that
+   first version.
 
 4. **Name it**, on the same go, once the copy's first version is saved:
 

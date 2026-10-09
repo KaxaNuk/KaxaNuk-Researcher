@@ -21,11 +21,11 @@ Open a **new** terminal after installing either, so it is on the path. `git --ve
 > **For the agent, before anything else.** Look at the folder you are in, and say what you found:
 >
 > - it holds `Bibliotheca/`, `Universe/` and `Experiments/` → the repository exists, go to step 2;
-> - otherwise the repository does not exist yet → step 1. It needs **the strategy's name** — it
->   becomes the folder and repository name, so `fcf-yield-quality`, not `Experiment` — and **where
->   to put it**; ask for whichever the user has not given. A third is optional: **one sentence on
->   the idea**, if the user has it ready — it seeds the README in step 5, and a placeholder is fine
->   if not.
+> - otherwise the repository does not exist yet → step 1, `init-strategy`, which asks for what it
+>   needs: **the strategy's name**, always the user's — it becomes the folder and repository name,
+>   so `fcf-yield-quality`, not `Experiment`; with none, it asks what the idea is and suggests a
+>   few — and puts it beside the folder you are in unless they say another. Pass on what the user
+>   has said: a name, a place, **one sentence on the idea**, which seeds the README in step 5.
 >
 > Every command from step 2 on runs **in the root**, the folder step 1 made. Never a level above it.
 

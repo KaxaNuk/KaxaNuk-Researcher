@@ -6,6 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.8.0] - 2026-10-09
+When you start a strategy or a Python library without a name, your researcher asks what it is about
+and suggests a few names for you to pick, or you type your own.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The name is always yours, and suggested from your idea** (`init-strategy` 0.4.0,
+  `init-python-library` 0.2.0). With no name given, and nothing said yet on what it is about, the
+  first message asks what the strategy is about, or what the Python library will do, in a sentence
+  or two — nothing else is asked or run first — then offers names made from your words; *Other*
+  takes your own. A name of yours, typed with the command or in any form, is put in the folder's
+  form (*Contabilidad Project* becomes `contabilidad-project`) and shown in the plan; no name is
+  ever made up for you, nor a placeholder kept. The place is beside the folder you are in, unless
+  you say another.
+- **A Python library's suggestions are checked on PyPI first**; only free ones are offered, or,
+  offline, all of them marked *not checked*. Your sentence on what it does becomes its description,
+  checked before the copy, never shortened for you.
+- **A folder already there** is said before the plan, and another name or place asked for, never a
+  `-2` added; a copy refused later asks the same way.
+- **The strategy template** (0.18.4): its `SETUP.md` note for the agent hands step 1 to
+  `init-strategy`.
+
 ## [1.7.1] - 2026-10-09
 When your interview ends, your researcher first recommends a document to read together, and tells
 you everything else it can do only at the end.
