@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.7.0] - 2026-10-09
+Your first interview no longer asks for a go: it writes your researcher once you answer its two
+questions, and then invites your first books and papers into its library.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **No *Write it?* on a first interview** (`interview` 2.9.0): choosing the home, or running the
+  interview by name, and the two answers are the go. It writes `RESEARCHER.md`, the agent, the
+  researcher's skill, its settings, the copyright and the README's opening, sets itself up and
+  saves, then names in the hand-over what it wrote and proposed — your domains, your projects, the
+  README's opening — to change on your word; a change asked for there is written and saved at once.
+  `interview force`, which rewrites words already yours, keeps its preview and its `Go?`.
+- **The hand-over's last question is *First step*** (*Primer paso*), never a bare *Start?*: it
+  invites you to put the books, papers, articles and notes you want read in your home's `Sources`
+  folder — in `Books`, `Papers` or `Clippings`, its full path written out — or to attach them, one
+  at a time read with you; *I have a document* always comes first, and *Later* says how to add them
+  any time. `philosophy` (1.3.1), its question bank and `SETUP.md` follow the new name;
+  `init-researcher` (0.8.1) says at `Where?` that *Go* also sets the researcher up.
+- **The home's rules, the README and `USE-CASES.md`** say the first interview writes on its two
+  answers (home template 0.24.1).
+
 ## [1.6.0] - 2026-10-09
 After you name your researcher and choose its folder, the interview starts by itself again.
 

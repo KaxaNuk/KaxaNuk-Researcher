@@ -136,17 +136,19 @@ the user — what they do and work on, at work and on their own, what they'd lik
 the researcher's voice and why they are here — in the user's language; the domains and the projects
 are proposed from what they say. Nothing about how they invest is asked here. It writes
 `RESEARCHER.md`, the agent that makes the researcher callable by name and the skill that puts it in
-every session, installs them for the user and saves a first version — the user answers and gives one
-go.
+every session, installs them for the user and saves a first version — the user answers the two
+questions, and nothing more is asked before the hand-over but a name and an email to sign with,
+when git has none.
 
 ## Step 6 — Hand over
 
 The interview's own hand-over ends the conversation: who the researcher is and that it is in every
 folder, where its home is, what the user can ask it for — one short line a use, and a link to
 `USE-CASES.md` — the one next thing for what they came for, and *not sure what's next? say `next`*;
-then one question, `Start?`, whose options start each thing they came for. On *Now*, under either
-label, *Show me the worked example*, *Start the study* or *I have a document*, follow that skill or
-command from its installed path, in this conversation.
+then one question, `First step`, which invites them to put their first books, papers or notes in the
+home's `Sources` folder, or attach them, and whose options start each thing they came for. On *Now*,
+under either label, *Show me the worked example*, *Start the study* or *I have a document*, follow
+that skill or command from its installed path, in this conversation.
 
 **What "done" looks like:** the home holds `RESEARCHER.md` with no angle-bracketed slot left,
 `.apm/agents/<slug>.agent.md` and `.apm/skills/<slug>/SKILL.md`, and everything is saved:

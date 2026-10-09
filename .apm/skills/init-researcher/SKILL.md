@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.0
+  version: 0.8.1
 ---
 
 # Init researcher — a home for the library, once
@@ -92,10 +92,10 @@ past four options, *Stop* is left out and the other homes are named in the line 
    exists and is not empty, the question opens with that, in one line, and *Go* proposes `<Name>`
    under another parent. Then `Where?` (`¿Dónde?`), through the question tool:
    - *Go — make it at <path>*, described as *creates your researcher's home there, then two quick
-     questions about you, about three minutes*, *after bringing the package up to date* added when
-     step 5 will run, and *beside <Existing>, which stays as it is — a second researcher in every
-     session until this one is removed* when the owner asked for another home and `Another?` was not
-     asked;
+     questions about you, and sets it up — about three minutes*, *after bringing the package up to
+     date* added when step 5 will run, and *beside <Existing>, which stays as it is — a second
+     researcher in every session until this one is removed* when the owner asked for another home
+     and `Another?` was not asked;
    - *Another folder*, which asks for the parent folder only, in chat, puts `<Name>` inside it — a
      path already ending in `<Name>` is used as is, never nested — looks at that path too, and asks
      `Where?` again with it;

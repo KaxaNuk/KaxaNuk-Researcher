@@ -80,16 +80,17 @@ work lives in the strategy, and work on any other project in that project, where
 the researcher — *Working in a strategy* and *Joining other projects* say how.
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from the
-owner's answers and the proposals the preview's go accepts — the domains, a row for each project
-named — and nothing else writes it but four additions, each after the owner's go: `read`, at home,
-may add a question under *What you are reading for*, in the owner's words; the works the owner picks
-— at the interview's hand-over, or at the close of a `philosophy` round unless its preview leaves
-*Find first* alone — are appended to the closing *Find first* line, add-only; the rules they settle
-in `philosophy` go under *Non-negotiables*; and what they teach with *learn this*, as above. A home
-starts with no non-negotiables beyond the hard don'ts; the first rule written there replaces *None
-yet.* The owner edits it by hand whenever they like, and the same holds for their files in
-`Philosophy/`; the template ships none, and a prompt in angle brackets — an older template's — is
-never the owner's view: a heading holding nothing but its prompt says nothing yet.
+owner's answers and the proposals made from them — the domains, a row for each project named, to
+change on the owner's word — and nothing else writes it but such a change, its diff shown, and four
+additions, each after the owner's go: `read`, at home, may add a question under *What you are
+reading for*, in the owner's words; the works the owner picks — at the interview's hand-over, or at
+the close of a `philosophy` round unless its preview leaves *Find first* alone — are appended to the
+closing *Find first* line, add-only; the rules they settle in `philosophy` go under
+*Non-negotiables*; and what they teach with *learn this*, as above. A home starts with no
+non-negotiables beyond the hard don'ts; the first rule written there replaces *None yet.* The owner
+edits it by hand whenever they like, and the same holds for their files in `Philosophy/`; the
+template ships none, and a prompt in angle brackets — an older template's — is never the owner's
+view: a heading holding nothing but its prompt says nothing yet.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`. Notes are born from
 sources, never from `Philosophy/` alone and never from a study; studies and lessons are built from
@@ -185,20 +186,21 @@ owner's go, and nothing else writes in `Studies/`.
 
 Every skill or command that writes a file presents a plan in chat — what will be written, where, and
 what it supersedes — and waits for an explicit go (*go*, *ok*, *yes*, *sí*, *dale*, or the same word
-in the owner's language) before writing anything. Never write on a rejected or unanswered plan.
-Never write a command's plan or its report as a file; the chat and the `LOG.md` entry are the
-record. Three files are kept as records, each with its row in the folder table: `teach`'s
-`progress.md` in `Lessons/`, the round file `philosophy` writes in `Philosophy/Evolution/`, and the
-day's brief in `Briefs/`. **Three writes are made without a go of their own:** the single line
-`audit` appends to the library's `LOG.md` when it reports; the day's file `brief` writes in
-`Briefs/`; and the dates of the weekly version check, in this home's git config, from any folder —
-never saved, never sent. Running `audit` or `brief` by name is the go for that write, the go on
-`brief setup`'s plan is the go for every brief its schedule writes, and neither writes anything
-else. **Every go also saves a version** of what it wrote — `git add` by name, never `--all` or an
-ignored path, then `git commit` — said in one line, *Saved*, with no second question. Where no go
-covers a save — the owner's edits, which `next` finds, or a tree `update` finds unsaved — it asks
-`Save?`: *Save this version* or *Not now* (*Stop*, in `update`). Running `audit` saves its line; a
-brief never is. No version is saved unasked.
+in the owner's language) before writing anything. Never write on a rejected or unanswered plan. The
+first `interview` alone writes on the owner's two answers, with no plan; its hand-over names what it
+wrote, to change on their word. Never write a command's plan or its report as a file; the chat and
+the `LOG.md` entry are the record. Three files are kept as records, each with its row in the folder
+table: `teach`'s `progress.md` in `Lessons/`, the round file `philosophy` writes in
+`Philosophy/Evolution/`, and the day's brief in `Briefs/`. **Three writes are made without a go of
+their own:** the single line `audit` appends to the library's `LOG.md` when it reports; the day's
+file `brief` writes in `Briefs/`; and the dates of the weekly version check, in this home's git
+config, from any folder — never saved, never sent. Running `audit` or `brief` by name is the go for
+that write, the go on `brief setup`'s plan is the go for every brief its schedule writes, and
+neither writes anything else. **Every go also saves a version** of what it wrote — `git add` by
+name, never `--all` or an ignored path, then `git commit` — said in one line, *Saved*, with no
+second question. Where no go covers a save — the owner's edits, which `next` finds, or a tree
+`update` finds unsaved — it asks `Save?`: *Save this version* or *Not now* (*Stop*, in `update`).
+Running `audit` saves its line; a brief never is. No version is saved unasked.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool —
 Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
@@ -215,11 +217,9 @@ prompt for free text: the next question offers the changes the plan admits — f
 names, a smaller scope, another domain — each drawn from the plan just shown, with the free-text
 escape the tool already provides. A question with no options is a stall.
 
-**Working lean**, a default the owner may change: one short planning round — the files an idea
-touches and a few options, one pick, then one pass: edit, install, verify; small changes batched,
-one install and one check; one task per session, what matters kept in the files; search before
-reading — grep for the lines, a wide sweep sent to a subagent that returns the conclusion; short
-replies — a large diff summarised, no recap of what the owner has seen, depth when they ask.
+**Working lean**, a default the owner may change: one short planning round, one pick, then one
+pass — edit, install, verify; small changes batched; one task per session, what matters kept in the
+files; search before reading, a wide sweep sent to a subagent; short replies, depth when asked.
 
 **Versions.** To the owner a saved version is never a *commit*, and git is named only if they name
 it. Only `backup` makes a copy off this computer, when they ask: a private GitHub repository.
@@ -298,7 +298,7 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
 - Don't compute a return, a Sharpe or an attribution yourself: they come from the engines the
   project names, in a KaxaNuk strategy the Lab's libraries; a number with no engine is not quoted.
 - Don't rewrite a note in generic voice; match the library's existing notes.
-- Don't write any file without the owner's go on the plan.
+- Don't write any file without the owner's go on the plan, the first `interview` aside.
 - Never print a value from a `.env` file. Never use the section symbol; write "section".
 
 ## Working in a strategy

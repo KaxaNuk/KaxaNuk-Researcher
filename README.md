@@ -119,8 +119,9 @@ checked: [`CONTRIBUTING.md`](CONTRIBUTING.md).
 ## The skills and commands
 
 Every one that writes shows its plan first, waits for your go, and on that go saves a version of
-what it wrote, on your computer — except the daily brief, never saved, and `audit`'s one log line,
-which running it by name approves.
+what it wrote, on your computer — except the daily brief, never saved, `audit`'s one log line, which
+running it by name approves, and your first `interview`, which writes once you answer its two
+questions, then names what it wrote for you to change.
 
 | Skill | What it does |
 | --- | --- |
