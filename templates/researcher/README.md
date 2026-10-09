@@ -1,9 +1,9 @@
 # A KaxaNuk researcher's home
 
 This folder is your researcher's home: the library of what you read, your own voice, your studies
-and the rules it works by. It was made from the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher). Once `interview` has named
-your researcher, it proposes a paragraph about it to replace this one, on your go.
+and the rules it works by. It was made from the [KaxaNuk
+Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher). Once `interview` has named your
+researcher, it writes a paragraph about it in place of this one, yours to change.
 
 ---
 

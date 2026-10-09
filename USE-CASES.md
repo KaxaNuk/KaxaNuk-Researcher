@@ -1,8 +1,8 @@
 # Ways to use your researcher
 
 Twelve things you can ask for. In Claude, type a command with a slash, `/study`; anywhere else, say
-it. Whatever writes a file shows its plan first and writes only on your go, except a brief: running
-`brief`, or the schedule you approved, writes it.
+it. Whatever writes a file shows its plan first and writes only on your go, except your first
+interview, written from your two answers, and a brief.
 
 ## Bring it into my work project
 

@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.8.0
+  version: 2.9.0
 ---
 
 # The interview
@@ -128,9 +128,10 @@ translated.
 
 **Open first, then propose.** Question 1 is open; *I don't know* there counts as *I'm just
 starting*. What the interview proposes from it — the domains, the projects, the README's opening
-paragraph — is labelled so in the preview, whose go is the pick; a proposal the owner leaves
-out is never written. What an earlier answer said is used, never asked again. Every tool question
-has at least two options; when the rules below leave fewer, ask it in chat.
+paragraph — is written with the answers on a first run, and named in the hand-over for the owner to
+change; on a re-run it is labelled so in the preview, whose go is the pick, and a proposal the owner
+leaves out is never written. What an earlier answer said is used, never asked again. Every tool
+question has at least two options; when the rules below leave fewer, ask it in chat.
 
 **A re-run** under `force` starts from what is there, and a kept answer is written back verbatim.
 - Question 1 quotes the current *Works for* and *Out of scope for now*, and asks *keep them or
@@ -152,7 +153,7 @@ has at least two options; when the rules below leave fewer, ask it in chat.
    study markets, where you are with it; nothing yet is fine. And anything I should stay out of.
    "I'm just starting" is a complete answer.*
 
-   Two proposals come from it for the preview, never asked: **a row for each project** it names, and
+   Two proposals come from it, never asked: **a row for each project** it names, and
    **the domains**, up to four the answer points to. Finance is among them when it says they invest,
    study markets or want to, or that their work is in finance, or when *Here for* holds *Learn the
    basics*, *Build and test a strategy* or *Write down how I invest* — never only for saying they do
@@ -221,28 +222,33 @@ line stays as it is. On a re-run, an owner's paragraph is kept verbatim.
 **`LICENSE` names the owner.** Its copyright line becomes *Copyright (c) <year> <owner>*, this
 year, while it still names KaxaNuk; nothing else in it changes.
 
-**The preview, short.** Show in chat what the owner answered — *Name*, *Works for*, *Here for*,
-*How it speaks*, *Out of scope for now*, with *Here for* shown by the labels they picked, in their
-language, while the file keeps the English words the skills read — and, each marked
-*proposed from what you said*, the *Domains*, the projects' rows and the README's opening paragraph;
-on a re-run, what is kept verbatim and what is not written back. Name the rest in one line, without
+**On a first run, no preview and no question.** The owner chose the home at `init-researcher`'s
+`Where?`, or ran the interview by name, and their two answers are the rest: once question 2 is
+answered, write `RESEARCHER.md`, its instruction blockquote removed, the agent file, the
+researcher's skill, the `apm.yml` lines, `LICENSE` and the README's opening paragraph, and go on to
+*Step 5* in the same turn — one progress line sent with the first command, *I'm setting myself up on
+this computer; your assistant may ask you to allow a few commands*. What was proposed is named in
+the hand-over, to change on a word.
+
+**On a re-run, the preview, short.** Show in chat what the owner answered — *Name*, *Works for*,
+*Here for*, *How it speaks*, *Out of scope for now*, with *Here for* shown by the labels they
+picked, in their language, while the file keeps the English words the skills read — and, each
+marked *proposed from what you said*, the *Domains*, the projects' rows and the README's opening
+paragraph; what is kept verbatim and what is not written back. Name the rest in one line, without
 reprinting it, in plain words that say what each does for the owner, never *agent*, *skill*,
 `apm.yml` or `LICENSE` — *the rest of the file as it comes; what lets you call me by name, in any
 folder; my settings, in my name and yours; the copyright, in your name* — and show any of it when
-asked. Say in one line that on *Go* the researcher also sets itself up on this computer, so it is
-there in every folder, and saves a first version, and that the assistant may ask to allow a few
-commands. Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only;
-in chat, *go*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the go.
-*Change something* offers *Change the domains*, *Leave the projects out* when there are any, and
-*Change an answer*. On *Go*, write `RESEARCHER.md`, its instruction blockquote removed, the agent
-file, the researcher's skill, the `apm.yml` lines, `LICENSE` and the README's opening paragraph;
-*Step 5* installs and saves them on the same go.
+asked. Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only;
+in chat, *go*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the
+go. *Change something* offers *Change the domains*, *Leave the projects out* when there are any,
+and *Change an answer*. On *Go*, write the same files; *Step 5* installs and saves them on the
+same go.
 
 ## Step 4: The agent and the researcher's skill
 
 `RESEARCHER.md` says who the researcher is. The agent makes it something the harness can call by
 name — *ask Ada what we have read about momentum crashes* — with its own tool boundary. Write
-`.apm/agents/<slug>.agent.md` on the same go as `RESEARCHER.md`.
+`.apm/agents/<slug>.agent.md` with `RESEARCHER.md`.
 
 `<slug>` is the researcher's name made safe for a folder: accents and marks removed — *á* to *a*,
 *ñ* to *n*, *ü* to *u* — lowercase, every character that is not a letter a to z or a digit turned
@@ -307,7 +313,7 @@ truth; and **it takes no web tools**, because answers rest on the sources the ow
 skill is seen by every session on the machine — in any folder, on any assistant APM deploys to —
 so the researcher is there without the home being added, answers the same way when asked who is
 speaking, and sends what it is taught home. Write `.apm/skills/<slug>/SKILL.md`, the same `<slug>`
-as the agent — a skill and an agent may share a name — on the same go:
+as the agent — a skill and an agent may share a name — with the agent:
 
 ```markdown
 ---
@@ -391,7 +397,7 @@ the rest is read from the home. The home's path ties it to this machine: if the 
 `update` writes it again.
 
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
-the package's name, which this home is not. On the same go, set its `name:` to `<slug>`, its
+the package's name, which this home is not. With them, set its `name:` to `<slug>`, its
 `description:` to one line — *<Name>, <owner>'s research companion* and what it is for — with no
 colon in it, for the reason above, its `author:` to the owner, and its `version:` to `0.1.0`, the
 owner's from then on, as the home's `README.md` says under *Installing and updating*. Nothing else
@@ -399,7 +405,7 @@ in it changes.
 
 ## Step 5: Install it, and save a first version
 
-The agent and the skill are files until APM deploys them. On the same go, once they are written,
+The agent and the skill are files until APM deploys them. Once they are written, in the same turn,
 run these yourself — the owner types nothing, and may not know what any of them means:
 
 1. **Install the home for the owner's user**, beside the package — the same user scope, so the agent
@@ -429,11 +435,12 @@ run these yourself — the owner types nothing, and may not know what any of the
    git -C "<absolute path to the home>" commit -m "Interview: <Name>, <owner>'s research companion" -- RESEARCHER.md README.md apm.yml LICENSE .apm/agents/<slug>.agent.md .apm/skills/<slug>/SKILL.md
    ```
 
-   The go on the preview covers it, with no second question. Say *Saved* in one plain line, never
-   the commands; when `git -C "<absolute path to the home>" config --get kaxanuk.autosend` prints
-   `true`, send it as the `backup` skill says, with `git -C "<absolute path to the home>"` for
-   `git`. If the commit fails for want of a git identity, ask for *a name and an email to sign the
-   versions your researcher saves*, never invented; set them in the home only,
+   The two answers cover it on a first run, the preview's go on a re-run, and *Step 1*'s go for a
+   home that lacked the agent or the skill, with no second question. Say *Saved* in one plain line,
+   never the commands; when `git -C "<absolute path to the home>" config --get kaxanuk.autosend`
+   prints `true`, send it as the `backup` skill says, with `git -C "<absolute path to the home>"`
+   for `git`. If the commit fails for want of a git identity, ask for *a name and an email to sign
+   the versions your researcher saves*, never invented; set them in the home only,
    `git -C "<absolute path to the home>" config user.name "<name>"` and the same for `user.email`,
    and save again.
 3. **Move the weekly version check a week on**, when `init-researcher` handed over after its update
@@ -454,7 +461,9 @@ item 1 then leaves out *from now on I'm in every folder*.
 1. *I'm <Name>, and from now on I'm in every folder: open a **new** conversation in my home and say
    my name.* When this conversation installed git or uv, add, for the next session, not this one:
    *When we're done here, quit and reopen your assistant first.*
-2. *My home is `<absolute path to the home>`.*
+2. *My home is `<absolute path to the home>`.* On a first run, one more line: what was written
+   from the answers, in plain words, and what was proposed — *your domains: Finance, AI; your
+   projects: …; the opening of your README* — *tell me to change any of it, any time*.
 3. *What you can ask me* — every use below, in this order, one short line each: what they say,
    then what they get. On Claude, the opening line adds *type them with a slash, `/read`*.
    - *`read` a PDF or an article, then ask me about it: answers from what you've read, cited*;
@@ -474,22 +483,38 @@ item 1 then leaves out *from now on I'm in every folder*.
    with its command.
 5. *Not sure what's next? Say `next`.* (*¿No sabes qué sigue? Di `next`.*)
 
-| Pick | The one next thing | `Start?` offers |
+| Pick | The one next thing | `First step` offers |
 | --- | --- | --- |
 | *Organise what I read, and help with my projects* — or the old *Organise what I read* — or, with none of the four picks, nothing or only their own words | when question 1 named a decision, or a project with no folder of its own, `study <it>`, the first one named; when the projects it named live in folders of their own — code, a repository — *open me in that project's folder and say hello*; otherwise their first source — attach it, or say where it is saved — then `read` | for `study`, *Start the study*; *Later*. For a project in a folder of its own, or a source, *I have a document*; *Suggest a topic*, only with Finance among the domains and the reading map at hand; *Later* |
 | *Learn the basics, step by step* | `philosophy investing`, at Starter — it teaches one idea after each answer and needs no reading | *Later, in a new session (recommended)*; *Now* |
 | *Write down how I invest, and see it evolve* | `philosophy investing` | the same |
 | *Build and test a strategy* | `init-example`, a finished strategy to read, then `init-strategy <name>` for their own | *Show me the worked example*; *Later* |
 
-The message ends with that one tool question, `Start?` (`¿Empezamos?`), which also offers the start
-option of each other pick on the *Here for* line — *Now*, labelled *How I invest, now* (*Cómo
-invierto, ahora*) where another pick's option leads; *Show me the worked example*; *Start the study*
-when question 1 named a decision or a project with no folder of its own, else *I have a document* —
-after *Now* where *Later, in a new session (recommended)* leads, else before *Later*; none twice,
-four at most, *Suggest a topic* left out first. For `philosophy`, its description says how long a
-round takes at that level, as `philosophy` gives it, that it can stop after any block, and, beside
-*Later, in a new session (recommended)* only, in plain words, why a new session is best: everything
-just installed works there, and it starts fresh.
+The message ends with that one tool question, header `First step` (`Primer paso`), its question an
+invitation to start the library that says where it lives, in the owner's language and voice, the
+folder's full path written out with this computer's separator: *I learn from what you give me. Put
+the books, papers, articles and notes you want me to read in your `Sources` folder — `<the full
+path of the home's Sources folder>`, in `Books`,
+`Papers` or `Clippings` — or attach them here and I'll put them there. Shall we start your library
+now?* (*Aprendo de lo que me das. Pon los libros, papers, artículos y notas que quieras que lea en
+tu carpeta `Sources` — `<…>`, en `Books`, `Papers` o `Clippings` — o adjúntalos aquí y
+yo los guardo ahí. ¿Empezamos tu biblioteca ahora?*). Its options, four at most, in this order:
+
+- *I have a document*, always, first — described as *a book, a paper, an article or your notes:
+  attach them here, or say where they're saved; I copy them into `Sources` and read them with you,
+  one at a time*;
+- the start option of each pick on the *Here for* line, as the table gives it — *Start the study*
+  when question 1 named a decision or a project with no folder of its own; *Now*, labelled *How I
+  invest, now* (*Cómo invierto, ahora*) where another option comes before it; *Show me the worked
+  example*; *Suggest a topic* — none twice, *Suggest a topic* left out first when there are more
+  than four;
+- *Later*, last — described as *put files in `Sources` any time, or attach them, and say `read`*,
+  or as *Later, in a new session (recommended)* where a `philosophy` round is the one next thing.
+
+For `philosophy`, *Now*'s description says how long a round takes at that level, as `philosophy`
+gives it, and that it can stop after any block; beside *Later, in a new session (recommended)*
+only, it says in plain words why a new session is best: everything just installed works there,
+and it starts fresh.
 
 - **Now**, under either label, follows the `philosophy` skill in this conversation, with the same
   home and the topic *How I invest*; **Show me the worked example**, the `init-example` skill,
@@ -499,7 +524,8 @@ just installed works there, and it starts fresh.
   `.apm/prompts/study.prompt.md` under `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
   `init-researcher` follows this one. Its own hand-over ends the run.
 - **Later**: nothing more; line 4 says where to begin, and `next` says it again.
-- **I have a document.** Ask them to attach it, or to say where it is saved, and follow the `read`
+- **I have a document.** Ask them to attach it, or to say where it is saved — several are welcome,
+  read one at a time, the others copied into `Sources/` for the next `read` — and follow the `read`
   skill with the same home: its plan copies the file into `Sources/` and reads it, on one go, with
   `extract.py` run from the home's root, so its extracts land in the home's `Extracts/`.
 
@@ -533,4 +559,9 @@ Then, in two lines: attach each one found, or say where it is saved, and I copy 
 `Sources/Papers/` and read it; one that cannot be found comes off the *Find first* line by hand,
 and `next` says so too. A work not picked is never written.
 
-Nothing more: these lines and `Start?`, with what its pick leads to, are the whole hand-over.
+**A change asked for at the hand-over** — in `First step`'s *Other*, or in chat — is written as the
+owner says, the changed lines shown, saved as *Step 5* saves with `-m "Interview: <what
+changed>"`, and `First step` asked again; never a `Go?` for it.
+
+Nothing more: these lines, `First step` and a change asked for there, with what its pick leads to,
+are the whole hand-over.

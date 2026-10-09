@@ -6,6 +6,21 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.24.1 (2026-10-09)
+
+**PATCH** — the first interview writes on your two answers, and you change what it wrote on a
+word.
+
+**What to do differently:** say `update` in your home; the changes to `AGENTS.md` and `README.md`
+come as a diff.
+
+### Changed
+
+* **`AGENTS.md`**: the first `interview` alone writes with no plan, on the owner's two answers, and
+  its hand-over names what it wrote; a change the owner asks for to it is written, its diff shown.
+  *Working lean* is shorter, its defaults kept. Still at most 6,541 words.
+* **`README.md`**: the interview writes the paragraph about your researcher, yours to change.
+
 ## 0.24.0 (2026-10-08)
 
 **MINOR** — your home is read by every assistant, Gemini included, and keeps the assistants you
