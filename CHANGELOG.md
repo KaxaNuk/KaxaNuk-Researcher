@@ -6,6 +6,41 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.4.0] - 2026-10-08
+Your researcher now reaches every assistant you install it on, Codex included, and the install runs
+start to finish in one conversation.
+
+**What to do differently:** say `update` in your home. Then, on every other assistant you use your
+researcher with — Codex, Gemini, Cursor, Copilot — paste the README's install line there once: it
+puts that assistant on APM's list and brings your researcher back to it, without making a second
+one.
+### Fixed
+- **A second assistant no longer loses the researcher.** APM records an assistant in
+  `~/.apm/apm.yml` only when the first install creates that file; a later install or update without
+  `--target` then removed every file of an assistant not on the list — Codex after Claude, or Claude
+  after Codex — with no error. A new script, `init-researcher`'s `scripts/user_targets.py`, adds the
+  assistant in use to that list (`add`) before every install and update, and confirms the
+  researcher's files are on disk for it (`check`). `SETUP.md` step 2, `init-researcher` (0.7.0),
+  `interview` (2.7.0), `next` (1.8.5) and `update` run it; `next`'s row 3 passes on `check`, never
+  on `apm deps list -g` alone. Measured in a throwaway home: Claude then Codex, the reverse, each of
+  the seven assistants alone, a list with no assistants, and the recovery after the old loss.
+- **The install no longer stops after the package is in.** The README's line asks for the whole
+  setup, start to finish in one conversation, without asking first; `SETUP.md` says done is step 6,
+  never reports the install on its own, goes straight to the name, never asks for a restart or a new
+  session before the end, and reads every file by a `$HOME` path. Without a question tool, Codex and
+  Gemini ask every choice as a numbered list in chat. The language menu is unchanged.
+### Changed
+- **If you already have a researcher,** pasting the line in another assistant installs that
+  researcher there instead of making a second — the way back for a Codex that lost it.
+- **The researcher's skill** (0.4.3) puts its triggers first — every session, a greeting, its name,
+  *what now* — so they survive an assistant shortening skill descriptions.
+- **Home template 0.24.0:** `AGENTS.md` opens by saying to read `RESEARCHER.md` before the first
+  answer, and keeps its rules within the first 32 KB that Codex reads; a new `GEMINI.md` loads both
+  for Gemini, as `CLAUDE.md` does for Claude.
+- **`SETUP.md`'s Troubleshooting** is corrected to what was measured; **the README** names Cursor
+  and the Copilot CLI; **`CONTRIBUTING.md`**'s release walk installs for two assistants in both
+  orders and checks both.
+
 ## [1.3.5] - 2026-10-08
 The line you paste to install now tells your assistant to go ahead, so it installs straight after
 you choose your language.

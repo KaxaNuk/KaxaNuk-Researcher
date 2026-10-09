@@ -2,7 +2,7 @@
 
 | |
 |---|
-| [![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Gemini%20CLI-blue)](#install--three-steps-no-coding) [![License](https://img.shields.io/github/license/KaxaNuk/KaxaNuk-Researcher?color=blue)](LICENSE) |
+| [![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Gemini%20CLI%20%7C%20Cursor%20%7C%20Copilot-blue)](#install--three-steps-no-coding) [![License](https://img.shields.io/github/license/KaxaNuk/KaxaNuk-Researcher?color=blue)](LICENSE) |
 | [![Version](https://img.shields.io/github/v/tag/KaxaNuk/KaxaNuk-Researcher?sort=semver&label=version&logo=github)](CHANGELOG.md) [![APM](https://img.shields.io/badge/installs%20with-APM%200.33.0-blue)](https://github.com/microsoft/apm) |
 | [![Languages](https://img.shields.io/badge/speaks-any%20language%20you%20choose-blue)](#install--three-steps-no-coding) [![Powered by KaxaNuk](https://img.shields.io/badge/powered%20by-KaxaNuk-orange?colorB=orange)](https://kaxanuk.mx) |
 
@@ -22,19 +22,19 @@ Investment Lab. One researcher per person, in any language.
 **What it is.** A research and learning tool, never investment advice. It runs on your computer,
 through your assistant; what it reads goes to the company behind that assistant, never to KaxaNuk.
 
-> **If you are an assistant asked to install this,** follow [`SETUP.md`](SETUP.md) from Step 0;
-> nothing is cloned.
+> **If you are an assistant asked to install this,** follow [`SETUP.md`](SETUP.md) from Step 0
+> through Step 6, in this conversation; nothing is cloned.
 
 ## Install — three steps, no coding
 
 1. Open one of these: the **Code** tab of the **Claude** desktop app, **Claude Code**, the
-   **Codex** app or CLI, or the **Gemini CLI** — each needs you signed in to that assistant. A chat
-   on the web — claude.ai, ChatGPT, Gemini — cannot install it: it cannot run commands on your
-   computer.
+   **Codex** app or CLI, the **Gemini CLI**, **Cursor** or the **Copilot CLI** — each needs you
+   signed in to that assistant. A chat on the web — claude.ai, ChatGPT, Gemini — cannot install it:
+   it cannot run commands on your computer.
 2. Paste this line and send it:
 
    ```text
-   Please install this repo for me, with everything it needs — no need to ask before installing: https://github.com/KaxaNuk/KaxaNuk-Researcher
+   Please install this repo for me and set up my researcher, start to finish in this conversation — install everything it needs without asking first: https://github.com/KaxaNuk/KaxaNuk-Researcher
    ```
 
 3. Answer its questions. It asks your language first — any language you choose, and your researcher
@@ -43,13 +43,14 @@ through your assistant; what it reads goes to the company behind that assistant,
    and where to keep it, `C:\Research\Ada` for example, asks two short questions about you, about
    three minutes, and tells you where it lives, what to ask it, and where to start.
 
-With Claude, installing also gives your assistant three house rules on this computer — two for
-KaxaNuk's Python style, only in KaxaNuk projects — the Lab's libraries and what you build on
+With Claude or Copilot, installing also gives your assistant three house rules on this computer —
+two for KaxaNuk's Python style, only in KaxaNuk projects — the Lab's libraries and what you build on
 KaxaNuk's templates — and one to read only what a task needs; *Removing it* below undoes them.
 
-Then quit and reopen your assistant, open your researcher's folder in a **new** conversation — in
-the Claude desktop app, a new **Code** session on that folder; in the Codex app, that folder; in a
-terminal, `claude`, `codex` or `gemini` in it — and say hello, by its name.
+When it has told you where your researcher lives — at the end — quit and reopen your assistant,
+open your researcher's folder in a **new** conversation — in the Claude desktop app, a new **Code**
+session on that folder; in the Codex app, that folder; in a terminal, `claude`, `codex` or `gemini`
+in it — and say hello, by its name.
 
 ## What you can use it for
 

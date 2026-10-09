@@ -20,7 +20,7 @@ your researcher, it proposes a paragraph about it to replace this one, on your g
 | `Lessons/` | lessons from `teach`, a folder per topic | appears with your first `teach <topic>` |
 | `Briefs/` | your daily brief, one file a day — work, markets, portfolio — every figure quoted from a dated source, never advice | `brief setup` once — on the Claude desktop app it then comes on its schedule; `brief` writes today's now. Kept on this computer only, never in a saved version |
 | `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them. Kept on this computer only, never in a saved version |
-| `AGENTS.md`, `CLAUDE.md` | the rules the researcher works by | nothing to do |
+| `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` | the rules the researcher works by | nothing to do |
 | `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
 | `Extracts/` | text pulled out of the PDFs, for `read`; remade when needed, kept on this computer only | nothing to do |
 
@@ -160,9 +160,9 @@ the way KaxaNuk's own APM packages write theirs, under a name the package does n
   `description: >` keeps a colon from breaking the YAML; the agent's frontmatter, which APM does
   not rewrite, stays one line with no colon in it.
 - **No instructions.** Nothing goes in `.apm/instructions/`: the house instructions are the
-  package's, and one here would be rendered by `apm compile` over `AGENTS.md`, which is written by
-  hand. With only skills, prompts and agents, `apm compile` leaves `AGENTS.md` and `CLAUDE.md`
-  alone and writes a `GEMINI.md` that imports them, which git ignores.
+  package's, this home's rules are `AGENTS.md`, and one here would be installed for your user, in
+  every project. `apm compile` leaves `AGENTS.md`, `CLAUDE.md` and `GEMINI.md` alone: it writes
+  over a file only when it made it.
 
 </details>
 
@@ -172,10 +172,15 @@ the way KaxaNuk's own APM packages write theirs, under a name the package does n
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
 folder: they are installed once for your user and updated with
 `uvx --from apm-cli==0.33.0 apm update -g`; `update`, run here, brings what changed in this home's
-own files across. On a new machine, or after adding an assistant under `targets:` in
-`~/.apm/apm.yml` and in this home's `apm.yml`, install this home yourself, once:
+own files across. For another assistant on this computer, paste in it the install line from the
+package's README: it does what follows for you. By hand, or on a new machine, with
+`<your assistant>` one of those under `targets:` in this home's `apm.yml`: install the package for
+it, list it in `~/.apm/apm.yml` — or the next update removes what was installed for it — then
+install this home, once:
 
 ```bash
+uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <your assistant>
+uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" add <your assistant>
 uvx --from apm-cli==0.33.0 apm install -g "<this folder>"
 ```
 

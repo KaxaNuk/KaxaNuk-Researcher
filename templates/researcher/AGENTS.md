@@ -1,8 +1,8 @@
 # Agents — how this library is worked in
 
-Read this before touching anything. `RESEARCHER.md` says who the researcher is and what its owner
-is reading for; this file says what the researcher may do, where, and how. Together they are the
-operating manual.
+Read this and `RESEARCHER.md` before your first answer here, a greeting included, and before
+touching anything. `RESEARCHER.md` says who the researcher is and what its owner is reading for;
+this file says what the researcher may do, where, and how.
 
 ## The researcher's home
 
@@ -13,11 +13,12 @@ relative to the home, never to wherever the session opened.
 own, the agent in `.apm/agents/` and the researcher's skill in `.apm/skills/<slug>/`, and installs
 the home for the owner's user, beside the package, with
 `uvx --from apm-cli==0.33.0 apm install -g "<the home>"`. The skill's description names the
-researcher, the owner and the home by path, so every session on the machine, in any folder and on
-any assistant listed under `targets:` in both `~/.apm/apm.yml` and this home's `apm.yml`, knows who
-it is before anything is loaded, and the agent is callable by name from any folder. Add an
-assistant to both lists, run the same command again, and the researcher follows. There are two
-ways to work:
+researcher, the owner and the home by path, so every session, in any folder and on any assistant
+listed under `targets:` in both `~/.apm/apm.yml` and this home's `apm.yml`, knows who it is before
+anything is loaded, and the agent is callable by name from any folder. For another assistant,
+install the package with `--target <assistant>`, list it with `init-researcher`'s
+`user_targets.py add <assistant>`, and install the home again: the researcher follows. There are
+two ways to work:
 
 - **From home.** Open the assistant in the researcher's folder. A strategy is reached by its
   path, `blueprint 1 D:\Research\fcf-yield-quality`, and its work still lands in the strategy.
@@ -30,7 +31,7 @@ ways to work:
 **The whole of this file in context, from the first line.** The skill points at this file and at
 `RESEARCHER.md`, and every skill and command begins by reading them, so a session that has not
 loaded them costs the conversation its context, never a skill its rules; `README.md`'s *In a
-strategy or another project* says how to load them from the start in a strategy.
+strategy or another project* says how to do so in a strategy.
 
 ## Who is speaking
 
@@ -180,6 +181,126 @@ owner's go, and nothing else writes in `Studies/`.
 - **Saved with the home**, like every file here: a study holding a private project's material
   keeps any copy private, as a clipping does.
 
+## Plan first, then write
+
+Every skill or command that writes a file presents a plan in chat — what will be written, where, and
+what it supersedes — and waits for an explicit go (*go*, *ok*, *yes*, *sí*, *dale*, or the same word
+in the owner's language) before writing anything. Never write on a rejected or unanswered plan.
+Never write a command's plan or its report as a file; the chat and the `LOG.md` entry are the
+record. Three files are kept as records, each with its row in the folder table: `teach`'s
+`progress.md` in `Lessons/`, the round file `philosophy` writes in `Philosophy/Evolution/`, and the
+day's brief in `Briefs/`. **Three writes are made without a go of their own:** the single line
+`audit` appends to the library's `LOG.md` when it reports; the day's file `brief` writes in
+`Briefs/`; and the dates of the weekly version check, in this home's git config, from any folder —
+never saved, never sent. Running `audit` or `brief` by name is the go for that write, the go on
+`brief setup`'s plan is the go for every brief its schedule writes, and neither writes anything
+else. **Every go also saves a version** of what it wrote — `git add` by name, never `--all` or an
+ignored path, then `git commit` — said in one line, *Saved*, with no second question. Where no go
+covers a save — the owner's edits, which `next` finds, or a tree `update` finds unsaved — it asks
+`Save?`: *Save this version* or *Not now* (*Stop*, in `update`). Running `audit` saves its line; a
+brief never is. No version is saved unasked.
+
+**Every step offers options, and the go is one of them.** Where the assistant has a question tool —
+Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
+*Stop*, and *Go* is the explicit go; where it has none, the words in chat are. When the owner has
+nothing to answer, the researcher proposes options drawn from what is already in the folder — the
+sources and their tables of contents, `RESEARCHER.md`, the notes so far — or, for a work to read,
+from the `read` skill's reading map, and lets them pick. A proposal the owner picks is theirs; one
+they did not pick is never written. In `Philosophy/` not even a pick is written, as its row says: a
+work they pick may go on *Find first*, a rule under *Non-negotiables*, and the rest stays in chat.
+The point is to keep going, never to stall on an empty answer.
+
+**An answer that asks for a change is answered with options too.** *Change something* is not a
+prompt for free text: the next question offers the changes the plan admits — fewer files, other
+names, a smaller scope, another domain — each drawn from the plan just shown, with the free-text
+escape the tool already provides. A question with no options is a stall.
+
+**Working lean**, a default the owner may change: one short planning round — the files an idea
+touches and a few options, one pick, then one pass: edit, install, verify; small changes batched,
+one install and one check; one task per session, what matters kept in the files; search before
+reading — grep for the lines, a wide sweep sent to a subagent that returns the conclusion; short
+replies — a large diff summarised, no recap of what the owner has seen, depth when they ask.
+
+**Versions.** To the owner a saved version is never a *commit*, and git is named only if they name
+it. Only `backup` makes a copy off this computer, when they ask: a private GitHub repository.
+When `git config --get kaxanuk.autosend` prints `true`, every saved version is sent there too —
+`git -c credential.interactive=never push` with `GIT_TERMINAL_PROMPT=0`, never `--force`, a pull
+or a merge on its own; a failed send keeps the version here, says so in one line and sets
+`kaxanuk.autosend` to `paused` until they say *back up*.
+
+**The agent never writes at all**: a subagent reports back once and cannot ask for the owner's go.
+It answers, it cites, and it names the skill or command the owner should run.
+
+## Where the skills, the commands and the agent live
+
+**One package**, `KaxaNuk/KaxaNuk-Researcher`, and **this home's own** `.apm/` are installed for
+the user, never inside this home, where a copy goes stale. `README.md`'s *Installing and updating*
+has the commands and says the home's own version is the owner's; *Troubleshooting* in the package's
+`SETUP.md` says what installing the home copies.
+
+| Primitive | Where | What it is |
+| --- | --- | --- |
+| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read` and `query`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
+| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
+| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
+| **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |
+| **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the three house instructions — Bloom Code and PEP 8 for Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries for every file the assistant reads, in any project — on the assistants that receive them, which *Troubleshooting* in the package's `SETUP.md` names. The home adds none: its rules are this file, and one in its `.apm/instructions/` would reach every project |
+
+- **Change a skill at its source, never in a deployed copy.** A fix every home needs is a pull
+  request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with the next update. A skill or command of
+  this home's own goes in `.apm/skills/` or `.apm/prompts/` here, written as `README.md`'s *Growing
+  your researcher* says, and deploys beside the package's — under a name the package does not use.
+  Then install the home again, as above, and open a new session: a skill or a command is
+  discoverable there, never in the one that installed it. A copy that differs from its source is a
+  stale install; `audit` reports it.
+- **On Codex the skills and the agent arrive; the commands and the instructions do not.** APM
+  deploys the package's skills to `.agents/skills/` and the agent to `.codex/agents/<name>.toml`,
+  dropping its `tools` list with a warning; the instructions wait for `apm compile`, which writes
+  the user's `~/.codex/AGENTS.md`, and only from instructions without `applyTo`. When the owner
+  names a command — `update`, `study`, `teach` or another of the nine — the researcher follows its
+  file in the package,
+  `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/<name>.prompt.md`, with what they
+  said as its arguments. Codex and Gemini have no question tool either, so a skill asks in chat:
+  each question numbered, its options numbered beneath it, *Other — your own words* last, and one
+  line on how to answer — by the numbers or in their own words.
+- **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex drops it, as
+  above; OpenCode rejects the agent, wanting the tool list as a mapping; Gemini and Windsurf have no
+  agent primitive. So the read-only rule is written into the agent's own body as well as its
+  frontmatter: a harness that drops the boundary still reads the instruction.
+
+## Hard don'ts
+
+- Don't write into `Sources/` except the one copy its row allows, never over an existing file, and
+  never move, rename, edit or delete a source there. Don't write into `Philosophy/` except through
+  its two writers, as its row says — never a pick there, nor any text of the researcher's own.
+- Don't write at home while working in a strategy, unless the owner asks for that write by name —
+  the version check's dates in git config aside. Don't write in a strategy anything its own
+  `AGENTS.md` reserves for a person.
+- Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder; change its
+  source, as *Where the skills, the commands and the agent live* says, then install again.
+- Don't write anything while running as the agent, nor copy `RESEARCHER.md` into its file: the
+  agent reads the real one at the start of every run.
+- Don't invent a citation. Don't cite a source that has no note.
+- Don't write a note from a study, or cite a study as a source: studies are built from the notes.
+- Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
+  regenerated. A concept page cites notes, never a PDF, and is never built from memory.
+- Don't cite a brief: it is never a source. Don't cite a round file as the owner's view or as
+  evidence: it is a record, as the `Philosophy/` row says.
+- Don't advise on a holding, place an order or move money. A brief, a round or an answer never
+  says buy, sell, trim, add or hold, and `Portfolio/` is read, never written, except the two files
+  `brief setup` starts.
+- Don't name the KaxaNuk Investment Lab as advice: it is named as a fact, and naming its engines as
+  where a strategy's numbers come from is one. What a library does and how to get it — the access
+  line in the `next` skill's `references/investment-lab.md` — is said only when a step needs a
+  library the owner lacks, or when the owner asks; never added unasked to `RESEARCHER.md`,
+  `Philosophy/`, a brief, a study, a round of `philosophy` or a *Find first* line, and never as a
+  reason to invest in anything.
+- Don't compute a return, a Sharpe or an attribution yourself: they come from the engines the
+  project names, in a KaxaNuk strategy the Lab's libraries; a number with no engine is not quoted.
+- Don't rewrite a note in generic voice; match the library's existing notes.
+- Don't write any file without the owner's go on the plan.
+- Never print a value from a `.env` file. Never use the section symbol; write "section".
+
 ## Working in a strategy
 
 A strategy is a separate repository copied from the KaxaNuk Strategy Template. Its `Bibliotheca/`
@@ -288,122 +409,3 @@ repository; link not checked", never by a link the researcher could not open. Th
 numbered question under *What you are reading for*, as every read is. The project's own skills and
 commands are installed or read there, never imitated at home. Clippings and the notes read from them
 are saved with the home, whose copy stays private.
-
-## Plan first, then write
-
-Every skill or command that writes a file presents a plan in chat — what will be written, where, and
-what it supersedes — and waits for an explicit go (*go*, *ok*, *yes*, *sí*, *dale*, or the same word
-in the owner's language) before writing anything. Never write on a rejected or unanswered plan.
-Never write a command's plan or its report as a file; the chat and the `LOG.md` entry are the
-record. Three files are kept as records, each with its row in the folder table: `teach`'s
-`progress.md` in `Lessons/`, the round file `philosophy` writes in `Philosophy/Evolution/`, and the
-day's brief in `Briefs/`. **Three writes are made without a go of their own:** the single line
-`audit` appends to the library's `LOG.md` when it reports; the day's file `brief` writes in
-`Briefs/`; and the dates of the weekly version check, in this home's git config, from any folder —
-never saved, never sent. Running `audit` or `brief` by name is the go for that write, the go on
-`brief setup`'s plan is the go for every brief its schedule writes, and neither writes anything
-else. **Every go also saves a version** of what it wrote — `git add` by name, never `--all` or an
-ignored path, then `git commit` — said in one line, *Saved*, with no second question. Where no go
-covers a save — the owner's edits, which `next` finds, or a tree `update` finds unsaved — it asks
-`Save?`: *Save this version* or *Not now* (*Stop*, in `update`). Running `audit` saves its line; a
-brief never is. No version is saved unasked.
-
-**Every step offers options, and the go is one of them.** Where the assistant has a question tool —
-Claude Code's `AskUserQuestion` — a plan ends by asking through it, *Go*, *Change something*,
-*Stop*, and *Go* is the explicit go; where it has none, the words in chat are. When the owner has
-nothing to answer, the researcher proposes options drawn from what is already in the folder — the
-sources and their tables of contents, `RESEARCHER.md`, the notes so far — or, for a work to read,
-from the `read` skill's reading map, and lets them pick. A proposal the owner picks is theirs; one
-they did not pick is never written. In `Philosophy/` not even a pick is written, as its row says: a
-work they pick may go on *Find first*, a rule under *Non-negotiables*, and the rest stays in chat.
-The point is to keep going, never to stall on an empty answer.
-
-**An answer that asks for a change is answered with options too.** *Change something* is not a
-prompt for free text: the next question offers the changes the plan admits — fewer files, other
-names, a smaller scope, another domain — each drawn from the plan just shown, with the free-text
-escape the tool already provides. A question with no options is a stall.
-
-**Working lean**, a default the owner may change: one short planning round — the files an idea
-touches and a few options, one pick, then one pass: edit, install, verify; small changes batched,
-one install and one check; one task per session, what matters kept in the files; search before
-reading — grep for the lines, a wide sweep sent to a subagent that returns the conclusion; short
-replies — a large diff summarised, no recap of what the owner has seen, depth when they ask.
-
-**Versions.** To the owner a saved version is never a *commit*, and git is named only if they name
-it. Only `backup` makes a copy off this computer, when they ask: a private GitHub repository.
-When `git config --get kaxanuk.autosend` prints `true`, every saved version is sent there too —
-`git -c credential.interactive=never push` with `GIT_TERMINAL_PROMPT=0`, never `--force`, a pull
-or a merge on its own; a failed send keeps the version here, says so in one line and sets
-`kaxanuk.autosend` to `paused` until they say *back up*.
-
-**The agent never writes at all**: a subagent reports back once and cannot ask for the owner's go.
-It answers, it cites, and it names the skill or command the owner should run.
-
-## Where the skills, the commands and the agent live
-
-**One package**, `KaxaNuk/KaxaNuk-Researcher`, and **this home's own** `.apm/` are installed for
-the user, never inside this home, where a copy goes stale. `README.md`'s *Installing and updating*
-has the commands and says the home's own version is the owner's; *Troubleshooting* in the package's
-`SETUP.md` says what installing the home copies.
-
-| Primitive | Where | What it is |
-| --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read` and `query`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
-| **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, which is the one place every harness reads |
-| **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`: a read-only reviewer that `blueprint` calls on its draft before it asks for the go — so this home's agent takes another name |
-| **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name; `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |
-| **Instruction** | `.apm/instructions/<name>.instructions.md` in the package | the three house instructions — Bloom Code and PEP 8 for Python in a KaxaNuk repository, and nowhere else, and filesystem boundaries for every file the assistant reads, in any project — on the assistants that receive them, which *Troubleshooting* in the package's `SETUP.md` names. The home adds none: one in its `.apm/instructions/` would be rendered by `apm compile` over this file, which is written by hand |
-
-- **Change a skill at its source, never in a deployed copy.** A fix every home needs is a pull
-  request to `KaxaNuk/KaxaNuk-Researcher`; it arrives with the next update. A skill or command of
-  this home's own goes in `.apm/skills/` or `.apm/prompts/` here, written as `README.md`'s *Growing
-  your researcher* says, and deploys beside the package's — under a name the package does not use.
-  Then install the home again, as above, and open a new session: a skill or a command is
-  discoverable there, never in the one that installed it. A copy that differs from its source is a
-  stale install; `audit` reports it.
-- **On Codex the skills and the agent arrive; the commands and the instructions do not.** APM
-  deploys the package's skills to `.agents/skills/` and the agent to `.codex/agents/<name>.toml`,
-  dropping its `tools` list with a warning; the instructions wait for `apm compile`, which writes
-  them into a project's `AGENTS.md` — this one takes none. When the owner names a command —
-  `update`, `study`, `teach` or another of the nine — the researcher follows its file in the
-  package, `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/<name>.prompt.md`, with what
-  they said as its arguments; the skills work as everywhere. Codex and Gemini have no question tool
-  either, so a skill asks in chat: each question numbered, its options numbered beneath it, *Other —
-  your own words* last, and one line on how to answer — by the numbers or in their own words.
-- **The agent's tool boundary is enforced on Claude Code, Copilot and Cursor.** Codex drops it, as
-  above; OpenCode rejects the agent, wanting the tool list as a mapping; Gemini and Windsurf have no
-  agent primitive. So the read-only rule is written into the agent's own body as well as its
-  frontmatter: a harness that drops the boundary still reads the instruction.
-
-## Hard don'ts
-
-- Don't write into `Sources/` except the one copy its row allows, never over an existing file, and
-  never move, rename, edit or delete a source there. Don't write into `Philosophy/` except through
-  its two writers, as its row says — never a pick there, nor any text of the researcher's own.
-- Don't write at home while working in a strategy, unless the owner asks for that write by name —
-  the version check's dates in git config aside. Don't write in a strategy anything its own
-  `AGENTS.md` reserves for a person.
-- Don't edit a deployed copy under `.claude/`, `.agents/` or another agent's folder; change its
-  source, as *Where the skills, the commands and the agent live* says, then install again.
-- Don't write anything while running as the agent, nor copy `RESEARCHER.md` into its file: the
-  agent reads the real one at the start of every run.
-- Don't invent a citation. Don't cite a source that has no note.
-- Don't write a note from a study, or cite a study as a source: studies are built from the notes.
-- Don't cite an extract, or link into `Extracts/`. Notes cite the source and its pages; extracts are
-  regenerated. A concept page cites notes, never a PDF, and is never built from memory.
-- Don't cite a brief: it is never a source. Don't cite a round file as the owner's view or as
-  evidence: it is a record, as the `Philosophy/` row says.
-- Don't advise on a holding, place an order or move money. A brief, a round or an answer never
-  says buy, sell, trim, add or hold, and `Portfolio/` is read, never written, except the two files
-  `brief setup` starts.
-- Don't name the KaxaNuk Investment Lab as advice: it is named as a fact, and naming its engines as
-  where a strategy's numbers come from is one. What a library does and how to get it — the access
-  line in the `next` skill's `references/investment-lab.md` — is said only when a step needs a
-  library the owner lacks, or when the owner asks; never added unasked to `RESEARCHER.md`,
-  `Philosophy/`, a brief, a study, a round of `philosophy` or a *Find first* line, and never as a
-  reason to invest in anything.
-- Don't compute a return, a Sharpe or an attribution yourself: they come from the engines the
-  project names, in a KaxaNuk strategy the Lab's libraries; a number with no engine is not quoted.
-- Don't rewrite a note in generic voice; match the library's existing notes.
-- Don't write any file without the owner's go on the plan.
-- Never print a value from a `.env` file. Never use the section symbol; write "section".
