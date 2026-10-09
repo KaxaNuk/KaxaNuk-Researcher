@@ -41,6 +41,20 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.4 (2026-10-09)
+
+**PATCH** — the note for the agent in `SETUP.md` hands step 1 to `init-strategy`, which now asks
+what the idea is and suggests names when the strategy has none. Nothing about any result changes.
+
+**What to do differently:** nothing. `init-strategy` asks for what it needs.
+
+### Changed
+
+- **`SETUP.md`**, the note *For the agent, before anything else*: step 1 is `init-strategy`, which
+  takes the user's name for the strategy, put in the folder's form, or asks what the idea is and
+  suggests a few, and puts the folder beside the one you are in unless they say another; pass on
+  what the user has said.
+
 ## 0.18.3 (2026-10-09)
 
 **PATCH** — the worked example now lives at `examples/strategy/golden-flow/` in the package, and
