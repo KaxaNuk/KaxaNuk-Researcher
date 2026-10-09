@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.7.0
+  version: 2.7.1
 ---
 
 # The interview
@@ -464,9 +464,9 @@ just installed works there, and it starts fresh.
 
 - **Now**, under either label, follows the `philosophy` skill in this conversation, with the same
   home and the topic *How I invest*; **Show me the worked example**, the `init-example` skill,
-  handed the home's parent folder; **Start the study**, the `study` command, with the project or the
-  decision as its subject and this home as its home, wherever the session is open. One not loaded in
-  this session is read from the package, `.apm/skills/<name>/SKILL.md` or
+  handed the home's parent folder and the word `strategy`; **Start the study**, the `study` command,
+  with the project or the decision as its subject and this home as its home, wherever the session is
+  open. One not loaded in this session is read from the package, `.apm/skills/<name>/SKILL.md` or
   `.apm/prompts/study.prompt.md` under `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, as
   `init-researcher` follows this one. Its own hand-over ends the run.
 - **Later**: nothing more; line 4 says where to begin, and `next` says it again.

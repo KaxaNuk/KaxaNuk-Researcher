@@ -1,21 +1,34 @@
 """
-Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy, the example, or a Python library.
+Copy a KaxaNuk starting point into a new folder: a researcher's home, a strategy, an example, or a Python library.
 
-The four starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
-`templates/strategy/`, `templates/python-library/` and `examples/golden-flow/` — and this script
-copies one of them byte for byte, so every folder made from the same package version starts
-identical.  Nothing is written from memory and nothing is generated; what a checkout, an install, a
-build or an agent may leave in a starting point — a cache folder, an agent's folder,
-`apm_modules/`, `uv.lock`, `Config/.env`, `dist/`, `docs/_build/` — is left behind, by a whole copy
-and by `--only` alike.
+The starting points ship inside the KaxaNuk Researcher package — `templates/researcher/`,
+`templates/strategy/`, `templates/python-library/` and the worked examples, one folder each under
+`examples/<kind>/<name>/` — and this script copies one of them byte for byte, so every folder made
+from the same package version starts identical.  Nothing is written from memory and nothing is
+generated; what a checkout, an install, a build or an agent may leave in a starting point — a cache
+folder, an agent's folder, `apm_modules/`, `uv.lock`, `Config/.env`, `dist/`, `docs/_build/` — is
+left behind, by a whole copy and by `--only` alike.
 
 Usage:
     uv run --no-project python scaffold.py researcher <destination>
     uv run --no-project python scaffold.py strategy <destination>
     uv run --no-project python scaffold.py example <destination>
+    uv run --no-project python scaffold.py example <destination> --name golden-flow
+    uv run --no-project python scaffold.py examples
+    uv run --no-project python scaffold.py examples --kind strategy
     uv run --no-project python scaffold.py python-library <destination>
     uv run --no-project python scaffold.py strategy <strategy root> --only Data/analyzer.ipynb
     uv run --no-project python scaffold.py example <a folder of its own> --only Experiments/Experiment_1
+
+An example is a folder `examples/<kind>/<name>/` that holds a `README.md`: its kind is what it is
+an example of, `strategy` for `examples/strategy/golden-flow/`, and its name is its own.  `examples`
+lists them, one line each, `<kind>/<name> — <its line>`: the line its README marks, alone at
+column 0 as `<!-- kaxanuk-example: <its line> -->`, or else its first paragraph's first sentence,
+links and emphasis made plain.  `--kind` lists one kind only.  `example` copies the one example
+that `--kind` and `--name` leave — the package's only one when neither is given; a name alone, or
+`<kind>/<name>` where two kinds share it — and when several are left, or none, it copies nothing
+and lists them.  A whole copy's first commit names it:
+`Start from the KaxaNuk example <kind>, <name>`.
 
 Without `--only`, the destination must not exist or must be an empty folder — one holding only
 what Finder or Explorer leaves, `FILE_MANAGER_FILES`, counts as empty, and those files stay on disk
@@ -38,19 +51,21 @@ copy whose longest path would reach 260 characters, or whose deepest folder woul
 refused before anything is written, exit code 1: the message names that path and how short a
 destination would do.  Where the platform allows long paths, or is not Windows, there is no check.
 
-Exit code 0 when the copy was made, 1 when it was not.  A copy the operating system stops partway —
-a full disk, a file it refuses — is reported in one line with the file and the system's reason:
-a new folder's partial copy can be deleted, and a run with `--only` run again, skipping what it
-copied.  A git step that fails — git not installed, no identity for the commit — leaves the copy in
-place and the exit code 0, and is reported with every command that finishes the repository by
-hand, from the failed step on.  git's output is decoded as UTF-8 and printed as ASCII; the script's
-own messages are ASCII, paths aside, and the console is written in UTF-8, so a path in any
-alphabet prints.
+Exit code 0 when the copy was made, or when `examples` listed one at least; 1 when not; 2 for a
+command line it cannot read, such as `examples` given a destination or `strategy` a `--name`.  A
+copy the operating system stops partway — a full disk, a file it refuses — is reported in one line
+with the file and the system's reason: a new folder's partial copy can be deleted, and a run with
+`--only` run again, skipping what it copied.  A git step that fails — git not installed, no
+identity for the commit — leaves the copy in place and the exit code 0, and is reported with every
+command that finishes the repository by hand, from the failed step on.  git's output is decoded as
+UTF-8 and printed as ASCII; the script's own messages are ASCII, but for paths, an example's line
+and the dash before it, and the console is written in UTF-8, so a path in any alphabet prints.
 """
 import argparse
 import ctypes
 import dataclasses
 import pathlib
+import re
 import shutil
 import subprocess
 import sys
@@ -94,9 +109,10 @@ NEVER_COPIED_FILES = frozenset({
     'uv.lock',
 })
 # Each starting point: where it sits inside the package, and the first commit of a copy of it.  The
-# python-library message must equal `FIRST_COMMIT` in the init-python-library skill's
-# `name_library.py`, which names only a copy whose history is that commit alone, so the two change
-# together.
+# example's is the folder holding every example, one per `examples/<kind>/<name>/`, and its message
+# takes the kind and the name of the one copied.  The python-library message must equal
+# `FIRST_COMMIT` in the init-python-library skill's `name_library.py`, which names only a copy whose
+# history is that commit alone, so the two change together.
 STARTING_POINTS = {
     'researcher': (
         'templates/researcher',
@@ -107,14 +123,37 @@ STARTING_POINTS = {
         'Start from the KaxaNuk Strategy Template',
     ),
     'example': (
-        'examples/golden-flow',
-        'Start from the KaxaNuk example strategy, golden-flow',
+        'examples',
+        'Start from the KaxaNuk example {kind}, {name}',
     ),
     'python-library': (
         'templates/python-library',
         'Start from the KaxaNuk Python Library Template',
     ),
 }
+# The starting point that is chosen among the examples, the word that lists them instead of copying
+# one, and the file every example holds, which gives its line.
+EXAMPLE = 'example'
+EXAMPLE_README = 'README.md'
+LIST_EXAMPLES = 'examples'
+# How an example's README gives its line: a line it marks, or else its first paragraph's first
+# sentence.  Headings and lines that are a comment, such as the example's own markers, are taken out
+# first; the first paragraph is then the first run of lines between blank lines that opens as none
+# of a table, a quote, HTML, a fence, a badge or an image, a list or a rule.  A sentence ends at
+# `.`, `!` or `?` before a space and a capital letter; a link keeps its text, and emphasis its words.
+EMPHASIS = re.compile(r'(?P<mark>\*{1,2}|_{2})(?P<text>\S(?:.*?\S)?)(?P=mark)')
+EXAMPLE_LINE_MARKER = re.compile(
+    r'^<!-- kaxanuk-example: (?P<line>.+?) -->[ \t]*$',
+    re.MULTILINE,
+)
+HEADING_OR_COMMENT_LINE = re.compile(
+    r'^(?:#{1,6}(?:[ \t].*)?|<!--.*-->[ \t]*)$',
+    re.MULTILINE,
+)
+LINK = re.compile(r'!?\[(?P<text>[^\]]*)\]\([^)]*\)')
+NOT_A_PARAGRAPH = re.compile(r'(?:[|>#<]|`{3}|~{3}|!\[|\[!\[|(?:[-*+]|\d+[.)])\s|(?P<rule>[-*_])(?P=rule){2,}\s*$)')
+PARAGRAPH_BREAK = re.compile(r'\n[ \t]*\n')
+SENTENCE_BREAK = re.compile(r'[.!?]\s+(?=\S)')
 # Where APM puts the package, relative to an `apm_modules/` folder: from GitHub, then from a path.
 INSTALLED_PACKAGE_PATHS = [
     pathlib.Path('KaxaNuk') / 'KaxaNuk-Researcher',
@@ -137,6 +176,7 @@ MISSING_PACKAGE = ' '.join([
     '`uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <agent>`,',
     'or pass --package.',
 ])
+NO_EXAMPLES = 'The package holds no example: no folder examples/<kind>/<name>/ in it holds a README.md'
 
 
 @dataclasses.dataclass(frozen=True)
@@ -147,6 +187,26 @@ class CopyPlan:
     source_root: pathlib.Path
     destination_root: pathlib.Path
     files: tuple[tuple[pathlib.Path, pathlib.Path], ...]
+
+
+@dataclasses.dataclass(frozen=True)
+class Example:
+    """
+    One worked example in the package: its folder, `examples/<kind>/<name>/`, and the line its README gives.
+    """
+    folder: pathlib.Path
+    kind: str
+    name: str
+    summary: str
+
+
+@dataclasses.dataclass(frozen=True)
+class StartingPoint:
+    """
+    The folder one run copies from, and the first commit a whole copy of it is saved with.
+    """
+    first_commit: str
+    root: pathlib.Path
 
 
 def copy_files(
@@ -174,6 +234,36 @@ def copy_files(
             return failure
 
     return None
+
+
+def find_examples(
+    package: pathlib.Path,
+) -> list[Example]:
+    """
+    Every example in the package, by kind then name: each folder `examples/<kind>/<name>/` that holds a
+    `README.md`, leaving aside a hidden folder and one no copy carries, such as `__pycache__/`.
+    """
+    examples_root = package / STARTING_POINTS[EXAMPLE][0]
+    example_folders = [
+        example_folder
+        for kind_folder
+        in _listed_folders(examples_root)
+        for example_folder
+        in _listed_folders(kind_folder)
+        if (example_folder / EXAMPLE_README).is_file()
+    ]
+    examples = [
+        Example(
+            folder=example_folder,
+            kind=example_folder.parent.name,
+            name=example_folder.name,
+            summary=_readme_line(example_folder / EXAMPLE_README),
+        )
+        for example_folder
+        in example_folders
+    ]
+
+    return examples
 
 
 def find_package(
@@ -208,6 +298,8 @@ def main(
 ) -> int:
     """
     Parse the command line, check the destination, copy, and make the copy a git repository.
+
+    `examples` lists the examples instead, and copies nothing.
     """
     # A path in any alphabet — Łucja, Sofía — prints, whatever the console's own code page.
     for console_stream in (sys.stdout, sys.stderr):
@@ -221,6 +313,11 @@ def main(
 
     parser = _build_parser()
     parsed = parser.parse_args(arguments)
+    usage_problem = _usage_problem(parsed)
+
+    if usage_problem is not None:
+        parser.error(usage_problem)
+
     package = find_package(
         parsed.package,
         pathlib.Path.cwd(),
@@ -233,8 +330,27 @@ def main(
 
     version = _package_version(package)
     print(f'The package at {package.resolve()}, version {version}')
-    relative_source, first_commit = STARTING_POINTS[parsed.kind]
-    source_root = package / relative_source
+
+    if parsed.starting_point == LIST_EXAMPLES:
+        listed = _list_examples(
+            package,
+            parsed.kind,
+        )
+
+        return listed
+
+    starting_point = _chosen_starting_point(
+        package,
+        parsed.starting_point,
+        parsed.kind,
+        parsed.name,
+    )
+
+    if starting_point is None:
+
+        return 1
+
+    source_root = starting_point.root
     destination = parsed.destination.resolve()
 
     if parsed.only is not None:
@@ -280,7 +396,7 @@ def main(
     if not parsed.no_git:
         _make_repository(
             destination,
-            first_commit,
+            starting_point.first_commit,
         )
 
     return 0
@@ -355,22 +471,51 @@ def _as_typed(
     return typed
 
 
+def _asked_for(
+    kind: str | None,
+    name: str | None,
+) -> str:
+    """
+    What `--kind` and `--name` asked for, as a message puts it after "examples": ` of kind strategy`.
+    """
+    of_kind = f' of kind {kind}' if kind is not None else ''
+    named = f' named {name}' if name is not None else ''
+    asked = f'{of_kind}{named}'
+
+    return asked
+
+
 def _build_parser() -> argparse.ArgumentParser:
     """
-    The command line: which starting point, where to, and the three options.
+    The command line: which starting point, or `examples` to list them, where to, and the options.
     """
     parser = argparse.ArgumentParser(
-        description='Copy a KaxaNuk starting point into a new folder.',
+        description='Copy a KaxaNuk starting point into a new folder, or list the examples.',
     )
     parser.add_argument(
-        'kind',
-        choices=sorted(STARTING_POINTS),
-        help='researcher, strategy, example or python-library',
+        'starting_point',
+        choices=sorted([
+            *STARTING_POINTS,
+            LIST_EXAMPLES,
+        ]),
+        help='researcher, strategy, example or python-library; examples lists the examples',
     )
     parser.add_argument(
         'destination',
+        nargs='?',
         type=_expanded_path,
-        help='the new folder; with --only, the existing folder to copy into',
+        default=None,
+        help='the new folder; with --only, the existing folder to copy into; none for examples',
+    )
+    parser.add_argument(
+        '--kind',
+        default=None,
+        help='example and examples: only the examples of this kind, such as strategy',
+    )
+    parser.add_argument(
+        '--name',
+        default=None,
+        help='example: the example to copy, by its name, or as <kind>/<name>',
     )
     parser.add_argument(
         '--only',
@@ -391,6 +536,84 @@ def _build_parser() -> argparse.ArgumentParser:
     )
 
     return parser
+
+
+def _chosen_example(
+    examples: list[Example],
+    kind: str | None,
+    name: str | None,
+) -> Example | None:
+    """
+    The one example that `--kind` and `--name` leave, or None once it has said why there is not one.
+    """
+    candidates = [
+        example
+        for example
+        in examples
+        if _example_matches(
+            example,
+            kind,
+            name,
+        )
+    ]
+
+    if len(candidates) == 1:
+
+        return candidates[0]
+
+    problem = _example_problem(
+        examples,
+        candidates,
+        kind,
+        name,
+    )
+    print(problem)
+
+    return None
+
+
+def _chosen_starting_point(
+    package: pathlib.Path,
+    kind_of_copy: str,
+    example_kind: str | None,
+    example_name: str | None,
+) -> StartingPoint | None:
+    """
+    Where the copy comes from and its first commit: a template's folder, or the one example chosen.
+
+    None when no one example is chosen, once it has said why.
+    """
+    relative_source, first_commit = STARTING_POINTS[kind_of_copy]
+
+    if kind_of_copy != EXAMPLE:
+        template = StartingPoint(
+            first_commit=first_commit,
+            root=package / relative_source,
+        )
+
+        return template
+
+    examples = find_examples(package)
+    example = _chosen_example(
+        examples,
+        example_kind,
+        example_name,
+    )
+
+    if example is None:
+
+        return None
+
+    example_commit = first_commit.format(
+        kind=example.kind,
+        name=example.name,
+    )
+    chosen = StartingPoint(
+        first_commit=example_commit,
+        root=example.folder,
+    )
+
+    return chosen
 
 
 def _copy_one_path(
@@ -560,6 +783,81 @@ def _differs(
     return not same
 
 
+def _example_line(
+    example: Example,
+) -> str:
+    """
+    An example as `examples` lists it: `<kind>/<name> — <its line>`, or the path alone when its README gives none.
+    """
+    path = f'{example.kind}/{example.name}'
+    line = f'{path} — {example.summary}' if example.summary else path
+
+    return line
+
+
+def _example_matches(
+    example: Example,
+    kind: str | None,
+    name: str | None,
+) -> bool:
+    """
+    Whether an example is of the kind asked for and has the name asked for, as `<name>` or `<kind>/<name>`.
+    """
+    kind_matches = kind is None or example.kind == kind
+    names = {
+        example.name,
+        f'{example.kind}/{example.name}',
+    }
+    name_matches = name is None or name in names
+    matches = kind_matches and name_matches
+
+    return matches
+
+
+def _example_problem(
+    examples: list[Example],
+    candidates: list[Example],
+    kind: str | None,
+    name: str | None,
+) -> str:
+    """
+    Why no one example was chosen, listing what the package holds: none at all, none that matches, or several.
+    """
+    if not examples:
+
+        return NO_EXAMPLES
+
+    asked = _asked_for(
+        kind,
+        name,
+    )
+
+    if candidates:
+        several = [
+            f'The package holds {len(candidates)} examples{asked}; name one with --name <name>, or <kind>/<name>:',
+            *(
+                f'  {_example_line(example)}'
+                for example
+                in candidates
+            ),
+        ]
+        choose_one = '\n'.join(several)
+
+        return choose_one
+
+    held = [
+        f'No example{asked} is in the package; it holds:',
+        *(
+            f'  {_example_line(example)}'
+            for example
+            in examples
+        ),
+    ]
+    none_matches = '\n'.join(held)
+
+    return none_matches
+
+
 def _expanded_path(
     text: str,
 ) -> pathlib.Path:
@@ -571,6 +869,50 @@ def _expanded_path(
     path = pathlib.Path(text).expanduser()
 
     return path
+
+
+def _first_sentence(
+    markdown: str,
+) -> str:
+    """
+    The first sentence of a Markdown text's first paragraph, links and emphasis made plain; empty when it has none.
+
+    How a paragraph and a sentence are told apart is said where `NOT_A_PARAGRAPH` and
+    `SENTENCE_BREAK` are declared.
+    """
+    prose = HEADING_OR_COMMENT_LINE.sub(
+        '',
+        markdown,
+    )
+    paragraphs = [
+        ' '.join(block.split())
+        for block
+        in PARAGRAPH_BREAK.split(prose)
+        if block.strip()
+        and NOT_A_PARAGRAPH.match(block.strip()) is None
+    ]
+
+    if not paragraphs:
+
+        return ''
+
+    linked = LINK.sub(
+        r'\g<text>',
+        paragraphs[0],
+    )
+    paragraph = EMPHASIS.sub(
+        r'\g<text>',
+        linked,
+    )
+    sentence_ends = [
+        found.start() + 1
+        for found
+        in SENTENCE_BREAK.finditer(paragraph)
+        if paragraph[found.end()].isupper()
+    ]
+    sentence = paragraph[:sentence_ends[0]] if sentence_ends else paragraph
+
+    return sentence
 
 
 def _installed_candidates(
@@ -636,7 +978,7 @@ def _is_package(
     candidate: pathlib.Path,
 ) -> bool:
     """
-    Whether a folder holds every starting point.
+    Whether a folder holds every starting point: each template, and the folder of the examples.
     """
     holds_all = all(
         (candidate / relative_source).is_dir()
@@ -659,6 +1001,64 @@ def _leads_outside(
     inside = resolved_path.is_relative_to(resolved_root)
 
     return not inside
+
+
+def _list_examples(
+    package: pathlib.Path,
+    kind: str | None,
+) -> int:
+    """
+    Print one line per example, of one kind when `--kind` names it: 0 when one is listed at least, else 1.
+    """
+    examples = find_examples(package)
+    listed = [
+        example
+        for example
+        in examples
+        if _example_matches(
+            example,
+            kind,
+            None,
+        )
+    ]
+
+    if not listed:
+        problem = _example_problem(
+            examples,
+            listed,
+            kind,
+            None,
+        )
+        print(problem)
+
+        return 1
+
+    for example in listed:
+        print(_example_line(example))
+
+    return 0
+
+
+def _listed_folders(
+    parent: pathlib.Path,
+) -> list[pathlib.Path]:
+    """
+    The folders inside one, by name, but for a hidden folder and one no copy carries: an agent's or a cache.
+    """
+    if not parent.is_dir():
+
+        return []
+
+    folders = sorted(
+        entry
+        for entry
+        in parent.iterdir()
+        if entry.is_dir()
+        and not entry.name.startswith('.')
+        and entry.name not in AGENT_FOLDERS | CACHE_FOLDERS
+    )
+
+    return folders
 
 
 def _long_path_problem(
@@ -826,6 +1226,35 @@ def _path_limit_applies() -> bool:
     return applies
 
 
+def _readme_line(
+    readme: pathlib.Path,
+) -> str:
+    """
+    The line an example's README gives on what it shows: the one it marks, or else its first paragraph's first sentence.
+
+    Empty when it gives neither, or cannot be read.
+    """
+    try:
+        markdown = readme.read_text(
+            encoding='utf-8',
+            errors='replace',
+        )
+    except OSError:
+
+        return ''
+
+    marked = EXAMPLE_LINE_MARKER.search(markdown)
+
+    if marked is not None:
+        marked_line = marked['line'].strip()
+
+        return marked_line
+
+    sentence = _first_sentence(markdown)
+
+    return sentence
+
+
 def _run_git(
     command: list[str],
     destination: pathlib.Path,
@@ -857,6 +1286,46 @@ def _run_git(
     failure = _as_ascii(message)
 
     return failure
+
+
+def _usage_problem(
+    parsed: argparse.Namespace,
+) -> str | None:
+    """
+    Why the command line asks for something the script does not do, or None when it does not.
+
+    `examples` takes no destination and copies nothing, so neither `--name` nor `--only`; every
+    other starting point needs a destination, and only `example` and `examples` take `--kind` or
+    `--name`.
+    """
+    lists_examples = parsed.starting_point == LIST_EXAMPLES
+
+    if lists_examples and parsed.destination is not None:
+        listing_has_destination = 'examples lists the examples and takes no destination; --kind narrows the list'
+
+        return listing_has_destination
+
+    if lists_examples and (parsed.name is not None or parsed.only is not None):
+        listing_copies = 'examples copies nothing, so it takes neither --name nor --only; --kind narrows the list'
+
+        return listing_copies
+
+    if not lists_examples and parsed.destination is None:
+        no_destination = f'{parsed.starting_point} needs a destination: the new folder, or with --only an existing one'
+
+        return no_destination
+
+    chooses_example = parsed.starting_point in {
+        EXAMPLE,
+        LIST_EXAMPLES,
+    }
+
+    if not chooses_example and (parsed.kind is not None or parsed.name is not None):
+        not_an_example = f'--kind and --name choose an example; {parsed.starting_point} takes neither'
+
+        return not_an_example
+
+    return None
 
 
 def _windows_reach(

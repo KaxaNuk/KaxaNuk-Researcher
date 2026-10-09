@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.14.4
+  version: 0.14.5
 ---
 
 # The research process — how a strategy repository is worked in
@@ -23,11 +23,11 @@ Strategy Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/s
 template is the shape and every file the process expects in it: six folders, the documents at the
 root, and inside the folders each driver, module, notebook and document as a description of what
 belongs there — a `.py` file as its docstring, a notebook as its markdown cells — to be filled in
-with the strategy's own. The worked example beside it, `examples/golden-flow/`, works one strategy,
-`golden-flow`, through the same files, with the strategy's own lines between example markers. The
-fixed shape buys comparability and legibility: any experiment looks like any other, every experiment
-is measured against the same named benchmark, and a reader takes in the whole state of a project
-from two files, `OBJECTIVE.md` and `RESULTS.md`.
+with the strategy's own. The worked example beside it, `examples/strategy/golden-flow/`, works one
+strategy, `golden-flow`, through the same files, with the strategy's own lines between example
+markers. The fixed shape buys comparability and legibility: any experiment looks like any other,
+every experiment is measured against the same named benchmark, and a reader takes in the whole state
+of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
 
 Code in English — function names, docstrings and comments — and so are file names and the
 headings the skills read; the notebook narrative and the documents in the owner's language, unless
@@ -258,6 +258,6 @@ is two rules, and the copies drift. Read them where they are.
   `experiment_N.ipynb`.
 
 The three documents and the notebook are copies of Experiment 1's files in the worked example,
-`examples/golden-flow/` in KaxaNuk-Researcher, with the example's own lines stripped — what
+`examples/strategy/golden-flow/` in KaxaNuk-Researcher, with the example's own lines stripped — what
 the template ships as Experiment 1, kept here for every experiment after it. They change by hand
 with the example's, in the same commit, and so does `references/structure.md`.

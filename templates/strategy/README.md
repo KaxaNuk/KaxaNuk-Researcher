@@ -27,7 +27,7 @@ This template is the shape and every file the process expects in it: six folders
 the root, and inside the folders each driver, module, notebook and document as a description of
 what belongs there — a `.py` file as its docstring, a notebook as its markdown cells. The same
 files, worked through for one strategy, `golden-flow`, are the
-[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/golden-flow);
+[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/strategy/golden-flow);
 *What is in here* says what each file is for.
 
 ---
@@ -200,7 +200,7 @@ to keep current:
 `.py` file as its docstring, a notebook as its markdown cells, a document as its prose — to be
 filled in with the strategy's own.
 The same files are worked through in the
-[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/golden-flow),
+[example](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/strategy/golden-flow),
 where the worked strategy's own lines sit beside that description between the example markers:
 `<!-- example: begin -->` and `<!-- example: end -->` in Markdown, `# --- example: begin ---` in
 Python, `# EXAMPLE-ONLY CELL` on a notebook cell. The `Bibliotheca/` index and log, the drivers,

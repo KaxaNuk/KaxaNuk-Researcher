@@ -64,7 +64,7 @@ in it — and say hello, by its name.
 | stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules — never advice |
 | write down how you work or invest, and see it evolve | `philosophy` | a short interview; your typed answers, word for word, in `Philosophy/` |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
-| see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read; running it needs keys and licences |
+| see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read — with more examples, it asks which; running it needs keys and licences |
 | build a Python library of your own | `init-python-library <name>` | a folder laid out like the KaxaNuk Data Curator: tests, docs, a workflow that tests and publishes |
 | know what to do next | `next`, wherever you are | where you stand, and the one thing to do next |
 

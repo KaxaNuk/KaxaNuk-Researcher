@@ -87,12 +87,11 @@ committed.
 ## Step 1 — Get the repository
 
 **`init-example` makes it** — a skill of the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher),
-installed once for your user as step 4 says. It copies the worked example that ships in the
-researcher package into a new folder, `golden-flow` unless you name another — by a script,
-byte for byte — makes that folder a git repository, and commits it once. That folder is the root.
-The example can be read
-[on GitHub](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/golden-flow)
+[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher), installed once for your user as
+step 4 says. It copies the worked example that ships in the researcher package into a new folder,
+`golden-flow` unless you choose another place — by a script, byte for byte — makes that folder a git
+repository, and commits it once. That folder is the root. The example can be read [on
+GitHub](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/strategy/golden-flow)
 without making anything.
 
 **On Windows, keep the path short.** `D:\Research\...` is fine; a deep synced path such as

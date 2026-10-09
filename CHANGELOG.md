@@ -6,6 +6,31 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.5.0] - 2026-10-09
+The worked examples now sit by kind, like the templates, so more can join golden-flow, and `init-
+example` asks which when there is more than one.
+
+**What to do differently:** nothing; say `update` in your home, and `init-example` copies
+golden-flow as before.
+### Changed
+- **The worked example moved** from `examples/golden-flow/` to `examples/strategy/golden-flow/`, as
+  the templates sit in `templates/<kind>/`; a new example is a folder `examples/<kind>/<name>/`,
+  offered with nothing to register. The strategy is still `golden-flow`, its frozen book unchanged
+  (every file a pure rename, its hashes still matching).
+- **`init-example`** (0.5.0): with one example it is copied as before; with several it asks which,
+  through the question tool or as a numbered list in chat, each option the example's name and its
+  line read from the package; `init-example <name>` copies that one without asking, and
+  `init-example <kind>` chooses among that kind only. The interview (2.7.1) hands it `strategy`.
+- **`scaffold.py`** (`init-strategy` 0.3.4): `examples [--kind <kind>]` lists every example,
+  `<kind>/<name> — <line>`, the line from its README; `example <destination> [--name <name>]`
+  copies the one chosen, and with several and none named copies nothing and lists them. The first
+  version's message is built per example, unchanged for golden-flow.
+- **Paths updated** in `alpha-decomposition` (0.4.2), `data-analyzer-runs` (0.2.4),
+  `experiment-lifecycle` (0.14.5, with `references/structure.md` at template 0.18.3),
+  `paper-trading-gate` (0.4.2), the root `AGENTS.md`, `CONTRIBUTING.md` (its checks loop over
+  `examples/strategy/*/`) and the README; the strategy template (0.18.3) and the example (0.17.1)
+  point their links to the new place.
+
 ## [1.4.0] - 2026-10-08
 Your researcher now reaches every assistant you install it on, Codex included, and the install runs
 start to finish in one conversation.

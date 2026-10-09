@@ -58,9 +58,9 @@ What the template ships, and why, is *What is in here* in its README.
 
 <!-- example: begin -->
 
-**In this example.** `golden-flow` is the folder `examples/golden-flow/` of the KaxaNuk Researcher
-package. A copy made by `init-example` is a repository of its own, with one first commit. A
-strategy of your own starts with `init-strategy`.
+**In this example.** `golden-flow` is the folder `examples/strategy/golden-flow/` of the KaxaNuk
+Researcher package. A copy made by `init-example` is a repository of its own, with one first commit.
+A strategy of your own starts with `init-strategy`.
 
 <!-- example: end -->
 

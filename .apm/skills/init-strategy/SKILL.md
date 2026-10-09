@@ -8,7 +8,7 @@ description: >
   `init-example`), does NOT create a researcher (use `init-researcher`), and does NOT create a
   Python library (use `init-python-library`).
 metadata:
-  version: 0.3.3
+  version: 0.3.4
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -81,4 +81,5 @@ every strategy made from the same package version starts identical.
 
 - `scripts/scaffold.py`, in this skill's folder — copies `templates/strategy/` from the
   KaxaNuk Researcher package; `--help` has every option. `init-researcher`, `init-example` and
-  `init-python-library` run the same script.
+  `init-python-library` run the same script, and `init-example` lists the examples with it,
+  `scaffold.py examples`, every folder `examples/<kind>/<name>/` of the package.

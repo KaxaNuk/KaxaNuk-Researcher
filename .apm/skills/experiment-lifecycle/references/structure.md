@@ -6,12 +6,12 @@ folder by `init-strategy`. The template ships the shape and every file the proce
 the six folders, the documents at the root, and inside the folders each driver, module, notebook
 and document as a description of what belongs there — a `.py` file as its docstring, a notebook as
 its markdown cells — to be filled in with the strategy's own. The same files, worked through for
-one strategy, are the example beside it, `examples/golden-flow/`, with that strategy's own lines
-between example markers. **The template is the source of truth for this tree; this file is a copy
-of what it looked like at the version named below**, kept by hand. When they disagree, the template
-wins.
+one strategy, are the example beside it, `examples/strategy/golden-flow/`, with that strategy's own
+lines between example markers. **The template is the source of truth for this tree; this file is a
+copy of what it looked like at the version named below**, kept by hand. When they disagree, the
+template wins.
 
-Template version: **0.18.2**. The template ships `Experiments/Experiment_1/` and
+Template version: **0.18.3**. The template ships `Experiments/Experiment_1/` and
 `Paper_Trading/Paper_Trading_1/`; the blanks for every experiment after the first are this skill's
 `references/`. `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note.
 

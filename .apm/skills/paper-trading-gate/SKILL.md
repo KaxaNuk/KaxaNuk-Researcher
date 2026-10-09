@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.4.1
+  version: 0.4.2
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -163,10 +163,10 @@ yes; a no has the same shape — each blocking row with the evidence that blocks
 ## References
 
 - `Paper_Trading/BITACORA.md`, `daily_update.py` and `Paper_Trading_1/paper_trading_1.py` in the
-  worked example, `examples/golden-flow/` in the KaxaNuk Researcher package — the gate run once,
-  every row evidenced from `FINDINGS_1.md`: criteria 1 to 4 passed, criterion 3 exactly at its bar,
-  6 of 8 settings; the owner signed on 2026-10-06, and the book frozen as `Paper_Trading_1` is kept
-  in the package as a record. The template's copies are the same files with the example's lines
+  worked example, `examples/strategy/golden-flow/` in the KaxaNuk Researcher package — the gate run
+  once, every row evidenced from `FINDINGS_1.md`: criteria 1 to 4 passed, criterion 3 exactly at its
+  bar, 6 of 8 settings; the owner signed on 2026-10-06, and the book frozen as `Paper_Trading_1` is
+  kept in the package as a record. The template's copies are the same files with the example's lines
   removed.
 - The strategy's `AGENTS.md`, *Research integrity — the five ways a backtest lies* and *What
   attribution must report*, which criteria 2, 3 and 4 rest on.

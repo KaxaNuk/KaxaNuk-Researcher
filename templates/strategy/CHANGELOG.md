@@ -41,6 +41,19 @@ for somebody who was not in the room:
 
 ---
 
+## 0.18.3 (2026-10-09)
+
+**PATCH** — the worked example now lives at `examples/strategy/golden-flow/` in the package, and
+the README's two links to it point there. Nothing about any result changes.
+
+**What to do differently:** nothing. `init-example` copies the example as before.
+
+### Changed
+
+- **`README.md`**, the opening and *What is in here*: the two links to the worked example point to
+  `examples/strategy/golden-flow` in the KaxaNuk Researcher, which keeps its examples by kind, as
+  it keeps its templates. The strategy is still `golden-flow`.
+
 ## 0.18.2 (2026-10-08)
 
 **PATCH** — the README and the setup say plainly how the Lab's libraries are had: the Data Curator
