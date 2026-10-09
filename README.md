@@ -34,7 +34,7 @@ through your assistant; what it reads goes to the company behind that assistant,
 2. Paste this line and send it:
 
    ```text
-   Please help me install this repo: https://github.com/KaxaNuk/KaxaNuk-Researcher
+   Please install this repo for me, with everything it needs — no need to ask before installing: https://github.com/KaxaNuk/KaxaNuk-Researcher
    ```
 
 3. Answer its questions. It asks your language first — any language you choose, and your researcher

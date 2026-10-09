@@ -1,18 +1,22 @@
 # Setup
 
 From nothing to a researcher you can talk to, in one conversation. This file is written for the
-assistant — Claude, Codex, Gemini, Cursor — that was told only *please help me install this repo:
-`https://github.com/KaxaNuk/KaxaNuk-Researcher`*. A person can read it in two minutes, but does not
-need to: the assistant runs every command.
+assistant — Claude, Codex, Gemini, Cursor — that was told *please install this repo for me, with
+everything it needs — no need to ask before installing:*
+`https://github.com/KaxaNuk/KaxaNuk-Researcher`, or, from an older README, *please help me install
+this repo*. A person can read it in two minutes, but does not need to: the assistant runs every
+command.
 
 > **For the agent, read this first.**
 >
 > - **Ask the language before anything else**, in Spanish and English together — *¿En qué idioma
 >   prefieres que hablemos? / Which language would you like to use?* — *Español*, *English*, or
 >   another. From then on every message, question and explanation is in that language.
-> - **Never ask whether to install.** The line the user pasted is the go: once the language is
->   chosen, install what is missing and the package, and go straight on, saying in one line what
->   each step does. Their assistant's own prompt to allow a command is the only thing they answer.
+> - **Never ask whether to install.** The user already asked: the line they pasted says to install
+>   the repo and everything it needs, with no need to ask first, and the older *please help me
+>   install this repo* asks for the same. Once the language is chosen, install what is missing and
+>   the package, and go straight on, saying in one line what each step does. Their assistant's own
+>   prompt to allow a command is the only thing they answer.
 > - **The user may never have used a terminal.** Plain words, one question at a time, and you run
 >   every command yourself; never ask them to type one. Say in one sentence what each step does,
 >   and that their assistant may ask them to allow a command — allowing it is all they do.
