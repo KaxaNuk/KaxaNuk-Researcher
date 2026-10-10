@@ -31,10 +31,10 @@ copy*, or run `backup`; the PDFs, `Briefs/` and `Portfolio/` never go in it.
 ## The path
 
 1. **Set up, once:** `interview`, if the install has not run it yet — two short questions about
-   you, about three minutes: what you do and work on, what you'd like a hand with, why you are here
-   and the researcher's voice. It writes `RESEARCHER.md`, the agent that makes your researcher
-   callable by name and the skill that makes it present in every session, installs both for your
-   user and saves a first version.
+   you, about three minutes: what you do and work on, what you'd like a hand with, and the
+   researcher's voice; what you are here for is proposed from what you say. It writes
+   `RESEARCHER.md`, the agent that makes your researcher callable by name and the skill that makes
+   it present in every session, installs both for your user and saves a first version.
 2. **Start learning.** Attach a PDF, or a text or Markdown file, in chat — or name one on your
    computer — and say *read it*: the researcher copies it into `Sources/Papers/`, `Sources/Books/`
    or `Sources/Clippings/` on your go. Save a Word document, an e-book or a web page as PDF first.

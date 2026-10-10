@@ -123,18 +123,18 @@ install again — never tell the user to restart.
 
 `init-researcher` goes on, on that go, in the same turn: it skips its update — the package was
 installed a minute ago — copies the researcher's home with `scaffold.py`, its first version saved,
-and goes straight into step 5. Never end the turn after the copy: the user's next message to read is
-the interview's question 1. A folder the script refuses is `Where?` again, with the reason, never a
-stop.
+and goes straight into step 5. Never end the turn after the copy: what the user reads next is the
+interview's question 1, in a question box where the assistant has a question tool. A folder the
+script refuses is `Where?` again, with the reason, never a stop.
 
 ## Step 5 — The interview
 
 Read the whole `interview` skill from its installed path and follow it in the same turn as step 4,
 from its *Step 1*, with the new folder as the home, by its absolute path, whatever folder the
-session is open in — its question 1 is the next message the user reads. It asks two questions about
+session is open in — its question 1 is the next thing the user reads. It asks two questions about
 the user — what they do and work on, at work and on their own, what they'd like a hand with, then
-the researcher's voice and why they are here — in the user's language; the domains and the projects
-are proposed from what they say. Nothing about how they invest is asked here. It writes
+the researcher's voice — in the user's language; what they are here for, the domains and the
+projects are proposed from what they say. Nothing about how they invest is asked here. It writes
 `RESEARCHER.md`, the agent that makes the researcher callable by name and the skill that puts it in
 every session, installs them for the user and saves a first version — the user answers the two
 questions, and nothing more is asked before the hand-over but a name and an email to sign with,

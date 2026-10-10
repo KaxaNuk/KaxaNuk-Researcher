@@ -6,6 +6,21 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.25.1 (2026-10-10)
+
+**PATCH** — the interview no longer asks what you are here for: it proposes it from what you say.
+
+**What to do differently:** say `update` in your home; the changes to `AGENTS.md` and `README.md`
+come as a diff.
+
+### Changed
+
+* **`README.md`**, *The path*: the interview's two questions are what you do and work on, what
+  you'd like a hand with, and the researcher's voice; what you are here for is proposed from what
+  you say.
+* **`AGENTS.md`**: what the interview proposes, and you change on a word, includes what you are
+  here for. 6,648 words, from 6,643.
+
 ## 0.25.0 (2026-10-10)
 
 **MINOR** — your researcher learns KaxaNuk's tools from their documentation and from running them,

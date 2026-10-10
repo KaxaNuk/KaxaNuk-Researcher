@@ -2,14 +2,14 @@
 name: interview
 description: >
   Interview the owner in two short questions and write RESEARCHER.md — who they are, what they
-  work on and want a hand with, what they are here for, the researcher's voice, with the domains
+  work on and want a hand with, the researcher's voice, with what they are here for, the domains
   and their projects proposed from what they said — then the agent and skill that make the
   researcher callable by name and present in every session; install both, save a first version
   and hand over. Only when the owner runs it by name, or as the last step of the install SETUP.md
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.11.0
+  version: 2.12.0
 ---
 
 # The interview
@@ -25,9 +25,10 @@ home's. `force` — *interview force* — starts over when `RESEARCHER.md` is al
 You are about to become somebody's research companion. This interview decides who. Ask **one
 question at a time**, and write nothing until every answer is in. **Handed over by
 `init-researcher`, start at once**: run *Step 1*'s checks without a word of their own and send
-question 1 in the same turn. *Step 1* then asks nothing on its own: what the checks found, and what
-they still need — the owner's name, a name for the files — goes into question 1's message or the
-hand-over, never a message, a question, a report or a pause of its own.
+question 1 in the same turn. *Step 1* then asks nothing on its own: what was taken is one line just
+before question 1, what the checks still need — the owner's name, a name for the files — is asked in
+question 1 itself, and anything else they found waits for the hand-over; never a message, a call, a
+report or a pause of its own.
 
 **The interview is about the person**: who they are, what they work on — at work and on their own
 — what they want a hand with, and how the researcher should speak. **Nothing more about markets
@@ -38,21 +39,22 @@ what the researcher can do is said once, at the end, in the hand-over, and it gr
 
 **At a glance.** Two questions, about three minutes. Say so in one line before question 1 only when
 the owner ran the interview by name — `init-researcher` says it in its `Where?` question — and open
-each question with its number, *1 of 2*, *2 of 2*.
+each question with its number, *1 of 2*, *2 of 2*: in a call, its first question's first words.
 
 | # | Asks | How | Lands in `RESEARCHER.md` under |
 | --- | --- | --- | --- |
-| 1 | what the owner does and works on, what they want a hand with, where they are with markets, and what to stay out of | chat, a few lines | *Works for*, *Out of scope for now*; the *Domains*, with question 2's *Here for*, and the projects proposed from it |
-| 2 | the researcher's voice and what the owner is here for | one tool call, two questions | *How it speaks*, *Here for* |
+| 1 | what the owner does and works on, what they want a hand with, where they are with markets, and what to stay out of | one tool call, open: a few lines in their own words | *Works for*, *Out of scope for now*; *Here for*, the *Domains* and the projects, proposed from it |
+| 2 | the researcher's voice | one tool call, one question | *How it speaks* |
 
 **How to ask.** In Claude Code, every question marked *tool* is asked by **calling
 `AskUserQuestion`** — the options as its choices, at most four, and *Other*, which the tool always
 offers, as the free-text escape. Call the tool; do not type those questions and their options as
 chat text. **Without such a tool — Codex, Gemini and every other assistant — a tool call is one
-chat message**: each question in it numbered, its options beneath as a numbered list with *Other —
-your own words* last, and one line saying how to answer: the numbers, *1: 2 · 2: 1, 3*, several
-where the question says several, or their own words. Wait for the answer before the next message;
-never type questions 1 and 2 at once.
+chat message**: its options beneath as a numbered list with *Other — your own words* last, and
+one line saying how to answer: a number, several, *1, 3*, where the question says several, or their
+own words; a message with two questions numbers them, *1: 2 · 2: 1, 3* — question 1 aside, which
+stays one open message, as its item says. Wait for each answer before the next question; never ask
+questions 1 and 2 at once, in one message or in one call.
 
 **The package's files.** Where a step below looks for, reads or runs a file under
 `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, a package installed from an archive or a
@@ -102,21 +104,28 @@ expand it.
      name — `my-researcher`, `home` — ask it in chat, with three proposals, and never pick one for
      them.
    - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
-     session may be open elsewhere. With none, or a single word that reads as a handle, it is asked
-     inside question 1's message, in one line, offering that word if there is one — *and your
-     name? I only have `artur`* — never in a message of its own. Never make one up.
+     session may be open elsewhere. With none, or a single word that reads as a handle, question 1
+     asks it first, right after *1 of 2*, offering that word if there is one — *First, your name — I
+     only have `artur`. Then tell me about you …* (*Primero, tu nombre — solo tengo `artur`. Luego
+     cuéntame de ti …*) — never in a message or a call of its own. Never make one up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
-     says to ask for another, it is asked inside question 1's message, in one line, with the reason
-     — *`arya` is already taken on this computer: a short name in Latin letters for my files?* —
-     never in a message of its own.
+     says to ask for another, it is a second question in question 1's call, header `Short name`
+     (`Nombre corto`), with the reason — *`arya` is already taken on this computer: a short name in
+     Latin letters for my files? I stay Arya everywhere else* — and two or three proposals made from
+     the name, its sound in Latin letters for a name in another script, each a slug *Step 4* finds
+     free; *Other* for theirs. Without a question tool, it is one line of question 1's message, its
+     proposals named in it. Never in a message or a call of its own.
 
-   When the answer to question 1 leaves out the owner's name or the name for the files that its
-   message asked for, ask for it once more, alone, before question 2.
+   When the answer to question 1 — an option picked, or words that leave it out — lacks the owner's
+   name or the name for the files it asked for, ask for it once more, alone, in chat, before
+   question 2.
 
    Say in one line what was taken — *I am Arya, I will work for Marta Ruiz, in Spanish; tell me if
-   any of that is wrong* — with what is still needed, as the opening of question 1's message, after
-   the line `init-researcher` opens it with when it handed over, never as a message or a question of
-   its own: from the copy to question 1, the turn ends only on question 1.
+   any of that is wrong*, or, while question 1 asks the owner's name, *I am Arya, and I will speak
+   Spanish; tell me if that is wrong* — just before question 1, after the line `init-researcher`
+   opens it with when it handed over: chat sent in the same turn just before its call, or, without a
+   question tool, the start of its message. Never a message or a question of its own: from the copy
+   to question 1, the turn ends only on question 1.
 
 ## Step 2: The interview
 
@@ -126,57 +135,76 @@ the language marks gender, words about the owner stay neutral: *Explícame sobre
 *soy nuevo* or *nueva*. A work keeps the year, authors and title the reading map gives it, never
 translated.
 
-**Open first, then propose.** Question 1 is open; *I don't know* there counts as *I'm just
-starting*. What the interview proposes from it — the domains, the projects, the README's opening
-paragraph — is written with the answers on a first run, and named in the hand-over for the owner to
-change; on a re-run it is labelled so in the preview, whose go is the pick, and a proposal the owner
-leaves out is never written. What an earlier answer said is used, never asked again. Every tool
-question has at least two options; when the rules below leave fewer, ask it in chat.
+**Open first, then propose.** Question 1 is open: the owner's own words, typed in its box, are its
+answer, and its options never propose a role, a project, a domain or a view on markets; *I don't
+know* there counts as *I'm just starting*. What the interview proposes from it — *Here for*, the
+domains, the projects, the README's opening paragraph — is written with the answers on a first run,
+and named in the hand-over for the owner to change; on a re-run it is labelled so in the preview,
+whose go is the pick, and a proposal the owner leaves out is never written. What an earlier answer
+said is used, never asked again. Every tool question has at least two options; when the rules below
+leave fewer, ask it in chat.
 
 **A re-run** under `force` starts from what is there, and a kept answer is written back verbatim.
 - Question 1 quotes the current *Works for* and *Out of scope for now*, and asks *keep them or
-  change them*.
-- In question 2, each current pick gains *(current)* in its label: the voice, and each option
-  whose value *Here for* holds — *Help with my work and my projects (current)* for *Organise
-  what I read, and help with my projects* or the old *Organise what I read*.
-- A question the file holds no answer for — *Here for*, in a home interviewed before it was asked
-  — is asked as on a first run, never with a *(current)* inferred from prose.
-- The *Domains* and the projects' rows the file holds are kept; the preview proposes only what
-  question 1 adds.
+  change them*: its options *Keep them* (*Déjalos así*), described *both lines as they are, word for
+  word*, and *I'm just starting*, described *in place of both*; *Other* takes what changed, and a
+  line it leaves unmentioned is kept.
+- In question 2, the current voice gains *(current)* in its label.
+- *Here for*, the *Domains* and the projects' rows the file holds are kept; the preview proposes
+  only what question 1 adds, and *Here for* where the file holds none.
 - What this interview does not ask is kept verbatim and never asked about: everything under
   *Non-negotiables*, the owner's own sentences under *What you believe*, and everything under *What
   you are reading for* — the reading questions with their numbers, because notes cite them, and
   every *Find first* line.
 
-1. **About you** — *chat.* In their language: *Tell me about you in a few lines: what you do, what
-   you're working on — at work and on your own — and what you'd like a hand with. If you invest or
-   study markets, where you are with it; nothing yet is fine. And anything I should stay out of.
-   "I'm just starting" is a complete answer.*
+1. **About you** — *tool, open.* One call, header `About you` (`Sobre ti`), single-select,
+   `Short name` second when *Step 1* asks it. Its question, in their language: *1 of 2 · Tell me
+   about you in a few lines: what you do, what you're working on — at work and on your own — and
+   what you'd like a hand with. If you invest or study markets, where you are with it; nothing yet
+   is fine. And anything I should stay out of. Write it in your own words, or pick one.*
+   (*… Escríbelo con tus palabras, o elige una.*) Its options:
+   - *I'm just starting* (*Estoy empezando*), described *nothing to tell yet — that's a complete
+     answer*: *Works for* takes the owner's name and *just starting*, in their language;
+   - *I'll tell you later* (*Te cuento después*), described *I start with just your name; tell me
+     more whenever you like*: *Works for* takes the name alone.
 
-   Two proposals come from it, never asked: **a row for each project** it names, and
-   **the domains**, up to four the answer points to. Finance is among them when it says they invest,
-   study markets or want to, or that their work is in finance, or when *Here for* holds *Learn the
-   basics*, *Build and test a strategy* or *Write down how I invest* — never only for saying they do
-   not invest, nor for pay or a budget at work. When it points to none: Business and AI, with
-   Finance and Macro first when *Here for* holds one of those three.
-2. **Voice and why here** — *tool, one call, two questions.*
-   - `Voice` (`Voz`), *How should I talk to you?* — *Explain as you go* (*Explícame sobre la
-     marcha*), plain words and every new term explained, for someone new to this; *Thorough, push
-     back on evidence*, full answers and a challenge where the evidence disagrees; *Brief, push back
-     on evidence*, short answers and the same challenge; *Thorough, argue the other side*, full
-     answers and the strongest case against your view. Every voice challenges on evidence only,
-     never on taste.
-   - `Here for` (`Para qué`), multi-select, *What brings you here?* (*¿Qué te trae por aquí?*) —
-     several picks are expected. Each option is shown in their language, with its line, and
-     written under *Here for* as this table gives it, in English, because the skills find it by
-     those words, the old *Organise what I read* too; an *Other* keeps the owner's own:
+   With either, *Out of scope for now* is *None yet*, and the proposals are fixed, since neither
+   says anything about markets: *Here for* is *Organise what I read, and help with my projects*
+   alone, the domains Business and AI, and no project row. *Other* takes the answer itself, and any
+   correction to the line before it. A box closed unanswered is not a stop: what the owner writes
+   next is the answer, unless it asks to stop. **Without a question tool**, question 1 stays one
+   open chat message, never a numbered list, its last sentence *"I'm just starting" is a complete
+   answer* in place of *Write it in your own words, or pick one*; *later* or *skip*, in any
+   language, is *I'll tell you later*.
 
-     | Shown | Its line | Written |
-     | --- | --- | --- |
-     | *Help with my work and my projects* (*Ayuda con mi trabajo y mis proyectos*) | your reading in order, and a hand with work and personal projects | *Organise what I read, and help with my projects* |
-     | *Learn about investing from scratch* | I explain as we go, and suggest what to read first | *Learn the basics, step by step* |
-     | *Build and test an investment strategy* | an idea written as rules, and tested before any money moves | *Build and test a strategy* |
-     | *Write down how I invest* | your view in your own words, taken again as you learn | *Write down how I invest, and see it evolve* |
+   Three proposals come from it, never asked: **a row for each project** it names; **the
+   domains**, up to four the answer points to — Finance among them when it says they invest, study
+   markets or want to, or that their work is in finance, or when the proposed *Here for* holds an
+   investing pick, never only for saying they do not invest, nor for pay or a budget at work; when
+   it points to none, Business and AI — and **what they are here for**, the *Here for* line: each
+   pick the answer points to, in this table's order. *Organise what I read, and help with my
+   projects* when it names something they want a hand with — their work, a project, a decision or
+   their reading — or points to none of the other three, never only for saying what they do;
+   *Learn the basics, step by step* when it says they want to learn to invest; *Build and test a
+   strategy* when it names a strategy, a trading rule or a backtest to build; *Write down how I
+   invest, and see it evolve* when it says they invest and have a way of doing it. Never an
+   investing pick for *nothing yet* or for saying they do not invest. The line is written in
+   English, as this table gives it, because
+   the skills find it by those words, the old *Organise what I read* too, and shown in their
+   language:
+
+   | Written | Shown |
+   | --- | --- |
+   | *Organise what I read, and help with my projects* | *help with your work and your projects* (*ayuda con tu trabajo y tus proyectos*) |
+   | *Learn the basics, step by step* | *learning to invest from scratch* (*aprender a invertir desde cero*) |
+   | *Build and test a strategy* | *building and testing an investment strategy* (*construir y probar una estrategia de inversión*) |
+   | *Write down how I invest, and see it evolve* | *writing down how you invest* (*poner por escrito cómo inviertes*) |
+2. **Voice** — *tool, one call, one question.* `Voice` (`Voz`), *2 of 2 · How should I talk to
+   you?* — *Explain as you go* (*Explícame sobre la marcha*), plain words and every new term
+   explained, for someone new to this; *Thorough, push back on evidence*, full answers and a
+   challenge where the evidence disagrees; *Brief, push back on evidence*, short answers and the
+   same challenge; *Thorough, argue the other side*, full answers and the strongest case against
+   your view. Every voice challenges on evidence only, never on taste.
 
 ## Step 3: Write
 
@@ -188,9 +216,11 @@ template has them: *Name*, *Works for*, *Here for* and its four values, *Domains
 
 - **The title** — the researcher's name, in place of *Researcher*.
 - **Name** — the name *Step 1* took. **Works for** — the owner's name, then what they do and work
-  on, from question 1, in one line. **Here for** — question 2's picks, in English as its table
-  writes them, and an *Other* in the owner's words. **Domains** — the proposed ones, by their
-  English names, or the owner's own word.
+  on, from question 1, in one line. **Here for** — the proposed picks, in English as question 1's
+  table writes them; a change the owner asks for, in the preview or at the hand-over, is written the
+  same way — each of the four their words name by its English value, *aprender a invertir* as
+  *Learn the basics, step by step* — and only what none of the four covers in their own words.
+  **Domains** — the proposed ones, by their English names, or the owner's own word.
 - **How it speaks** — the language and the voice, in one paragraph.
 - **What you believe** — the template's one line, in their language. On a re-run, the owner's own
   sentences there are kept verbatim and the line follows them, unless one already points into
@@ -231,18 +261,19 @@ this computer; your assistant may ask you to allow a few commands*. What was pro
 the hand-over, to change on a word.
 
 **On a re-run, the preview, short.** Show in chat what the owner answered — *Name*, *Works for*,
-*Here for*, *How it speaks*, *Out of scope for now*, with *Here for* shown by the labels they
-picked, in their language, while the file keeps the English words the skills read — and, each
-marked *proposed from what you said*, the *Domains*, the projects' rows and the README's opening
-paragraph; what is kept verbatim and what is not written back. Name the rest in one line, without
-reprinting it, in plain words that say what each does for the owner, never *agent*, *skill*,
-`apm.yml` or `LICENSE` — *the rest of the file as it comes; what lets you call me by name, in any
-folder; my settings, in my name and yours; the copyright, in your name* — and show any of it when
-asked. Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on *Go* only;
-in chat, *go*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language, is the
-go. *Change something* offers *Change the domains*, *Leave the projects out* when there are any,
-and *Change an answer*. On *Go*, write the same files; *Step 5* installs and saves them on the
-same go.
+*How it speaks*, *Out of scope for now* — and, each marked *proposed from what you said*, *Here for*
+where the file held none, shown in their language while the file keeps the English words the skills
+read, the *Domains* and projects' rows question 1 adds, and the README's opening paragraph; what is
+kept verbatim, a *Here for* the file held among it, and what is not written back. Name the rest in
+one line, without reprinting it, in plain words that say what each does for the owner, never
+*agent*, *skill*, `apm.yml` or `LICENSE` — *the rest of the file as it comes; what lets you call me
+by name, in any folder; my settings, in my name and yours; the copyright, in your name* — and show
+any of it when asked. Then ask `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop* — and write on
+*Go* only; in chat, *go*, *ok*, *yes*, *sí*, *dale*, *adelante*, or the same word in their language,
+is the go. *Change something* offers, at most four: *Change what I proposed*, for what you're here
+for or the domains; *Leave the projects out* when there are any; *Keep the old lines* when the
+preview names a *Where it sits* or *Add later* line it does not write back; and *Change an answer*.
+On *Go*, write the same files; *Step 5* installs and saves them on the same go.
 
 ## Step 4: The agent and the researcher's skill
 
@@ -255,8 +286,8 @@ name — *ask Arya what we have read about momentum crashes* — with its own to
 into a hyphen, repeated hyphens collapsed and none at either end: `Arya` becomes `arya`,
 `Arya Nova` `arya-nova`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`. APM deletes any other
 character from a folder name — `sofía` would deploy as `sofa`, a researcher that never installs
-under its own name. *Step 1* asks for another short name in Latin letters for the files, inside
-question 1's message, the name itself unchanged, when nothing is left — a name in another script —
+under its own name. *Step 1* asks for another short name in Latin letters for the files, in
+question 1, the name itself unchanged, when nothing is left — a name in another script —
 or when the slug is taken: a folder in the package's `.apm/skills/` or a command in its
 `.apm/prompts/` — `next`, `read`, `brief`, `study`, `teach` and the rest — or `blueprint-critic`; or
 the slug of a researcher already installed for the user, so a second one — a test, or another person
@@ -476,8 +507,9 @@ every folder*.
    my name.* When this conversation installed git or uv, add, for the next session, not this one:
    *When we're done here, quit and reopen your assistant first.*
 2. *My home is `<absolute path to the home>`.* On a first run, one more line: what was written
-   from the answers, in plain words, and what was proposed — *your domains: Finance, AI; your
-   projects: …; the opening of your README* — *tell me to change any of it, any time*.
+   from the answers, in plain words, and what was proposed — *what you're here for: help with your
+   work and your projects; your domains: Finance, AI; your projects: …; the opening of your
+   README* — *tell me to change any of it, any time*.
 
 The message ends there, with one tool question, header `First step` (`Primer paso`): nothing else
 the researcher can do is said before it. Its question recommends a first document and says where
@@ -519,6 +551,8 @@ same message closes with these lines, and never before:
    - *remember this: a rule or a way of working, kept in my home*;
    - *`brief setup`: a brief on the days you choose — your work, the markets, your holdings*;
    - *`teach <a topic>`: a lesson a session, with a quiz*;
+   - *learn to invest from scratch: `philosophy investing`, in a new conversation — one idea after
+     each answer, no reading needed*;
    - *`philosophy`: how you work, or how you invest, in your words, and the rules I keep with you*;
    - *`init-example`, then `init-strategy <name>`: an investment strategy, tested with the KaxaNuk
      Investment Lab*;
@@ -571,8 +605,8 @@ Then, in two lines: attach each one found, or say where it is saved, and I copy 
 and `next` says so too. A work not picked is never written. Then the end, as above.
 
 **A change asked for at the hand-over** — in `First step`'s *Other*, or in chat — is written as the
-owner says, the changed lines shown, saved as *Step 5* saves with `-m "Interview: <what
-changed>"`, and `First step` asked again; never a `Go?` for it.
+owner says, *Here for* as *Step 3* writes it, the changed lines shown, saved as *Step 5* saves with
+`-m "Interview: <what changed>"`, and `First step` asked again; never a `Go?` for it.
 
 Nothing more: these lines, `First step` and a change asked for there, what its pick leads to and
 the end are the whole hand-over.

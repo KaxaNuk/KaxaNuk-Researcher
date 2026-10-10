@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.10.0] - 2026-10-10
+Your first interview is quicker: on Claude, its question about you opens a box to answer in, the
+second question asks only how your researcher should talk to you, and at the end it tells you
+everything it can do.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **Question 1 of the interview is a question box** (`interview` 2.12.0), as question 2 already
+  was. Its header is `About you` (`Sobre ti`), it opens with *1 of 2*, asks the same four things,
+  and ends *Write it in your own words, or pick one*. Your own words, typed in the box, are still
+  the answer: they write *Works for* and *Out of scope for now*, and everything else is proposed
+  from them. Its two options need no typing: *I'm just starting*, and *I'll tell you later*, which
+  starts with your name alone. A box you close is not a stop: what you type next in chat is the
+  answer. On a re-run, *Keep them* keeps both lines word for word.
+- **What crowded that message moves into the box.** When git has only a handle for you, the box
+  asks your name first, and the line before it no longer says *I'll work for you*. When your
+  researcher needs another short name for its files, it is a second question in the same box,
+  `Short name` (`Nombre corto`), with names to pick. Questions 1 and 2 are never asked together.
+- **No more *What brings you here?*** Question 2 asks only the voice. What you are here for — help
+  with your work and projects, learning to invest, building a strategy, writing down how you invest
+  — is proposed from what you said in question 1, like your domains and projects, and named at the
+  hand-over for you to change on a word. Every skill that reads it reads it as before.
+- **The hand-over ends with everything you can ask for**, now with *learn to invest from scratch*
+  among them.
+- **Codex and Gemini ask as before**: question 1 stays one open chat message, never a numbered
+  list, and *later* or *skip* counts as *I'll tell you later*. `init-researcher` (0.8.3),
+  `SETUP.md`, `update` and the home template (0.25.1, its `README.md` and `AGENTS.md`) say the
+  same.
+
 ## [1.9.0] - 2026-10-10
 Your researcher now learns KaxaNuk's tools only from their documentation and from running them, and
 never opens, quotes or copies their code.
