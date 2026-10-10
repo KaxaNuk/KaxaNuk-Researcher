@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.10.1] - 2026-10-10
+Your interview's first question box now asks you to write about yourself, with two short, quiet
+options for when you'd rather not yet.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The box's text field is the answer** (`interview` 2.12.1). Question 1 now ends *Write it below,
+  in your own words* (*Escríbelo abajo, con tus palabras*), and its options are short ways out that
+  never compete with writing: *Nothing yet* (*Nada aún*), *I'm just starting*, a complete answer;
+  and *Later* (*Después*), which starts with your name alone. They replace *I'm just starting* and
+  *I'll tell you later*, and write the same lines. On a re-run, *Nothing yet* replaces *I'm just
+  starting* beside *Keep them*.
+
 ## [1.10.0] - 2026-10-10
 Your first interview is quicker: on Claude, its question about you opens a box to answer in, the
 second question asks only how your researcher should talk to you, and at the end it tells you

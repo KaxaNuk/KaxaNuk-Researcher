@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.12.0
+  version: 2.12.1
 ---
 
 # The interview
@@ -137,7 +137,7 @@ translated.
 
 **Open first, then propose.** Question 1 is open: the owner's own words, typed in its box, are its
 answer, and its options never propose a role, a project, a domain or a view on markets; *I don't
-know* there counts as *I'm just starting*. What the interview proposes from it — *Here for*, the
+know* there counts as *Nothing yet*. What the interview proposes from it — *Here for*, the
 domains, the projects, the README's opening paragraph — is written with the answers on a first run,
 and named in the hand-over for the owner to change; on a re-run it is labelled so in the preview,
 whose go is the pick, and a proposal the owner leaves out is never written. What an earlier answer
@@ -147,8 +147,8 @@ leave fewer, ask it in chat.
 **A re-run** under `force` starts from what is there, and a kept answer is written back verbatim.
 - Question 1 quotes the current *Works for* and *Out of scope for now*, and asks *keep them or
   change them*: its options *Keep them* (*Déjalos así*), described *both lines as they are, word for
-  word*, and *I'm just starting*, described *in place of both*; *Other* takes what changed, and a
-  line it leaves unmentioned is kept.
+  word*, and *Nothing yet* (*Nada aún*), described *in place of both*; *Other* takes what changed,
+  and a line it leaves unmentioned is kept.
 - In question 2, the current voice gains *(current)* in its label.
 - *Here for*, the *Domains* and the projects' rows the file holds are kept; the preview proposes
   only what question 1 adds, and *Here for* where the file holds none.
@@ -161,12 +161,14 @@ leave fewer, ask it in chat.
    `Short name` second when *Step 1* asks it. Its question, in their language: *1 of 2 · Tell me
    about you in a few lines: what you do, what you're working on — at work and on your own — and
    what you'd like a hand with. If you invest or study markets, where you are with it; nothing yet
-   is fine. And anything I should stay out of. Write it in your own words, or pick one.*
-   (*… Escríbelo con tus palabras, o elige una.*) Its options:
-   - *I'm just starting* (*Estoy empezando*), described *nothing to tell yet — that's a complete
-     answer*: *Works for* takes the owner's name and *just starting*, in their language;
-   - *I'll tell you later* (*Te cuento después*), described *I start with just your name; tell me
-     more whenever you like*: *Works for* takes the name alone.
+   is fine. And anything I should stay out of. Write it below, in your own words.* (*… Escríbelo
+   abajo, con tus palabras.*) The box's text field is the answer; its two options are quiet ways
+   out, short so they never compete with it:
+   - *Nothing yet* (*Nada aún*), described *I'm just starting — a complete answer* (*estoy
+     empezando — es una respuesta completa*): *Works for* takes the owner's name and *just
+     starting*, in their language;
+   - *Later* (*Después*), described *start with just my name* (*empieza solo con mi nombre*):
+     *Works for* takes the name alone.
 
    With either, *Out of scope for now* is *None yet*, and the proposals are fixed, since neither
    says anything about markets: *Here for* is *Organise what I read, and help with my projects*
@@ -174,8 +176,8 @@ leave fewer, ask it in chat.
    correction to the line before it. A box closed unanswered is not a stop: what the owner writes
    next is the answer, unless it asks to stop. **Without a question tool**, question 1 stays one
    open chat message, never a numbered list, its last sentence *"I'm just starting" is a complete
-   answer* in place of *Write it in your own words, or pick one*; *later* or *skip*, in any
-   language, is *I'll tell you later*.
+   answer* in place of *Write it below, in your own words*; *later* or *skip*, in any language, is
+   *Later*.
 
    Three proposals come from it, never asked: **a row for each project** it names; **the
    domains**, up to four the answer points to — Finance among them when it says they invest, study
