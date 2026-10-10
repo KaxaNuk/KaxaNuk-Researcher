@@ -53,14 +53,14 @@ What is expected here:
   to use -- raises before a number is read.  The same rule governs the book, the benchmark's
   holdings and the benchmark's return series, and none of them may carry nulls.  That is why the
   shaping lives here and not in a notebook.
-- Say what the factor directory has to look like, because it holds nothing but factor files: one CSV per factor, named by its file name, a date column first -- its
-  header may be empty -- and one column per security after it.  Four names are reserved by the
-  library, matched exactly and in lower case, and dropped from the percentage decomposition:
-  `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and `f_idyo_returns`.  The
-  Analytics Factory ships them as `Market`, `Total_Factor_Returns`, `Total_Excess_Returns` and
-  `Idyo_Returns`, and a reserved file attributed as an ordinary factor is a quiet way to
-  double-count the market.  So `Data/hand_supplied.py` maps each file name to the library's name,
-  once, and nothing is renamed on disk.
+- Say what the factor directory has to look like, because it holds nothing but factor files: one
+  CSV per factor, named by its file name, a date column first -- its header may be empty -- and
+  one column per security after it.  Four names belong to the model's own series, matched exactly
+  and in lower case: `f_market`, `f_total_factor_returns`, `f_total_excess_returns` and
+  `f_idyo_returns`.  The Analytics Factory ships them as `Market`, `Total_Factor_Returns`,
+  `Total_Excess_Returns` and `Idyo_Returns`, and a model series attributed as an ordinary factor
+  is a quiet way to double-count the market.  So `Data/hand_supplied.py` maps each file name to
+  its name, once, and nothing is renamed on disk.
 - Name the index's two files and their date convention once, in `Data/hand_supplied.py`, so
   switching to a different index is an edit there and no notebook names one of them.
 - Keep the library's numbers as tables.  It writes no file: the first cut, the factor model and

@@ -6,6 +6,26 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.25.0 (2026-10-10)
+
+**MINOR** — your researcher learns KaxaNuk's tools from their documentation and from running them,
+never from their code.
+
+**What to do differently:** say `update` in your home; the changes to `AGENTS.md` and `README.md`
+come as a diff, and your researcher's skill is brought to 0.5.0.
+
+### Changed
+
+* **`AGENTS.md`**, *Hard don'ts*: don't read, quote or copy a tool's code. KaxaNuk's tools — the
+  Lab's libraries, the Analytics Factory — are known from their skills, documentation, changelogs
+  and runs, never from a library's installed files, a clone, a wheel or a source page; their code,
+  the Factory's files and KaxaNuk's research go into no note, clipping, strategy, study, issue or
+  message; an error is told by the call, its type and its message; in a Lab library's own
+  repository its rules govern its code. *Joining other projects*: from a Lab library, never its
+  code. 6,643 words, up from 6,539, for the new rule.
+* **`README.md`**, *Growing your researcher*: for a KaxaNuk library, its documentation and
+  changelog only, never its code. The example home is `D:/Research/Arya`.
+
 ## 0.24.1 (2026-10-09)
 
 **PATCH** — the first interview writes on your two answers, and you change what it wrote on a

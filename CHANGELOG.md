@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.9.0] - 2026-10-10
+Your researcher now learns KaxaNuk's tools only from their documentation and from running them, and
+never opens, quotes or copies their code.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **A tool's code is never read, quoted or copied.** KaxaNuk's tools — the Investment Lab's
+  libraries and the Analytics Factory — are known from their skills, documentation, changelogs and
+  runs, never from a library's installed files, a clone, a wheel or a source page its documentation
+  links to. No part of that code, no copy of the Factory's files and nothing of KaxaNuk's research
+  goes into a note, a clipping, a strategy, an issue or a message, and an error is told by the call,
+  its type and its message, never by the library's traceback lines. In a Lab library's own
+  repository, its rules govern its code, and none of it leaves. The rule is in the home's
+  `AGENTS.md` (home template 0.25.0), in your researcher's skill (0.5.0, which `update` brings),
+  in the agent `interview` writes, in a strategy's `AGENTS.md` (strategy template 0.19.0, example
+  0.17.2) and in the filesystem-boundaries instruction (1.3.0).
+- **The library skills say only what the documentation, the changelog or a run says**
+  (`attribution-analysis-runs` 0.5.0, `portfolio-construction-runs` 0.5.0,
+  `data-curator-custom-calculations` 0.5.0, `backtest-engine-runs` 0.4.0). Every statement taken
+  from a library's code is gone — internal names, module paths, tolerances, how a loader works
+  inside, steps that open the installed package — and a trap no document or run supports is
+  dropped until a run shows it again. Each skill now says where its knowledge comes from, and
+  `library_version` does not move. A trap found in a library is told by behaviour, as an issue in
+  the package or to `lab@kaxanuk.mx`.
+- **For maintainers**, `AGENTS.md` and `CONTRIBUTING.md`: a library's skill is written from its
+  documentation, changelog and runs, never from its code, and names only its public API.
+- **The example researcher is Arya** (`init-researcher` 0.8.2, `interview` 2.11.0), in the README,
+  `CONTRIBUTING.md` and the home's README.
+- **Earlier versions of the library skills leave this repository's history**, rewritten so every
+  commit holds the text above.
+
 ## [1.8.0] - 2026-10-09
 When you start a strategy or a Python library without a name, your researcher asks what it is about
 and suggests a few names for you to pick, or you type your own.

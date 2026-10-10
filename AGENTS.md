@@ -40,6 +40,13 @@ marked.
 - **A file of a starting point is never written from memory** — not by a skill, not by the script,
   not by an agent helping here. `scaffold.py` copies byte for byte; `name_library.py` then only puts
   the owner's names and words into a Python library's copy.
+- **No Lab library's code in the package.** A skill is written from the library's documentation,
+  its changelog and runs — never from its source, a wheel's contents, a clone or a source page its
+  documentation site links to — and names only its public API: no private module, internal class,
+  tolerance or copied pattern, and no account of which branch runs inside. A difference between
+  the documentation and the library is settled by a run, and the skill says *checked on <build> by
+  running it*. The same holds for an agent helping here, and for the Analytics Factory's files and
+  KaxaNuk's research: none of it is copied into the package.
 - **Every change carries its `CHANGELOG.md` entry**, and a version bump in the same commit: in
   `apm.yml` for the package at the root and for the home, in `pyproject.toml` for the strategy
   template and the example, and in the *Started from* sentence of the Python library template's
@@ -84,8 +91,9 @@ marked.
 ## When a Lab library or an Analytics Factory file changes
 
 1. **Read the library's changelog** from the build its skill names as `library_version` to the new
-   one, `[Unreleased]` aside: what changes for the install, a caller, a key or a trap. Copy names
-   and behaviour only — a private index, host or key stays a `{SERVER}` placeholder.
+   one, `[Unreleased]` aside: what changes for the install, a caller, a key or a trap, and its
+   documentation — never its code. Copy names and behaviour only — a private index, host or key
+   stays a `{SERVER}` placeholder.
 2. **Record the new build** in the *Latest* column of
    `.apm/skills/next/references/investment-lab.md` — what `next`'s weekly check in a strategy
    compares the installed builds against — and, in the library's skill, a short *Changed in

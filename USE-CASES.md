@@ -73,7 +73,9 @@ Put a tool's README, methodology pages and changelog in `Sources/Clippings/` (a 
 PDF first), then `read` them with a question that names the tool; `query` answers from those
 notes.
 
-*Never:* a link it could not open: a private repository is cited as one, *link not checked*.
+*Never:* a link it could not open: a private repository is cited as one, *link not checked*. Nor a
+tool's code: a KaxaNuk library is learned from its documentation, its changelog and from running
+it, never from its installed files or its repository's code.
 
 ## Teach me a topic
 

@@ -41,6 +41,22 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.2 (2026-10-10)
+
+**PATCH** — the shared lines of `AGENTS.md` and `Experiments/attribution_analysis.py` move as the
+template's 0.19.0 does; prose only, nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`AGENTS.md`**: a Lab library's code is never read, quoted or copied, and a library trap is told
+  by the call, the error and the versions, never by the library's traceback lines.
+- **`Experiments/attribution_analysis.py`**, its docstring: the factor directory as the
+  documentation and runs describe it.
+
+The frozen book in `Paper_Trading/Paper_Trading_1/` is unchanged: `FREEZE.json` hashes its files.
+
 ## 0.17.1 (2026-10-09)
 
 **PATCH** — the example now lives at `examples/strategy/golden-flow/` in the package; prose only,

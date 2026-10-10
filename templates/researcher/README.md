@@ -115,7 +115,7 @@ setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
 `export` it in your shell profile outside Windows; an `env` entry in `settings.json` is applied too
 late for it. `/context` lists what loaded, under *Memory files*. Where the variable is not honoured
 — the desktop app does not document it — a `CLAUDE.local.md` at the strategy's root holding one
-line, this folder's `CLAUDE.md` by absolute path, `@D:/Research/Ada/CLAUDE.md`, loads it with the
+line, this folder's `CLAUDE.md` by absolute path, `@D:/Research/Arya/CLAUDE.md`, loads it with the
 strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md` to the strategy's
 `.gitignore`, and approve the external import the first time the assistant asks — declined, it
 stays off.
@@ -128,7 +128,8 @@ It grows four ways, each governed by a section of `AGENTS.md`:
 
 1. **Knowledge of a tool or a project.** Put its documentation in `Sources/Clippings/` and run
    `read`, with a reading question that names it. *Joining other projects* says how a project's
-   files reach `Sources/` and how they are cited.
+   files reach `Sources/` and how they are cited — for a KaxaNuk library, its documentation and
+   changelog only, never its code.
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
    `.apm/prompts/`, written as below, then
    `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` and a new session.

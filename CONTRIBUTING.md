@@ -28,7 +28,7 @@ The skills are then in every folder you open, so **a strategy installs nothing o
 every command that runs it names that version**: APM 0.29.1 to 0.31.0 fail the install on Windows
 with `WinError 3` or `WinError 206`, and a newer APM is adopted only once it passes the release
 check. Never run `apm self-update`. The skills appear only in a new
-session: open one, anywhere, and `init-researcher Ada` makes the home and runs the interview. This
+session: open one, anywhere, and `init-researcher Arya` makes the home and runs the interview. This
 is the path by hand; an assistant asked to install follows [`SETUP.md`](SETUP.md) instead, all in
 one conversation. *Removing it*, in the README, undoes either.
 
@@ -36,7 +36,7 @@ one conversation. *Removing it*, in the README, undoes either.
 
 | | In | Run | It makes |
 | --- | --- | --- | --- |
-| 1 | anywhere | `init-researcher Ada` | the researcher's home, named after it, and then the interview: two short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and save a first version. The install in [`SETUP.md`](SETUP.md) runs this for you |
+| 1 | anywhere | `init-researcher Arya` | the researcher's home, named after it, and then the interview: two short questions about you, about three minutes, that write `RESEARCHER.md`, the agent and the researcher's skill, install them for your user and save a first version. The install in [`SETUP.md`](SETUP.md) runs this for you |
 | 2 | the home | `read` | your first note: attach a document, or name it, and it is copied into `Sources/` on your go; the first `read` asks which question it serves, and keeps it as question 1 |
 | 3 | the home | `philosophy`, `brief setup` | when you like: how you work or how you invest, in your words, and a daily brief |
 | 4 | the home | `init-strategy fcf-yield-quality` | your first strategy, one repository of its own, beside the home; its `SETUP.md` finishes the setup |
@@ -106,6 +106,10 @@ runs as its template does, with one more `../`. Each runs through `uv` alone: no
 own is needed. They run on your machine before a commit; there is no CI, so nothing runs them for
 you. Nothing else runs inside `templates/`: `uv sync`, `uv build` or Sphinx there would write a
 `.venv/`, a `uv.lock` or a `dist/` into the package.
+
+**No Lab library's code reaches the package.** A library's skill is written from its documentation,
+its changelog and runs, never from its source, a wheel's contents, a clone or a source page its
+documentation site links to, and it names only the public API, as `AGENTS.md` says under *Rules*.
 
 **The template and the example in step.** Nothing else is automated: they are kept in step by hand,
 as `AGENTS.md` says. For each file `git ls-files templates/strategy` lists, the copy in each

@@ -48,8 +48,10 @@ once it is merged or abandoned: `main` is the only branch that stays.
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package. The example is for
 reading, never for building on: nothing in a strategy is brought across from it. Issues and pull
 requests about the process land there, and so does a trap found in a Lab library while running a
-strategy: it goes into that library's skill in the package, as an issue there, so the next strategy
-does not find it again. A strategy of your own stays in your own repository.
+strategy: it goes into that library's skill in the package, as an issue there or a word to
+`lab@kaxanuk.mx`, so the next strategy does not find it again — told by what was called, the
+error's type and message and the versions, never by the library's traceback lines or its code. A
+strategy of your own stays in your own repository.
 What the template ships, and why, is *What is in here* in its README.
 
 ### The blueprint is committed before the rule
@@ -177,6 +179,11 @@ Two standing exceptions, and one that has to be asked for:
 
 - **Every performance figure comes from the KaxaNuk Backtest Engine.** There is deliberately no
   second, lighter simulator: one that disagrees just lets the reader pick the number they prefer.
+- **A Lab library's code is never read, quoted or copied.** Its skill, its documentation, its
+  changelog and a run are how it is known — never its installed files, a clone, a wheel or a source
+  page its documentation links to. No part of its code, no copy of the Analytics Factory's files
+  and nothing of KaxaNuk's research outside this repository goes into a file here, an issue or a
+  message. Where a skill and a library disagree, a run settles it.
 - **Do not change a committed result to make it agree with a new run.** If the numbers moved, find
   out why first, and record it.
 - **A new Lab library build is a change-set, between experiments**, never during one. The

@@ -14,10 +14,10 @@ folder, call it by name, and it brings what it knows. It teaches you to invest w
 investing is why you came, it has every tool: building and testing a strategy with the KaxaNuk
 Investment Lab. One researcher per person, in any language.
 
-> **You:** Ada, what have I read about pricing my services?\
-> **Ada:** Two notes, both linked — and a gap: nothing yet on raising prices.\
+> **You:** Arya, what have I read about pricing my services?\
+> **Arya:** Two notes, both linked — and a gap: nothing yet on raising prices.\
 > **You:** Remember this: always show me the strongest case against first.\
-> **Ada:** That goes in `RESEARCHER.md`, in your words, under *How it speaks*. Add it?
+> **Arya:** That goes in `RESEARCHER.md`, in your words, under *How it speaks*. Add it?
 
 **What it is.** A research and learning tool, never investment advice. It runs on your computer,
 through your assistant; what it reads goes to the company behind that assistant, never to KaxaNuk.
@@ -40,7 +40,7 @@ through your assistant; what it reads goes to the company behind that assistant,
 3. Answer its questions. It asks your language first — any language you choose, and your researcher
    speaks it from then on — then everything happens in the same conversation: it installs what it
    needs — allow the commands it asks about, that is all you do — asks what to call your researcher
-   and where to keep it, `C:\Research\Ada` for example, asks two short questions about you, about
+   and where to keep it, `C:\Research\Arya` for example, asks two short questions about you, about
    three minutes, and tells you where it lives, what to ask it, and where to start.
 
 With Claude or Copilot, installing also gives your assistant three house rules on this computer —

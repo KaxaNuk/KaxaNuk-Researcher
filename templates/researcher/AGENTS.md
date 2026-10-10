@@ -297,6 +297,12 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
   reason to invest in anything.
 - Don't compute a return, a Sharpe or an attribution yourself: they come from the engines the
   project names, in a KaxaNuk strategy the Lab's libraries; a number with no engine is not quoted.
+- **Don't read, quote or copy a tool's code.** KaxaNuk's tools — the Lab's libraries, the Analytics
+  Factory — are known from their skills, documentation, changelogs and runs, never from a library's
+  installed files, a clone, a wheel or a source page; what those do not say is not known. Their
+  code, the Factory's files and KaxaNuk's research go into no note, clipping, strategy, study, issue
+  or message; an error is told by the call, its type and its message. In a Lab library's own
+  repository its rules govern its code, and none of it leaves.
 - Don't rewrite a note in generic voice; match the library's existing notes.
 - Don't write any file without the owner's go on the plan, the first `interview` aside.
 - Never print a value from a `.env` file. Never use the section symbol; write "section".
@@ -401,7 +407,7 @@ workshop. Outside a strategy there is no order of work, only the rules that keep
   source — a paper, a document or a clipping in `Sources/` at home: the researcher names the
   project's files and copies them into `Sources/Clippings/` on the owner's go, named as below and
   never over an existing file — and `read` files it into `Knowledge/` with its provenance. Never a
-  note written from memory of the project.
+  note written from memory of the project, and from a Lab library never its code.
 
 **Learning from a project, in practice.** The clipping is named `Org_Year_Project_File.md` — the
 organisation as the author, the year of the release read. A private repository is cited as "private
