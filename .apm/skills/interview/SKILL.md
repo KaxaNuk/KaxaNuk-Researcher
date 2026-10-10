@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.10.0
+  version: 2.11.0
 ---
 
 # The interview
@@ -97,8 +97,8 @@ expand it.
      together: `Idioma/Lang` — *Español*, *English*; *Other* for another.
    - **The researcher's name**: handed over by `init-researcher`, the name it took in this
      conversation, the home's folder named after it — used as given, never judged or asked again.
-     Run by name, the home's folder name — `Ada` for `D:\Research\Ada`, `Ada Lovelace` for
-     `ada-lovelace`; on a re-run, the *Name* in `RESEARCHER.md`. When the folder's name is not a
+     Run by name, the home's folder name — `Arya` for `D:\Research\Arya`, `Arya Nova` for
+     `arya-nova`; on a re-run, the *Name* in `RESEARCHER.md`. When the folder's name is not a
      name — `my-researcher`, `home` — ask it in chat, with three proposals, and never pick one for
      them.
    - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
@@ -107,13 +107,13 @@ expand it.
      name? I only have `artur`* — never in a message of its own. Never make one up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
      says to ask for another, it is asked inside question 1's message, in one line, with the reason
-     — *`ada` is already taken on this computer: a short name in Latin letters for my files?* —
+     — *`arya` is already taken on this computer: a short name in Latin letters for my files?* —
      never in a message of its own.
 
    When the answer to question 1 leaves out the owner's name or the name for the files that its
    message asked for, ask for it once more, alone, before question 2.
 
-   Say in one line what was taken — *I am Ada, I will work for Marta Ruiz, in Spanish; tell me if
+   Say in one line what was taken — *I am Arya, I will work for Marta Ruiz, in Spanish; tell me if
    any of that is wrong* — with what is still needed, as the opening of question 1's message, after
    the line `init-researcher` opens it with when it handed over, never as a message or a question of
    its own: from the copy to question 1, the turn ends only on question 1.
@@ -247,13 +247,13 @@ same go.
 ## Step 4: The agent and the researcher's skill
 
 `RESEARCHER.md` says who the researcher is. The agent makes it something the harness can call by
-name — *ask Ada what we have read about momentum crashes* — with its own tool boundary. Write
+name — *ask Arya what we have read about momentum crashes* — with its own tool boundary. Write
 `.apm/agents/<slug>.agent.md` with `RESEARCHER.md`.
 
 `<slug>` is the researcher's name made safe for a folder: accents and marks removed — *á* to *a*,
 *ñ* to *n*, *ü* to *u* — lowercase, every character that is not a letter a to z or a digit turned
-into a hyphen, repeated hyphens collapsed and none at either end: `Ada` becomes `ada`,
-`Ada Lovelace` `ada-lovelace`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`. APM deletes any other
+into a hyphen, repeated hyphens collapsed and none at either end: `Arya` becomes `arya`,
+`Arya Nova` `arya-nova`, `Sofía` `sofia`, `Begoña Ruiz` `begona-ruiz`. APM deletes any other
 character from a folder name — `sofía` would deploy as `sofa`, a researcher that never installs
 under its own name. *Step 1* asks for another short name in Latin letters for the files, inside
 question 1's message, the name itself unchanged, when nothing is left — a name in another script —
@@ -300,6 +300,10 @@ to read a source into the library, `philosophy` to write down how they work or h
 
 **Never invent** a citation, a URL or a page number, and never quote a performance number that did
 not come from the engines the project names.
+
+**Never open a tool's code** — a KaxaNuk library's installed files, a clone, a wheel or a source
+page its documentation links to. How a tool is used is answered from its skill and its
+documentation; what they do not say is a gap, named as one.
 ```
 
 **Write it in English**, whatever the owner's language: the voice line names the language it
@@ -329,7 +333,7 @@ description: >
   written from here. It does NOT answer from the library (the `query` skill, or the `<slug>` agent,
   does).
 metadata:
-  version: 0.4.3
+  version: 0.5.0
 ---
 
 <Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
@@ -386,6 +390,15 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
    command <owner> names, such as `update`, `study` or `teach`, is followed from its file in the
    package, `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/<command>.prompt.md`,
    with what they said as its arguments.
+7. **A tool's code is never read, quoted or copied.** <Name> knows the research process and how to
+   use KaxaNuk's tools — the Investment Lab's libraries and the Analytics Factory — from their
+   skills, documentation, changelogs and from running them, never from their code: never a
+   library's installed files, a clone, a wheel or a source page its documentation links to. What
+   the documentation does not say, <Name> says it does not know. No part of a library's code, no
+   copy of the Analytics Factory's files and nothing of KaxaNuk's research goes into a note, a
+   clipping, a strategy, an issue or a message, and an error is reported by the call, its type and
+   its message, never by the library's traceback lines. In a Lab library's own repository, its
+   rules govern the work on its code, and none of it leaves that repository.
 ```
 
 Write it in English, as the agent, with the owner's language named in item 2 as the one it

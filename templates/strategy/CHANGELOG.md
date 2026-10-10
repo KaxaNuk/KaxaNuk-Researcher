@@ -41,6 +41,28 @@ for somebody who was not in the room:
 
 ---
 
+## 0.19.0 (2026-10-10)
+
+**MINOR** — a Lab library's code is never read, quoted or copied here: a library is known from its
+skill, its documentation, its changelog and runs. Nothing about any result changes.
+
+**What to do differently:** nothing in a new strategy. In one made from an earlier template, bring
+the two new passages of `AGENTS.md` across by hand; the researcher already follows them.
+
+### Changed
+
+- **`AGENTS.md`**, *Other standing rules*: a Lab library's code is never read, quoted or copied —
+  never its installed files, a clone, a wheel or a source page its documentation links to — and no
+  part of it, no copy of the Analytics Factory's files and nothing of KaxaNuk's research goes into a
+  file here, an issue or a message. Where a skill and a library disagree, a run settles it.
+- **`AGENTS.md`**, *How work reaches `main`*: a trap found in a Lab library is told by what was
+  called, the error's type and message and the versions, as an issue in the package or a word to
+  `lab@kaxanuk.mx`, never by the library's traceback lines or its code.
+- **`Experiments/attribution_analysis.py`**, its docstring: the factor directory holds nothing but
+  factor files, each named by its file name, and the model's four series are matched exactly — said
+  from the documentation and runs, no longer from how the library reads the directory. Two earlier
+  entries of this changelog lose the same detail.
+
 ## 0.18.4 (2026-10-09)
 
 **PATCH** — the note for the agent in `SETUP.md` hands step 1 to `init-strategy`, which now asks
@@ -269,9 +291,9 @@ the two links to the worked example at `examples/golden-flow`, or at tag `v0.33.
   t−1 earns day t, and the first cut's benchmark is reconciled with the index's own returns before
   any figure is read; the index's tickers are mapped to the book's identifiers through the seed's
   two keys; the index is compared on the members the strategy can price, the rest renormalised and
-  the dropped share reported per year; the factor files are named, the reserved
-  names matched exactly, nothing renamed on disk; the library's numbers are kept as tables, and the
-  notebook says whether its figures are kept.
+  the dropped share reported per year; the factor files are named by their file names, the model's
+  own series matched exactly, nothing renamed on disk; the library's numbers are kept as tables, and
+  the notebook says whether its figures are kept.
 - **`Experiments/portfolio_construction.py`**: a scheme may size by a score, cut once before each
   date, inside bounds the blueprint names — the design, held by the control too — and the blueprint
   says where a capped name's excess goes; a constraint it does not name is off, a lever to earn.
@@ -961,9 +983,9 @@ factor names are in lower case before an attribution run.
   whatever a provider used — raises before a number is read. The module said the hand-supplied files
   were both horizontal, and that a wrong orientation produced a transposed number rather than an
   error. Both were wrong.
-* **The same module says what the factor directory has to look like**: it holds nothing but factor
-  files, the factor's name is the file name, the date column comes first and
-  its header may be empty, and the four reserved names — `f_market`, `f_total_factor_returns`,
+* **The same module says what the factor directory has to look like**: nothing but factor files,
+  each factor named by its file name, the date column first, its header possibly empty, and the four
+  names of the model's own series — `f_market`, `f_total_factor_returns`,
   `f_total_excess_returns`, `f_idyo_returns` — are matched exactly and in lower case, so a file
   capitalised differently is attributed as an ordinary factor.
 * **`JOURNAL_1.md` on that branch records the run** that settled all of it: both engines installed, a

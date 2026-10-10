@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.1
+  version: 0.8.2
 ---
 
 # Init researcher — a home for the library, once
@@ -17,7 +17,7 @@ metadata:
 A researcher is one per person, not per strategy: its library — `Sources/`, `Knowledge/`,
 `Philosophy/` — grows across every strategy and project, and a second home would split it. So this
 runs once a person, and a second home — a test, or another person on this computer — is made only
-when the owner asks for one. The home is named after the researcher — `Ada`, not `my-researcher`.
+when the owner asks for one. The home is named after the researcher — `Arya`, not `my-researcher`.
 
 **Plain words throughout.** The owner may never have used a terminal. Ask one thing at a time, never
 ask them to type a command — you run every one — and say what happens in a sentence, as a progress
@@ -39,7 +39,7 @@ that tool the full path, the home folder spelled out — `C:\Users\<user>\.apm\.
 
 ## When to Use
 
-- The owner runs `init-researcher` by name — *init-researcher Ada*, *set up my researcher*, *make a
+- The owner runs `init-researcher` by name — *init-researcher Arya*, *set up my researcher*, *make a
   test researcher* — or `SETUP.md` reaches its step 3, in the conversation that installed the
   package.
 - **A home already made** is looked for first, as *Before step 1* says, and offered before a second
