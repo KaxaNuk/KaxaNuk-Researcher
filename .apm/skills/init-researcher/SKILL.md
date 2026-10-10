@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.2
+  version: 0.8.3
 ---
 
 # Init researcher — a home for the library, once
@@ -23,12 +23,13 @@ when the owner asks for one. The home is named after the researcher — `Arya`, 
 ask them to type a command — you run every one — and say what happens in a sentence, as a progress
 note sent with the command it announces: from step 1 to the interview's hand-over, a turn ends only
 on a question. **Done is the interview's first question, never the copy.** After the owner's *Go* on
-`Where?`, steps 4 to 7 run in the same turn, and the next message the owner reads is the interview's
-question 1 — never a message that only reports the home is made, never an offer to start the
-interview. The only questions between are step 6's own — `Where?` again for a folder the script
-refuses, git, or a name and an email to sign with — and question 1 follows straight after the
-answer. Without a question tool — Codex, Gemini — each question marked *through the question tool*
-is one chat message, its options numbered beneath and *Other — your own words* last.
+`Where?`, steps 4 to 7 run in the same turn, and what the owner reads next is the interview's
+question 1 — in its question box, where the assistant has a question tool — never a message that
+only reports the home is made, never an offer to start the interview. The only questions between are
+step 6's own — `Where?` again for a folder the script refuses, git, or a name and an email to sign
+with — and question 1 follows straight after the answer. Without a question tool — Codex, Gemini —
+each question marked *through the question tool* is one chat message, its options numbered beneath
+and *Other — your own words* last.
 
 **The package**, where a step reads or runs one of its files — `<the package>` in a command below —
 is `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, or
@@ -184,14 +185,16 @@ past four options, *Stop* is left out and the other homes are named in the line 
    says, never a stop. Then follow it from its *Step 1*, with `<full path>` as the home — read and
    written by that absolute path, whatever folder the session is open in, even one holding another
    `RESEARCHER.md` — and the name step 2 took as the researcher's, never judged or asked again. What
-   it must still ask — the owner's name, another short name for the files — goes inside question 1's
-   message, never a message of its own. Question 1 is your next message to the owner, opened by
-   *Your researcher's home is ready at `<full path>`. Now two quick questions about you, so it is
-   yours.* The interview says the rest; its own hand-over ends the run, or goes on into what the
-   owner picks there.
+   it must still ask — the owner's name, another short name for the files — goes into question 1, as
+   the interview's *Step 1* says, never a message of its own. Question 1 is what the owner reads
+   next, opened by *Your researcher's home is ready at `<full path>`. Now two quick questions about
+   you, so it is yours.* — sent just before question 1's box, in the same turn, where there is a
+   question tool. The interview says the rest; its own hand-over ends the run, or goes on into what
+   the owner picks there.
 
-   Only when the owner asks to stop, one line: *When you're ready, open `<full path>` in a new
-   session and say `interview`.* Never offer stopping on your own.
+   Only when the owner asks to stop — in chat, or in question 1's box — one line: *When you're
+   ready, open `<full path>` in a new session and say `interview`.* Never offer stopping on your
+   own, nor as an option of question 1.
 
 ## References
 

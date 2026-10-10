@@ -132,9 +132,9 @@ nothing else.
   `Knowledge/LOG.md`, each against the home's. Every difference is a *by hand* line in *Step 3* and
   *Step 5*, never a change `update` makes: those files are the owner's. Template 0.16.0 adds a line
   a home made before it lacks, a *by hand* line, quoted from the template, when the home has no such
-  line: *Here for* under *Who* in `RESEARCHER.md` — what the owner is here for, one of the four the
-  interview offers or their own words. A *Here for* holding the older *Organise what I read* is no
-  *by hand* line: every skill reads it as *Organise what I read, and help with my projects*. The
+  line: *Here for* under *Who* in `RESEARCHER.md` — what the owner is here for, among the four the
+  interview proposes, or their own words. A *Here for* holding the older *Organise what I read* is
+  no *by hand* line: every skill reads it as *Organise what I read, and help with my projects*. The
   same release points *What you believe* to `HOW-I-INVEST.md` and takes *Where it sits* and its *Add
   later* line out of the template: the home's own prose there is the owner's, and stays unless they
   take it out by hand. Template 0.23.0 ships `Philosophy/` holding only a `.gitkeep`, which is never

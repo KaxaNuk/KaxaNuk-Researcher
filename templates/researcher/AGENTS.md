@@ -80,17 +80,17 @@ work lives in the strategy, and work on any other project in that project, where
 the researcher — *Working in a strategy* and *Joining other projects* say how.
 
 `RESEARCHER.md` is not a folder, but it is the owner's too. `interview` writes it once, from the
-owner's answers and the proposals made from them — the domains, a row for each project named, to
-change on the owner's word — and nothing else writes it but such a change, its diff shown, and four
-additions, each after the owner's go: `read`, at home, may add a question under *What you are
-reading for*, in the owner's words; the works the owner picks — at the interview's hand-over, or at
-the close of a `philosophy` round unless its preview leaves *Find first* alone — are appended to the
-closing *Find first* line, add-only; the rules they settle in `philosophy` go under
-*Non-negotiables*; and what they teach with *learn this*, as above. A home starts with no
-non-negotiables beyond the hard don'ts; the first rule written there replaces *None yet.* The owner
-edits it by hand whenever they like, and the same holds for their files in `Philosophy/`; the
-template ships none, and a prompt in angle brackets — an older template's — is never the owner's
-view: a heading holding nothing but its prompt says nothing yet.
+owner's answers and the proposals made from them — what they are here for, the domains, a row for
+each project named, to change on the owner's word — and nothing else writes it but such a change,
+its diff shown, and four additions, each after the owner's go: `read`, at home, may add a question
+under *What you are reading for*, in the owner's words; the works the owner picks — at the
+interview's hand-over, or at the close of a `philosophy` round unless its preview leaves *Find
+first* alone — are appended to the closing *Find first* line, add-only; the rules they settle in
+`philosophy` go under *Non-negotiables*; and what they teach with *learn this*, as above. A home
+starts with no non-negotiables beyond the hard don'ts; the first rule written there replaces *None
+yet.* The owner edits it by hand whenever they like, and the same holds for their files in
+`Philosophy/`; the template ships none, and a prompt in angle brackets — an older template's — is
+never the owner's view: a heading holding nothing but its prompt says nothing yet.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`. Notes are born from
 sources, never from `Philosophy/` alone and never from a study; studies and lessons are built from
