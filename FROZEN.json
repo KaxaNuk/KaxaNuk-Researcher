@@ -1,0 +1,15 @@
+{
+  "frozen": "The onboarding and the first read, as the package's owner approved them on 2026-10-10 at 1.10.2. A file here changes only on the owner's word, as AGENTS.md says under Rules.",
+  "record": "ONBOARDING.md",
+  "files": {
+    ".apm/skills/init-researcher/SKILL.md": "09c77111d0dcfbfcfce3133a20b76894dd90283bcc0407be0ffb5d9bf762b70c",
+    ".apm/skills/init-researcher/scripts/user_targets.py": "e0b3062d4a971fab3ca2ffb4524eda8bc1692b772e0c9e9377f90dc79d3bedc9",
+    ".apm/skills/interview/SKILL.md": "e66bf15785d4bdbbab6e99feab6003692a33555867d789b765ed143a10d8a113",
+    ".apm/skills/read/SKILL.md": "e933a546a3090b0d768f9a85bfdaa88703d6fc778724cdd6a4654bbb04f4cf35",
+    ".apm/skills/read/references/note.md": "e6095da6384dab3c06485dd1eec12d7bd074231345cd3ac536d9233566b0bf20",
+    ".apm/skills/read/references/reading-map.md": "3dc42b1dcd58cab49473ad19b8e5cf966bdcab5eb054f38333fcc29669e2e962",
+    ".apm/skills/read/scripts/extract.py": "8ac7175d7d6f33195f86e1f3b916221e4f9d9494d41174db6488f063e904b53b",
+    "ONBOARDING.md": "285cdd31c21b522ebf39810f6735329c49eeded427272849fefa37ff2c41c41b",
+    "SETUP.md": "3a0ada2fb5df2aa89407b09fa4a0e202fbbad994ea9abb52a1776c735bc26991"
+  }
+}
