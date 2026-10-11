@@ -9,7 +9,7 @@ description: >
   `init-example`), does NOT create a researcher (use `init-researcher`), and does NOT create a
   Python library (use `init-python-library`).
 metadata:
-  version: 0.4.1
+  version: 0.4.2
 ---
 
 # Init strategy — a new strategy, one folder, one repository
