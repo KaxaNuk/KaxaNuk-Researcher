@@ -40,10 +40,10 @@ the example is for reading and running, never built on; a strategy of the owner'
 **The first pass** is the one where the claims table is empty or no note serves a claim yet: the
 claims come from the owner's idea, never from a source. **A fine-tuning pass** is any later one: the
 evidence under each claim is rewritten from the notes that serve it, or from `RESULTS.md` and the
-findings where it has been measured, and a claim the reading sharpened is proposed as a change for
-the owner to take or leave — never changed silently. Once a blueprint is written, a change to a
-claim's wording is not fine-tuning but a different strategy or a new experiment; say so rather than
-draft it.
+findings where it has been measured. A claim the reading sharpened is proposed as a change for the
+owner to take or leave — never changed silently. Once a blueprint is written, a change to a claim's
+wording is not fine-tuning but a different strategy or a new experiment; say so rather than draft
+it.
 
 ## Step 2: Contrast with the researcher's library
 
@@ -59,18 +59,18 @@ strategy should read for.
 ## Step 3: Draft, in the file's own shape
 
 Fill the template's headings — the main idea in one sentence somebody outside the team could repeat;
-the objective as a capability, not a number; the claims table, each claim's status taken from the
-vocabulary the template's own `OBJECTIVE.md` lists — **untested** for a claim this strategy will
-test, **true by construction** for one the rules make true and that earns nothing by itself, and
-the rest of that list as the reading and the runs move a claim along; what is not claimed. Never
+the objective as a capability, not a number; the claims table; what is not claimed. Each claim's
+status is taken from the vocabulary the template's own `OBJECTIVE.md` lists — **untested** for a
+claim this strategy will test, **true by construction** for one the rules make true and that earns
+nothing by itself, and the rest of that list as the reading and the runs move a claim along. Never
 invent a status word, and never write **untested** over a status the template or the owner already
 set. Rules:
 
 - **Every claim cites its evidence**, of one of three kinds, as the template's `OBJECTIVE.md` and
   the worked example use them: a note in the strategy's `Bibliotheca/`, by relative path; once
-  something is measured, `RESULTS.md` or the `FINDINGS_N.md` that moved the claim, which a later
-  pass leaves standing rather than swapping for a note; or nothing, for a claim that is **true by
-  construction**.
+  something is measured, `RESULTS.md` or the `FINDINGS_N.md` that moved the claim; or nothing, for
+  a claim that is **true by construction**. A later pass leaves a measured citation standing rather
+  than swapping it for a note.
   **In the first pass there are none, and that is the order working, not a gap:** each claim's
   evidence is the question that would settle it — *does the effect survive inside the screened
   universe?* — marked as a lead, with the sources worth reading for it named as leads. A claim
@@ -79,12 +79,12 @@ set. Rules:
 - **Name the columns.** Each claim says which `c_*` or `r_*` column will carry it, if the owner
   already knows; otherwise a slot.
 - **Offer each claim its anatomy, never require it.** The reading map, `references/reading-map.md`
-  in the `read` skill's folder, gives an idea's anatomy (page 59 of the deck): beside the claim, its
+  in the `read` skill's folder, gives an idea's anatomy: beside the claim, its
   **source of edge** — which of the five, and why that door is still open; **the other side** — who
   sells, and what keeps them selling; **the test** — the measurement that would settle it, chosen
   before looking; and **the kill switch** — the result that would end the idea rather than send it
   back for tuning. In the first pass, ask them in chat, once for all the claims, as questions the
-  owner may answer, skip or refuse; the five sources may be offered as options, and a claim may be
+  owner may answer, skip or refuse. The five sources may be offered as options, and a claim may be
   proposed in the anatomy's shape — one sentence, present tense, about something measurable — for
   them to edit or refuse. What they answer goes in the claim's short section, in their words; what
   they skip is left out, never filled in for them, and is not a gap. In a fine-tuning pass, an

@@ -3,18 +3,14 @@
 > **Executive summary of everything this repository has measured.**
 >
 > Experiment sections are compiled from the `FINDINGS_N.md` files and cite each one. **When a number
-> changes, change it in `FINDINGS_N.md` first**, then update this file — a summary that leads its
-> sources is how two numbers for the same book start to circulate.
+> changes, change it in `FINDINGS_N.md` first**, then here, as `AGENTS.md` says. The one exception
+> is step 3, `Data/analyzer.ipynb`: its findings go straight into *Before any experiment* below,
+> because notebook outputs are stripped before committing.
 >
-> **One exception:** findings from step 3, `Data/analyzer.ipynb`, go straight into *Before any
-> experiment* below: notebook outputs are stripped before committing, so a measurement that lives
-> only in a cell output does not survive the commit.
->
-> Every performance figure comes from the **KaxaNuk Backtest Engine**. There is no second backtest
-> in this repository, by design.
+> Every performance figure comes from the **KaxaNuk Backtest Engine**, the only backtest here.
 >
 > Until the first experiment reports, every table below except *Known limitations* is empty: the
-> shape is fixed, the numbers arrive from the pipeline.
+> shape is fixed, and the numbers come from the pipeline.
 
 <!-- example: begin -->
 
@@ -58,12 +54,12 @@ its paper days, read first on 2027-10-06.
 ## Before any experiment: what the data already says
 
 Findings from step 3, `Data/analyzer.ipynb`: whether a candidate feature carries information, over
-what horizon, and with which sign — and anything measured about the signal that does not need a
-book. Cite the section each number came from.
+what horizon and with which sign, and anything else measured about the signal that needs no book.
+Cite the section each number came from.
 
-**State the horizon and the overlap.** A coefficient over *h* days, measured every day, shares
-*h − 1* days with the next one, so its dates are not independent observations. Beside any
-coefficient or ratio, report the share of dates on which it had the sign the hypothesis expects.
+**State the horizon and the overlap**, item 11 of the bar in `AGENTS.md`: a coefficient over *h*
+days, measured every day, shares *h − 1* days with the next one. Beside any coefficient or ratio,
+report the share of dates on which it had the sign the hypothesis expects.
 
 | # | Measurement | Value | Dates with the expected sign | Section |
 | --- | --- | ---: | ---: | --- |
@@ -113,12 +109,11 @@ traded value nearly quadrupled from 2017 to 2024, which is what the 20% cap exis
 
 ## The experiments
 
-Each experiment ranks its variants over **one window shared by all of them**, and those windows can
-differ between experiments.
+Each experiment ranks its variants over **one window shared by all of them**; windows can differ
+between experiments.
 
-> **Compare a winner's Sharpe with its own experiment's control.** Windows can differ between
-> experiments, so a winner is comparable to its own control row, not to another experiment's
-> headline; `vs control` is the column to compare across experiments.
+> **Compare a winner's Sharpe with its own experiment's control**, never with another experiment's
+> headline. Across experiments, compare the `vs control` column.
 
 **Each row names the claim it moved**: the claim of `OBJECTIVE.md` its blueprint set out to move,
 and the status it reached. A row that beats its benchmarks and moves no claim is a number, not a
@@ -205,9 +200,8 @@ the blueprint's 1.0. All twenty random books have a negative idiosyncratic retur
 
 <!-- example: end -->
 
-**Does it reproduce?** Re-run from a wiped working copy and state the drift. Curator output rebases
-every dividend-adjusted column on a re-pull, so a Sharpe moving in the third decimal is that effect,
-not a strategy change.
+**Does it reproduce?** Re-run from a wiped working copy and state the drift. A Sharpe moving in the
+third decimal is the re-pull's rebasing, limitation 5 below, not a strategy change.
 
 <!-- example: begin -->
 
@@ -220,8 +214,8 @@ fresh download by this version's code ([`JOURNAL_1.md`](Experiments/Experiment_1
 
 ### The trial count
 
-**How many variants were ranked, in each experiment, plus any excluded run.** Published because a
-reader cannot discount a best-of-N result without knowing N.
+**How many variants were ranked in each experiment, plus any excluded run**, published as item 3 of
+the bar in `AGENTS.md` asks.
 
 <!-- example: begin -->
 
@@ -269,8 +263,8 @@ with its number.
 
 ## What is closed — do not re-propose without a new argument
 
-Each rejected idea, with the number that rejected it. A negative result costs real work and stops
-the next person repeating it; this list is where that value is stored.
+Each rejected idea, with the number that rejected it. This list is what stops the next person
+repeating it.
 
 <!-- example: begin -->
 
@@ -332,9 +326,9 @@ The single highest-value run outstanding, and what it would settle. Then the nex
 
 ## Excluded runs
 
-Variants removed from the tables above rather than reported with a caveat. **A metric computed over
-a truncated or rejected run does not belong in the same column as a complete one**, and excluding by
-name with a reason is how that stays honest.
+Variants removed from the tables above, each by name with its reason, rather than reported with a
+caveat. **A metric computed over a truncated or rejected run does not belong in the same column as
+a complete one.**
 
 | Variant | Why |
 | --- | --- |
@@ -357,7 +351,7 @@ Every engine run of the record was valued to the last day of its window.
 | # | Limitation | Effect |
 | --- | --- | --- |
 | 1 | **Nothing is out of sample** until a frozen book has days on paper after its freeze | Every number here is in-sample, and in-sample selection is what the deflation literature warns about |
-| 2 | **A control arm differing in exactly one thing** — the same rule with one ingredient removed, on the rule's own rebalance dates — is missing from any experiment that claims a margin | Which lever earned that margin is inferred from per-lever rows, not measured |
+| 2 | **A control arm differing in exactly one thing**, item 9 of the bar in `AGENTS.md`, is missing from any experiment that claims a margin | Which lever earned that margin is inferred from per-lever rows, not measured |
 | 3 | Classification buckets use today's labels, not point-in-time | Anything reclassified mid-window is misattributed before its move — the `current_*` prefix marks exactly this |
 | 4 | Delisting exits use one day of hindsight | A position is sold on the last day it still has a fill price, knowable only the day after |
 | 5 | Curator output is not reproducible across download dates | Dividend adjustment is computed from the present, so a re-pull rebases every adjusted column |

@@ -2,13 +2,14 @@
 
 Twelve things you can ask for. In Claude, type a command with a slash, `/study`; anywhere else, say
 it. Whatever writes a file shows its plan first and writes only on your go, except your first
-interview, written from your two answers, and a brief.
+interview, written from your two answers, and a brief. It is research, never investment advice:
+*What it is, and what it is not*, in the [README](README.md).
 
 ## Bring it into my work project
 
 Open your assistant in the project's folder and say your researcher's name. It brings your library,
-objects with the note behind each point, and says when it has nothing. The project's own rules
-govern; it writes there only after a plan and your go.
+pushes back with the note behind each point, and says when it has nothing. The project's own rules
+govern there.
 
 *Never:* anything carried back home unless you ask, and then as a source to `read`.
 
@@ -24,22 +25,23 @@ from outside marked *not checked*. It ends with what you decided, or what you wo
 
 Say `study an emergency fund of six months' expenses by June 2027`. After a few questions, it drafts
 `Studies/Emergency_Fund.md`: your goal and its date in your words, what your library says for and
-against your plan, and *Where it stands*, each next step with its command. Come back with
+against your plan, and *Where it stands*, with each next step and its command. Come back with
 `study Emergency fund`: it asks what changed and proposes the update.
 
-*Never:* a projection of its own. You judge the progress; the state moves only on your word.
+*Never:* a projection of its own. You judge the progress; the study's state moves only on your word.
 
 ## A brief every Friday
 
 Say `brief setup`. It asks which parts (Work, Markets, Portfolio), when, and which market measures.
-Pick *Other*: *Fridays at 07:30*. The Claude desktop app schedules it. Each Friday, while the app is
-open or at its next launch, a dated file appears in `Briefs/`: that day's meetings and what mail and
-chat ask of you, market levels, news on your holdings — the last day's, not the week's. Anywhere
-else nothing is scheduled: each Friday, say the line `brief setup` gives you; `brief` alone takes
-the defaults.
+For when, pick *Other* and write *Fridays at 07:30*; the Claude desktop app schedules it. Each
+Friday, while the app is open or at its next launch, a dated file appears in `Briefs/`: that day's
+meetings and what mail and chat ask of you, market levels, news on your holdings — the last day's,
+not the week's. Anywhere else nothing is scheduled: each Friday, say the line
+`brief setup` gives you; `brief` alone takes the defaults.
 
-*Never:* a figure of its own or a guess: every level is quoted from a dated source. Nothing is sent;
-briefs stay on your computer.
+*Never:* a figure of its own or a guess: every level is quoted from a dated source. Nothing is sent
+on your behalf, and briefs stay on your computer; what the brief reads passes through your
+assistant.
 
 ## Read a book a chapter at a time
 
@@ -61,8 +63,8 @@ changed?* and it compares your `philosophy` rounds, on work or investing.
 ## Remember this
 
 Say *remember this* or *learn this*, anywhere. It sorts what you said: a way of working becomes one
-line in `RESEARCHER.md`, in your words; a document goes into `Sources/`, then `read`; a new project,
-a row in its projects table — each on your go.
+line in `RESEARCHER.md`, in your words; a document goes into `Sources/` for `read` to file; a new
+project becomes a row in its projects table.
 
 *Never:* your view, on work or investing, written for you: it stays yours, through `philosophy` or
 by hand.
@@ -73,21 +75,22 @@ Put a tool's README, methodology pages and changelog in `Sources/Clippings/` (a 
 PDF first), then `read` them with a question that names the tool; `query` answers from those
 notes.
 
-*Never:* a link it could not open: a private repository is cited as one, *link not checked*. Nor a
-tool's code: a KaxaNuk library is learned from its documentation, its changelog and from running
-it, never from its installed files or its repository's code.
+*Never:* a link it could not open: a private repository is cited as *private repository; link not
+checked*. Nor a tool's code: a KaxaNuk library is learned from its documentation and changelog and
+by running it, never from its installed files or its repository's code.
 
 ## Teach me a topic
 
-Say `teach <topic>` — *teach compound interest*. It checks your library first; with nothing there,
-it helps you pick a work to read. Then a few questions, and one lesson a session, ending with a
-quiz that also revisits earlier ones. `Lessons/<topic>/` keeps each session and what stuck.
+Say `teach <topic>`, such as *teach compound interest*. It checks your library first; with nothing
+there, it helps you pick something to read. Then a few questions, and one lesson a session,
+ending with a quiz that also covers earlier lessons. `Lessons/<topic>/` keeps each session and what
+stuck.
 
 *Never:* a lesson from memory: every point cites a note you have read.
 
 ## Watch my holdings beside my own rules
 
-Pick *Portfolio* in `brief setup`. It creates two files for you to fill, never over yours:
+Pick *Portfolio* in `brief setup`. It creates two files for you to fill, and never overwrites yours:
 `Portfolio/holdings.csv`, one row a holding, and `Portfolio/RULES.md`, headings for your rules (how
 much in one place, when you sell, when you look again). Each brief then gives each holding's news,
 next earnings date and new filings, and quotes word for word each rule of yours the news bears on.
@@ -98,19 +101,19 @@ yours; it only points at them.
 
 ## Build and test an investment strategy
 
-Say `init-strategy <name>`: a folder from the KaxaNuk Strategy Template, which its `SETUP.md`
-finishes. `objective` writes your idea's claims before any paper; `read` adds a note for each
-claim; `blueprint` drafts the thesis, rules and predictions, each citing a note or a measurement,
-and a critic reads it cold; `challenge` checks the finished experiment against it. `init-example`
-shows a finished one.
+Say `init-strategy <name>` for a new folder from the KaxaNuk Strategy Template; its `SETUP.md`
+finishes the setup. `objective` writes your idea's claims before you read any paper; `read` adds a
+note for each claim; `blueprint` drafts the thesis, rules and predictions, each citing a note or a
+measurement, and a critic who was not in the conversation reviews it; `challenge` checks the
+finished experiment against it. `init-example` shows a finished one.
 
 *Never:* a return or drawdown of its own: those come from the KaxaNuk Investment Lab's engines. A
 strategy needs a key from a data provider, and the engines a licence from `lab@kaxanuk.mx`.
 
 ## Build a Python library of my own
 
-Say `init-python-library fcf-screen`: a folder laid out like the KaxaNuk Data Curator — code,
-tests, docs, a workflow publishing to PyPI — named for you. In a new conversation there, `next`
-leads from your first module to the first release.
+Say `init-python-library fcf-screen` for a new folder laid out like the KaxaNuk Data Curator: code,
+tests, docs and a workflow publishing to PyPI, with your library's name filled in. In a new
+conversation there, `next` leads from your first module to the first release.
 
 *Never:* anything put online without your go.

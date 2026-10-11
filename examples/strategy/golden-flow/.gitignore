@@ -122,6 +122,8 @@ desktop.ini
 # --- Credentials -----------------------------------------------------------------------------
 # The template is tracked; the filled-in file never is.
 Config/.env
+# A licence file the Lab's libraries read, if one is kept here.
+.kaxanuk_license
 
 # Python bytecode.
 __pycache__/

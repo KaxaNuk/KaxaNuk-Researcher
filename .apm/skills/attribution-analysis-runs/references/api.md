@@ -149,12 +149,13 @@ A full `main()` over a synthetic book, a real 788-ticker benchmark and twenty re
   was written**.
 
 Building the two objects by hand afterwards, as the only way to get numbers out, returned exactly
-the attributes above: `BrinstonFachlerArrowAttribution.df` with `date`, `portfolio_returns`,
+the attributes above. `BrinstonFachlerArrowAttribution.df` had `date`, `portfolio_returns`,
 `benchmark_returns`, `alpha`, `allocation`, `selection`, `interaction`, one row per aligned date,
-and the identity `alpha = allocation + selection + interaction` holding to floating-point precision;
-`.brinston_fach_indexes` and `.output_dict` populated after `attribution_plots()`;
-`KNFMArrowAttribution.portfolio_attribution_ts` with one column per factor file, `.simulated_rets`,
-`.pct_df_returns`, and `cummulative_pct_decomp()` returning a share per factor plus `idio_returns`.
+and the identity `alpha = allocation + selection + interaction` held to floating-point precision;
+`.brinston_fach_indexes` and `.output_dict` were populated after `attribution_plots()`.
+`KNFMArrowAttribution` gave `.portfolio_attribution_ts` with one column per factor file,
+`.simulated_rets` and `.pct_df_returns`, and `cummulative_pct_decomp()` returned a share per factor
+plus `idio_returns`.
 The decomposition **included `f_Market`** while excluding `f_idyo_returns`, `f_total_excess_returns`
 and `f_total_factor_returns`: the names are matched exactly and in lower case, so a file named
 `f_Market.csv` is treated as an ordinary factor.

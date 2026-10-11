@@ -10,7 +10,7 @@ description: >
   it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
   (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.5.3
+  version: 0.5.4
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -61,7 +61,7 @@ A long-lived branch other than `main`, such as a deployed `dev`, exists only whe
 skills save take no changelog entry or version bump. In a strategy, a document the researcher
 writes on the owner's go — a note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a
 line in `Bibliotheca/LOG.md` — is saved as its own version on that go, with no `CHANGELOG.md`
-entry, version bump or ruff gate: the next change-set's entry names it. The blueprint is saved
+entry, version bump or ruff gate. The next change-set's entry names it. The blueprint is saved
 alone, before any rule is coded.
 
 ## 3. The changelog
@@ -101,9 +101,9 @@ actually depend on:
 | **A research repository** (results and the pipeline) | published results are invalidated and must be re-derived | a new experiment, signal, stage or document; existing results stand | tooling, documentation, hygiene; no result changes |
 | **An APM package** (AI primitives) | a skill's contract or a file name changes so a consumer must re-read | a new skill, prompt or instruction | wording, references, fixes with the same contract |
 
-Three conventions follow: a result or contract that changes is MAJOR even if the diff was one line —
-severity is what a reader has to throw away, not the size of the diff; re-running a pipeline on
-refreshed data is not a bump; while on `0.x`, a breaking change bumps MINOR, and `1.0.0` is reserved
+Three conventions follow. A result or contract that changes is MAJOR even if the diff was one line —
+severity is what a reader has to throw away, not the size of the diff. Re-running a pipeline on
+refreshed data is not a bump. While on `0.x`, a breaking change bumps MINOR, and `1.0.0` is reserved
 for the first version somebody outside the team depends on — for a research repository, its first
 book on paper trading, its results reproduced from a clean clone.
 
@@ -111,7 +111,7 @@ book on paper trading, its results reproduced from a clean clone.
 
 1. Bump the version where the repository keeps it — `pyproject.toml`, `apm.yml`, or both, or the
    package's `__init__.py`, as a Python library laid out like the KaxaNuk Data Curator keeps it —
-   in the same commit as the changelog entry, and run `uv lock` where the repository commits a
+   in the same commit as the changelog entry. Run `uv lock` where the repository commits a
    `uv.lock`.
 2. Tag on `main` once the version's commit is there, and push the tag:
 

@@ -10,8 +10,8 @@ What varies from run to run: the language — in Spanish every line is in Spanis
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from
 them, and the document read. So do the words the skills leave to the run: the header `Name`, the
 `Where?` question's text, `read`'s `Go?` header and its *Write this plan?*, and the reply to *I
-have a document*. Branches off this run's path are as the frozen skills give them. Here the home
-was a test folder, and git knew the owner only by the handle `tester`.
+have a document*. Branches off this run's path are as the frozen skills give them. Here git knew
+the owner only by the handle `tester`.
 
 How it began: the package had just been installed for the test user, as `SETUP.md`'s step 2 does,
 and the run was `init-researcher` from its first step, the language; so `Where?`'s *Go* says
@@ -43,8 +43,7 @@ minutes*), *Another folder*, *Stop*. Answered: *Go*.
 
 > Your assistant may ask you to allow a few commands; allowing them is all you need to do.
 
-The home is copied and the interview's checks run, with no report and no stop. Then, in the same
-turn:
+The home is copied and the interview's checks run, with no report and no stop. Then:
 
 > Your researcher's home is ready at `<path>`. Now two quick questions about you, so it is yours.
 >
@@ -109,10 +108,10 @@ decide under risk?* (*The paper's own question*), *How do gains and losses shape
 *Background reading, no question in mind*, and *Other*. Answered: *How do people really decide
 under risk?*
 
-With its question just given, the paper — one line: read whole, for question 1 — was not asked about
-again: `read` asks nothing more of a source whose question was given earlier in the session. The
-whole extract was read, and the plan shown in chat: the copy into `Sources/Papers/`; question 1
-added to `RESEARCHER.md` in the owner's words; the note
+The paper — one line: read whole, for question 1 — was not asked about again: `read` asks nothing
+more of a source whose question was given earlier in the session. The whole extract was read, and
+the plan shown in chat: the copy into `Sources/Papers/`; question 1 added to `RESEARCHER.md` in the
+owner's words; the note
 `Knowledge/Finance/Kahneman_Tversky_1979_Prospect_Theory.md`, its headings the paper's eight claims
 with their pages; six concept pages — prospect theory, loss aversion, reference point, certainty
 effect, decision weights, isolation effect; the index and the log; tags by the loose policy; no DOI

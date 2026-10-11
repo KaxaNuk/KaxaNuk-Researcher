@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.12.5
+  version: 0.12.6
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -18,8 +18,7 @@ and asks to read it, file it, compile it or add it to the library; names a sourc
 or claim it should serve; or asks for a book's table of contents before deciding what to read. What
 they said carries the arguments: the strategy's path when the session is not open in it, a path
 under the sources or on their computer to read only that, the question or claim by number, and
-*outline only* to stop after the table of contents. It is not for answering questions from the
-library — that is `query` — nor for rebuilding the index, which is the `refresh-index` command.
+*outline only* to stop after the table of contents.
 
 Every path below is relative to the researcher's home — the folder that holds `RESEARCHER.md`. Find
 it first and read its `RESEARCHER.md` and `AGENTS.md`. In a strategy — the session is open in a
@@ -68,9 +67,8 @@ uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffo
 uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" strategy . --only Bibliotheca/LOG.md
 ```
 
-They come empty, so there is nothing to delete. Then stop; the owner runs it, and the read continues
-from there. Never scaffold `BIBLIOGRAPHY.md` by hand: it is the template's file, with its parts and
-its prose.
+Then stop; the owner runs it, and the read continues from there. Never scaffold `BIBLIOGRAPHY.md` by
+hand: it is the template's file, with its parts and its prose.
 
 A strategy whose `README.md` or `AGENTS.md` names another template is never offered `scaffold.py`
 to copy KaxaNuk files in: follow that template's own record of what was read, wherever its
@@ -114,18 +112,16 @@ what it prints:
 uv run "<this skill's directory>/scripts/extract.py" "<pdf>" --outline
 ```
 
-In a strategy, every run of the script carries `--out Bibliotheca/Extracts`: the default is
-`Extracts/` under the folder the command runs in, which in a strategy is the wrong one.
+In a strategy, every run of the script carries `--out Bibliotheca/Extracts`.
 
 Without `uv`: `pip install "pypdf[crypto]"`, then `python` in place of `uv run`; the extra reads
-the AES-encrypted PDFs publishers ship. The script's own `--help` has every option. Extracts land
-in `Extracts/<slug>/` at home and `Bibliotheca/Extracts/<slug>/` in a strategy — `--out` names the
-root, the slug is the PDF's name without `.pdf`, its ASCII words joined by underscores, and the
-script's *extracts in* line names the folder — one markdown file per chapter, a marker before every
-page, with `OUTLINE.md` beside them listing every chapter the run knows of, written or not. They
-are a cache: regenerable, kept on this computer only, never cited. If the strategy's `.gitignore`
-does not keep out `Bibliotheca/Extracts/`, say so in the plan, which adds that one line to it on
-the same go.
+the AES-encrypted PDFs publishers ship. Extracts land in `Extracts/<slug>/` at home and
+`Bibliotheca/Extracts/<slug>/` in a strategy — `--out` names the root, the slug is the PDF's name
+without `.pdf`, its ASCII words joined by underscores, and the script's *extracts in* line names
+the folder — one markdown file per chapter, a marker before every page, with `OUTLINE.md` beside
+them listing every chapter the run knows of, written or not. They are a cache: regenerable, kept on
+this computer only, never cited. If the strategy's `.gitignore` does not keep out
+`Bibliotheca/Extracts/`, say so in the plan, which adds that one line to it on the same go.
 
 - **A PDF with no outline.** The script says so and gives the page count. Read the pages that carry
   the table of contents — the first ten to fifteen, through the assistant's PDF reader — and
@@ -162,28 +158,27 @@ question the list does not have yet, which the plan offers to add to `RESEARCHER
 owner's words; *the other side of question N*; and *background reading, no question in mind*,
 recorded as such.
 
-**At home with no numbered question yet — a home fresh from the interview, which asks none — ask
-which question this source serves, first,** in plain words: *what do you want this reading to help
-you answer?* Ask it through the question tool, header `Reading for` (`Leer para`), single-select:
-three proposals, then *Background reading, no question in mind*, with *Other* for their own words.
-One proposal comes from the source itself, its title and table of contents; the others from the
-*Here for* line and *Works for* under *Who* in `RESEARCHER.md`, or *Works for* alone where there is
-no *Here for*. With *Here for* *Learn the basics, step by step*, or the voice *Explain as you go*,
-every proposal is in everyday words — *can anyone do better than the market, year after year?*, *why
-do people make the same money mistakes?* — and never *edge*, *factor* or *alpha*; with *Build and
-test a strategy*, one may come from the reading map's *Questions to read for, from the evidence*;
-with *Write down how I invest, and see it evolve*, one asks about the owner's own way of investing;
-with *Organise what I read, and help with my projects* — or the older *Organise what I read* — they
-follow the source's own subject and the projects *Works for* names. A proposal drawn from an
-investing pick is offered only when the source is about money or markets; for any other source, the
-proposals follow the source and *Works for*, in everyday words when *Learn the basics* is picked or
-the voice is *Explain as you go*. The question the owner picks or types is theirs: the plan offers
-to add it as question 1 under *What you are reading for*, in their words — with the copy of *step
-2*, the only write this skill makes outside the library and the extracts, at home only, said in the
-plan. Then the table of contents is shown against it, as above. In a strategy the questions are the
-claims in `OBJECTIVE.md`, by number — a strategy with none stopped at A, the objective. A question
-the claims do not cover is a claim to add with `objective` before the reading, and *background
-reading* is a home answer: in a strategy every note serves a claim. Nothing is written at home.
+**At home with no numbered question yet, ask which question this source serves, first,** in plain
+words: *what do you want this reading to help you answer?* Ask it through the question tool, header
+`Reading for` (`Leer para`), single-select: three proposals, then *Background reading, no question
+in mind*, with *Other* for their own words. One proposal comes from the source itself, its title and
+table of contents; the others from the *Here for* line and *Works for* under *Who* in
+`RESEARCHER.md`, or *Works for* alone where there is no *Here for*. With *Here for* *Learn the
+basics, step by step*, or the voice *Explain as you go*, every proposal is in everyday words — *can
+anyone do better than the market, year after year?*, *why do people make the same money mistakes?* —
+and never *edge*, *factor* or *alpha*; with *Build and test a strategy*, one may come from the
+reading map's *Questions to read for, from the evidence*; with *Write down how I invest, and see it
+evolve*, one asks about the owner's own way of investing; with *Organise what I read, and help with
+my projects* — or the older *Organise what I read* — they follow the source's own subject and the
+projects *Works for* names. A proposal drawn from an investing pick is offered only when the source
+is about money or markets; for any other source, the proposals follow the source and *Works for*, in
+everyday words when *Learn the basics* is picked or the voice is *Explain as you go*. The question
+the owner picks or types is theirs: the plan offers to add it as question 1 under *What you are
+reading for*, in their words — with the copy of *step 2*, the only write this skill makes outside
+the library and the extracts, at home only, said in the plan. Then the table of contents is shown
+against it, as above. In a strategy, a question the claims do not cover is a claim to add with
+`objective` before the reading, and *background reading* is a home answer: in a strategy every note
+serves a claim.
 
 Never write a question or a reason the owner did not pick or confirm. Proposing candidates for
 them to choose is how the reading keeps moving; writing one they did not choose is not. If the
@@ -205,8 +200,8 @@ holds, and why it was passed over. For each note, decide:
   chapter, the book's folder.
 - **What the citation is.** `source` and `citation` come from the source itself — its title page,
   its header, its DOI — or from its row in `BIBLIOGRAPHY.md`; never from memory, and never from
-  `references/reading-map.md`, whose years and titles are the deck's. A URL nobody has checked is
-  not written.
+  `references/reading-map.md`, whose years and titles are there to find a work, not to cite it. A
+  URL nobody has checked is not written.
 - **Whether the home library has read it already.** In a strategy, when `Knowledge/` at home holds
   a note on the source, the source's part travels — the claim headings and their bullets, in the
   source's terms — and only what is the strategy's is written anew: `## Why it is here` against the
@@ -288,12 +283,11 @@ At home, where *Domains* holds Finance or *Here for* holds *Learn the basics*, *
 strategy* or *Write down how I invest*, one more line: **the investing questions of the owner's
 philosophy the new note bears on.** Match the note's work, by its authors' surnames as the reading
 map's *Match before proposing* says, against the *Bears on* table of `references/questions.md` in
-the `philosophy` skill's folder — another skill's reference, read on demand for that table only —
-and name each question it lists by its ID and short name. With a round on investing in
-`Philosophy/Evolution/` — a level, not `Field`, on its first line — the line gives the last such
-round's date and offers the next round with `philosophy`; with none, it offers round 1. A work the
-table does not list, or a table that cannot be read because the skill is not installed, gets no
-line.
+the `philosophy` skill's folder, and name each question it lists by its ID and short name. With a
+round on investing in `Philosophy/Evolution/` — a level, not `Field`, on its first line — the line
+gives the last such round's date and offers the next round with `philosophy`; with none, it offers
+round 1. A work the table does not list, or a table that cannot be read because the skill is not
+installed, gets no line.
 
 **Then save a version**, on the plan's go, with no second question, in the folder whose library
 this is — every git command, the `backup` skill's send included, as `git -C "<that folder>"` when
@@ -346,10 +340,9 @@ the next change-set's entry names it.
 - `references/note.md`, in this skill's folder: the shape of every note, book index, index line,
   concept page and synthesis page, and how a home note travels into a strategy.
 - `references/reading-map.md`, in this skill's folder: the evolution of investment research and
-  where alpha comes from, distilled from the KaxaNuk bootcamp's *Intro to Investment Research* —
-  the ten papers of the two timelines, where each belief sits and its other side, the arc's 21
-  questions and their works, and hints. The one list a work to read may be proposed from besides
-  the owner's library; a work in it is a lead, never a citation.
+  where alpha comes from — the ten papers of the two timelines, where each belief sits and its
+  other side, the arc's 21 questions and their works, and hints. The one list a work to read may be
+  proposed from besides the owner's library; a work in it is a lead, never a citation.
 - `references/questions.md`, in the **`philosophy` skill's** folder, not this one: its *Bears on*
   table, which works touch which of the owner's philosophy questions, read on demand for the one
   line in *step 7*. It is that skill's file; this skill reads it and never copies it.

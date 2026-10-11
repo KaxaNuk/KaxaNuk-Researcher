@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.3
+  version: 0.8.4
 ---
 
 # Init researcher — a home for the library, once
@@ -43,9 +43,7 @@ that tool the full path, the home folder spelled out — `C:\Users\<user>\.apm\.
 - The owner runs `init-researcher` by name — *init-researcher Arya*, *set up my researcher*, *make a
   test researcher* — or `SETUP.md` reaches its step 3, in the conversation that installed the
   package.
-- **A home already made** is looked for first, as *Before step 1* says, and offered before a second
-  is made. A home made before the researcher was a package is brought forward by `update`, not
-  replaced.
+- A home made before the researcher was a package is brought forward by `update`, not replaced.
 
 ## Steps
 
@@ -68,8 +66,7 @@ gives, `.apm/skills/<slug>/SKILL.md` in that copy, asked of the owner only when 
     interview included, under a name other than <Existing>;
   - *Stop*, and nothing is installed or made.
 - **When the owner asked for another**, ask nothing: run every step below as written, under a name
-  other than <Existing>, and say once, in `Where?`'s *Go* description, that it will sit beside
-  <Existing>.
+  other than <Existing>.
 
 With several homes, a *Use* option for each, the one whose skill is loaded in this session first;
 past four options, *Stop* is left out and the other homes are named in the line before the question.
@@ -86,7 +83,7 @@ past four options, *Stop* is left out and the other homes are named in the line 
    *Other* for theirs. A name given with the command is used without asking. Never pick one for
    them. With a home already made, no name proposed is <Existing>, and a name that matches
    <Existing>, or a folder in `$HOME/.apm/apm_modules/_local/`, letter for letter but for case —
-   `luna` beside `Luna` — is asked for again, in one line: its home would be copied over that
+   `arya` beside `Arya` — is asked for again, in one line: its home would be copied over that
    folder. Accents count, so `Sofia` beside `Sofía` is a new name.
 
 3. **The place and the go, in one question.** Before asking, look at the path proposed: when it
@@ -106,16 +103,15 @@ past four options, *Stop* is left out and the other homes are named in the line 
    `C:\Research\<Name>` on Windows — `D:\Research\<Name>` when a `D:` drive exists —
    `/Users/<you>/Research/<Name>` on macOS and `/home/<you>/Research/<Name>` on Linux, handed to
    the script absolute, the home folder spelled out, never `~`. Never a deep path such as
-   `C:\Users\<you>\OneDrive\...`: on Windows a copied path may pass the path limit. The folder
-   always takes the researcher's name. *About three minutes* is said here and nowhere else on the
-   way in. Run on *Go* only.
+   `C:\Users\<you>\OneDrive\...`: on Windows a copied path may pass the path limit.
+   *About three minutes* is said here and nowhere else on the way in. Run on *Go* only.
 
 4. **On *Go*, one line**, a progress note sent with the first command step 5 or 6 runs, never alone
    — on Codex a message with no command ends the turn — then the next step at once, in the same
    turn: *Your assistant may ask you to allow a few commands; allowing them is all you need to do.*
 
-5. **Bring the package up to date**, on the same go, before anything is copied — the owner types
-   nothing. **Skip this step when the package was installed in this same conversation**: it is
+5. **Bring the package up to date**, on the same go, before anything is copied.
+   **Skip this step when the package was installed in this same conversation**: it is
    already the newest, and `SETUP.md`'s step 2 listed the assistant. Otherwise, first put the
    assistant in use — `claude`, `codex`, `copilot`, `cursor`, `gemini`, `opencode` or `windsurf` —
    on APM's list in `$HOME/.apm/apm.yml`, so the update keeps its files. The script is in this
@@ -178,7 +174,7 @@ past four options, *Stop* is left out and the other homes are named in the line 
    `git config user.name "<name>"` and `git config user.email "<email>"`, then run the printed
    commands there. Then step 7 at once, in the same turn.
 
-7. **Run the interview now**, in this same turn, in the language chosen. Read the whole `interview`
+7. **Run the interview now**, in this same turn. Read the whole `interview`
    skill, not only its steps — as a skill when this session lists it, or else its file: `SKILL.md`
    in the `interview` folder beside this skill's own folder, or
    `<the package>/.apm/skills/interview/SKILL.md`; a file not found is looked for as *The package*

@@ -14,7 +14,7 @@ description: >
   `portfolio-construction-runs`), or the research process around the stage (use
   `experiment-lifecycle`).
 metadata:
-  version: 0.3.2
+  version: 0.3.3
 ---
 
 # The Universe — the eligible list, rebuilt for each date rather than for today
@@ -43,7 +43,7 @@ Universe/Investable_Universe.csv   the seed, committed  ->  edit this to change 
 
 **The template ships the seed, header-only, and the notebook as its markdown cells**, each section
 a description of what its code must do. In a strategy made from a template before 0.10.0
-`Universe/universe.ipynb` is missing: it comes back from the template through `init-strategy`'s
+`Universe/universe.ipynb` is missing. It comes back from the template through `init-strategy`'s
 script, run from the strategy's root, `scaffold.py strategy . --only Universe/universe.ipynb` — by
 its own path, because `--only Universe` stops over the seed, which is already the strategy's own.
 Never write the notebook from memory.
@@ -55,9 +55,9 @@ strategy is about. It is **committed** — the one data file that is — because
 grows from it, and because a universe nobody can reconstruct makes every number downstream
 unverifiable.
 
-- **One column is required: `main_identifier`**, the name the Data Curator asks the provider for:
-  chosen per experiment, the identifier that experiment's provider prices under, and mapped from
-  an index's own ticker by the strategy's seed builder, or by the Analytics Factory when it
+- **One column is required: `main_identifier`**, the name the Data Curator asks the provider for.
+  It is chosen per experiment, the identifier that experiment's provider prices under, and mapped
+  from an index's own ticker by the strategy's seed builder, or by the Analytics Factory when it
   supplies the map. Every other column is the strategy's own. Replace the rows with equities,
   ETFs, FX crosses, crypto pairs or futures and every stage below still runs: nothing downstream
   names an asset class.
@@ -73,7 +73,7 @@ unverifiable.
   discovers that markets go up. If a seed shows 0% delisted, it is not a universe, it is a survivor
   list.
 - **It is also the membership list.** The Curator's folder holds the cash proxy and the benchmarks
-  as well, because the engine prices everything from one directory; the refinery and the panel
+  as well, because the engine prices everything from one directory. The refinery and the panel
   loader both take membership from the seed, so those extras can never leak into a cross-section
   and there is no second list to forget to update.
 
@@ -182,11 +182,12 @@ one moves the honest start of a backtest by five years.
 
 **The date that matters is the first day on which the universe can be both priced and
 signalled** — every security in it, or the share of it the strategy declares, with the shortfall
-published beside every result — and, for a strategy that selects a fixed number of names, the first
-day the eligible pool is at least as deep as the book. Before it the strategy is choosing from a
-smaller menu than it appears to be, and a backtest that starts earlier is quietly comparing books
-drawn from different universes. **A shortfall is a member the provider does not carry, never a
-listing whose key did not join**: that one is a map still to write in the seed, section 1.
+published beside every result. For a strategy that selects a fixed number of names, it is the first
+day on which the eligible pool is also at least as deep as the book. Before it the strategy is
+choosing from a smaller menu than it appears to be, and a backtest that starts earlier is quietly
+comparing books drawn from different universes. **A shortfall is a member the provider does not
+carry, never a listing whose key did not join**: that one is a map still to write in the seed,
+section 1.
 
 Nothing else in the pipeline says so, which is why it is answered here, and why it is declared in
 `BLUEPRINT_N.md` before the rule rather than discovered afterwards. The worked example declares 90%

@@ -142,7 +142,7 @@ return.
 | Part | Its job | The failure it prevents |
 | --- | --- | --- |
 | **The main idea** | one sentence somebody outside the team could repeat | a strategy nobody can explain is a strategy nobody can debug |
-| **The objective** | the *capability* a finished version gives you, not a number | "a Sharpe of 1.2" is not something you can tell whether you have achieved |
+| **The objective** | the *capability* a finished version gives you, not a number | you cannot tell whether you have achieved "a Sharpe of 1.2" |
 | **The claims** | the sentence broken into parts testable separately, each with a status | a strategy that half works reads as working, unless the halves are listed |
 | **What is not claimed** | what a reader might assume and would be wrong to | the reader assumes it anyway if you do not say |
 | **The named columns** | which `c_*` or `r_*` column carries each half | attribution cannot say which half earned the return unless the halves have names |

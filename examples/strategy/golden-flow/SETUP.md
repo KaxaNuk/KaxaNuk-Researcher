@@ -1,8 +1,8 @@
 # Setup
 
-Everything needed to go from nothing to a repository you can work in. It is written so an agent —
-Claude, Codex, Cursor — can follow it end to end, from `init-example` to an environment the worked
-strategy runs in, and so a person can read it in a few minutes.
+Everything needed to go from nothing to a repository you can work in, from `init-example` to an
+environment the worked strategy runs in. An agent — Claude, Codex, Cursor — can follow it end to
+end, and a person can read it in a few minutes.
 
 <!-- example: begin -->
 
@@ -53,16 +53,16 @@ strategy runs in, and so a person can read it in a few minutes.
 ## What you need first
 
 The two tools below, and an assistant — Claude or Codex — with the KaxaNuk Researcher installed
-once for your user, as step 4 says. Python is **not** among them: `uv` fetches the right version
-itself in step 2.
+once for your user, as step 4 says. You do **not** need Python: `uv` fetches the right version in
+step 2.
 
 | Tool | Windows | macOS and Linux |
 | --- | --- | --- |
 | [git](https://git-scm.com) | `winget install --id Git.Git -e --accept-source-agreements --accept-package-agreements` | `xcode-select --install` on macOS; your package manager on Linux |
 | [uv](https://docs.astral.sh/uv/) | `powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 \| iex"` | `curl -LsSf https://astral.sh/uv/install.sh \| sh` |
 
-Open a **new** terminal after installing either, so it is on the path. `git --version` and
-`uv --version` both answering is the whole check.
+Open a **new** terminal after installing either, so it is on the path. If `git --version` and
+`uv --version` both answer, you are ready.
 
 > **For the agent, before anything else.** Look at the folder you are in, and say what you found:
 >
@@ -76,37 +76,36 @@ Open a **new** terminal after installing either, so it is on the path. `git --ve
 
 ## The rule: one folder is the whole project
 
-One folder is the repository: open that folder, and run every command in it — nothing installed
-a level above it, nothing nested a level below. What setup writes there, `.venv/` and
+One folder is the repository: open that folder and run every command in it, with nothing installed
+a level above it and nothing nested a level below. What setup writes there, `.venv/` and
 `Config/.env`, is ignored, as is anything an assistant or APM writes per machine (`.claude/`,
-`.agents/`, `.codex/`, `apm_modules/`, `apm.lock.yaml`); `uv.lock`, which `uv sync` writes, is
+`.agents/`, `.codex/`, `apm_modules/`, `apm.lock.yaml`). `uv.lock`, which `uv sync` writes, is
 committed.
 
 ---
 
 ## Step 1 — Get the repository
 
-**`init-example` makes it** — a skill of the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher), installed once for your user as
-step 4 says. It copies the worked example that ships in the researcher package into a new folder,
-`golden-flow` unless you choose another place — by a script, byte for byte — makes that folder a git
-repository, and commits it once. That folder is the root. The example can be read [on
-GitHub](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/strategy/golden-flow)
+**`init-example` makes it.** It is a skill of the
+[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher), installed for your user as
+step 4 says. A script copies the worked example inside the researcher package, byte for byte, into
+a new folder, `golden-flow` unless you choose another place. It then makes that folder a git
+repository and commits it once. That folder is the root. You can read the example
+[on GitHub](https://github.com/KaxaNuk/KaxaNuk-Researcher/tree/main/examples/strategy/golden-flow)
 without making anything.
 
 **On Windows, keep the path short.** `D:\Research\...` is fine; a deep synced path such as
-`C:\Users\<you>\OneDrive\Documents\Projects\...` is not. Tools that write deep inside the
-folder, `uv sync` building `.venv/` among them, can pass Windows' 260-character path limit there
-and fail with messages that do not say so, such as `WinError 3: The system cannot find the path
-specified`.
+`C:\Users\<you>\OneDrive\Documents\Projects\...` is not. Tools that write deep inside the folder,
+such as `uv sync` building `.venv/`, can pass Windows' 260-character path limit and fail with a
+message that does not say so, such as `WinError 3: The system cannot find the path specified`.
 
 A strategy of your own is not made from here: `init-strategy <strategy-name>` makes it from the
-template, which already holds every file this example works through, as a description of what
-belongs in it. Never build on it.
+template, which holds every file this example works through, describing what belongs in it. Never
+build on the example.
 
-> **For the agent.** If the first commit refuses for want of an identity, ask the user, in plain
-> words, for *a name and an e-mail to sign the versions saved here* — never invent them — and set
-> them for this folder only: `git config user.name "<name>"` then `git config user.email "<email>"`.
+> **For the agent.** If the first commit fails for want of a git identity, ask the user, in plain
+> words, for *a name and an e-mail to sign the versions saved here*; never invent them. Set them for
+> this folder only: `git config user.name "<name>"` then `git config user.email "<email>"`.
 > Then commit again: `git commit -m "Start from the KaxaNuk example strategy, golden-flow"`.
 
 ---
@@ -119,23 +118,23 @@ From the root:
 uv sync --group notebook --inexact
 ```
 
-That creates `.venv/` and installs the pipeline, with the `notebook` group: JupyterLab and its
-`nbconvert`, which runs a notebook, or strips its outputs, from the command line. **If neither
-Python 3.12 nor 3.13 is on the machine, `uv` downloads 3.13** — there is nothing to install by hand.
+That creates `.venv/` and installs the pipeline with the `notebook` group: JupyterLab, and
+`nbconvert` to run a notebook or strip its outputs from the command line. **If neither Python 3.12
+nor 3.13 is on the machine, `uv` downloads 3.13**; there is nothing to install by hand.
 
-**Why 3.13 and not the newest.** The Backtest Engine is documented for Python 3.12 or 3.13, and
-every performance figure in this process comes from that engine, so the ceiling is its, not ours.
-The Data Curator allows 3.12 to 3.14, which makes 3.13 the version that satisfies both.
+**Why 3.13 and not the newest.** Every performance figure comes from the Backtest Engine, which is
+documented for Python 3.12 or 3.13. The Data Curator allows 3.12 to 3.14, so 3.13 satisfies both.
 
 **Once the Backtest Engine, Attribution Analysis or Portfolio Construction is installed by hand,
-never run a bare `uv sync` here again:** it is exact, and removes every package `uv.lock` does not
-name, which those three deliberately are not. Use the command above instead, `--inexact` included,
-and `uv run` for everything else; both keep them. The `backtest-engine-runs`,
-`attribution-analysis-runs` and `portfolio-construction-runs` skills have the installs.
+never run a bare `uv sync` here again.** It is exact: it removes every package `uv.lock` does not
+name, and those three are deliberately not named. Use the command above, `--inexact` included, and
+`uv run` for everything else; both keep them. The `backtest-engine-runs`,
+`attribution-analysis-runs` and `portfolio-construction-runs` skills say how to install each.
 
-**A newer Lab library** comes between experiments, never during one; your researcher says when one
-is out: `uv lock --upgrade-package kaxanuk-data-curator`, then the command above — a licensed
-library as its skill says. A book on paper stops on any Data Curator but the one it was frozen with.
+**Upgrade a Lab library between experiments**, never during one; your researcher says when a new
+one is out. For the Data Curator, run `uv lock --upgrade-package kaxanuk-data-curator`, then the
+command above; for a licensed library, follow its skill. A book on paper stops on any Data Curator
+but the one it was frozen with.
 
 ---
 
@@ -150,20 +149,21 @@ that start with a dot), paste each key after its `=`, and save.
 
 Fill in the key for your data provider; the template has a line for FMP, Sharadar and LSEG.
 `KNBE_API_KEY_KAXANUK` and `KNAA_API_KEY_KAXANUK` are the Backtest Engine and Attribution Analysis
-licences: the process runs without them up to portfolio construction, and the backtest and
+licences. Without them the process runs up to portfolio construction, and the backtest and
 attribution report what is missing and skip. `KNPC_API_KEY_KAXANUK` is the Portfolio Construction
-licence, since its 2.0.0 — the library reads it from the environment or a `.kaxanuk_license` file,
-not from this file, as `portfolio-construction-runs` says: an equal-weight book needs neither the
-key nor the library. The three come together, with their licences, in the KaxaNuk Investment
-Lab, which KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is for,
-with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
+licence; the library reads it from the environment or a `.kaxanuk_license` file, not from this
+file, as `portfolio-construction-runs` says. An equal-weight book needs neither the key nor the
+library. The three come together, with their licences, in the KaxaNuk Investment Lab, which
+KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is for, with
+*via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
 
-`KN_ANALYTICS_PATH` is not a key: it is the folder in which KaxaNuk's Analytics Factory ships its
-benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark and
-attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them). It holds
-`Benchmark Portfolios/` and `Factor Models/`, read in place in the Factory's own names and headers;
-the older `Benchmarks/` and `Factors/` are still read where the new ones are absent. Leave it empty
-and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and `Data/Curator/Factors/`.
+`KN_ANALYTICS_PATH` is not a key. It is the folder where KaxaNuk's Analytics Factory ships its
+benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark
+and attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them). It
+holds `Benchmark Portfolios/` and `Factor Models/`, read in place under the Factory's own names and
+headers; older `Benchmarks/` and `Factors/` folders are read where the new ones are absent. Or
+leave it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and
+`Data/Curator/Factors/`.
 
 The four `PAPER_TRADING_*` lines configure step 7. Once a book is on paper,
 `Paper_Trading/BITACORA.md` says how its daily run is scheduled.
@@ -191,40 +191,40 @@ record. It does not run from this copy, for the reasons
 
 ## Step 4 — The agent skills are installed once, for your user
 
-**Nothing to install here.** KaxaNuk's agent skills — how each Lab library is called, how an
-experiment is structured, how attribution is read, the house rules — and the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)'s own
-are installed once for your user, not per repository, by the same command that gave you step 1:
+**Nothing to install here.** KaxaNuk's agent skills (how each Lab library is called, how an
+experiment is structured, how attribution is read, the house rules) and the
+[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)'s own are installed once for
+your user, not per repository, by the same command that gave you step 1:
 
 ```bash
 uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
 ```
 
-`--target codex`, `cursor` or another assistant in place of `claude`; the researcher package's
-[`SETUP.md`](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/SETUP.md) says what each
-receives.
+For another assistant, put `codex`, `cursor` or its name in place of `claude`; the researcher
+package's [`SETUP.md`](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/SETUP.md) says what
+each receives.
 
-They are then available in every folder, this one included, and
-`uvx --from apm-cli==0.33.0 apm update -g` keeps every strategy current at once. **A strategy
-installs nothing.** Your researcher's home, made once with `init-researcher`, can be invited into
-this folder for its library — `claude --add-dir <the researcher's folder>`, `/add-dir` once
-inside, or the desktop app's add-folder button; for its identity to load with it, follow *In a
-strategy or another project* in the researcher's own README.
+The skills then work in every folder, this one included, and
+`uvx --from apm-cli==0.33.0 apm update -g` keeps every strategy current at once. Nothing in the
+pipeline imports a skill: the repository, the notebooks and the results are the same with or
+without them.
 
-**Nothing in the pipeline imports a skill either.** The repository runs, the notebooks run and the
-results are the same with or without them.
+Your researcher's home, made once with `init-researcher`, can be invited into this folder for its
+library: `claude --add-dir <the researcher's folder>`, `/add-dir` once inside, or the desktop app's
+add-folder button. For its identity to load with it, follow *In a strategy or another project* in
+the researcher's own README.
 
 > **For the agent.** Do not install skills into this repository. If they are missing, give the user
-> the command above, with the assistant you are as the target — it installs for their user, not
-> here — and say that they appear in a **new** session.
+> the command above with the assistant you are as the target; it installs for their user, not here.
+> Say that they appear in a **new** conversation.
 
 ---
 
 ## Step 5 — Make the README the strategy's
 
 The `README.md` that `init-strategy` copied describes the KaxaNuk Strategy Template, not your
-strategy. A strategy repository's README describes **the strategy**: what it is, what it claims,
-where it stands. Replace the whole file with this, filled in, and leave the process to the link:
+strategy. A strategy's README describes **the strategy**: what it is, what it claims, where it
+stands. Replace the whole file with this, filled in, and leave the process to the link:
 
 ```markdown
 # <strategy-name>
@@ -246,13 +246,16 @@ read.
 | [`RESULTS.md`](RESULTS.md) | every number this repository has measured, and what it cost |
 | [`AGENTS.md`](AGENTS.md) | how work is done here, and the bar a result has to clear |
 | [`SETUP.md`](SETUP.md) | how this repository is set up on a new machine |
+
+Research, never investment advice: *What it is, and what it is not*, in the
+[KaxaNuk Researcher's README](https://github.com/KaxaNuk/KaxaNuk-Researcher#readme).
 ```
 
 Put the same status line in place of the banner at the top of `AGENTS.md`. In `pyproject.toml`,
 rename `name` to the strategy's and set `version` to `0.1.0`. `LICENSE` names KaxaNuk as the
-holder — put yourself there, or choose another licence. In `CHANGELOG.md`, keep everything above
-the first `---` line and replace the template's entries below it with the strategy's first,
-naming the template version `pyproject.toml` declared before you reset it:
+holder: put yourself there, or choose another licence. In `CHANGELOG.md`, keep everything above the
+first `---` line and replace the template's entries below it with the strategy's first, naming the
+template version `pyproject.toml` declared before you reset it:
 
 ```markdown
 ## 0.1.0 (YYYY-MM-DD)
@@ -260,19 +263,18 @@ naming the template version `pyproject.toml` declared before you reset it:
 **MINOR** — started from the KaxaNuk Strategy Template <template-version>. Nothing measured yet.
 ```
 
-Then run `uv lock`, so `uv.lock` records the new name and version, and commit them together with
-`uv.lock`, the other file the setup itself produced:
+Then run `uv lock`, so `uv.lock` records the new name and version, and commit it with the rest:
 
 ```bash
 git add README.md AGENTS.md pyproject.toml LICENSE CHANGELOG.md uv.lock
 git commit -m "README: <strategy-name>"
 ```
 
-> **For the agent.** The name is the one you asked for at the start; the sentence too, if the user
-> gave one — **never invent a thesis**, use the placeholder. The holder in `LICENSE` is the user's
-> name: ask if you do not have it, never invent it. Everything else in the block is fixed. Do not
-> keep the template's README under another name: the process lives upstream, and a copy here is a
-> copy that drifts.
+> **For the agent.** Use the name you asked for at the start, and the user's sentence on the idea
+> if they gave one; **never invent a thesis**, use the placeholder. The holder in `LICENSE` is the
+> user's name: ask if you do not have it, never invent it. Everything else in the block is fixed.
+> Do not keep the template's README under another name: the process lives upstream, and a copy
+> here drifts.
 
 ---
 
@@ -284,12 +286,9 @@ From the root:
 git status
 ```
 
-**It should be clean.** Step 5 committed what the setup itself changed: the README, the `AGENTS.md`
-banner, `pyproject.toml`'s name and version, the licence holder, the first `CHANGELOG.md` entry,
-and `uv.lock` — which pins the versions this strategy's results will come from, and is why the
-template ships without one and your repository keeps one.
-Everything else the commands produced — `.venv/`, `Config/.env`, and whatever your assistant
-writes per machine, such as `.claude/` — is ignored.
+**It should be clean.** Step 5 committed everything setup changed, `uv.lock` included: it pins the
+versions this strategy's results will come from, which is why the template ships without one and
+your repository keeps one. Everything else setup produced is ignored, as *The rule* above says.
 **Anything showing up means something was written in the wrong place.**
 
 <!-- example: begin -->
@@ -299,8 +298,8 @@ so its library versions resolve when `uv sync` runs.
 
 <!-- example: end -->
 
-Then open **this folder** — not a parent of it — in your editor, PyCharm or VS Code, and in your
-assistant, Claude or Codex.
+Then open **this folder**, not a parent of it, in your editor (PyCharm or VS Code) and in your
+assistant (Claude or Codex).
 
 **In a new strategy nothing runs yet, on purpose:** every `.py` file and notebook says what belongs
 in it. Your assistant writes each one with you, in the order of parts A to H of the template's
@@ -312,7 +311,7 @@ seed exist.
 > and the folder to open, that the README is now the strategy's, which `.env` keys are still empty
 > by name, that the skills are installed once for the user and nothing is installed here, and that
 > the next step is `objective`, which drafts `OBJECTIVE.md` with them; `next` says what comes after.
-> Then stop. Starting research work is a different request.
+> Then stop: starting research work is a different request.
 
 <!-- example: begin -->
 
@@ -328,9 +327,8 @@ strategy of your own is `init-strategy <name>`.
 
 The first thing to write is `OBJECTIVE.md`: the idea and its claims, before any paper is read. The
 order after it is *Starting your own strategy* in the
-[template's README](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md),
-which also says where each kind of logic goes; [`AGENTS.md`](AGENTS.md) says how work is done
-here.
+[template's README](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md);
+[`AGENTS.md`](AGENTS.md) says how work is done here.
 
 <!-- example: begin -->
 

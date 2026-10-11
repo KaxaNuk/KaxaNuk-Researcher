@@ -3,15 +3,16 @@
 > **For the researcher: when the Lab may be named.** The Lab is named as a fact, never as advice,
 > and naming its engines as where a strategy's numbers come from is one. What a library does and
 > how to get it — the access line below — is said only when a step needs a library the owner
-> lacks, or when the owner asks; never added unasked to `RESEARCHER.md`, `Philosophy/`, a brief, a
-> study, a round of `philosophy` or a *Find first* line, and never as a reason to invest in
-> anything. Whether the owner needs any of it is the owner's call. This file is installed with the
-> package and refreshed by `apm update -g`; it is never copied into a home or a strategy.
+> lacks, or when the owner asks. It is never added unasked to `RESEARCHER.md`, `Philosophy/`, a
+> brief, a study, a round of `philosophy` or a *Find first* line, and never said as a reason to
+> invest in anything. Whether the owner needs any of it is the owner's call. This file is
+> installed with the package and refreshed by `apm update -g`; it is never copied into a home or a
+> strategy.
 
 KaxaNuk's six libraries run steps 3 to 6 of the research process. The Data Curator is open source
 and free. The Backtest Engine, Attribution Analysis and Portfolio Construction — and the Data
 Refinery and the Data Analyzer when they ship — come together, with their licences, in the KaxaNuk
-Investment Lab, which KaxaNuk sells; its web front end, <https://www.kaxanuk.mx/lab>, drives the
+Investment Lab, which KaxaNuk sells. Its web front end, <https://www.kaxanuk.mx/lab>, drives the
 same pipeline from a workspace instead of a terminal. Steps 1 to 7 of the process are the strategy
 repository's, made from the KaxaNuk Strategy Template.
 
@@ -49,7 +50,7 @@ ask `lab@kaxanuk.mx` for them. A strategy reads them in place from the folder it
 **To report a problem or suggest a change to the researcher:** the same address, with the versions
 your researcher names when you ask *which version are you?*, and what happened.
 
-**A wrong value in a strategy's data** is most often the data provider's: the researcher tells a
+**A wrong value in a strategy's data** is most often the data provider's. The researcher tells a
 provider's fault from a library's, as `data-curator-custom-calculations` says under *When a value
 looks wrong*, and a provider's fault goes to the provider — never to a library's issues, nor to
 this address.

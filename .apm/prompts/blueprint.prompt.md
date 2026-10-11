@@ -91,7 +91,7 @@ as the example's.
   premium or mispricing, and which they mean to own; how many independent bets a year; whether it
   survives costs, and how much capital it takes; when it fails, and whether they would hold it
   through that; how many ideas came before this one. The thesis draws on what they answer — the
-  deck's test is that the seven answers fit in one paragraph — and a question they skip is left
+  map's test is that the seven answers fit in one paragraph — and a question they skip is left
   out, never answered for them, and named again in *Step 5*. The bar in `AGENTS.md`, not these
   seven, is what the draft must meet.
 - **The claim this moves** — one claim of `OBJECTIVE.md`, by number, and the status it reaches if
@@ -115,15 +115,15 @@ as the example's.
 - Add one line under the experiment's heading, with today's date, as the example's blueprint does:
   `**Written YYYY-MM-DD, before any rule was coded.**` — and after it, on the same line, the
   package the draft was made with: `Drafted with KaxaNuk-Researcher X.Y.Z, commit abc1234.` Read
-  both from `~/.apm/apm.lock.yaml`, the entry under `dependencies:` whose `repo_url` or
-  `materialization_repo_url` is `kaxanuk/kaxanuk-researcher`, ignoring case, as `next` reads it — a
-  `source: local` entry only when its `local_path` holds `templates/researcher/`, the package's own
-  checkout, never a home: its `version`, and the first seven characters of its `resolved_commit`.
-  Installed from a local path, the entry has no commit: write `local` in its place. With no such
-  entry, read `version:` in `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/apm.yml` and write no
-  commit; with neither, write `version unknown` and say so in *Step 5*. Never a version from memory:
-  the stamp is how `challenge` tells whether the process changed between the blueprint and its run.
-  The template's blockquote stays, whole, until the go.
+  both from the entry under `dependencies:` in `~/.apm/apm.lock.yaml` whose `repo_url` or
+  `materialization_repo_url` is `kaxanuk/kaxanuk-researcher`, ignoring case, as `next` reads it:
+  its `version`, and the first seven characters of its `resolved_commit`. A `source: local` entry
+  counts only when its `local_path` holds `templates/researcher/`, the package's own checkout,
+  never a home. Installed from a local path, the entry has no commit: write `local` in its place.
+  With no such entry, read `version:` in `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/apm.yml`
+  and write no commit; with neither, write `version unknown` and say so in *Step 5*. Never a
+  version from memory: the stamp is how `challenge` tells whether the process changed between the
+  blueprint and its run. The template's blockquote stays, whole, until the go.
 
 ## Step 4: Put the draft to its critic
 
@@ -177,19 +177,19 @@ the gate.
 
 **Read the rule back**, because code can follow a blueprint faithfully and still not be the book its
 owner meant. The rule in one plain sentence, in the owner's words where they gave them, then one
-worked date's book: a date inside the window, from the refined panel the data step already wrote,
-`Data/Refinery/Time_Series/` — the names the rule would hold that day, each one's rank and signal
-value, and why the last name in and the first name out fall where they do. Reading the panel is
-allowed; writing rule code is not, in the notebook or in any file. The worked date is read, not
-built: one query run in the shell and never saved, which takes that date's rows of the panel,
-filters and sorts them as *Rules* say, and quotes each name's signal value and its rank in that
-column from the files. No weight, return or other figure about the book is stated: where the count
-depends on the sizing, the edge is explained in words — which bound stops the book — and the weights
-are left to the rule cell. Ask *Is this the book you mean?* A no is a new draft of *Rules*, back
-through *Step 4*. On yes, the plan adds a `JOURNAL_N.md` entry, *the rule read back* — the sentence,
-the worked date's book and the owner's yes in their words — saved before the blueprint. With no
-refined panel yet, read back the sentence alone, and say, in chat and in the entry, that the worked
-date is owed before the rule cell.
+worked date's book, for a date inside the window, from the refined panel the data step already
+wrote, `Data/Refinery/Time_Series/`. Show the names the rule would hold that day, each one's rank
+and signal value, and why the last name in and the first name out fall where they do. Reading the
+panel is allowed; writing rule code is not, in the notebook or in any file. The worked date is
+read, not built: one query run in the shell and never saved, which takes that date's rows of the
+panel, filters and sorts them as *Rules* say, and quotes each name's signal value and its rank in
+that column from the files. No weight, return or other figure about the book is stated: where the
+count depends on the sizing, the edge is explained in words — which bound stops the book — and the
+weights are left to the rule cell. Ask *Is this the book you mean?* A no is a new draft of *Rules*,
+back through *Step 4*. On yes, the plan adds a `JOURNAL_N.md` entry, *the rule read back* — the
+sentence, the worked date's book and the owner's yes in their words — saved before the blueprint.
+With no refined panel yet, read back the sentence alone, and say, in chat and in the entry, that
+the worked date is owed before the rule cell.
 
 Wait for the go, described as *sign it, write it and save a version*: it is the owner's
 signature. On it, append the read-back entry to `JOURNAL_N.md`, dated today, then write the draft
@@ -203,7 +203,7 @@ entry, version bump or ruff gate: the next change-set's entry names them. Every 
 `git add` each, then
 `git commit -m "Experiment N: the rule read back" -- Experiments/Experiment_N/JOURNAL_N.md` and
 `git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md`, so
-nothing else staged goes with either; to the owner, one plain line, never the commands: *Saved: your
+nothing else staged goes with either. To the owner, one plain line, never the commands: *Saved: your
 proof the idea came before the result.* When `git config --get kaxanuk.autosend` prints `true`, it
 also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name and an
 e-mail, ask for both in one plain line, set them in that folder only, never invented, and save

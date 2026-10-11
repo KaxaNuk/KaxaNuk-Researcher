@@ -8,7 +8,7 @@ description: >
   in Philosophy/Evolution/. It walks the index and the links before reading, and cites every claim.
   It does NOT write code or answer questions about files outside the library.
 metadata:
-  version: 0.9.3
+  version: 0.9.4
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -33,7 +33,7 @@ note in isolation misses the connections that are the library's value.
    each other are one argument; read both. Quote the source's terms where they matter.
 3. **Then the owner's voice.** Read the relevant files in `Philosophy/` at home when the owner's
    own synthesis is more specific than the library, and cite them as the owner's view, distinct
-   from the sources' — in a strategy, by name in prose, never by link; never a round file in
+   from the sources' — in a strategy, by name in prose, never by link. Never a round file in
    `Philosophy/Evolution/`, a record, as the home's `AGENTS.md` says. A study in `Studies/` that
    bears on the question is the owner's work in the same way: name it as theirs, never as evidence
    — its claims rest on the notes it links, and those are what the answer cites.
@@ -48,43 +48,43 @@ note in isolation misses the connections that are the library's value.
    claim has been superseded — report the newer one.
 7. **Offer to keep the answer.** At home, when the answer drew on three or more notes, ask through
    the question tool whether to keep it as a synthesis page — the shape is in `references/note.md`
-   in the `read` skill's folder — its *Go* described as *write it and save a version*, and write
-   it on *Go* only: the page itself, under the domain; its one line under *Concepts* in
+   in the `read` skill's folder — its *Go* described as *write it and save a version*. Write it
+   on *Go* only: the page itself, under the domain; its one line under *Concepts* in
    `Knowledge/INDEX.md`, title and one-line definition; and one entry appended to
    `Knowledge/LOG.md`, `## [YYYY-MM-DD] query | kept a synthesis page`, with the page's path.
    Nothing else. **Then save a version**, in the home, on that go, with no second question — every
    git command, the `backup` skill's send included, as `git -C "<absolute path to the home>"` when
    the session is open elsewhere: `git add` those three files by name, never `--all`, and
-   `git commit -m "Query: kept <page>" -- <the same files>`; one plain line, *Saved*, never the
+   `git commit -m "Query: kept <page>" -- <the same files>`. One plain line, *Saved*, never the
    commands. When `git config --get kaxanuk.autosend` prints `true`, it is also sent to the owner's
    copy on GitHub, as the `backup` skill says. This replaces the *Commit?* question an older home's
    `AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one plain
    line — *a name and an e-mail to sign the versions your researcher saves* — sets them in the home
-   only, never invented, and saves again; a home with no `.git/` gets one line, that it keeps no
+   only, never invented, and saves again. A home with no `.git/` gets one line, that it keeps no
    versions yet.
    In a strategy, never a page: `OBJECTIVE.md` is the strategy's synthesis.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
-   suggest the source that would close it: by year, authors and title when
+   suggest the source that would close it. Suggest it by year, authors and title when
    `references/reading-map.md` in the `read` skill's folder lists one — labelled *a lead from the
    reading map, not in your library*, or *in your Sources/, not yet read* when the PDF is there —
-   and otherwise the kind of source. Where the map gives a work's other side and the library holds
-   only one of the two, name the other. Outside the map, two works may be named: one the owner
-   wrote on a *Find first* line of `RESEARCHER.md`, labelled *on your Find first line*, and a file
-   already in `Sources/`, labelled *in your Sources/, not yet read*. Every other suggestion outside
-   the map names no work — no title, author or year, not even labelled as memory: the kind of
-   source is the whole suggestion. Do not answer from memory without saying you did, and never
+   and otherwise by the kind of source. Where the map gives a work's other side and the library
+   holds only one of the two, name the other. Outside the map, two works may be named: one the
+   owner wrote on a *Find first* line of `RESEARCHER.md`, labelled *on your Find first line*, and a
+   file already in `Sources/`, labelled *in your Sources/, not yet read*. Every other suggestion
+   outside the map names no work — no title, author or year, not even labelled as memory: the kind
+   of source is the whole suggestion. Do not answer from memory without saying you did, and never
    write it into the library during a query.
 
 ## How has my view changed
 
 When the owner asks how their own view has moved — *how has my view changed?*, *what did I say
 about my benchmark the first time?* — the answer is not in the library but in the rounds
-`philosophy` writes: one file each in `Philosophy/Evolution/`, named by its date, `YYYY-MM-DD.md`,
-and a second round the same day `YYYY-MM-DD-2.md`. This is the one question a round file answers,
-and it is quoted as the record of a round, never as the owner's standing view. **Rounds are
-compared within one topic**: a level on a round's first line is investing, `Field` another field,
-and the two are read apart, never against each other — the topic the owner asks about, or each in
-turn when both have rounds and they name neither.
+`philosophy` writes. Each round is one file in `Philosophy/Evolution/`, named by its date,
+`YYYY-MM-DD.md`, and a second round the same day `YYYY-MM-DD-2.md`. This is the one question a
+round file answers, and it is quoted as the record of a round, never as the owner's standing
+view. **Rounds are compared within one topic**: a level on a round's first line is investing,
+`Field` another field, and the two are read apart, never against each other — the topic the owner
+asks about, or each in turn when both have rounds and they name neither.
 
 1. **The topic's rounds, oldest first** — by the date in the name, and on one date by its suffix.
    Read each one's first line, `# Round <N> · <date> · <level>`, with `Field` where a level goes for
@@ -95,14 +95,14 @@ turn when both have rounds and they name neither.
    and its earlier answer stands. An answer is the owner's typed words, or a status — *not sure
    yet*, *skipped*, *explained*. A round holds nothing else, so nothing else is quoted from it.
 2. **Compare by ID.** For each question asked in more than one round, use the label the later line
-   carries, against the latest earlier answer; where a line carries none, say *kept*, *changed*,
+   carries, against the latest earlier answer. Where a line carries none, say *kept*, *changed*,
    *new* or *still open* as `philosophy` defines them, and *not asked again* for a question answered
    before and only skipped or explained since. Quote each answer word for word, in the owner's
    language, beside its round's date and level, or *Field* — *2026-10-04, Starter* — naming the
    round by its date in prose, never by a link: a round file is a record, never cited. The levels
    then and now, on investing, are said once.
 3. **The reading in between**: the notes, linked, that the `read` entries of `Knowledge/LOG.md`
-   list as written, dated on or after the earlier round's date and before the later one's — a
+   list as written, dated on or after the earlier round's date and before the later one's. A
    read the same day as a round counts after it, as `philosophy` counts it. Name them as what was
    read in between, never as the cause: whether a note moved the owner is theirs to say.
 4. **The standing view is the topic's file**, `HOW-I-INVEST.md` or `HOW-I-WORK.md`. Where an

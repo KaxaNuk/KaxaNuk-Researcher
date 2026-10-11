@@ -11,15 +11,16 @@ description: >
   which books to price and how to read the numbers that come back. Shaping the attribution library's
   inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
 metadata:
-  version: 0.4.2
+  version: 0.4.3
 ---
 
 # Alpha decomposition — is the signal doing anything?
 
 A book that beats its benchmark has not been understood. It has been observed. This skill is the
 procedure that turns "the book went up" into "here is the part of the return that is the idea, and
-here is the part that is beta, size, sector and luck" — the question `RESULTS.md` has to answer
-before a strategy can graduate, and one this stack can actually answer because step 6 exists.
+here is the part that is beta, size, sector and luck". That is the question `RESULTS.md` has to
+answer before a strategy can graduate, and one this stack can actually answer because step 6
+exists.
 
 The method is Paleologo's (*Advanced Portfolio Management*, 2021, chapter 8): split total return
 into factor and idiosyncratic, then split the idiosyncratic part three ways **by counterfactual
@@ -27,8 +28,8 @@ books, never by formula**. The book is listed in Part 0 of the template's
 `Bibliotheca/BIBLIOGRAPHY.md` as provenance, not as a note; write its note before citing it in a
 findings file. Every counterfactual below is a weight file, so the same
 `Experiments/backtest_engine.py` that priced the real book prices it, over the same window, at the
-same costs — and when a counterfactual is attributed as well, the attribution reads *its* daily
-weights from *its* backtest, never the real book's.
+same costs. When a counterfactual is attributed as well, the attribution reads *its* daily weights
+from *its* backtest, never the real book's.
 
 Work in the experiment's notebook, section 5 or a section after it. Record every number in
 `FINDINGS_N.md`, then `RESULTS.md`. Publish the count of counterfactuals run.
@@ -48,9 +49,9 @@ record:
 The third pass is what the first cut alone cannot give: a book that looks like skilful stock-picking
 in Brinson-Fachler can be a persistent low-beta or momentum tilt that happened to pay over the
 sample. The attribution library does not run Brinson-Fachler on residual returns directly, so build
-the residual series from the factor model's output — `calc_pct_area()` names it `f_idio_returns`,
-`cummulative_pct_decomp()` names it `idio_returns` — and run the first cut on it in the notebook,
-saying in `FINDINGS_N.md` that it was done that way. Getting those tables out at all is
+the residual series from the factor model's output: `calc_pct_area()` names it `f_idio_returns`,
+`cummulative_pct_decomp()` names it `idio_returns`. Run the first cut on it in the notebook, and
+say in `FINDINGS_N.md` that it was done that way. Getting those tables out at all is
 `attribution-analysis-runs`.
 
 **Know what the library calls allocation.** KaxaNuk's Attribution Analysis computes the three
@@ -60,13 +61,14 @@ groups only when the inputs were aggregated to groups first; `FINDINGS_N.md` say
 
 **Check the benchmark is whole and aligned before reading any of it.** The first cut prices only
 the securities the book's weight file names, so a book that lists only its holdings is compared
-with the part of the index it owns — in the run that proved it, 6% of the index's return, with
-alpha five times too large and the excess filed under interaction. And a weight struck at a day's
-close earns the next day's return, the close of t−1 earning day t: paired with its own day, every
-pass reads larger — in the worked example, an idiosyncratic return of 61.02 points against the
-13.84 that stands. Compare the first cut's `benchmark_returns` with the index's own return over the
-same window; if they are not close, the book was not widened to every constituent or not held
-overnight (`attribution-analysis-runs`, section 3) and no row of the table can be read yet.
+with the part of the index it owns. In the run that proved it, that part was 6% of the index's
+return, with alpha five times too large and the excess filed under interaction. And a weight struck
+at a day's close earns the next day's return, the close of t−1 earning day t: paired with its own
+day, every pass reads larger — in the worked example, an idiosyncratic return of 61.02 points
+against the 13.84 that stands. Compare the first cut's `benchmark_returns` with the index's own
+return over the same window; if they are not close, the book was not widened to every constituent
+or not held overnight (`attribution-analysis-runs`, section 3) and no row of the table can be read
+yet.
 
 Two readings, both of which count as answers:
 
@@ -104,10 +106,10 @@ counterfactuals, or the comparison is dominated by residual slivers nobody was b
 
 Each counterfactual keeps everything about the real book except one thing. The Sharpe difference
 between the real book and the counterfactual, over the same engine window, is that one thing's
-contribution. All three read the objects the experiment notebook already has — `selected_matrix`,
+contribution. All three read the objects the experiment notebook already has: `selected_matrix`,
 `REBALANCE_DATES`, `target_weights`, and the eligibility matrix the rule built them from, lagged as
-the rule lagged it and called `eligible_matrix` below — and price each new `target_weights` the way
-the worked example's notebook prices its arms: `securities_panel.expand_to_identifiers`, then
+the rule lagged it and called `eligible_matrix` below. Price each new `target_weights` the way the
+worked example's notebook prices its arms: `securities_panel.expand_to_identifiers`, then
 `backtest_engine.write_weight_file` under a name of its own, then `backtest_engine.price_books`
 with the real book's window and costs, which runs `build_configuration` and `run_backtest` for
 each.
@@ -216,11 +218,11 @@ column". That is worth knowing and belongs in `OBJECTIVE.md` as a falsified clai
 
 The KaxaNuk Strategy Template works one strategy through the process in its worked example,
 `examples/strategy/golden-flow/` in `KaxaNuk/KaxaNuk-Researcher`, which `init-example` copies into a
-folder of its own: **Golden Flow** — own the KN US Equity Core members whose 50-day simple moving
-average is above the 200-day, ranked and weighted by 63-day traded value, none above 20% and none
-below 1%, re-struck only when the held set changes. Steps 1 to 7 have run: criteria 1 to 4 of the
-gate passed, and the book was signed into paper trading on 2026-10-06. So the numbers below are
-real: priced by the engine over 2015-01-02 to 2026-06-01, reported in
+folder of its own. Its strategy, **Golden Flow**, owns the KN US Equity Core members whose 50-day
+simple moving average is above the 200-day, ranked and weighted by 63-day traded value, none above
+20% and none below 1%, re-struck only when the held set changes. Steps 1 to 7 have run: criteria 1
+to 4 of the gate passed, and the book was signed into paper trading on 2026-10-06. So the numbers
+below are real: priced by the engine over 2015-01-02 to 2026-06-01, reported in
 `Experiments/Experiment_1/FINDINGS_1.md`.
 
 | Arm | What it removes | CAGR | Sharpe | **Idiosyncratic** |

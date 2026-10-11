@@ -7,61 +7,75 @@ researcher, it writes a paragraph about it in place of this one, yours to change
 
 ---
 
+**What it is, and what it is not.** A research and learning tool: a companion for your work and your
+projects, and for learning to invest when you want. It is never investment advice: it never tells
+you to buy, sell or hold, never trades or moves money, and every decision, and its risk, is yours.
+It runs on your computer through your AI assistant; what it reads goes to the company behind that
+assistant, never to KaxaNuk, and a copy goes to your own private GitHub only when you ask. It is
+free under the MIT licence, as is and without warranty; your data provider, your assistant and the
+Investment Lab's libraries, which KaxaNuk sells, each have their own terms. The worked example's
+figures come from a backtest on past prices, shown to teach the method, never a promise or a
+recommendation. Questions: [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx).
+
 ## Your folders
 
 | Folder or file | What it holds | What you do with it |
 | --- | --- | --- |
-| `RESEARCHER.md` | who the researcher is: your name, what you are here for, its voice, your rules, what you are reading for | edit it whenever you like — it is yours. Your first `read` adds your first reading question, on your go |
+| `RESEARCHER.md` | who the researcher is: your name, what you are here for, its voice, your rules, what you are reading for | edit it whenever you like — it is yours |
 | `Philosophy/` | how you work, in `HOW-I-WORK.md`, and how you invest, in `HOW-I-INVEST.md` — your view, in your words; none until you or `philosophy` start one | write freely, or build them with `philosophy`; `refine` tidies them, diff first |
 | `Philosophy/Evolution/` | one file per `philosophy` round: your answers that day, word for word | nothing to do — the record of how your view moved, never edited; it appears with your first round |
-| `Sources/Papers/`, `Sources/Books/`, `Sources/Clippings/` | the PDFs and clippings you read | attach or name a file and the researcher copies it in, on your go — or drop it in yourself — then `read` |
+| `Sources/Papers/`, `Sources/Books/`, `Sources/Clippings/` | the PDFs and clippings you read | drop a file in, or attach or name one and the researcher copies it in on your go; then `read` |
 | `Knowledge/` | the researcher's notes on what you read, with `INDEX.md` and `LOG.md` | written by `read`, on your go; ask it with `query` |
 | `Studies/` | ideas, plans and decisions worked out from what you read | `study <subject>`; `study` alone lists them |
 | `Lessons/` | lessons from `teach`, a folder per topic | appears with your first `teach <topic>` |
-| `Briefs/` | your daily brief, one file a day — work, markets, portfolio — every figure quoted from a dated source, never advice | `brief setup` once — on the Claude desktop app it then comes on its schedule; `brief` writes today's now. Kept on this computer only, never in a saved version |
-| `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them. Kept on this computer only, never in a saved version |
+| `Briefs/` | your daily brief, one file a day, every figure quoted from a dated source, never advice | `brief setup` once; `brief` writes today's now |
+| `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them |
 | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` | the rules the researcher works by | nothing to do |
 | `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
-| `Extracts/` | text pulled out of the PDFs, for `read`; remade when needed, kept on this computer only | nothing to do |
+| `Extracts/` | text pulled out of the PDFs for `read`, remade when needed | nothing to do |
 
 **A copy off this computer.** Each go saves a dated version of what your researcher wrote, on this
 computer only. For a private copy on GitHub, which a lost laptop does not take with it, say *keep a
-copy*, or run `backup`; the PDFs, `Briefs/` and `Portfolio/` never go in it.
+copy*, or run `backup`. The PDFs, `Briefs/`, `Portfolio/` and `Extracts/` stay on this computer
+only: they never go in a saved version, nor in that copy.
+
+**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: notes come only from
+sources, never from a study or a brief, and `Philosophy/` is cited, never compiled into notes, so
+your judgement stays yours.
 
 ## The path
 
 1. **Set up, once:** `interview`, if the install has not run it yet — two short questions about
-   you, about three minutes: what you do and what you're working on, and the researcher's voice;
-   what you are here for is proposed from what you say. It writes `RESEARCHER.md`, the agent that
-   makes your researcher callable by name and the skill that makes it present in every session,
-   installs both for your user and saves a first version.
+   you, about three minutes: what you do and what you're working on, and the researcher's voice.
+   It writes `RESEARCHER.md`, proposing what you are here for from what you say; installs your
+   researcher for your user, callable by name and present in every conversation; and saves a
+   first version.
 2. **Start learning.** Attach a PDF, or a text or Markdown file, in chat — or name one on your
-   computer — and say *read it*: the researcher copies it into `Sources/Papers/`, `Sources/Books/`
-   or `Sources/Clippings/` on your go. Save a Word document, an e-book or a web page as PDF first.
-   The first `read` asks which question the source serves, in plain words, and keeps it as your
-   question 1. For a book it asks which chapters serve your questions and reads only those; on your
-   go it writes one note per chapter into `Knowledge/`. With nothing to read yet, `read` proposes a
-   few works to start from.
-3. **Write down how you work, or how you invest,** whenever you like: `philosophy`, a second
-   interview, optional. It starts with why you do it, what you already believe and your rules — on
-   investing, at your level, teaching as it asks — and adds what you typed, word for word, to
-   `Philosophy/HOW-I-WORK.md` or `HOW-I-INVEST.md`, starting the file you lack, and your rules to
-   `RESEARCHER.md`, on your go. Take it again after you have read, and see how your view moved.
+   computer — and say *read it*: the researcher copies it into `Sources/` on your go. Save a Word
+   document, an e-book or a web page as PDF first. The first `read` asks which question the source
+   serves, in plain words, and keeps it as your question 1. For a book it asks which chapters serve
+   your questions and reads only those; on your go it writes one note per chapter into
+   `Knowledge/`. With nothing to read yet, `read` proposes a few works to start from.
+3. **Write down how you work, or how you invest,** whenever you like, with `philosophy`, an
+   optional second interview. It starts with why you do it, what you already believe and your
+   rules — on investing, at your level, teaching as it asks. On your go, it adds what you typed,
+   word for word, to `Philosophy/HOW-I-WORK.md` or `HOW-I-INVEST.md`, starting the file you lack,
+   and your rules to `RESEARCHER.md`. Take it again after you have read, and see how your view
+   moved.
 4. **A daily brief,** if you want one: `brief setup` chooses the parts — your work, the markets you
    follow, your portfolio — the days and the time, and schedules it on the Claude desktop app;
-   elsewhere `brief` writes the day's file when you run it. Each lands in `Briefs/`, every figure
-   quoted from a dated source, never advice.
+   elsewhere, `brief` writes the day's file when you run it.
 5. **Ask, and think things through.** `query <question>` answers from what you have read, every
    claim cited and every gap named; `study <subject>` works out an idea, a plan or a decision;
    `teach <topic>` gives a lesson a session.
 6. **Start a strategy.** Read a finished one first: `init-example` copies `golden-flow` beside
    this folder — open `OBJECTIVE.md`, then `RESULTS.md`, then `Experiments/Experiment_1/`. Reading
    it needs nothing; running it needs a data provider's key, the Analytics Factory's files and the
-   Lab's licences — its `SETUP.md` says how. Then `init-strategy <name>` makes your own, beside
-   this folder too, from the KaxaNuk Strategy Template.
+   Lab's licences, as its `SETUP.md` says. Then `init-strategy <name>` makes your own beside this
+   folder, from the KaxaNuk Strategy Template.
 
-**Lost?** `next`, here or in a strategy, names the one next thing and the command for it — here,
-for what you came for. **Stay current:** when a new version is out, your researcher says so in one
+**Lost?** `next`, here or in a strategy, names the one next thing and its command — at home, for
+what you came for. **Stay current:** when a new version is out, your researcher says so in one
 line, at most once a week; say `update` and it brings it — the package for every folder, and any
 change to this home shown as a diff first. *Not now* waits a month; *stop reminding me* turns it
 off. In Claude, type the commands with a slash, `/read`; anywhere else, ask for them by name.
@@ -70,34 +84,34 @@ off. In Claude, type the commands with a slash, `/read`; anywhere else, ask for 
 
 - **One task per conversation**; start a new one when the subject changes.
 - **Give it the file**, not a summary from memory: attach it, or say where it is.
-- **Say *remember this*** when you want a rule kept; it goes in `RESEARCHER.md`, on your go — one
-  about your holdings is yours to write, in `Portfolio/RULES.md`.
+- **Say *remember this*** when you want a rule kept; it goes in `RESEARCHER.md`, on your go — a
+  rule about your holdings is yours to write, in `Portfolio/RULES.md`.
 - **Ask it to argue the other side**, or what would change your mind.
 - **Click the links**: every claim names its note, and a claim without one is a lead.
 - **After an install or an update**, open a new conversation.
 
 ## The KaxaNuk Investment Lab
 
-A strategy you build from here can use KaxaNuk's libraries. The Data Curator is open source and
-free; its data provider's key comes from the provider. The Backtest Engine, Attribution Analysis and
-Portfolio Construction — and the Data Refinery and the Data Analyzer when they ship — come together,
-with their licences, in the KaxaNuk Investment Lab, which KaxaNuk sells; attribution also reads the
-benchmark and factor model files of KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>.
-Without the licences a strategy still runs up to its portfolios, and the rest says what is missing.
-For a licence, access or those files, write to `lab@kaxanuk.mx`, saying which library and what it is
-for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab. To
-report a problem with your researcher, write to the same address, with the versions it names when
-you ask *which version are you?*
+A strategy you build from here can use KaxaNuk's libraries: the Data Curator is free and open
+source, and the Backtest Engine, Attribution Analysis and Portfolio Construction, and the Data
+Refinery and the Data Analyzer when they ship, come together, with their licences, in the KaxaNuk
+Investment Lab, which KaxaNuk sells. Without the licences a strategy still runs up to its
+portfolios.
+
+For a licence, access or the Analytics Factory's files, write to `lab@kaxanuk.mx`, as the
+[package's README](https://github.com/KaxaNuk/KaxaNuk-Researcher#the-kaxanuk-investment-lab) says.
+To report a problem with your researcher, write to the same address, with the versions it names
+when you ask *which version are you?*
 
 ---
 
 ## In a strategy or another project
 
 Open your assistant in the project's folder and call your researcher by name: it is there, and
-reads this home when the work needs it. Add this folder to the session —
-`claude --add-dir <this folder>`, `/add-dir` once inside, or the desktop app's add-folder button —
-for it to read the library without asking each time. Work on a strategy lands in the strategy;
-nothing comes back here unless you ask, and then as a source in `Sources/` that `read` files.
+reads this home when the work needs it. To let it read the library without asking each time, add
+this folder to the session — `claude --add-dir <this folder>`, `/add-dir` once inside, or the
+desktop app's add-folder button. Work on a strategy lands in the strategy; nothing comes back here
+unless you ask, and then as a source in `Sources/` that `read` files.
 
 <details>
 <summary><strong>The rules, loaded from the first line</strong></summary>
@@ -105,17 +119,17 @@ nothing comes back here unless you ask, and then as a source in `Sources/` that 
 *Optional, and for Claude Code only.* Every skill reads `AGENTS.md` and `RESEARCHER.md` before it
 works. To have them loaded from a session's first line in a strategy, Claude Code must read this
 folder's `CLAUDE.md`, which imports both — and it reads `CLAUDE.md` from an added folder only when
-this variable is in the environment before it starts. Set it once per machine, as a user variable,
-then quit and reopen the assistant:
+this variable is set before it starts. Set it once per machine, as a user variable, then quit and
+reopen the assistant:
 
 ```bash
 setx CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD 1
 ```
 
-`export` it in your shell profile outside Windows; an `env` entry in `settings.json` is applied too
-late for it. `/context` lists what loaded, under *Memory files*. Where the variable is not honoured
-— the desktop app does not document it — a `CLAUDE.local.md` at the strategy's root holding one
-line, this folder's `CLAUDE.md` by absolute path, `@D:/Research/Arya/CLAUDE.md`, loads it with the
+Outside Windows, `export` it in your shell profile; an `env` entry in `settings.json` comes too late
+for it. `/context` lists what loaded, under *Memory files*. Where the variable is not honoured — the
+desktop app does not document it — put a `CLAUDE.local.md` at the strategy's root holding one line,
+this folder's `CLAUDE.md` by absolute path, `@D:/Research/Arya/CLAUDE.md`: it loads with the
 strategy's own instructions. It is personal to the machine: add `CLAUDE.local.md` to the strategy's
 `.gitignore`, and approve the external import the first time the assistant asks — declined, it
 stays off.
@@ -132,7 +146,7 @@ It grows four ways, each governed by a section of `AGENTS.md`:
    changelog only, never its code.
 2. **A repeatable procedure.** A skill or command of the home's own in `.apm/skills/<name>/` or
    `.apm/prompts/`, written as below, then
-   `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` and a new session.
+   `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` and open a new conversation.
 3. **What it reads for.** A line under *What you are reading for* in `RESEARCHER.md`, by hand or
    through `read`, which asks for your first. The paragraph after the folder table in *What each
    folder is, and who may write in it* says who writes that file.
@@ -155,11 +169,11 @@ the way KaxaNuk's own APM packages write theirs, under a name the package does n
   `argument-hint` for a command, and warns on install for each key it drops. The body reads its
   inputs as `${input:name}`, which APM turns into the arguments each harness takes; the required
   input comes first and the optional ones after it, because an assistant binds them by position.
-- **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest — APM
-  says which on install — and a dropped key is a rule that is not enforced: anything that must
-  hold everywhere goes in the body or the description, not only in a key. A folded
-  `description: >` keeps a colon from breaking the YAML; the agent's frontmatter, which APM does
-  not rewrite, stays one line with no colon in it.
+- **Frontmatter is the lossy part.** A harness takes the keys it knows and drops the rest, and APM
+  says which on install, so a dropped key is a rule that is not enforced: anything that must hold
+  everywhere goes in the body or the description, not only in a key. A folded `description: >`
+  keeps a colon from breaking the YAML; the agent's frontmatter, which APM does not rewrite, stays
+  one line with no colon in it.
 - **No instructions.** Nothing goes in `.apm/instructions/`: the house instructions are the
   package's, this home's rules are `AGENTS.md`, and one here would be installed for your user, in
   every project. `apm compile` leaves `AGENTS.md`, `CLAUDE.md` and `GEMINI.md` alone: it writes
@@ -172,12 +186,12 @@ the way KaxaNuk's own APM packages write theirs, under a name the package does n
 
 The skills and commands — `read`, `query`, `objective`, `blueprint` and the rest — are not in this
 folder: they are installed once for your user and updated with
-`uvx --from apm-cli==0.33.0 apm update -g`; `update`, run here, brings what changed in this home's
-own files across. For another assistant on this computer, paste in it the install line from the
-package's README: it does what follows for you. By hand, or on a new machine, with
-`<your assistant>` one of those under `targets:` in this home's `apm.yml`: install the package for
-it, list it in `~/.apm/apm.yml` — or the next update removes what was installed for it — then
-install this home, once:
+`uvx --from apm-cli==0.33.0 apm update -g`, which `update` runs for you. For another assistant on
+this computer, paste the install line from the package's README in it, and it does what follows
+for you. By hand, or on a new machine, run these three lines, with `<your assistant>` one of those
+under `targets:` in this home's `apm.yml`: they install the package for it, list it in
+`~/.apm/apm.yml` — without that, the next update removes what was installed for it — and install
+this home, once:
 
 ```bash
 uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <your assistant>
@@ -191,15 +205,8 @@ this field. `CHANGELOG.md` holds the template's changelog, then this home's.
 
 </details>
 
-**Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: studies and lessons
-are built from the notes, and no note is ever built from a study. `Philosophy/` is cited, never
-compiled into notes, so your judgement stays yours; its rounds in `Philosophy/Evolution/` are a
-record of how your view moved, and the files you keep there, never a round, are what is cited as
-your view. A brief is never cited: a figure in one enters the library only as a source in
-`Sources/`.
-
 ---
 
 ## Licence
 
-MIT, see [`LICENSE`](LICENSE).
+MIT, see [`LICENSE`](LICENSE), and *What it is, and what it is not* above.

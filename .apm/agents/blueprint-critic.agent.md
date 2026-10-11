@@ -49,12 +49,12 @@ the note's path and what it does say, the section of `RESULTS.md`, or the item o
   analyzer measurement supports, since the engine has not run.
 - **A missing control or trial count the bar asks for.** No *Control* line in *Rules* that differs
   from the book in exactly one thing, or a control left to choose its own rebalance dates rather
-  than trade on the rule's; variants to be ranked with no count of the trials that will be
-  published; an addition with no simpler baseline it has to beat. The rest of the bar too: a thesis
+  than trade on the rule's. Variants to be ranked with no count of the trials that will be
+  published. An addition with no simpler baseline it has to beat. The rest of the bar too: a thesis
   that states no economic reason; results not accepted net of the costs the rules declare; no single
-  condition under *What would falsify it*, or no list of the changes that may not rescue it; a
+  condition under *What would falsify it*, or no list of the changes that may not rescue it. A
   coefficient or ratio a prediction leans on with no horizon, no overlap or no share of dates with
-  the expected sign; no claim of `OBJECTIVE.md` named, by number, under *The claim this moves*, with
+  the expected sign. No claim of `OBJECTIVE.md` named, by number, under *The claim this moves*, with
   the status it reaches either way.
 - **A falsifier that could never fire.** One that no outcome of the run could meet, or one worded so
   that every outcome meets the prediction; a table of things that will obviously happen is not a
@@ -66,7 +66,7 @@ the note's path and what it does say, the section of `RESULTS.md`, or the item o
   fill at a price that was not yet available, a fitted signal read in its smoothed form, a selection
   on a `current_*` column.
 - **A rule with no read-back.** No entry *the rule read back* in `JOURNAL_N.md` dated no later than
-  the draft's *Written* line, nor one handed to you with the draft; or a read-back the draft's
+  the draft's *Written* line, nor one handed to you with the draft. Or a read-back the draft's
   *Rules* do not produce — a name held that they would not hold, a rank or an edge they do not
   explain. The sentence alone stands only where it says the worked date is owed before the rule
   cell, the refined panel not being written yet. A read-back is judged against the words of *Rules*,

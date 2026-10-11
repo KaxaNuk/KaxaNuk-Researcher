@@ -13,7 +13,7 @@ description: >
   does NOT cover what the numbers mean for a strategy (use `alpha-decomposition`) or running the
   backtest that produced the book (use `backtest-engine-runs`).
 metadata:
-  version: 0.5.0
+  version: 0.5.1
   library_version: 0.2.0
 ---
 
@@ -38,10 +38,10 @@ library's own traceback lines.
 
 **Changed in 0.3.0, from its changelog — not yet checked by a run here.** The licence is checked
 through `kaxanuk-license-client`, a new dependency from KaxaNuk's private index — the one the
-welcome email's install command names, which serves it to any valid licence — on the unified
-licence server, for the product `attribution-analysis`: a licence without it is refused, naming the
-products it holds. Offline, a saved check stands in for **3 days** from the last successful one (7
-on 0.2.0); a rejection is final and deletes it. Saved checks live in
+welcome email's install command names, which serves it to any valid licence. The check runs on the
+unified licence server, for the product `attribution-analysis`: a licence without it is refused,
+naming the products it holds. Offline, a saved check stands in for **3 days** from the last
+successful one (7 on 0.2.0); a rejection is final and deletes it. Saved checks live in
 `%LOCALAPPDATA%\KaxaNuk\licence-cache\attribution-analysis` on Windows,
 `$XDG_CACHE_HOME/kaxanuk/licence-cache/attribution-analysis` elsewhere (`KAXANUK_LICENSE_CACHE_DIR`
 moves them); `~/.kaxanuk_attribution_cache` is no longer read, so **the first run after upgrading
@@ -95,7 +95,7 @@ The licence key lives in `Config/.env` as **`KNAA_API_KEY_KAXANUK`** — a diffe
 engine's `KNBE_API_KEY_KAXANUK`, and both sit in the same file; `~/.kaxanuk_license` or the exported
 variable work too. **Never print the value of any of them.** The licence is checked against
 KaxaNuk's server on every run, with a 24-hour local cache and an offline grace period of 7 days on
-0.2.0, 3 on 0.3.0: a run that worked last week can fail today on a plane, and that is the licence,
+0.2.0, 3 on 0.3.0. A run that worked last week can fail today on a plane, and that is the licence,
 not the data.
 
 **Keep it installed.** `uv sync` is *exact* by default and removes every package the lockfile does
@@ -118,7 +118,7 @@ LIBRARY_INSTALLED = importlib.util.find_spec("kaxanuk.attribution_analysis") is 
 Check `LIBRARY_INSTALLED` before the call, and import
 `kaxanuk.attribution_analysis.performance_attribution` only inside that branch, as the worked
 example does (`report_missing_inputs` in `Experiments/attribution_analysis.py`, then the import
-inside its `attribute_book`, called only when nothing is missing); where it is `False`, say plainly
+inside its `attribute_book`, called only when nothing is missing). Where it is `False`, say plainly
 that step 6 was skipped for want of the licensed library. A `try` around `from kaxanuk… import …`
 does the same job but fails Bloom Code (BLOOM003). **A pipeline that dies at an optional import is
 a pipeline nobody can read.**
@@ -366,8 +366,8 @@ Step 6 reads what step 5 produced, and `Experiments/attribution_analysis.py` sha
 
 - **The book's daily weights, not `Portfolio/portfolio_weights.csv`.** That file is the book on its
   rebalance dates, which the library rejects. Take the weights the engine actually held each trading
-  day — `Daily_Weights` in its results, verified on engine 0.66.0 — reshape them to one row per
-  trading day with `date_column` first, keep the cash position, drop the engine's benchmark column
+  day — `Daily_Weights` in its results, verified on engine 0.66.0 — and reshape them to one row per
+  trading day with `date_column` first. Keep the cash position, drop the engine's benchmark column
   (it comes back at zero), and **widen them to every benchmark constituent at zero weight** (section
   3). The engine names only what was held, so the widening is a step of its own, and every added
   name needs a price series in the market-data directory. Then **hold the book and the index's

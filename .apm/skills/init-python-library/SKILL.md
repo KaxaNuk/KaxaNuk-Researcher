@@ -10,20 +10,19 @@ description: >
   environment or publish anything (`next`, in the new folder, leads there), does NOT create a
   strategy (use `init-strategy`), and does NOT add a source to the library of reading (`read` does).
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # Init Python library — a new Python library, one folder, one repository
 
 The owner starts a Python library of their own: code others install with `pip` and import. What they
-said carries the arguments: its name — `fcf-screen`, always theirs — which becomes the folder, the
-repository and the name on PyPI; where to put it; and optionally one sentence on what it does. One
-Python library is one repository: never inside a strategy, the researcher's home, another project or
-this package. Here *library* means code; the researcher's library of reading is `Knowledge/`, which
-this skill never touches.
+said carries the arguments: its name, such as `fcf-screen`, always theirs; where to put it; and
+optionally one sentence on what it does. One Python library is one repository: never inside a
+strategy, the researcher's home, another project or this package. Here *library* means code; the
+researcher's library of reading is `Knowledge/`, which this skill never touches.
 
 **The copy and the naming are the scripts', never yours.** `scaffold.py` copies the template byte
-for byte, so every Python library made from the same package version starts identical;
+for byte, so every Python library made from the same package version starts identical.
 `name_library.py`, in this skill's folder, only puts the names in — the package folder moved to
 the import name, the template's names replaced where it has them, the holder on the licence's first
 line — and refuses any folder but a fresh copy. A file of the template is never written from
@@ -36,9 +35,9 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
   library called …*.
 - The session is open in a copy not yet named — its `AGENTS.md` holds
   `<!-- kaxanuk-starting-point: python-library -->` alone at column 0, and `src/` still holds
-  `kn_python_library_template/` — and the owner runs it there, as `next` says: step 1 without the
-  place — its name the folder's own, checked as one of theirs, with no question before it — the
-  plan, then step 4 on this folder.
+  `kn_python_library_template/` — and the owner runs it there, as `next` says. There it runs step 1
+  without the place — its name the folder's own, checked as one of theirs, with no question before
+  it — then the plan, then step 4 on this folder.
 - Not in the template itself: a folder that is not the top of a git repository of its own, such as
   `templates/python-library/` inside the package, is never named — the script refuses it. Copy it
   with step 3 instead.
@@ -62,14 +61,14 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
    `init-python-library fcf-screen`, in their words or under *Other* — is put in that form,
    *Contabilidad Project* giving `contabilidad-project`, checked with the command below and shown
    in the plan. Without one, when what they said does not yet tell what it will do, first ask in
-   one short chat message — *Tell me in a sentence or two what it will do, and I'll suggest a few
-   names* (*Cuéntame en una o dos frases qué hará y te sugiero unos nombres*) — with nothing else
-   asked or run before the answer. Words after the command that are not one name are what it does;
-   a name in the answer is theirs. From their words, make up to three names — *a screen of stocks
-   by free cash flow* gives `fcf-screen` — check each with the command below, and offer those it
-   passes through the question tool, header `Name` (`Nombre`), each described by its import name
-   and *free on PyPI*, none whose folder is already there; *Other* takes a name of their own. With
-   one passing, offer it in one chat line instead — *`fcf-screen` is free on PyPI: take it, or type
+   one short chat message: *Tell me in a sentence or two what it will do, and I'll suggest a few
+   names* (*Cuéntame en una o dos frases qué hará y te sugiero unos nombres*). Ask or run nothing
+   else before the answer. Words after the command that are not one name are what it does; a name
+   in the answer is theirs. From their words, make up to three names — *a screen of stocks by free
+   cash flow* gives `fcf-screen` — and check each with the command below. Offer those it passes
+   through the question tool, header `Name` (`Nombre`), each described by its import name and
+   *free on PyPI*, none whose folder is already there; *Other* takes a name of their own. With one
+   passing, offer it in one chat line instead — *`fcf-screen` is free on PyPI: take it, or type
    your own*; with no question tool, the names are a numbered list in chat, *or type your own*.
    When none passes, say why in one line and ask for one of their own; when PyPI could not be
    asked, offer them anyway, each *not checked on PyPI*, and the pick takes the never-publish
@@ -78,8 +77,8 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
 
    **Their sentence** on what it does — the first one, as they wrote it, never one that only names
    it — is step 4's `--description`, shown in the plan; with none, it is left out. Check it once the
-   name is settled, with that name, adding `--description "<the sentence>"` to the command below — a
-   refused sentence is no verdict on the name: one the script refuses — over 200 characters, or
+   name is settled, with that name, adding `--description "<the sentence>"` to the command below; a
+   refused sentence is no verdict on the name. One the script refuses — over 200 characters, or
    holding a double quote or a backslash — is said in one line, and a shorter one asked for in their
    words, or left out on their word; never shortened by you.
 
@@ -140,7 +139,7 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
    command that finishes the repository from that step on. If git is missing, install it on the
    owner's go, then run the printed commands in the new folder. If the first commit fails for want
    of a git identity, ask for *a name and an email to sign the versions your researcher saves*,
-   never invented; set them in that folder only, `git config user.name "<name>"` and
+   never invented. Set them in that folder only, `git config user.name "<name>"` and
    `git config user.email "<email>"`, then run the printed commands there. The naming waits for that
    first version.
 

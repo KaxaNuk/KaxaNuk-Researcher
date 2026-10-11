@@ -1,7 +1,7 @@
 # The brief's contract
 
 > **What this file is.** The one set of steps every brief follows: the prompt of the scheduled task
-> that `brief setup` creates, and what `brief` follows when the owner runs it by name, so a brief
+> that `brief setup` creates, and what `brief` follows when the owner runs it by name. A brief
 > written by the task at dawn and one asked for at noon are the same file. `brief` fills it as
 > *How it is filled* says; what lies between the two markers below is the prompt, and nothing
 > outside them is copied.

@@ -28,8 +28,7 @@ the tags and the documentation's lists of the valid names.
   the return are hinted, quoted, as in `template.py`.
 - Dependencies resolve recursively: a `c_*` parameter is computed first, whether it is a built-in or
   another custom function. The Features page's `c_earnings_to_price` takes two `c_*` columns, and
-  the worked example's `c_vwap` takes its own `c_split_ratio`. A cycle stops the run with an error
-  (the changelog, 0.12, improved it).
+  the worked example's `c_vwap` takes its own `c_split_ratio`. A cycle stops the run with an error.
 - The parameter named exactly `configuration` is special: it receives the `Configuration` instead
   of a column, as the page for `c_last_twelve_months_net_income` shows with `configuration.period`,
   and with it the other fields a caller sets: `.start_date`, `.end_date`, `.identifiers` and
@@ -46,9 +45,9 @@ the tags and the documentation's lists of the valid names.
   `data-column-api.md`.
 - Undefined results must be `None`, never `inf` or `NaN`. `DataColumn` arithmetic returns null for
   any row where an operand is null — "any operation involving a null yields null", says the Custom
-  Calculations page — but the documentation says nothing of a zero denominator: guard it, or clean
-  the result with `kaxanuk.data_curator.features.helpers.replace_infinite_with_none()`, which turns
-  `inf` and `-inf` into null. When computing through `pyarrow.compute`, `numpy` or `pandas`
+  Calculations page. The documentation says nothing of a zero denominator, though: guard it, or
+  clean the result with `kaxanuk.data_curator.features.helpers.replace_infinite_with_none()`, which
+  turns `inf` and `-inf` into null. When computing through `pyarrow.compute`, `numpy` or `pandas`
   directly, you own the cleanup, a `NaN` turned into `None` included.
 - A rolling window of `n` rows leaves the first `n - 1` rows null — the Helpers page's
   `simple_moving_average` returns "None for initial elements until window is reached" — and `n`

@@ -13,7 +13,7 @@ description: >
   reading what sizing earned (use `alpha-decomposition`), or the documents around the experiment
   (use `experiment-lifecycle`).
 metadata:
-  version: 0.5.0
+  version: 0.5.1
   library_version: 1.28.0
 ---
 
@@ -41,7 +41,7 @@ lines.
 **Changed in 2.0.0, from its changelog — not yet checked by a run here.** The library needs a
 licence: `run_pipeline()` checks it first, once per process, for the product
 `portfolio-construction`, and without one raises `LicenseNotFoundError`, never wrapped in a
-`PipelineError`; the entry script `init excel` installs, `run` / `autorun`, `__main__.py` and the
+`PipelineError`. The entry script `init excel` installs, `run` / `autorun`, `__main__.py` and the
 Docker image all go through it. The changelog and the README name no other call: **whether
 `build_allocator`, which section 4's per-date weigher calls, checks the licence is unverified.** The
 key is `KNPC_API_KEY_KAXANUK`, in the environment or in a `.kaxanuk_license` file in the home or the
@@ -141,7 +141,7 @@ weigh(
 ```
 
 Equal weight, proportional to a score, or a library method built by its registry name is one
-`method` string, so swapping one for another is one line in the rule cell and nothing else in the
+`method` string. Swapping one for another is one line in the rule cell, and nothing else in the
 notebook moves — which is what makes two experiments comparable rather than merely adjacent.
 `weigh` builds a method from its name and the history alone, as the README's
 `build_allocator(name="risk_parity", returns=returns)` does. A method that needs a configuration,
@@ -210,11 +210,10 @@ module's, and it is fixed:
   with False so the warm-up holds nothing rather than everything. A security has to have been
   authorised yesterday and be sellable today, and those are two different days on purpose.
 - **Sell before a price series stops.** A name is tradable on *t* only if it is priced on *t* and
-  on *t+1*: a delisting, or a corporate event that leaves a gap in the provider's file, then drops
-  the name from the target on its last priced day, the set changes, and the book re-strikes and
+  on *t+1*. A delisting, or a corporate event that leaves a gap in the provider's file, then drops
+  the name from the target on its last priced day; the set changes, and the book re-strikes and
   sells it there. The Backtest Engine refuses a rebalance date on which any open position has no
-  price, so a book that holds a name through a gap is refused outright, not mispriced — as the
-  worked example's first book was, on a 62-day gap in `AGN`, before this rule. One day of
+  price, so a book that holds a name through a gap is refused outright, not mispriced. One day of
   hindsight, the leak the template's `AGENTS.md` names; apply it to the book and every
   counterfactual alike, so it is no difference between them.
 - **Rebalance on change** when the rule is event-driven: the days the lagged set changed. A
