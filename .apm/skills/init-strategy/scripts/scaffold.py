@@ -6,8 +6,9 @@ The starting points ship inside the KaxaNuk Researcher package — `templates/re
 `examples/<kind>/<name>/` — and this script copies one of them byte for byte, so every folder made
 from the same package version starts identical.  Nothing is written from memory and nothing is
 generated; what a checkout, an install, a build or an agent may leave in a starting point — a cache
-folder, an agent's folder, `apm_modules/`, `uv.lock`, `Config/.env`, `dist/`, `docs/_build/` — is
-left behind, by a whole copy and by `--only` alike.
+folder, an agent's folder, `apm_modules/`, `uv.lock`, `dist/`, `docs/_build/` — is left behind, by a
+whole copy and by `--only` alike, and so is a key file at any depth: `Config/.env`, any other `.env`
+or `*.env`, and `.kaxanuk_license`.
 
 Usage:
     uv run --no-project python scaffold.py researcher <destination>
@@ -102,10 +103,16 @@ FILE_MANAGER_FILES = frozenset({
     'Thumbs.db',
     'desktop.ini',
 })
+# Key files, never copied at any depth, as a file or a folder: a key never leaves the folder it was
+# typed into.  These are the names the starting points' .gitignore files keep out of git: `.env`
+# and any `*.env`, wherever it sits, and the licence the Lab's libraries can read.
+KEY_FILE_NAMES = frozenset({
+    '.kaxanuk_license',
+})
+KEY_FILE_SUFFIX = '.env'
 # Files never copied, as POSIX paths from a starting point's root: the lock `uv sync` writes on one
-# machine, and the keys, which never leave the folder they were typed into.
+# machine.
 NEVER_COPIED_FILES = frozenset({
-    'Config/.env',
     'uv.lock',
 })
 # Each starting point: where it sits inside the package, and the first commit of a copy of it.  The
@@ -944,7 +951,8 @@ def _is_left_behind(
 ) -> bool:
     """
     Whether no copy carries this file or folder: one inside a folder of `AGENT_FOLDERS` or
-    `CACHE_FOLDERS`, or one of `NEVER_COPIED_FILES`.
+    `CACHE_FOLDERS`, a key file — a name in `KEY_FILE_NAMES` or ending in `KEY_FILE_SUFFIX`, at any
+    depth — or one of `NEVER_COPIED_FILES`.
 
     The path is read from the starting point's root, whatever `--only` named, once `..`, links and
     the name Windows opens are resolved, and with case ignored, so `--only Config` and
@@ -964,12 +972,18 @@ def _is_left_behind(
         for file_path
         in NEVER_COPIED_FILES
     }
+    parts = relative.split('/')
     in_left_folder = any(
         part in AGENT_FOLDERS or part in CACHE_FOLDERS
         for part
-        in relative.split('/')
+        in parts
     )
-    left_behind = in_left_folder or relative in never_copied
+    is_key_file = any(
+        part in KEY_FILE_NAMES or part.endswith(KEY_FILE_SUFFIX)
+        for part
+        in parts
+    )
+    left_behind = in_left_folder or is_key_file or relative in never_copied
 
     return left_behind
 

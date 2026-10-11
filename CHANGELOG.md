@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.11.1] - 2026-10-11
+Nothing changes for you: a new home, strategy or library is never copied with a key file, wherever
+one sits.
+
+**What to do differently:** nothing.
+### Changed
+- **`scaffold.py`** (`init-strategy` 0.4.2), which copies every starting point, leaves every key
+  file behind at any depth: `Config/.env` as before, and now any other `.env` or `*.env` and
+  `.kaxanuk_license`, the names the starting points' `.gitignore` files keep out of git. `--only`
+  refuses one. Only a working copy of the package could hold one: an install from GitHub carries no
+  ignored file.
+
 ## [1.11.0] - 2026-10-10
 Your researcher reads more simply, says plainly what it is for and what it is not, and keeps
 nothing confidential in the package.
