@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.10.2] - 2026-10-10
+Your interview's first question is shorter: tell me about yourself, what you do and what you're
+working on.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **Question 1 asks one short thing** (`interview` 2.12.2): *Tell me about yourself in a few lines:
+  what you do and what you're working on. Write it below.* (*Cuéntame de ti en unas líneas: a qué te
+  dedicas y en qué estás trabajando. Escríbelo abajo.*). It no longer asks what you'd like a hand
+  with, where you are with markets, or what to stay out of; *Out of scope for now* stays *None yet*
+  until you say something to stay out of. What you are here for is still proposed from your
+  answer, *help with your work and your projects* whenever you name something you are working on.
+  `SETUP.md` and the home template (0.25.2, its `README.md`) say the same.
+
 ## [1.10.1] - 2026-10-10
 Your interview's first question box now asks you to write about yourself, with two short, quiet
 options for when you'd rather not yet.

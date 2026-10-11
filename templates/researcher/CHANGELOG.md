@@ -6,6 +6,17 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.25.2 (2026-10-10)
+
+**PATCH** — the interview's first question is shorter.
+
+**What to do differently:** say `update` in your home; the change to `README.md` comes as a diff.
+
+### Changed
+
+* **`README.md`**, *The path*: the interview's two questions are what you do and what you're
+  working on, and the researcher's voice.
+
 ## 0.25.1 (2026-10-10)
 
 **PATCH** — the interview no longer asks what you are here for: it proposes it from what you say.

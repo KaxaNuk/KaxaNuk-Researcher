@@ -1,15 +1,15 @@
 ---
 name: interview
 description: >
-  Interview the owner in two short questions and write RESEARCHER.md — who they are, what they
-  work on and want a hand with, the researcher's voice, with what they are here for, the domains
-  and their projects proposed from what they said — then the agent and skill that make the
+  Interview the owner in two short questions and write RESEARCHER.md — who they are and what they
+  work on, and the researcher's voice, with what they are here for, the domains and their projects
+  proposed from what they said — then the agent and skill that make the
   researcher callable by name and present in every session; install both, save a first version
   and hand over. Only when the owner runs it by name, or as the last step of the install SETUP.md
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.12.1
+  version: 2.12.2
 ---
 
 # The interview
@@ -30,12 +30,12 @@ before question 1, what the checks still need — the owner's name, a name for t
 question 1 itself, and anything else they found waits for the hand-over; never a message, a call, a
 report or a pause of its own.
 
-**The interview is about the person**: who they are, what they work on — at work and on their own
-— what they want a hand with, and how the researcher should speak. **Nothing more about markets
-is asked than where they are with them**: how they invest and their rules are `philosophy`'s, the
-questions their reading should answer are the first `read`'s, a strategy is `objective`'s and
-`blueprint`'s, and `next` names each when its turn comes. Its job is to make the researcher, fast:
-what the researcher can do is said once, at the end, in the hand-over, and it grows from there.
+**The interview is about the person**: who they are, what they do and work on, and how the
+researcher should speak. **Nothing about markets is asked**: how they invest and their rules are
+`philosophy`'s, the questions their reading should answer are the first `read`'s, a strategy is
+`objective`'s and `blueprint`'s, and `next` names each when its turn comes. Its job is to make the
+researcher, fast: what the researcher can do is said once, at the end, in the hand-over, and it
+grows from there.
 
 **At a glance.** Two questions, about three minutes. Say so in one line before question 1 only when
 the owner ran the interview by name — `init-researcher` says it in its `Where?` question — and open
@@ -43,7 +43,7 @@ each question with its number, *1 of 2*, *2 of 2*: in a call, its first question
 
 | # | Asks | How | Lands in `RESEARCHER.md` under |
 | --- | --- | --- | --- |
-| 1 | what the owner does and works on, what they want a hand with, where they are with markets, and what to stay out of | one tool call, open: a few lines in their own words | *Works for*, *Out of scope for now*; *Here for*, the *Domains* and the projects, proposed from it |
+| 1 | what the owner does and what they are working on | one tool call, open: a few lines in their own words | *Works for*, *Out of scope for now*; *Here for*, the *Domains* and the projects, proposed from it |
 | 2 | the researcher's voice | one tool call, one question | *How it speaks* |
 
 **How to ask.** In Claude Code, every question marked *tool* is asked by **calling
@@ -106,8 +106,8 @@ expand it.
    - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
      session may be open elsewhere. With none, or a single word that reads as a handle, question 1
      asks it first, right after *1 of 2*, offering that word if there is one — *First, your name — I
-     only have `artur`. Then tell me about you …* (*Primero, tu nombre — solo tengo `artur`. Luego
-     cuéntame de ti …*) — never in a message or a call of its own. Never make one up.
+     only have `artur`. Then tell me about yourself …* (*Primero, tu nombre — solo tengo `artur`.
+     Luego cuéntame de ti …*) — never in a message or a call of its own. Never make one up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
      says to ask for another, it is a second question in question 1's call, header `Short name`
      (`Nombre corto`), with the reason — *`arya` is already taken on this computer: a short name in
@@ -158,12 +158,11 @@ leave fewer, ask it in chat.
   every *Find first* line.
 
 1. **About you** — *tool, open.* One call, header `About you` (`Sobre ti`), single-select,
-   `Short name` second when *Step 1* asks it. Its question, in their language: *1 of 2 · Tell me
-   about you in a few lines: what you do, what you're working on — at work and on your own — and
-   what you'd like a hand with. If you invest or study markets, where you are with it; nothing yet
-   is fine. And anything I should stay out of. Write it below, in your own words.* (*… Escríbelo
-   abajo, con tus palabras.*) The box's text field is the answer; its two options are quiet ways
-   out, short so they never compete with it:
+   `Short name` second when *Step 1* asks it. Its question, in their language, short: *1 of 2 ·
+   Tell me about yourself in a few lines: what you do and what you're working on. Write it
+   below.* (*1 de 2 · Cuéntame de ti en unas líneas: a qué te dedicas y en qué estás trabajando.
+   Escríbelo abajo.*) The box's text field is the answer; its two options are quiet ways out,
+   short so they never compete with it:
    - *Nothing yet* (*Nada aún*), described *I'm just starting — a complete answer* (*estoy
      empezando — es una respuesta completa*): *Works for* takes the owner's name and *just
      starting*, in their language;
@@ -176,8 +175,7 @@ leave fewer, ask it in chat.
    correction to the line before it. A box closed unanswered is not a stop: what the owner writes
    next is the answer, unless it asks to stop. **Without a question tool**, question 1 stays one
    open chat message, never a numbered list, its last sentence *"I'm just starting" is a complete
-   answer* in place of *Write it below, in your own words*; *later* or *skip*, in any language, is
-   *Later*.
+   answer* in place of *Write it below*; *later* or *skip*, in any language, is *Later*.
 
    Three proposals come from it, never asked: **a row for each project** it names; **the
    domains**, up to four the answer points to — Finance among them when it says they invest, study
@@ -185,8 +183,9 @@ leave fewer, ask it in chat.
    investing pick, never only for saying they do not invest, nor for pay or a budget at work; when
    it points to none, Business and AI — and **what they are here for**, the *Here for* line: each
    pick the answer points to, in this table's order. *Organise what I read, and help with my
-   projects* when it names something they want a hand with — their work, a project, a decision or
-   their reading — or points to none of the other three, never only for saying what they do;
+   projects* when it names something they are working on or want a hand with — their work, a
+   project, a decision or their reading — or points to none of the other three, never only for
+   saying what they do;
    *Learn the basics, step by step* when it says they want to learn to invest; *Build and test a
    strategy* when it names a strategy, a trading rule or a backtest to build; *Write down how I
    invest, and see it evolve* when it says they invest and have a way of doing it. Never an
