@@ -6,6 +6,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.10.3] - 2026-10-10
+Nothing changes for you: the way your researcher is set up and reads its first document is now
+frozen as it was tested and approved, so it cannot change by mistake.
+
+**What to do differently:** nothing.
+### Added
+- **`ONBOARDING.md`**: the onboarding and the first read as the package's owner approved them,
+  every question and message a new user sees, from the language to the end of the first read, on
+  1.10.2.
+- **`FROZEN.json`**: the fingerprints of the files that make that run — `SETUP.md`,
+  `init-researcher`, `interview`, and `read` with its note convention, reading map and extractor —
+  and of `ONBOARDING.md`; the home template and `philosophy`'s question bank stay free. `AGENTS.md`
+  says a frozen file changes only on the owner's word, shown against `ONBOARDING.md` first, and
+  `CONTRIBUTING.md`'s *Development* has the check, run before every commit, that fails on a frozen
+  file that changed.
+
 ## [1.10.2] - 2026-10-10
 Your interview's first question is shorter: tell me about yourself, what you do and what you're
 working on.

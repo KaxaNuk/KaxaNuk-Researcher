@@ -70,6 +70,8 @@ examples/<kind>/<name>/
                       template
 SETUP.md              the install, step by step — what an assistant follows when you paste the URL
 USE-CASES.md          twelve ways to use the researcher, step by step
+ONBOARDING.md         the onboarding and first read as approved, step by step — frozen
+FROZEN.json           the fingerprints of the frozen files
 apm.yml               the package: what apm install reads; it depends on nothing
 pyproject.toml        the ruff settings for the skills' scripts
 AGENTS.md, CLAUDE.md  the rules for changing this repository
@@ -106,6 +108,20 @@ runs as its template does, with one more `../`. Each runs through `uv` alone: no
 own is needed. They run on your machine before a commit; there is no CI, so nothing runs them for
 you. Nothing else runs inside `templates/`: `uv sync`, `uv build` or Sphinx there would write a
 `.venv/`, a `uv.lock` or a `dist/` into the package.
+
+**The frozen files are unchanged**, or changed on the owner's word as `AGENTS.md` says under
+*Rules* — checked before every commit, from the repository's root. This prints each frozen file
+whose content no longer matches its fingerprint in `FROZEN.json`, and fails when there is one:
+
+```bash
+uv run --no-project python - <<'PY'
+import hashlib, json, pathlib, sys
+files = json.loads(pathlib.Path("FROZEN.json").read_text(encoding="utf-8"))["files"]
+changed = [p for p, h in files.items() if hashlib.sha256(pathlib.Path(p).read_bytes().replace(b"\r\n", b"\n")).hexdigest() != h]
+print("\n".join(f"frozen file changed: {p}" for p in changed) or "frozen files unchanged")
+sys.exit(bool(changed))
+PY
+```
 
 **No Lab library's code reaches the package.** A library's skill is written from its documentation,
 its changelog and runs, never from its source, a wheel's contents, a clone or a source page its

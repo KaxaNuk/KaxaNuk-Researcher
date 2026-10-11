@@ -47,6 +47,16 @@ marked.
   the documentation and the library is settled by a run, and the skill says *checked on <build> by
   running it*. The same holds for an agent helping here, and for the Analytics Factory's files and
   KaxaNuk's research: none of it is copied into the package.
+- **The onboarding and the first read are frozen**, as the package's owner approved them on
+  2026-10-10, at 1.10.2. `ONBOARDING.md` is that run, step by step, and `FROZEN.json` fingerprints
+  the files that make it — `SETUP.md`, `init-researcher`, `interview`, and `read` with its note
+  convention, reading map and extractor — and `ONBOARDING.md` itself. The home template,
+  `templates/researcher/`, and the `philosophy` skill's `references/questions.md` are left free by
+  the owner's choice. A frozen file changes only when the owner asks for that change in words, never
+  as the side effect of another: a sweep, a rename, a rewording, a version bump. Show the change
+  against `ONBOARDING.md` first; on the owner's go, move its fingerprint in `FROZEN.json` in the
+  same commit, update `ONBOARDING.md` where the run changes, and say so in the `CHANGELOG.md` entry.
+  The check in `CONTRIBUTING.md`'s *Development* fails on a frozen file that changed.
 - **Every change carries its `CHANGELOG.md` entry**, and a version bump in the same commit: in
   `apm.yml` for the package at the root and for the home, in `pyproject.toml` for the strategy
   template and the example, and in the *Started from* sentence of the Python library template's
@@ -77,8 +87,10 @@ marked.
   commands of the same names do not share a user: a `-g` install of the second replaces a
   same-named skill of the first, with a warning, and overwrites a same-named command silently. The
   last install wins.
-- **Ruff and the Bloom Code check pass before any commit,** run as `CONTRIBUTING.md`'s
-  *Development* section shows. There is no CI: nothing runs them for you.
+- **Ruff, the Bloom Code check and the frozen-files check pass before any commit,** run as
+  `CONTRIBUTING.md`'s *Development* section shows. There is no CI: nothing runs them for you. A
+  frozen file the check names is reverted, or shown to the owner; its fingerprint is never moved to
+  make the check pass.
 - **Markdown you write or change is wrapped at 100 columns**, with no literal tab and LF line
   endings. A line inside a fenced code block, a table row, a line carrying a URL, the YAML
   frontmatter at the top of a file and a line copied verbatim from a strategy's fixed or
