@@ -6,6 +6,39 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.12.0] - 2026-10-11
+Your researcher can now be your tutor in a KaxaNuk Training Workshop: name the session, such as
+*Bootcamp S03*, and it follows the course with you.
+
+**What to do differently:** say `update` in your home; then, in a workshop, tell your researcher
+the session you are on.
+### Added
+- **`workshop`** (0.1.0), a skill, so Codex has it too. It loads when you say you are working
+  through a session of the Investment Bootcamp, Coding Foundations, Financial Markets or
+  Mathematical Finance, or ask for help with one. Each time, it reads the course map at the end of
+  the workshop's `README.md` and the session's deck, from your clone or the public repository, on
+  the branch in your language where there is one, and never keeps a copy of the course: the course
+  changes, and the tutor follows it. Where the map is not published yet, it reads the course's
+  other files and says so; a workshop it cannot reach, not yet published or private, it says so
+  and asks for your clone or the deck.
+- **It tutors as the course asks.** It places you in the session's block, from the course's own
+  list of blocks, and on your track, no code or code. Your prediction comes first, and hints come in
+  three levels: a nudge, a pointer to the file or skill, then a worked step. While the AI is off it
+  holds your question for later, with no hint, no code and no answer, since only what you can do
+  and explain with the AI off is assessed. It computes no performance number and gives no
+  investment advice.
+- **It hands the hard parts on**: an idea to `teach` with the session's topics, your own reading to
+  `query`, Golden-Flow's file for the step to `init-example`, and each tool to its step's skill.
+  While a Lab module is still coming, the no-code track works the Golden-Flow file the course map
+  names instead.
+- **The workshops are named in this skill alone**, by the owner's choice: their names and
+  repositories, never a session's content, deck or page. The reading map and `philosophy`'s
+  question bank still name no course, as since 1.11.0.
+### Changed
+- **`README.md`** gains a row in *What you can use it for* and in the table of skills.
+  **`CONTRIBUTING.md`**: a release deploys 23 skills, 24 with a researcher's own on Codex, and the
+  walk by hand tries `workshop` on one session when a release changes it.
+
 ## [1.11.2] - 2026-10-11
 Your researcher never gives investment advice and now says so when a new one is set up, and the
 worked example's figures carry their caveat.
