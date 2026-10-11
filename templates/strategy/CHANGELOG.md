@@ -41,6 +41,20 @@ for somebody who was not in the room:
 
 ---
 
+## 0.19.2 (2026-10-11)
+
+**PATCH** — the Analytics Factory's files are asked of `analytics@kaxanuk.mx`. Nothing about any
+result changes.
+
+**What to do differently:** nothing in a new strategy. In one made from an earlier template, ask
+`analytics@kaxanuk.mx` for the Analytics Factory's files; licences and questions about the Lab's
+libraries stay with `lab@kaxanuk.mx`.
+
+### Changed
+
+- **`SETUP.md`**, *Step 3*, **`Config/.env.template`** and **`Data/hand_supplied.py`**: the
+  Analytics Factory's files come from `analytics@kaxanuk.mx`.
+
 ## 0.19.1 (2026-10-10)
 
 **PATCH** — the guides read more simply, each idea said once, and `.gitignore` keeps a licence file

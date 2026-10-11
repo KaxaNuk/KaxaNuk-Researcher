@@ -1,8 +1,8 @@
 """
 The hand-supplied inputs -- step 3 of 8, beside the Curator.  The index a book is reported against
 and the factor model attribution reads are not sold by any price provider: they arrive as files
-from KaxaNuk's Analytics Factory (https://www.kaxanuk.mx/analytics; ask lab@kaxanuk.mx for them),
-and this module is the one place that reads them.
+from KaxaNuk's Analytics Factory (https://www.kaxanuk.mx/analytics; ask analytics@kaxanuk.mx for
+them), and this module is the one place that reads them.
 
 In plain words: set `KN_ANALYTICS_PATH` in `Config/.env` to the Factory's folder and the files are
 read where they are, in the Factory's own names and headers -- nobody renames or re-heads a file.

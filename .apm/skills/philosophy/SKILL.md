@@ -8,10 +8,10 @@ description: >
   words, under Non-negotiables in RESEARCHER.md; retaken after reading, it shows how their view
   moved. Plan first, the owner's go, then write, at home only. Only when the owner runs it by name,
   or picks it where another skill offers a round. It does NOT edit what either file holds (`refine`
-  does) or write RESEARCHER.md beyond Find first and those rules, and never says what to buy, sell
-  or hold.
+  does) or write RESEARCHER.md beyond Find first and those rules, and never says buy, sell, trim,
+  add or hold.
 metadata:
-  version: 1.3.3
+  version: 1.3.4
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -23,9 +23,9 @@ rules they keep, how they decide, what would change their mind — or, the same 
 work, in any field they name, as *Another field* says. Nothing here is about a strategy: a
 question on a yardstick, a stop or how long to hold asks about the owner's own habit, never a
 strategy's rule, which `objective` and `blueprint` ask later, in a strategy. It is not a test — no
-score, no quiz, no wrong answer. It never tells the owner what to buy, sell or hold, never names a
-product or a ticker, never proposes an allocation or a benchmark, and never computes a return. For
-what the library says, use `query`; for a lesson on an idea, `teach`.
+score, no quiz, no wrong answer. It never tells the owner to buy, sell, trim, add or hold, never
+names a product or a ticker, never proposes an allocation or a benchmark, and never computes a
+return. For what the library says, use `query`; for a lesson on an idea, `teach`.
 
 **What it writes, and only on the owner's go.** The owner's typed answers, added word for word and
 add-only to the file of the round's topic — `HOW-I-INVEST.md`, or `HOW-I-WORK.md` for another field,
@@ -489,8 +489,8 @@ words: ask for their own words, or a skip.
 - Name a work from memory, or one from the reading map in a field round, state a paper's finding as
   a settled fact, or put an *Edge* line of the map to the owner below Researching.
 - Cite a round file as the owner's view, or as evidence of anything.
-- Propose a product, a ticker, an allocation or a benchmark; compute a return; say buy, sell or
-  hold.
+- Propose a product, a ticker, an allocation or a benchmark; compute a return; say buy, sell,
+  trim, add or hold.
 - Write, or save a version, on a *Stop*, on silence or on a closed session.
 - Write at home from a strategy or another project without saying so first in the preview.
 - Write a plan, a comparison or a report as a file. The chat is the record, and the round file is

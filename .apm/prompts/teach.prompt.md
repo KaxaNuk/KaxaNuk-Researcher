@@ -82,4 +82,5 @@ just beyond what stuck last time.
 
 Never edit a past session file. Never write outside `Lessons/<topic-slug>/` — a first work's
 `read`, or a round of `philosophy`, is that skill's own run, with its own plan and go, never part of
-a lesson.
+a lesson. A lesson teaches an idea, never what to do with money: it never says buy, sell, trim, add
+or hold, and never recommends a product.

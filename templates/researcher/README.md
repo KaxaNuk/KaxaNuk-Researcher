@@ -11,11 +11,11 @@ researcher, it writes a paragraph about it in place of this one, yours to change
 projects, and for learning to invest when you want. It is never investment advice: it never tells
 you to buy, sell or hold, never trades or moves money, and every decision, and its risk, is yours.
 It runs on your computer through your AI assistant; what it reads goes to the company behind that
-assistant, never to KaxaNuk, and a copy goes to your own private GitHub only when you ask. It is
-free under the MIT licence, as is and without warranty; your data provider, your assistant and the
-Investment Lab's libraries, which KaxaNuk sells, each have their own terms. The worked example's
-figures come from a backtest on past prices, shown to teach the method, never a promise or a
-recommendation. Questions: [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx).
+assistant (Anthropic for Claude, OpenAI for Codex, Google for Gemini), never to KaxaNuk, and a copy
+goes to your own private GitHub only when you ask. It is free under the MIT licence, as is and
+without warranty; your data provider, your assistant and the Investment Lab's libraries, which
+KaxaNuk sells, each have their own terms. The worked example's figures come from a backtest on past
+prices, shown to teach the method, never a promise or a recommendation.
 
 ## Your folders
 
@@ -97,11 +97,6 @@ source, and the Backtest Engine, Attribution Analysis and Portfolio Construction
 Refinery and the Data Analyzer when they ship, come together, with their licences, in the KaxaNuk
 Investment Lab, which KaxaNuk sells. Without the licences a strategy still runs up to its
 portfolios.
-
-For a licence, access or the Analytics Factory's files, write to `lab@kaxanuk.mx`, as the
-[package's README](https://github.com/KaxaNuk/KaxaNuk-Researcher#the-kaxanuk-investment-lab) says.
-To report a problem with your researcher, write to the same address, with the versions it names
-when you ask *which version are you?*
 
 ---
 
@@ -207,6 +202,23 @@ this field. `CHANGELOG.md` holds the template's changelog, then this home's.
 
 ---
 
+## Contact
+
+One address for each kind of question:
+
+- **The Investment Lab's libraries and licences**, or a problem with your researcher:
+  [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx). For a problem, add the versions it names when you ask
+  *which version are you?*
+- **The Analytics Factory's data sets:** [analytics@kaxanuk.mx](mailto:analytics@kaxanuk.mx)
+- **Research Models**, such as the worked example `golden-flow`:
+  [research@kaxanuk.mx](mailto:research@kaxanuk.mx)
+- **Training Workshops:** [workshops@kaxanuk.mx](mailto:workshops@kaxanuk.mx)
+- **Anything else**, or a tool you would like next: [info@kaxanuk.mx](mailto:info@kaxanuk.mx)
+
 ## Licence
 
 MIT, see [`LICENSE`](LICENSE), and *What it is, and what it is not* above.
+
+The KaxaNuk Researcher package's MIT licence grants no right in KaxaNuk's names, the Investment
+Lab's libraries, the Analytics Factory's files, KaxaNuk's Research Models or Training Workshops:
+those stay KaxaNuk's.

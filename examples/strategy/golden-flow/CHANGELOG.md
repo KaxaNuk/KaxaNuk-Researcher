@@ -41,6 +41,33 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.4 (2026-10-11)
+
+**PATCH** — the README and the status banner say the figures are hypothetical; prose only, nothing
+re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`README.md`**: *Hypothetical results*, after the opening paragraph. Every return, Sharpe and
+  drawdown is simulated, never traded, and past returns do not guarantee future returns. All but
+  one come from a backtest on the past prices the strategy was designed on, one of 107 portfolios
+  tested, with modelled costs, against KaxaNuk's own index. The one is the 24.9% drawdown the
+  engine shows just after the window, before the book was frozen.
+- **`README.md`**, *What it is, and what it is not*: the companies that receive what your
+  researcher reads, by example: Anthropic for Claude, OpenAI for Codex, Google for Gemini.
+- **`README.md`**, *What it is, and what it is not*: it no longer ends with an address; the
+  researcher's list says where to write, Research Models such as this one to
+  `research@kaxanuk.mx`.
+- **The Analytics Factory's files**, the index's master of listings included, are asked of
+  `analytics@kaxanuk.mx`: in `README.md`, `SETUP.md`, `Config/.env.template`,
+  `Data/hand_supplied.py` and `Universe/seed.py`, the shared lines as the template's 0.19.2.
+- **`AGENTS.md`**, above the status banner: a shorter caveat, pointing to the README's
+  *Hypothetical results*.
+
+The frozen book in `Paper_Trading/Paper_Trading_1/` is unchanged: `FREEZE.json` hashes its files.
+
 ## 0.17.3 (2026-10-10)
 
 **PATCH** — the shared lines move as the template's 0.19.1 does, and the README says what the

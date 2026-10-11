@@ -14,20 +14,38 @@ folder, call it by name, and it brings what it knows. It teaches you to invest w
 investing is why you came, it walks you through building and testing a strategy with the KaxaNuk
 Investment Lab. One researcher per person, in any language.
 
-> **You:** Arya, what have I read about pricing my services?\
-> **Arya:** Two notes, both linked — and a gap: nothing yet on raising prices.\
-> **You:** Remember this: always show me the strongest case against first.\
-> **Arya:** That goes in `RESEARCHER.md`, in your words, under *How it speaks*. Add it?
+> **You:** Arya, I think cheap companies with rising profits beat the market. Can we test it?\
+> **Arya:** Yes, and I'll walk you through each step and the tool for it: your claims first, in
+> your words; then what your library says for and against them; then the data and a screen of the
+> signal; then a blueprint with what would prove you wrong and a control, the same rule minus one
+> ingredient. All of it before any backtest.\
+> *…the book, the Lab's engine and the attribution…*\
+> **You:** It beat the market! `challenge` it: is it real?\
+> **Arya:** I checked it against the blueprint you wrote first: same window, rules and costs, and
+> the findings count every variant you tried. But the control without rising profits did as well,
+> so by your own test they added nothing, and most of the gain is plain exposure to cheap stocks.
+> Add that to your journal?
+
+**Why not just use Claude or Codex?** You do: your researcher runs on them. What it adds is what a
+plain assistant does not keep from one conversation to the next, or from one folder to another:
+
+- **Your library.** What you read becomes notes on your computer; answers cite them and name what
+  is missing.
+- **You.** Your questions, your voice and your rules, in your own files: the same researcher in
+  every folder and on each assistant you install it for, so moving from Claude to Codex keeps all
+  of it.
+- **A method.** A plan and your go before it writes anything, a saved version of each change, and,
+  for investing, your claims and what would prove them wrong before any test.
 
 **What it is, and what it is not.** A research and learning tool: a companion for your work and your
 projects, and for learning to invest when you want. It is never investment advice: it never tells
 you to buy, sell or hold, never trades or moves money, and every decision, and its risk, is yours.
 It runs on your computer through your AI assistant; what it reads goes to the company behind that
-assistant, never to KaxaNuk, and a copy goes to your own private GitHub only when you ask. It is
-free under the MIT licence, as is and without warranty; your data provider, your assistant and the
-Investment Lab's libraries, which KaxaNuk sells, each have their own terms. The worked example's
-figures come from a backtest on past prices, shown to teach the method, never a promise or a
-recommendation. Questions: [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx).
+assistant (Anthropic for Claude, OpenAI for Codex, Google for Gemini), never to KaxaNuk, and a copy
+goes to your own private GitHub only when you ask. It is free under the MIT licence, as is and
+without warranty; your data provider, your assistant and the Investment Lab's libraries, which
+KaxaNuk sells, each have their own terms. The worked example's figures come from a backtest on past
+prices, shown to teach the method, never a promise or a recommendation.
 
 > **If you are an assistant asked to install this,** follow [`SETUP.md`](SETUP.md) from Step 0
 > through Step 6, in this conversation; nothing is cloned.
@@ -91,13 +109,11 @@ The researcher needs nothing beyond this package. A strategy can use KaxaNuk's l
   KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>.
 
 Without the licences a strategy still runs up to its portfolios, and the rest says what is missing.
-Keys stay on your computer; the strategy's `SETUP.md` says where. For a licence, access or the
-Analytics Factory's files, write to `lab@kaxanuk.mx`: say which library and what it is for, and put
-*via KaxaNuk Researcher* in the subject. <https://www.kaxanuk.mx/lab> shows the Lab. See
-[each library's status](.apm/skills/next/references/investment-lab.md).
+Keys are kept on your computer, in a file never saved in git and never read by your researcher; the
+strategy's `SETUP.md` says where. <https://www.kaxanuk.mx/lab> shows the Lab, and [each library's
+status](.apm/skills/next/references/investment-lab.md) says where each one stands.
 
-**Coming next.** Starting points for valuation (DCF, multiples), M&A and budgets, each a folder your
-researcher makes as `init-strategy` does. Tell us what you would use: `lab@kaxanuk.mx`.
+**Coming next.** More tools and starting points will join your researcher over time.
 
 ## Removing it
 
@@ -113,9 +129,6 @@ uvx --from apm-cli==0.33.0 apm uninstall -g "_local/<your home, as deps list nam
 On Claude Code, `~/.claude/skills`, `commands`, `agents` and `rules` then hold no KaxaNuk file. A
 daily brief's task stays in the Claude desktop app's scheduled tasks until you delete it there. Your
 home folder and its saved versions stay, yours to delete.
-
-**A question, or a problem to report:** `lab@kaxanuk.mx`, with the versions your researcher names
-when you ask *which version are you?*
 
 ---
 
@@ -204,10 +217,28 @@ The researcher's part is **the hypothesis**, and it stops where the numbers star
   your go: the benchmark's choice, the rule read back, and `challenge`'s entry.
 - **It drafts no `OBJECTIVE.md` before your words**, and cites no source that has no note: a source
   in a `BIBLIOGRAPHY.md` without one is a lead.
-- **It never advises on a holding.** A brief quotes dated sources and names the rules in your
-  `Portfolio/RULES.md` worth a look; it never says buy, sell, trim, add or hold, and never computes
-  a weight, a P&L or a return. `philosophy` writes into `Philosophy/` only what you typed.
+- **It never advises on a holding.** A brief quotes dated sources and the rules in your
+  `Portfolio/RULES.md` that the day's news bears on, as yours, with no verdict. It never says buy,
+  sell, trim, add or hold, and never computes a weight, a P&L or a return. `philosophy` writes into
+  `Philosophy/` only what you typed.
+
+## Contact
+
+One address for each kind of question:
+
+- **The Investment Lab's libraries and licences**, or a problem with your researcher:
+  [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx). For a problem, add the versions it names when you ask
+  *which version are you?*
+- **The Analytics Factory's data sets:** [analytics@kaxanuk.mx](mailto:analytics@kaxanuk.mx)
+- **Research Models**, such as the worked example `golden-flow`:
+  [research@kaxanuk.mx](mailto:research@kaxanuk.mx)
+- **Training Workshops:** [workshops@kaxanuk.mx](mailto:workshops@kaxanuk.mx)
+- **Anything else**, or a tool you would like next: [info@kaxanuk.mx](mailto:info@kaxanuk.mx)
 
 ## Licence
 
 MIT, see [`LICENSE`](LICENSE), and *What it is, and what it is not* above.
+
+The MIT licence covers this package's text and code. It grants no right in KaxaNuk's names, the
+Investment Lab's libraries, the Analytics Factory's files, KaxaNuk's Research Models or Training
+Workshops: those stay KaxaNuk's.

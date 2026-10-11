@@ -8,7 +8,7 @@ description: >
   strategy of the owner's own (use `init-strategy`), does NOT bring back a template file a strategy
   lacks (`init-strategy`'s script with `--only` does), and never builds on the example.
 metadata:
-  version: 0.5.1
+  version: 0.5.2
 ---
 
 # Init example — a worked example, whole or one piece at a time
@@ -117,9 +117,10 @@ or describe an example from memory.
    - *Run*: its README's *Run it*, in a **new** session opened in the folder — an FMP key of their
      own, the Analytics Factory's KN US Equity Core and factor model files, and the Backtest Engine
      and Attribution Analysis, which come with their licences in the KaxaNuk Investment Lab, sold by
-     KaxaNuk. For the files and the licences, write to `lab@kaxanuk.mx`, saying which library and
-     what it is for, with *via KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab>
-     shows the Lab. The download takes about an hour and a half.
+     KaxaNuk. For the files, write to `analytics@kaxanuk.mx`; for the licences, to
+     `lab@kaxanuk.mx`, saying which library and what it is for, with *via KaxaNuk Researcher* in the
+     subject — <https://www.kaxanuk.mx/lab> shows the Lab. The download takes about an hour and a
+     half.
    - *Own*: a strategy of your own is `init-strategy <name>`; nothing is built on the example, and
      its paper book, `Paper_Trading/Paper_Trading_1/`, is a record that does not run.
 

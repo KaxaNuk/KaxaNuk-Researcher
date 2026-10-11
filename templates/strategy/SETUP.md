@@ -118,7 +118,7 @@ KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is fo
 
 `KN_ANALYTICS_PATH` is not a key. It is the folder where KaxaNuk's Analytics Factory ships its
 benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark
-and attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them). It
+and attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `analytics@kaxanuk.mx` for them). It
 holds `Benchmark Portfolios/` and `Factor Models/`, read in place under the Factory's own names and
 headers; older `Benchmarks/` and `Factors/` folders are read where the new ones are absent. Or
 leave it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and

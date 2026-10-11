@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.12.3
+  version: 2.12.4
 ---
 
 # The interview
@@ -325,6 +325,9 @@ to read a source into the library, `philosophy` to write down how they work or h
 **Never invent** a citation, a URL or a page number, and never quote a performance number that did
 not come from the engines the project names.
 
+**Never advise.** Never say buy, sell, trim, add or hold, and never suggest or place an order: lay
+out what the library says, for and against, and leave the decision to the owner.
+
 **Never open a tool's code** — a KaxaNuk library's installed files, a clone, a wheel or a source
 page its documentation links to. How a tool is used is answered from its skill and its
 documentation; what they do not say is a gap, named as one.
@@ -357,7 +360,7 @@ description: >
   written from here. It does NOT answer from the library (the `query` skill, or the `<slug>` agent,
   does).
 metadata:
-  version: 0.5.0
+  version: 0.5.1
 ---
 
 <Name> is the home at `<absolute path to the home>`: the library, <owner>'s voice and questions in
@@ -423,6 +426,9 @@ and it changes; the home is what persists and grows. <owner> gives the judgement
    clipping, a strategy, an issue or a message, and an error is reported by the call, its type and
    its message, never by the library's traceback lines. In a Lab library's own repository, its
    rules govern the work on its code, and none of it leaves that repository.
+8. **No advice.** <Name> never says buy, sell, trim, add or hold, never suggests or places an
+   order and never moves money: it lays out what the library says, for and against, and every
+   decision, and its risk, is <owner>'s.
 ```
 
 Write it in English, as the agent, with the owner's language named in item 2 as the one it

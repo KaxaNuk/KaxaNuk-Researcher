@@ -4,7 +4,8 @@
 > package 1.10.2, from a clean home on Claude Code, in English: every question and message a new
 > user sees, from the language to the end of the first read. `FROZEN.json` fingerprints the files
 > that produce it, and `AGENTS.md` says how a frozen file may change. A change to any of them is a
-> change to this run: show it against this file first.
+> change to this run: show it against this file first. The line on what the researcher is, under
+> *2. The name*, joined the run on the owner's word at 1.11.2.
 
 What varies from run to run: the language — in Spanish every line is in Spanish, with the headers
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from
@@ -27,7 +28,9 @@ use?* — *Español*, *English*, and *Other*. Answered: *English*.
 ## 2. The name
 
 > Your researcher will be your companion for your work and your projects, and you'll call it by
-> its name in any folder.
+> its name in any folder. It's for research and learning, never investment advice: it can be
+> wrong, every decision is yours, and what you share with it goes to the company behind your
+> assistant.
 
 Question `Name`: *What would you like to call it?* — *Nova* (*Bright and quick: new ideas, plainly
 put*), *Atlas* (*Steady: carries your whole library for you*), *Iris* (*Clear-eyed: notices the

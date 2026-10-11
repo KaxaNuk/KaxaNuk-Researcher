@@ -1,15 +1,15 @@
 {
-  "frozen": "The onboarding and the first read, as the package's owner approved them on 2026-10-10 at 1.10.2, trimmed on the owner's word at 1.11.0 with every question and message kept. A file here changes only on the owner's word, as AGENTS.md says under Rules.",
+  "frozen": "The onboarding and the first read, as the package's owner approved them on 2026-10-10 at 1.10.2, trimmed on the owner's word at 1.11.0 with every question and message kept, and given one line on what the researcher is at 1.11.2. A file here changes only on the owner's word, as AGENTS.md says under Rules.",
   "record": "ONBOARDING.md",
   "files": {
-    ".apm/skills/init-researcher/SKILL.md": "32a48d2afe7f8c8f88d8921d0755b170f266186e74bced1523f5f9c0f6e774ef",
+    ".apm/skills/init-researcher/SKILL.md": "9f658bd0b520aa7fb30d26283469585609c10a32a1bf076928ea7f2e4b179f7f",
     ".apm/skills/init-researcher/scripts/user_targets.py": "e0b3062d4a971fab3ca2ffb4524eda8bc1692b772e0c9e9377f90dc79d3bedc9",
-    ".apm/skills/interview/SKILL.md": "454a0582174721d10809fbcf5da993ff30d418de31354a518c56e6880d22d2c3",
+    ".apm/skills/interview/SKILL.md": "31badfded26bd8f6dfb86e77ce2028548d873c006de7a5d61c9194f8cb5408de",
     ".apm/skills/read/SKILL.md": "f24993c22c5d7154f2bfbd09c88b8948b823928e50122b825c85070161cebe23",
     ".apm/skills/read/references/note.md": "23e4c589de01d10e55e6d5ffdf6c148b1d5e7d43282fde9be9c4deeddf680ec5",
     ".apm/skills/read/references/reading-map.md": "d141f2f9e5fca299d6f9d08a16b1e5957e0105ec9cc139f3baaa86573ac854e8",
     ".apm/skills/read/scripts/extract.py": "8ac7175d7d6f33195f86e1f3b916221e4f9d9494d41174db6488f063e904b53b",
-    "ONBOARDING.md": "37001ae5ca7c32e79f6fdcf6ca04903847d37593bf7eaa1c94f8efe9e6494a89",
+    "ONBOARDING.md": "b8fb099cb8bf889f7b3533741e0e65595983ee92df575a1f20ced223fcc2472c",
     "SETUP.md": "599e78f9e33e86a608e24cc61447af57b8050ec71ae5bbb0e379c90e545fa9c5"
   }
 }

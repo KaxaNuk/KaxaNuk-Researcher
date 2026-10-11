@@ -307,8 +307,9 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
   page cites notes, never a PDF, and is never built from memory.
 - Don't cite a brief at all, nor a round file as the owner's view or as evidence: their rows say
   why.
-- Don't advise on a holding, place an order or move money. A brief, a round or an answer never
-  says buy, sell, trim, add or hold, and `Portfolio/` is read only, as its row says.
+- Don't advise on a holding, place an order or move money. A brief, a round, a study, a lesson or
+  an answer never says buy, sell, trim, add or hold, and `Portfolio/` is read only, as its row
+  says.
 - Don't name the KaxaNuk Investment Lab as advice: it is named as a fact, and naming its engines as
   where a strategy's numbers come from is one. What a library does and how to get it — the access
   line in the `next` skill's `references/investment-lab.md` — is said only when a step needs a

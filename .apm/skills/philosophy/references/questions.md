@@ -39,7 +39,7 @@
 >
 > - No question asks the owner to adopt a view, and none asks how KaxaNuk invests.
 > - No line names a product or a ticker, proposes an allocation or a benchmark, or computes a
->   return. Nothing says buy, sell or hold.
+>   return. Nothing says buy, sell, trim, add or hold.
 > - Examples are what other people say, never a recommendation.
 > - A **personal benchmark** is the owner's yardstick for their own money. A strategy's benchmark
 >   is chosen later, at part E, and is a different thing. A question here on a yardstick, a stop or
@@ -121,8 +121,8 @@
 > time; *not sure yet* is a complete answer.
 >
 > Only what you type goes into your file, word for word, and the rules you keep into
-> `RESEARCHER.md`, after you've seen them and said go. I never tell you what to buy, sell or hold.
-> Take this again after you've read something, and you'll see how your view moved.
+> `RESEARCHER.md`, after you've seen them and said go. I never tell you to buy, sell, trim, add or
+> hold. Take this again after you've read something, and you'll see how your view moved.
 
 Then the question `Ready?` (`¿Comenzamos?`), with *Start* or *Not now*. On *Not now*, nothing is
 written; say how to start later.
