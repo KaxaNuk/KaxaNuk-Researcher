@@ -7,6 +7,14 @@ trend is up. On the history it was built on, it beat its index, mostly by taking
 trend filter's real job was cutting losses in crashes: a worst fall of −32.5%, against −46.3%
 without it. Nothing needs installing to read it: *How to read it*, below, says where to start.
 
+> **Hypothetical results.** Every return, Sharpe and drawdown in this README is simulated, never
+> traded: no money was at stake, and past returns do not guarantee future returns. All but one
+> come from a backtest on the past prices the strategy was designed on, one of 107 portfolios
+> tested, with modelled costs, measured against KaxaNuk's own index. The one: just after the
+> backtest's window, before the book was frozen, the engine has it at a 24.9% drawdown from
+> 2026-06-22 to 2026-07-29, against 2.0% for `SPY`. Its limits:
+> [`RESULTS.md`, *Known limitations*](RESULTS.md#known-limitations).
+
 **Own the KN US Equity Core stocks the market is trading most, while their trend is up, in
 proportion to what they trade** — none above a fifth of the book, none too small to matter.
 
@@ -20,11 +28,11 @@ proportion to what they trade** — none above a fifth of the book, none too sma
 projects, and for learning to invest when you want. It is never investment advice: it never tells
 you to buy, sell or hold, never trades or moves money, and every decision, and its risk, is yours.
 It runs on your computer through your AI assistant; what it reads goes to the company behind that
-assistant, never to KaxaNuk, and a copy goes to your own private GitHub only when you ask. It is
-free under the MIT licence, as is and without warranty; your data provider, your assistant and the
-Investment Lab's libraries, which KaxaNuk sells, each have their own terms. The worked example's
-figures come from a backtest on past prices, shown to teach the method, never a promise or a
-recommendation. Questions: [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx).
+assistant (Anthropic for Claude, OpenAI for Codex, Google for Gemini), never to KaxaNuk, and a copy
+goes to your own private GitHub only when you ask. It is free under the MIT licence, as is and
+without warranty; your data provider, your assistant and the Investment Lab's libraries, which
+KaxaNuk sells, each have their own terms. The worked example's figures come from a backtest on past
+prices, shown to teach the method, never a promise or a recommendation.
 
 This is the worked example `init-example` copies, built on the
 [KaxaNuk Strategy Template](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md):
@@ -111,8 +119,8 @@ findings. When a library ships, the example moves to it in a new version.
 
 **The Analytics Factory** is KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;
-ask `lab@kaxanuk.mx` for them. Step 3 of [`SETUP.md`](SETUP.md) says where a strategy reads them
-from.
+ask `analytics@kaxanuk.mx` for them. Step 3 of [`SETUP.md`](SETUP.md) says where a strategy
+reads them from.
 
 ## Run it
 
@@ -163,7 +171,7 @@ uv run jupyter nbconvert --to notebook --execute --output-dir ../golden-flow-run
 - **The notebooks write their executed copies to `../golden-flow-runs`**, so the tracked notebooks
   stay stripped. Each ends in a Verify section that raises.
 - **`Universe/seed.py` is not part of the run.** The seed is committed; the script shows how it was
-  built, and needs the index's master of listings, which `lab@kaxanuk.mx` can be asked for.
+  built, and needs the index's master of listings, a file the Analytics Factory can provide.
 - **`Paper_Trading_1` is a record** of the book frozen on 2026-10-06, not run from this copy, for
   the reasons [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) gives. `promote.py 1`
   refuses, and `daily_update.py --dry-run --skip-refresh` stops and exits 2: with no data, at its

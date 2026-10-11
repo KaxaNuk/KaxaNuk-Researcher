@@ -39,8 +39,8 @@ end, and a person can read it in a few minutes.
 > from them.
 >
 > **The seed is committed.** `Universe/seed.py` rebuilds it only from the index's master of
-> listings, a file of the Analytics Factory not in its published folders (ask `lab@kaxanuk.mx`).
-> Running it overwrites the committed seed.
+> listings, a file of the Analytics Factory not in its published folders (ask
+> `analytics@kaxanuk.mx`). Running it overwrites the committed seed.
 >
 > **Times recorded on 2026-10-06.** The curator took 1 hour 37 minutes for 892 names, and 2 minutes
 > for its second pass. The universe notebook took 17 seconds, once `seed.py` had filled the profile
@@ -159,7 +159,7 @@ KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is fo
 
 `KN_ANALYTICS_PATH` is not a key. It is the folder where KaxaNuk's Analytics Factory ships its
 benchmark portfolios and factor models, which a strategy may read as its universe, its benchmark
-and attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `lab@kaxanuk.mx` for them). It
+and attribution's inputs (<https://www.kaxanuk.mx/analytics>; ask `analytics@kaxanuk.mx` for them). It
 holds `Benchmark Portfolios/` and `Factor Models/`, read in place under the Factory's own names and
 headers; older `Benchmarks/` and `Factors/` folders are read where the new ones are absent. Or
 leave it empty and drop the same files, unchanged, into `Data/Curator/Benchmarks/` and

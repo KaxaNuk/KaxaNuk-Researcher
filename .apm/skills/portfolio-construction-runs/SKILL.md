@@ -13,7 +13,7 @@ description: >
   reading what sizing earned (use `alpha-decomposition`), or the documents around the experiment
   (use `experiment-lifecycle`).
 metadata:
-  version: 0.5.1
+  version: 0.5.2
   library_version: 1.28.0
 ---
 
@@ -253,7 +253,8 @@ cap and a floor on each weight — are the design, not levers to earn, and the c
 too. The library's richer machinery — a `Mandate` with group limits, a tracking-error budget,
 Black-Litterman views — is a lever of the same kind: one at a time, each beating the book without
 it. The worked example sizes by traded value inside a 20% cap and a 1% floor, by the owner's
-design, and its equal-weight arm lost: 14.53% a year at a Sharpe of 0.722, against 20.33% at 0.842.
+design, and in its in-sample backtest the equal-weight arm lost: 14.53% a year at a Sharpe of
+0.722, against 20.33% at 0.842.
 
 ## 7. The weight file
 

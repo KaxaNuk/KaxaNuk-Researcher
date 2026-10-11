@@ -11,7 +11,7 @@ description: >
   which books to price and how to read the numbers that come back. Shaping the attribution library's
   inputs and calling it is `attribution-analysis-runs`; pricing a book is `backtest-engine-runs`.
 metadata:
-  version: 0.4.3
+  version: 0.4.4
 ---
 
 # Alpha decomposition — is the signal doing anything?
@@ -222,8 +222,9 @@ folder of its own. Its strategy, **Golden Flow**, owns the KN US Equity Core mem
 simple moving average is above the 200-day, ranked and weighted by 63-day traded value, none above
 20% and none below 1%, re-struck only when the held set changes. Steps 1 to 7 have run: criteria 1
 to 4 of the gate passed, and the book was signed into paper trading on 2026-10-06. So the numbers
-below are real: priced by the engine over 2015-01-02 to 2026-06-01, reported in
-`Experiments/Experiment_1/FINDINGS_1.md`.
+below are measured, not made up for illustration: the example's in-sample backtest, priced by the
+engine and attributed by Attribution Analysis over 2015-01-02 to 2026-06-01, and reported in
+`Experiments/Experiment_1/FINDINGS_1.md`; hypothetical, never traded.
 
 | Arm | What it removes | CAGR | Sharpe | **Idiosyncratic** |
 | --- | --- | ---: | ---: | ---: |

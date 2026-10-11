@@ -93,7 +93,7 @@ Rules:
   and the researcher joins it as *Joining other projects* in `AGENTS.md` says.
 - **The case, never a recommendation.** A study lays out what the library says for and against a
   choice, and what would settle it; the decision, and its risk, stay the owner's, and it never says
-  buy, sell or hold.
+  buy, sell, trim, add or hold.
 - **A revision keeps every line the owner wrote.** What the new reading changes is proposed as a
   change, never made silently; the date moves, and the state moves only when the owner says so.
 

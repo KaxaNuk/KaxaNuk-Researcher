@@ -8,6 +8,10 @@ survive before anyone believes it.
 
 <!-- example: begin -->
 
+> **Hypothetical:** the figures below come from a backtest on the past prices the strategy was
+> designed on, one of 107 portfolios tested; past returns do not guarantee future returns. The
+> README's *Hypothetical results* says more.
+>
 > **Status, as copied on 2026-10-07: Experiment 1 ran in sample and passed criteria 1 to 4 of its
 > gate; its book was frozen for paper trading on 2026-10-06 and is kept here as a record.**
 > In a backtest, net of costs, 2015-01-02 to 2026-06-01: 20.33% a year at a Sharpe of 0.842,

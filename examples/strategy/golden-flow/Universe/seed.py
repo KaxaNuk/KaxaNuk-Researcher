@@ -19,9 +19,9 @@ and the universe notebook names it as one this repository does not price.  `vali
 listing still trading on the master's last date has no `valid_to`.
 
 It needs that master, `--index-master <path>`, a file of KaxaNuk's Analytics Factory that its
-published folders do not hold (ask lab@kaxanuk.mx), and `KNDC_API_KEY_FMP` in `Config/.env`.
-FMP profiles are cached in `Universe/Provider_Cache/`.  Another provider means another builder,
-with the main identifier KaxaNuk supplies for it.
+published folders do not hold (ask analytics@kaxanuk.mx), and `KNDC_API_KEY_FMP` in
+`Config/.env`.  FMP profiles are cached in `Universe/Provider_Cache/`.  Another provider means
+another builder, with the main identifier KaxaNuk supplies for it.
 
 It produces `Universe/Investable_Universe.csv`, tickers and dates only: `main_identifier`,
 `index_identifier`, `valid_from`, `valid_to`.

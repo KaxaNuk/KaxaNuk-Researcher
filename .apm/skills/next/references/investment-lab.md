@@ -43,14 +43,21 @@ of them.
 
 **The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;
-ask `lab@kaxanuk.mx` for them. A strategy reads them in place from the folder its
+ask `analytics@kaxanuk.mx` for them. A strategy reads them in place from the folder its
 `KN_ANALYTICS_PATH` names, or from copies dropped into `Data/Curator/Benchmarks/` and
 `Data/Curator/Factors/`, as its `SETUP.md` says.
 
-**To report a problem or suggest a change to the researcher:** the same address, with the versions
-your researcher names when you ask *which version are you?*, and what happened.
+**Where to write**, when the owner asks — the same list as the package's README, *Contact*:
+
+- the Investment Lab's libraries and licences, or a problem with the researcher or a change to
+  suggest: `lab@kaxanuk.mx`, with the versions the researcher names when asked *which version are
+  you?*, and what happened;
+- the Analytics Factory's data sets: `analytics@kaxanuk.mx`;
+- Research Models, such as the worked example `golden-flow`: `research@kaxanuk.mx`;
+- Training Workshops: `workshops@kaxanuk.mx`;
+- anything else: `info@kaxanuk.mx`.
 
 **A wrong value in a strategy's data** is most often the data provider's. The researcher tells a
 provider's fault from a library's, as `data-curator-custom-calculations` says under *When a value
 looks wrong*, and a provider's fault goes to the provider — never to a library's issues, nor to
-this address.
+these addresses.

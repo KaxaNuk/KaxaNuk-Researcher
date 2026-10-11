@@ -8,7 +8,7 @@ description: >
   in Philosophy/Evolution/. It walks the index and the links before reading, and cites every claim.
   It does NOT write code or answer questions about files outside the library.
 metadata:
-  version: 0.9.4
+  version: 0.9.5
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -131,5 +131,7 @@ strategy's.
   the honest answer is that the library does not know, and what to read to find out.
 - Modify the library, `Philosophy/`, `Studies/` or the sources while answering, beyond the three
   files step 7 writes on the owner's go, never a note — and in a strategy, write anything at home.
+- Say buy, sell, trim, add or hold, or recommend a product: an answer lays out what the library
+  says, for and against, and the decision is the owner's.
 - Quote a performance number that did not come from the engines the project names, or from
   anywhere but the file that owns it — *Numbers*, above.

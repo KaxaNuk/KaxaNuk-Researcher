@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.4
+  version: 0.8.5
 ---
 
 # Init researcher — a home for the library, once
@@ -78,13 +78,17 @@ past four options, *Stop* is left out and the other homes are named in the line 
 2. **The name, with a welcome.** One warm line first, in their language — *Your researcher will be
    your companion for your work and your projects, and you'll call it by its name in any folder.*
    (*Tu investigador será tu compañero para tu trabajo y tus proyectos, y lo llamarás por su nombre
-   en cualquier carpeta.*) — then *What would you like to call it?* (*¿Cómo te gustaría llamarlo?*),
-   through the question tool: three short names proposed, each with a few words on its feel, and
-   *Other* for theirs. A name given with the command is used without asking. Never pick one for
-   them. With a home already made, no name proposed is <Existing>, and a name that matches
-   <Existing>, or a folder in `$HOME/.apm/apm_modules/_local/`, letter for letter but for case —
-   `arya` beside `Arya` — is asked for again, in one line: its home would be copied over that
-   folder. Accents count, so `Sofia` beside `Sofía` is a new name.
+   en cualquier carpeta.*) — and one line on what it is, as written: *It's for research and
+   learning, never investment advice: it can be wrong, every decision is yours, and what you share
+   with it goes to the company behind your assistant.* (*Es para investigar y aprender, nunca
+   asesoría de inversiones: puede equivocarse, cada decisión es tuya y lo que compartes con él llega
+   a la empresa detrás de tu asistente.*) — then *What would you like to call it?* (*¿Cómo te
+   gustaría llamarlo?*), through the question tool: three short names proposed, each with a few
+   words on its feel, and *Other* for theirs. A name given with the command is used without asking,
+   after the two lines. Never pick one for them. With a home already made, no name proposed is
+   <Existing>, and a name that matches <Existing>, or a folder in `$HOME/.apm/apm_modules/_local/`,
+   letter for letter but for case — `arya` beside `Arya` — is asked for again, in one line: its home
+   would be copied over that folder. Accents count, so `Sofia` beside `Sofía` is a new name.
 
 3. **The place and the go, in one question.** Before asking, look at the path proposed: when it
    exists and is not empty, the question opens with that, in one line, and *Go* proposes `<Name>`

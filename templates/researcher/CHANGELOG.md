@@ -6,6 +6,26 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.26.1 (2026-10-11)
+
+**PATCH** — the rules name every place advice is never given, and the README says what the MIT
+licence does not cover.
+
+**What to do differently:** say `update` in your home; the changes to `AGENTS.md` and `README.md`
+come as a diff.
+
+### Changed
+
+* **`AGENTS.md`**, *Hard don'ts*: a brief, a round, a study, a lesson or an answer never says buy,
+  sell, trim, add or hold.
+* **`README.md`**, *What it is, and what it is not*: the companies that receive what your
+  researcher reads, by example: Anthropic for Claude, OpenAI for Codex, Google for Gemini.
+* **`README.md`**: *Contact*, one address for each kind of question, in place of the addresses in
+  *The KaxaNuk Investment Lab* and the disclaimer's *Questions* line.
+* **`README.md`**, *Licence*: the KaxaNuk Researcher package's MIT licence grants no right in
+  KaxaNuk's names, the Investment Lab's libraries, the Analytics Factory's files, KaxaNuk's
+  Research Models or Training Workshops.
+
 ## 0.26.0 (2026-10-10)
 
 **MINOR** — your home's guide and rules read more simply, and its README says what your researcher

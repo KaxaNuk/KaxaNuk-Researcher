@@ -69,8 +69,8 @@ CSV and every file only the example has — its notes, `Universe/seed.py` and a 
   A change to a library's API changes its skill in the same release, and the worked example where
   it uses that library, with a new example version and a journal entry, re-run where a figure
   moves.
-- **A new starting point** — valuation, M&A, a budget — is built as `python-library` is: a folder
-  under `templates/` that `scaffold.py` copies, a kind in its `STARTING_POINTS`, and an
+- **A new starting point** is built as `python-library` is: a folder under `templates/` that
+  `scaffold.py` copies, a kind in its `STARTING_POINTS`, and an
   `init-<kind>` skill that runs it as `init-strategy` does. A copy that takes names gets them from a
   script of that skill's that only puts them in, as `init-python-library`'s `name_library.py` does.
   Its `AGENTS.md` names it in a marker line that survives its setup,

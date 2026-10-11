@@ -6,6 +6,55 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.11.2] - 2026-10-11
+Your researcher never gives investment advice and now says so when a new one is set up, and the
+worked example's figures carry their caveat.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The onboarding, on the owner's word** (`init-researcher` 0.8.5): after the welcome, one line in
+  the user's language, said even when a name comes with the command: *It's for research and
+  learning, never investment advice: it can be wrong, every decision is yours, and what you share
+  with it goes to the company behind your assistant.* Every question is unchanged.
+  `ONBOARDING.md` records the line, and `FROZEN.json` holds the new fingerprints.
+- **The researcher never advises** (`interview` 2.12.4): the agent and the researcher's skill it
+  writes never say buy, sell, trim, add or hold, nor suggest or place an order. The skill's
+  template moves to 0.5.1, so `next` and `update` bring a home's skill forward.
+- **One list of words in the rules**, buy, sell, trim, add or hold: in `study`, in `philosophy`
+  (1.3.4) and its question bank, and in the home's `AGENTS.md`. `teach` and `query` (0.9.5) gain
+  the rule. The disclaimer's own wording waits for counsel.
+- **The worked example's figures carry their caveat** (example 0.17.4): a backtest on the past
+  prices the strategy was designed on, one of 107 portfolios tested, with modelled costs, against
+  KaxaNuk's own index, and the drawdown just after the window. `alpha-decomposition` (0.4.4) and
+  `portfolio-construction-runs` (0.5.2) label the figures they quote as the example's in-sample
+  backtest.
+- **Coming next** stays open: more tools and starting points will join your researcher over time,
+  with none named yet.
+- **One place to write to us.** `README.md` and the home's `README.md` end with *Contact*, one
+  address for each kind of question: the Investment Lab's libraries and licences, or a problem
+  with your researcher, `lab@kaxanuk.mx`; the Analytics Factory's data sets,
+  `analytics@kaxanuk.mx`; Research Models such as the worked example, `research@kaxanuk.mx`;
+  Training Workshops, `workshops@kaxanuk.mx`; anything else, `info@kaxanuk.mx`. The other
+  mentions are gone, the disclaimer's *Questions* among them. The researcher's own list is in
+  `investment-lab.md` (`next` 1.8.7), and `attribution-analysis-runs` (0.5.2), `init-example`
+  (0.5.2), the strategy template (0.19.2) and the example ask `analytics@kaxanuk.mx` for the
+  Analytics Factory's files.
+- **The disclaimer names the companies** that receive what your researcher reads: Anthropic for
+  Claude, OpenAI for Codex, Google for Gemini. The rest of its wording waits for counsel.
+- **Why not just use Claude or Codex?** The README answers it under its opening example: your
+  researcher runs on them, and adds your library, you, kept in your own files on every assistant,
+  and a method.
+- **The README's opening example** shows a research model from idea to verdict. Arya teaches each
+  step and its tool: the claims, the reading for and against, the data and a screen of the
+  signal, and a blueprint with what would prove you wrong and a control, all before any
+  backtest. Then `challenge` reads the result against that blueprint, the trial count, the
+  control and the attribution.
+- **`README.md`**: keys are kept on your computer, in a file never saved in git and never read by
+  your researcher; a brief quotes the rules the day's news bears on, with no verdict. Its
+  *Licence*, and the home's (home template 0.26.1), say the MIT licence grants no right in
+  KaxaNuk's names, the Investment Lab's libraries, the Analytics Factory's files, KaxaNuk's
+  Research Models or Training Workshops.
+
 ## [1.11.1] - 2026-10-11
 Nothing changes for you: a new home, strategy or library is never copied with a key file, wherever
 one sits.

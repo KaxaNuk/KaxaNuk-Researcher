@@ -13,7 +13,7 @@ description: >
   does NOT cover what the numbers mean for a strategy (use `alpha-decomposition`) or running the
   backtest that produced the book (use `backtest-engine-runs`).
 metadata:
-  version: 0.5.1
+  version: 0.5.2
   library_version: 0.2.0
 ---
 
@@ -385,7 +385,7 @@ Step 6 reads what step 5 produced, and `Experiments/attribution_analysis.py` sha
   a benchmark.
 - **The Analytics Factory's files are read as it ships them** — KaxaNuk's Analytics Factory,
   which ships the benchmark and the factor model files attribution reads
-  (<https://www.kaxanuk.mx/analytics>); ask `lab@kaxanuk.mx` for them. `Data/hand_supplied.py`
+  (<https://www.kaxanuk.mx/analytics>); ask `analytics@kaxanuk.mx` for them. `Data/hand_supplied.py`
   reads the index's holdings and returns under `Benchmark Portfolios/`, the factor model under
   `Factor Models/`, or under the older `Benchmarks/` and `Factors/`, in place from the folder
   `KN_ANALYTICS_PATH` names, or from the drop zones `Benchmarks/` and `Factors/` under
