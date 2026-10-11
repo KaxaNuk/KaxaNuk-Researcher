@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.14.6
+  version: 0.14.7
 ---
 
 # The research process — how a strategy repository is worked in
@@ -21,10 +21,10 @@ metadata:
 Every KaxaNuk Investment Lab strategy lives in its own repository, copied from the **KaxaNuk
 Strategy Template**, which ships in `KaxaNuk/KaxaNuk-Researcher` as `templates/strategy/`. The
 template is the shape and every file the process expects in it: six folders, the documents at the
-root, and inside the folders each driver, module, notebook and document as a description of what
-belongs there — a `.py` file as its docstring, a notebook as its markdown cells — to be filled in
-with the strategy's own. The worked example beside it, `examples/strategy/golden-flow/`, works one
-strategy, `golden-flow`, through the same files, with the strategy's own lines between example
+root, and inside the folders each driver, module, notebook and document. Each is a description of
+what belongs there — a `.py` file as its docstring, a notebook as its markdown cells — to be filled
+in with the strategy's own. The worked example beside it, `examples/strategy/golden-flow/`, works
+one strategy, `golden-flow`, through the same files, with the strategy's own lines between example
 markers. The fixed shape buys comparability and legibility: any experiment looks like any other,
 every experiment is measured against the same named benchmark, and a reader takes in the whole state
 of a project from two files, `OBJECTIVE.md` and `RESULTS.md`.
@@ -36,9 +36,9 @@ the strategy's `AGENTS.md` names one language for its team.
 **To start a new strategy, copy the template; never scaffold one by hand.** The owner runs
 `init-strategy <name>`, from the KaxaNuk Researcher, which copies it into a new folder by script and
 makes it a repository; the new folder's own `SETUP.md` owns the rest of the procedure. To work
-inside a strategy repository, follow this skill. `references/structure.md` has the tree, what is
-committed, and the steps to fill it in. **Do not name Obsidian or a deck in a repository document,
-nor any KaxaNuk in-house strategy other than the package's worked example, `golden-flow`.**
+inside a strategy repository, follow this skill. **Do not name Obsidian or a deck in a repository
+document, nor any KaxaNuk in-house strategy other than the package's worked example,
+`golden-flow`.**
 
 ## 1. The eight steps
 
@@ -62,13 +62,13 @@ the number matches: the next experiment computes it slightly differently and the
 comparable. A step is finished when its output is reproducible from the step above by re-running
 one command or one notebook.
 
-The Investment Lab is KaxaNuk's six libraries that run steps 3 to 6, with a web front end, and
-each maps onto one module of the strategy: Data Curator (`Data/curator.py`), Data Refinery
+The Investment Lab is KaxaNuk's six libraries that run steps 3 to 6, with a web front end. Each
+maps onto one module of the strategy: Data Curator (`Data/curator.py`), Data Refinery
 (`Data/refinery.py`), Data Analyzer (`Data/analyzer.ipynb`), Portfolio Construction
 (`Experiments/portfolio_construction.py`), Backtest Engine (`Experiments/backtest_engine.py`),
 Attribution Analysis (`Experiments/attribution_analysis.py`). Four have shipped — the Data
 Curator, Portfolio Construction, the Backtest Engine and Attribution Analysis — and two, the
-Refinery and the Analyzer, are coming, hand-rolled in the strategy until they land; a hand-rolled
+Refinery and the Analyzer, are coming, hand-rolled in the strategy until they land. A hand-rolled
 stage says so in its docstring and names the interface its library will replace. A skill says how
 each library is called: `data-curator-custom-calculations`, `portfolio-construction-runs`,
 `backtest-engine-runs` and `attribution-analysis-runs`, with `universe-point-in-time` for step 2,
@@ -117,13 +117,13 @@ the analyzer — and a prediction with no source is a lead to read first, not a 
 Repository-level history — the benchmark and the choice of it, the data step, the architecture —
 belongs in `JOURNAL_1.md`, Experiment 1 being the first rule tested against that benchmark and the
 yardstick for every later one. Later journals point there. Two of its entries come before
-`BLUEPRINT_1.md`: the one choosing the benchmark — the blueprint states what "beat" means, so the
-benchmark cannot wait for it — and *the rule read back*, the owner's yes that the rule written is
-the rule meant, given to one plain sentence and one worked date's book; every later blueprint has
-its own, in `JOURNAL_N.md`. A strategy made from a template before 0.13.2 may keep the benchmark's
-choice in `BRAINSTORMING_1.md`, which the Researcher's commands still read. Experiment 1 can
-graduate like any other; its rules freeze once its findings report, and a rewrite the owner decides
-is written down as one, as the strategy's `AGENTS.md` says.
+`BLUEPRINT_1.md`. One chooses the benchmark — the blueprint states what "beat" means, so the
+benchmark cannot wait for it. The other is *the rule read back*, the owner's yes that the rule
+written is the rule meant, given to one plain sentence and one worked date's book; every later
+blueprint has its own, in `JOURNAL_N.md`. A strategy made from a template before 0.13.2 may keep
+the benchmark's choice in `BRAINSTORMING_1.md`, which the Researcher's commands still read.
+Experiment 1 can graduate like any other; its rules freeze once its findings report, and a rewrite
+the owner decides is written down as one, as the strategy's `AGENTS.md` says.
 
 ## 4. The notebook — one section contract, one cell that is the strategy
 
@@ -154,19 +154,20 @@ window rather than a fixed floor.
 the one observed at *t-1* (the lag), and a delisting exit needs one day of hindsight, because a
 position is sold on the last day it still has a fill price.
 
-**Four modules beside the notebook are shared by every experiment**, one per Lab library:
-`securities_panel.py` (the one panel loader), `portfolio_construction.py` (eligible set to weights,
-one signature every scheme shares, the Portfolio Construction library called inside it one rebalance
-date at a time where it is installed, the bounds the blueprint names as the design and every other
-constraint switched off, a lever a later experiment earns), `backtest_engine.py` (the one path from
-a weight file to a number), `attribution_analysis.py` (shaping the hand-supplied inputs and the
-book's **daily** weights from the backtest — the attribution library rejects a rebalance-only
-file — with both weight tables held overnight and the benchmark reconciled with the index's own
-returns before any figure is read, and saying what is missing first). **A strategy column is
-named in exactly two kinds of place — a notebook's setup cell and the rule — never in a shared
-module**, so a signal cannot become every later experiment's default without anyone deciding it.
-Experiment 1 loads the panel through `securities_panel.py` like every later experiment, so the
-comparison is on the rule and nothing else.
+**Four modules beside the notebook are shared by every experiment**, one per Lab library.
+`securities_panel.py` is the one panel loader. `portfolio_construction.py` takes the eligible set
+to weights, with one signature every scheme shares. Where it is installed, the Portfolio
+Construction library is called inside it one rebalance date at a time. The bounds the blueprint
+names are the design, and every other constraint is switched off — a lever a later experiment
+earns. `backtest_engine.py` is the one path from a weight file to a number.
+`attribution_analysis.py` shapes the hand-supplied inputs and the book's **daily** weights from the
+backtest — the attribution library rejects a rebalance-only file. It holds both weight tables
+overnight, reconciles the benchmark with the index's own returns before any figure is read, and
+says what is missing first. **A strategy column is named in exactly two kinds of place — a
+notebook's setup cell and the rule — never in a shared module**, so a signal cannot become every
+later experiment's default without anyone deciding it. Experiment 1 loads the panel through
+`securities_panel.py` like every later experiment, so the comparison is on the rule and nothing
+else.
 
 ## 5. Where each kind of logic goes
 
@@ -189,7 +190,7 @@ nothing to tune — stay in the Curator.
 **A new strategy.** Follow the template's `SETUP.md` — the repository, `uv sync`, the credential
 file; the skills are installed once for the user, not here — then work in this order. **It is an
 index of *Starting your own strategy* in the template's README**, which is the source and says why
-each part comes where it does; the parts are lettered A to H so they are never mistaken for the
+each part comes where it does. The parts are lettered A to H so they are never mistaken for the
 eight steps. What this skill adds is the last column — which tool each part loads. The KaxaNuk
 Researcher's `next` skill reads a strategy against this list and names the part that comes next.
 
@@ -258,6 +259,5 @@ is two rules, and the copies drift. Read them where they are.
   `experiment_N.ipynb`.
 
 The three documents and the notebook are copies of Experiment 1's files in the worked example,
-`examples/strategy/golden-flow/` in KaxaNuk-Researcher, with the example's own lines stripped — what
-the template ships as Experiment 1, kept here for every experiment after it. They change by hand
-with the example's, in the same commit, and so does `references/structure.md`.
+`examples/strategy/golden-flow/` in KaxaNuk-Researcher, with the example's own lines stripped. They
+change by hand with the example's, in the same commit, and so does `references/structure.md`.

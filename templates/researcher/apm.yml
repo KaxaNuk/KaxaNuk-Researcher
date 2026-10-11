@@ -1,24 +1,21 @@
 name: kaxanuk-researcher
-version: 0.25.2
+version: 0.26.0
 description: A KaxaNuk researcher — your own research companion, which you name and teach; it keeps a library of what you read and answers from it with sources, works out your ideas and plans, briefs you each morning and comes with you to every project, work or personal, and teaches you to invest when you want
 author: KaxaNuk
 license: MIT
 
-# The researcher's skills and commands are installed once for the user, not here, with
-# `uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <your assistant>`,
-# which carries every Investment Lab skill itself; `uvx --from apm-cli==0.33.0 apm update -g` brings
-# new versions. Every folder — this home, and every strategy — then has them, and a strategy
-# installs nothing. `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` installs this home's
-# own for the user, beside the package — the agent in `.apm/agents/` and the researcher's skill in
-# `.apm/skills/`, which `interview` writes, and any skill or command of this home's own — so the
-# researcher is in every folder, for every target listed both in `~/.apm/apm.yml` and below.
+# The skills and commands come from the package, KaxaNuk/KaxaNuk-Researcher, installed once for
+# the user, never here; it carries every Investment Lab skill itself. `README.md`'s *Installing and
+# updating* has the commands.
 dependencies:
   apm: []
   mcp: []
 
-# Installing this home deploys only to the targets listed here that `~/.apm/apm.yml` lists too: an
-# assistant missing here receives neither the agent nor the researcher's skill. An install with
-# `--target` lists its assistant there only when it creates that file; otherwise the package's
+# `uvx --from apm-cli==0.33.0 apm install -g "<this folder>"` installs this home's own `.apm/` for
+# the user, beside the package — the agent and the researcher's skill that `interview` writes, and
+# any skill or command of the home's own — so the researcher is in every folder. It reaches only
+# the targets listed both here and in `~/.apm/apm.yml`. An install with `--target` lists its
+# assistant there only when it creates that file; otherwise the package's
 # `.apm/skills/init-researcher/scripts/user_targets.py add <your assistant>` lists it, or the next
 # update removes what was installed for it. The first four take the agent and the skill; Gemini and
 # Windsurf have no agent primitive and take the skill alone. OpenCode is left out: it rejects the
@@ -31,10 +28,7 @@ targets:
   - gemini
   - windsurf
 
-# What deploys: only `.apm/`, though installing the home first copies the whole folder —
-# `.git/`, `Sources/`, `Extracts/`, `Briefs/` and `Portfolio/` included — into
-# `~/.apm/apm_modules/_local/<folder name>/` on this machine, refreshed by each install. Nothing
-# leaves the machine. On Windows a deep path in that copy, a long `Extracts/` slug, can pass the
-# 260-character limit and fail the install; a shorter path to this home fixes it, or fewer deep
-# extracts — a regenerable cache.
+# Only `.apm/` deploys, though each install first copies the whole folder into
+# `~/.apm/apm_modules/_local/<folder name>/` on this machine; nothing leaves it. On Windows a deep
+# path in that copy can fail the install: *Troubleshooting* in the package's `SETUP.md` has the fix.
 includes: auto

@@ -5,8 +5,7 @@ assistant — Claude, Codex, Gemini, Cursor, Copilot — that was told *please i
 me and set up my researcher, start to finish in this conversation — install everything it needs
 without asking first:* `https://github.com/KaxaNuk/KaxaNuk-Researcher`, or, from an older README,
 *please install this repo for me, with everything it needs* or *please help me install this repo*:
-all three ask for the same, a researcher set up from start to finish. A person can read it in two
-minutes, but does not need to: the assistant runs every command.
+all three ask for the same, a researcher set up from start to finish.
 
 > **For the agent, read this first.**
 >
@@ -21,18 +20,16 @@ minutes, but does not need to: the assistant runs every command.
 > - **Never ask whether to install.** The user already asked: the line they pasted says to install
 >   the repo and everything it needs, with no need to ask first, and the older *please help me
 >   install this repo* asks for the same. Once the language is chosen, install what is missing and
->   the package, and go straight on, saying in one line what each step does. Their assistant's own
->   prompt to allow a command is the only thing they answer.
+>   the package, and go straight on.
 > - **The user may never have used a terminal.** Plain words, one question at a time, and you run
 >   every command yourself; never ask them to type one. Without a question tool — Codex, Gemini —
 >   each pick is one chat message, its options a numbered list, *Other — your own words* last; the
 >   user answers with the number. Say in one sentence what each step does, and that their
 >   assistant may ask them to allow a command — allowing it is all they do.
-> - **One conversation, start to finish.** Steps 0 to 6 run here, one after the other, stopping
->   only for the user's answers. Never ask the user to restart their assistant, open a new session
->   or a new terminal before step 6, even when a tool's output says to: a tool just installed is
->   called by its full path, as step 1 says, and steps 3 to 6 follow the package's files by their
->   installed path, as the table below gives.
+> - **One conversation, start to finish.** Never ask the user to restart their assistant, open a
+>   new session or a new terminal before step 6, even when a tool's output says to: a tool just
+>   installed is called by its full path, as step 1 says, and steps 3 to 6 follow the package's
+>   files by their installed path, as the table below gives.
 > - **Nothing is cloned.** This repository is a package: it is installed once for the user, and
 >   its files then make every folder they need.
 
@@ -117,28 +114,27 @@ step 2, with the language already chosen; its file is
 `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/SKILL.md`, and its
 own questions take the name, then the place and the go in one. If the file is not there, list
 `$HOME/.apm/apm_modules` to find it; if it still cannot be found, say so in one line and offer to
-install again — never tell the user to restart.
+install again.
 
 ## Step 4 — Make the home
 
-`init-researcher` goes on, on that go, in the same turn: it skips its update — the package was
-installed a minute ago — copies the researcher's home with `scaffold.py`, its first version saved,
-and goes straight into step 5. Never end the turn after the copy: what the user reads next is the
-interview's question 1, in a question box where the assistant has a question tool. A folder the
-script refuses is `Where?` again, with the reason, never a stop.
+`init-researcher` goes on, on that go, in the same turn: it skips its update, copies the
+researcher's home with `scaffold.py`, its first version saved, and goes straight into step 5. Never
+end the turn after the copy: what the user reads next is the interview's question 1, in a question
+box where the assistant has a question tool. A folder the script refuses is `Where?` again, with
+the reason, never a stop.
 
 ## Step 5 — The interview
 
 Read the whole `interview` skill from its installed path and follow it in the same turn as step 4,
 from its *Step 1*, with the new folder as the home, by its absolute path, whatever folder the
-session is open in — its question 1 is the next thing the user reads. It asks two questions about
-the user — what they do and what they're working on, then the researcher's voice — in the user's
-language; what they are here for, the domains and the projects are proposed from what they say.
-Nothing about how they invest is asked here. It writes
-`RESEARCHER.md`, the agent that makes the researcher callable by name and the skill that puts it in
-every session, installs them for the user and saves a first version — the user answers the two
-questions, and nothing more is asked before the hand-over but a name and an email to sign with,
-when git has none.
+session is open in. It asks two questions about the user — what they do and what they're working
+on, then the researcher's voice — in the user's language; what they are here for, the domains and
+the projects are proposed from what they say. Nothing about how they invest is asked here. It
+writes `RESEARCHER.md`, the agent that makes the researcher callable by name and the skill that
+puts it in every session, installs them for the user and saves a first version — the user answers
+the two questions, and nothing more is asked before the hand-over but a name and an email to sign
+with, when git has none.
 
 ## Step 6 — Hand over
 
@@ -203,8 +199,7 @@ needs — `init-researcher`, `interview`, `next`, `read`, `query`, `philosophy`,
 skills. A command, such as `objective` or `blueprint`, is run there by naming its file — *follow
 `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/objective.prompt.md`* — and once
 the interview has run, the researcher's own skill does this for the user: they name the command,
-and it follows the file. Without a question tool, each pick is a numbered list in chat, as the box
-at the top says.
+and it follows the file.
 
 **Why APM is pinned at 0.33.0.** APM 0.33.0 installs this package cleanly, on Windows too. APM
 0.29.1 to 0.31.0 staged every package under long folders, and on Windows the worked example's

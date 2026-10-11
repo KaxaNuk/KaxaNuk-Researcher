@@ -6,6 +6,52 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.11.0] - 2026-10-10
+Your researcher reads more simply, says plainly what it is for and what it is not, and keeps
+nothing confidential in the package.
+
+**What to do differently:** say `update` in your home.
+### Added
+- **What it is, and what it is not**: one plain statement in `README.md`, in the home's
+  `README.md` and in the worked example's `README.md`. The researcher is a research and learning
+  tool, never investment advice: it never trades or moves money, and every decision, and its risk,
+  is yours. What it reads goes to the company behind your assistant, never to KaxaNuk. It is MIT,
+  as is; the example's figures come from a backtest, shown to teach the method. `USE-CASES.md`, the
+  strategy template's `README.md` and `SETUP.md`, and `CONTRIBUTING.md` link to it.
+- **`study`** lays out the case for and against a choice, and what would settle it; it never says
+  buy, sell or hold.
+### Changed
+- **Each idea is said once, in one place**, and the other files point to it; long sentences are
+  split, and history that changes nothing for a reader is gone. Every rule, command, path and
+  condition is kept. `README.md` folds its skills tables, `CONTRIBUTING.md` keeps what a
+  contributor does, and `AGENTS.md`'s table points to `CONTRIBUTING.md` for the install check.
+- **The onboarding and the first read, trimmed on the owner's word** (`init-researcher` 0.8.4,
+  `interview` 2.12.3, `read` 0.12.6): repeats and history are gone from `SETUP.md`, the three
+  skills and `read`'s note convention. Every question, option and message a new user sees, and
+  their order, is unchanged, checked against `ONBOARDING.md` and by a replay of the approved run.
+  `ONBOARDING.md` is trimmed the same way, and `FROZEN.json` holds the new fingerprints.
+- **The reading map and `philosophy`'s question bank name no course** (`read` 0.12.6,
+  `philosophy` 1.3.3): the papers, the questions and their links stay; the course they were
+  distilled from and its page numbers are gone.
+- **Where your data goes, said accurately**: `brief` (1.0.4) and `USE-CASES.md` say nothing is
+  sent on your behalf and what the brief reads passes through your assistant; `backup` (0.1.5)
+  says the copy is private to you and anyone you invite.
+- **`portfolio-construction-runs`** (0.5.1): its API reference names the imports the library's
+  README shows and its licence client, and no longer the library's inner modules.
+- **Neutral examples**: `interview` shows `marta` as a git handle, `init-researcher` `arya` beside
+  `Arya`.
+- **A light pass on every other skill and command**, exact repeats and overlong sentences only:
+  `alpha-decomposition` 0.4.3, `attribution-analysis-runs` 0.5.1, `backtest-engine-runs` 0.4.1,
+  `bloom-code-lint` 0.2.1, `data-analyzer-runs` 0.2.5, `data-curator-custom-calculations` 0.5.1,
+  `experiment-lifecycle` 0.14.7, `how-we-work` 0.5.4, `init-example` 0.5.1, `init-python-library`
+  0.2.1, `init-strategy` 0.4.1, `next` 1.8.6, `paper-trading-gate` 0.4.3, `query` 0.9.4 and
+  `universe-point-in-time` 0.3.3, the commands and `blueprint-critic`.
+- **The home template 0.26.0, the strategy template 0.19.1 and the worked example 0.17.3** read
+  the same way. A strategy's `.gitignore` keeps a `.kaxanuk_license` file out of git, and the
+  example's headline figures say they come from a backtest.
+- **The KaxaNuk Python Library Template 0.1.1**: its `AGENTS.md` and `README.md` say each thing
+  once; nothing a new library builds or runs changes.
+
 ## [1.10.3] - 2026-10-10
 Nothing changes for you: the way your researcher is set up and reads its first document is now
 frozen as it was tested and approved, so it cannot change by mistake.

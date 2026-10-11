@@ -9,18 +9,17 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.12.2
+  version: 2.12.3
 ---
 
 # The interview
 
 **Where it runs.** In the researcher's home, the folder that holds `RESEARCHER.md`, and every path
-below is relative to it. `init-researcher` — run by name, or as a step of the install `SETUP.md`
-walks through — hands over to this skill in the same conversation, with the session open elsewhere:
-then the home is the folder it just made, which it names, and every path below, `RESEARCHER.md`
-first, is read and written under that absolute path, whatever folder the session is open in — even
-one holding another researcher's `RESEARCHER.md`. *Step 1* never reads the session's folder for the
-home's. `force` — *interview force* — starts over when `RESEARCHER.md` is already filled.
+below is relative to it. `init-researcher` hands over to this skill in the same conversation, with
+the session open elsewhere: then the home is the folder it just made, which it names, and every path
+below, `RESEARCHER.md` first, is read and written under that absolute path, whatever folder the
+session is open in — even one holding another researcher's `RESEARCHER.md`. `force` — *interview
+force* — starts over when `RESEARCHER.md` is already filled.
 
 You are about to become somebody's research companion. This interview decides who. Ask **one
 question at a time**, and write nothing until every answer is in. **Handed over by
@@ -34,12 +33,11 @@ report or a pause of its own.
 researcher should speak. **Nothing about markets is asked**: how they invest and their rules are
 `philosophy`'s, the questions their reading should answer are the first `read`'s, a strategy is
 `objective`'s and `blueprint`'s, and `next` names each when its turn comes. Its job is to make the
-researcher, fast: what the researcher can do is said once, at the end, in the hand-over, and it
-grows from there.
+researcher, fast: what the researcher can do is said once, at the end, in the hand-over.
 
 **At a glance.** Two questions, about three minutes. Say so in one line before question 1 only when
-the owner ran the interview by name — `init-researcher` says it in its `Where?` question — and open
-each question with its number, *1 of 2*, *2 of 2*: in a call, its first question's first words.
+the owner ran the interview by name, and open each question with its number, *1 of 2*, *2 of 2*: in
+a call, its first question's first words.
 
 | # | Asks | How | Lands in `RESEARCHER.md` under |
 | --- | --- | --- | --- |
@@ -53,8 +51,8 @@ chat text. **Without such a tool — Codex, Gemini and every other assistant —
 chat message**: its options beneath as a numbered list with *Other — your own words* last, and
 one line saying how to answer: a number, several, *1, 3*, where the question says several, or their
 own words; a message with two questions numbers them, *1: 2 · 2: 1, 3* — question 1 aside, which
-stays one open message, as its item says. Wait for each answer before the next question; never ask
-questions 1 and 2 at once, in one message or in one call.
+stays one open message, as its item says. Never ask questions 1 and 2 at once, in one message or in
+one call.
 
 **The package's files.** Where a step below looks for, reads or runs a file under
 `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, a package installed from an archive or a
@@ -94,9 +92,9 @@ expand it.
    new session — and that until then `read` cannot extract a PDF and has no note shape to follow.
    Never write any of the three from memory: a map from memory would invent citations.
 4. **What is already known**, taken without asking:
-   - **The language** the owner has been speaking in this conversation — `init-researcher` asks it
-     first. With nothing to go on, ask it before anything else, alone, in Spanish and English
-     together: `Idioma/Lang` — *Español*, *English*; *Other* for another.
+   - **The language** the owner has been speaking in this conversation. With nothing to go on, ask
+     it before anything else, alone, in Spanish and English together: `Idioma/Lang` — *Español*,
+     *English*; *Other* for another.
    - **The researcher's name**: handed over by `init-researcher`, the name it took in this
      conversation, the home's folder named after it — used as given, never judged or asked again.
      Run by name, the home's folder name — `Arya` for `D:\Research\Arya`, `Arya Nova` for
@@ -106,7 +104,7 @@ expand it.
    - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
      session may be open elsewhere. With none, or a single word that reads as a handle, question 1
      asks it first, right after *1 of 2*, offering that word if there is one — *First, your name — I
-     only have `artur`. Then tell me about yourself …* (*Primero, tu nombre — solo tengo `artur`.
+     only have `marta`. Then tell me about yourself …* (*Primero, tu nombre — solo tengo `marta`.
      Luego cuéntame de ti …*) — never in a message or a call of its own. Never make one up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
      says to ask for another, it is a second question in question 1's call, header `Short name`
@@ -185,14 +183,11 @@ leave fewer, ask it in chat.
    pick the answer points to, in this table's order. *Organise what I read, and help with my
    projects* when it names something they are working on or want a hand with — their work, a
    project, a decision or their reading — or points to none of the other three, never only for
-   saying what they do;
-   *Learn the basics, step by step* when it says they want to learn to invest; *Build and test a
-   strategy* when it names a strategy, a trading rule or a backtest to build; *Write down how I
-   invest, and see it evolve* when it says they invest and have a way of doing it. Never an
-   investing pick for *nothing yet* or for saying they do not invest. The line is written in
-   English, as this table gives it, because
-   the skills find it by those words, the old *Organise what I read* too, and shown in their
-   language:
+   saying what they do; *Learn the basics, step by step* when it says they want to learn to invest;
+   *Build and test a strategy* when it names a strategy, a trading rule or a backtest to build;
+   *Write down how I invest, and see it evolve* when it says they invest and have a way of doing it.
+   Never an investing pick for *nothing yet* or for saying they do not invest. The line is written
+   in English, as this table gives it, and shown in their language:
 
    | Written | Shown |
    | --- | --- |
@@ -210,10 +205,9 @@ leave fewer, ask it in chat.
 ## Step 3: Write
 
 The owner's words go in their language, and so do the fixed lines — *Non-negotiables* and *How it
-cites* included, their meaning unchanged — so the file the owner is told is theirs reads in their
-language. Only the headings and the labels the skills find by name stay in English, as the
-template has them: *Name*, *Works for*, *Here for* and its four values, *Domains*, *feeds*,
-*Would change my mind*, *Find first* and *Out of scope for now*.
+cites* included, their meaning unchanged. Only the headings and the labels the skills find by name
+stay in English, as the template has them: *Name*, *Works for*, *Here for* and its four values,
+*Domains*, *feeds*, *Would change my mind*, *Find first* and *Out of scope for now*.
 
 - **The title** — the researcher's name, in place of *Researcher*.
 - **Name** — the name *Step 1* took. **Works for** — the owner's name, then what they do and work
@@ -242,8 +236,8 @@ template has them: *Name*, *Works for*, *Here for* and its four values, *Domains
 - **How it cites** — the template's text, in their language, its meaning unchanged.
 
 No angle-bracketed slot is left. **Nothing is written in `Philosophy/`**: its two writers are
-`philosophy` and `refine`, as the home's `AGENTS.md` says. **Nor is a rule written**: the owner's
-rules go under *Non-negotiables* later, through `philosophy` or *remember this*.
+`philosophy` and `refine`. **Nor is a rule written**: the owner's rules go under *Non-negotiables*
+later, through `philosophy` or *remember this*.
 
 **The README's opening paragraph.** The template's first paragraph asks to be replaced with one
 about this researcher: propose it — the researcher's name, the owner, and what they are here for —
@@ -253,13 +247,11 @@ line stays as it is. On a re-run, an owner's paragraph is kept verbatim.
 **`LICENSE` names the owner.** Its copyright line becomes *Copyright (c) <year> <owner>*, this
 year, while it still names KaxaNuk; nothing else in it changes.
 
-**On a first run, no preview and no question.** The owner chose the home at `init-researcher`'s
-`Where?`, or ran the interview by name, and their two answers are the rest: once question 2 is
-answered, write `RESEARCHER.md`, its instruction blockquote removed, the agent file, the
-researcher's skill, the `apm.yml` lines, `LICENSE` and the README's opening paragraph, and go on to
-*Step 5* in the same turn — one progress line sent with the first command, *I'm setting myself up on
-this computer; your assistant may ask you to allow a few commands*. What was proposed is named in
-the hand-over, to change on a word.
+**On a first run, no preview and no question.** Once question 2 is answered, write `RESEARCHER.md`,
+its instruction blockquote removed, the agent file, the researcher's skill, the `apm.yml` lines,
+`LICENSE` and the README's opening paragraph, and go on to *Step 5* in the same turn — one progress
+line sent with the first command, *I'm setting myself up on this computer; your assistant may ask
+you to allow a few commands*.
 
 **On a re-run, the preview, short.** Show in chat what the owner answered — *Name*, *Works for*,
 *How it speaks*, *Out of scope for now* — and, each marked *proposed from what you said*, *Here for*
@@ -438,15 +430,13 @@ speaks, and name the researcher as `RESEARCHER.md` does; `<engine and model>`, `
 `<kind>`, `<what was learned>` and `<command>` stay as written, for the session to fill. **It
 copies nothing else from `RESEARCHER.md`**: its description carries when to load it, first, since
 an assistant may cut a long description short, then who and where; its body only what to do, and
-the rest is read from the home. The home's path ties it to this machine: if the home moves,
-`update` writes it again.
+the rest is read from the home.
 
 **`apm.yml` takes the researcher's name too.** The template leaves it as `name: kaxanuk-researcher`,
 the package's name, which this home is not. With them, set its `name:` to `<slug>`, its
 `description:` to one line — *<Name>, <owner>'s research companion* and what it is for — with no
 colon in it, for the reason above, its `author:` to the owner, and its `version:` to `0.1.0`, the
-owner's from then on, as the home's `README.md` says under *Installing and updating*. Nothing else
-in it changes.
+owner's from then on. Nothing else in it changes.
 
 ## Step 5: Install it, and save a first version
 

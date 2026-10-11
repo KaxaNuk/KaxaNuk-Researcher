@@ -13,7 +13,7 @@ description: >
   security master (`universe-point-in-time`), sizing (`portfolio-construction-runs`), the engine
   (`backtest-engine-runs`), or the documents around the stage (`experiment-lifecycle`).
 metadata:
-  version: 0.2.4
+  version: 0.2.5
 ---
 
 # The Data Analyzer — where a feature earns a backtest or is dropped
@@ -79,8 +79,8 @@ every one.
    feature that fails here does not get a book built on it; one that passes has earned a backtest,
    not a belief. Orders of magnitude, from the example: on the pool its rule selects from, the
    golden cross as a state reads an IC of +0.0235 at 21 days, with the expected sign on 54.6% of
-   dates, and −0.0010 before the window; the traded-value rank +0.0977 at 252 days, against
-   −0.0494 before. What the window shows is the window's.
+   dates, and −0.0010 before the window. The traded-value rank, on the same pool, reads +0.0977 at
+   252 days, against −0.0494 before. What the window shows is the window's.
 5. **Never choose a parameter on the metric it will be judged by.** A window, a threshold or a
    lookback is chosen on a property of the signal — persistence, coverage, turnover — and the
    sweep is published as a curve, never as its best cell. That rule is the bar's sixth point in
@@ -98,8 +98,9 @@ every one.
 
 - **`RESULTS.md`, *Before any experiment*** — every measurement worth keeping, in a table with the
   section it came from: what the signal predicts, over what horizon, with which sign, and what it
-  does not; what the findings allow a blueprint to predict and what they forbid; the caveats the
-  data carries — a security with no file, a bad print excluded by name, series that end early.
+  does not; what the findings allow a blueprint to predict and what they forbid. It also records
+  the caveats the data carries — a security with no file, a bad print excluded by name, series that
+  end early.
   Findings from this stage go there **directly**, the one exception to *findings first*: notebook
   outputs are stripped before committing, so a measurement living only in a cell output does not
   survive the commit.

@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.4
+  version: 0.1.5
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -34,8 +34,9 @@ characters at most.
 
 Two lines, in the owner's language, before a first copy: *Every go saves a version on this
 computer only. A copy on GitHub keeps it safe if the computer breaks, and follows you to a new
-one — private: only you can see it.* Asked *what is a commit?*: *git's word for a saved version —
-a dated snapshot of the files, signed with your name.* A question alone ends the run there.
+one — private: only you, and anyone you invite, can see it.* Asked *what is a commit?*: *git's
+word for a saved version — a dated snapshot of the files, signed with your name.* A question alone
+ends the run there.
 
 ## Step 2: Which folder
 
@@ -56,12 +57,13 @@ of the copy: at home `next` offers to save them; in a strategy they are the owne
 without `gh`, ask the owner to look on GitHub. A public copy, or one nobody confirms private, is
 said in one line — *make it private in its settings on GitHub first* — and nothing is sent to it.
 Then say where the copy is and how many saved versions it lacks — after a fetch, as *Step 8* runs
-a send, `git rev-list --count "@{u}..HEAD"`; those only the copy holds, `"HEAD..@{u}"`, are *Step
-8*'s last paragraph — and, when `kaxanuk.autosend` is `paused`, that a send failed, and why. Then
-ask `Your copy` (`Tu copia`): *Send the versions not sent yet*, as *Step 8* does — on success
-`kaxanuk.autosend` goes back to `true` only when it was `paused`; when it is not set, *Step 6*'s
-`E-mail` and *Step 7*'s `Send?` are asked in the same call; *Change automatic sending*, *Step 7*'s
-question; *Nothing now*. Then stop: the rest is for a first copy.
+a send, `git rev-list --count "@{u}..HEAD"` — and, when `kaxanuk.autosend` is `paused`, that a
+send failed, and why. Saved versions only the copy holds, `"HEAD..@{u}"`, are *Step 8*'s last
+paragraph. Then ask `Your copy` (`Tu copia`): *Send the versions not sent yet*, as *Step 8* does;
+*Change automatic sending*, *Step 7*'s question; *Nothing now*. When `kaxanuk.autosend` is not
+set, *Step 6*'s `E-mail` and *Step 7*'s `Send?` are asked in the same call; when the send
+succeeds, `kaxanuk.autosend` goes back to `true` only when it was `paused`. Then stop: the rest is
+for a first copy.
 
 ## Step 4: Plan and go
 
@@ -145,9 +147,9 @@ ask*: `git config kaxanuk.autosend true` or `false`, in that folder only. With *
 ## Step 8: Sending a version
 
 What every skill that saves does when `git config --get kaxanuk.autosend` prints `true`, and what
-this skill does when asked — with no prompt that nobody can answer, and given up when the network
-stalls for twenty seconds, on an https address or an ssh one — in bash or zsh, on Windows, macOS or
-Linux:
+this skill does when asked. It runs with no prompt that nobody can answer, and is given up when
+the network stalls for twenty seconds, on an https address or an ssh one. In bash or zsh, on
+Windows, macOS or Linux:
 
 ```bash
 GIT_TERMINAL_PROMPT=0 GIT_SSH_COMMAND='ssh -o BatchMode=yes -o ConnectTimeout=20' git -c credential.interactive=never -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=20 push
@@ -183,9 +185,9 @@ external disk — never in this copy, and never force a kept-out file into it.
 
 Install the package as the package's `SETUP.md` says — git and uv in its step 1, the package in its
 step 2. Then, in a new session, clone the copy into a short folder —
-`git clone <the address> <folder>` — run `update` there, which rewrites the researcher's skill and
-the agent's path for the new folder and installs the home for the user, and open a new session; a
-strategy's clone takes its own `SETUP.md` instead. The name, the e-mail and *Send?* do not travel:
+`git clone <the address> <folder>` — run `update` there, and open a new session. `update` rewrites
+the researcher's skill and the agent's path for the new folder and installs the home for the user;
+a strategy's clone takes its own `SETUP.md` instead. The name, the e-mail and *Send?* do not travel:
 set them again, as *Step 6* and *Step 7* say. The PDFs and `Portfolio/` come from wherever they were
 kept.
 

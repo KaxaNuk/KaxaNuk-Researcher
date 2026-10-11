@@ -11,7 +11,7 @@ description: >
   does) or write RESEARCHER.md beyond Find first and those rules, and never says what to buy, sell
   or hold.
 metadata:
-  version: 1.3.2
+  version: 1.3.3
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -23,19 +23,19 @@ rules they keep, how they decide, what would change their mind — or, the same 
 work, in any field they name, as *Another field* says. Nothing here is about a strategy: a
 question on a yardstick, a stop or how long to hold asks about the owner's own habit, never a
 strategy's rule, which `objective` and `blueprint` ask later, in a strategy. It is not a test — no
-score, no quiz, no wrong answer — and it never tells the owner what to buy, sell or hold, never
-names a product or a ticker, never proposes an allocation or a benchmark, and never computes a
-return. For what the library says, use `query`; for a lesson on an idea, `teach`.
+score, no quiz, no wrong answer. It never tells the owner what to buy, sell or hold, never names a
+product or a ticker, never proposes an allocation or a benchmark, and never computes a return. For
+what the library says, use `query`; for a lesson on an idea, `teach`.
 
 **What it writes, and only on the owner's go.** The owner's typed answers, added word for word and
 add-only to the file of the round's topic — `HOW-I-INVEST.md`, or `HOW-I-WORK.md` for another field,
 started with its title and headings when `Philosophy/` lacks it — and one round file in
-`Philosophy/Evolution/`: this skill and `refine` are `Philosophy/`'s two writers, as the home's
-`AGENTS.md` says. Beyond `Philosophy/`, two places in `RESEARCHER.md`: the works the owner picks at
+`Philosophy/Evolution/`. This skill and `refine` are `Philosophy/`'s two writers, as the home's
+`AGENTS.md` says. Beyond `Philosophy/`, two places in `RESEARCHER.md`. The works the owner picks at
 the close of a round — in a field round, only one typed under *Other* — go on its closing *Find
-first* line, add-only, unless they leave that line alone in the preview; and the rules they settle
-in O4, *step 5*, go under *Non-negotiables*, in plain words. Nothing else, anywhere. The same go
-saves a version of what it wrote.
+first* line, add-only, unless they leave that line alone in the preview. The rules they settle in
+O4, *step 5*, go under *Non-negotiables*, in plain words. Nothing else, anywhere. The same go saves
+a version of what it wrote.
 
 **Only typed words reach `Philosophy/`.** Nothing the owner picks — a hunch, a stance, a level, an
 example, a work, a rule — is written there: this is stricter than the rule for other proposals,
@@ -84,8 +84,8 @@ after any block.
 | 11 | write | on the go only |
 | 12 | hand over | said |
 
-On another field, steps 3 to 8 are the bank's section 10 — W1, W2, O4, W3 to W5, then C2 — about
-10 minutes in one block, with no level, no explainer and no checkpoint; the other steps hold.
+On another field, steps 3 to 8 are the bank's section 10, in one block with no checkpoint, as
+*Another field* says; the other steps hold.
 
 ## Another field
 
@@ -95,7 +95,7 @@ asked in *step 2*. **A field round**, a round on any topic but investing, follow
 bank in place of sections 0 to 5:
 
 - **What changes.** No level — no O3, no calibration — no explainer, no hunches, stance picks or
-  placements, no *Behind it*, and no work from the reading map, which is about markets: section 9
+  placements, no *Behind it*, and no work from the reading map, which is about markets. Section 9
   of the bank holds as if the map were missing, the hand-over's *When to come back* included. Of
   steps 3 to 8 below, only O4, *step 5*, and C2, *step 8*, as section 10 gives it, are asked.
 - **The order.** W1, W2, then O4 — the rules are the researcher's, in any field — then W3, W4 and
@@ -129,7 +129,7 @@ bank in place of sections 0 to 5:
      hand-over offers `update`.
    - Take the language and the voice from *How it speaks* — with none, the language of this
      conversation — and, under *Who*, the *Works for:* line, the *Domains:* line and the *Here
-     for:* line, whose picks `interview` writes in English; and, for O4, the home's rules: the
+     for:* line, whose picks `interview` writes in English. For O4, take the home's rules: the
      bullets under *Non-negotiables*, one rule each. No other line there is a rule — *None yet.*,
      in any language, says there is none.
 3. **Read what the owner has already said.** `Philosophy/HOW-I-INVEST.md` and
@@ -137,14 +137,14 @@ bank in place of sections 0 to 5:
    template's, translated ones, or none — and every line. Then `Philosophy/Evolution/`, its round
    files grouped by topic: a level on the first line is investing, `Field` another field. A topic
    with no round file, or no folder, is at round 1. Otherwise its next round is a retake, which
-   reads that topic's rounds only: the latest round is its newest file — the latest date in the
+   reads that topic's rounds only. The latest round is its newest file — the latest date in the
    file names, and on that date the highest suffix, `YYYY-MM-DD-2.md` — and its first line gives
-   its number *N*, so this round is *N* + 1; a file deleted or renamed by hand leaves no gap to
+   its number *N*, so this round is *N* + 1. A file deleted or renamed by hand leaves no gap to
    fill, because *N* is read, never counted. From those round files, gather each ID's latest typed
-   answer and its round, and its latest status; and the questions the last round's level asks,
-   section 3 of the bank — section 10's in a field round — that no round file has a line for —
-   O3, O4, C2 and Starter's Q2 aside, since they may take no line — which a round stopped early
-   never reached: they are open, as a skip is.
+   answer and its round, and its latest status. Gather too the questions the last round's level
+   asks, section 3 of the bank — section 10's in a field round — that no round file has a line
+   for — O3, O4, C2 and Starter's Q2 aside, since they may take no line. These are the questions a
+   round stopped early never reached: they are open, as a skip is.
    A file there whose first line is not a round line is no round: ignore it, and name it once.
 4. **Read what the owner has read.** `Knowledge/INDEX.md` end to end; on a retake, also the `read`
    entries of `Knowledge/LOG.md` dated on or after the last round's date — a read the same day
@@ -153,7 +153,7 @@ bank in place of sections 0 to 5:
    `~/.claude/skills/read/` or the user's folder for the agent in use, or in the package under
    `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/read/`. Match its works against the
    file names under `Sources/` and the notes in `Knowledge/INDEX.md`, as its *Match before
-   proposing* says: a work with a note is *read*, never offered as one to find, and named by a
+   proposing* says. A work with a note is *read*, never offered as one to find, and named by a
    link to the note; a file with no note is *in your Sources/, not yet read*; a *possibly in your
    Sources/* match is offered as a work to find, saying so.
    **Without the map**, ask the plain questions only, as section 9 of the bank says: no work is
@@ -174,7 +174,7 @@ bank in place of sections 0 to 5:
 trabajo*), its description a few words of *Works for*, what the owner does; *How I invest* (*Cómo
 invierto*); and *Other*, which the tool offers, a topic in their words. *(suggested)* marks *How I
 invest* when *Domains* holds Finance or *Here for* holds *Learn the basics*, *Build and test a
-strategy* or *Write down how I invest*, else *How I work*; once a topic has rounds, the latest
+strategy* or *Write down how I invest*, else *How I work*. Once a topic has rounds, the latest
 round's topic is marked *(current)* and suggested instead, so either topic is always one pick away.
 A topic named with the run — `philosophy my work`, `philosophy investing`, in any words, typed by
 the owner, as `next`'s Learn and Write rows name `philosophy investing` — is the answer, and
@@ -183,8 +183,8 @@ A closing line of `next`, `teach` or `read` names no topic, so `About?` follows 
 investing is a field round, *Another field*, its file titled with the topic in the owner's words —
 for *How I work*, what *Works for* says they do, never their name. The answer decides whether this
 is round 1 or a retake of that topic. Under *Other*, *not now* or *stop* is *Not now*. A home keeps
-one field file: once `HOW-I-WORK.md` exists, *How I work*'s description is the topic its title
-names, and it is *(current)* when the latest round is `Field`; for a different topic, typed under
+one field file. Once `HOW-I-WORK.md` exists, *How I work*'s description is the topic its title
+names, and it is *(current)* when the latest round is `Field`. For a different topic, typed under
 *Other* or named with the run, say in one line — *your file on another field is about <its title's
 topic>; this round adds to it, and its title is yours to change by hand* — and the round runs as
 that file's next round, a retake once it has one, never a second file.
@@ -242,20 +242,20 @@ how you find out whether a result is yours, or luck.
 On a retake, the explainer is said again only when the level changed, or when the owner asks.
 
 **Your rules, O4, in round 1**, straight after the explainer, whose process they put to work: one
-tool question, `Your rules` (`Tus reglas`), as section 1 of the bank gives it — three rules many
-people start with, a plain line each, and two for testing a strategy, offered when *Here for* holds
-*Build and test a strategy* or the owner asks. A rule of the owner's own, or a change, is one line
-in chat after, in their words. What it settles is written on the round's go under *Non-negotiables*
-in `RESEARCHER.md`, never in `Philosophy/` or the round file; a rule already there stays unless the
-owner changes or drops it here, and *skip* or *stop* leaves the section as it is. A rule of theirs
-about holdings — how much in one place, when to sell, when to look again — is not written there,
-where no brief reads it: say in one line that it belongs in `Portfolio/RULES.md`, the file `brief`
-quotes, which `brief setup` starts and the owner writes; this skill never writes in `Portfolio/`. On
-a retake, O4 is asked after O3 — after the explainer, when it is said again — while
-*Non-negotiables* holds no rule, and otherwise only on *my rules*, at any point. A home whose
-`AGENTS.md` predates O4, *step 1*, is never asked it. **In a field round**, O4 comes after W2 where
-it would come after the explainer or O3, said first as section 10 of the bank gives it, and the two
-for strategies only when the owner asks.
+tool question, `Your rules` (`Tus reglas`), as section 1 of the bank gives it. It shows three
+rules many people start with, a plain line each, and two for testing a strategy, offered when
+*Here for* holds *Build and test a strategy* or the owner asks. A rule of the owner's own, or a
+change, is one line in chat after, in their words. What it settles is written on the round's go
+under *Non-negotiables* in `RESEARCHER.md`, never in `Philosophy/` or the round file. A rule already
+there stays unless the owner changes or drops it here, and *skip* or *stop* leaves the section as
+it is. A rule of theirs about holdings — how much in one place, when to sell, when to look again —
+is not written there, where no brief reads it: say in one line that it belongs in
+`Portfolio/RULES.md`, the file `brief` quotes, which `brief setup` starts and the owner writes.
+This skill never writes in `Portfolio/`. On a retake, O4 is asked after O3 — after the explainer,
+when it is said again — while *Non-negotiables* holds no rule, and otherwise only on *my rules*, at
+any point. A home whose `AGENTS.md` predates O4, *step 1*, is never asked it. **In a field round**,
+O4 comes after W2 where it would come after the explainer or O3, said first as section 10 of the
+bank gives it, and the two for strategies only when the owner asks.
 
 ## 6. The level's blocks
 
@@ -299,18 +299,18 @@ yet read* only needs `read`; the others are found by their title and authors, an
 downloaded. `teach` is offered only when `Knowledge/` holds a note on the idea; otherwise that
 option reads *Learn one idea with me — after your first reading*. The works picked go on the closing
 *Find first* line of `RESEARCHER.md` on the go, unless the owner leaves that line alone in the
-preview — in a field round, only a work typed under *Other*, as section 10 of the bank says; nothing
-from C2 reaches `Philosophy/`.
+preview — in a field round, only a work typed under *Other*, as section 10 of the bank says.
+Nothing from C2 reaches `Philosophy/`.
 
 ## 9. A retake: what moved
 
 On a retake only, before the preview: the comparison of section 7 of the bank, in chat, and
-never written to a file — a line of counts, a table by ID of then and now, and under each changed
-answer the notes read between the two rounds whose work is its *Behind it*, named as reading in
-between, never as the cause: *you read X between the two rounds; whether it moved you is yours to
-say.* A field round lists those notes once, as section 10 of the bank says. With the scope *Just
-show me what changed*, this is the whole run — the topic's last two rounds, or its last round and
-the reading since — and nothing is asked or written.
+never written to a file. It holds a line of counts, a table by ID of then and now, and under each
+changed answer the notes read between the two rounds whose work is its *Behind it*, named as
+reading in between, never as the cause: *you read X between the two rounds; whether it moved you
+is yours to say.* A field round lists those notes once, as section 10 of the bank says. With the
+scope *Just show me what changed*, this is the whole run — the topic's last two rounds, or its
+last round and the reading since — and nothing is asked or written.
 
 ## 10. The preview, and the go
 
@@ -319,7 +319,7 @@ Show in chat, before anything is written:
 - **From a strategy or another project**, first: *this writes to the researcher's home, not to
   this project.*
 - **`Philosophy/HOW-I-INVEST.md`**, or `HOW-I-WORK.md` in a field round: a file to be started,
-  first, as *step 11* will create it, its title and five headings, marked *new file*; under each
+  first, as *step 11* will create it, its title and five headings, marked *new file*. Under each
   heading, every line to be added, word for word, as it will read — `- <their words> *(round N)*` —
   and a heading to be added at the end of an existing file. On a retake, under each changed answer,
   the old line, found under its heading by its *(round N)* tag and its words, quoted and marked
@@ -329,7 +329,7 @@ Show in chat, before anything is written:
 - **The round file**, whole, under its path.
 - **`RESEARCHER.md`**: the works to add to the closing *Find first* line, or *left alone*; and the
   rules O4 settled, named *your rules*, never by the heading's English name, each line as it will
-  read, a rule there that O4 changes or drops quoted and marked *changes* or *goes*. A rule about
+  read. A rule there that O4 changes or drops is quoted and marked *changes* or *goes*. A rule about
   holdings, *step 5*, is shown apart, marked *yours to write in `Portfolio/RULES.md`*.
 - **Privacy**, one line: these lines are saved in your researcher's versions; leave out any you
   would rather not keep.
@@ -338,13 +338,13 @@ Then ask `Go?` (`¿Escribo?`) — *Go*, described as *write it and save a versio
 guardar una versión*), *Change something*, *Stop*; in chat, any of the go words in the home's
 `AGENTS.md` is the go. **A round with no typed answer** says *nothing typed, so nothing goes into
 `HOW-I-INVEST.md`*, and asks instead `Keep it?` (`¿Lo guardo?`) — *Keep this round as a record*,
-with its `RESEARCHER.md` lines, *Change something*, *Write nothing* — because a kept round counts as
-round *N* and makes the next run a retake.
+with its `RESEARCHER.md` lines, *Change something*, *Write nothing*. A kept round counts as round
+*N* and makes the next run a retake.
 
 **On *Change something*, ask again with options**, the changes this preview admits: *Leave out a
 line*, a rule's included; *Reword in my words* — they type the line again, and only their words
 are written; *Leave Find first alone*; and, on a retake with a changed answer, *Leave my old line
-— I'll fix it with `refine`*, which writes as shown and puts the `refine` run in the hand-over.
+— I'll fix it with `refine`*. That one writes as shown and puts the `refine` run in the hand-over.
 Then show the revised preview and ask for the go again.
 
 **On *Stop*, *Write nothing*, silence or a closed session, nothing is written.** The answers are
@@ -406,13 +406,13 @@ not kept, and the next run starts as this one did, as round *N* again.
      skills parse them; the answers are in the owner's language. Nothing the researcher wrote goes
      in — no question, placement, pick, teaching line or reading list.
 3. **`RESEARCHER.md`**, in two places, and nothing else in that file changes:
-   - **Find first**, only when C2 picked a work and the owner did not leave *Find first* alone: each
-     work appended to the closing *Find first* line — year, authors and title as the map gives them,
-     separated by semicolons, in place of the template's *none*, in any language — skipping one
-     already there or already read. A section with no such line takes one as its last line, before
-     *Out of scope for now*: `**Find first:** <the works>`. In a field round, only a work typed
-     under *Other* goes there, in the owner's words; a file already in `Sources/` never does.
-   - **Non-negotiables**, only when O4 settled rules: one bullet per rule, `- <rule>`, in the
+   - **Find first**, only when C2 picked a work and the owner did not leave *Find first* alone. Each
+     work is appended to the closing *Find first* line — year, authors and title as the map gives
+     them, separated by semicolons, in place of the template's *none*, in any language — skipping
+     one already there or already read. A section with no such line takes one as its last line,
+     before *Out of scope for now*: `**Find first:** <the works>`. In a field round, only a work
+     typed under *Other* goes there, in the owner's words; a file already in `Sources/` never does.
+   - **Non-negotiables**, only when O4 settled rules. One bullet per rule, `- <rule>`, in the
      owner's language — a rule from the bank translated, its meaning unchanged and the
      researcher's name for its *my*, one of their own in their words — in place of the *None yet.*
      paragraph, in any language, while it is there, else after the section's last bullet. A rule
@@ -421,8 +421,8 @@ not kept, and the next run starts as this one did, as round *N* again.
      measurement — and never a rule about holdings, *step 5*.
 
 **Then save a version**, in the home, on the go that wrote, which covers the save, with no second
-question — every git command, the `backup` skill's send included, as
-`git -C "<absolute path to the home>"` when the session is open elsewhere: `git add` each file this
+question. Every git command, the `backup` skill's send included, runs as
+`git -C "<absolute path to the home>"` when the session is open elsewhere. `git add` each file this
 run wrote, by name, never `--all` — `Philosophy/HOW-I-INVEST.md`, the round file, `RESEARCHER.md`
 when it changed — and `git commit -m "Philosophy: round <N>, <level>" -- <the same files>`, the word
 `field` in place of the level in a field round. Say it in one plain line, *Saved*, never the
@@ -430,7 +430,7 @@ commands. When `git config --get kaxanuk.autosend` prints `true`, the version is
 owner's copy on GitHub, as the `backup` skill says. This replaces the *Commit?* question an older
 home's `AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one
 plain line — *a name and an e-mail to sign the versions your researcher saves* — sets them in the
-home only, never invented, and saves again; a home with no `.git/` gets one line, that it keeps no
+home only, never invented, and saves again. A home with no `.git/` gets one line, that it keeps no
 versions yet.
 
 ## 12. Hand over
@@ -449,7 +449,7 @@ Short, in the owner's language and voice, in this order:
 3. **When to come back.** Name two or three works from this round's reading list — the works
    picked in C2 first, or, on a stop before C2, the one behind the belief O2 placed; then the
    list's *Start here* works in the map's order; at Starter, in the plain words of C2's *Three
-   classic studies* — and say: once two of them have notes, `philosophy` again, in a new session;
+   classic studies*. Then say: once two of them have notes, `philosophy` again, in a new session;
    what was left *not sure yet*, skipped or never reached waits for them there. In a field round,
    or without the reading map, no work is named: *once you have read a source or two*.
 4. **`refine Philosophy/HOW-I-INVEST.md`**, when *Leave my old line* was picked, with the old lines

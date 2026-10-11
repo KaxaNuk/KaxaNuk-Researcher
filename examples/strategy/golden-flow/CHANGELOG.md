@@ -41,6 +41,25 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.3 (2026-10-10)
+
+**PATCH** — the shared lines move as the template's 0.19.1 does, and the README says what the
+example is and is not; prose only, nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **The shared lines** of `AGENTS.md`, `SETUP.md`, `OBJECTIVE.md`, `RESULTS.md`,
+  `Bibliotheca/BIBLIOGRAPHY.md`, `Paper_Trading/BITACORA.md` and `.gitignore`, as the template's
+  0.19.1.
+- **`README.md`**: *What it is, and what it is not*, after the banner: the figures come from a
+  backtest on past prices, shown to teach the method, never a promise or a recommendation. Yahoo
+  Finance's data is for learning, under Yahoo's own terms. Each idea is said once.
+- **The banners of `README.md` and `AGENTS.md`** say the headline figures come from a backtest.
+
+The frozen book in `Paper_Trading/Paper_Trading_1/` is unchanged: `FREEZE.json` hashes its files.
+
 ## 0.17.2 (2026-10-10)
 
 **PATCH** — the shared lines of `AGENTS.md` and `Experiments/attribution_analysis.py` move as the

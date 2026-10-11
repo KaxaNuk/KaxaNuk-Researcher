@@ -112,27 +112,26 @@ is quoted from `FINDINGS_N.md` or `RESULTS.md`, with its source named.
     commit, `git show <commit>:<note>`. That is not a finding by itself. The log is read, never
     changed.
 
-Two things cannot be checked from the working tree, and the report says so when they matter: the
+Two things cannot be checked from the working tree, and the report says so when they matter. The
 falsifiers are prose, so pairing *a beta at or above one* with *beta is 1.028* is a judgement made
-in words; and the ordering the whole process rests on — the blueprint saved before the rule, the
-counterfactuals before the engine — lives in the git log, not in the files. So read the log: run
-`git log --oneline -- Experiments/Experiment_N` in the strategy's folder, as check 10 does, and
-quote in the report, in plain words, what it shows — the version that wrote the blueprint, as
-check 10 finds it, and whether it was saved before the one that put the rule into
-`experiment_N.ipynb`. A blueprint saved with its rule, or after it, cannot be told from one written
-afterwards; say so. The log is read, never changed.
+in words. The ordering the whole process rests on — the blueprint saved before the rule, the
+counterfactuals before the engine — lives in the git log, not in the files. So read the log, as
+check 10 does: run `git log --oneline -- Experiments/Experiment_N` in the strategy's folder. Quote
+in the report, in plain words, what it shows — the version that wrote the blueprint, as check 10
+finds it, and whether it was saved before the one that put the rule into `experiment_N.ipynb`. A
+blueprint saved with its rule, or after it, cannot be told from one written afterwards; say so.
 
 The process can move under an experiment too: `blueprint`, `blueprint-critic` and this command come
 from one package, updated for every strategy at once. Read the version this run uses as `blueprint`
-does — `~/.apm/apm.lock.yaml`, the entry under `dependencies:` whose `repo_url` or
-`materialization_repo_url` is `kaxanuk/kaxanuk-researcher`, ignoring case, as `next` reads it — a
-`source: local` entry only when its `local_path` holds `templates/researcher/`, the package's own
-checkout, never a home — and compare it with the blueprint's stamp. The same version is one line of
-the report. A different one names both, and the entries of the package's `CHANGELOG.md`, beside that
-`apm.yml`, between them that touch `blueprint`, `blueprint-critic` or `challenge` — so the owner
-sees what changed in the checks, not only that something did. No stamp: say the blueprint predates
-it, and that the question cannot be answered from the files. A mismatch is disclosed, never a
-failure: the verdicts stand or fall on the blueprint as written.
+does, in `~/.apm/apm.lock.yaml`: the entry under `dependencies:` whose `repo_url` or
+`materialization_repo_url` is `kaxanuk/kaxanuk-researcher`, ignoring case, as `next` reads it. A
+`source: local` entry is read only when its `local_path` holds `templates/researcher/`, the
+package's own checkout, never a home. Compare that version with the blueprint's stamp. The same
+version is one line of the report. A different one names both, and the entries of the package's
+`CHANGELOG.md`, beside that `apm.yml`, between them that touch `blueprint`, `blueprint-critic` or
+`challenge` — so the owner sees what changed in the checks, not only that something did.
+No stamp: say the blueprint predates it, and that the question cannot be answered from the files.
+A mismatch is disclosed, never a failure: the verdicts stand or fall on the blueprint as written.
 
 ## Step 4: Report, and offer the one line it may write
 

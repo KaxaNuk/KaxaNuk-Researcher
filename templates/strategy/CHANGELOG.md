@@ -41,6 +41,25 @@ for somebody who was not in the room:
 
 ---
 
+## 0.19.1 (2026-10-10)
+
+**PATCH** — the guides read more simply, each idea said once, and `.gitignore` keeps a licence file
+out of git. Nothing about any result changes.
+
+**What to do differently:** nothing in a new strategy. In one made from an earlier template, add
+`.kaxanuk_license` to `.gitignore` if you keep a licence file in the repository.
+
+### Changed
+
+- **`AGENTS.md`, `README.md`, `SETUP.md`, `OBJECTIVE.md`, `RESULTS.md`,
+  `Bibliotheca/BIBLIOGRAPHY.md` and `Paper_Trading/BITACORA.md`**: each idea said once, where it
+  belongs, and the others point to it; long sentences split. Every rule, command, check and
+  heading is kept.
+- **`README.md`**, and the README block in `SETUP.md`'s step 5: a link to *What it is, and what it
+  is not* in the KaxaNuk Researcher's README.
+- **`.gitignore`**: `.kaxanuk_license`, the licence file the Lab's libraries can read, is never
+  committed.
+
 ## 0.19.0 (2026-10-10)
 
 **MINOR** — a Lab library's code is never read, quoted or copied here: a library is known from its

@@ -22,7 +22,7 @@ separately.
 
 **In the worked example, nothing is appended.** When the folder is the worked example — its
 `README.md` or `AGENTS.md` holds a line reading `<!-- example: begin -->`, the test `next` uses —
-report in chat and write nothing: the example is for reading and running, never built on; a
+report in chat and write nothing. The example is for reading and running, never built on; a
 strategy of the owner's own is `init-strategy <name>`.
 
 ## Step 1: Always
@@ -52,18 +52,18 @@ strategy of the owner's own is `init-strategy <name>`.
 - Studies, at home: a link that does not resolve — a note renamed or removed since the study was
   written — a link into `Extracts/` or to a PDF, and a first line that gives no state. The owner's
   words in a study are theirs, never a finding.
-- An installed copy missing or out of step with its source — the package under
-  `~/.apm/apm_modules/` for the skills and commands, the home's own `.apm/` for the agent and for
-  any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`: a skill under
-  `~/.claude/skills/` or the user's folder for another agent, a command under
+- An installed copy missing or out of step with its source. The source is the package under
+  `~/.apm/apm_modules/` for the skills and commands, and the home's own `.apm/` for the agent and
+  for any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`. The installed
+  copies: a skill under `~/.claude/skills/` or the user's folder for another agent, a command under
   `~/.claude/commands/`, and the home's own — the agent, the researcher's skill, and any skill or
   command of its own — under `~/.claude/agents/`, `~/.claude/skills/` and `~/.claude/commands/`,
   or the user's folder another agent takes. A copy of a KaxaNuk skill still deployed inside the
   home, in `.claude/skills/`, or the agent in `.claude/agents/` here, is a home from before the
-  user-scope install: the fix is `update`. **Compare what APM does not rewrite**:
-  the body below the frontmatter, and in it the section headings and the prose. APM translates a
-  command's input placeholders into the form each harness takes, and rewrites the frontmatter keys
-  it knows, so those differences are the install working, not a stale copy. Report a stale install
+  user-scope install: the fix is `update`. **Compare what APM does not rewrite**: the body below
+  the frontmatter, and in it the section headings and the prose. APM translates a command's input
+  placeholders into the form each harness takes, and rewrites the frontmatter keys it knows, so
+  those differences are the install working, not a stale copy. Report a stale install
   and give the fix: `uvx --from apm-cli==0.33.0 apm update -g` for a skill or a command of the
   package, `uvx --from apm-cli==0.33.0 apm install -g "<the home>"` for the agent, the
   researcher's skill, or a skill or command of the home's own, then a new session.
@@ -85,7 +85,7 @@ strategy of the owner's own is `init-strategy <name>`.
 - A link from the strategy into the researcher's home. Links stay inside the strategy.
 - A claim in `OBJECTIVE.md` that has none of the three kinds of evidence a claim may cite — a note,
   `RESULTS.md` or the `FINDINGS_N.md` that measured it, or its being **true by construction** — and
-  is not marked as a lead; and a prediction in a `BLUEPRINT_N.md` that cites neither a note nor an
+  is not marked as a lead. A prediction in a `BLUEPRINT_N.md` that cites neither a note nor an
   analyzer section by its number and is not marked as a lead.
 - A claim's status that does not open with a word of the vocabulary the template's `OBJECTIVE.md`
   lists. A qualifier after it is fine — *true by construction, untested as a source of return* —
@@ -109,11 +109,11 @@ strategy of the owner's own is `init-strategy <name>`.
   `uv run "<the read skill's directory>/scripts/check_numbers.py" Knowledge --extracts Extracts`,
   in a strategy `Bibliotheca/Papers Bibliotheca/Books --extracts Bibliotheca/Extracts` — from the
   library's root. It looks each figure written beside a page citation up in the extract. Report
-  every figure *not found* as a finding, with its note, line and cited pages; a note whose figures
-  sit at a consistent offset as a note, since it may cite printed pages; and the unchecked notes as
-  a count, with the `extract.py` command the script prints to regenerate their extracts. A figure
-  not found may be the note's own arithmetic or quoted from another source: say which, where the
-  note says so. The script reads and edits nothing, and this pass fixes nothing either.
+  every figure *not found* as a finding, with its note, line and cited pages. Report a note whose
+  figures sit at a consistent offset as a note, since it may cite printed pages, and the unchecked
+  notes as a count, with the `extract.py` command the script prints to regenerate their extracts.
+  A figure not found may be the note's own arithmetic or quoted from another source: say which,
+  where the note says so. The script reads and edits nothing, and this pass fixes nothing either.
 - In a strategy, a part of `BIBLIOGRAPHY.md` whose sources only agree with the claims — above all
   *Part 1 — The core idea*, which the template says holds the sources that argue against them. A
   bibliography with no source against the idea is a pitch.
@@ -122,20 +122,18 @@ strategy of the owner's own is `init-strategy <name>`.
 
 In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them
 as a plan and wait for a go; approved fixes append their own log entry. Append one entry to the
-library's `LOG.md`, one of the three writes made without a go of their own:
-`## [YYYY-MM-DD] audit | <N> findings` — or
-`audit deep` — except in the worked example, where nothing is written. Its entries come
-from `read`, `audit` and `refresh-index`, and from `query` when the owner keeps a synthesis page,
-whose index line `query` adds on the same go — so a page whose line `query` added is not a
-stale-index finding.
+library's `LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep` — except in the
+worked example, where nothing is written. Its entries come from `read`, `audit` and
+`refresh-index`, and from `query` when the owner keeps a synthesis page, whose index line `query`
+adds on the same go — so a page whose line `query` added is not a stale-index finding.
 
 **Then save a version**, in the folder whose library this is, at home and in a strategy alike, once
-the log line is in and any fix the owner approved is written — running `audit` by name is the go
-for the line, a fix's plan had its own go, and no question is asked. Every git command, the
-`backup` skill's send included, runs as `git -C "<that folder>"` when the session is open
-elsewhere: `git add` the library's `LOG.md` and every file a fix changed, by name, never `--all`,
-and `git commit -m "Audit: <the log line's summary>" -- <the same files>`; to the owner, *Saved*,
-in one plain line, never the commands. In a strategy it is a version of its own, with no
+the log line is in and any fix the owner approved is written. No question is asked: the line and
+each fix's plan already had their go. Every git command, the `backup` skill's send included, runs
+as `git -C "<that folder>"` when the session is open elsewhere: `git add` the library's `LOG.md`
+and every file a fix changed, by name, never `--all`, and
+`git commit -m "Audit: <the log line's summary>" -- <the same files>`. To the owner, *Saved*, in
+one plain line, never the commands. In a strategy it is a version of its own, with no
 `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it. When
 `git config --get kaxanuk.autosend` prints `true`, it also goes to the owner's copy on GitHub, as
 the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain line, set

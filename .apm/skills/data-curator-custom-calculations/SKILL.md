@@ -13,7 +13,7 @@ description: >
   composition, wiring the column into the output, for configuration files and runs of `main()`,
   and whether a wrong value is the provider's or the library's.
 metadata:
-  version: 0.5.0
+  version: 0.5.1
   library_version: 0.50.0
 ---
 
@@ -61,8 +61,8 @@ script, `Config/data_curator_parameters.xlsx` and `Config/custom_calculations.py
 reads the workbook and loads that module, as the README's *Customization* and the documentation's
 Custom Calculator Workflow page say. Add new functions to that module. Some projects replace it
 with their own multi-file layout, for example a package of category subfolders scanned into a list
-of modules; if so **follow the layout that is already there** — read that project's loader to see
-which files it picks up and which it skips, and read a sibling module to copy its shape.
+of modules. If so, **follow the layout that is already there** — read that project's loader to
+see which files it picks up and which it skips, and read a sibling module to copy its shape.
 
 **(b) Programmatic `main()` with modules on disk.** The caller builds the `Configuration` in Python
 and imports its calculation modules normally, as the documentation's Component Integrator Workflow
@@ -75,9 +75,9 @@ documentation nor a recorded run shows it working, so run it once in a scratch c
 experiment relies on it. See `references/programmatic-run.md`.
 
 The documentation and the worked example's run show this much: a `c_` function in a module passed
-in `custom_calculation_modules` becomes the column of its name, and a module loaded from its file
-by path, under a name of the caller's own, works, as the worked example's `Data/curator.py` loads
-its own.
+in `custom_calculation_modules` becomes the column of its name. A module loaded from its file by
+path, under a name of the caller's own, works too, as the worked example's `Data/curator.py`
+loads its own.
 
 **In a KaxaNuk Strategy Template repository the surface is (b), and the files are fixed.** The
 functions go in `Data/Curator/custom_calculations.py`. `Data/curator.py`, the step-3 driver, loads
@@ -90,9 +90,9 @@ as descriptions — a docstring each — to be filled in. In a strategy made fro
 `init-strategy`'s script run from the strategy's root —
 `scaffold.py strategy . --only Data/curator.py` and `--only Data/Curator/custom_calculations.py`,
 which never overwrite. Two kinds of column are not `c_*` columns, even when asked for as a
-"signal": one that compares securities on a date (a rank, a breadth reading), and one with a
-setting an experiment will sweep (a fitted model, or a window such as the 50- and 200-day averages
-the example builds as `r_trend_50_200`). Both are `r_*` columns in
+"signal". One compares securities on a date (a rank, a breadth reading); the other has a setting
+an experiment will sweep (a fitted model, or a window such as the 50- and 200-day averages the
+example builds as `r_trend_50_200`). Both are `r_*` columns in
 `Data/Refinery/custom_calculations.py`, which the worked example's `Data/refinery.py` computes
 and this skill does not cover. Only their frozen arithmetic inputs are `c_*` columns.
 
@@ -173,27 +173,25 @@ Run every check, and fix until all pass:
 
 - [ ] The function name starts with `c_` and is a valid Python identifier in `snake_case`.
 - [ ] The function is reachable: for surfaces (a) and (b), the file is in a location the project's
-      loader actually picks up (mind loaders that skip files whose name starts with `_`); for
-      surface (c), the function is attached to one of the modules in
-      `custom_calculation_modules`, a surface no run has checked yet.
+      loader actually picks up (mind loaders that skip files whose name starts with `_`). For
+      surface (c), the function is attached to one of the modules in `custom_calculation_modules`.
 - [ ] The column name is in `Configuration.columns`, or is a dependency of a column that is.
 - [ ] Every parameter name is an existing column: a documented tag with its prefix, a built-in
       `c_*` from the Features page, another custom `c_*`, or the special `configuration`
-      parameter. A wrong name stops the run with an error naming the column (the changelog, 0.12,
-      improved those errors).
+      parameter. A wrong name stops the run with an error naming the column.
 - [ ] No dependency cycle among the `c_*` functions: a cycle stops the run with an error.
 - [ ] The return value is an iterable of the **same length** as the inputs; shifted results are
       padded with `None` on the leading positions.
 - [ ] No `inf` or `NaN` leaks into the output; they must be `None`.
 - [ ] A column built on volume or traded value — the built-in `c_daily_traded_value` and anything
       averaged or ranked on it — is checked for continuity at every split before anything reads
-      it, as `universe-point-in-time`'s register says: a provider's unadjusted volume can already
+      it, as `universe-point-in-time`'s register says. A provider's unadjusted volume can already
       be in post-split shares before the split date, and the split adjustment then counts it twice.
 - [ ] The code parses: `uv run --no-project python -m py_compile <file>` for a file, or a clean run
       of the cell for a notebook, and the linter the project uses passes.
 - [ ] If the calculation depends, directly or transitively, on any `f_*`, `fbs_*`, `fcf_*`, `fis_*`,
       `d_*` or `s_*` column, the run needs a provider for the fundamentals, dividends or splits
-      block in `data_block_providers`, and for the fundamental blocks the result also depends on the
+      block in `data_block_providers`. For the fundamental blocks the result also depends on the
       configured `period`.
 
 ## 7. Report
@@ -213,9 +211,9 @@ Curator's issues. Before anyone reports a bug, tell them apart:
 2. **The raw value is already wrong** — a price, a volume or a field that cannot be true on that
    date, or that breaks with the security's own history, as the data-issues register's checks
    find it: it is the provider's data. Record it in `Universe/Data_Issues.csv` with its severity,
-   as `universe-point-in-time` says, handle it there — exclude the name, or correct the value
-   with its source named — and report it to the provider: the security, the date, the field,
-   the value, and why it cannot be right. The library's maintainers cannot fix it.
+   as `universe-point-in-time` says, and handle it there — exclude the name, or correct the value
+   with its source named. Report it to the provider: the security, the date, the field, the
+   value, and why it cannot be right. The library's maintainers cannot fix it.
 3. **The raw value is right and the Curator's output is wrong** — a correct input adjusted or
    computed wrongly: it is the library's. Report it on
    <https://github.com/KaxaNuk/Data-Curator/issues>, with the Curator's version, the provider,

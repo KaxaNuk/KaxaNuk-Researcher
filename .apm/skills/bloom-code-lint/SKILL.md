@@ -9,7 +9,7 @@ description: >
   non-Python files, nor as a substitute for the project's configured linter or formatter (ruff,
   flake8, black), which cover PEP 8.
 metadata:
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # Bloom Code Lint
@@ -40,7 +40,7 @@ violation. Output is ASCII only.
    `--local-package <name>` (repeatable). `--strict` restores the literal reading of BLOOM010 and
    BLOOM012 (see the table). A directory is searched for `*.py` below it, skipping links and every
    `.venv`, `venv`, `.git`, `apm_modules`, `__pycache__`, `.ruff_cache`, `node_modules` and
-   `.ipynb_checkpoints` folder, so `.` at a strategy's root checks only the strategy's own code; a
+   `.ipynb_checkpoints` folder, so `.` at a strategy's root checks only the strategy's own code. A
    file or folder named on the command line is always checked.
 2. Fix every reported line. The message says what to change; the rule table below says why.
 3. Re-run until the checker prints `[ok]`. Only then report the Python work as done.

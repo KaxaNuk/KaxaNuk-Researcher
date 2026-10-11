@@ -12,7 +12,7 @@ it first and read its `RESEARCHER.md` and `AGENTS.md`. This command works at hom
 `Philosophy/` is the owner's voice, and it has exactly two writers. `philosophy` adds the owner's
 typed answers to the file of the round's topic — `HOW-I-WORK.md` or `HOW-I-INVEST.md` — word for
 word and add-only, after the owner's go, and writes one round file in `Philosophy/Evolution/`,
-never edited afterwards; `refine` edits either as an editor, diff first, and never touches
+never edited afterwards. `refine` edits either as an editor, diff first, and never touches
 `Evolution/`. A file the owner keeps beside them in `Philosophy/`, outside `Evolution/`, is theirs
 in the same way and takes the same pass. `${input:path}` is one file under `Philosophy/`.
 
@@ -32,9 +32,9 @@ in the same way and takes the same pass. `${input:path}` is one file under `Phil
    the file, under their own tag.
 5. Show the diff in chat and wait for an explicit go, *write it and save a version*.
 6. Apply exactly the approved diff. Report what changed.
-7. **Then save a version**, in the home, on the same go, with no second question — every git
-   command, the `backup` skill's send included, as `git -C "<absolute path to the home>"` when the
-   session is open elsewhere: `git add` the file, by name, never `--all`, and
+7. **Then save a version**, in the home, on the same go, with no second question. Every git
+   command, the `backup` skill's send included, runs as `git -C "<absolute path to the home>"` when
+   the session is open elsewhere: `git add` the file, by name, never `--all`, and
    `git commit -m "Refine: <file>" -- <file>`; to the owner, *Saved*, in one plain line, never the
    commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their copy on
    GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain

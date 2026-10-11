@@ -42,11 +42,11 @@ read the release notes there before trusting a list.
 ## Market data columns
 
 The market data tags are `m_date` and `open`, `high`, `low`, `close`, `volume`, `vwap`, each in
-three variants: unadjusted, `_split_adjusted` and `_dividend_and_split_adjusted` (the changelog,
-0.39, added the adjusted ones). So `m_close`, `m_close_split_adjusted` and
-`m_close_dividend_and_split_adjusted` are three different columns. A provider supplies only some of
-them: FMP's page lists no unadjusted `m_vwap` and no `m_vwap_dividend_and_split_adjusted`, and
-LSEG's lists the unadjusted prices, volume and VWAP, and split-adjusted open, high, low and close.
+three variants: unadjusted, `_split_adjusted` and `_dividend_and_split_adjusted`. So `m_close`,
+`m_close_split_adjusted` and `m_close_dividend_and_split_adjusted` are three different columns. A
+provider supplies only some of them: FMP's page lists no unadjusted `m_vwap` and no
+`m_vwap_dividend_and_split_adjusted`, and LSEG's lists the unadjusted prices, volume and VWAP, and
+split-adjusted open, high, low and close.
 
 Which one to use is a modelling decision, not a detail:
 

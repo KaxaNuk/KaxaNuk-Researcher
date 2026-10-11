@@ -21,9 +21,7 @@
 > **Works are leads, never sources.**
 >
 > - Every work named here comes from the reading map, `references/reading-map.md` in the `read`
->   skill's folder, with the year, authors, title and page the map gives it.
-> - *p. N* is the page of the bootcamp deck the map gives for that work or that line. It locates
->   the lead; it is never a page of the paper.
+>   skill's folder, with the year, authors and title the map gives it.
 > - A paper's finding is said as the map sums it up, and as a lead to read, never as a settled
 >   fact. Nothing is claimed on a work until the owner's `Knowledge/` holds a note on it.
 > - Where `Knowledge/` already holds a note on the work, found as the map's *Match before
@@ -52,7 +50,7 @@
 > - *Teaches* lines are said as written: orientation from the map, an idea to check.
 > - They are never improvised and never a verdict on the answer.
 > - Only what the owner types reaches `Philosophy/`. A pick, an example, a placement and every line
->   of this file stay out of it: in either topic, O4's rules — but one about holdings, as O4 says
+>   of this file stay out of it. In either topic, O4's rules — but one about holdings, as O4 says
 >   — and C2's works — in a field round, only one typed under *Other* — go to `RESEARCHER.md`,
 >   and the rest stays in chat.
 
@@ -299,9 +297,8 @@ the market?* least of all. The purpose line is the same in all three, and the on
 > process is how you find out whether a result is yours, or luck.
 
 If the owner asks which study: the map's Jensen, 1968, *The Performance of Mutual Funds in the
-Period 1945–1964*, which it sums up as most active managers failing to generate persistent alpha
-(p. 17). That is a lead to read, not something cited yet. *The studies I start from* are the
-reading map's.
+Period 1945–1964*, which it sums up as most active managers failing to generate persistent alpha.
+That is a lead to read, not something cited yet. *The studies I start from* are the reading map's.
 
 ### Building
 
@@ -325,7 +322,7 @@ reading map's.
 > - the limits of arbitrage (Shleifer & Vishny, 1997);
 > - adaptation (Lo, 2004);
 > - then the evidence from 2011 to 2023: crowding, cycles, decay, false positives, and the
->   rebuttal (pp. 49–50).
+>   rebuttal.
 >
 > Your **personal benchmark** is your own yardstick, tied to your goal; a strategy's benchmark is
 > chosen later, at part E, and is a different thing. Whether anyone does better than yours after
@@ -432,13 +429,13 @@ changes the wording of a question the level asks; it never adds one the level do
     later. Jensen (1968) measured fund managers — a lead to read.
   - **Researching adds, as well:** Cowles (1933) put forecasters to the test — a lead to read too.
 - **Behind it:**
-  - Cowles, 1933, *Can Stock Market Forecasters Forecast?* (Act I, question 02; p. 9).
-  - Jensen, 1968, *The Performance of Mutual Funds in the Period 1945–1964* (Act III, question 06;
-    p. 17).
-  - Fama, 1970, *Efficient Capital Markets: A Review of Theory and Empirical Work* (Start here 1,
-    p. 49).
+  - Cowles, 1933, *Can Stock Market Forecasters Forecast?* (Act I, question 02).
+  - Jensen, 1968, *The Performance of Mutual Funds in the Period 1945–1964* (Act III,
+    question 06).
+  - Fama, 1970, *Efficient Capital Markets: A Review of Theory and Empirical Work* (Start
+    here 1).
   - **Other side:** Berk & Green, 2004, *Mutual Fund Flows and Performance in Rational Markets*:
-    "alpha exists" is not "the client gets it" (pp. 17, 52).
+    "alpha exists" is not "the client gets it".
 - **Never:** a product, a ticker, an allocation or a computed return.
 
 #### Q3 · How you would know
@@ -460,11 +457,10 @@ changes the wording of a question the level asks; it never adds one the level do
   compare, not after.
 - **Behind it:**
   - Sharpe, 1964, *Capital Asset Prices*, under Act II, question 05: *If risk can be measured…
-    which risk deserves a reward?* (p. 14).
+    which risk deserves a reward?*
   - Grossman & Stiglitz, 1980, *On the Impossibility of Informationally Efficient Markets* (Start
-    here 3, p. 49).
-  - Jensen, Kelly & Pedersen, 2023, *Is There a Replication Crisis in Finance?* (Start here 10,
-    p. 50).
+    here 3).
+  - Jensen, Kelly & Pedersen, 2023, *Is There a Replication Crisis in Finance?* (Start here 10).
 
 ### Your edge
 
@@ -473,7 +469,7 @@ changes the wording of a question the level asks; it never adds one the level do
 - *Lands under:* a pick lands nowhere, the round file included. The owner's own words for one
   go under **What I believe about markets** for S1–S3, and under **How I decide** for S4.
 - **Say first:** No answer is right, and picking several is expected. In the map's *Nothing is
-  discarded* (p. 51), every view keeps its job.
+  discarded*, every view keeps its job.
 - **How each option is shown:**
   - Each option's description is a plain gloss.
   - Building adds the work that holds it.
@@ -483,9 +479,9 @@ changes the wording of a question the level asks; it never adds one the level do
 
 | Option | Plain gloss | Work (Building) | Act and question (Researching) |
 | --- | --- | --- | --- |
-| *No — prices already know* | what's known is already in the price | Fama, 1970 | Act III, question 07 (p. 18) |
-| *Yes — someone is paid to know* | finding things out costs money, so whoever pays for it gets paid back | Grossman & Stiglitz, 1980 | Act III, question 09 (p. 22) |
-| *For a while — edges crowd and move* | an edge works until too many people use it, then moves | Lo, 2004 | Act V, question 14 (p. 32) |
+| *No — prices already know* | what's known is already in the price | Fama, 1970 | Act III, question 07 |
+| *Yes — someone is paid to know* | finding things out costs money, so whoever pays for it gets paid back | Grossman & Stiglitz, 1980 | Act III, question 09 |
+| *For a while — edges crowd and move* | an edge works until too many people use it, then moves | Lo, 2004 | Act V, question 14 |
 | *Not sure yet* | — | — | — |
 
 **S2 · `Edge from?` (`¿De dónde?`)** — Researching only, multi-select. *Ask:* If there is an edge,
@@ -498,7 +494,7 @@ where does it come from? *Not sure yet* is typed under *Other*.
 | *Others cannot take the other side* | those who know better can't act — no money, no time, rules | Shleifer & Vishny, 1997, *The Limits of Arbitrage* |
 | *Something I see or do better* | information, or implementation | Grossman & Stiglitz, 1980 (information); Grinold & Kahn, 1995, *Active Portfolio Management* (implementation) |
 
-*Behind it:* the map's *Five sources of edge* (p. 56).
+*Behind it:* the map's *Five sources of edge*.
 
 **S3 · `Real edges?` (`¿Reales?`)** — Researching only, multi-select. *Ask:* Are most published
 findings real?
@@ -510,7 +506,7 @@ findings real?
 | *Most hold up when retested together* | tested together, carefully, most survive | Jensen, Kelly & Pedersen, 2023 |
 | *Not sure yet* | — | — |
 
-If the first and third are both picked, give the map's verdict: still contested (p. 50).
+If the first and third are both picked, give the map's verdict: still contested.
 
 **S4 · `Your method` (`Tu método`)** — single-select. *Ask:* How do you like to decide?
 - *Rules I can write down and test*
@@ -539,18 +535,17 @@ leads the placement.
   - "I can wait ten years; many sellers need their money next month."
   - "I don't know — that's what I want to find out."
 - **Teaches:** An idea with no answer to *who is on the other side?* is only a pattern. The map's
-  *Five sources of edge* (p. 56) names five places an edge can come from — hints to check, not
-  rules:
+  *Five sources of edge* names five places an edge can come from — hints to check, not rules:
   - being paid for a risk others avoid;
   - others repeating a mistake;
   - others who can't trade against it;
   - seeing something the price hasn't taken in;
   - doing it better, after costs.
 - **Behind it:**
-  - Fama, 1970, and Kahneman & Tversky, 1979 (Start here 1–2, p. 49).
-  - Shleifer & Vishny, 1997 (Start here 4, p. 49).
-  - *Five sources of edge* (p. 56).
-  - *Seven questions before any backtest*, question 2 (p. 58).
+  - Fama, 1970, and Kahneman & Tversky, 1979 (Start here 1–2).
+  - Shleifer & Vishny, 1997 (Start here 4).
+  - *Five sources of edge*.
+  - *Seven questions before any backtest*, question 2.
 
 #### Q5 · What it costs to know
 - *Asked at:* Researching.
@@ -565,10 +560,10 @@ leads the placement.
   Pedersen (2015): just enough inefficiency to pay the active managers who compete it away. Both
   are leads to read, not settled facts.
 - **Behind it:**
-  - Grossman & Stiglitz, 1980 (Start here 3, p. 49). The question is Act III, question 09's edge
-    line, put to the owner (p. 22).
-  - Pedersen, 2015, *Efficiently Inefficient* (p. 23; *Nothing is discarded*, p. 51).
-  - **Other side:** Fama, 1970 (pp. 23, 51); Berk & Green, 2004 (p. 52).
+  - Grossman & Stiglitz, 1980 (Start here 3). The question is Act III, question 09's edge line,
+    put to the owner.
+  - Pedersen, 2015, *Efficiently Inefficient* (*Nothing is discarded*).
+  - **Other side:** Fama, 1970; Berk & Green, 2004.
 
 ### You
 
@@ -590,7 +585,7 @@ leads the placement.
   make on a calm day. Deciding beforehand is the protection.
   - **Building adds:** the lead is Kahneman & Tversky (1979).
 - **Behind it:** Kahneman & Tversky, 1979, *Prospect Theory: An Analysis of Decision under Risk*
-  (Start here 2, p. 49).
+  (Start here 2).
 
 #### Q7 · How long you can hold
 - *Asked at:* Building and Researching.
@@ -609,9 +604,9 @@ leads the placement.
   - **Building adds:** The map sums up Shleifer & Vishny (1997) like this: seeing the mispricing
     is not holding the trade; capital, risk and horizon run out first. A lead to read.
 - **Behind it:**
-  - Shleifer & Vishny, 1997, *The Limits of Arbitrage* (Start here 4, p. 49).
+  - Shleifer & Vishny, 1997, *The Limits of Arbitrage* (Start here 4).
   - *Seven questions before any backtest*, question 6: "When does it break, and would I stay in
-    through the break?" (p. 58).
+    through the break?"
 
 #### Q8 · Fear and excitement
 - *Asked at:* every level.
@@ -631,12 +626,11 @@ leads the placement.
   setting can mislead you in another, and a plan written on a calm day lets you act on the plan
   instead.
   - **Building adds:** The map's *Nothing is discarded* gives that idea to behavioral finance —
-    Kahneman, Tversky, Thaler: shortcuts that worked in another environment (p. 51). A lead to
-    read.
+    Kahneman, Tversky, Thaler: shortcuts that worked in another environment. A lead to read.
 - **Behind it:**
-  - Kahneman & Tversky, 1979 (Start here 2, p. 49).
+  - Kahneman & Tversky, 1979 (Start here 2).
   - *Nothing is discarded*, its behavioral finance entry — Kahneman, Tversky, Thaler: shortcuts
-    that worked in another environment (p. 51). It names no work of Thaler's, so none is proposed.
+    that worked in another environment. It names no work of Thaler's, so none is proposed.
 
 ### The world moves
 
@@ -651,9 +645,9 @@ leads the placement.
   shifts, new ones appear. A lead to read, not a settled fact. An idea that worked in only one
   kind of market may be a story about that market.
 - **Behind it:**
-  - Lo, 2004, *The Adaptive Markets Hypothesis* (Start here 5, p. 49).
-  - Daniel & Moskowitz, 2016, *Momentum Crashes* (Start here 7, p. 50).
-  - Act VII, problem 1: regimes you can see coming (p. 53). It names Hamilton (1989) and Ang &
+  - Lo, 2004, *The Adaptive Markets Hypothesis* (Start here 5).
+  - Daniel & Moskowitz, 2016, *Momentum Crashes* (Start here 7).
+  - Act VII, problem 1: regimes you can see coming. It names Hamilton (1989) and Ang &
     Timmermann (2012) without titles, so neither is proposed.
 
 #### Q10 · Once everybody knows
@@ -670,15 +664,15 @@ leads the placement.
   - **The plain form:** An idea many people know may get priced in, and a crowded one can fall
     hard when everyone sells at once — two ideas to check, not facts.
   - **Building and Researching:** The map sums up McLean & Pontiff (2016) like this: anomaly
-    returns roughly halve after publication (p. 39). A lead to read, not a settled fact.
+    returns roughly halve after publication. A lead to read, not a settled fact.
   - **Researching adds:** And Khandani & Lo (2011), as the map sums it up: quant books that shared
     a strategy unwound together in three days. A lead to read too.
 - **Behind it:**
   - McLean & Pontiff, 2016, *Does Academic Research Destroy Stock Return Predictability?* (Start
-    here 8, p. 50).
+    here 8).
   - Khandani & Lo, 2011, *What Happened to the Quants in August 2007? Evidence from Factors and
-    Transactions Data* (Start here 6, p. 50).
-  - *Discussion*, its second question: how long a strategy would last if alpha decays (p. 60).
+    Transactions Data* (Start here 6).
+  - *Discussion*, its second question: how long a strategy would last if alpha decays.
 
 #### Q11 · The turn, or the conditions
 - *Asked at:* Researching.
@@ -693,9 +687,9 @@ leads the placement.
   rebounds — a strategy works, gets crowded, breaks, and comes back. A lead to read, not a settled
   fact. If it holds, the state before a turn may matter as much as the turn.
 - **Behind it:**
-  - Daniel & Moskowitz, 2016 (Start here 7, p. 50).
+  - Daniel & Moskowitz, 2016 (Start here 7).
   - **Other side, on timing:** Grinold & Kahn, 1995, *Active Portfolio Management*: many small
-    bets beat a few big calls (p. 41), as *Beliefs people type* gives it.
+    bets beat a few big calls, as *Beliefs people type* gives it.
 
 ### Your proof
 
@@ -714,10 +708,9 @@ leads the placement.
   for the one you keep.
   - **Building adds:** the map's lead on this is Harvey, Liu & Zhu (2016).
 - **Behind it:**
-  - Harvey, Liu & Zhu, 2016, *… and the Cross-Section of Expected Returns* (Start here 9, p. 50;
-    Act V, question 17, p. 38).
+  - Harvey, Liu & Zhu, 2016, *… and the Cross-Section of Expected Returns* (Start here 9; Act V,
+    question 17).
   - *Seven questions before any backtest*, question 7: "How many ideas came before this one?"
-    (p. 58).
 
 #### Q13 · Luck or skill
 - *Asked at:* Researching.
@@ -730,7 +723,7 @@ leads the placement.
 - **Teaches:** If nothing could convince you, the result can't be tested, and what can't be tested
   can't be improved.
 - **Behind it:** Harvey, Liu & Zhu, 2016, against Jensen, Kelly & Pedersen, 2023, *Is There a
-  Replication Crisis in Finance?* Still contested (*Who argues with whom*; p. 50).
+  Replication Crisis in Finance?* Still contested (*Who argues with whom*).
 
 #### Q14 · Written down
 - *Asked at:* every level.
@@ -751,9 +744,9 @@ leads the placement.
 - **Behind it:**
   - **Starter and Building:** no paper.
   - **Researching:** Arnott, Harvey & Markowitz, 2019, *A Backtesting Protocol in the Era of
-    Machine Learning* (under Act V, question 17, p. 38).
-  - **Researching:** *Seven questions before any backtest*, the page's test: "if the seven answers
-    do not fit in one paragraph, the idea is not yet a hypothesis" (p. 58).
+    Machine Learning* (under Act V, question 17).
+  - **Researching:** *Seven questions before any backtest*, its test: "if the seven answers do not
+    fit in one paragraph, the idea is not yet a hypothesis".
 
 ### Your process
 
@@ -781,7 +774,7 @@ leads the placement.
 - **Teaches:** A process you can't keep is a plan, not a process.
 - **Behind it:** *a gap*; no paper. For orientation only: Act VII, problem 4, research that runs
   itself, with Guo, Wang, Ni & Shum, 2022, *Quant 4.0: Engineering Quantitative Investment with
-  Automated, Explainable and Knowledge-driven AI* (p. 53).
+  Automated, Explainable and Knowledge-driven AI*.
 
 ---
 
@@ -811,11 +804,11 @@ leads the placement.
   - **After *not sure yet* or *skip*,** the second sentence becomes: *It's a question I'll come
     back to when you take this again.*
 - **Behind it:**
-  - *Discussion* (p. 60): its third question, what would change a mind before months go into it;
-    its first, whose paper a belief contradicts, is the other side named when the belief was
-    placed, offered in C2.
-  - *An idea's anatomy*, the claim and the kill switch (p. 59). `objective` takes the shape
-    further, in a strategy.
+  - *Discussion*: its third question, what would change a mind before months go into it; its
+    first, whose paper a belief contradicts, is the other side named when the belief was placed,
+    offered in C2.
+  - *An idea's anatomy*, the claim and the kill switch. `objective` takes the shape further, in a
+    strategy.
   - *Who argues with whom*.
 
 ### C2 · What to read or learn next
@@ -892,9 +885,9 @@ leads the placement.
   with no nudge.
 - The C1 line is said only when a round holds typed words for C1, quoting the latest, with its
   round: that is the promise C1's *Teaches* makes.
-- The last line is said only when there are such questions: those of the last round's level, O3,
-  O4, C2 and Starter's Q2 aside, since they may take no line, that no round file has a line for,
-  which the skill's *step 1* finds. *k* counts them.
+- The last line is said only when there are such questions: those of the last round's level that
+  no round file has a line for, which the skill's *step 1* finds. O3, O4, C2 and Starter's Q2 are
+  left aside, since they may take no line. *k* counts them.
 - The rules line is said only when *Non-negotiables* holds a rule and O4 can be asked; with none,
   O4 is asked after O3, as its card says.
 
@@ -904,13 +897,12 @@ there: a question that level does not ask is left out, whatever section 8 lists,
 are never asked below Researching.
 
 - *What my reading touched* — suggested when a note read since is a work section 8 lists and no
-  question is unreached, and left out when none is: the IDs section 8 gives for the notes read
-  since, kept only where the level chosen asks them, in block order, then C1 and C2.
+  question is unreached, and left out when none is. It takes the IDs section 8 gives for the notes
+  read since, in block order, then C1 and C2.
 - *The whole round* — every question of the level chosen.
-- *Only what I left open* — suggested when a question is unreached, and left out when none is open:
-  the questions whose latest status is *not sure yet*, *skipped* or *explained*, and those the level
-  chosen asks that no round file has a line for — a round stopped early never reached them — in
-  block order, then C2.
+- *Only what I left open* — suggested when a question is unreached, and left out when none is
+  open. It takes the questions whose latest status is *not sure yet*, *skipped* or *explained*, and
+  those the level chosen asks that no round file has a line for, in block order, then C2.
 - *Just show me what changed* — no questions, and nothing written.
 
 *Not now* or *stop*, typed under *Other*, ends the run with nothing written.
@@ -1001,11 +993,11 @@ words, and names no work at all:
   personal benchmark, the process, the purpose line and the caveat stay, the caveat in the
   Starter explainer's words.
 - No placement after O2 or the stance picks. The hunches keep their plain labels; S1–S3 keep their
-  labels and plain glosses, with no work, no act and no page.
+  labels and plain glosses, with no work and no act.
 - Every *Teaches* line drops the sentences that name a work, sum one up or point to the map, and
-  the words *from a well-known study*; Q10 takes its plain form, and where nothing is left, or
-  only a sentence that leans on the lead — Q5, Q11 — no line is said. *Behind it* is never shown,
-  and *show me the paper* is answered with why.
+  the words *from a well-known study*. Q10 takes its plain form. Where nothing is left, or only a
+  sentence that leans on the lead — Q5, Q11 — no line is said. *Behind it* is never shown, and
+  *show me the paper* is answered with why.
 - No question rises a level on its own.
 - C2 offers only *Learn one idea with me — after your first reading* and *Not now*, with *Other*
   for a work of the owner's own, which goes on *Find first* in their words.
@@ -1020,11 +1012,11 @@ For a round about how the owner works — law, medicine, teaching, a trade, a bu
 topic they name, asked as the skill's *step 2* says and run as its *Another field* says. Everything
 above holds but what is about markets, with `HOW-I-WORK.md` where it says `HOW-I-INVEST.md`: only
 typed words are written, no answer is right or wrong, words for the owner never mark their gender,
-the escapes work, and section 9 holds as if the reading map were missing, so no work from the map is
-named, and C2 is this section's own, below. There is no level, no explainer, no hunch, no stance
-pick, no placement and no *Behind it*: each card is worded once, in plain words; *simpler* puts the
-*Plain* line and the *Example* under every question left, and *harder* is answered with the rest of
-the round in one message.
+and the escapes work. Section 9 holds as if the reading map were missing, so no work from the map
+is named, and C2 is this section's own, below. There is no level, no explainer, no hunch, no stance
+pick, no placement and no *Behind it*: each card is worded once, in plain words. In a field round,
+*simpler* puts the *Plain* line and the *Example* under every question left, and *harder* is
+answered with the rest of the round in one message.
 
 ### Before the first question (said, not asked)
 
@@ -1059,9 +1051,9 @@ says.
   kept in your head only gets confirmed.
 
 **O4 follows W2**, its card as written — on a retake, after W2 while *Non-negotiables* holds no
-rule, otherwise on *my rules* — said first as: *One more thing before the questions: a few rules,
-decided on a calm day — the ones I'll keep to with you.* The two for strategies are offered only
-when the owner asks for them.
+rule, otherwise on *my rules*. It is said first as: *One more thing before the questions: a few
+rules, decided on a calm day — the ones I'll keep to with you.* The two for strategies are offered
+only when the owner asks for them.
 
 ### W3 · What you have learned
 - *Lands under:* **What I have learned**.
@@ -1092,17 +1084,22 @@ when the owner asks for them.
 - **Teaches:** A belief you'd drop on evidence is one you can test. Your answer here is the line
   I'll quote first when you take this again.
 
-Then C2, `Read next` (`Aprender`), single-select, with no work from the map: up to two files *in
-your Sources/, not yet read*, which only need `read` and go on no *Find first* line — the hand-over
-names the one picked by its file name; `teach <a topic the owner's notes cover>` when `Knowledge/`
-holds a note, otherwise *Learn one idea with me — after your first reading*; *Not now*; and *Other*
-for a work of the owner's own, which goes on *Find first* in their words. Then the preview.
+Then C2, `Read next` (`Aprender`), single-select, with no work from the map:
+
+- up to two files *in your Sources/, not yet read*, which only need `read` and go on no *Find
+  first* line — the hand-over names the one picked by its file name;
+- `teach <a topic the owner's notes cover>` when `Knowledge/` holds a note, otherwise *Learn one
+  idea with me — after your first reading*;
+- *Not now*;
+- and *Other* for a work of the owner's own, which goes on *Find first* in their words.
+
+Then the preview.
 
 ### The file, and a retake
 
 A `HOW-I-WORK.md` that `Philosophy/` lacks is created on the round's go, as the skill's *step 11*
 says, with `# How I work — <the topic, in the owner's words>` and these five headings, in this
-order, in the owner's language, and nothing else; then the lines go in as *step 11* says. A home
+order, in the owner's language, and nothing else. Then the lines go in as *step 11* says. A home
 keeps one `HOW-I-WORK.md`: a round on any topic but investing adds to it, as its next round, as the
 skill's *step 2* says.
 
@@ -1116,8 +1113,10 @@ skill's *step 2* says.
 | *never written to `HOW-I-WORK.md`* | O4 (its rules go under *Non-negotiables* in `RESEARCHER.md`, but one about holdings, which the owner writes in `Portfolio/RULES.md`), C2, *not sure yet*, *skipped*, *explained* |
 
 The round file's first line has `Field` where a level goes: `# Round <N> · <YYYY-MM-DD> · Field`.
-**A retake** reads the field rounds only and runs as section 7 does, with these differences: no
-level is asked, said or compared; W5 is quoted where C1 is, and O4 follows W2; the opening leaves
-out the IDs the reading bears on, and the scope question *What my reading touched*, every scope
-taking this section's questions in its order, then C2; and the comparison lists the notes read
-between the two rounds once, never under an answer.
+**A retake** reads the field rounds only and runs as section 7 does, with these differences:
+
+- no level is asked, said or compared;
+- W5 is quoted where C1 is, and O4 follows W2;
+- the opening leaves out the IDs the reading bears on, and the scope question *What my reading
+  touched*, every scope taking this section's questions in its order, then C2;
+- and the comparison lists the notes read between the two rounds once, never under an answer.

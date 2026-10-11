@@ -1,8 +1,7 @@
 # Bibliotheca — the index
 
-**Step 1 of the KaxaNuk Strategy Template.** Nothing here is a strategy; everything here is a reason
-a strategy is shaped the way it is. [`../OBJECTIVE.md`](../OBJECTIVE.md) states what we believe, and
-this folder is where those beliefs are supposed to come from.
+**Step 1 of the KaxaNuk Strategy Template.** [`../OBJECTIVE.md`](../OBJECTIVE.md) states what we
+believe; this folder is where those beliefs are supposed to come from.
 
 **In plain words:** the literature that argues with the claims in `OBJECTIVE.md`, read after they
 are written. **It produces** a referenced hypothesis, in the repo, dated. **It prevents**
@@ -24,78 +23,80 @@ Bibliotheca/
 └── Extracts/                        # the PDFs' chapters as text, pulled by the researcher's script; gitignored
 ```
 
-**A folder appears when its first note does.** Nothing empty is committed here, so `Papers/`,
-`Books/` and `Notes/` are directories you create on the day you have something to put in them. The
-shape above is the convention, not a skeleton to keep swept.
+**A folder appears when its first note does.** Nothing empty is committed: create `Papers/`,
+`Books/` or `Notes/` on the day you have something to put in it. The tree above is a convention, not
+a set of empty folders to keep.
 
-**A source listed without a note is a *lead*, not a citation.** It is here because somebody thought
-it would answer a question this repository has. Nothing may be claimed on its authority until it has
-been read and a note written.
+**A source listed without a note is a *lead*, not a citation.** It is listed because somebody
+expected it to answer a question this repository has. Nothing may be claimed on its authority until
+it has been read and its note written.
 
-**PDFs are gitignored.** They sit beside the notes on disk; only the notes are committed — which is
-right twice over: no binaries in the tree, and no redistribution of licensed material. **Do not
-download papers, books or datasets without asking.** Links go here; files arrive on request.
+**PDFs are gitignored.** They sit beside the notes on disk, and only the notes are committed: no
+binaries in the tree, and no redistribution of licensed material. **Do not download papers, books
+or datasets without asking.** Links go here; files arrive on request.
 
 ## What a note looks like
 
-Every note opens with the same four fields as YAML frontmatter — `source` (where it lives outside
-this repository — a DOI, a URL, a publisher; never invented), `citation` (with the date the link was
-last checked), `local_copy` (the PDF beside the note, by path, gitignored — or `none`) and `read`
-(the date it was read into this repository, and what was read — the whole paper, or the chapters).
-A fifth, `tags`, is optional; a researcher's home library uses it. Frontmatter because a tool can
-index it: the Investment Lab will read these fields, and the links between notes, to show what
+Every note opens with the same four fields of YAML frontmatter:
+
+- `source`: where the source lives outside this repository, such as a DOI, a URL or a publisher;
+  never invented.
+- `citation`: with the date the link was last checked.
+- `local_copy`: the path of the PDF beside the note, gitignored, or `none`.
+- `read`: the date it was read into this repository, and what was read: the whole paper, or the
+  chapters.
+
+A fifth, `tags`, is optional; a researcher's home library uses it. The fields are frontmatter so a
+tool can index them: the Investment Lab will read them, and the links between notes, to show what
 cites what.
 
 | Note | Body |
 | --- | --- |
-| **Paper** | a first line saying what was read; `## Why it is here`, naming the claim in `OBJECTIVE.md` by number; then *what it says* — one heading per claim, in the authors' terms — and under each, *what it implies for this strategy*, as a blockquote; last, `## What it changes`: three to seven bullets against that claim, and one line on what it does not settle |
-| **Book** | a folder. `INDEX.md` holds the distillation table — every chapter, its pages, its status (*read*, *skimmed*, *skipped*, *to come*), the claim it serves, the link to its note — and *what this book does not settle for us*; then one file per chapter read, in the paper's shape. Nothing is written for a chapter nobody chose |
+| **Paper** | a first line saying what was read; `## Why it is here`, naming the claim in `OBJECTIVE.md` by number; then *what it says*: one heading per claim, in the authors' terms, and under each *what it implies for this strategy*, as a blockquote; last, `## What it changes`: three to seven bullets against that claim, and one line on what it does not settle |
+| **Book** | a folder. Its `INDEX.md` holds the distillation table, one row per chapter with its pages, its status (*read*, *skimmed*, *skipped*, *to come*), the claim it serves and the link to its note, and then *what this book does not settle for us*. Beside it, one note per chapter read, shaped like a paper's |
 
 Four rules separate a note from a summary:
 
-1. **The implication is a blockquote, always.** It is the only part that is *ours*, and it has to be
-   visually separable from what the source said.
+1. **The implication is a blockquote, always.** It is the only part that is *ours*, and it must
+   stand apart from what the source said.
 2. **A heading states the source's claim, never our verdict.** Our verdict lives in the blockquote,
-   where it can change when a result moves; a heading carrying a verdict rots silently.
+   where it can change when a result moves; a verdict in a heading goes stale unnoticed.
 3. **Record contradictions as contradictions.** When a source says to do the opposite of what we do,
-   that stays visible rather than being smoothed into agreement. When a later note contradicts an
-   earlier one, the older claim stays and gets a `> [!WARNING]` callout above it naming the newer
-   note by link. It is usually the most useful line in the note.
-4. **Never invent a URL or a page number.** A missing link is recorded as a task, because a gap
-   phrased as a task gets closed and one phrased as a fact does not. A wrong citation is worse than
-   none.
+   keep that visible; do not smooth it into agreement. When a later note contradicts an earlier one,
+   the older claim stays, with a `> [!WARNING]` callout above it that links the newer note. It is
+   usually the most useful line in the note.
+4. **Never invent a URL or a page number.** Record a missing link as a task: a gap phrased as a task
+   gets closed, and one phrased as a fact does not. A wrong citation is worse than none.
 
 **A note that does not say what it changes about this strategy is a summary, and summaries are
 available elsewhere.**
 
 ## How a researcher uses this folder
 
-A researcher — a person, or yours, made with `init-researcher` from the
-[KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher) —
-reads these notes to fine-tune the claims in [`../OBJECTIVE.md`](../OBJECTIVE.md), which were
-written before any of them, and to draft the thesis and predictions in each `BLUEPRINT_N.md`.
-**Every prediction it writes cites the note it came from**, and a source without a note cannot be
-cited: it is a lead, and the note is written first. That is what makes the hypothesis defensible
-afterwards — each line of it points back to something somebody read.
+A researcher reads these notes to fine-tune the claims in [`../OBJECTIVE.md`](../OBJECTIVE.md) and
+to draft the thesis and predictions in each `BLUEPRINT_N.md`. It may be a person, or yours, made
+with `init-researcher` from the [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher).
+**Every prediction it writes cites the note it came from**, so each line of the hypothesis points
+back to something somebody read.
 
-Yours writes the notes with `read`: a script pulls the table of contents out of the PDF, the
-researcher shows it to you and asks which chapters serve which claim, reads only those, and writes
-one note per chapter, its row in this file and a line in `LOG.md` — after a plan and your go. A note
-its home library already holds comes across without re-reading the PDF; only the implications are
-written anew, for this strategy's claims.
+Yours writes the notes with `read`, after a plan and your go. A script pulls the table of contents
+out of the PDF; the researcher shows it to you, asks which chapters serve which claim, reads only
+those, and writes one note per chapter, its row in this file and a line in `LOG.md`. A note its home
+library already holds comes across without re-reading the PDF; only the implications are written
+anew, for this strategy's claims.
 
 > **Read a source because you have a question, not because it is a good source.** Part 1 starts
 > empty and fills as *your* idea raises questions. Parts 2 to 5 are seeded with the standard reading
-> behind the later steps — leads, none of them read yet.
+> behind the later steps: leads, none of them read yet.
 
 ---
 
 ## Part 0 — Where this process comes from
 
-Investment research did not evolve by replacement; it evolved by addition. Each step and each
-control of this process is an answer to a question the field asked, in roughly this order. The table
-is provenance rather than reading notes: none of these rows is a note, and none needs to be, because
-what they changed is the process itself.
+Investment research grew by addition, not by replacement. Each step and each control of this
+process answers a question the field asked, roughly in this order. The table is provenance, not
+reading notes: none of its rows is a note, and none needs to be, because what they changed is the
+process itself.
 
 | The question | Who answered it | What it settled | Where it lives here |
 | --- | --- | --- | --- |
@@ -117,9 +118,8 @@ what they changed is the process itself.
 
 ## Part 1 — The core idea
 
-The evidence under the claims in `OBJECTIVE.md` themselves — **including the sources that argue
-against them**. This is the part of the bibliography that should argue with you, and it stays empty
-until your strategy has a question of its own.
+The evidence under the claims in `OBJECTIVE.md`, **including the sources that argue against
+them**. This is the part of the bibliography that should argue with you.
 
 <!-- example: begin -->
 
@@ -151,7 +151,7 @@ Hwang (2004) — *The 52-Week High and Momentum Investing*; and Moreira & Muir (
 
 ## Part 2 — Universe and data: what is investable, and what the data does to you
 
-*Sources about the inputs rather than the idea. Add whatever your instrument type demands — an ETF
+*Sources about the inputs rather than the idea. Add whatever your instrument type demands: an ETF
 book owes a reading on premium and discount to net asset value, a crypto book one on exchange
 idiosyncrasy, a futures book one on roll.*
 
@@ -170,8 +170,7 @@ and [Shumway (1997)](Papers/Shumway_1997_The_Delisting_Bias_In_CRSP_Data.md).
 
 ## Part 3 — Portfolio construction and sizing
 
-*How the book is built once the selection is made — step 4. Seeded with the standard reading; none
-of it has a note, so none of it may be claimed on yet.*
+*Step 4: how the book is built once the selection is made.*
 
 | Source | What it bears on |
 | --- | --- |
@@ -183,7 +182,7 @@ of it has a note, so none of it may be claimed on yet.*
 
 ## Part 4 — Backtest and attribution
 
-*What a result has to survive, and how the return gets taken apart — steps 5 and 6.*
+*Steps 5 and 6: what a result has to survive, and how its return is taken apart.*
 
 | Source | What it bears on |
 | --- | --- |
@@ -207,8 +206,7 @@ In this example two have notes:
 ## Part 5 — Research integrity: what stops us fooling ourselves
 
 One source per control claimed in [`../AGENTS.md`](../AGENTS.md), *the five ways a backtest lies*.
-These are not optional reading: each corresponds to something the process actually does, or admits
-it does not.
+These are not optional reading: each matches something the process does, or admits it does not.
 
 | Source | The control it stands behind |
 | --- | --- |
@@ -234,11 +232,12 @@ In this example all seven have notes:
 
 <!-- example: end -->
 
-**One control has no paper behind it: look-ahead.** The point-in-time discipline — decide on
+**One control has no paper behind it: look-ahead.** Its point-in-time discipline (decide on
 yesterday's information, trade at the next available price, name every `current_*` column for what
-it is — is practitioner discipline rather than a literature, and this index says so instead of
-citing a weak fit. **The cheapest evidence is your own**: if your signal is fitted, read the same
-model causally and smoothed and report the gap. That measurement is worth more here than a citation.
+it is) comes from practice, not from a literature, and this index says so instead of citing a
+weak fit. **The cheapest evidence is your own**: if your signal is fitted, the gap between its
+causal and smoothed readings, which [`../AGENTS.md`](../AGENTS.md) asks you to report, is worth
+more here than a citation.
 
 <!-- example: begin -->
 

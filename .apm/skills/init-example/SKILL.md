@@ -8,7 +8,7 @@ description: >
   strategy of the owner's own (use `init-strategy`), does NOT bring back a template file a strategy
   lacks (`init-strategy`'s script with `--only` does), and never builds on the example.
 metadata:
-  version: 0.5.0
+  version: 0.5.1
 ---
 
 # Init example — a worked example, whole or one piece at a time
@@ -56,7 +56,7 @@ or describe an example from memory.
    taken without asking; one it holds as a kind leaves that kind's examples only. When one example
    is left — today `golden-flow`, with no word at all — it is the one, and nothing is asked. When
    several are left, ask which through the question tool, one option per example: its name, and its
-   line from the list, which gives its kind and its subject; the tool takes four options, so with
+   line from the list, which gives its kind and its subject. The tool takes four options, so with
    more, ask the kind first, and with more than four of one kind, ask as a numbered list in chat
    instead. Without a question tool — Codex, Gemini — ask in one chat message, the examples numbered
    beneath it, each with its line, *Other — your own words* last. Any other word —
@@ -64,8 +64,8 @@ or describe an example from memory.
    piece of the example chosen the same way.
 
 2. **Whole or one piece, and where.** A path means that one piece; no path means the whole
-   example. Either lands in a folder outside any strategy: ask where through the question tool,
-   defaulting to a folder named after the example — `golden-flow` — in the folder a caller hands
+   example. Either lands in a folder outside any strategy: ask where through the question tool.
+   The default is a folder named after the example — `golden-flow` — in the folder a caller hands
    it, else beside the researcher's home — the folder holding `RESEARCHER.md` here, or the one the
    researcher's skill names — else beside the folder the session is open in. Never into a
    strategy: its file of the same name is the template's description, for the owner to fill. When
@@ -73,7 +73,7 @@ or describe an example from memory.
    in its `README.md` or `AGENTS.md` — say so, and offer to open it, with *step 6*'s hand-over, or
    another folder: the script would refuse it.
 
-3. **The plan.** In chat: which example, what will be copied and where; for one piece, that the
+3. **The plan.** In chat: which example, what will be copied and where. For one piece, also that the
    folder is made if it is not there, that the piece keeps its path inside it, that nothing already
    there is overwritten — the script refuses rather than overwrite — and that the worked example's
    own lines come with it. When a newer package is out, checked and dated as item 5 of *Step 4* in
@@ -106,8 +106,8 @@ or describe an example from memory.
 
 5. **For one piece, say what it shows.** Everything between the markers in what was copied is the
    example's own work, and so, whole, is every file only the example has — for `golden-flow`, its
-   seed, its notes, `Universe/seed.py`, a frozen book's `FREEZE.json` and the files it hashes;
-   around the markers is the template's description, which the strategy's copy already holds. Name
+   seed, its notes, `Universe/seed.py`, a frozen book's `FREEZE.json` and the files it hashes.
+   Around the markers is the template's description, which the strategy's copy already holds. Name
    the path it landed at, to read beside the strategy's file; never copy its lines into the
    strategy.
 

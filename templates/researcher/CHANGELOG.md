@@ -6,6 +6,30 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.26.0 (2026-10-10)
+
+**MINOR** — your home's guide and rules read more simply, and its README says what your researcher
+is for and what it is not.
+
+**What to do differently:** say `update` in your home; the changes to `AGENTS.md`, `README.md` and
+`apm.yml` come as a diff.
+
+### Added
+
+* **`README.md`**, after the opening: *What it is, and what it is not* — a research and learning
+  tool, never investment advice; it runs through your assistant, and what it reads goes to the
+  company behind it, never to KaxaNuk; MIT, as is.
+
+### Changed
+
+* **`AGENTS.md`**: each rule said once, in its own section, and the others point to it. 6,576
+  words, from 6,648.
+* **`README.md`**: each folder and idea described once. What stays on this computer is said once,
+  under the folder table, and *Directionality* is one sentence; the Lab paragraph points to the
+  package's README for how to ask for a licence.
+* **`apm.yml`**: shorter comments; the install commands are in `README.md`'s *Installing and
+  updating*.
+
 ## 0.25.2 (2026-10-10)
 
 **PATCH** — the interview's first question is shorter.

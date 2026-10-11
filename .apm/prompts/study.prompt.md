@@ -20,8 +20,8 @@ that writes.
 
 ## Step 1: Which study
 
-- **No subject.** List `Studies/`, each study by its title and its first line, and offer through
-  the question tool the studies still *idea* or *active* and, as new subjects, each question under
+- **No subject.** List `Studies/`, each study by its title and its first line. Offer through the
+  question tool the studies still *idea* or *active* and, as new subjects, each question under
   *What you are reading for* in `RESEARCHER.md` that feeds a decision no study works out yet. A
   subject the owner did not pick is never written. With no study and nothing to offer, say in one
   line what a study is for, and stop.
@@ -30,9 +30,9 @@ that writes.
 - **A new subject:** a new study. A home without `Studies/` gets the folder with its first study,
   on the same go.
 - **Something another command owns:** say which, and stop unless the owner says it is a study. A
-  source to read is `read`'s, a question about what the library holds is `query`'s, a belief is the
-  owner's to write in `Philosophy/`, by hand or with `philosophy`, a topic to learn is `teach`'s,
-  and work on a strategy or on a project with a repository of its own happens there.
+  source to read is `read`'s, a question about what the library holds is `query`'s, and a belief is
+  the owner's to write in `Philosophy/`, by hand or with `philosophy`. A topic to learn is
+  `teach`'s, and work on a strategy or on a project with a repository of its own happens there.
 
 ## Step 2: The owner's words first
 
@@ -46,11 +46,11 @@ library; what they skip stays out, and is not a gap. For a revision, ask only wh
 ## Step 3: The library, for and against
 
 Walk the library the way `query` does — `Knowledge/INDEX.md` end to end, the concept pages first,
-then the links between notes, then the notes — and read the owner's `Philosophy/` where their own
-view bears on the subject, to cite as theirs, never a round file in `Philosophy/Evolution/`, a
-record, as the home's `AGENTS.md` says. Gather what supports the subject, what argues against it,
-and the simpler rival it has to beat. For a revision, start with the notes written since the
-study's date, which `Knowledge/LOG.md` names.
+then the links between notes, then the notes. Read the owner's `Philosophy/` where their own view
+bears on the subject, to cite as theirs, never a round file in `Philosophy/Evolution/`, a record, as
+the home's `AGENTS.md` says. Gather what supports the subject, what argues against it, and the
+simpler rival it has to beat. For a revision, start with the notes written since the study's date,
+which `Knowledge/LOG.md` names.
 
 Name each gap — what the study needs and the library does not hold — as a lead, labelled as `query`
 labels one: a work from the reading map, a work on a *Find first* line, or a file already in
@@ -82,15 +82,18 @@ Rules:
 - **Every claim from the library links its note.** A source without a note is a lead, never a
   claim; never a link into `Extracts/`, never a PDF.
 - **No number is computed here.** A return, a Sharpe ratio, a drawdown or an attribution is quoted
-  only from the file that owns it, named beside it, as *Numbers* in the `query` skill says; a figure
+  only from the file that owns it, named beside it, as *Numbers* in the `query` skill says. A figure
   in a source comes through its note, with its page; one from outside the library is marked *not
   checked*, with where it came from.
 - **Words only.** Code, data and notebooks belong in a repository of their own. When the study needs
-  them, or the idea is ready to be a strategy, say so: its state becomes *moved to `<path>`*, it
-  stays behind as the record, and the next thing is `init-strategy <name>` — where the study is the
-  owner's words for `objective`'s first pass, named in prose, never linked — or, for other work,
+  them, or the idea is ready to be a strategy, say so: its state becomes *moved to `<path>`* and it
+  stays behind as the record. The next thing is `init-strategy <name>`, where the study is the
+  owner's words for `objective`'s first pass, named in prose, never linked. For other work, it is
   what to do today: make a folder for it, open the assistant there and say the researcher's name,
   and the researcher joins it as *Joining other projects* in `AGENTS.md` says.
+- **The case, never a recommendation.** A study lays out what the library says for and against a
+  choice, and what would settle it; the decision, and its risk, stay the owner's, and it never says
+  buy, sell or hold.
 - **A revision keeps every line the owner wrote.** What the new reading changes is proposed as a
   change, never made silently; the date moves, and the state moves only when the owner says so.
 
@@ -104,9 +107,9 @@ narrower subject, a part left out, another name. Then write the study and nothin
 no line in `Knowledge/INDEX.md`, no entry in `Knowledge/LOG.md`, which record the library, not the
 owner's work.
 
-**Then save a version**, in the home, on the same go, with no second question — every git command,
-the `backup` skill's send included, as `git -C "<absolute path to the home>"` when the session is
-open elsewhere: `git add` the study's files, by name, never `--all`, and
+**Then save a version**, in the home, on the same go, with no second question. Every git command,
+the `backup` skill's send included, runs as `git -C "<absolute path to the home>"` when the session
+is open elsewhere: `git add` the study's files, by name, never `--all`, and
 `git commit -m "Study: <subject>" -- <the same files>`; to the owner, *Saved*, in one plain line,
 never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their
 copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one

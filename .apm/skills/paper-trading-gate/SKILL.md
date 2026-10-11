@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`, `alpha-decomposition`), the documents of an experiment (use
   `experiment-lifecycle`), or step 8, Production, which is outside the repository.
 metadata:
-  version: 0.4.2
+  version: 0.4.3
 ---
 
 # The paper-trading gate — what graduation means, and what has to be true first
@@ -52,7 +52,7 @@ it has not been met.**
 | 4 | **Costs and capacity are modelled and stated** — turnover, commission, and every assumption the engine does not model, borrow cost above all | the cost rows of `FINDINGS_N.md`, a realistic-commission row beside the frozen one | costs modelled, capacity not modelled at all; a long/short book with borrow cost in a footnote |
 | 5 | **Explicit sign-off** | a person's name and date in `BITACORA.md` | sought before 1 to 4 are evidenced |
 
-Criterion 2 is evaluable here because the stack has a real attribution stage; a repository without
+Criterion 2 is evaluable here because the stack has a real attribution stage. A repository without
 one would have to name a substitute — a beta-matched control book, a regression on the market — and
 here there is no substitute to name, which means there is also no excuse.
 
@@ -71,11 +71,11 @@ strategy's first book on paper trading, its results reproduced from a clean clon
 ## The freeze
 
 A graduated book is the strategy, frozen. After the sign-off, the rule is written into
-`Paper_Trading_N/paper_trading_N.py` from the experiment's cells and committed; then
+`Paper_Trading_N/paper_trading_N.py` from the experiment's cells and committed. Then
 `Paper_Trading/promote.py N`, on a clean tree, copies byte for byte from that commit every file the
 book needs — the refinery and its calculations, the reader of the Analytics Factory's files, the
 shared modules the rule calls and the seed — into `Paper_Trading_N/` in the strategy's own layout,
-with the security master from disk, and writes `FREEZE.json`: the commit, the freeze date, the hash
+with the security master from disk. It writes `FREEZE.json`: the commit, the freeze date, the hash
 of every file, the library versions, and the hash of what it cannot copy, the Curator's
 calculations. The security master is the provider's data, so `.gitignore` keeps the book's copy out
 of git: it stays on the machine that froze the book, backed up with the record, and is brought
@@ -96,12 +96,12 @@ date: `universe-point-in-time` says why a live listing's span stays open.
 
 Not a notebook: `daily_update.py`, run on a schedule after the close, because the question is no
 longer *what would this have done* but *what does it hold today, and how is it doing*. It refreshes
-the shared raw prices once, or reads what another machine published; checks the newest day and
-stops every book on a close with no fill price or a move no price can make; runs each book in
+the shared raw prices once, or reads what another machine published. It checks the newest day and
+stops every book on a close with no fill price or a move no price can make. It runs each book in
 `BOOKS` — its frozen refinery, its frozen rule from the experiment's first day, and the engine
-three times, over the whole history, the days after the experiment's window and since the freeze;
-writes the record through `record.py` to local CSV files, a DuckDB database or both, as
-`Config/.env` says; and exits 0, 1 or 2 — clean, flagged, failed. A step that raises is a failed
+three times, over the whole history, the days after the experiment's window and since the freeze.
+It writes the record through `record.py` to local CSV files, a DuckDB database or both, as
+`Config/.env` says. It exits 0, 1 or 2 — clean, flagged, failed. A step that raises is a failed
 day, exit 2 with its traceback in the day's log: Python's own exit code for it is 1, which a
 scheduler reads as flagged. A frozen file missing or changed, or a shared input that no longer
 matches `FREEZE.json`, stops the book with `unfrozen-input`.
@@ -129,11 +129,11 @@ like its backtest — turnover, holdings, exposure, costs — never for a good m
 
 ## Before a book's first day
 
-`BITACORA.md` gets a section for the book, committed before its first run and never edited: the
-experiment, variant, commit and freeze date; the gate row by row with the sign-off; the bands for
-each diagnostic, from `FINDINGS_N.md`'s structural table and carried as `BANDS` in the book; the
-kill switch; the review dates and the period to watch before production; and what the record
-cannot show.
+`BITACORA.md` gets a section for the book, committed before its first run and never edited. It
+holds the experiment, variant, commit and freeze date; the gate row by row with the sign-off; the
+bands for each diagnostic, from `FINDINGS_N.md`'s structural table and carried as `BANDS` in the
+book; the kill switch; the review dates and the period to watch before production; and what the
+record cannot show.
 
 ## The status section
 
@@ -165,7 +165,7 @@ yes; a no has the same shape — each blocking row with the evidence that blocks
 - `Paper_Trading/BITACORA.md`, `daily_update.py` and `Paper_Trading_1/paper_trading_1.py` in the
   worked example, `examples/strategy/golden-flow/` in the KaxaNuk Researcher package — the gate run
   once, every row evidenced from `FINDINGS_1.md`: criteria 1 to 4 passed, criterion 3 exactly at its
-  bar, 6 of 8 settings; the owner signed on 2026-10-06, and the book frozen as `Paper_Trading_1` is
+  bar, 6 of 8 settings. The owner signed on 2026-10-06, and the book frozen as `Paper_Trading_1` is
   kept in the package as a record. The template's copies are the same files with the example's lines
   removed.
 - The strategy's `AGENTS.md`, *Research integrity — the five ways a backtest lies* and *What

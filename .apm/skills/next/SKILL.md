@@ -10,7 +10,7 @@ description: >
   skill answers a greeting, or when the owner answers its version line — not now, stop reminding
   me, remind me about updates; never on its own otherwise.
 metadata:
-  version: 1.8.5
+  version: 1.8.6
 ---
 
 # Next — where you stand, and what to do next
@@ -21,12 +21,12 @@ that does it. It never starts that thing itself — doing it is a different requ
 given — and writes only what its last paragraph lists. It is a skill, not a command, so every
 assistant APM deploys to has it, Codex included.
 
-Every path below is relative to the folder being read: a strategy's path when the owner gives one
-— *next ../fcf-yield-quality* — because the session is not open in it; the home, at the path the
-researcher's skill names, when *Step 1* reads *Step 2* from a project the researcher joined;
-otherwise the folder the session is open in. Rows 0 and E run every git command there, the
-`backup` skill's send included, as `git -C "<the folder being read>"` when the session is open
-elsewhere.
+Every path below is relative to the folder being read. That folder is a strategy's path when the
+owner gives one — *next ../fcf-yield-quality* — because the session is not open in it. It is the
+home, at the path the researcher's skill names, when *Step 1* reads *Step 2* from a project the
+researcher joined; otherwise, the folder the session is open in. Rows 0 and E run every git
+command there, the `backup` skill's send included, as `git -C "<the folder being read>"` when the
+session is open elsewhere.
 
 ## Step 1: Which folder this is
 
@@ -50,8 +50,8 @@ Check in this order and stop at the first that fails; that is the next thing. `<
 researcher's name in `RESEARCHER.md` made safe for a folder, as `interview` *Step 4* says: accents
 removed, lowercase, anything but a to z or a digit a hyphen, hyphens collapsed and none at either
 end — `Begoña Ruiz` becomes `begona-ruiz`. In rows 2 and 3 a file or a folder of another name
-counts when its `name:` is the one the home's agent carries, as an older `interview` wrote them, so
-a home already installed is not sent to install again.
+counts when its `name:` is the one the home's agent carries, so a home already installed is not
+sent to install again.
 
 | # | Done when | If not, the next thing is |
 | --- | --- | --- |
@@ -75,17 +75,17 @@ test, the marker alone on its line, tells the worked example from a strategy of 
 | *Write down how I invest, and see it evolve* | `philosophy investing`; once a round on investing exists, `brief setup`, for a daily brief of the markets and holdings they follow, leads the *also* line until `Briefs/` exists | a round on investing — a level, not `Field`, on its first line — exists in `Philosophy/Evolution/` |
 | *Build and test a strategy* | `init-example`, a finished strategy to read — `OBJECTIVE.md`, `RESULTS.md`, Experiment 1 — that needs nothing installed; running it takes a data key, a download of about an hour and a half, KaxaNuk's benchmark and factor files and licences, as its `SETUP.md` says. Then `init-strategy <name>` for their own | a folder beside the home holds `Bibliotheca/`, `Universe/` and `Experiments/`: the example alone → `init-strategy <name>`; a strategy of their own → done, and `next <its path>` leads the *also* line |
 
-When every pick's thing is done, the one next thing is, with no note in `Knowledge/` yet, the second
-row's; otherwise the first of these whose pick is on the line — *Learn the basics*, `teach <topic>`
-on a topic the notes cover; *Write down how I invest*, a new source, and `philosophy investing`
-again once a note read since its last round is a work the *Bears on* table lists, as *Step 4* item 4
-says; *Build and test a strategy*, `next <its path>`; the rest, a new source, or `query`. Up to
-three more on one line as *also*: a question added under *What you are reading for*,
-`study <subject>` to work out an idea from the library — `study` alone lists the studies —
-`teach <topic>`, `brief setup` for a daily brief, `init-strategy <name>`, or teaching it a tool: its
-documentation into `Sources/Clippings/`, then `read` — *Growing your researcher* in the home's
-README. Philosophy is never a row that fails: for the other picks, *Step 4* may close with it in one
-line.
+When every pick's thing is done, the one next thing is the second row's while `Knowledge/` holds
+no note yet. Once it holds one, it is the first of these whose pick is on the line — *Learn the
+basics*, `teach <topic>` on a topic the notes cover; *Write down how I invest*, a new source, and
+`philosophy investing` again once a note read since its last round is a work the *Bears on* table
+lists, as *Step 4* item 4 says; *Build and test a strategy*, `next <its path>`; the rest, a new
+source, or `query`. Up to three more on one line as *also*: a question added under *What you are
+reading for*, `study <subject>` to work out an idea from the library — `study` alone lists the
+studies — `teach <topic>`, `brief setup` for a daily brief, `init-strategy <name>`, or teaching it
+a tool: its documentation into `Sources/Clippings/`, then `read` — *Growing your researcher* in the
+home's README. Philosophy is never a row that fails: for the other picks, *Step 4* may close with
+it in one line.
 
 ## Step 3: In a strategy
 
@@ -114,10 +114,10 @@ empty after the work was done.
 | G | The cycle | section 2 of `experiment_N.ipynb` holds the rule; on this machine `Portfolio/`, `Backtest/` and `Attribution/` hold output; `FINDINGS_N.md` reports, every prediction of the blueprint evaluated | the first of `portfolio-construction-runs`, `backtest-engine-runs`, `attribution-analysis-runs` whose output is missing; `alpha-decomposition` to read it; then `challenge N` once `FINDINGS_N.md` reports. When the engine or the attribution library is not installed, which the notebook's guarded import reports, say the step is skipped for want of a licence and give the access line of `references/investment-lab.md`, in this skill's folder, naming that library; when attribution is installed and reports its index or factor files missing instead, that file's Analytics Factory line. Then move on to what can still be done — `FINDINGS_N.md` for the book, and the journal's open threads |
 | H | The results | `RESULTS.md` has the experiment's row citing `FINDINGS_N.md`; the claim has moved — where `BLUEPRINT_N.md` names one under *The claim this moves*, `OBJECTIVE.md` gives that claim the status `FINDINGS_N.md` says it reached, and so does the row's *Claim moved* where `RESULTS.md` has that column; where the blueprint names none, the statuses in `OBJECTIVE.md` of the claims it tests have moved; and `CHANGELOG.md` has the entry | the missing one of those three |
 
-A to H done for the newest experiment: the next thing is either the gate — `Paper_Trading/
-BITACORA.md`, the `paper-trading-gate` skill — when the owner believes the findings evidence its
-first criterion, or Experiment N+1, as section 6 of `experiment-lifecycle` says, starting again at
-E; the objective, the universe and the data are the strategy's and stay.
+A to H done for the newest experiment: the next thing is either the gate —
+`Paper_Trading/BITACORA.md`, the `paper-trading-gate` skill — when the owner believes the findings
+evidence its first criterion, or Experiment N+1, as section 6 of `experiment-lifecycle` says,
+starting again at E. The objective, the universe and the data are the strategy's and stay.
 
 ## Step 4: Report
 
@@ -135,11 +135,11 @@ In chat, short:
    rules I keep with you — round 1, whenever you like.* Otherwise: *`philosophy` writes down how you
    work, in your words, and sets the rules I keep with you — round 1, whenever you like.* With one
    or more: the latest round's date, of either topic, and its level or *field* — the newest file
-   name, `YYYY-MM-DD-2.md` after `YYYY-MM-DD.md` — and how many notes came in since: the notes the
-   `read` entries of `Knowledge/LOG.md` dated on or after it — a read the same day counts — list as
-   written, a book's `INDEX.md` and concept pages aside. With no notes since, end with *no notes
-   since*; when notes came in, add that `philosophy` takes the round again — for a round on
-   investing, only when one of them is a work the *Bears on* table of `philosophy`'s
+   name, `YYYY-MM-DD-2.md` after `YYYY-MM-DD.md` — and how many notes came in since. Those are the
+   notes the `read` entries of `Knowledge/LOG.md` dated on or after it — a read the same day counts
+   — list as written, a book's `INDEX.md` and concept pages aside. With no notes since, end with
+   *no notes since*. When notes came in, add that `philosophy` takes the round again — for a round
+   on investing, only when one of them is a work the *Bears on* table of `philosophy`'s
    `references/questions.md` lists, matched as the reading map's *Match before proposing* says.
 5. **A new version**, last, and only when there is one: never a line saying there is none. It
    updates nothing itself, and a failure — offline, a command failing or declined — is silent.
@@ -177,7 +177,7 @@ In chat, short:
      runs `git -C "<home>" config kaxanuk.updatereminder off`; *remind me about updates* runs
      `git -C "<home>" config --unset kaxanuk.updatereminder`.
    - **The researcher's skill behind the package**, on every `next` wherever the home is readable,
-     never gated by the date or the network: when the home's skill, row 2's file, has a
+     never gated by the date or the network. When the home's skill, row 2's file, has a
      `metadata.version` below the `version:` of the skill template in `interview`'s *Step 4* —
      `~/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/interview/SKILL.md`, not that
      file's own — one line: *Your researcher's skill is behind the package — say `update` to bring

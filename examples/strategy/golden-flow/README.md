@@ -3,8 +3,8 @@
 # Golden Flow
 
 Golden Flow buys the stocks of a US index that trade the most, but only while each one's price
-trend is up. On the history it was built on, it beat its index, mostly by taking market risk; the
-trend filter's real job was cutting losses in crashes, a worst fall of −32.5% against −46.3%
+trend is up. On the history it was built on, it beat its index, mostly by taking market risk. The
+trend filter's real job was cutting losses in crashes: a worst fall of −32.5%, against −46.3%
 without it. Nothing needs installing to read it: *How to read it*, below, says where to start.
 
 **Own the KN US Equity Core stocks the market is trading most, while their trend is up, in
@@ -12,16 +12,24 @@ proportion to what they trade** — none above a fifth of the book, none too sma
 
 > **Status, as copied on 2026-10-07: Experiment 1 ran in sample and passed criteria 1 to 4 of its
 > gate; its book was frozen for paper trading on 2026-10-06 and is kept here as a record.**
-> Net of costs, 2015-01-02 to 2026-06-01: 20.33% a year at a Sharpe of 0.842, against 19.73% and
-> 0.763 without the golden cross and 13.05% and 0.713 for the KN US Equity Core. Nine tenths of the
-> excess is factor exposure, and the control won 2023 to 2026.
+> In a backtest, net of costs, 2015-01-02 to 2026-06-01: 20.33% a year at a Sharpe of 0.842,
+> against 19.73% and 0.763 without the golden cross and 13.05% and 0.713 for the KN US Equity
+> Core. Nine tenths of the excess is factor exposure, and the control won 2023 to 2026.
 
-This is the worked example of the KaxaNuk Strategy Template, the one `init-example` copies.
-It is for reading and running, never for building on.
-A strategy of your own starts from `init-strategy`.
+**What it is, and what it is not.** A research and learning tool: a companion for your work and your
+projects, and for learning to invest when you want. It is never investment advice: it never tells
+you to buy, sell or hold, never trades or moves money, and every decision, and its risk, is yours.
+It runs on your computer through your AI assistant; what it reads goes to the company behind that
+assistant, never to KaxaNuk, and a copy goes to your own private GitHub only when you ask. It is
+free under the MIT licence, as is and without warranty; your data provider, your assistant and the
+Investment Lab's libraries, which KaxaNuk sells, each have their own terms. The worked example's
+figures come from a backtest on past prices, shown to teach the method, never a promise or a
+recommendation. Questions: [lab@kaxanuk.mx](mailto:lab@kaxanuk.mx).
 
-Built on the [KaxaNuk Strategy Template](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md):
-eight steps as a folder structure, whose README says what each folder is for.
+This is the worked example `init-example` copies, built on the
+[KaxaNuk Strategy Template](https://github.com/KaxaNuk/KaxaNuk-Researcher/blob/main/templates/strategy/README.md):
+eight steps as a folder structure, whose README says what each folder is for. It is for reading and
+running, never for building on; a strategy of your own starts from `init-strategy`.
 
 ## How to read it
 
@@ -79,8 +87,8 @@ Factory. "The worked example" in text dated before 2026-10-07 is the package's e
 | Window | from the later of 2015-01-02 and the first day from which priced members hold 90% of the index's weight on every day to the window's end, to 2026-06-01 | `Universe/universe.ipynb`, before any rule exists |
 
 Each row is the owner's decision. Most were taken on 2026-10-05, before any stage ran, and are
-quoted in `JOURNAL_1.md`; rebalancing and cash are in the plan the owner approved that day, as
-`BLUEPRINT_1.md` says; the exit came on 2026-10-06, after the cycle's first run.
+quoted in `JOURNAL_1.md`. Rebalancing and cash are in the plan the owner approved that day, as
+`BLUEPRINT_1.md` says. The exit came on 2026-10-06, after the cycle's first run.
 
 ## How Golden Flow uses the Lab and the Analytics Factory
 
@@ -98,16 +106,13 @@ quoted in `JOURNAL_1.md`; rebalancing and cash are in the plan the owner approve
 `experiment-lifecycle` holds the documents around the steps: the blueprint, the journal and the
 findings. When a library ships, the example moves to it in a new version.
 
-> The Data Curator is open source and free. The Backtest Engine and Attribution Analysis come
-> together, with Portfolio Construction and their licences, in the KaxaNuk Investment Lab, which
-> KaxaNuk sells: write to `lab@kaxanuk.mx`, saying which library and what it is for, with *via
-> KaxaNuk Researcher* in the subject — <https://www.kaxanuk.mx/lab> shows the Lab.
+> The Backtest Engine, Attribution Analysis and Portfolio Construction come together, with their
+> licences, in the KaxaNuk Investment Lab, which KaxaNuk sells: write to `lab@kaxanuk.mx`.
 
-**The Analytics Factory** — KaxaNuk's benchmark portfolios and factor models, which a strategy may
+**The Analytics Factory** is KaxaNuk's benchmark portfolios and factor models, which a strategy may
 read as its universe, its benchmark and attribution's inputs: <https://www.kaxanuk.mx/analytics>;
-ask `lab@kaxanuk.mx` for them. A strategy reads them in place from the folder its
-`KN_ANALYTICS_PATH` names, or from copies dropped into `Data/Curator/Benchmarks/` and
-`Data/Curator/Factors/`, as its `SETUP.md` says.
+ask `lab@kaxanuk.mx` for them. Step 3 of [`SETUP.md`](SETUP.md) says where a strategy reads them
+from.
 
 ## Run it
 
@@ -127,15 +132,19 @@ Curator's Yahoo Finance extension needs no key:
 `uv pip install kaxanuk.data_curator_extensions.yahoo_finance`, then, in `Data/curator.py`,
 `kaxanuk.data_curator_extensions.yahoo_finance.YahooFinance()` in place of both
 `FinancialModelingPrep(...)` calls. Two things do not work as they stand, and your assistant can
-change them with you. `Universe/universe.ipynb` asks FMP for each symbol's profile, with the FMP
-key. And Yahoo sends split-adjusted prices and volume and the adjusted close, with no unadjusted
-price and no VWAP, from which the record builds the traded value the rule ranks and sizes by, the
-fill at the adjusted VWAP and the commission, charged per share on the unadjusted VWAP: those
-columns come back empty until they are built another way, and the trades are then not costed as
-the record costed them. Yahoo also has no data for the 178 names in the seed that left the market,
-so the run carries the survivorship bias those names are kept to prevent. It teaches the process,
-not the result; for a precise experiment, use another provider: FMP, which the record used, or
-Sharadar or LSEG.
+change them with you:
+
+- `Universe/universe.ipynb` asks FMP for each symbol's profile, with the FMP key.
+- Yahoo sends split-adjusted prices and volume and the adjusted close, with no unadjusted price and
+  no VWAP. From those the record builds the traded value the rule ranks and sizes by, the fill at
+  the adjusted VWAP, and the commission, charged per share on the unadjusted VWAP. Those columns
+  come back empty until they are built another way, and the trades are then not costed as the
+  record costed them.
+
+Yahoo also has no data for the 178 names in the seed that left the market, so the run carries the
+survivorship bias those names are kept to prevent. It teaches the process, not the result. For a
+precise experiment, use FMP, which the record used, or Sharadar or LSEG. Yahoo Finance's data is
+for learning, under Yahoo's own terms.
 
 From the repository root, each command reading what the one before it wrote:
 
@@ -156,9 +165,9 @@ uv run jupyter nbconvert --to notebook --execute --output-dir ../golden-flow-run
 - **`Universe/seed.py` is not part of the run.** The seed is committed; the script shows how it was
   built, and needs the index's master of listings, which `lab@kaxanuk.mx` can be asked for.
 - **`Paper_Trading_1` is a record** of the book frozen on 2026-10-06, not run from this copy, for
-  the reasons [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) gives: `promote.py 1`
-  refuses, and `daily_update.py --dry-run --skip-refresh` stops and exits 2 — with no data at its
-  first check, and with the data on `unfrozen-input`: the frozen security master is not in the copy,
+  the reasons [`Paper_Trading/BITACORA.md`](Paper_Trading/BITACORA.md) gives. `promote.py 1`
+  refuses, and `daily_update.py --dry-run --skip-refresh` stops and exits 2: with no data, at its
+  first check; with the data, on `unfrozen-input`. The frozen security master is not in the copy,
   and neither the book's seed, rewritten in this copy as tickers and dates, nor
   `Data/Curator/custom_calculations.py` matches `FREEZE.json`, which is never edited. Without
   `--skip-refresh` it first downloads every price again.
@@ -167,7 +176,7 @@ uv run jupyter nbconvert --to notebook --execute --output-dir ../golden-flow-run
 
 These are the record run's figures, of 2026-10-06, from a wiped working copy. A fresh download
 rebases the adjusted columns, and a run of this copy lands further from these than that alone
-would: its seed leaves out 13 of the record's listings, `BRK-B` among them, and on 2015-01-02 the
+would. Its seed leaves out 13 of the record's listings, `BRK-B` among them. On 2015-01-02 the
 members it prices hold, by estimate, near 91% of the index's weight against the record's 92.97%,
 close to the 90% floor. The window may open later than 2015-01-02; then every figure after it
 moves, and the experiment's Verify stops on "the window is the universe notebook's".
@@ -186,9 +195,9 @@ moves, and the experiment's Verify stops on "the window is the universe notebook
 | `experiment_1.ipynb` | its last line, `verified: 113 checks …` | `FINDINGS_1.md` |
 | `git status` | the seed unchanged; new only `uv.lock`, which `uv sync` writes | `SETUP.md` |
 
-The notebook rewrites the seed only when it drops a name whose FMP prices contradict its
-membership. A fresh download can add a blocking row to `Universe/Data_Issues.csv`; the
-experiment's Verify then stops on "the exclusions are the blueprint's" — that is the provider's
-data moving, not the example breaking: read the new row first.
+The universe notebook rewrites the seed only when it drops a name whose FMP prices contradict its
+membership. A fresh download can add a blocking row to `Universe/Data_Issues.csv`, and the
+experiment's Verify then stops on "the exclusions are the blueprint's". That is the provider's data
+moving, not the example breaking: read the new row first.
 
 <!-- example: end -->

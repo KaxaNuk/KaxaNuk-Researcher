@@ -10,19 +10,18 @@ survive before anyone believes it.
 
 > **Status, as copied on 2026-10-07: Experiment 1 ran in sample and passed criteria 1 to 4 of its
 > gate; its book was frozen for paper trading on 2026-10-06 and is kept here as a record.**
-> Net of costs, 2015-01-02 to 2026-06-01: 20.33% a year at a Sharpe of 0.842, against 19.73% and
-> 0.763 without the golden cross and 13.05% and 0.713 for the KN US Equity Core. Nine tenths of the
-> excess is factor exposure, and the control won 2023 to 2026.
+> In a backtest, net of costs, 2015-01-02 to 2026-06-01: 20.33% a year at a Sharpe of 0.842,
+> against 19.73% and 0.763 without the golden cross and 13.05% and 0.713 for the KN US Equity
+> Core. Nine tenths of the excess is factor exposure, and the control won 2023 to 2026.
 
 <!-- example: end -->
 
 ## First run — for the agent, before anything else
 
 **If `.venv/` is missing, this repository has not been set up.** Say so, and offer to follow
-[`SETUP.md`](SETUP.md): the commands in it, every one of them run in the repository root, never a
-level above it. A missing `apm_modules/` is expected: the skills are installed once for the user,
-and nothing is installed here. Do not start research work in a folder that has not been set up, and
-never create a folder around this one: one folder is the whole project, as `SETUP.md` says.
+[`SETUP.md`](SETUP.md), with every command run in the repository root, never a level above it. A
+missing `apm_modules/` is expected: nothing is installed here. Do not start research work before
+setup, and never create a folder around this one: one folder is the whole project.
 
 Three rules from `SETUP.md` apply from the first command:
 
@@ -35,28 +34,28 @@ Three rules from `SETUP.md` apply from the first command:
   Select-String -Pattern '^[A-Z_]+=$' Config/.env | ForEach-Object { $_.Line.TrimEnd('=') }
   ```
 
-- **Install no skills here.** They are installed once for the user, with `apm install -g`, as
-  *step 4* of `SETUP.md` says, and `uvx --from apm-cli==0.33.0 apm update -g` keeps them current
-  for every strategy.
-- **Skills are discoverable in a new session**, not the one in which they were installed. Say so
-  rather than claiming they are already active.
+- **Install no skills here.** They are installed once for the user, with `apm install -g`, and
+  kept current for every strategy with `apm update -g`, on APM 0.33.0, as *step 4* of `SETUP.md`
+  says.
+- **Skills appear only in a new conversation**, not the one that installed them. Say so; never
+  claim they are already active.
 
 ## How work reaches `main`
 
 Work is committed on `main`, in small commits whose messages say what moved and why, each
 change-set with its `CHANGELOG.md` entry. A branch and a pull request are for a change you want
-reviewed, or for two lines of work that must not mix — never a gate — and the branch is deleted
-once it is merged or abandoned: `main` is the only branch that stays.
+reviewed, or for two lines of work that must not mix; they are never a gate. Delete the branch once
+it is merged or abandoned: `main` is the only branch that stays.
 
 **The template and the worked example, `golden-flow`, live in the
 [KaxaNuk Researcher](https://github.com/KaxaNuk/KaxaNuk-Researcher)** package. The example is for
 reading, never for building on: nothing in a strategy is brought across from it. Issues and pull
-requests about the process land there, and so does a trap found in a Lab library while running a
-strategy: it goes into that library's skill in the package, as an issue there or a word to
-`lab@kaxanuk.mx`, so the next strategy does not find it again — told by what was called, the
-error's type and message and the versions, never by the library's traceback lines or its code. A
-strategy of your own stays in your own repository.
-What the template ships, and why, is *What is in here* in its README.
+requests about the process go there. So does a trap found in a Lab library while running a
+strategy, as an issue or a word to `lab@kaxanuk.mx`, so that it goes into that library's skill and
+the next strategy does not find it again. Describe it by what was called, the error's type and
+message and the versions, never by the library's traceback lines or its code. A strategy of your
+own stays in your own repository. What the template ships, and why, is *What is in here* in its
+README.
 
 <!-- example: begin -->
 
@@ -68,17 +67,17 @@ A strategy of your own starts with `init-strategy`.
 
 ### The blueprint is committed before the rule
 
-For an experiment, `BLUEPRINT_N.md` is committed alone — no rule cell, no code — before the rule
-cell of `experiment_N.ipynb` holds code; for Experiment 1 the `JOURNAL_1.md` entries choosing the
-benchmark and reading the rule back are the two that come before it. The commit order is what shows
-the hypothesis was written before the answer, so the two never share a commit.
+`BLUEPRINT_N.md` is committed alone — no rule cell, no code — before the rule cell of
+`experiment_N.ipynb` holds code. For Experiment 1, the two `JOURNAL_1.md` entries that choose the
+benchmark and read the rule back come before it. The commit order shows the hypothesis was written
+before the answer, so the two never share a commit.
 
 **The rule is read back before its blueprint**, because code can follow a blueprint faithfully and
 still not be the book its owner meant. Before `BLUEPRINT_N.md` is saved, new or rewritten, its rule
-is read back in one plain sentence and one worked date's book — the names it holds that day, each
+is read back in one plain sentence and one worked date's book: the names it holds that day, each
 one's rank and signal, and why the names at the edge are in or out. The owner's yes, in their
-words, is the `JOURNAL_N.md` entry *the rule read back*, saved before the blueprint; a no is a new
-draft of *Rules*.
+words, is the `JOURNAL_N.md` entry *the rule read back*, saved before the blueprint. A no means a
+new draft of *Rules*.
 
 <!-- example: begin -->
 
@@ -89,9 +88,10 @@ rewrite; the read-back, worked date and all, entered the template after Golden F
 <!-- example: end -->
 
 **A document the researcher writes on the owner's go is saved as its own version on that go** — a
-note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a line in `Bibliotheca/LOG.md` —
-with no `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it. The
-go on the plan is the owner's signature: the assistant removes the template's blockquote on that go.
+note, `OBJECTIVE.md`, `BLUEPRINT_N.md`, a `JOURNAL_N.md` entry, a line in `Bibliotheca/LOG.md`.
+It takes no `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it.
+The go on the plan is the owner's signature, so on that go the assistant removes the template's
+blockquote.
 
 <!-- example: begin -->
 
@@ -107,13 +107,12 @@ entries of that day in `JOURNAL_1.md`.
 - `uvx ruff check .` passes, notebooks included.
 - **Notebook outputs are stripped.** The committed notebook is the method; `FINDINGS_N.md` is the
   record.
-- The `CHANGELOG.md` entry is part of the change-set, not a follow-up. If you cannot write the
-  entry, the change-set is not finished. A document saved on the owner's go, as above, is the
-  exception.
+- The `CHANGELOG.md` entry is part of the change-set, not a follow-up: if you cannot write it, the
+  change-set is not finished. A document saved on the owner's go, as above, is the exception.
 - **A result is committed once the pipeline has re-run end to end from a wiped working copy**, and
   every notebook has reached the end of its Verify section.
-- **If a published number moved, the commit message says which** — and `FINDINGS_N.md` changed
-  before `RESULTS.md`, never the other way round.
+- **If a published number moved, the commit message says which**, and `FINDINGS_N.md` changed
+  before `RESULTS.md`.
 
 ## Who writes each document, and when it changes
 
@@ -131,14 +130,14 @@ entries of that day in `JOURNAL_1.md`.
 | `FINDINGS_N.md` | the AI, from the journal | a result changes. It is rewritten, so there is exactly one current answer |
 
 **`RESULTS.md` is compiled from the findings files and cites each one.** When a number changes,
-change it in `FINDINGS_N.md` first — a summary that leads its sources is how two numbers for the
+change it in `FINDINGS_N.md` first: a summary that leads its sources is how two numbers for the
 same book start to circulate. **One deliberate exception:** findings from step 3 go straight into
-`RESULTS.md`, because notebook outputs are stripped before committing and a measurement living only
-in a cell output does not survive the commit.
+`RESULTS.md`, because notebook outputs are stripped before committing, and a measurement left only
+in a cell output is lost.
 
-Repository-level history — the benchmark and the choice of it, the data step,
-the architecture — belongs in `JOURNAL_1.md`. Experiment 1 is the first rule tested against the
-benchmark and therefore the shared context; later journals point there rather than copying it.
+Repository-level history — the benchmark and the choice of it, the data step, the architecture —
+belongs in `JOURNAL_1.md`, because Experiment 1 is the shared context; later journals point there
+rather than copying it.
 
 ---
 
@@ -153,15 +152,15 @@ become one experiment reported three times.
 
 Two standing exceptions, and one that has to be asked for:
 
-- **Experiment 1 is the first rule tested against the benchmark** that `JOURNAL_1.md`
-  chose — an index, an ETF or an equal-weight book of the universe — so its rules and published
-  numbers are shared context, and the yardstick every later experiment is also measured against.
-  It is not a null: it is a real strategy with a real return, and it can graduate like any other.
-  **Its rules freeze once `FINDINGS_1.md` reports** — a change invalidates every comparison in
-  `RESULTS.md`, so an improvement goes into a new experiment, unless the owner decides to rewrite
-  Experiment 1. A rewrite is written down as one: a `JOURNAL_1.md` entry, a new `BLUEPRINT_1.md`
-  that names the one it replaces, the earlier version kept at a tag and as a row of `RESULTS.md`,
-  and its runs counted in the trials.
+- **Experiment 1 is the first rule tested against the benchmark** that `JOURNAL_1.md` chose — an
+  index, an ETF or an equal-weight book of the universe. Its rules and published numbers are shared
+  context, and the yardstick every later experiment is also measured against. It is not a null but
+  a real strategy with a real return, and it can graduate like any other. **Its rules freeze once
+  `FINDINGS_1.md` reports**: a change invalidates every comparison in `RESULTS.md`, so an
+  improvement goes into a new experiment, unless the owner decides to rewrite Experiment 1. A
+  rewrite is written down as one: a `JOURNAL_1.md` entry, a new `BLUEPRINT_1.md` that names the one
+  it replaces, the earlier version kept at a tag and as a row of `RESULTS.md`, and its runs counted
+  in the trials.
 - **`RESULTS.md` is the shared record.** Comparing *final* results across experiments is the whole
   point of having several. What is forbidden is borrowing another experiment's *choices* before your
   own are made.
@@ -198,7 +197,7 @@ of `RESULTS.md`, and the 37 books two earlier versions priced count in the trial
    and stops the next person repeating it.
 9. **Run a control that differs in exactly one thing.** The same rule with one ingredient removed,
    named in the blueprint's *Rules* before the run, and **trading on the rule's own rebalance
-   dates**: a control left to choose its own dates also differs in when it trades, and the gap
+   dates**. A control that chooses its own dates also differs in when it trades, and the gap
    between the two books is then two effects read as one. Beating the index says the book worked;
    only the control says which part did.
 10. **Pre-register what would falsify the experiment.** One condition for the whole experiment, in
@@ -207,27 +206,27 @@ of `RESULTS.md`, and the 37 books two earlier versions priced count in the trial
     in the count of item 3.
 11. **State the horizon and the overlap.** Forward returns over overlapping windows are not
     independent observations, and neither are the days of two books holding the same names: a
-    t statistic or an information ratio counted as if they were overstates the evidence. Say the
-    horizon and how many days consecutive windows share, and report the share of dates with the
-    expected sign beside any t statistic or ratio.
+    t statistic or an information ratio that treats them as independent overstates the evidence.
+    Say the horizon and how many days consecutive windows share, and report the share of dates with
+    the expected sign beside any t statistic or ratio.
 
 ## Other standing rules
 
 - **Every performance figure comes from the KaxaNuk Backtest Engine.** There is deliberately no
   second, lighter simulator: one that disagrees just lets the reader pick the number they prefer.
-- **A Lab library's code is never read, quoted or copied.** Its skill, its documentation, its
-  changelog and a run are how it is known — never its installed files, a clone, a wheel or a source
-  page its documentation links to. No part of its code, no copy of the Analytics Factory's files
-  and nothing of KaxaNuk's research outside this repository goes into a file here, an issue or a
-  message. Where a skill and a library disagree, a run settles it.
+- **A Lab library's code is never read, quoted or copied.** Know it by its skill, its
+  documentation, its changelog and a run — never by its installed files, a clone, a wheel or a
+  source page its documentation links to. No part of its code, no copy of the Analytics Factory's
+  files and nothing of KaxaNuk's research outside this repository goes into a file here, an issue
+  or a message. Where a skill and a library disagree, a run settles it.
 - **Do not change a committed result to make it agree with a new run.** If the numbers moved, find
   out why first, and record it.
 - **A new Lab library build is a change-set, between experiments**, never during one. The
-  researcher says when one is out; it keeps the date of that weekly check in this repository's git
-  config, `kaxanuk.labnext`, never saved. Upgrade with `uv lock --upgrade-package <name>`, then
-  `uv sync --group notebook --inexact` — a licensed library as its skill says — re-run from a wiped
-  copy, and write the `CHANGELOG.md` entry naming any number that moved. A book on paper runs on
-  the Data Curator it was frozen with.
+  researcher says when one is out, and keeps the date of that weekly check in this repository's git
+  config, `kaxanuk.labnext`, which is never committed. Upgrade with
+  `uv lock --upgrade-package <name>`, then `uv sync --group notebook --inexact` (a licensed library
+  as its skill says), re-run from a wiped copy, and write the `CHANGELOG.md` entry naming any
+  number that moved. A book on paper runs on the Data Curator it was frozen with.
 - **Do not quietly drop a bad run.** A run that cannot be believed is excluded **by name**, with its
   reason, in `RESULTS.md`.
 - **Keys join, or the pipeline stops.** Every join between the index's files and the book —
@@ -257,8 +256,6 @@ of `RESULTS.md`, and the 37 books two earlier versions priced count in the trial
 
 # Research integrity — the five ways a backtest lies
 
-The part of the process that has nothing to do with Python.
-
 | # | The lie | What the process does | What it still does not do |
 | --- | --- | --- | --- |
 | 1 | **Survivorship bias.** A universe built from *today's* members has deleted everything that failed, and the backtest discovers that markets go up | the seed is point-in-time and **retains delisted names**; step 2 quantifies how much of the universe is dead | audit the *last day* of a delisted name. The missing delisting returns are disproportionately the bad ones |
@@ -287,13 +284,11 @@ The part of the process that has nothing to do with Python.
 <!-- example: end -->
 
 **Every notebook ends in a Verify section, and that is where a strategy's tests live.** A strategy
-has no test suite: what it adds is a pipeline, and each stage is checked where it produces its
-output. Verify reads back what the notebook wrote and **raises** when it is wrong — a check that
-prints *PASS* or *FAIL* is one somebody has to read, and a run nobody watches reads none of them.
-**Check against the window, not against a fixed floor.** A floor a full run clears is cleared too by
-a run that stopped years early, so count the days the engine valued against the trading days in the
-window it was asked for. Where a licensed engine is absent, Verify skips its checks the way the
-sections that call it do.
+has no test suite: it adds a pipeline, and each stage is checked where it produces its output.
+Verify reads back what the notebook wrote and **raises** when it is wrong; a check that only prints
+*PASS* or *FAIL* goes unread in a run nobody watches. **Check against the window, not a fixed
+floor**, as row 5 does: a run that stopped years early still clears a floor a full run clears.
+Where a licensed engine is absent, Verify skips its checks, as the sections that call it do.
 
 **The one deliberate look-ahead is named in its own column prefix.** A `current_*` column comes from
 today's security master, so any period before a reclassification is misattributed. That is why the
@@ -311,8 +306,8 @@ thesis behind it. It runs two methodologies and a third pass, and `FINDINGS_N.md
 
 **First cut — Brinson-Fachler.** Active return split into **allocation** (did the book overweight
 the right groups) and **selection** (did it pick the right names inside them), plus their
-interaction. It names the lever that moved the return, which "the process worked" does not, and a
-named lever can be defended, refined or fixed.
+interaction. It names the lever that moved the return, and a named lever can be defended, refined
+or fixed.
 
 **Second layer — the factor model.** Realised return projected onto systematic exposures — beta,
 momentum, residual volatility, liquidity — so **idiosyncratic alpha** is separated from
@@ -325,8 +320,7 @@ factor exposure is stripped out. The selection story gets sharper, and it answer
 first cut alone cannot: **whether the Sharpe survives once that factor turns.**
 
 **What it settles:** whether there is genuine idiosyncratic alpha — criterion 2 of the graduation
-gate that `Paper_Trading/BITACORA.md` defines, evaluated, not deferred. It is also what lets a
-reader of the record tell skill from exposure.
+gate that `Paper_Trading/BITACORA.md` defines, evaluated, not deferred.
 
 **What to expect it not to settle:** an *absolute* rule is close to invisible to a factor model
 built on *relative* factors, so a book can beat every benchmark while the model assigns roughly
@@ -341,7 +335,7 @@ skill, selection skill and timing skill.
 # Code style
 
 PEP 8 plus a stricter house layer, shared across KaxaNuk repositories and installed by APM rather
-than committed here. One-line summary: *optimise for the reader who has never seen this file.*
+than committed here. In one line: *optimise for the reader who has never seen this file.*
 
 - **No import aliases**, and **no abbreviations** — no variable name under three characters.
 - **No nested functions, ever.**
@@ -353,12 +347,7 @@ than committed here. One-line summary: *optimise for the reader who has never se
 - **Docstrings are prose, not sections**, and never repeat what the type hints already say. Say
   *why*.
 
-What is committed is the style check, and the whole repository passes it. Nothing checks the process
-itself: its rules rest on review, and each stage's output on its notebook's Verify section.
-
-```bash
-uvx ruff check .
-```
-
-The house layer above is checked by the `bloom-code-lint` skill, installed with the rest; run it,
-with `--max-line-length 100`, on the Python files you touched.
+Ruff's settings are committed, in `pyproject.toml`, and the whole repository passes
+`uvx ruff check .`. The house layer is checked by the `bloom-code-lint` skill, installed with the
+rest: run it, with `--max-line-length 100`, on the Python files you touched. Nothing checks the
+process itself: its rules rest on review, and each stage's output on its Verify section.

@@ -20,17 +20,14 @@ The README imports these names from these modules:
 | `kaxanuk.portfolio_construction.pipeline` | `run_pipeline` |
 | `kaxanuk.portfolio_construction.enums` | `MissingDataPolicy`, `ComparisonOp`, `RebalanceFrequency`, `CovarianceMethod`, `OptimizationObjective`, `TimingMode`, `BenchmarkKind`, `LimitBasis` |
 | `kaxanuk.portfolio_construction.helpers` | `PanelHelper`, `CrossSectionalHelper`, `PortfolioDiagnosticsHelper`, `FeasibilityHelper`, `FrontierHelper`, `ResamplingHelper`, `ScenarioHelper`, `ActiveHelper`, `DataQualityHelper` |
-| `kaxanuk.portfolio_construction.helpers` | `RollingHelper` |
 | `kaxanuk.portfolio_construction.output_handlers` | `PdfReportOutput`, `PortfolioReport` |
-| `kaxanuk.portfolio_construction.output_handlers` | `ExcelOutputHandler` |
-| `kaxanuk.portfolio_construction.config_handlers` | `ExcelConfigurator` |
-| `kaxanuk.portfolio_construction.input_handlers` | `ParquetInput` |
-| `kaxanuk.portfolio_construction.market_data_pipeline_services` | `MarketDataProcessingService` |
-| `kaxanuk.portfolio_construction.builders` | `UniverseBuilder` |
 
-*Since 2.0.0* the changelog adds `services.license_validator`: `validate_license()`,
-`reset_validation_state()`, `ValidationResult`, the licence errors and `PRODUCT`, a wrapper over
-`kaxanuk-license-client`.
+The README also imports `RollingHelper`, `ExcelOutputHandler`, `ExcelConfigurator`,
+`ParquetInput`, `MarketDataProcessingService` and `UniverseBuilder`, each from a module of its own:
+take each import line from the README.
+
+*Since 2.0.0* the library checks its licence through `kaxanuk-license-client`; the licence errors
+are below.
 
 Named by the README or the changelog with no import shown — rely on one only once the README, the
 changelog or a run shows how it is imported:
@@ -58,7 +55,7 @@ The changelog names these errors at 1.28.0: `AllocationError`; `ConfigurationErr
 (0.9.0). *Since 2.0.0*, `kaxanuk.portfolio_construction.exceptions` holds `LicenseError`, with
 `LicenseNotFoundError`, `LicenseValidationError`, `LicenseServerError` and
 `LicenseConfigurationError` under it, all under `PortfolioConstructionError`, so
-`except PortfolioConstructionError` catches them; each is also the licence client's matching error,
+`except PortfolioConstructionError` catches them. Each is also the licence client's matching error,
 so `kaxanuk.license_client.LicenseError` catches them as well.
 
 ## Sizing: the registry
@@ -155,8 +152,8 @@ a snapshot, and raises a licence error as itself, never wrapped in a `PipelineEr
 
 The README's flow: `ExcelConfigurator(file_path=...).get_configuration()` reads the workbook;
 `MarketDataProcessingService(configuration=config.to_legacy_configuration(), input_handlers=[...])`
-takes an input handler, such as `ParquetInput(input_dir=...)`; `load_and_process_market_data(
-tickers=...)` returns one `date | ticker` table per column; and `UniverseBuilder().build_snapshots(
+takes an input handler, such as `ParquetInput(input_dir=...)`. `load_and_process_market_data(
+tickers=...)` returns one `date | ticker` table per column, and `UniverseBuilder().build_snapshots(
 market_data_dict=..., tickers=..., required_fields=..., rebalance_dates=...)` returns one table per
 rebalance date, one row per ticker and one column per feature.
 
@@ -184,7 +181,7 @@ names.
 
 *Since 2.0.0* the entry script runs its pipeline through `run_pipeline()`, so every command that
 runs it needs `KNPC_API_KEY_KAXANUK`, from the environment or a `.kaxanuk_license` file in the home
-or the working folder; it does not read `Config/.env`, although the error for a missing key suggests
+or the working folder. It does not read `Config/.env`, although the error for a missing key suggests
 that file.
 
 Column names are mapped in the workbook; a text cell in the value column of its `Universe_Filters`

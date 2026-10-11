@@ -1,14 +1,10 @@
-# The KaxaNuk Researcher: this repository is one APM package, and it carries every KaxaNuk skill,
-# instruction and command in `.apm/` — the researcher's, the process's, each Investment Lab
-# library's and the house rules. `templates/` and `examples/` are what `init-researcher`,
-# `init-strategy`, `init-example` and `init-python-library` copy. It depends on nothing, so one
-# install brings everything, once for the user:
-#
-#     uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target claude
-#
-# and `uvx --from apm-cli==0.33.0 apm update -g` brings every new version to every folder.
+# The KaxaNuk Researcher: one APM package carrying every KaxaNuk skill, instruction and command in
+# `.apm/` — the researcher's, the process's, each Investment Lab library's and the house rules.
+# `templates/` and `examples/` are what the `init-*` skills copy. It depends on nothing, so one
+# install for the user brings everything; `SETUP.md`, or `CONTRIBUTING.md`'s *Installing by hand*,
+# has the install and update commands.
 name: kaxanuk-researcher
-version: 1.10.3
+version: 1.11.0
 description: The KaxaNuk Researcher — train your own research companion; you name and teach it, it keeps a library of what you read and answers from it with sources, works out your ideas and plans, briefs you each morning and comes with you to every project, work or personal; it teaches you to invest when you want, with every tool to build and test a strategy on the KaxaNuk Strategy Template and Investment Lab — every Lab skill, init-researcher, init-strategy, init-example and init-python-library, and the templates, worked example and home they copy.
 author: KaxaNuk
 license: MIT

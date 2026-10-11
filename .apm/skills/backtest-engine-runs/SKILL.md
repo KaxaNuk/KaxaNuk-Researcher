@@ -13,7 +13,7 @@ description: >
   `attribution-analysis-runs`), reading attribution output (use `alpha-decomposition`), or authoring
   Data Curator `c_*` columns (use `data-curator-custom-calculations`).
 metadata:
-  version: 0.4.0
+  version: 0.4.1
   library_version: 0.66.0
 ---
 
@@ -98,7 +98,7 @@ rename one into the other, and **never print the value of either.**
 lockfile, and `uv sync` is *exact* by default: it removes every package the lockfile does not name.
 Probed on 2026-09-09 in a strategy repository — a plain `uv run …` keeps a hand-installed package,
 `uv sync --inexact` keeps it, a bare `uv sync` removes it. So, once the engine is installed, never
-run a bare `uv sync` in that repository again; after a relock use `uv sync --inexact` (with the
+run a bare `uv sync` in that repository again. After a relock use `uv sync --inexact` (with the
 repository's groups), run everything else through `uv run`, and check `uv pip list | grep -i
 kaxanuk` before any engine run. If the engine has vanished, this is why, and the install command
 above is the fix.
@@ -216,7 +216,7 @@ years. Label a quoted CAGR as the engine's.
 still produces a clean-looking summary over the stub. Check the last valued date against the window
 that was asked for, and when they differ the variant is excluded **by name, with its reason**, never
 quietly dropped. In a KaxaNuk Strategy Template repository the check is the experiment notebook's
-section 8, Verify, which raises rather than prints: it counts the days each engine run valued
+section 8, Verify, which raises rather than prints. It counts the days each engine run valued
 against the trading days of the window it was asked for, never against a fixed floor, which a run
 that stopped years early can clear. The worked example holds each run to at least 99% of those days
 valued and no more than five unvalued at the end — a rule of its own, not a sourced figure.
@@ -244,7 +244,7 @@ valued to the last day of its window.
 Configuration guards worth knowing before a first run: `commission_cents` is rejected outside
 `[0.00, 0.10]`, and the engine checks on every rebalancing date that each position it touches has a
 price and that no position outlives its price series. **"Touches" includes every open position, not
-only the names traded**: a book that still holds a name across a gap in its prices — a corporate
+only the names traded.** A book that still holds a name across a gap in its prices — a corporate
 event, a provider's missing days — is refused on the first rebalance date inside the gap, with a
 data-integrity error naming the ticker and the date. No configuration field waives it. The cure is
 in the rule, not the engine: sell the name at *t−1*, the last day it is priced, as the
@@ -252,9 +252,10 @@ in the rule, not the engine: sell the name at *t−1*, the last day it is priced
 
 **`commission_cents` is not cents per share, measured on 0.66.0.** On one stock bought once, the
 worked example's `0.05` charged $0.041 a share on SPY and $0.035 on KO, and its realistic row's
-`0.006` charged $0.0049 and $0.0042: neither a flat amount per share nor a share of the price, so
-its blueprint states the setting and those measurements, not a rate. Before a figure is frozen in a
-blueprint, run it once and compare `Total_commissions` with the shares traded in `orders_df`.
+`0.006` charged $0.0049 and $0.0042. That is neither a flat amount per share nor a share of the
+price, so its blueprint states the setting and those measurements, not a rate. Before a figure is
+frozen in a blueprint, run it once and compare `Total_commissions` with the shares traded in
+`orders_df`.
 
 ## 7. Inside a KaxaNuk Strategy Template repository
 

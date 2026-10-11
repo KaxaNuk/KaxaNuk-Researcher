@@ -8,9 +8,8 @@ owner under each as a blockquote, and what it changes at the end.
 
 One note per unit read. A paper is one file. A book is a folder: an `INDEX.md` that holds its table
 of contents and what became of each chapter, and one file per chapter read. Nothing is written for
-a chapter the owner did not choose. Beside the notes, at home, the library keeps its **wiki**: one
-concept page per idea, small and specific, updated as chapters come in, and the synthesis pages the
-owner chose to keep from a `query`. Both are described at the end of this file.
+a chapter the owner did not choose. Beside the notes, at home, the library keeps its **wiki**:
+concept pages and synthesis pages, both described at the end of this file.
 
 **Language.** A note is written in the owner's language, the one *How it speaks* names in
 `RESEARCHER.md` — in a strategy whose `AGENTS.md` names one language for its team, in that one —
@@ -72,7 +71,7 @@ tags: [expected-returns, risk-premia]
   itself — its title page, its header — or from the row in `BIBLIOGRAPHY.md`; never invented.
 - `citation` — the reference, with the date the link was last checked.
 - `local_copy` — the file read, by path inside this repository, or `none`. At home, the path under
-  `Sources/`; in a strategy, the PDF beside the note, kept on this computer only.
+  `Sources/`; in a strategy, the PDF beside the note.
 - `read` — the date, and what was read: the whole paper, the abstract, the chapters.
 - `tags` — by the owner's tag policy in `RESEARCHER.md`. Optional in a strategy.
 
@@ -117,7 +116,7 @@ one or two lines, in their words.
 In a strategy the question is a claim: `## Why it is here` reads *Claim 2 of `OBJECTIVE.md` — its
 text — and the owner's reason*; every blockquote reads **For claim 2:** and is about this strategy,
 not about finance in general; `## What it changes` is measured against the claim. A note that does
-not say what it changes for the strategy is a summary, and summaries are available elsewhere.
+not say what it changes for the strategy is a summary.
 
 Four rules, the template's:
 
@@ -240,8 +239,7 @@ folder beside the source notes, named by the idea in the same style — `Positio
 `Sharpe_Ratio_Estimation_Error.md` — and `read` creates and updates it as chapters come in. Never
 from memory, never by hand, never for a passing mention: a page exists when a chapter argues the
 idea in the service of one of the owner's questions, or when a note already touches it. Three to
-eight pages touched per chapter is usual. In a strategy there are none: `OBJECTIVE.md` is the
-strategy's synthesis.
+eight pages touched per chapter is usual. In a strategy there are none.
 
 ```yaml
 ---
@@ -278,8 +276,7 @@ One paragraph: what the idea is, in the sources' own terms, as the library holds
 ```
 
 Every claim on a concept page cites a source note and its page; a concept page never cites a PDF
-or an extract. When a new chapter contradicts a page, the old claim stays under the callout. `read`
-writes concept pages; `audit` lints them; `query` reads them first.
+or an extract. `read` writes concept pages; `audit` lints them; `query` reads them first.
 
 ## The synthesis page
 
