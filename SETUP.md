@@ -132,9 +132,9 @@ script refuses is `Where?` again, with the reason, never a stop.
 Read the whole `interview` skill from its installed path and follow it in the same turn as step 4,
 from its *Step 1*, with the new folder as the home, by its absolute path, whatever folder the
 session is open in — its question 1 is the next thing the user reads. It asks two questions about
-the user — what they do and work on, at work and on their own, what they'd like a hand with, then
-the researcher's voice — in the user's language; what they are here for, the domains and the
-projects are proposed from what they say. Nothing about how they invest is asked here. It writes
+the user — what they do and what they're working on, then the researcher's voice — in the user's
+language; what they are here for, the domains and the projects are proposed from what they say.
+Nothing about how they invest is asked here. It writes
 `RESEARCHER.md`, the agent that makes the researcher callable by name and the skill that puts it in
 every session, installs them for the user and saves a first version — the user answers the two
 questions, and nothing more is asked before the hand-over but a name and an email to sign with,
