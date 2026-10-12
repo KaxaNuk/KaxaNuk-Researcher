@@ -85,7 +85,7 @@ skills and commands*; *Removing it* undoes them.
 | work out an idea, a plan, a goal or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, where it stands |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | follow a KaxaNuk Training Workshop | the session, *Bootcamp S03* | your researcher as tutor: where you are in the session, your prediction first, hints in levels, nothing done for you while the AI is off |
-| stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules, never advice |
+| stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules, and once a week your update ready to paste into team chat; never advice |
 | write down how you work or invest, and see it evolve | `philosophy` | a short interview; your typed answers, word for word, in `Philosophy/` |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
 | see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read (with more examples, it asks which); running it needs keys and licences |

@@ -6,6 +6,35 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.13.0] - 2026-10-12
+Your brief can now write your weekly update, ready to paste into team chat, and tells you how to
+fix a connector that is connected but cannot read.
+
+**What to do differently:** say `update` in your home, then `brief setup` to add *Week*.
+### Added
+- **`brief`** (1.1.0) **gains *Week***, a fourth part, written one day a week: what you did last
+  week, from your commits in every repository of your projects table and from the calendar's work
+  meetings, demos and talks; the open problems the repositories show; and this week's next steps
+  and meetings. In your language, inside one code block, as plain text that pastes into Slack or
+  Teams as it stands — a `•` bullet per project, `◦` sub-bullets for the detail, one blank
+  line between the three sections and no markup — with as many bullets as the work needs. It quotes no
+  email address, commit message or private path. `brief setup` asks its day, and any folder beyond
+  the projects table to read too, such as another client's repositories, which adds no row to
+  `RESEARCHER.md` unless you say so.
+### Changed
+- **Today's brief can be corrected.** Ask by name the same day — *brief, add the calendar*,
+  *brief, no asterisks* — and only that file changes. The scheduled task still never edits a
+  brief, and no brief of an earlier day is ever edited; a change for every day or every week is
+  `brief setup`. The home's `AGENTS.md` says the same (home template 0.27.0).
+- **`README.md`** and **`USE-CASES.md`** name *Week* among the parts.
+### Fixed
+- **A connector that cannot read is caught at setup.** A Google connector granted fewer permissions
+  than it asks shows as connected yet answers every call with *requires additional permissions*,
+  and a brief ran without the calendar for weeks. `brief setup` now makes one harmless read with
+  each connector, keeps nothing of it, and names one that refuses with its fix: in claude.ai,
+  *Settings → Connectors*, disconnect it and connect it again, ticking every permission. A brief
+  that meets the same refusal says the same in its *Work* part.
+
 ## [1.12.0] - 2026-10-11
 Your researcher can now be your tutor in a KaxaNuk Training Workshop: name the session, such as
 *Bootcamp S03*, and it follows the course with you.

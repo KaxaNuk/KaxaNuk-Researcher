@@ -32,7 +32,8 @@ against your plan, and *Where it stands*, with each next step and its command. C
 
 ## A brief every Friday
 
-Say `brief setup`. It asks which parts (Work, Markets, Portfolio), when, and which market measures.
+Say `brief setup`. It asks which parts (Work, Markets, Portfolio, and Week, your weekly update to
+paste into team chat), when, and which market measures.
 For when, pick *Other* and write *Fridays at 07:30*; the Claude desktop app schedules it. Each
 Friday, while the app is open or at its next launch, a dated file appears in `Briefs/`: that day's
 meetings and what mail and chat ask of you, market levels, news on your holdings — the last day's,
