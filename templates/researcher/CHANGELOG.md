@@ -6,6 +6,19 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.27.0 (2026-10-12)
+
+**MINOR** — a brief may hold the owner's weekly update, and today's brief may be changed the same
+day on the owner's word.
+
+**What to do differently:** say `update` in your home; the change to `AGENTS.md` comes as a diff.
+
+### Changed
+
+* **`AGENTS.md`**, the row for `Briefs/`: up to four parts, *Week* the fourth, written one day a
+  week; a brief is changed only the same day on the owner's word, never by the schedule and never
+  afterwards.
+
 ## 0.26.1 (2026-10-11)
 
 **PATCH** — the rules name every place advice is never given, and the README says what the MIT

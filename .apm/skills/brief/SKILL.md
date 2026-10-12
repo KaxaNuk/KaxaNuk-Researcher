@@ -3,15 +3,17 @@ name: brief
 description: >
   One new Briefs/YYYY-MM-DD.md a day in the researcher's home: Work (meetings, and mail and chat
   asking something of the owner), Markets (measures quoted from dated sources) and Portfolio (news,
-  earnings and filings per holding). "brief setup" asks the parts, days and measures, plan first,
-  and schedules it on the Claude desktop app; "brief" writes today's file now. Only when the owner
-  runs it by name, or as the task its setup created. It does NOT compute a figure about the book or
-  add to the library, never says buy, sell, trim, add or hold, and never sends, posts or trades.
+  earnings and filings per holding), and on one day a week, Week (the owner's weekly update, ready
+  to paste into team chat). "brief setup" asks the parts, days and measures, plan first, and
+  schedules it on the Claude desktop app; "brief" writes today's file now, and changes it the same
+  day on the owner's word. Only when the owner runs it by name, or as the task its setup created.
+  It does NOT compute a figure about the book or add to the library, never says buy, sell, trim,
+  add or hold, and never sends, posts or trades.
 metadata:
-  version: 1.0.4
+  version: 1.1.0
 ---
 
-# Brief — one dated file a day: work, markets, portfolio
+# Brief — one dated file a day: work, markets, portfolio, and the week
 
 The owner runs `brief setup` to start a daily brief or to change one — which parts, which days and
 at what time, which measures — and `brief` for today's file, now. What they said with it carries
@@ -29,10 +31,12 @@ writes. Running either by name is the owner asking for that write by name.
 
 **What it writes, and nothing else.**
 
-- **`Briefs/YYYY-MM-DD.md`** — one new file a day, named by the local date, never edited
-  afterwards; the first brief makes the folder. Running `brief` by name is the go for that file;
-  the go on setup's plan is the go for each one the scheduled task writes, as the home's
-  `AGENTS.md` says.
+- **`Briefs/YYYY-MM-DD.md`** — one new file a day, named by the local date; the first brief makes
+  the folder. Running `brief` by name is the go for that file; the go on setup's plan is the go for
+  each one the scheduled task writes, as the home's `AGENTS.md` says. The owner may ask, by name
+  and the same day, for a change to today's file — *brief, add the calendar*, *brief, no
+  asterisks* — and that ask is the go for that edit, to that file only. The scheduled task never
+  edits a brief, and no brief of an earlier day is ever edited.
 - **`Portfolio/holdings.csv` and `Portfolio/RULES.md`** — created by `brief setup`, on its go,
   only when the owner picks *Portfolio* and the file is missing: this skill's
   `references/portfolio-holdings.csv` and `references/portfolio-rules.md`, copied byte for byte,
@@ -76,6 +80,17 @@ one for any other — twelve characters at most.
      for each, which in Claude are its connectors, and `/mcp` lists them in Claude Code. Name each
      one found and each missing. With none, *Work* is not offered, and the plan says so plainly: a
      part with no connector is left out; connect one, then run `brief setup` again.
+   - **Whether each connector can read.** A connector listed as connected may still lack the
+     permission to read: a Google connector granted fewer scopes than it asks answers every call
+     with *requires additional permissions*. Make one harmless read with each — the calendar's
+     events for today, one mail thread, one chat search — and keep nothing of what comes back. A
+     connector that refuses is named with its fix, in one line in the owner's language: in
+     claude.ai, *Settings → Connectors*, disconnect it and connect it again, ticking every
+     permission on the provider's screen; on a company account, an administrator may have to allow
+     the app. It counts as missing until a read succeeds.
+   - **Git**, for *Week*: the repositories under the paths of the projects table in
+     `RESEARCHER.md`, and the home itself. With git missing or no repository found, *Week* is not
+     offered, and the plan says why.
    - **A scheduler** — on the Claude desktop app, the session holds its scheduled-task tools,
      `create_scheduled_task` among them. Elsewhere there is none this skill may use.
 
@@ -119,8 +134,15 @@ one for any other — twelve characters at most.
 - `Parts` (`Partes`), multi-select — *Work*, its description the connectors found; *Markets*, the
   measures quoted from dated sources; *Portfolio*, the news, earnings dates and filings for each
   holding in `Portfolio/holdings.csv`, and the rules in `Portfolio/RULES.md` the news bears on —
-  both files created, empty, when missing, for the owner to fill. A part step 1 left out is not
+  both files created, empty, when missing, for the owner to fill; *Week*, the owner's weekly
+  update — last week's work from their commits and calendar, the open problems, this week's next
+  steps — in their language, as plain text to paste into team chat. A part step 1 left out is not
   offered, and the question says why.
+- `Week` (`Semana`), used only when *Week* is picked — *Mondays, the projects table*, marked
+  *(suggested)*; *Fridays, the projects table*; *Other* for another day, or for folders beyond the
+  projects table whose repositories it should read too — another client's work, a side project.
+  Name the repositories step 1 found in its description. A folder named here is read for *Week*
+  only and adds no row to `RESEARCHER.md`; the plan offers the row, to add on the owner's word.
 - `When` (`Cuándo`), on the desktop app only — *Weekdays at 06:00*; *Every day at 06:00*;
   *Weekdays at 07:30*; *Other* for their own days and time. The machine's local time.
 - `Measures` (`Medidas`), multi-select, used only when *Markets* is picked — *The broad set*,
@@ -142,6 +164,8 @@ In chat, short:
   cron line only when the owner asks; and one line: the task runs while the app is open, and one
   missed while it was closed runs at the next launch;
 - the measures, and the question each is tied to, or *no Regime watch*;
+- with *Week*, its day and the repositories it reads, the folders named under *Other* among them;
+  on a daily schedule, the part is written on that day only;
 - the files: `Portfolio/holdings.csv` and `Portfolio/RULES.md`, *created empty* or *already there,
   not touched*; `Briefs/`, made by the first brief;
 - the task, *<Name> daily brief*, new or changed — its prompt, the contract filled, shown only when
@@ -153,8 +177,9 @@ In chat, short:
 
 Then ask for the go — header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat,
 any of the go words in the home's `AGENTS.md` is the go. **On *Change something*, ask again with
-options**: drop a part; other days or another time; fewer measures; no *Regime watch*; leave the
-`Portfolio/` files uncreated. Never write on silence or on a rejection.
+options**: drop a part; other days or another time; fewer measures; no *Regime watch*; another
+day or other folders for *Week*; leave the `Portfolio/` files uncreated. Never write on silence
+or on a rejection.
 
 ### Step 4: On the go
 
@@ -194,6 +219,9 @@ Short, in the owner's voice and language:
   lists it, `name`, `asset_class` (stock, ETF, fund, bond, cash), `account` and `notes`, which are
   theirs and which the brief does not quote — and the headings of `Portfolio/RULES.md` in their
   own words. A heading left with its prompt is skipped.
+- With *Week*: its block is a draft — the open problems and this week's steps are inferred — to
+  adjust before pasting, adding what neither the commits nor the calendar show; a change for that
+  day is *brief, …* the same day, and one for every week is `brief setup` again.
 - `brief setup` again to change it. Pausing or deleting the task is the owner's, in the app's list
   of scheduled tasks; this skill never deletes one.
 - A brief is a morning read, never a source: a figure in it enters the library as a source in
@@ -201,9 +229,13 @@ Short, in the owner's voice and language:
 
 ## brief
 
-1. **Today's file.** The local date. If `Briefs/YYYY-MM-DD.md` exists, say so and stop: one file a
-   day, never edited afterwards. The file is the owner's to delete by hand, should they want the
-   day written again.
+1. **Today's file.** The local date. If `Briefs/YYYY-MM-DD.md` exists and the owner asked for a
+   brief, say so and stop: one file a day. If they asked for a change to it — a part added, a
+   line corrected, another format, a connector read again after they reconnected it — make that
+   change to today's file only, following the contract for whatever it adds, then say in chat
+   what changed. A change meant for every day, or every week, is not made here: offer
+   `brief setup`, which changes the scheduled task. A brief of an earlier day is never edited. The
+   file is the owner's to delete by hand, should they want the day written again.
 2. **The checks of setup's step 1**, items 1 and 2: a home not interviewed, or a `.gitignore` that
    does not list `Briefs/` and `Portfolio/`, stops the run the same way.
 3. **Its settings**, in this order. First, what the owner said with the command — the parts, a set
@@ -212,7 +244,7 @@ Short, in the owner's voice and language:
    `list_scheduled_tasks` locates: the parts, the measures and the questions are read from it.
    Else the defaults — *Work* from the calendar, mail and chat connectors connected now, if any;
    *Markets* with the broad set and no *Regime watch*; *Portfolio* when `Portfolio/holdings.csv`
-   exists. Say in one line which were used.
+   exists; *Week* only when the owner names it. Say in one line which were used.
 4. **Follow the contract.** Fill `references/brief-contract.md` as setup does, and follow the
    prompt between its markers: it is the run's whole instruction, and its safety lines hold here as
    they hold in the task.
@@ -221,7 +253,8 @@ Short, in the owner's voice and language:
 
 ## What this skill will not let you do
 
-- Write a second brief the same day, or edit one already written.
+- Write a second brief the same day; edit today's unless the owner asks for that change by name;
+  edit one of an earlier day, ever; or let the scheduled task edit any.
 - Write anywhere but `Briefs/`, or in `Portfolio/` beyond the two files setup copies once, when
   they are missing.
 - Write a `Portfolio/` file from memory. Both are copied from this skill's `references/`.
@@ -238,12 +271,14 @@ Short, in the owner's voice and language:
 - Register a scheduler of the machine's own, or create a scheduled task without the go on setup's
   plan; or delete one.
 - Write the plan or the report as a file. The chat is the record.
+- Quote an email address, a commit message or a private repository's path in *Week*: it is text
+  for others to read. People and organisations are named as the calendar's titles name them.
 
 ## References
 
 - `references/brief-contract.md`, in this skill's folder: the prompt of every brief, with slots for
   the researcher's and the owner's names, the home's path, the connectors, the measures and the
-  questions they are tied to, and how each is filled.
+  questions they are tied to, *Week*'s day and its extra folders, and how each is filled.
 - `references/portfolio-holdings.csv`: the header `brief setup` copies to `Portfolio/holdings.csv`
   — `ticker`, `name`, `asset_class`, `account`, `notes` — and no row.
 - `references/portfolio-rules.md`: the headings, with angle-bracketed prompts, that `brief setup`
