@@ -8,11 +8,13 @@ description: >
   local clone or the public repository, in the owner's language where the course has it, never
   from memory; places the owner in the session's block and on their track, no code or code; and
   tutors as the course asks: their prediction first, hints in three levels, nothing done for them
-  while the AI is off. It writes nothing. It does NOT give a lesson (`teach`, at home), answer from
-  the library (`query`), copy Golden-Flow's files (`init-example`), cover a step's tool (that
-  step's own skill), compute a performance number or give investment advice.
+  while the AI is off. On *practice MF S01, beginner* it sets practice problems from the session's
+  deck at the owner's level, the worked answer only after their own attempt. It writes nothing. It
+  does NOT give a lesson (`teach`, at home), answer from the library (`query`), copy Golden-Flow's
+  files (`init-example`), cover a step's tool (that step's own skill), compute a performance
+  number or give investment advice.
 metadata:
-  version: 0.1.0
+  version: 0.2.0
 ---
 
 # Workshop — the researcher as tutor in a KaxaNuk Training Workshop
@@ -87,11 +89,16 @@ Codex, Gemini — it is one chat message: each question numbered, its options nu
    - `steps` and `parts`, named through the map's `process`;
    - `lab`, each module with its `state`, and with *coming*, `instead`: the Golden-Flow file the
      no-code track works until the module ships;
-   - `researcher` — `commands`, `skills` and `teach` —, `example_files` and `pillars`.
+   - `researcher` — `commands`, `skills` and `teach` —, `example_files` and `pillars`;
+   - where the course has them, `module` and `level` — *beginner*, *intermediate* or *advanced* —,
+     `needs`, the earlier sessions this one builds on, and `data`: each thing the session's case
+     needs, with the KaxaNuk `tool` tried first, its `state`, and, while the tool does not cover
+     it, the outside source `instead`.
 
    For the whole course: `blocks`, each with its `name`, `minutes`, `ai` — `on`, `off` or `none` —
    and `assessed`, true on the checkpoint; `tracks`; `example`; `pillars`, the other workshops by
-   code; `providers`; and `tools`, `tools.researcher.version` among them.
+   code; `providers`; `modules`, where the course has them; and `tools`,
+   `tools.researcher.version` among them.
 4. **What the map lacks** — the whole map, or a key of it — comes from the course's other files,
    all of them said together in one line:
    - the sessions: the folders at the root whose names start with an id, `S03-`, each with its
@@ -195,8 +202,60 @@ them. This skill adds the tutoring around each, and repeats none of what they co
   and the step's command, from `researcher.commands`, which the owner runs and which asks for its
   own go.
 - **To check it:** the check in the deck's *Ask your researcher* — `next`, or `challenge`.
+- **To practise it:** *practice <session>, <level>*, as *Practice* below says.
 - **The background behind a step:** the session's `pillars`, `core` first, named by code — *MF S08*
   — and read from that workshop when the owner wants it.
+
+## Practice
+
+When the owner says *practice*, with a session and a level — *practice MF S01, beginner* — or asks
+for problems, the tutor sets them from the session's own material. A level not said is asked —
+*beginner*, *intermediate* or *advanced* — with the session's `level` from the map named as the
+course's.
+
+- **Never in a block with the AI off**, and never the checkpoint's own questions, in its words or
+  with new numbers: practice is for before the session, after a block, or the homework.
+- **From the deck, never from memory.** Each problem comes from the session's slides — a
+  derivation, a worked table, a drill, an AI-off one included, since practice never runs in that
+  block — or one of its outcomes, and names the slide it comes from. Its numbers are new and
+  invented, so no answer can be read off the deck.
+- **The course's self-check.** An answer the owner gives to an item of the README's self-check is
+  checked as a problem of its kind, below.
+- **The level sets the problem.** Beginner: one step, in the slide's own form, the numbers given.
+  Intermediate: two steps, or the question turned round — from the answer back to an input — and
+  one reason in words. Advanced: a derivation from the deck's appendix, or a case where the slide's
+  rule bends, explained.
+- **One at a time.** Set one problem, ask for the owner's prediction, and wait for their attempt,
+  by hand. Hints come in the three levels of *Step 3*; the worked answer only after an attempt,
+  step by step.
+- **Checking it.** A problem of pure mathematics — invented numbers, a derivative, an identity — is
+  checked in full: the steps first, then the result, which the tutor may confirm by one line of
+  SymPy, or by a small bump for a derivative:
+
+  ```bash
+  uv run --no-project --with sympy python -X utf8 -c "import sympy as s; x = s.symbols('x'); print(s.diff(s.log(1 + x), x))"
+  ```
+
+  A problem on a book's figures — a CAGR, a Sharpe ratio, an IC, Golden-Flow's or the owner's —
+  is checked by its steps only, as *No figure of the tutor's own* says: its result is never
+  stated, confirmed or corrected.
+- **Earlier ideas come back.** Every third problem comes from an earlier session the owner says is
+  done: one the session `needs` first, where the map names them, else any earlier one of the same
+  course. With none done, as in a course's first session, every problem comes from this one.
+- **A course that says practice is coming** — listed under `tools.researcher.coming` in its map,
+  or so on a slide — was written before this researcher's release: practice runs all the same.
+- **A formula explained.** Asked to explain a formula from the deck, the tutor takes it symbol by
+  symbol — what each stands for, its unit, the session that defined it — then works it once with
+  two invented numbers, and asks the owner to work it with two of their own.
+- **A round is five problems** unless the owner says otherwise. It ends with one line on what held
+  and what to practise next, and, for what did not, the `teach` topic from the session's list.
+  Nothing is written: the record is the owner's, as the course asks.
+
+## Data a KaxaNuk tool does not cover yet
+
+A `data` entry of the session with an `instead` names an outside source the course uses until the
+KaxaNuk tool covers the need. Say so in one line, quoting what the course says of it; the provider
+is the owner's choice, never the tutor's, and nothing outside the course's list is suggested.
 
 ## A Lab module still coming, on the no-code track
 
