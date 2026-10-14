@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.14.0] - 2026-10-14
+Your tutor in a KaxaNuk Training Workshop can now set you practice problems from a session, at
+your level: say *practice MF S01, beginner*.
+
+**What to do differently:** say `update` in your home.
+### Added
+- **`workshop`** (0.2.0) **gains *Practice***: problems drawn from the session's deck at the level
+  you name — beginner, intermediate or advanced — each naming the slide it comes from, with new
+  numbers so no answer can be read off the deck; one at a time, your prediction first, hints in
+  three levels, the worked answer only after your own attempt. A problem of pure mathematics is
+  checked in full, with one line of SymPy or a small bump for a derivative; one on a book's figures
+  by its steps only, as before. Every third problem comes back from an earlier session, the ones
+  the session builds on first. Asked to explain a formula, it takes it symbol by symbol, with its
+  unit and the session that defined it, and works it once with two invented numbers. Never in a
+  block with the AI off, and never the checkpoint's own questions.
+- **`workshop` reads a course's levels and data**: a session's `module`, `level` and `needs`, the
+  course's `modules`, and its `data` — what the case needs, the KaxaNuk tool tried first, its
+  state, and the outside source used `instead` until the tool covers it, which the tutor names as
+  the course's stand-in and never as its own pick. The Mathematical Finance workshop's course map
+  carries them.
+### Changed
+- **`README.md`** names *practice* beside the workshop rows.
+
 ## [1.13.0] - 2026-10-12
 Your brief can now write your weekly update, ready to paste into team chat, and tells you how to
 fix a connector that is connected but cannot read.
