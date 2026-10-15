@@ -6,6 +6,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.15.0] - 2026-10-14
+Before you trust a method with real data, you can now test it on simulated data whose right answer
+you set, and see how it fails: say *known-answer test for my half-life estimate*.
+
+**What to do differently:** say `update` in your home.
+### Added
+- **`known-answer`** (0.1.0), a skill, so Codex has it too. It loads when you ask to check a method
+  before it touches real data, or when a Mathematical Finance session names it, even where the
+  course still calls it coming. It asks your prediction first — what the method should give back,
+  and what a failure will do to it — then plans one notebook and, on your go, writes it in a new
+  folder you name beside your strategy: data simulated from a model whose truth is set and seeded,
+  your method run on it unchanged, and a Verify section that raises when the method misses the
+  truth by more than a tolerance stated before the run. It also shows one way the method fails —
+  too few observations, a look-ahead, a pooled rank — so you see the check bite. You run the
+  notebook, on either track of a workshop; your researcher writes and lints it, never runs it, and
+  never states, confirms or corrects a figure it prints.
+- **Nine recipes**, in its `references/recipes.md`: an AR(1) and its half-life, a geometric
+  Brownian motion's drift and volatility, a regression's beta, a factor model's loadings, a planted
+  signal's information coefficient, clusters with known members, a two-state regime, a GARCH(1,1)
+  and its forecast, and a logistic classifier's coefficients, AUC and calibration. Each gives the
+  model, its true parameters, a seed, the estimator to check, the tolerance and why, and the
+  failure to show, in prose and formulas, with no code; each figure was checked by simulation on
+  2026-10-14. A short sample — a half-life of three months over ten years of months — has a rule of
+  its own, since there the usual tolerance stops checking anything.
+- **It keeps to simulated data.** Every figure in the notebook is a teaching computation on
+  simulated data, never one about a book or your data. It writes that one notebook and nothing
+  else: nothing in your strategy, which it imports from without writing in, nor in a course's clone
+  or your home, and it saves no version. A tolerance is never widened after a miss, and your method
+  is never rewritten to pass.
+### Changed
+- **`README.md`** gains a row in *What you can use it for* and in the table of skills.
+  **`CONTRIBUTING.md`**: a release deploys 24 skills, and 25 with the researcher's own skill beside
+  them, and the walk by hand tries `known-answer` on one recipe when a release changes it.
+
 ## [1.14.0] - 2026-10-14
 Your tutor in a KaxaNuk Training Workshop can now set you practice problems from a session, at
 your level: say *practice MF S01, beginner*.

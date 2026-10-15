@@ -85,6 +85,7 @@ skills and commands*; *Removing it* undoes them.
 | work out an idea, a plan, a goal or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, where it stands |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | follow a KaxaNuk Training Workshop | the session, *Bootcamp S03*; *practice MF S01, beginner* | your researcher as tutor: where you are in the session, your prediction first, hints in levels, nothing done for you while the AI is off; practice problems from the session at your level |
+| check a method before it touches real data | *known-answer test for my half-life estimate* | one notebook in a folder beside your strategy: data simulated from a model whose truth you set, your method run on it, a check that fails loudly when it misses, and one way the method fails; simulated data only |
 | stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules, and once a week your update ready to paste into team chat; never advice |
 | write down how you work or invest, and see it evolve | `philosophy` | a short interview; your typed answers, word for word, in `Philosophy/` |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
@@ -157,6 +158,7 @@ such as the daily brief, which is never saved.
 | `brief [setup]` | a dated file in `Briefs/`, every figure quoted from a dated source |
 | `next [strategy]` | the one next thing; at home, it offers to save what you changed by hand |
 | `workshop [session]` | your tutor in a session of a KaxaNuk Training Workshop, read from the course each time, never from memory; *practice* sets problems at your level |
+| `known-answer [method]` | one notebook beside your strategy that checks your method gives back a truth you set, on simulated data, before it touches real data, and shows one way it fails; never saved as a version |
 | `backup` | a copy of your home, or of a strategy, on a private GitHub repository, only when you ask |
 
 | Command | What it does |

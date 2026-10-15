@@ -194,7 +194,7 @@ git -C "$K/lib2" grep -n -e kn_python_library_template -e kn-python-library-temp
 ```
 
 **Before a release, make the install above with the commit to be tagged.** It should deploy exactly
-23 skills, 9 commands, 3 rules and 1 agent, with no warning.
+24 skills, 9 commands, 3 rules and 1 agent, with no warning.
 
 **Then install it for the user twice**, from the archive, each time from a new shell whose `HOME`
 and `USERPROFILE` are a new empty folder under `$K`: once Claude, then Codex; once Codex, then
@@ -219,15 +219,16 @@ uv run --no-project python "$S" check claude sofia
 uv run --no-project python "$S" check codex sofia
 ```
 
-Both checks pass. On disk, `~/.claude/` holds the package's 23 skills and `sofia` in `skills/`,
+Both checks pass. On disk, `~/.claude/` holds the package's 24 skills and `sofia` in `skills/`,
 9 commands, 3 rules and 2 agents, `blueprint-critic.md` and `sofia.md`; `~/.agents/skills/` the same
-24 skills; and `~/.codex/agents/` 2 agents, `blueprint-critic.toml` and `sofia.toml`.
+25 skills; and `~/.codex/agents/` 2 agents, `blueprint-critic.toml` and `sofia.toml`.
 
 **If the release changes a skill, a command or a script**, walk the rest of the newcomer's path by
 hand on each run's first assistant, once in Spanish and once on Codex, an assistant with no question
 tool: `next`, `read` on one clipping, a round of `philosophy` at Starter and one on how you work,
 `brief setup` and `brief`, and `init-strategy`; and `init-python-library`, with `next` in the folder
-it makes, and `workshop` on one session, *Bootcamp S03*, when the release changes them.
+it makes, `workshop` on one session, *Bootcamp S03*, and `known-answer` on one recipe, beside the
+strategy `init-strategy` made, when the release changes them.
 
 **When it changes `init-researcher` or `interview`**, last, say `init-researcher` there again: it
 asks `Another?`, and *Make a second one*, named *Sofia*, makes a second home under `$K` whose files
