@@ -8,7 +8,7 @@ description: >
   in Philosophy/Evolution/. It walks the index and the links before reading, and cites every claim.
   It does NOT write code or answer questions about files outside the library.
 metadata:
-  version: 0.9.5
+  version: 0.9.6
 ---
 
 # Query — answer from what was read, and say where it came from
@@ -58,11 +58,11 @@ note in isolation misses the connections that are the library's value.
    `git commit -m "Query: kept <page>" -- <the same files>`. One plain line, *Saved*, never the
    commands. When `git config --get kaxanuk.autosend` prints `true`, it is also sent to the owner's
    copy on GitHub, as the `backup` skill says. This replaces the *Commit?* question an older home's
-   `AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one plain
-   line — *a name and an e-mail to sign the versions your researcher saves* — sets them in the home
-   only, never invented, and saves again. A home with no `.git/` gets one line, that it keeps no
-   versions yet.
-   In a strategy, never a page: `OBJECTIVE.md` is the strategy's synthesis.
+   `AGENTS.md` describes. A save refused for want of a name asks in one open message, with no
+   options, *What's your name, or what would you like me to call you?*, never invented, and no
+   e-mail; it sets it in the home only, with `user.email` as `"<>"`, an empty address, and saves
+   again. A home with no `.git/` gets one line, that it keeps no versions yet. In a strategy, never
+   a page: `OBJECTIVE.md` is the strategy's synthesis.
 8. **Name the gaps.** If the library does not hold what the question needs, say exactly that, and
    suggest the source that would close it. Suggest it by year, authors and title when
    `references/reading-map.md` in the `read` skill's folder lists one — labelled *a lead from the

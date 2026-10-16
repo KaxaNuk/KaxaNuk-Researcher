@@ -136,10 +136,11 @@ and every file a fix changed, by name, never `--all`, and
 one plain line, never the commands. In a strategy it is a version of its own, with no
 `CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it. When
 `git config --get kaxanuk.autosend` prints `true`, it also goes to the owner's copy on GitHub, as
-the `backup` skill says. If git wants a name and an e-mail, ask for both in one plain line, set
-them in that folder only, never invented, and save again; with no `.git/`, say in one line that the
-folder keeps no versions yet. This replaces an older home's *Commit?* question, and the owner's own
-commit in a strategy.
+the `backup` skill says. If git wants a name, ask in one open message, with no options, *What's your
+name, or what would you like me to call you?*, never invented, and no e-mail; set it in that folder
+only, with `user.email` as `"<>"`, an empty address, and save again; with no `.git/`, say in one
+line that the folder keeps no versions yet. This replaces an older home's *Commit?* question, and
+the owner's own commit in a strategy.
 
 Never touch `Philosophy/`, `Studies/` or the sources. Never fix silently. In a strategy, never write
 at home.

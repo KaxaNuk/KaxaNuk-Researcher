@@ -112,9 +112,10 @@ the `backup` skill's send included, runs as `git -C "<absolute path to the home>
 is open elsewhere: `git add` the study's files, by name, never `--all`, and
 `git commit -m "Study: <subject>" -- <the same files>`; to the owner, *Saved*, in one plain line,
 never the commands. When `git config --get kaxanuk.autosend` prints `true`, it also goes to their
-copy on GitHub, as the `backup` skill says. If git wants a name and an e-mail, ask for both in one
-plain line, set them in the home only, never invented, and save again; with no `.git/`, say in one
-line that the home keeps no versions yet.
+copy on GitHub, as the `backup` skill says. If git wants a name, ask in one open message, with no
+options, *What's your name, or what would you like me to call you?*, never invented, and no e-mail;
+set it in the home only, with `user.email` as `"<>"`, an empty address, and save again; with no
+`.git/`, say in one line that the home keeps no versions yet.
 
 Never move, rename or delete a study on your own, never write outside `Studies/`, and never cite a
 study as a source — in a note, a concept page or a strategy.

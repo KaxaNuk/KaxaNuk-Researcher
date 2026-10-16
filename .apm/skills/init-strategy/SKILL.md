@@ -9,7 +9,7 @@ description: >
   `init-example`), does NOT create a researcher (use `init-researcher`), and does NOT create a
   Python library (use `init-python-library`).
 metadata:
-  version: 0.4.2
+  version: 0.4.3
 ---
 
 # Init strategy — a new strategy, one folder, one repository
@@ -91,9 +91,10 @@ every strategy made from the same package version starts identical.
    git step that fails leaves the copy in place — the script still exits 0 — and prints every
    command that finishes the repository from that step on. If git is missing, install it on the
    owner's go, then run the printed commands in the new folder. If the first commit fails for want
-   of a git identity, ask for *a name and an email to sign the versions your researcher saves*,
-   never invented; set them in that folder only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, then run the printed commands there.
+   of a git identity, ask in one open message, with no options, *What's your name, or what would
+   you like me to call you?*, never invented, and no email; set them in that folder only,
+   `git config user.name "<their answer>"` and `git config user.email "<>"`, an empty address,
+   then run the printed commands there.
 
 4. **Hand over.** Tell the owner to open the new folder in a **new** session and follow its
    `SETUP.md` from step 2. Repeat their words on the idea, if any, for them to give the new session

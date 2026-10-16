@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.15.2] - 2026-10-16
+Your researcher no longer asks for your e-mail: it asks only your name, or what you'd like it to
+call you, in your own words.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The onboarding, on the owner's word** (`init-researcher` 0.8.7, `interview` 2.12.6): when git
+  has no name, `SETUP.md`'s step 1 asks for it in one open chat message, with no box and no
+  options — *What's your name, or what would you like me to call you?* — and asks no e-mail: git
+  gets the address `<>`, which it saves as an empty one, so every version is signed with the name
+  alone. `<>` and not `""`, which Windows PowerShell drops on the way to git. Question 1 asks the
+  name the same way when git has none, *First, your name, or what you'd like me to call you*, and a
+  failed save at the end of the interview takes the name question 1 gave, asking nothing.
+  `ONBOARDING.md` records it, and `FROZEN.json` holds the new fingerprints.
+- **Every save that finds no name in git** asks the same open question and no e-mail:
+  `init-strategy` (0.4.3), `init-python-library` (0.2.2), `init-example` (0.5.3), `next` (1.8.8),
+  `philosophy` (1.3.5), `query` (0.9.6), and the `audit`, `refine`, `study` and `update` commands.
+  `backup` still asks for GitHub's private address when you keep a copy there.
+
 ## [1.15.1] - 2026-10-16
 A new researcher's first question about you is now a plain message with nothing to pick: you tell
 it what you do, and the projects and topics you will work on together.

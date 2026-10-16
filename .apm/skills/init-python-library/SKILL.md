@@ -10,7 +10,7 @@ description: >
   environment or publish anything (`next`, in the new folder, leads there), does NOT create a
   strategy (use `init-strategy`), and does NOT add a source to the library of reading (`read` does).
 metadata:
-  version: 0.2.1
+  version: 0.2.2
 ---
 
 # Init Python library — a new Python library, one folder, one repository
@@ -138,10 +138,10 @@ memory, and the naming adds no text of its own: the status line, the `## [Unrele
    git step that fails leaves the copy in place — the script still exits 0 — and prints every
    command that finishes the repository from that step on. If git is missing, install it on the
    owner's go, then run the printed commands in the new folder. If the first commit fails for want
-   of a git identity, ask for *a name and an email to sign the versions your researcher saves*,
-   never invented. Set them in that folder only, `git config user.name "<name>"` and
-   `git config user.email "<email>"`, then run the printed commands there. The naming waits for that
-   first version.
+   of a git identity, ask in one open message, with no options, *What's your name, or what would
+   you like me to call you?*, never invented, and no email. Set them in that folder only,
+   `git config user.name "<their answer>"` and `git config user.email "<>"`, an empty address,
+   then run the printed commands there. The naming waits for that first version.
 
 4. **Name it**, on the same go, once the copy's first version is saved:
 
