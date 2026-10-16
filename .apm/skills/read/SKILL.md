@@ -8,7 +8,7 @@ description: >
   and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
   questions from the library (use `query`) or rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.12.6
+  version: 0.12.7
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -297,11 +297,11 @@ was read from — by name, never `--all`, never an extract or a PDF, leaving out
 Say it in one plain line, *Saved*, never the commands. When `git config --get kaxanuk.autosend`
 prints `true`, the version is also sent to the owner's copy on GitHub, as the `backup` skill says.
 This replaces the *Commit?* question, and in a strategy the owner's own commit, that an older home's
-`AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one plain
-line — *a name and an e-mail to sign the versions your researcher saves* — sets them in that folder
-only, never invented, and saves again; a folder with no `.git/` gets one line, that it keeps no
-versions yet. In a strategy the version takes no `CHANGELOG.md` entry, version bump or ruff gate:
-the next change-set's entry names it.
+`AGENTS.md` describes. A save refused for want of a name asks in one open message, with no options,
+*What's your name, or what would you like me to call you?*, never invented, and no e-mail; it sets
+it in that folder only, with `user.email` as `"<>"`, an empty address, and saves again; a folder
+with no `.git/` gets one line, that it keeps no versions yet. In a strategy the version takes no
+`CHANGELOG.md` entry, version bump or ruff gate: the next change-set's entry names it.
 
 ## What this skill will not let you do
 
