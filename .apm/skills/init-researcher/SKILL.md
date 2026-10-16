@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.5
+  version: 0.8.6
 ---
 
 # Init researcher — a home for the library, once
@@ -24,8 +24,8 @@ ask them to type a command — you run every one — and say what happens in a s
 note sent with the command it announces: from step 1 to the interview's hand-over, a turn ends only
 on a question. **Done is the interview's first question, never the copy.** After the owner's *Go* on
 `Where?`, steps 4 to 7 run in the same turn, and what the owner reads next is the interview's
-question 1 — in its question box, where the assistant has a question tool — never a message that
-only reports the home is made, never an offer to start the interview. The only questions between are
+question 1 — one open chat message, with no options — never a message that only reports the home
+is made, never an offer to start the interview. The only questions between are
 step 6's own — `Where?` again for a folder the script refuses, git, or a name and an email to sign
 with — and question 1 follows straight after the answer. Without a question tool — Codex, Gemini —
 each question marked *through the question tool* is one chat message, its options numbered beneath
@@ -188,13 +188,12 @@ past four options, *Stop* is left out and the other homes are named in the line 
    it must still ask — the owner's name, another short name for the files — goes into question 1, as
    the interview's *Step 1* says, never a message of its own. Question 1 is what the owner reads
    next, opened by *Your researcher's home is ready at `<full path>`. Now two quick questions about
-   you, so it is yours.* — sent just before question 1's box, in the same turn, where there is a
-   question tool. The interview says the rest; its own hand-over ends the run, or goes on into what
-   the owner picks there.
+   you, so it is yours.* — the first line of question 1's message, in the same turn. The interview
+   says the rest; its own hand-over ends the run, or goes on into what the owner picks there.
 
-   Only when the owner asks to stop — in chat, or in question 1's box — one line: *When you're
+   Only when the owner asks to stop — in chat, at question 1 or before it — one line: *When you're
    ready, open `<full path>` in a new session and say `interview`.* Never offer stopping on your
-   own, nor as an option of question 1.
+   own, nor in question 1.
 
 ## References
 
