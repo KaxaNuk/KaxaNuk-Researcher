@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.15.1] - 2026-10-16
+A new researcher's first question about you is now a plain message with nothing to pick: you tell
+it what you do, and the projects and topics you will work on together.
+
+**What to do differently:** say `update` in your home; the interview you already did stays as it
+is.
+### Changed
+- **The onboarding, on the owner's word** (`interview` 2.12.5, `init-researcher` 0.8.6): question
+  1 is one open chat message on every assistant, with no box and no options, which read as a choice
+  to make beside the text field, and no number; its question alone: *Tell me more about yourself:
+  what you do, and the kinds of projects and topics we'll be working on together.* (*Cuéntame más
+  de ti: qué haces, a qué te dedicas y con qué tipo de proyectos y temas vamos a trabajar
+  juntos.*) *I'm just starting*, *nothing yet* and *later*, typed in any language, still work as
+  answers. A short name for the files, when one is needed, is a line of the same message, and a
+  re-run under `force` asks in the same way to keep the current lines or say what changed. Question
+  2 is unchanged, *2 of 2* included. `SETUP.md` and `ONBOARDING.md` record the run, and
+  `FROZEN.json` holds the new fingerprints.
+
 ## [1.15.0] - 2026-10-14
 Before you trust a method with real data, you can now test it on simulated data whose right answer
 you set, and see how it fails: say *known-answer test for my half-life estimate*.

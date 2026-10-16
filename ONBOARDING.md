@@ -5,7 +5,9 @@
 > user sees, from the language to the end of the first read. `FROZEN.json` fingerprints the files
 > that produce it, and `AGENTS.md` says how a frozen file may change. A change to any of them is a
 > change to this run: show it against this file first. The line on what the researcher is, under
-> *2. The name*, joined the run on the owner's word at 1.11.2.
+> *2. The name*, joined the run on the owner's word at 1.11.2; at 1.15.1, on the owner's word,
+> question 1 became one open chat message with no options and no number, its question alone,
+> asking for the projects and topics too.
 
 What varies from run to run: the language — in Spanish every line is in Spanish, with the headers
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from
@@ -52,13 +54,14 @@ The home is copied and the interview's checks run, with no report and no stop. T
 >
 > I'm Arya, and I'll speak English; tell me if that's wrong.
 
-Question `About you`, a box: *1 of 2 · First, your name — I only have `tester`. Then tell me about
-yourself in a few lines: what you do and what you're working on. Write it below.* — *Nothing yet*
-(*I'm just starting — a complete answer*), *Later* (*Start with just my name*), and the text field.
-Answered, typed: *Arturo, and im working in investment research*.
+Question 1, in the same message, with no box, no options and no number: *First, your name — I only
+have `tester`. Then tell me more about yourself: what you do, and the kinds of projects and topics
+we'll be working on together.* Answered, typed in chat: *Arturo, and im working in investment
+research*.
 
-When git has the owner's full name, the box starts at *Tell me about yourself*, and the line before
-it reads *I'm Arya, I'll work for <owner>, in English; tell me if any of that is wrong*.
+When git has the owner's full name, the question starts at *Tell me more about yourself*, and the
+line before it reads *I'm Arya, I'll work for <owner>, in English; tell me if any of that is
+wrong*.
 
 ## 5. Question 2
 

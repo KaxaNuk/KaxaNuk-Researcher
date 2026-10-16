@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.12.4
+  version: 2.12.5
 ---
 
 # The interview
@@ -36,23 +36,23 @@ researcher should speak. **Nothing about markets is asked**: how they invest and
 researcher, fast: what the researcher can do is said once, at the end, in the hand-over.
 
 **At a glance.** Two questions, about three minutes. Say so in one line before question 1 only when
-the owner ran the interview by name, and open each question with its number, *1 of 2*, *2 of 2*: in
-a call, its first question's first words.
+the owner ran the interview by name, and open question 2 with its number, *2 of 2*: in its call,
+its question's first words. Question 1 carries no number.
 
 | # | Asks | How | Lands in `RESEARCHER.md` under |
 | --- | --- | --- | --- |
-| 1 | what the owner does and what they are working on | one tool call, open: a few lines in their own words | *Works for*, *Out of scope for now*; *Here for*, the *Domains* and the projects, proposed from it |
+| 1 | what the owner does, and the projects and topics they will work on | one chat message, open, with no options: a few lines in their own words | *Works for*, *Out of scope for now*; *Here for*, the *Domains* and the projects, proposed from it |
 | 2 | the researcher's voice | one tool call, one question | *How it speaks* |
 
-**How to ask.** In Claude Code, every question marked *tool* is asked by **calling
+**How to ask.** Question 1 is one open chat message on every assistant, with no options, as its
+item says. In Claude Code, every question marked *tool* is asked by **calling
 `AskUserQuestion`** — the options as its choices, at most four, and *Other*, which the tool always
 offers, as the free-text escape. Call the tool; do not type those questions and their options as
 chat text. **Without such a tool — Codex, Gemini and every other assistant — a tool call is one
 chat message**: its options beneath as a numbered list with *Other — your own words* last, and
 one line saying how to answer: a number, several, *1, 3*, where the question says several, or their
-own words; a message with two questions numbers them, *1: 2 · 2: 1, 3* — question 1 aside, which
-stays one open message, as its item says. Never ask questions 1 and 2 at once, in one message or in
-one call.
+own words; a message with two questions numbers them, *1: 2 · 2: 1, 3*. Never ask questions 1 and
+2 at once, in one message or in one call.
 
 **The package's files.** Where a step below looks for, reads or runs a file under
 `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/`, a package installed from an archive or a
@@ -103,27 +103,25 @@ expand it.
      them.
    - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
      session may be open elsewhere. With none, or a single word that reads as a handle, question 1
-     asks it first, right after *1 of 2*, offering that word if there is one — *First, your name — I
-     only have `marta`. Then tell me about yourself …* (*Primero, tu nombre — solo tengo `marta`.
-     Luego cuéntame de ti …*) — never in a message or a call of its own. Never make one up.
+     asks it first, offering that word if there is one — *First, your name — I only have `marta`.
+     Then tell me more about yourself …* (*Primero, tu nombre — solo tengo `marta`. Luego cuéntame
+     más de ti …*) — never in a message or a call of its own, and never
+     made up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
-     says to ask for another, it is a second question in question 1's call, header `Short name`
-     (`Nombre corto`), with the reason — *`arya` is already taken on this computer: a short name in
-     Latin letters for my files? I stay Arya everywhere else* — and two or three proposals made from
-     the name, its sound in Latin letters for a name in another script, each a slug *Step 4* finds
-     free; *Other* for theirs. Without a question tool, it is one line of question 1's message, its
-     proposals named in it. Never in a message or a call of its own.
+     says to ask for another, it is one line of question 1's message, after its question, with the
+     reason — *`arya` is already taken on this computer: a short name in Latin letters for my
+     files? I stay Arya everywhere else* — and two or three proposals made from the name, its sound
+     in Latin letters for a name in another script, each a slug *Step 4* finds free, named in it, or
+     one of their own. Never in a message or a call of its own.
 
-   When the answer to question 1 — an option picked, or words that leave it out — lacks the owner's
-   name or the name for the files it asked for, ask for it once more, alone, in chat, before
-   question 2.
+   When the answer to question 1 — *later* or *nothing yet* among them — lacks the owner's name or
+   the name for the files it asked for, ask for it once more, alone, in chat, before question 2.
 
    Say in one line what was taken — *I am Arya, I will work for Marta Ruiz, in Spanish; tell me if
    any of that is wrong*, or, while question 1 asks the owner's name, *I am Arya, and I will speak
    Spanish; tell me if that is wrong* — just before question 1, after the line `init-researcher`
-   opens it with when it handed over: chat sent in the same turn just before its call, or, without a
-   question tool, the start of its message. Never a message or a question of its own: from the copy
-   to question 1, the turn ends only on question 1.
+   opens it with when it handed over: the start of question 1's message. Never a message or a
+   question of its own: from the copy to question 1, the turn ends only on question 1.
 
 ## Step 2: The interview
 
@@ -133,20 +131,19 @@ the language marks gender, words about the owner stay neutral: *Explícame sobre
 *soy nuevo* or *nueva*. A work keeps the year, authors and title the reading map gives it, never
 translated.
 
-**Open first, then propose.** Question 1 is open: the owner's own words, typed in its box, are its
-answer, and its options never propose a role, a project, a domain or a view on markets; *I don't
-know* there counts as *Nothing yet*. What the interview proposes from it — *Here for*, the
-domains, the projects, the README's opening paragraph — is written with the answers on a first run,
-and named in the hand-over for the owner to change; on a re-run it is labelled so in the preview,
-whose go is the pick, and a proposal the owner leaves out is never written. What an earlier answer
-said is used, never asked again. Every tool question has at least two options; when the rules below
-leave fewer, ask it in chat.
+**Open first, then propose.** Question 1 is open: the owner's own words, typed in reply, are its
+answer, and it offers no options, so it never proposes a role, a project, a domain or a view on
+markets. What the interview proposes from it — *Here for*, the domains, the projects, the README's
+opening paragraph — is written with the answers on a first run, and named in the hand-over for the
+owner to change; on a re-run it is labelled so in the preview, whose go is the pick, and a proposal
+the owner leaves out is never written. What an earlier answer said is used, never asked again.
+Every tool question has at least two options; when the rules below leave fewer, ask it in chat.
 
 **A re-run** under `force` starts from what is there, and a kept answer is written back verbatim.
-- Question 1 quotes the current *Works for* and *Out of scope for now*, and asks *keep them or
-  change them*: its options *Keep them* (*Déjalos así*), described *both lines as they are, word for
-  word*, and *Nothing yet* (*Nada aún*), described *in place of both*; *Other* takes what changed,
-  and a line it leaves unmentioned is kept.
+- Question 1, still one chat message with no options, quotes the current *Works for* and *Out of
+  scope for now*, and asks to keep them or say what changed: *keep them* (*déjalos así*), in any
+  words, keeps both lines word for word; *nothing yet* stands in place of both, as its item says;
+  anything else is what changed, and a line it leaves unmentioned is kept.
 - In question 2, the current voice gains *(current)* in its label.
 - *Here for*, the *Domains* and the projects' rows the file holds are kept; the preview proposes
   only what question 1 adds, and *Here for* where the file holds none.
@@ -155,25 +152,20 @@ leave fewer, ask it in chat.
   you are reading for* — the reading questions with their numbers, because notes cite them, and
   every *Find first* line.
 
-1. **About you** — *tool, open.* One call, header `About you` (`Sobre ti`), single-select,
-   `Short name` second when *Step 1* asks it. Its question, in their language, short: *1 of 2 ·
-   Tell me about yourself in a few lines: what you do and what you're working on. Write it
-   below.* (*1 de 2 · Cuéntame de ti en unas líneas: a qué te dedicas y en qué estás trabajando.
-   Escríbelo abajo.*) The box's text field is the answer; its two options are quiet ways out,
-   short so they never compete with it:
-   - *Nothing yet* (*Nada aún*), described *I'm just starting — a complete answer* (*estoy
-     empezando — es una respuesta completa*): *Works for* takes the owner's name and *just
-     starting*, in their language;
-   - *Later* (*Después*), described *start with just my name* (*empieza solo con mi nombre*):
-     *Works for* takes the name alone.
+1. **About you** — *chat, open.* One chat message on every assistant, never a tool call and never
+   a numbered list: no box, no options and no number. Its question, in their language, and nothing
+   after it: *Tell me more about yourself: what you do, and the kinds of projects and topics we'll
+   be working on together.* (*Cuéntame más de ti: qué haces, a qué te dedicas y con qué tipo de
+   proyectos y temas vamos a trabajar juntos.*) What the owner writes next is the answer, and any
+   correction to the line before it, unless it asks to stop. Two short answers, in any language,
+   are ways out:
+   - *I'm just starting*, *nothing yet* or *I don't know* is **Nothing yet**: *Works for* takes the
+     owner's name and *just starting*, in their language;
+   - *later* or *skip* is **Later**: *Works for* takes the name alone.
 
    With either, *Out of scope for now* is *None yet*, and the proposals are fixed, since neither
    says anything about markets: *Here for* is *Organise what I read, and help with my projects*
-   alone, the domains Business and AI, and no project row. *Other* takes the answer itself, and any
-   correction to the line before it. A box closed unanswered is not a stop: what the owner writes
-   next is the answer, unless it asks to stop. **Without a question tool**, question 1 stays one
-   open chat message, never a numbered list, its last sentence *"I'm just starting" is a complete
-   answer* in place of *Write it below*; *later* or *skip*, in any language, is *Later*.
+   alone, the domains Business and AI, and no project row.
 
    Three proposals come from it, never asked: **a row for each project** it names; **the
    domains**, up to four the answer points to — Finance among them when it says they invest, study
