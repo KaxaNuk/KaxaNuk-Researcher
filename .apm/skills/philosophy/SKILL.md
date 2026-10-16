@@ -11,7 +11,7 @@ description: >
   does) or write RESEARCHER.md beyond Find first and those rules, and never says buy, sell, trim,
   add or hold.
 metadata:
-  version: 1.3.4
+  version: 1.3.5
 ---
 
 # Philosophy — the owner's view, in their own words, round by round
@@ -428,10 +428,10 @@ when it changed — and `git commit -m "Philosophy: round <N>, <level>" -- <the 
 `field` in place of the level in a field round. Say it in one plain line, *Saved*, never the
 commands. When `git config --get kaxanuk.autosend` prints `true`, the version is also sent to the
 owner's copy on GitHub, as the `backup` skill says. This replaces the *Commit?* question an older
-home's `AGENTS.md` describes. A save refused for want of a name and an e-mail asks for both in one
-plain line — *a name and an e-mail to sign the versions your researcher saves* — sets them in the
-home only, never invented, and saves again. A home with no `.git/` gets one line, that it keeps no
-versions yet.
+home's `AGENTS.md` describes. A save refused for want of a name asks in one open message, with no
+options, *What's your name, or what would you like me to call you?*, never invented, and no e-mail;
+it sets it in the home only, with `user.email` as `"<>"`, an empty address, and saves again. A home
+with no `.git/` gets one line, that it keeps no versions yet.
 
 ## 12. Hand over
 

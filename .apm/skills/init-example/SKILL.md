@@ -8,7 +8,7 @@ description: >
   strategy of the owner's own (use `init-strategy`), does NOT bring back a template file a strategy
   lacks (`init-strategy`'s script with `--only` does), and never builds on the example.
 metadata:
-  version: 0.5.2
+  version: 0.5.3
 ---
 
 # Init example — a worked example, whole or one piece at a time
@@ -99,10 +99,10 @@ or describe an example from memory.
    own: pass `--package <its install folder>`. A git step that fails leaves the copy in place — the
    script still exits 0 — and prints every command that finishes the repository from that step on.
    If git is missing, install it on the owner's go, then run the printed commands in the new
-   folder. If the first commit fails for want of a git identity, ask for *a name and an email to
-   sign the versions your researcher saves*, never invented; set them in that folder only,
-   `git config user.name "<name>"` and `git config user.email "<email>"`, then run the printed
-   commands there.
+   folder. If the first commit fails for want of a git identity, ask in one open message, with no
+   options, *What's your name, or what would you like me to call you?*, never invented, and no
+   email; set them in that folder only, `git config user.name "<their answer>"` and
+   `git config user.email "<>"`, an empty address, then run the printed commands there.
 
 5. **For one piece, say what it shows.** Everything between the markers in what was copied is the
    example's own work, and so, whole, is every file only the example has — for `golden-flow`, its

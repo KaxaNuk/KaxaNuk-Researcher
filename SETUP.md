@@ -74,14 +74,16 @@ PowerShell, `& "$HOME/.local/bin/uv"` — and git at `C:\Program Files\Git\cmd\g
 command that runs git itself, APM and `scaffold.py` among them, finds it when
 `C:\Program Files\Git\cmd` is put first on the path in that same command.
 
-Every folder the researcher makes keeps dated versions of its files, each signed with a name and
-an email. If `git config --global user.name` prints nothing, ask the user for both in plain words —
-*a name and an email to sign the versions your researcher saves* — **never invent them**, and set
-them:
+Every folder the researcher makes keeps dated versions of its files, each signed with a name. If
+`git config --global user.name` prints nothing, ask for it in one open chat message, with no box
+and no options — *What's your name, or what would you like me to call you?* (*¿Cómo te llamas, o
+cómo quieres que te llame?*) — **never invent it**, and set it. No email is asked: when
+`git config --global user.email` prints nothing too, set it to `<>`, an empty address that every
+shell passes as it is, so versions are signed with the name alone:
 
 ```bash
-git config --global user.name "<their name>"
-git config --global user.email "<their email>"
+git config --global user.name "<their answer>"
+git config --global user.email "<>"
 ```
 
 ## Step 2 — Install the package
@@ -133,8 +135,7 @@ they will work on, then the researcher's voice — in the user's language; what 
 the domains and the projects are proposed from what they say. Nothing about how they invest is
 asked here. It writes `RESEARCHER.md`, the agent that makes the researcher callable by name and the
 skill that puts it in every session, installs them for the user and saves a first version — the
-user answers the two questions, and nothing more is asked before the hand-over but a name and an
-email to sign with, when git has none.
+user answers the two questions, and nothing more is asked before the hand-over.
 
 ## Step 6 — Hand over
 

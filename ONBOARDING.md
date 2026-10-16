@@ -7,7 +7,8 @@
 > change to this run: show it against this file first. The line on what the researcher is, under
 > *2. The name*, joined the run on the owner's word at 1.11.2; at 1.15.1, on the owner's word,
 > question 1 became one open chat message with no options and no number, its question alone,
-> asking for the projects and topics too.
+> asking for the projects and topics too; at 1.15.2, on the owner's word, the name is asked as one
+> open question, *or what you'd like me to call you*, and no e-mail is ever asked.
 
 What varies from run to run: the language — in Spanish every line is in Spanish, with the headers
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from
@@ -20,7 +21,9 @@ How it began: the package had just been installed for the test user, as `SETUP.m
 and the run was `init-researcher` from its first step, the language; so `Where?`'s *Go* says
 nothing about bringing the package up to date. From the README's pasted line, `SETUP.md` runs
 first — git, uv and the install, a progress line each — and opens the name question with *The
-package is installed; now your researcher.*
+package is installed; now your researcher.* When git has no name at all, `SETUP.md`'s step 1 asks
+for it before the install, in one open chat message with no options — *What's your name, or what
+would you like me to call you?* — and asks no e-mail: versions are signed with the name alone.
 
 ## 1. The language
 
@@ -54,10 +57,10 @@ The home is copied and the interview's checks run, with no report and no stop. T
 >
 > I'm Arya, and I'll speak English; tell me if that's wrong.
 
-Question 1, in the same message, with no box, no options and no number: *First, your name — I only
-have `tester`. Then tell me more about yourself: what you do, and the kinds of projects and topics
-we'll be working on together.* Answered, typed in chat: *Arturo, and im working in investment
-research*.
+Question 1, in the same message, with no box, no options and no number: *First, your name, or what
+you'd like me to call you — I only have `tester`. Then tell me more about yourself: what you do,
+and the kinds of projects and topics we'll be working on together.* Answered, typed in chat:
+*Arturo, and im working in investment research*.
 
 When git has the owner's full name, the question starts at *Tell me more about yourself*, and the
 line before it reads *I'm Arya, I'll work for <owner>, in English; tell me if any of that is

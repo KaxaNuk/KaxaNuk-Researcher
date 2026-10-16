@@ -9,7 +9,7 @@ description: >
   of the install SETUP.md walks through; never per strategy. It does NOT create a strategy (use
   `init-strategy`), nor ask how the owner works or invests (`philosophy` does, later).
 metadata:
-  version: 0.8.6
+  version: 0.8.7
 ---
 
 # Init researcher — a home for the library, once
@@ -25,9 +25,9 @@ note sent with the command it announces: from step 1 to the interview's hand-ove
 on a question. **Done is the interview's first question, never the copy.** After the owner's *Go* on
 `Where?`, steps 4 to 7 run in the same turn, and what the owner reads next is the interview's
 question 1 — one open chat message, with no options — never a message that only reports the home
-is made, never an offer to start the interview. The only questions between are
-step 6's own — `Where?` again for a folder the script refuses, git, or a name and an email to sign
-with — and question 1 follows straight after the answer. Without a question tool — Codex, Gemini —
+is made, never an offer to start the interview. The only questions between are step 6's own —
+`Where?` again for a folder the script refuses, git, or a name to sign with — and question 1
+follows straight after the answer. Without a question tool — Codex, Gemini —
 each question marked *through the question tool* is one chat message, its options numbered beneath
 and *Other — your own words* last.
 
@@ -173,10 +173,10 @@ past four options, *Stop* is left out and the other homes are named in the line 
    it says git was not found** and this conversation installed git, run the printed commands in the
    new folder with git first on the path, as above — never install it again, never ask. Only when
    git is truly missing, install it on the owner's go, then run the printed commands there. If the
-   first commit fails for want of a git identity, ask for *a name and an email to sign the versions
-   your researcher saves*, never invented; set them in that folder only,
-   `git config user.name "<name>"` and `git config user.email "<email>"`, then run the printed
-   commands there. Then step 7 at once, in the same turn.
+   first commit fails for want of a git identity, ask in one open message, with no options, *What's
+   your name, or what would you like me to call you?*, never invented, and no email; set them in
+   that folder only, `git config user.name "<their answer>"` and `git config user.email "<>"`, an
+   empty address, then run the printed commands there. Then step 7 at once, in the same turn.
 
 7. **Run the interview now**, in this same turn. Read the whole `interview`
    skill, not only its steps — as a skill when this session lists it, or else its file: `SKILL.md`

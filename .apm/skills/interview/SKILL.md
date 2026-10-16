@@ -9,7 +9,7 @@ description: >
   or init-researcher walk through. "interview force" starts over. It does NOT ask how the owner
   invests or their rules (use `philosophy`), nor what their reading is for (the first `read` asks).
 metadata:
-  version: 2.12.5
+  version: 2.12.6
 ---
 
 # The interview
@@ -103,10 +103,10 @@ expand it.
      them.
    - **The owner's name**: `git -C "<absolute path to the home>" config user.name`, since the
      session may be open elsewhere. With none, or a single word that reads as a handle, question 1
-     asks it first, offering that word if there is one — *First, your name — I only have `marta`.
-     Then tell me more about yourself …* (*Primero, tu nombre — solo tengo `marta`. Luego cuéntame
-     más de ti …*) — never in a message or a call of its own, and never
-     made up.
+     asks it first, offering that word if there is one — *First, your name, or what you'd like me to
+     call you — I only have `marta`. Then tell me more about yourself …* (*Primero, tu nombre o cómo
+     quieres que te llame — solo tengo `marta`. Luego cuéntame más de ti …*) — never in a message or
+     a call of its own, and never made up.
    - **The name for the files**, the slug *Step 4* makes from the researcher's name. When *Step 4*
      says to ask for another, it is one line of question 1's message, after its question, with the
      reason — *`arya` is already taken on this computer: a short name in Latin letters for my
@@ -472,10 +472,9 @@ run these yourself — the owner types nothing, and may not know what any of the
    home that lacked the agent or the skill, with no second question. Say *Saved* in one plain line,
    never the commands; when `git -C "<absolute path to the home>" config --get kaxanuk.autosend`
    prints `true`, send it as the `backup` skill says, with `git -C "<absolute path to the home>"`
-   for `git`. If the commit fails for want of a git identity, ask for *a name and an email to sign
-   the versions your researcher saves*, never invented; set them in the home only,
-   `git -C "<absolute path to the home>" config user.name "<name>"` and the same for `user.email`,
-   and save again.
+   for `git`. If the commit fails for want of a git identity, nothing is asked: set it in the home
+   only, `git -C "<absolute path to the home>" config user.name "<owner>"`, the owner's name
+   *Works for* holds, and the same for `user.email` as `"<>"`, an empty address, and save again.
 3. **Move the weekly version check a week on**, when `init-researcher` handed over after its update
    succeeded, or skipped it because the package was installed in this conversation — the package is
    the newest — as `update` does, and never say it:
