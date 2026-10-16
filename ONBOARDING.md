@@ -8,7 +8,8 @@
 > *2. The name*, joined the run on the owner's word at 1.11.2; at 1.15.1, on the owner's word,
 > question 1 became one open chat message with no options and no number, its question alone,
 > asking for the projects and topics too; at 1.15.2, on the owner's word, the name is asked as one
-> open question, *or what you'd like me to call you*, and no e-mail is ever asked.
+> open question, *or what you'd like me to call you*, and no e-mail is ever asked — `read`'s own
+> save included, at 1.15.3.
 
 What varies from run to run: the language — in Spanish every line is in Spanish, with the headers
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from

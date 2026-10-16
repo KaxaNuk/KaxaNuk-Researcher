@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.15.3] - 2026-10-16
+Reading a document no longer asks for your e-mail either: when git has no name, it asks only your
+name, or what you'd like it to call you.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The first read, on the owner's word** (`read` 0.12.7): a save refused for want of a name asks
+  the same open question as every other save since 1.15.2 — *What's your name, or what would you
+  like me to call you?* — with no options and no e-mail, and git gets the empty address `<>`.
+  `ONBOARDING.md` records it, and `FROZEN.json` holds the new fingerprints.
+
 ## [1.15.2] - 2026-10-16
 Your researcher no longer asks for your e-mail: it asks only your name, or what you'd like it to
 call you, in your own words.
