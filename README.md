@@ -150,7 +150,7 @@ such as the daily brief, which is never saved.
 
 | Skill | What it does |
 | --- | --- |
-| `read` | files a source into the library, a note per chapter you pick; in a strategy, into its `Bibliotheca/` |
+| `read` | files a source into the library, a note per chapter you pick — a scan made searchable first, on your go; in a strategy, into its `Bibliotheca/` |
 | `query <question>` | answers from the library, every claim cited |
 | `init-researcher`, `init-strategy`, `init-example`, `init-python-library` | make your home, a strategy, the worked example or a Python library, copied by a script, never from memory |
 | `interview` | two short questions about you, then `RESEARCHER.md` and the agent and skill that make it yours; `interview force` starts over |

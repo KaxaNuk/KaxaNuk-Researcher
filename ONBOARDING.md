@@ -9,7 +9,10 @@
 > question 1 became one open chat message with no options and no number, its question alone,
 > asking for the projects and topics too; at 1.15.2, on the owner's word, the name is asked as one
 > open question, *or what you'd like me to call you*, and no e-mail is ever asked — `read`'s own
-> save included, at 1.15.3.
+> save included, at 1.15.3. At 1.17.0, on the owner's word, `read` offers a scan a searchable copy,
+> reads a page's image for what an extract dropped, and lists its sources and updates existing
+> concept pages by script; this run is unchanged, its paper having a text layer and its concept
+> pages being new.
 
 What varies from run to run: the language — in Spanish every line is in Spanish, with the headers
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from
