@@ -73,7 +73,7 @@ From another folder, the write is saved in the home, with `git -C "<the home>"`.
 
 | Folder | What it holds | The researcher may |
 | --- | --- | --- |
-| `Sources/` | what the owner reads — PDFs, papers, decks, clippings, transcripts | **read, and copy a source in on the go — the one write there.** When the owner attaches a file in chat or names one on their computer, the researcher may copy it in after saying where it goes and getting the go: `Sources/Papers/` for a paper, `Sources/Books/` for a book, `Sources/Clippings/` for an article, notes or a page saved as PDF. It keeps its own file name — a project's file takes the name *Joining other projects* gives it — and never goes over an existing file. When an attachment has no path the assistant can read, ask where it is saved — Downloads, usually — and copy it from there. A source there is never moved, renamed, edited or deleted |
+| `Sources/` | what the owner reads — PDFs, papers, decks, clippings, transcripts | **read, and copy a source in on the go, or make a scan's searchable copy beside it on the go — the only writes there.** When the owner attaches a file in chat or names one on their computer, the researcher may copy it in after saying where it goes and getting the go: `Sources/Papers/` for a paper, `Sources/Books/` for a book, `Sources/Clippings/` for an article, notes or a page saved as PDF. It keeps its own file name — a project's file takes the name *Joining other projects* gives it — and never goes over an existing file. When an attachment has no path the assistant can read, ask where it is saved — Downloads, usually — and copy it from there. A scan's searchable copy, `<its name> (OCR).pdf`, is written beside it by the `read` skill's `scripts/ocr_pdf.py`, never over a file, as `read` offers it. A source there is never moved, renamed, edited or deleted |
 | `Extracts/` | the text the `read` skill's script pulls out of the PDFs in `Sources/` — one file per chapter, a marker before every page | **write, through the `read` skill's `scripts/extract.py` only.** A regenerable cache, gitignored: never cited, never edited by hand |
 | `Knowledge/` | what the researcher read — one note per paper, one folder per book with a note per chapter read — and its wiki: one concept page per idea, grouped by domain folder | **read and write** — this is the researcher's own work |
 | `Knowledge/INDEX.md` | the single index of every note and page | rewrite, only through `read` and `refresh-index`; one line from `query` when the owner keeps a synthesis page |
@@ -134,13 +134,14 @@ in `Philosophy/`, and never a note, which is what the researcher writes from it.
   library and writing nothing in it but what its go allows; `--help` has each one's options.
   `unread_sources.py` lists every source no note's `local_copy` names, which `next` reads;
   `check_library.py` makes `audit`'s checks the same way on every run; `check_numbers.py` looks
-  each figure a note states up on the page it cites, for `audit deep`. `render_pages.py` renders a
-  PDF's page, or a part of one, as an image outside the home, for what the assistant's PDF reader
-  cannot show — on Windows it needs Poppler's `pdftoppm` — such as the contents pages `read`
-  reads of a PDF with no outline, or a figure `audit deep` checks. `update_concept_pages.py` is how
-  `read`, and an approved `audit` fix, update an existing concept page: a spec of what each page
-  gains, on standard input, its diff shown before `--write`, `updated` set and nothing else
-  touched.
+  each figure a note states up on the page it cites, for `audit deep`. `ocr_pdf.py` makes a
+  scan's searchable copy, on the owner's go. `render_pages.py` renders a PDF's page, or a part of
+  one, as an image outside the home: the contents pages `read` reads of a PDF with no outline,
+  which the assistant's PDF reader cannot show on Windows without Poppler's `pdftoppm`; the page
+  images `read` reads for what an extract dropped or OCR may have misread; and a figure `audit
+  deep` checks. `update_concept_pages.py` is how `read`, and an approved `audit` fix, update an
+  existing concept page: a spec of what each page gains, on standard input, its diff shown before
+  `--write`, `updated` set and nothing else touched.
 - **A delegate's draft is checked before it reaches `Knowledge/`.** When `read` hands chapters to
   delegates, each draft is staged outside the home, in the system's temporary folder, and checked
   against its extract before the plan: `check_numbers.py` on the draft, with the library's
@@ -308,7 +309,7 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
 
 ## Hard don'ts
 
-- Don't write into `Sources/` except the one copy its row allows, never over an existing file, and
+- Don't write into `Sources/` except the two copies its row allows, never over an existing file, and
   never move, rename, edit or delete a source there. Don't write into `Philosophy/` except through
   its two writers, as its row says.
 - Don't get past a download that refuses. A source behind a login (401), a refusal (403), a busy or
