@@ -223,8 +223,9 @@ this folder, nothing else.
     `check <assistant> <slug>` exits 1 — is to have the package and the home installed for it, as
     *Step 4* item 6 does. One the owner does not use on this computer is theirs to leave out, by
     *Change something*; it stays in the file.
-  - **`versions:`**, where this home's git config has no `user.email` or no `kaxanuk.autosend` and
-    the file has one, is to be set from it.
+  - **`versions:`**, where this home's own git config — `git config --local`, since the global
+    `user.email` a new computer's setup writes signs every folder — has no `user.email` or no
+    `kaxanuk.autosend` and the file has one, is to be set from it.
   - **`brief:`**, when its `parts` are not empty and this place has no task of this home's — on
     the desktop app, `list_scheduled_tasks` shows none whose prompt names this home's `Briefs/` —
     is to be scheduled again: `brief setup` follows the update in the same session, from the saved

@@ -235,11 +235,12 @@ or on a rejection.
    file, as *What it writes* says: `parts`, `measures`, `questions`, `week_day` and `week_folders`
    as the plan confirmed; `when` as scheduled on the desktop app, left as it was elsewhere; and
    `connectors`, the ones *Work* reads that were found reading. Nothing else in the file changes.
-   Then save it alone — `git add settings.yml`, `git commit -m "Brief: settings"` — said as
-   *Saved*, and sent when `git config --get kaxanuk.autosend` prints `true`, as the `backup` skill
-   says. If git wants a name, ask in one open message, with no options, *What's your name, or what
-   would you like me to call you?*, never invented, and no e-mail; set it in the home only, with
-   `user.email` as `"<>"`, and save again.
+   Then save it alone, when it changed — `git add settings.yml`, `git commit -m "Brief: settings"`
+   — said as *Saved*, and sent when `git config --get kaxanuk.autosend` prints `true`, as the
+   `backup` skill says; saved choices confirmed as they were leave nothing to save. If git wants a
+   name, ask in one open message, with no options, *What's your name, or what would you like me to
+   call you?*, never invented, and no e-mail; set it in the home only, with `user.email` as `"<>"`,
+   and save again.
 
 ### Step 5: Hand over
 

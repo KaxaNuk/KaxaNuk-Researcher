@@ -35,19 +35,22 @@ assistant, say `update` there.
 ### Changed
 - **`update`**: *Step 2* reads `settings.yml` against this place — a home without the file gets
   it, filled from this computer; the assistant in use is added; each listed assistant missing here
-  is installed for; the git settings are set; a brief with no task here is scheduled again by
-  `brief setup`, which follows with only its go; each connector the session lacks is named with
+  is installed for; the git settings the home's own git config lacks are set — a global e-mail,
+  which a new computer's setup writes, does not count; a brief with no task here is scheduled again
+  by `brief setup`, which follows with only its go; each connector the session lacks is named with
   its fix. *Step 4* gains item 6, *This place, from `settings.yml`*.
-- **`brief`** (1.2.0): `brief setup` writes its choices to `settings.yml` and saves that file
-  alone; saved choices that can all run here skip its questions, leaving only the go; a connector
-  the file names and the session lacks is named. `brief` by name follows the file where nothing is
-  scheduled, in place of *the choices are kept nowhere*.
-- **`backup`** (0.2.0): `versions:` and `assistants:` go in `settings.yml`, saved before the send;
-  *Step 10* clones and runs `update` in the same session, which sets the new computer up from the
-  file, so the e-mail and *Send?* are asked again only when it leaves them empty.
+- **`brief`** (1.2.0): `brief setup` writes its choices to `settings.yml` and saves that file alone
+  when they changed; saved choices that can all run here skip its questions, leaving only the go; a
+  connector the file names and the session lacks is named. `brief` by name follows the file where
+  nothing is scheduled, in place of *the choices are kept nowhere*.
+- **`backup`** (0.2.0): `versions:` and `assistants:` go in `settings.yml`, saved and sent to the
+  copy — a first copy too, whatever *Send?* chose, since its first send comes before the e-mail and
+  that choice; *Step 10* clones and runs `update` in the same session, which sets the new computer
+  up from the file, so the e-mail and *Send?* are asked again only when it leaves them empty.
 - **`next`** (1.10.0): a new row 4, *this place matches `settings.yml`*, names `update`, or a
   connector to connect again after a new account; an empty value names nothing, so a new home
-  passes. Rows 4 to 6 are now 5 to 7.
+  passes, and the e-mail and sending choice count only in the home's own git config. Rows 4 to 6
+  are now 5 to 7, and *setup: all good* counts all eight.
 - **`README.md`**: *Take it with you* says `update` and the second line; *What stays behind* names
   the skills turned on in an account and `bring-home`; the skills table gains `bring-home`.
 - **`CONTRIBUTING.md`**: the install deploys 25 skills.

@@ -193,7 +193,10 @@ go, and on *Step 3*'s *Send* when the file lags, `backup` writes two parts of it
 as a diff and nothing else touched: `versions:` — `email` as *Step 6* chose, `"<>"` for none, and
 `send` as *Step 7* chose — and `assistants:`, adding each one `~/.apm/apm.yml` lists under
 `targets:` that the home's `apm.yml` lists too, read with the file tool. Then it saves that file
-alone, `git add settings.yml` and `git commit -m "Backup: settings"`, before the send. A home
+alone, `git add settings.yml` and `git commit -m "Backup: settings"`, and a send carries it: on
+*Step 3*'s *Send*, the one it makes; on a first copy, whose first send comes before *Step 6*'s
+e-mail and *Step 7*'s setting, one more send as *Step 8* does, whatever *Send?* chose — the owner
+asked for this copy, and it holds their choices only once that version is in it. A home
 without the file gets it first from the template, by the script in the `init-strategy` skill's
 folder, run from the home's root, never written from memory —
 `scaffold.py researcher . --only settings.yml`, as `update` runs it. A strategy has no
