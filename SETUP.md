@@ -5,7 +5,9 @@ assistant — Claude, Codex, Gemini, Cursor, Copilot — that was told *please i
 me and set up my researcher, start to finish in this conversation — install everything it needs
 without asking first:* `https://github.com/KaxaNuk/KaxaNuk-Researcher`, or, from an older README,
 *please install this repo for me, with everything it needs* or *please help me install this repo*:
-all three ask for the same, a researcher set up from start to finish.
+all three ask for the same, a researcher set up from start to finish. Told instead *please install
+this repo for me and bring back my researcher from my private copy on GitHub*, it asks for the same
+install and a researcher brought back, not made: step 3 says how.
 
 > **For the agent, read this first.**
 >
@@ -49,6 +51,7 @@ from an archive or a folder sits at `$HOME/.apm/apm_modules/_local/KaxaNuk-Resea
 | step 6, `philosophy`, only if the user takes it now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/philosophy/SKILL.md` |
 | step 6, `init-example`, only if the user asks for the worked example now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-example/SKILL.md` |
 | step 6, `study`, only if the user starts the study now | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/study.prompt.md` |
+| step 3, a researcher brought back from GitHub | `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/backup/SKILL.md`, its *Step 10*, then `$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/prompts/update.prompt.md` |
 
 ---
 
@@ -107,6 +110,13 @@ install on its own. Go on to step 3 in the same turn, and let your next message 
 3's first question, opening with one line: *The package is installed; now your researcher.*
 
 ## Step 3 — The researcher's name, and where it lives
+
+**A researcher brought back.** When the user asked to bring one back — the README's second line, or
+in their own words, *I have one on GitHub*, *it's a new computer* — nothing is made: follow the
+`backup` skill's *Step 10* from its clone, in this conversation. It asks for the copy's address,
+clones it into a short folder and runs `update` there, which sets this computer up from the home's
+`settings.yml`; then hand over as *Use <Name>* below does. Steps 4 and 5 are skipped: the home and
+its interview came back with it.
 
 First look in `$HOME/.apm/apm_modules/_local/` for a home already made — a folder with a filled
 `RESEARCHER.md` — and at a researcher's skill loaded in this session, which names its home. With
@@ -175,10 +185,13 @@ finished strategy to read first.
 `uvx --from apm-cli==0.33.0 apm update -g`, to every folder at once, then what changed in the
 home's own files. Always with `-g`: a bare `apm update` outside an APM project updates APM itself.
 
-**A new machine, or another assistant.** Step 2 with the new target, which adds it to APM's list;
-then install the home, once, the assistant added under `targets:` in the home's `apm.yml` first,
-OpenCode aside: `uvx --from apm-cli==0.33.0 apm install -g "<the home>"`; then the done check's
-`check`, with that target.
+**Another assistant.** Step 2 with the new target, which adds it to APM's list; then install the
+home, once, the assistant added under `targets:` in the home's `apm.yml` first, OpenCode aside:
+`uvx --from apm-cli==0.33.0 apm install -g "<the home>"`; then the done check's `check`, with that
+target. `update`, in the home, does this for every assistant its `settings.yml` lists.
+
+**A new machine.** Steps 1 and 2, then the researcher brought back, as step 3's first paragraph
+says: nothing is made again.
 
 ---
 
@@ -242,7 +255,7 @@ in its `RESEARCHER.md`. Unless the user already asked for another — *a test re
 one*, *another one*, in any words — ask once, through the question tool, `Another?` (`¿Otro?`):
 
 - *Use <Name> (recommended)* — run step 2 for this assistant, if this conversation has not run it,
-  install the home and run `check` as *A new machine, or another assistant* says, and hand over:
+  install the home and run `check` as *Another assistant* says, and hand over:
   who and where, as the interview's hand-over says it, and *say `next`*;
 - *Make a second one* — a test, or another person on this computer: a second library, and a second
   researcher in every session until it is removed — then `init-researcher` from its step 2, as step

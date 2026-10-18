@@ -6,6 +6,70 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.19.0] - 2026-10-18
+Your researcher now keeps in its home the choices a computer or an account would keep, so a new
+computer, account or assistant is set up again with one word, `update`; and `bring-home` brings
+what an assistant remembered on its own into the home.
+
+**What to do differently:** say `update` in your home: it brings `settings.yml`, filled from this
+computer — the assistants you use, how your versions are signed and sent, your brief — shown for
+your go. On a new computer, paste the README's second line; under another account or on another
+assistant, say `update` there.
+### Added
+- **`settings.yml`**, in the home (home template 0.30.0): the assistants the owner uses, how
+  versions are signed and sent, and the daily brief with the connectors it reads — never a key, a
+  token, a password or a holding. Three skills write it, each its own part, on its own go:
+  `backup`, `brief setup` and `update`.
+- **`bring-home`** (0.1.0), a new skill: reads what the assistant in use remembered on its own —
+  Claude Code's auto memory and user instructions, Codex's memories and `AGENTS.md`, Gemini's
+  `GEMINI.md`, Copilot's instruction files; Copilot Memory and Cursor's rules pasted by the owner —
+  for the folder the session is in, sorts each item as the home's *What is learned goes home* does,
+  and writes the ones the owner picks into `RESEARCHER.md`, plan first. It never edits the
+  assistant's memory, never opens another project's, a transcript, a credential or a settings
+  file, and never brings a secret or a holding. The locations are from each assistant's
+  documentation on 2026-10-18; Claude Code's layout was also checked on a computer that day.
+- **A way back** (`SETUP.md`, on the owner's word): a second line to paste,
+  *bring back my researcher from my private copy on GitHub*, which installs the package and
+  follows `backup`'s *Step 10* — clone, then `update` — instead of making a new home. *Later*
+  splits into *Another assistant* and *A new machine*. The README's *Install* gives the line.
+### Changed
+- **`update`**: *Step 2* reads `settings.yml` against this place — a home without the file gets
+  it, filled from this computer; the assistant in use is added; each listed assistant missing here
+  is installed for; the git settings the home's own git config lacks are set — a global e-mail,
+  which a new computer's setup writes, does not count; a brief with no task here is scheduled again
+  by `brief setup`, which follows with only its go; each connector the session lacks is named with
+  its fix. *Step 4* gains item 6, *This place, from `settings.yml`*.
+- **`brief`** (1.2.0): `brief setup` writes its choices to `settings.yml` and saves that file alone
+  when they changed; saved choices that can all run here skip its questions, leaving only the go; a
+  connector the file names and the session lacks is named. `brief` by name follows the file where
+  nothing is scheduled, in place of *the choices are kept nowhere*.
+- **`backup`** (0.2.0): `versions:` and `assistants:` go in `settings.yml`, saved and sent to the
+  copy — a first copy too, whatever *Send?* chose, since its first send comes before the e-mail and
+  that choice; *Step 10* clones and runs `update` in the same session, which sets the new computer
+  up from the file, so the e-mail and *Send?* are asked again only when it leaves them empty.
+- **`next`** (1.10.0): a new row 4, *this place matches `settings.yml`*, names `update`, or a
+  connector to connect again after a new account; an empty value names nothing, so a new home
+  passes, and the e-mail and sending choice count only in the home's own git config. Rows 4 to 6
+  are now 5 to 7, and *setup: all good* counts all eight.
+- **`README.md`**: *Take it with you* says `update` and the second line; *What stays behind* names
+  the skills turned on in an account and `bring-home`; the skills table gains `bring-home`.
+- **`CONTRIBUTING.md`**: the install deploys 25 skills.
+- **Frozen files**, on the owner's word: `SETUP.md`, as above; `ONBOARDING.md`'s header gains one
+  sentence saying so, its run unchanged, since a newcomer never reaches the new lines;
+  `FROZEN.json` moves both fingerprints and names the change in its note.
+
+## [1.18.3] - 2026-10-18
+The README now says how your researcher moves to another Claude account, another computer or
+another assistant, and what stays behind.
+
+**What to do differently:** nothing.
+### Changed
+- **`README.md`**: *Take it with you*, after *Why not just use Claude or Codex?*: why the home
+  moves, and what you do for another Claude account on the same computer, another computer and
+  another assistant, each as the file that does it says — `brief setup`, `backup`'s *Step 10* with
+  `update`, and `SETUP.md`'s *One researcher per person* — and what stays with an account.
+  The bullet *You.* points to it, in place of *moving from Claude to Codex keeps all of it*.
+
 ## [1.18.2] - 2026-10-18
 The changelog now dates 1.18.0 and 1.18.1 on the day they were released.
 

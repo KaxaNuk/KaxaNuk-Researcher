@@ -32,10 +32,26 @@ plain assistant does not keep from one conversation to the next, or from one fol
 - **Your library.** What you read becomes notes on your computer; answers cite them and name what
   is missing.
 - **You.** Your questions, your voice and your rules, in your own files: the same researcher in
-  every folder and on each assistant you install it for, so moving from Claude to Codex keeps all
-  of it.
+  every folder and on each assistant you install it for, and it moves with you, as *Take it with
+  you* says just below.
 - **A method.** A plan and your go before it writes anything, a saved version of each change, and,
   for investing, your claims and what would prove them wrong before any test.
+
+**Take it with you.** Your researcher is its home: a folder of plain files on your computer, yours,
+with a saved version of each change, and a private copy on your GitHub once you ask `backup` for
+one. No assistant's account holds it, and its `settings.yml` keeps the choices a computer would
+otherwise keep — the assistants you use, how versions are sent, your brief — so it moves:
+
+| To | What you do |
+| --- | --- |
+| **another Claude account**, same computer | nothing for your researcher: the package and your researcher are installed for your computer's user, in `~/.claude/`, not for an account. The connectors your brief reads are the account's: say hello and your researcher names the ones to connect in the new account (on a company account, an administrator may have to allow them); then `brief setup` checks that each can read, asking only for your go |
+| **another computer** | paste the second line under *Install*: it installs the package, brings your home back from your copy, and `update` sets the computer up from `settings.yml` — every assistant you use, how versions are sent, and your brief, asking only for your go. The PDFs and other files `Sources/` keeps out of git, for copyright, and `Portfolio/`, your holdings, are never in the copy: bring them from wherever you keep them. `Extracts/` is made again from the PDFs, and `Briefs/` stays on the old computer. A strategy has its own copy, and its clone follows its own `SETUP.md` |
+| **another assistant** — Codex, Gemini, Cursor, Copilot | add it under `assistants:` in your home's `settings.yml` and say `update`, or open it and paste the line under *Install*: either installs the package and your home for that assistant. On Codex the skills and your researcher's agent arrive, not the commands: name one, `update` or `study`, and it follows the command's file; with no question tool there, as on Gemini, questions come numbered in chat. Gemini takes no agent, so there your researcher is its skill |
+
+**What stays behind:** your conversations and what you shared from them stay with the account they
+were made in, and so do its connectors and the skills you turned on there. What an assistant
+remembered on its own stays on its computer, until you say `bring-home`: your researcher sorts it
+into its home, on your go, as it does with *remember this*.
 
 **What it is, and what it is not.** A research and learning tool: a companion for your work and your
 projects, and for learning to invest when you want. It is never investment advice: it never tells
@@ -67,6 +83,13 @@ prices, shown to teach the method, never a promise or a recommendation.
    commands it asks about; that is all you do), asks what to call your researcher and where to keep
    it, `C:\Research\Arya` for example, and asks two short questions about you, about three minutes.
    At the end it tells you where your researcher lives, what to ask it and where to start.
+
+**Already have a researcher**, with its copy on GitHub — a new computer, say? Paste this line in
+step 2 instead; it asks for your copy's address and brings your researcher back, set up as it was:
+
+```text
+Please install this repo for me and bring back my researcher from my private copy on GitHub, start to finish in this conversation — install everything it needs without asking first: https://github.com/KaxaNuk/KaxaNuk-Researcher
+```
 
 Then quit and reopen your assistant, open your researcher's folder in a **new** conversation, and
 say hello, by its name. In the Claude desktop app, that is a new conversation in the **Code** tab on
@@ -159,7 +182,8 @@ such as the daily brief, which is never saved.
 | `next [strategy]` | the one next thing; at home, it offers to save what you changed by hand |
 | `workshop [session]` | your tutor in a session of a KaxaNuk Training Workshop, read from the course each time, never from memory; *practice* sets problems at your level |
 | `known-answer [method]` | one notebook beside your strategy that checks your method gives back a truth you set, on simulated data, before it touches real data, and shows one way it fails; never saved as a version |
-| `backup` | a copy of your home, or of a strategy, on a private GitHub repository, only when you ask |
+| `backup` | a copy of your home, or of a strategy, on a private GitHub repository, only when you ask; on a new computer, brings it back |
+| `bring-home` | what an assistant remembered on its own, sorted into your home on your go, so every assistant has it |
 
 | Command | What it does |
 | --- | --- |
@@ -171,7 +195,7 @@ such as the daily brief, which is never saved.
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
 | `study [subject]` | a study in `Studies/`; with no subject, lists your studies |
 | `teach <topic>` | one lesson per session, from your library |
-| `update [check]` | brings a new version: the package, and changes to your home's own files shown as a diff |
+| `update [check]` | brings a new version: the package, and changes to your home's own files shown as a diff; on a new computer, account or assistant, sets it up from `settings.yml` |
 
 </details>
 

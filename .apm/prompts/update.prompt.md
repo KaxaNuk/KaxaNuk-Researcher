@@ -1,5 +1,5 @@
 ---
-description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, but for the agent's name and path, and writing the researcher's skill for a home that lacks it or holds one behind the template; plan first, the owner's go, then update. From a strategy, the package only and a report of the Lab libraries, nothing written there. Only when the owner runs it by name.
+description: Bring a new version of the researcher into this home — the skills and commands with apm update -g, and any change to the home's own files shown as a diff against the template in the package — keeping RESEARCHER.md, Philosophy/, Knowledge/ and the agent as they are, but for the agent's name and path, and writing the researcher's skill for a home that lacks it or holds one behind the template; and set this computer, account or assistant up from the home's settings.yml — every assistant it lists, how versions are signed and sent, the brief; plan first, the owner's go, then update. From a strategy, the package only and a report of the Lab libraries, nothing written there. Only when the owner runs it by name.
 input:
   - mode: "Optional: check, to report what is new without changing anything"
 ---
@@ -41,6 +41,8 @@ The owner's files are never touched: `RESEARCHER.md`, `Philosophy/` — its roun
 `Philosophy/Evolution/` included, which nothing edits once `philosophy` has written them —
 `Knowledge/`, `Sources/`, `Studies/`, `Lessons/`, `Briefs/`, `Portfolio/`, the agent file in
 `.apm/agents/`, and any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`.
+`settings.yml` is the owner's as well: `update` writes only its `assistants:`, and a home's first
+copy of it, filled from this computer, each on the owner's go and shown as a diff.
 The exceptions are three, each on the owner's go: the `Projects/` a home made before template
 0.10.0 still has, which *Step 2* reads and *Step 4* moves or removes; the empty `Studies/` a home
 made before template 0.12.0 lacks, whose `.gitkeep` *Step 4* brings from the template; and the
@@ -206,6 +208,31 @@ this folder, nothing else.
   one the template's lists — the second command, run with `templates/researcher/apm.yml` — and the
   home's does not is to be added as a line, and the home then installed for the user; the home's
   other lines there are the owner's, and stay.
+- **`settings.yml`, and this place against it, whatever template version the home is at.** The
+  file keeps what a computer or an account would otherwise keep, so this place is set up from it.
+  - **A home without it** — one made before template 0.30.0 — is to get it from the template, as
+    *Step 4* item 3 brings a file, filled from this computer and shown as a diff: `assistants:`,
+    each one `~/.apm/apm.yml` lists under `targets:` that the home's `apm.yml` lists too, read with
+    the file tool; `versions:`, `email` from `git config user.email` — an address, or `"<>"` for
+    none — and `send` from `git config --get kaxanuk.autosend`, `paused` read as `true`, each left
+    empty when git has none; and `brief:`, on the desktop app, from this home's task, which
+    `list_scheduled_tasks` finds as `brief setup` does — its parts, measures, questions, *Week*'s
+    day and folders and connectors, read from its prompt, and `when` from its schedule, in words.
+  - **The assistant in use**, when `assistants:` lacks it, is to be added.
+  - **Each assistant `assistants:` lists** whose files are missing here — the same script's
+    `check <assistant> <slug>` exits 1 — is to have the package and the home installed for it, as
+    *Step 4* item 6 does. One the owner does not use on this computer is theirs to leave out, by
+    *Change something*; it stays in the file.
+  - **`versions:`**, where this home's own git config — `git config --local`, since the global
+    `user.email` a new computer's setup writes signs every folder — has no `user.email` or no
+    `kaxanuk.autosend` and the file has one, is to be set from it.
+  - **`brief:`**, when its `parts` are not empty and this place has no task of this home's — on
+    the desktop app, `list_scheduled_tasks` shows none whose prompt names this home's `Briefs/` —
+    is to be scheduled again: `brief setup` follows the update in the same session, from the saved
+    choices, asking only for its go. Each connector `brief: connectors` names that this session
+    lacks is named in the plan, with its fix in one line: in claude.ai, *Settings → Connectors*,
+    connect it; on a company account an administrator may have to allow it. Away from the desktop
+    app nothing is scheduled: `brief`, said each morning, follows the file.
 - **Report in chat:** first the installed package version, as `apm deps list -g` names it, and the
   home's template version — the two a problem report to `lab@kaxanuk.mx` names. Then the versions
   crossed, newest first, one line each on what changed, and every **What to do differently**
@@ -213,8 +240,9 @@ this folder, nothing else.
   never summarise them away.
 - **All current?** Say so, with those two versions, and stop — unless the home still has a
   `Projects/`, lacks `Studies/` or a `targets:` line the template lists, or its researcher's skill
-  or the install for the user is missing or behind, or the agent names another folder, which go on
-  to the plan as the items above list them. **`check` mode?** Stop here.
+  or the install for the user is missing or behind, or the agent names another folder, or it lacks
+  `settings.yml`, or this place differs from it, which go on to the plan as the items above list
+  them. **`check` mode?** Stop here.
 
 ## Step 3: Show the plan, wait for the go
 
@@ -224,7 +252,10 @@ lines to add to `apm.yml`, and each file the home lacks, to bring across whole �
 among them, when the folder is missing; what a migration removes; each move out of `Projects/` and
 its removal, path by path, and what stays there; the researcher's skill, shown whole when new and as
 a diff when written again, the agent's move when the slug changes and its path when it names another
-folder, the install for the user and each copy to delete; and what the owner will have to do by hand
+folder, the install for the user and each copy to delete; `settings.yml`'s change as a diff, each
+assistant to install for, the git settings to set, each connector to connect again, and, when the
+brief is to be scheduled here, that `brief setup` follows with only its go; and what the owner will
+have to do by hand
 afterwards, one line for each heading, line or blockquote of their own files that the template
 changed. When a strategy the session is in, or one the table *The strategies and projects it works
 on* in `RESEARCHER.md` lists, has a `BLUEPRINT_N.md` saved and no `FINDINGS_N.md` that reports yet,
@@ -323,13 +354,28 @@ through the question tool — *Go*, described as *update it and save a version*;
    deploys only its `.apm/`; nothing leaves the machine. On Windows a long `Extracts/` path in that
    copy can pass the 260-character limit and fail the install: the fix, the owner's to choose, is a
    shorter home path or fewer deep extracts, a regenerable cache.
-6. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
+6. **This place, from `settings.yml`**, as the owner approved. The file first — brought from the
+   template by item 3's script and filled, or its `assistants:` line added — and nothing else in it
+   changed. Then, for each assistant to install for, the package, its line in `~/.apm/apm.yml` and
+   its `check`, with the home installed once after the last `add`:
+
+   ```bash
+   uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <assistant>
+   uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" add <assistant>
+   uvx --from apm-cli==0.33.0 apm install -g "<absolute path to the home>"
+   uv run --no-project python "$HOME/.apm/apm_modules/KaxaNuk/KaxaNuk-Researcher/.apm/skills/init-researcher/scripts/user_targets.py" check <assistant> <slug>
+   ```
+
+   Then the git settings the plan named, in the home only: `git config user.email <it>`, with
+   `"<>"` for none, and `git config kaxanuk.autosend` with `true` or `false`. The brief is
+   scheduled after the report, as *Step 5* says.
+7. **The template version.** Add one entry at the top of the home's `CHANGELOG.md` — the date,
    *Brought to template X.Y.Z*, a line for each section brought across or declined, one for what
-   left `Projects/` and what stayed, one for `Studies/` when it came, and one for the researcher's
-   skill when it was written — whatever the owner declined. The file then names the version the
-   home is now at, and the next `update` reports only the versions after it. Nothing else in the
-   file changes: it is the home's history.
-7. **Then save a version**, on the plan's go, with no second question: `git add` every file
+   left `Projects/` and what stayed, one for `Studies/` when it came, one for the researcher's skill
+   when it was written, and one for `settings.yml` when it came or changed — whatever the owner
+   declined. The file then names the version the home is now at, and the next `update` reports
+   only the versions after it. Nothing else in the file changes: it is the home's history.
+8. **Then save a version**, on the plan's go, with no second question: `git add` every file
    written above, by name, never `--all` — what `git mv` and `git rm` did is staged already — and
    `git commit -m "Update: brought to template X.Y.Z"`; to the owner, *Saved*, in one plain line,
    never the commands. The copies deleted in item 5 are git-ignored or outside the home, and leave
@@ -357,7 +403,12 @@ In chat and nowhere else:
   name or path when either changed; and, once `check` passes, that the home is now installed for
   the user, so the researcher is in every folder — else what it found missing, and an offer to try
   again;
+- what was set up from `settings.yml` — each assistant installed for and its `check`, the git
+  settings set — and what was not: each connector to connect again, by name, with its fix;
 - that the new skills and commands appear in a **new** session, not this one.
+
+When the plan said the brief is to be scheduled here, follow the `brief` skill's *brief setup* in
+this session, after the report: its saved choices skip its questions, and its go is the owner's.
 
 Nothing is appended to `Knowledge/LOG.md`: that log records reads, audits, index refreshes and kept
 synthesis pages, not version changes — the changelogs are the record of what changed.
