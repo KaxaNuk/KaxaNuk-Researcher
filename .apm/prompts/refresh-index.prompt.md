@@ -37,10 +37,11 @@ the files.
    the session is open elsewhere: `git add Knowledge/INDEX.md Knowledge/LOG.md`, never `--all`, and
    `git commit -m "Refresh the index" -- Knowledge/INDEX.md Knowledge/LOG.md`; to the owner,
    *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
-   `true`, it also goes to their copy on GitHub, as the `backup` skill says. If git wants a name and
-   an e-mail, ask for both in one plain line, set them in the home only, never invented, and save
-   again; with no `.git/`, say in one line that the home keeps no versions yet. This replaces an
-   older home's *Commit?* question.
+   `true`, it also goes to their copy on GitHub, as the `backup` skill says. If git wants a name,
+   ask in one open message, with no options, *What's your name, or what would you like me to call
+   you?*, never invented, and no e-mail; set it in the home only, with `user.email` as `"<>"`, an
+   empty address, and save again; with no `.git/`, say in one line that the home keeps no versions
+   yet. This replaces an older home's *Commit?* question.
 
 Never modify a note during a refresh. Never index anything under `Philosophy/`, `Sources/` or
 `Extracts/`.

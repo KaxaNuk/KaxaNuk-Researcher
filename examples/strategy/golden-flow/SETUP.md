@@ -103,9 +103,10 @@ A strategy of your own is not made from here: `init-strategy <strategy-name>` ma
 template, which holds every file this example works through, describing what belongs in it. Never
 build on the example.
 
-> **For the agent.** If the first commit fails for want of a git identity, ask the user, in plain
-> words, for *a name and an e-mail to sign the versions saved here*; never invent them. Set them for
-> this folder only: `git config user.name "<name>"` then `git config user.email "<email>"`.
+> **For the agent.** If the first commit fails for want of a git identity, ask the user in one open
+> message, with no options, *What's your name, or what would you like me to call you?*; never invent
+> it, and ask no e-mail. Set it for this folder only: `git config user.name "<name>"` then
+> `git config user.email "<>"`, an empty address.
 > Then commit again: `git commit -m "Start from the KaxaNuk example strategy, golden-flow"`.
 
 ---

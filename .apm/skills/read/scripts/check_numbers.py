@@ -25,15 +25,20 @@ What it reads
     a figure    a number of two digits or more in the same paragraph, list item, heading or table
                 row as a citation: decimals, thousands separators, a percent, a minus of any kind.
                 Not a number inside a markdown link, inline code or a URL, not the citation itself,
-                and not the section number opening a heading. Compared without separators, percent
-                or sign: a PDF's minus comes out as a hyphen, a dash or a glyph of its own
+                and not the section number opening a heading. Not a year either, four bare digits
+                from 1500 to 2099, nor a number its label names as a reference — an equation, a
+                section, a table, a figure, a chapter, a page, a footnote, in English or Spanish:
+                eq. (12), section 4.2, Table 3, sección 2.1, \\tag{7}. Compared without separators,
+                percent or sign: a PDF's minus comes out as a hyphen, a dash or a glyph of its own
 
-Each figure is on page (a cited page holds it), elsewhere (another page does, listed; when at least
-three of the lines holding a note's figures found elsewhere, and most of them, sit at one offset
-from the cited page, the note may cite printed pages), or not found. A figure whose cited pages are
-none of them in the extract, and that no page holds, is counted as not extracted. A block with
-figures and no citation is counted, not checked. A note whose local_copy is not a PDF, or whose
-extract is not on disk, is unchecked, with the reason and the extract.py command that would
+Each figure is on page (a cited page holds it), elsewhere (another page does, listed), or not found.
+When at least three of the lines holding a note's figures found elsewhere, and most of them, sit at
+one offset from the cited page, the note seems to cite printed pages, not the extract's PDF pages:
+the report says so once, with the offset, and every figure found at exactly that offset is counted
+at offset, not elsewhere. A figure whose cited pages — shifted by the offset, too, when there is
+one — are none of them in the extract, and that no page holds, is counted as not extracted. A block
+with figures and no citation is counted, not checked. A note whose local_copy is not a PDF, or
+whose extract is not on disk, is unchecked, with the reason and the extract.py command that would
 regenerate it.
 
 Options
@@ -81,11 +86,87 @@ FRONTMATTER_FIELD = re.compile(r'^(\w+):\s*(.*)$')
 HEADING = re.compile(r'^#{1,6}\s')
 HEADING_NUMBER = re.compile(r'^(#{1,6}\s+)(?:[A-Z]\.)?\d+(?:\.\d+)*\.?(?=\s)')
 INLINE_CODE = re.compile(r'`[^`]*`')
+LATEX_TAG = re.compile(r'\\tag\{[^}]*\}')
 LIST_ITEM = re.compile(r'^\s*(?:[-*+]|\d+[.)])\s+')
 MARKDOWN_LINK = re.compile(r'!?\[[^\]]*\]\([^)]*\)')
 TABLE_ROW = re.compile(r'^\s*\|')
 URL = re.compile(r'https?://\S+')
 MINUS_SIGNS = '-−–'
+# A number a label names as a reference, never a figure: `eq. (12)`, `section 4.2`, `Table 3`,
+# `chapters 3 and 4`, `sección 2.1`. One reference, then any more joined by a comma or a word.
+REFERENCE_LABELS = [
+    'appendix',
+    'apéndice',
+    'cap',
+    'capítulo',
+    'capítulos',
+    'ch',
+    'chapter',
+    'chapters',
+    'col',
+    'column',
+    'columna',
+    'columns',
+    'cuadro',
+    'ec',
+    'ecuación',
+    'ecuaciones',
+    'eq',
+    'eqs',
+    'equation',
+    'equations',
+    'exhibit',
+    'fig',
+    'figs',
+    'figura',
+    'figure',
+    'figures',
+    'fila',
+    'footnote',
+    'footnotes',
+    'lemma',
+    'nota',
+    'note',
+    'page',
+    'pages',
+    'panel',
+    'part',
+    'parte',
+    'página',
+    'páginas',
+    'proposition',
+    'proposición',
+    'row',
+    'rows',
+    'sec',
+    'section',
+    'sections',
+    'sección',
+    'secciones',
+    'tabla',
+    'tablas',
+    'table',
+    'tables',
+    'teorema',
+    'theorem',
+]
+REFERENCE_NUMBER = r'\(?[A-Z]?\d+(?:\.\d+)*[a-z]?\)?(?:\s?[–-]\s?\(?\d+(?:\.\d+)*[a-z]?\)?)?'
+REFERENCE = re.compile(
+    ''.join([
+        r'\b(?:',
+        '|'.join(REFERENCE_LABELS),
+        r')\.?\s*',
+        REFERENCE_NUMBER,
+        r'(?:\s*(?:,|&|\band\b|\bor\b|\by\b|\bo\b)\s*',
+        REFERENCE_NUMBER,
+        r')*',
+    ]),
+    re.IGNORECASE,
+)
+YEAR_RANGE = range(
+    1500,
+    2100,
+)
 # At least this many lines of a note, and most of those holding a figure found elsewhere, at one
 # offset from the cited page, and the note may cite printed pages. Lines, not figures: one sentence
 # quoting four numbers from another page is one cross-reference, not four.
@@ -96,6 +177,7 @@ SKIPPED_NOTE_NAMES = frozenset({
 })
 OUTCOMES = [
     'on page',
+    'at offset',
     'elsewhere',
     'not found',
     'not extracted',
@@ -137,13 +219,14 @@ class FigureOutcome:
 @dataclasses.dataclass(frozen=True)
 class NoteReport:
     """
-    What the check found in one note: every cited figure's outcome and the uncited count, or why the
-    note was unchecked.
+    What the check found in one note: every cited figure's outcome, the uncited count and the offset
+    its citations seem to sit at, or why the note was unchecked.
     """
     path: pathlib.Path
     outcomes: list[FigureOutcome]
     uncited_figures: int
     unchecked_reason: str | None
+    offset: int | None = None
 
 
 class CommandLineParser(argparse.ArgumentParser):
@@ -218,7 +301,7 @@ def check_note(
         for page, page_text
         in pages.items()
     }
-    outcomes = [
+    located = [
         locate_figure(
             figure,
             page_values,
@@ -227,11 +310,22 @@ def check_note(
         in figures
         if figure.cited_pages
     ]
+    offset = consistent_offset(located)
+    outcomes = located if offset is None else [
+        relocate_at_offset(
+            outcome,
+            offset,
+            page_values,
+        )
+        for outcome
+        in located
+    ]
     report = NoteReport(
         path=note_path,
         outcomes=outcomes,
         uncited_figures=len(figures) - len(outcomes),
         unchecked_reason=None,
+        offset=offset,
     )
 
     return report
@@ -351,6 +445,7 @@ def figures_in_block(
             block.is_heading and line_number == first_line,
         ))
         if _digit_count(match.group(0)) >= 2
+        and not _is_year(match.group(0))
     ]
 
     return figures
@@ -569,10 +664,19 @@ def print_report(
     for outcome in shown:
         print(_outcome_line(outcome))
 
-    offset = consistent_offset(report.outcomes)
-
-    if offset is not None:
-        print(f'  consistent offset {offset:+d}, the note may cite printed pages')
+    if report.offset is not None:
+        at_offset = sum(
+            1
+            for outcome
+            in report.outcomes
+            if outcome.outcome == 'at offset'
+        )
+        offset_line = ' '.join([
+            f'  offset {report.offset:+d}: {at_offset} figures sit on the PDF page {report.offset:+d}',
+            'from the one cited, so the note seems to cite printed pages; a book\'s INDEX.md says its',
+            'offset once',
+        ])
+        print(offset_line)
 
 
 def print_totals(
@@ -598,6 +702,46 @@ def print_totals(
     totals = _outcome_counts(outcomes)
     checked_count = len(checked)
     print(f'{len(reports)} notes: {checked_count} checked, {unchecked_count} unchecked; figures {totals}')
+
+
+def relocate_at_offset(
+    outcome: FigureOutcome,
+    offset: int,
+    page_values: dict[int, frozenset[str]],
+) -> FigureOutcome:
+    """
+    A figure's outcome once its note's offset is known: found elsewhere at exactly the offset from a
+    cited page, it is at offset; found nowhere, it is not found when a cited page, or one shifted by
+    the offset, is in the extract, and not extracted otherwise.
+    """
+    shifted = {
+        page + offset
+        for page
+        in outcome.figure.cited_pages
+    }
+    holding_shifted = shifted & set(outcome.other_pages)
+    at_offset = outcome.outcome == 'elsewhere' and bool(holding_shifted)
+    unlocated = outcome.outcome in {'not found', 'not extracted'}
+    any_extracted = any(
+        page in page_values
+        for page
+        in shifted | outcome.figure.cited_pages
+    )
+
+    if at_offset:
+        new_outcome = 'at offset'
+    elif unlocated:
+        new_outcome = 'not found' if any_extracted else 'not extracted'
+    else:
+        new_outcome = outcome.outcome
+
+    relocated = FigureOutcome(
+        figure=outcome.figure,
+        outcome=new_outcome,
+        other_pages=outcome.other_pages,
+    )
+
+    return relocated
 
 
 def split_blocks(
@@ -790,8 +934,29 @@ def _figure_text(
         _blank,
         without_links,
     )
+    without_references = REFERENCE.sub(
+        _blank,
+        without_citations,
+    )
+    without_tags = LATEX_TAG.sub(
+        _blank,
+        without_references,
+    )
 
-    return without_citations
+    return without_tags
+
+
+def _is_year(
+    text: str,
+) -> bool:
+    """
+    Whether a figure is a year: four bare digits, no sign, separator, decimal or percent, from 1500
+    to 2099.
+    """
+    is_four_digits = len(text) == 4 and text.isdigit()
+    is_year = is_four_digits and int(text) in YEAR_RANGE
+
+    return is_year
 
 
 def _make_block(
