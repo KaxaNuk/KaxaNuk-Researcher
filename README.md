@@ -32,10 +32,24 @@ plain assistant does not keep from one conversation to the next, or from one fol
 - **Your library.** What you read becomes notes on your computer; answers cite them and name what
   is missing.
 - **You.** Your questions, your voice and your rules, in your own files: the same researcher in
-  every folder and on each assistant you install it for, so moving from Claude to Codex keeps all
-  of it.
+  every folder and on each assistant you install it for, and it moves with you, as *Take it with
+  you* says just below.
 - **A method.** A plan and your go before it writes anything, a saved version of each change, and,
   for investing, your claims and what would prove them wrong before any test.
+
+**Take it with you.** Your researcher is its home: a folder of plain files on your computer, yours,
+with a saved version of each change, and a private copy on your GitHub once you ask `backup` for
+one. No assistant's account holds it, so it moves:
+
+| To | What you do |
+| --- | --- |
+| **another Claude account**, same computer | nothing for your researcher: the package and your researcher are installed for your computer's user, in `~/.claude/`, not for an account. The connectors your brief reads are the account's: connect them in the new one (on a company account, an administrator may have to allow them), then say `brief setup`, which checks that each can read and changes the brief's scheduled task, or makes it again |
+| **another computer** | have your assistant follow only steps 1 and 2 of [`SETUP.md`](SETUP.md), the tools and the package; then, in a new conversation, say *a new computer*: `backup` brings your home back from your copy, and `update` points your researcher at its new folder and installs it. The PDFs and other files `Sources/` keeps out of git, for copyright, and `Portfolio/`, your holdings, are never in the copy: bring them from wherever you keep them. `Extracts/` is made again from the PDFs, `Briefs/` stays on the old computer, and `brief setup` schedules the brief on the new one. A strategy has its own copy, and its clone follows its own `SETUP.md` |
+| **another assistant** — Codex, Gemini, Cursor, Copilot | open it and paste the line under *Install*: it finds your researcher, and installs the package and your home for that assistant. On Codex the skills and your researcher's agent arrive, not the commands: name one, `update` or `study`, and it follows the command's file; with no question tool there, as on Gemini, questions come numbered in chat. Gemini takes no agent, so there your researcher is its skill |
+
+**What stays behind:** your conversations and what you shared from them stay with the account they
+were made in, and so do its connectors and an assistant's own memory. That is why what your
+researcher learns is written in its home: say *remember this*, and it goes there, on your go.
 
 **What it is, and what it is not.** A research and learning tool: a companion for your work and your
 projects, and for learning to invest when you want. It is never investment advice: it never tells
