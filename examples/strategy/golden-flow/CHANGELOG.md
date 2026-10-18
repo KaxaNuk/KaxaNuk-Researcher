@@ -41,6 +41,18 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.5 (2026-10-18)
+
+**PATCH** — the first save asks only a name; prose only, nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`SETUP.md`**, the note for the agent: when the first commit wants a git identity, it asks only
+  a name, in one open message, and sets `user.email` to `"<>"`; the shared lines as the template's
+  0.19.3.
+
 ## 0.17.4 (2026-10-11)
 
 **PATCH** — the README and the status banner say the figures are hypothetical; prose only, nothing

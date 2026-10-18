@@ -130,6 +130,23 @@ in `Philosophy/`, and never a note, which is what the researcher writes from it.
   claim on it citing a note and its page; and **synthesis pages**, `query` answers the owner chose
   to keep. Pages cite notes; a note never cites a page. Their shapes: the `read` skill's
   `references/note.md`. A strategy has no pages: `OBJECTIVE.md` is its synthesis.
+- **The library's tools**, in the `read` skill's `scripts/` beside `extract.py`, each reading the
+  library and writing nothing in it but what its go allows; `--help` has each one's options.
+  `unread_sources.py` lists every source no note's `local_copy` names, which `next` reads;
+  `check_library.py` makes `audit`'s checks the same way on every run; `check_numbers.py` looks
+  each figure a note states up on the page it cites, for `audit deep`. `render_pages.py` renders a
+  PDF's page, or a part of one, as an image outside the home, for what the assistant's PDF reader
+  cannot show — on Windows it needs Poppler's `pdftoppm` — such as the contents pages `read`
+  reads of a PDF with no outline, or a figure `audit deep` checks. `update_concept_pages.py` is how
+  `read`, and an approved `audit` fix, update an existing concept page: a spec of what each page
+  gains, on standard input, its diff shown before `--write`, `updated` set and nothing else
+  touched.
+- **A delegate's draft is checked before it reaches `Knowledge/`.** When `read` hands chapters to
+  delegates, each draft is staged outside the home, in the system's temporary folder, and checked
+  against its extract before the plan: `check_numbers.py` on the draft, with the library's
+  `--extracts`, and its claims read against the extract wherever the extract is thin or garbled, as
+  a scan's text layer can be. A draft that fails is read again from the extract; only checked
+  drafts are written, on the plan's go.
 - **Frontmatter, five fields:** `source` (a DOI, a URL, a publisher; never invented), `citation`
   (with the date the link was last checked), `local_copy` (the file read, by path in this
   repository, or `none`), `read` (the date, and what was read) and `tags` (from the owner's tag
@@ -261,7 +278,7 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read` and `query`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
+| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read`, `query`, `workshop` and `known-answer`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, a read-only reviewer that `blueprint` calls on its draft before it asks for the go, so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, as *The researcher's home* says, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name. `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |
@@ -294,6 +311,11 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
 - Don't write into `Sources/` except the one copy its row allows, never over an existing file, and
   never move, rename, edit or delete a source there. Don't write into `Philosophy/` except through
   its two writers, as its row says.
+- Don't get past a download that refuses. A source behind a login (401), a refusal (403), a busy or
+  blocked server (503) or a bot check, such as Cloudflare's, is the owner's to fetch: name the work
+  and its address, and ask them to download it in their browser and attach it, or say where it is
+  saved. Never retry it through a mirror, another address, a changed user agent, a script or a
+  browser tool that gets past the check.
 - Don't write at home while working in a strategy, unless the owner asks for that write by name —
   the version check's dates aside. Don't write in a strategy anything its own `AGENTS.md` reserves
   for a person.

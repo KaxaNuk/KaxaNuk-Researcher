@@ -112,10 +112,11 @@ it. Every git command, the `backup` skill's send included, runs as `git -C "<tha
 the session is open elsewhere: `git add OBJECTIVE.md` and
 `git commit -m "Objective: <first pass, or the claims it moved>" -- OBJECTIVE.md`; to the owner,
 *Saved*, in one plain line, never the commands. When `git config --get kaxanuk.autosend` prints
-`true`, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name
-and an e-mail, ask for both in one plain line, set them in that folder only, never invented, and
-save again; with no `.git/`, say in one line that the strategy keeps no versions yet. This replaces
-the owner's own commit an older home's `AGENTS.md` asks for.
+`true`, it also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name,
+ask in one open message, with no options, *What's your name, or what would you like me to call
+you?*, never invented, and no e-mail; set it in that folder only, with `user.email` as `"<>"`, an
+empty address, and save again; with no `.git/`, say in one line that the strategy keeps no versions
+yet. This replaces the owner's own commit an older home's `AGENTS.md` asks for.
 
 Never write into the researcher's home from here. Never compute or promise a number. The objective
 is a capability and a set of claims; the numbers arrive later, from the engines the project names.
