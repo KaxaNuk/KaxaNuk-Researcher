@@ -52,10 +52,11 @@ FENCE = re.compile(r'^\s*(```|~~~)')
 FRONTMATTER_FIELD = re.compile(r'^([A-Za-z_][\w-]*):\s*(.*)$')
 FRONTMATTER_ITEM = re.compile(r'^\s+-\s*(.*)$')
 INLINE_CODE = re.compile(r'`[^`\n]*`')
-# A link's target may hold one level of balanced parentheses, `Markowitz_(1952).md`, or anything
+# A link's text may run over a line break, as a wrapped paragraph does, but never over a blank
+# line; its target may hold one level of balanced parentheses, `Markowitz_(1952).md`, or anything
 # between angle brackets, `<A paper, with commas.md>`.
 MARKDOWN_LINK = re.compile(
-    r'!?\[(?P<text>[^\]\n]*)\]\((?P<target><[^>\n]*>|(?:[^()\s]|\([^()\s]*\))+)(?:\s+"[^"\n]*")?\)',
+    r'!?\[(?P<text>(?:[^\]\n]|\n(?![ \t]*\n))*)\]\((?P<target><[^>\n]*>|(?:[^()\s]|\([^()\s]*\))+)(?:\s+"[^"\n]*")?\)',
 )
 QUOTES = '"\''
 URL_SCHEME = re.compile(r'^[A-Za-z][A-Za-z0-9+.-]*:')
@@ -431,21 +432,28 @@ def markdown_links(
     text: str,
 ) -> list[Link]:
     """
-    Every markdown link in a text, outside fenced code and inline code, with its line number.
+    Every markdown link in a text, outside fenced code and inline code, with the number of the line
+    it opens on — a link whose text wraps onto the next line included.
     """
     lines = text.splitlines()
     fenced = fenced_lines(lines)
+    visible_lines = [
+        '' if index in fenced else INLINE_CODE.sub('', line)
+        for index, line
+        in enumerate(lines)
+    ]
+    visible = '\n'.join(visible_lines)
     links = [
         Link(
-            line=index + 1,
+            line=_line_number(
+                visible,
+                match.start(),
+            ),
             target=match.group('target'),
             text=match.group('text'),
         )
-        for index, line
-        in enumerate(lines)
-        if index not in fenced
         for match
-        in MARKDOWN_LINK.finditer(INLINE_CODE.sub('', line))
+        in MARKDOWN_LINK.finditer(visible)
     ]
 
     return links
@@ -677,6 +685,23 @@ def _later_field(
     owner = previous if current is None else current
 
     return owner
+
+
+def _line_number(
+    text: str,
+    position: int,
+) -> int:
+    """
+    The number of the line a position of a text falls on, counted from 1.
+    """
+    breaks_before = text.count(
+        '\n',
+        0,
+        position,
+    )
+    number = breaks_before + 1
+
+    return number
 
 
 def _read_file(
