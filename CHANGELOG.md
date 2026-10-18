@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.16.0] - 2026-10-18
+Your tutor follows the four Training Workshops as they now publish: a deck at the repository's root
+or in its session's folder, each language's own deck, and the code a session ships beside it.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The workshops' new layout** (`workshop` 0.3.0): a session with no `folder` in the course map
+  has its deck at the root, as the Investment Bootcamp's six decks are since 2026-10-18; each
+  language's branch names its own deck. The session's code — a notebook, `exercises/` with
+  `solutions/`, or an example module — is read from its folder and run by the owner as the
+  course's README says, a solution opened only after their own attempt. The map's
+  `pillar_sessions` name each other workshop's session the course links to. The live blocks have
+  no drill any more; the checkpoint is the example of an AI-off block.
+
 ## [1.15.3] - 2026-10-16
 Reading a document no longer asks for your e-mail either: when git has no name, it asks only your
 name, or what you'd like it to call you.
