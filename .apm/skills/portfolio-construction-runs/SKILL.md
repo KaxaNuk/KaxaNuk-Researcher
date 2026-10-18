@@ -13,7 +13,7 @@ description: >
   reading what sizing earned (use `alpha-decomposition`), or the documents around the experiment
   (use `experiment-lifecycle`).
 metadata:
-  version: 0.5.2
+  version: 0.5.3
   library_version: 1.28.0
 ---
 
@@ -51,6 +51,21 @@ shared with the other two libraries, suggests. `KNPC_LICENSE_SERVER_URL` names a
 `LicenseConfigurationError` sit under `PortfolioConstructionError`. A saved check spares the server
 for 24 hours and stands in offline for 3 days; a rejection is final; **the first run needs the
 network.**
+
+**Changed in 2.0.1, from its changelog — not yet checked by a run here.** Nothing a caller does
+changes: the release adds a documentation site and corrects docstrings, with no change to the code,
+so the 2.0.0 paragraph above is still what a run has to check. The README links the site —
+<https://kaxanuk-portfolio-construction.readthedocs-hosted.com/en/latest/>, a User Guide, a
+Methodology and an API Reference — which on 2026-10-18 answered *not found*. Until it answers, the
+repository's `README.md`, `CHANGELOG.md` and `examples/` stay the documentation; once it does, read
+its pages, never a source page one links to. The User Guide states three behaviours the README did
+not: **a rebalance date absent from the data gives a snapshot of nulls, so every ticker is filtered
+out**; the KN Index applies `min_weight` only when `max_constituents` is empty; and
+`min_constituents` is validated but not enforced. Where a docstring or a registry card says
+otherwise, the Methodology follows the code: HRP bisects its leaf order by position, and HERC does
+not cut its tree. And the README now agrees with the changelog on three points `references/api.md`
+records apart at 1.28.0: `calendars` installs QuantLib, input files are CSV or Parquet, and the
+examples live in `examples/`.
 
 ## 1. Install it, and keep it installed
 
