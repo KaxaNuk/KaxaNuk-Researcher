@@ -41,6 +41,46 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.7 (2026-10-18)
+
+**PATCH** — Paleologo's index names chapter 11 as the appendix it is; prose only, no number moves.
+
+**What to do differently:** nothing.
+
+### Fixed
+
+- **`Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md`**, *What this book
+  does not settle*: chapters 7 and 11 were "the hedging and optimisation chapters", but the
+  book's contents title chapter 11 *Appendix*. The line names chapter 7, *Manage Factor Risk*,
+  and the quantitative appendix, chapter 11, both still out of reach here.
+
+## 0.17.6 (2026-10-18)
+
+**PATCH** — Paleologo's index gains its chapter table; prose only, nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Fixed
+
+- **`Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md`** has the chapter
+  table a book's index holds, which the library check found missing: chapters 3, 5, 6, 8 and 9
+  *read*, the ones its sections cite, each linked to its sections; 1, 2, 4, 7, 10 and 11
+  *skipped*. No copy of the book is kept here, so the table gives no pages. Its sections are
+  unchanged. `Bibliotheca/LOG.md` records the fix, and `BIBLIOGRAPHY.md` says the sections sit
+  under the table.
+
+## 0.17.5 (2026-10-18)
+
+**PATCH** — the first save asks only a name; prose only, nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`SETUP.md`**, the note for the agent: when the first commit wants a git identity, it asks only
+  a name, in one open message, and sets `user.email` to `"<>"`; the shared lines as the template's
+  0.19.3.
+
 ## 0.17.4 (2026-10-11)
 
 **PATCH** — the README and the status banner say the figures are hypothetical; prose only, nothing

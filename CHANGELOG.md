@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
-## [1.16.0] - 2026-10-18
+## [1.18.0] - 2026-10-19
 Your tutor follows the four Training Workshops as they now publish: a deck at the repository's root
 or in its session's folder, each language's own deck, and the code a session ships beside it.
 
@@ -26,6 +26,195 @@ or in its session's folder, each language's own deck, and the code a session shi
   README's own section for the session stands beside the deck. A session's `state`, `prework` and
   the course's `dates` are read — a sealed window is never opened early —, a course's own track
   names stand, and a rule the course's README sets on the assistant holds over a block's `ai`.
+
+## [1.17.5] - 2026-10-18
+The worked example's notes on its one book now name its chapter 11 rightly: the quantitative
+appendix, not a chapter on hedging and optimisation.
+
+**What to do differently:** nothing.
+### Fixed
+- **Paleologo's `INDEX.md` in the worked example** (example 0.17.6 to 0.17.7): *What this book does
+  not settle* called chapters 7 and 11 "the hedging and optimisation chapters". The publisher's
+  contents, which the chapter table follows since 1.17.3, title chapter 7 *Manage Factor Risk* and
+  chapter 11 *Appendix*, the book's quantitative appendix. The line now names each so, and still
+  says both are out of reach while the factor model is not inside portfolio construction.
+
+## [1.17.4] - 2026-10-18
+`audit`'s library check no longer raises four false alarms a first run on a real library showed,
+and finds a clipping behind its project when your projects table names a folder of them.
+
+**What to do differently:** say `update` in your home.
+### Fixed
+- **An unread source's leads, short and to the point** (`unread_sources.py`, and so
+  `check_library.py`). A note reading another copy of the same name — `Deck_2026-10-04_0936.pdf`
+  for `Deck.pdf`, an earlier or a later copy — is named first and alone. With none, a note of the
+  same first author and year is named only when it shares a word of the source's title, at most
+  three, those sharing the most first: an organisation's clippings of one year no longer list every
+  note of that year, each line thousands of characters long.
+- **A clipping behind its project, when a projects-table row names a folder of projects**
+  (`check_library.py`). A row whose path holds no `CHANGELOG.md` of its own is read as one project
+  per folder inside it that holds one — still that one file of each, never its code — and the
+  report names the rows it could not check, so *none of: stale clipping* no longer reads as all
+  clear when nothing was checked. A one-word project name must be in the note's file name. A
+  version at the end of a sentence, `version 0.66.0.`, is now read: it was missed before.
+- **Cites an extract** flags a link into `Extracts/` or the path of a file there,
+  `Extracts/<slug>/<file>`, no longer a mention of the folder, *`Extracts/` is gitignored*.
+- **A claim that links no note** reads the whole claim: every indented line after its first, a
+  blank line between them included, and a link whose text wraps onto the next line. Every link the
+  library check reads, in any note, may now wrap so.
+- **A broken link that is not a file** — text in brackets followed by brackets, as an equation
+  writes `[X′X/n](X′X/n)⁻¹` — adds a hint: if it is not a link, escape its bracket, `\[`.
+- **`audit`**, *Step 1*: a row naming a folder of projects, and the rows the check could not read.
+
+## [1.17.3] - 2026-10-18
+The worked example's one book now lists its chapters, each marked read or skipped, as every book's
+index does, so checking the example's library finds nothing.
+
+**What to do differently:** nothing; a copy of the example you made before keeps its own index.
+### Fixed
+- **Paleologo's `INDEX.md` in the worked example** (example 0.17.6) has the chapter table
+  `references/note.md` gives a book's index: its eleven chapters, from the publisher's contents;
+  chapters 3, 5, 6, 8 and 9 *read*, the ones its sections cite, each row linked to its sections and
+  the claims they bear on; the other six *skipped*. No copy of the book is kept, so the table has
+  no pages. The sections, written before the convention, are kept word for word. The library check
+  `check_library.py`, new in 1.16.0, reported it as the example's only finding, and reports none
+  now. The example's `Bibliotheca/LOG.md` records the fix.
+
+## [1.17.2] - 2026-10-18
+Your researcher now knows Portfolio Construction 2.0.1, which adds the library's documentation and
+changes nothing you do with it.
+
+**What to do differently:** say `update` in your home. A strategy on Portfolio Construction 2.0.0
+needs nothing new: 2.0.1 changes no code.
+### Changed
+- **`references/investment-lab.md`** (`next` 1.9.1): Portfolio Construction's *Latest* is 2.0.1
+  (2026-10-06). The Backtest Engine's 0.67.0 is still its newest.
+- **`portfolio-construction-runs`** (0.5.3) gains a *Changed in 2.0.1* paragraph, from the
+  library's changelog and not yet checked by a run here: a documentation site the README links,
+  which did not answer on 2026-10-18; three behaviours its User Guide states — a rebalance date
+  absent from the data gives a snapshot of nulls, the KN Index applies `min_weight` only when
+  `max_constituents` is empty, and `min_constituents` is validated but not enforced; HRP's and
+  HERC's registry text, where the Methodology follows the code instead; and the README agreeing with
+  the changelog on `calendars`, input files and `examples/`. Its `library_version` stays 1.28.0, the
+  build its traps were checked on.
+
+## [1.17.1] - 2026-10-18
+Keeping a copy on GitHub now offers to keep your e-mail empty, as your researcher saves it since
+1.15.2, and the list of uses says every write made without asking.
+
+**What to do differently:** say `update` in your home.
+### Fixed
+- **`backup`** (0.1.7), *Step 6*: since the researcher asks no e-mail, the address a version is
+  signed with is usually empty, `<>`. The question `E-mail` now offers *Keep it empty* (*the
+  versions show your name alone*) when it is, and *Keep the one I have* only when there is one,
+  beside *Use GitHub's private address (recommended)*.
+- **`USE-CASES.md`**: the writes made without a go of their own include the one line `audit` adds
+  to the library's log, as the home's `AGENTS.md` says.
+
+## [1.17.0] - 2026-10-18
+Your researcher can now read a scanned book or paper: it makes a searchable copy of the scan, on
+your go, and reads a page's image where the text alone falls short.
+
+**What to do differently:** say `update` in your home; a scan you could not read before can be
+read now — say `read` and name it.
+### Added
+- **`ocr_pdf.py`**, in the `read` skill's `scripts/`: a scan's searchable copy, `<its name>
+  (OCR).pdf`, beside it, never over a file. Each page is rendered at 200 dpi in shades of grey and
+  read by RapidOCR on this computer, with its angle classifier off — on, it turned about one line in
+  ten upside down. Each line is laid over the page as invisible Helvetica, at its place and sized
+  to it, so the copy looks exactly like the scan and `extract.py` reads it like any PDF; a rotated
+  page is laid the right way. `--pages` reads only some pages, for a book only some of whose
+  chapters are scanned; a PDF that has a text layer already is refused. It needs only `uv`: the
+  engine and its models, about 100 MB, download on its first run. pypdfium2 renders, pypdf writes;
+  no PyMuPDF, whose AGPL licence the package avoids.
+### Changed
+- **`read`** (0.13.0), **on the owner's word**, the frozen first read:
+  - *Step 2*: a PDF with no text layer is offered a searchable copy, `Scan`: *Make a searchable
+    copy*, *Leave it unread*; on the go, `ocr_pdf.py` makes it, the copy is read like any PDF, and
+    the note's `local_copy` names it. Without the go, the source is reported unreadable, as before.
+    Scanned chapters in a book that has text get a copy of those pages. The copy is, with the copy
+    of an attachment, the only write into `Sources/`. The unread sources are listed by
+    `unread_sources.py`; the contents pages a PDF reader cannot show — on Windows, with no
+    Poppler — are read as images from `render_pages.py`.
+  - *Step 4*, **Page images**: a table, an equation or a figure the extract dropped or garbled, and
+    any figure, name or formula from an OCR copy, is read from its page's image; the note cites the
+    page as any other, and what an image does not make clear is quoted as unclear. Delegates'
+    drafts are staged outside the library and checked against the extract before the plan.
+  - *Step 6*: an existing concept page is updated through `update_concept_pages.py`, its diff
+    checked against the plan; a new page is written whole.
+  - *References* names every script in its folder; *What this skill will not let you do* names the
+    page images and the searchable copy as the exceptions they are.
+- **`read`'s `references/note.md`**: `local_copy` names a scan's searchable copy, and *Where the
+  text came from* — the provenance line says *from an OCR copy*, and which pages came from an image.
+- **`extract.py`**: a scan's message points to `ocr_pdf.py`, and so does a chapter not written for
+  want of a text layer when others were.
+- **`ONBOARDING.md`** records the change; the approved run is unchanged, its paper having a text
+  layer. **`FROZEN.json`** holds the new fingerprints of `read`'s `SKILL.md`, `note.md`,
+  `extract.py` and `ONBOARDING.md`.
+- **The home's `AGENTS.md`** (home template 0.29.0): a scan's searchable copy is the second write
+  into `Sources/`, and the tools include `ocr_pdf.py`.
+- **`AGENTS.md`** and **`README.md`** name `ocr_pdf.py` and the searchable copy.
+
+## [1.16.0] - 2026-10-18
+Your researcher now finds every source you have not read yet, whatever its name, checks your
+library the same way on every `audit`, and can show you a page of a PDF as an image.
+
+**What to do differently:** say `update` in your home.
+### Added
+- **`unread_sources.py`**, in the `read` skill's `scripts/`: every file under `Sources/` — in a
+  strategy, every PDF and clipping in `Bibliotheca/` — that no note's `local_copy` names, matched
+  by its full path, so a name with commas, parentheses, spaces or accents is safe, and filtered by
+  nothing, date included. A searchable copy of a scan, `<name> (OCR).pdf`, reads for its scan. An
+  unread source beside a note of the same first author and year is named with it, since it may be
+  that note's under another path. `next` (1.9.0) runs it for its row 4, and `audit` through the
+  library check.
+- **`check_library.py`**, beside it: `audit`'s every-run checks as a script, the same way each time
+  — links broken or leaving the repository, extracts and PDFs cited, orphans, the index against the
+  notes, each book's `INDEX.md` against its chapter files, frontmatter fields and a `read` that is
+  only a date, two notes on one file, chapters no concept page names, a page's claim that links no
+  note, a study with no state line, stray files, unread sources, and the notes whose `local_copy` is
+  not on this computer, as one line. `audit` runs it first and reports what it prints, then makes
+  only the checks that need judgement.
+- **A clipping behind its project**, a new `audit` finding: a note on a project in `RESEARCHER.md`'s
+  projects table — a KaxaNuk library, say — that states a version older than the newest in the
+  `CHANGELOG.md` at the project's path. The script opens that one file of the project, never its
+  code. The fix is the new README and CHANGELOG brought in as clippings, then `read`.
+- **`render_pages.py`**, beside it: a PDF's pages, or a part of one, as PNG images, at the dpi
+  asked, in the system's temporary folder, never in a library. It renders with PDFium, through
+  `pypdfium2`, so it needs no Poppler and no `pdftoppm`, which Windows lacks and the assistant's PDF
+  reader needs. `audit deep` looks at a cited page with it before it calls a figure in a table or an
+  equation *not found*, and the home's `AGENTS.md` names it for the contents pages `read` reads of a
+  PDF with no outline.
+- **`update_concept_pages.py`**, beside it: concept pages brought up to date in one pass from a spec
+  of what each gains — sources, claims, the blockquote for the owner's questions, lines under
+  *Open* — with `updated` set and nothing else touched. It shows the diff unless told `--write`,
+  checks every page before writing any, skips what a page already holds, and never creates a page.
+  The home's `AGENTS.md` makes it how `read` and an approved `audit` fix update an existing page.
+- **The home's `AGENTS.md`** (home template 0.28.0): the library's tools, what each is for; a
+  delegate's draft staged outside the home and checked against its extract before the plan; and a
+  download behind a login, a refusal, a busy server or a bot check, such as Cloudflare's, is the
+  owner's to fetch in their browser, never got past.
+### Changed
+- **`check_numbers.py`** leaves out years and the numbers of equations, sections, tables, figures,
+  chapters, pages and footnotes, in English and Spanish, which were most of its *not found*. A note
+  whose figures sit at one offset from the pages it cites is reported once, with the offset, and
+  those figures are counted *at offset*, no longer each *elsewhere*. `audit deep` reports such a
+  note as one finding: it cites printed pages, where `references/note.md` cites the extract's.
+- **`audit`**: *Step 1* runs the library check and lists only what it leaves to judgement; *Step 2*
+  no longer repeats the bibliography and link checks the script makes.
+- **`AGENTS.md`**: the library's tools among the skills' scripts, and every script works under
+  `python -I`: it prints UTF-8 and finds its neighbours itself.
+- **`read`'s `SKILL.md`, its note convention and its extractor are unchanged**, as frozen; its
+  version stays 0.12.7, and `FROZEN.json` holds the same fingerprints.
+### Fixed
+- **Every save that finds no name in git asks only for a name**, as since 1.15.2: `teach`,
+  `refresh-index`, `objective`, `challenge` and `blueprint` still asked for a name and an e-mail,
+  and so did the strategy template's `SETUP.md` (template 0.19.3, example 0.17.5).
+- **`experiment-lifecycle`** (0.14.8): `references/structure.md` names the template version its tree
+  matches, 0.19.3, and the three templates an experiment copies, not four.
+- **`backup`** (0.1.6): on a new computer, the name is asked again at the first save; *Step 6* sets
+  only the e-mail.
+- **The home's `AGENTS.md`**: the researcher's skills include `workshop` and `known-answer`.
 
 ## [1.15.3] - 2026-10-16
 Reading a document no longer asks for your e-mail either: when git has no name, it asks only your

@@ -4,11 +4,12 @@ description: >
   Load this skill whenever the owner asks to read, file, compile or add a source to the library — a
   PDF, a paper, a clipping — at home from Sources/ into Knowledge/, a file they attach copied in
   first; in a strategy, once OBJECTIVE.md has claims, into a note beside the PDF in Bibliotheca/.
-  It extracts a PDF by chapter with a script, asks which chapters serve which question or claim,
-  and writes a note for each chapter read, after a plan and the owner's go. It does NOT answer
-  questions from the library (use `query`) or rebuild the index (`refresh-index` does).
+  It extracts a PDF by chapter with a script — a scan made searchable first, on the owner's go —
+  asks which chapters serve which question or claim, and writes a note for each chapter read,
+  after a plan and the owner's go. It does NOT answer questions from the library (use `query`) or
+  rebuild the index (`refresh-index` does).
 metadata:
-  version: 0.12.7
+  version: 0.13.0
 ---
 
 # Read — a source into the library, a chapter at a time
@@ -85,14 +86,17 @@ List what is in the sources that has no note yet — at home, every subfolder of
 with no note beside it, and every clipping under `Notes/` with no note in `Papers/` — or only what
 the owner named. The owner may also point at a file under `Sources/` at home for a strategy: it is
 read for the strategy, and its note and its extract are written there, nothing at home.
+`uv run --no-project python "<this skill's directory>/scripts/unread_sources.py"`, run from the
+folder whose library this is, lists the sources with no note: every one no note's `local_copy`
+names, by its full path, whatever its name or its date.
 
 **A file the owner attaches or names on their computer is copied in, at home** — a paper into
 `Sources/Papers/`, a book into `Sources/Books/`, an article, notes or a page saved as PDF into
 `Sources/Clippings/` — under its own file name, never over an existing file. When an attachment has
 no path you can read, ask where it is saved — Downloads, usually — and copy it from there. The copy
 is part of this read's plan, and one go covers the copy and the read; until then the script runs on
-the file where it lies. That is the only write into `Sources/`: a source there is never moved,
-renamed, edited or deleted.
+the file where it lies. That copy, and a scan's searchable copy beside it, below, are the only
+writes into `Sources/`: a source there is never moved, renamed, edited or deleted.
 
 **At home, with nothing in `Sources/` left to read,** say so, and name the works under *Find first*
 in `RESEARCHER.md` that have no file yet — year, authors and title as written there, and the
@@ -124,7 +128,9 @@ this computer only, never cited. If the strategy's `.gitignore` does not keep ou
 `Bibliotheca/Extracts/`, say so in the plan, which adds that one line to it on the same go.
 
 - **A PDF with no outline.** The script says so and gives the page count. Read the pages that carry
-  the table of contents — the first ten to fifteen, through the assistant's PDF reader — and
+  the table of contents — the first ten to fifteen, through the assistant's PDF reader, or, where
+  it cannot show them, as it cannot on Windows without Poppler's `pdftoppm`, as images:
+  `uv run "<this skill's directory>/scripts/render_pages.py" "<pdf>" 1-15 --dpi 100` — and
   propose a split of the whole book by page ranges, every chapter in order, for the owner to
   confirm when the table of contents is shown. `--split` takes PDF pages and a table of contents
   gives printed ones: add the offset, checked against one printed page. Every run after that
@@ -132,11 +138,21 @@ this computer only, never cited. If the strategy's `.gitignore` does not keep ou
   keeps its number; the book's `INDEX.md` keeps the pages. A paper is one chapter: `--all`.
 - **A PDF whose depth 1 is parts.** The script says so; run `--outline --depth 2`, and carry
   `--depth 2` into the run that extracts the chapters: without it, `--chapters` counts parts.
-- **A PDF with no text layer.** The script writes no chapter and says why. Report the source as
+- **A PDF with no text layer** — a scan. The script writes no chapter and says why. Offer a
+  searchable copy, through the question tool, header `Scan` (`Escaneo`): *Make a searchable copy*
+  (*its text read off each page by OCR, on this computer — a few seconds a page*), *Leave it
+  unread*; in chat where there is no such tool. On the go, run, in the background for a book,
+  `uv run "<this skill's directory>/scripts/ocr_pdf.py" "<pdf>"`: it writes `<its name> (OCR).pdf`
+  beside the scan, never over a file, and leaves the scan as it was — in a strategy, beside it in
+  `Bibliotheca/`. The copy is then extracted and read like any PDF, and the note's `local_copy`
+  names it. OCR runs words together and misreads a digit or a sign: read the copy's extract for
+  that before a note is planned on it, and take a figure, a name or a formula from it only as the
+  page's image shows it — *Page images*, in *step 4*. Without the go, report the source as
   unreadable, leave it out of the plan, and do not fill it in from memory. A chapter reported *not
-  written* while others were written has no text layer of its own: it is unreadable the same way,
-  and the plan says so. One reported *thin* was written with few characters a page — a preface,
-  plates, a page of figures — and is checked for prose before a note is planned on it.
+  written* while others were written is scanned pages the same way: the offer is a copy with
+  `--pages` for those pages, from which every chapter is then extracted, and the plan says so. One
+  reported *thin* was written with few characters a page — a preface, plates, a page of figures —
+  and is checked for prose before a note is planned on it.
 - **A source that is not a PDF** — a markdown clipping, a transcript — is read directly, whole.
 
 **Exit 1 is a mistake in the command, not in the source** — a chapter number the outline does not
@@ -193,8 +209,22 @@ at the `--depth` the outline was shown at, after the whole `--split` for a PDF w
 
 Read each chosen extract in full — the extract, not the PDF. Where the assistant can delegate, give
 each chapter to one delegate with the extract, the question and `references/note.md`, and collect
-the drafts; otherwise read one chapter at a time. A skimmed chapter is read for one line: what it
-holds, and why it was passed over. For each note, decide:
+the drafts, staged outside the library, in the system's temporary folder, never in it: each draft
+is checked before the plan — `uv run "<this skill's directory>/scripts/check_numbers.py"` on it,
+with the library's extracts, and its claims read against the extract wherever the extract is thin,
+garbled or from an OCR copy — and one that fails is read again from the extract. Otherwise read one
+chapter at a time. A skimmed chapter is read for one line: what it holds, and why it was passed
+over.
+
+**Page images.** A table, an equation or a figure the extract dropped or garbled, and any figure,
+name or formula from an OCR copy, is read from its page's image:
+`uv run "<this skill's directory>/scripts/render_pages.py" "<pdf>" <page> --dpi 200`, `--region`
+for a part of it, writes the image outside the library and prints its path, for the assistant's
+image reader. The note cites the page as any other, and its provenance line says which pages came
+from an image, as `references/note.md` gives. Nothing on an image the assistant cannot make out is
+guessed: it is quoted as unclear, with its page.
+
+For each note, decide:
 
 - **Where it goes.** At home, the domain folder; in a strategy, `Papers/` or `Books/`. For a
   chapter, the book's folder.
@@ -248,7 +278,10 @@ run, a different domain — and ask for the go again on the revised plan.
   claim by number and the owner's reason in their words; the claims as headings, a blockquote under
   each; `## What it changes` last. For a book, its `INDEX.md` with every chapter's status.
 - At home, the concept pages, in the shape `references/note.md` gives and as *step 4* decided,
-  their `## For the owner's questions` and `## Open` brought up to date. In a strategy, none:
+  their `## For the owner's questions` and `## Open` brought up to date: a new page written whole,
+  an existing one through `scripts/update_concept_pages.py` in this skill's folder — a spec of
+  what each page gains, on standard input, run without `--write` to check its diff against the
+  plan, then with it. `--help` gives the spec. In a strategy, none:
   `OBJECTIVE.md` is its synthesis.
 - For every contradiction the owner confirmed: keep the original claim in the older note and place
   a `> [!WARNING]` callout above it naming the newer note by link. Never delete the claim.
@@ -305,10 +338,11 @@ with no `.git/` gets one line, that it keeps no versions yet. In a strategy the 
 
 ## What this skill will not let you do
 
-- Read a PDF page by page when the script can extract it. The table-of-contents pages of a PDF with
-  no outline are the one exception.
-- Write to the sources beyond the copy *step 2* makes, or to `Philosophy/`, `Studies/` or
-  `Lessons/`. Only the script writes the extracts.
+- Read a PDF page by page when the script can extract it. The exceptions are the table-of-contents
+  pages of a PDF with no outline, and the image of a page whose table, equation or figure the
+  extract dropped, or whose OCR text may be wrong — *Page images*, in *step 4*.
+- Write to the sources beyond the copy and the searchable copy *step 2* makes, or to
+  `Philosophy/`, `Studies/` or `Lessons/`. Only the script writes the extracts.
 - Write at home while reading in a strategy — no note, no index line, no log entry, no question in
   `RESEARCHER.md`, no extract. A strategy's source enters the home library only when it is copied
   into `Sources/` at home, on the owner's go, and read there.
@@ -337,6 +371,16 @@ with no `.git/` gets one line, that it keeps no versions yet. In a strategy the 
 - `scripts/check_numbers.py`, in this skill's folder: each figure a note states beside a page
   citation, looked up in the extract on the cited page, elsewhere, or nowhere; `audit deep` runs it,
   and it edits nothing. `--help` has every option.
+- `scripts/ocr_pdf.py`: a scan's searchable copy, `<its name> (OCR).pdf`, beside it, its text read
+  by an OCR engine on this computer and laid over each page as invisible text. *Step 2*.
+- `scripts/render_pages.py`: a PDF's pages, or a part of one, as images outside the library, for
+  the contents pages a reader cannot show and for *Page images* in *step 4*.
+- `scripts/unread_sources.py`: every source no note's `local_copy` names, by its full path. *Step
+  2*, and `next`.
+- `scripts/update_concept_pages.py`: existing concept pages brought up to date from a spec, its
+  diff shown before `--write`. *Step 6*.
+- `scripts/check_library.py`: the checks `audit` makes on every run; it and the two before it share
+  `scripts/library.py`. Every script here needs only `uv`; `--help` has each one's options.
 - `references/note.md`, in this skill's folder: the shape of every note, book index, index line,
   concept page and synthesis page, and how a home note travels into a strategy.
 - `references/reading-map.md`, in this skill's folder: the evolution of investment research and

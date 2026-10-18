@@ -1,5 +1,5 @@
 ---
-description: A review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter; `deep` adds contradictions and gaps. Reports, and appends one line to the log; never fixes on its own. Only when the owner runs it by name, on the library at hand.
+description: A review of the library at hand — Knowledge/ at home, a strategy's Bibliotheca/ when invited there — broken links, duplicates, stale index, orphans, frontmatter, unread sources and clippings behind their project, checked by a script; `deep` adds contradictions and gaps. Reports, and appends one line to the log; never fixes on its own. Only when the owner runs it by name, on the library at hand.
 input:
   - mode: "Optional: deep, the expensive pass that adds contradictions and gaps"
 ---
@@ -27,31 +27,51 @@ strategy of the owner's own is `init-strategy <name>`.
 
 ## Step 1: Always
 
-- Links that do not resolve, and notes nothing links to — a chapter note is linked from its book's
-  `INDEX.md`.
-- Duplicate or overlapping notes — two files on one source, or one chapter read twice.
-- Index entries with no note, and notes with no index entry — `INDEX.md` at home, the rows of
-  `BIBLIOGRAPHY.md` in a strategy; a book's `INDEX.md` whose table disagrees with the chapter files
-  beside it. A row of `BIBLIOGRAPHY.md` marked *No note yet* is a lead, not a finding.
-- On this machine, notes whose `local_copy` names a file that is not there. PDFs are ignored by
-  git, so a fresh clone or a copy made by `init-example` has none: report the missing copies as one
-  line, with their count, not as a finding per note.
-- A source note's or a book `INDEX.md`'s frontmatter with fields other than `source`, `citation`,
-  `local_copy`, `read` and `tags`, or missing one of the first four; a concept or synthesis page is
-  checked below.
-- A `read` field that does not say what was read — the whole paper, the abstract, the chapters, as
-  the `read` skill's `references/note.md` asks. A date alone is not enough: a note on an abstract
-  that does not say so claims more than it read.
+**First, the library check**: `scripts/check_library.py`, in the `read` skill's folder wherever the
+harness installed it, run from the library's root, at home and in a strategy alike. It reads and
+edits nothing, and needs only the standard library:
+
+```bash
+uv run --no-project python "<the read skill's directory>/scripts/check_library.py"
+```
+
+It makes the same checks the same way on every run, each finding with its file and line, grouped
+by kind: links that do not resolve or that leave the repository; a note, page or study that cites
+an extract, and a page or study that cites a PDF; notes and pages nothing links to; the index
+against the notes, `INDEX.md` at home and the rows of `BIBLIOGRAPHY.md` in a strategy, where a book
+has one row and a row marked *No note yet* is a lead; each book's `INDEX.md` against the chapter
+files beside it; the frontmatter's fields, and a `read` that gives only a date; two notes on one
+file; at home, a chapter note no concept page names, a page's claim that links no note, and a study
+whose first line gives no state; every source no note's `local_copy` names, whatever its name or
+its date; and the notes whose `local_copy` is not on this computer, as one line with their count,
+since PDFs are ignored by git and a fresh clone or a copy `init-example` made holds none —
+`--verbose` lists them. At home it also finds **a clipping behind its project**: a note on a
+project in `RESEARCHER.md`'s projects table, a KaxaNuk library say, that states a version older than
+the newest in the `CHANGELOG.md` at the project's path, the only file of the project it opens. A
+row whose path is a folder of projects — `~/Lab`, holding a folder per library — is read as one
+project per folder inside it with a `CHANGELOG.md`, and the report's last lines name the rows it
+could not check: say so, rather than read *none of: stale clipping* as all clear. `--help` has the
+rest.
+
+Report its findings as it groups them, and never make again by hand a check it makes. An unread
+source's fix is `read <the source>`; one it names beside a note of the same first author and year
+may be that note's under another path, and its fix is the note's `local_copy`, on the owner's go. A
+stale clipping's fix is the project's new `README.md` and `CHANGELOG.md` copied into
+`Sources/Clippings/` on the go, then `read`: the old note stays, under a `> [!WARNING]` callout
+naming the new one.
+
+Then what the script leaves to judgement:
+
+- Duplicate or overlapping notes it cannot see: one source read twice under two paths, or one
+  chapter read twice under two numbers.
+- A `read` field whose words do not say what was read — the whole paper, the abstract, the
+  chapters, as the `read` skill's `references/note.md` asks: a note on an abstract that does not say
+  so claims more than it read.
 - Tags outside the policy in `RESEARCHER.md`, when the policy is strict.
 - Concepts a note leans on that no note defines.
-- A note that cites an extract or links into `Extracts/`. Notes cite the source and its pages.
-- Concept pages, at home: a claim with no source note behind it, or one that cites a PDF or an
-  extract; a page missing `type`, `updated` or `sources`; two pages that contradict each other with
-  no `> [!WARNING]` callout; a chapter note none of whose claims reached any concept page; and an
-  idea a page names that no page defines.
-- Studies, at home: a link that does not resolve — a note renamed or removed since the study was
-  written — a link into `Extracts/` or to a PDF, and a first line that gives no state. The owner's
-  words in a study are theirs, never a finding.
+- Concept pages, at home: a claim its note does not support; two pages that contradict each other
+  with no `> [!WARNING]` callout; and an idea a page names that no page defines.
+- Studies, at home: the owner's words in a study are theirs, never a finding.
 - An installed copy missing or out of step with its source. The source is the package under
   `~/.apm/apm_modules/` for the skills and commands, and the home's own `.apm/` for the agent and
   for any skill or command of the home's own in `.apm/skills/` or `.apm/prompts/`. The installed
@@ -78,11 +98,9 @@ strategy of the owner's own is `init-strategy <name>`.
 
 ## Step 2: In a strategy, also
 
-- Notes under `Bibliotheca/Papers/` or `Books/` that `BIBLIOGRAPHY.md` does not list, and lines in
-  it that link to a note that does not exist. A book has one row, linking its `INDEX.md`; its
-  chapter notes are listed there, not in `BIBLIOGRAPHY.md`, so a chapter without its own row is
-  the convention, not a finding.
-- A link from the strategy into the researcher's home. Links stay inside the strategy.
+The library check already holds `BIBLIOGRAPHY.md` against the notes and finds a link out of the
+strategy, into the researcher's home included. Beyond it:
+
 - A claim in `OBJECTIVE.md` that has none of the three kinds of evidence a claim may cite — a note,
   `RESULTS.md` or the `FINDINGS_N.md` that measured it, or its being **true by construction** — and
   is not marked as a lead. A prediction in a `BLUEPRINT_N.md` that cites neither a note nor an
@@ -108,12 +126,20 @@ strategy of the owner's own is `init-strategy <name>`.
   skill's folder wherever the harness installed it, over the library's notes — at home
   `uv run "<the read skill's directory>/scripts/check_numbers.py" Knowledge --extracts Extracts`,
   in a strategy `Bibliotheca/Papers Bibliotheca/Books --extracts Bibliotheca/Extracts` — from the
-  library's root. It looks each figure written beside a page citation up in the extract. Report
-  every figure *not found* as a finding, with its note, line and cited pages. Report a note whose
-  figures sit at a consistent offset as a note, since it may cite printed pages, and the unchecked
+  library's root. It looks each figure written beside a page citation up in the extract, leaving
+  out years and the numbers of equations, sections, tables, figures, chapters and pages. Report
+  every figure *not found* as a finding, with its note, line and cited pages. A note it reports at
+  an **offset** cites printed pages, not the extract's PDF pages: one finding for the note, with the
+  offset, since `references/note.md` cites PDF pages and gives a book's offset once in its
+  `INDEX.md` — its figures at that offset are found, and not findings each. Report the unchecked
   notes as a count, with the `extract.py` command the script prints to regenerate their extracts.
   A figure not found may be the note's own arithmetic or quoted from another source: say which,
-  where the note says so. The script reads and edits nothing, and this pass fixes nothing either.
+  where the note says so. One in a table, an equation or a figure may be on the page and lost by
+  the extract: look at the cited page as an image before reporting it, with `render_pages.py` in
+  the same folder — `uv run "<the read skill's directory>/scripts/render_pages.py" "<the PDF>"
+  <page> --dpi 200`, `--region` for a part of it — and read the image it prints the path of, which
+  it writes outside the library. Say what the image shows. Neither script edits anything, and this
+  pass fixes nothing either.
 - In a strategy, a part of `BIBLIOGRAPHY.md` whose sources only agree with the claims — above all
   *Part 1 — The core idea*, which the template says holds the sources that argue against them. A
   bibliography with no source against the idea is a pitch.
@@ -121,9 +147,12 @@ strategy of the owner's own is `init-strategy <name>`.
 ## Step 4: Report
 
 In chat, grouped by kind, each finding with its path. Then, if the owner wants fixes, present them
-as a plan and wait for a go; approved fixes append their own log entry. Append one entry to the
-library's `LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep` — except in the
-worked example, where nothing is written. Its entries come from `read`, `audit` and
+as a plan and wait for a go; approved fixes append their own log entry. A fix to concept pages — a
+chapter's claims brought to the pages it touches, a source added to a page — goes through
+`update_concept_pages.py`, in the `read` skill's folder: its spec on standard input, never a file in
+the library; run without `--write` its diff is the plan, and the go runs it with `--write`. Append
+one entry to the library's `LOG.md`: `## [YYYY-MM-DD] audit | <N> findings` — or `audit deep` —
+except in the worked example, where nothing is written. Its entries come from `read`, `audit` and
 `refresh-index`, and from `query` when the owner keeps a synthesis page, whose index line `query`
 adds on the same go — so a page whose line `query` added is not a stale-index finding.
 

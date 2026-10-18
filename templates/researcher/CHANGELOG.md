@@ -6,6 +6,45 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.29.0 (2026-10-18)
+
+**MINOR** — a scan can be made searchable beside itself in `Sources/`, and the library's tools
+include the OCR that does it.
+
+**What to do differently:** say `update` in your home; the change to `AGENTS.md` comes as a diff.
+
+### Changed
+
+* **`AGENTS.md`**, the row for `Sources/`: a scan's searchable copy, `<its name> (OCR).pdf`, made
+  beside it by the `read` skill's `scripts/ocr_pdf.py` on the owner's go, is the second write
+  there; *Hard don'ts* says the two copies.
+* **`AGENTS.md`**, *Knowledge conventions*: the library's tools include `ocr_pdf.py`, and
+  `render_pages.py` also shows the page images `read` reads for what an extract dropped or OCR
+  may have misread.
+
+## 0.28.0 (2026-10-18)
+
+**MINOR** — the library's tools are named where every skill reads them, a delegate's draft is
+checked before it reaches `Knowledge/`, and a download that refuses goes to the owner.
+
+**What to do differently:** say `update` in your home; the change to `AGENTS.md` comes as a diff.
+
+### Added
+
+* **`AGENTS.md`**, *Knowledge conventions*: the library's tools in the `read` skill's `scripts/` —
+  `unread_sources.py`, `check_library.py`, `check_numbers.py`, `render_pages.py` and
+  `update_concept_pages.py` — what each is for, and that an existing concept page is updated
+  through `update_concept_pages.py`, its diff shown first.
+* **`AGENTS.md`**, *Knowledge conventions*: a delegate's draft is staged outside the home and
+  checked against its extract before the plan; only checked drafts are written.
+* **`AGENTS.md`**, *Hard don'ts*: a download behind a login, a refusal, a busy server or a bot check
+  is the owner's to fetch in their browser, never got past.
+
+### Fixed
+
+* **`AGENTS.md`**, *Where the skills, the commands and the agent live*: the researcher's skills
+  include `workshop` and `known-answer`, which it reaches for on its own.
+
 ## 0.27.0 (2026-10-12)
 
 **MINOR** — a brief may hold the owner's weekly update, and today's brief may be changed the same

@@ -150,7 +150,7 @@ such as the daily brief, which is never saved.
 
 | Skill | What it does |
 | --- | --- |
-| `read` | files a source into the library, a note per chapter you pick; in a strategy, into its `Bibliotheca/` |
+| `read` | files a source into the library, a note per chapter you pick — a scan made searchable first, on your go; in a strategy, into its `Bibliotheca/` |
 | `query <question>` | answers from the library, every claim cited |
 | `init-researcher`, `init-strategy`, `init-example`, `init-python-library` | make your home, a strategy, the worked example or a Python library, copied by a script, never from memory |
 | `interview` | two short questions about you, then `RESEARCHER.md` and the agent and skill that make it yours; `interview force` starts over |
@@ -166,7 +166,7 @@ such as the daily brief, which is never saved.
 | `objective [strategy]` | drafts a strategy's `OBJECTIVE.md`, the idea and its claims, before any paper, then from the notes |
 | `blueprint <N> [strategy]` | drafts `BLUEPRINT_N.md` (thesis, rules, predictions), every prediction citing a note or a measurement |
 | `challenge <N> [strategy]` | checks a finished experiment against its own blueprint |
-| `audit [deep]` | reviews the library: links, duplicates, index, orphans, frontmatter, stale installs |
+| `audit [deep]` | reviews the library, by a script: links, duplicates, index, orphans, frontmatter, unread sources, clippings behind their project, stale installs |
 | `refresh-index` | rebuilds `Knowledge/INDEX.md` from what is on disk |
 | `refine <path>` | a voice-preserving editor pass over one of your `Philosophy/` files |
 | `study [subject]` | a study in `Studies/`; with no subject, lists your studies |

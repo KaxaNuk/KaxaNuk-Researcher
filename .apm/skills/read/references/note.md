@@ -71,7 +71,8 @@ tags: [expected-returns, risk-premia]
   itself — its title page, its header — or from the row in `BIBLIOGRAPHY.md`; never invented.
 - `citation` — the reference, with the date the link was last checked.
 - `local_copy` — the file read, by path inside this repository, or `none`. At home, the path under
-  `Sources/`; in a strategy, the PDF beside the note.
+  `Sources/`; in a strategy, the PDF beside the note. A scan read through its searchable copy names
+  the copy, `<its name> (OCR).pdf`.
 - `read` — the date, and what was read: the whole paper, the abstract, the chapters.
 - `tags` — by the owner's tag policy in `RESEARCHER.md`. Optional in a strategy.
 
@@ -130,6 +131,13 @@ Four rules, the template's:
 4. **Never invent a URL or a page number.** A page is the extract's marker, a PDF page; where the
    book's printed numbers differ, its `INDEX.md` says by how much, once, checked against a printed
    page. A reference the chapter gives without a page is quoted without one.
+
+**Where the text came from.** The provenance line says it: *from the extract*, as above; *from an
+OCR copy*, when the source was a scan read through its searchable copy; and the pages whose table,
+equation or figure was read from the page's image — *Chapter 3, pages 45–71, from the extract; the
+equations on pages 52 and 60 from the page images.* A figure, a name or a formula from an OCR copy
+is written only as the page's image shows it: OCR runs words together and misreads digits and
+signs. What an image does not make clear is quoted as unclear, with its page, never guessed.
 
 A figure the source reports — a return, a Sharpe ratio, a drawdown — is the source's, on its data
 and its period, and the note says whose it is. It never enters a note, in a bullet or a blockquote,
