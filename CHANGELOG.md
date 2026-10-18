@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.17.1] - 2026-10-18
+Keeping a copy on GitHub now offers to keep your e-mail empty, as your researcher saves it since
+1.15.2, and the list of uses says every write made without asking.
+
+**What to do differently:** say `update` in your home.
+### Fixed
+- **`backup`** (0.1.7), *Step 6*: since the researcher asks no e-mail, the address a version is
+  signed with is usually empty, `<>`. The question `E-mail` now offers *Keep it empty* (*the
+  versions show your name alone*) when it is, and *Keep the one I have* only when there is one,
+  beside *Use GitHub's private address (recommended)*.
+- **`USE-CASES.md`**: the writes made without a go of their own include the one line `audit` adds
+  to the library's log, as the home's `AGENTS.md` says.
+
 ## [1.17.0] - 2026-10-18
 Your researcher can now read a scanned book or paper: it makes a searchable copy of the scan, on
 your go, and reads a page's image where the text alone falls short.
