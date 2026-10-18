@@ -2,7 +2,8 @@
 
 Twelve things you can ask for. In Claude, type a command with a slash, `/study`; anywhere else, say
 it. Whatever writes a file shows its plan first and writes only on your go, except your first
-interview, written from your two answers, and a brief. It is research, never investment advice:
+interview, written from your two answers, a brief, and the one line `audit` adds to your library's
+log when you run it. It is research, never investment advice:
 *What it is, and what it is not*, in the [README](README.md).
 
 ## Bring it into my work project
