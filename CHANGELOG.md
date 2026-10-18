@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.18.1] - 2026-10-19
+`audit`'s library check no longer raises four more false alarms a real library showed: on a link
+whose text holds brackets, on a bracket you escaped, on a note kept beside a newer one, and on a
+version that belongs to another project.
+
+**What to do differently:** say `update` in your home.
+### Fixed
+- **A link whose text holds brackets** (`library.py`, and so every check that reads links). A
+  changelog entry is named so, `[… entry *[0.3.0]*, *Changed*](…)`, and CommonMark and GitHub
+  read it as a link; the check read none, so a claim ending in one was reported as linking no note.
+  A link's text may now hold one level of balanced brackets; the projects table is read the same
+  way.
+- **An escaped bracket opens no link** (`library.py`). `\[X′X/n − X′ΩX/n](X′X/n)⁻¹`, escaped as
+  1.17.4's hint asks, was still reported as a broken link, with that same hint. A backslash before
+  a punctuation mark now makes it plain text, as GitHub renders it; after an escaped backslash,
+  `\\[`, the bracket still opens a link.
+- **A clipping kept beside a newer one is not behind its project** (`check_library.py`). Of the
+  notes on copies of one file — `README.md`, `README_2026-10-18.md`, `README_2.0.1.md`, by their
+  `local_copy`'s name with any date, time or version after it taken off — only those stating the
+  highest version are checked: the old note, kept under its `> [!WARNING]`, is no longer reported,
+  and a newest one still behind is reported alone. A note states the highest version its citation
+  names: one on 0.66.0 that records the same text at 0.67.0 has read 0.67.0.
+- **A version that is another project's** (`check_library.py`). A note is matched to a project
+  only when its file name names it — every word of the project's name or its folder's, or two or
+  more of their distinctive words — or its citation or `source` names the project's repository,
+  `KaxaNuk/Backtest-Engine` or its web address. A library a README only pins, or another
+  project's package whose name shares one word with it, no longer counts.
+- **`audit`**, *Step 1*: how a note is matched to its project and which copy is checked; a new
+  clipping comes in under the old copy's name with its date or version after it; and, left to
+  judgement, an older note the check passes over with no `> [!WARNING]` naming the newer one.
+
 ## [1.18.0] - 2026-10-19
 Your tutor follows the four Training Workshops as they now publish: a deck at the repository's root
 or in its session's folder, each language's own deck, and the code a session ships beside it.

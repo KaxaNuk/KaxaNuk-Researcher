@@ -114,6 +114,23 @@ class UnreadReport:
         return unread_sources
 
 
+def copy_stem(
+    note: library.LibraryFile,
+) -> str:
+    """
+    The file name, without its extension, a note's `local_copy` names; empty when it names none.
+    """
+    value = library.field_value(
+        note.front,
+        'local_copy',
+    )
+    forward = value.replace('\\', '/')
+    names_none = value.casefold() in NO_COPY
+    stem = '' if names_none else pathlib.PurePosixPath(forward).stem
+
+    return stem
+
+
 def lead_texts(
     found: library.Library,
     status: SourceStatus,
@@ -299,23 +316,6 @@ def _build_parser() -> library.CommandLineParser:
     return parser
 
 
-def _copy_stem(
-    note: library.LibraryFile,
-) -> str:
-    """
-    The file name, without its extension, a note's `local_copy` names; empty when it names none.
-    """
-    value = library.field_value(
-        note.front,
-        'local_copy',
-    )
-    forward = value.replace('\\', '/')
-    names_none = value.casefold() in NO_COPY
-    stem = '' if names_none else pathlib.PurePosixPath(forward).stem
-
-    return stem
-
-
 def _is_other_copy(
     source_stem: str,
     copy_stem: str,
@@ -478,7 +478,7 @@ def _other_copies(
         if note.kind != library.CHAPTER
         and _is_other_copy(
             source.stem,
-            _copy_stem(note),
+            copy_stem(note),
         )
     ]
 

@@ -31,13 +31,20 @@ What it checks — each a kind of finding, printed under its name
     stray file        a markdown file where no note belongs: beside the index at the top of
                       Knowledge/, or deeper than a book's folder
     unread source     a source no note's local_copy names, as unread_sources.py finds it
-    stale clipping    at home, a clipping of a project in RESEARCHER.md's projects table that states
-                      a version older than the newest in the CHANGELOG.md at the project's path —
-                      the only file of the project it opens. A row whose path is a folder of
-                      projects, with no CHANGELOG.md of its own, is read as one project per folder
-                      inside it that holds one; the report names every row it could not check
+    stale clipping    at home, a note on a project in RESEARCHER.md's projects table — its file name
+                      names the project, or its citation or source the project's repository,
+                      KaxaNuk/Backtest-Engine — that states a version older than the newest in the
+                      CHANGELOG.md at the project's path, the only file of the project it opens. Of
+                      the notes on copies of one file, README.md and README_2026-10-18.md, only
+                      those stating its highest version are checked; a note states the highest
+                      version its citation names. A row whose path is a folder of projects, with no
+                      CHANGELOG.md of its own, is read as one project per folder inside it that
+                      holds one; the report names every row it could not check
     missing copies    notes whose local_copy names a file that is not on this computer: one finding
                       with the count, since a fresh clone holds no PDF; --verbose lists them
+
+A link's text may hold brackets, entry *[0.3.0]*, as CommonMark allows; an escaped bracket, \\[,
+opens no link.
 
 What it leaves to `audit`: one source read twice under two paths, tags against the policy, an idea a
 note leans on that nothing defines, contradictions, the installed copies of the skills, the agent
@@ -50,6 +57,7 @@ It needs only the standard library, and writes nothing.
 import argparse
 import collections
 import dataclasses
+import operator
 import pathlib
 import re
 import sys
@@ -134,16 +142,27 @@ PROJECT_STOP_WORDS = frozenset({
 # The markdown and the text the checks read.
 CHANGELOG_VERSION = re.compile(r'^#{2,3}\s+\[?v?(\d+)\.(\d+)\.(\d+)\b')
 CHAPTER_NUMBER = re.compile(r'^(\d+)_')
+# What follows a name in a later copy's: a date, a time or a version, `_2026-10-18`, `_0936`,
+# `_2.0.1` or ` (2)`, after a space, a bracket, a dot, an underscore or a hyphen.
+COPY_MARK = re.compile(
+    r'(?:[ (._-]+v?\d+(?:[.-]\d+)*\)?)+$',
+    re.IGNORECASE,
+)
 DATE_ONLY = re.compile(r'^\d{4}-\d{2}-\d{2}\.?$')
 EXTRACTS_PATH = re.compile(r'(?<![\w/])(?:Bibliotheca/)?Extracts/[^/\s`\'"()<>\[\]]+/[^\s`\'"()<>\[\]]+')
 HEADING = re.compile(r'^#{1,2}\s')
 INLINE_LIST = re.compile(r'^\[(.*)\]$')
 LIST_ITEM = re.compile(r'^[-*+]\s+')
-MARKDOWN_LINK_TEXT = re.compile(r'\[([^\]]*)\]\([^)]*\)')
 NAMED_VERSION = re.compile(
     r'(?:version|versión|release|\bv)\s*(\d+)\.(\d+)\.(\d+)(?!\.?\d)',
     re.IGNORECASE,
 )
+# A repository, its owner and its name: `KaxaNuk/Backtest-Engine`, never the middle of a longer
+# path, or the first two folders of a web address, `https://github.com/KaxaNuk/Backtest-Engine/...`.
+REPOSITORY = re.compile('|'.join([
+    r'https?://[^/\s]+/[\w.-]+/(?P<linked>[\w.-]*\w)',
+    r'(?<![\w./:-])[\w.-]+/(?P<named>[\w.-]*\w)(?![\w.-]*/)',
+]))
 SOURCES_SAY_HEADING = re.compile(
     r'^##\s+What the sources say\s*$',
     re.IGNORECASE,
@@ -162,6 +181,17 @@ class BookRow:
     line: int
     linked: list[str]
     status: str
+
+
+@dataclasses.dataclass(frozen=True)
+class Clipping:
+    """
+    A note on a project's own document: the note, the version it states, and the name of the file it
+    reads, as every copy of that file shares it.
+    """
+    note: library.LibraryFile
+    stated: tuple[int, int, int]
+    work: str
 
 
 @dataclasses.dataclass(frozen=True)
@@ -756,36 +786,37 @@ def stale_clipping_findings(
 ) -> list[Finding]:
     """
     At home, each clipping of a project in RESEARCHER.md's projects table whose stated version is
-    older than the newest one in the project's CHANGELOG.md.
+    older than the newest one in the project's CHANGELOG.md, and is the highest any note on a copy
+    of the same file states: a note kept beside a newer one is never stale.
     """
     if found.kind != 'home':
 
         return []
 
     projects = projects_on_disk(found)
-    findings = [
+    project_findings = [
         Finding(
             kind=STALE_CLIPPING,
             line=None,
             message=_stale_message(
                 project,
-                stated,
+                clipping.stated,
             ),
-            path=library.relative_name(found, clipping.path),
+            path=library.relative_name(found, clipping.note.path),
         )
-        for clipping
-        in files
-        if clipping.kind == library.PAPER
         for project
         in projects
-        if _describes(
-            clipping,
+        for clipping
+        in _newest_clippings(
+            files,
             project,
         )
-        for stated
-        in [_stated_version(clipping)]
-        if stated is not None and stated < project.newest
+        if clipping.stated < project.newest
     ]
+    findings = sorted(
+        project_findings,
+        key=operator.attrgetter('path'),
+    )
 
     return findings
 
@@ -1049,31 +1080,27 @@ def _describes(
     project: Project,
 ) -> bool:
     """
-    Whether a note describes a project: every distinctive word of the project's name, or of its
-    folder's, is in the note's file name, its title or its citation — a name of one word, in the
-    note's file name.
+    Whether a note is on a project's own document: its file name names the project, as
+    `_name_keys` says, or a repository its citation or its source names is the project's,
+    `KaxaNuk/Backtest-Engine`. A project its text only mentions — a library another one pins, or
+    one whose name shares a word with another project's — is not enough.
     """
-    citation = library.field_value(
-        clipping.front,
-        'citation',
-    )
-    note_text = ' '.join([
-        clipping.path.stem,
-        _title(clipping),
-        citation,
-    ])
-    note_words = set(library.words(note_text))
     stem_words = set(library.words(clipping.path.stem))
-    name_keys = [
-        _distinctive_words(project.name),
-        _distinctive_words(project.folder.name),
-    ]
-    describes = any(
-        key <= note_words and (len(key) > 1 or key <= stem_words)
+    in_file_name = any(
+        key <= stem_words
         for key
-        in name_keys
-        if key
+        in _name_keys(project)
     )
+    project_names = [
+        library.words(project.name),
+        library.words(project.folder.name),
+    ]
+    in_repository = any(
+        repository in project_names
+        for repository
+        in _repository_names(clipping)
+    )
+    describes = in_file_name or in_repository
 
     return describes
 
@@ -1352,6 +1379,40 @@ def _links_a_note(
     return links_note
 
 
+def _name_keys(
+    project: Project,
+) -> list[frozenset[str]]:
+    """
+    The sets of words a note's file name must hold, one set or another, to name a project: every
+    word of its name, or of its folder's, and the distinctive words of either when two or more are
+    left. `KaxaNuk Backtest Engine` gives `backtest` and `engine`; `KaxaNuk Researcher` never gives
+    `researcher` alone, which another project's name may hold.
+    """
+    names = [
+        project.name,
+        project.folder.name,
+    ]
+    whole_keys = [
+        name_words
+        for name
+        in names
+        for name_words
+        in [frozenset(library.words(name))]
+        if name_words - PROJECT_STOP_WORDS
+    ]
+    distinctive_keys = [
+        distinctive
+        for name
+        in names
+        for distinctive
+        in [_distinctive_words(name)]
+        if len(distinctive) > 1
+    ]
+    keys = whole_keys + distinctive_keys
+
+    return keys
+
+
 def _names_missing_copy(
     found: library.Library,
     note: library.LibraryFile,
@@ -1366,6 +1427,57 @@ def _names_missing_copy(
     missing = copy is not None and not copy.is_file()
 
     return missing
+
+
+def _newest_clippings(
+    files: list[library.LibraryFile],
+    project: Project,
+) -> list[Clipping]:
+    """
+    The notes on a project's own documents that state a version, each file's newest: of the notes
+    on copies of one file — `README.md`, `README_2026-10-18.md`, `README_2.0.1.md` — those stating
+    its highest version.
+    """
+    clippings = [
+        Clipping(
+            note=note,
+            stated=stated,
+            work=_work_name(note),
+        )
+        for note
+        in files
+        if note.kind == library.PAPER
+        and _describes(
+            note,
+            project,
+        )
+        for stated
+        in [_stated_version(note)]
+        if stated is not None
+    ]
+    works = {
+        clipping.work
+        for clipping
+        in clippings
+    }
+    highest_by_work = {
+        work: max(
+            clipping.stated
+            for clipping
+            in clippings
+            if clipping.work == work
+        )
+        for work
+        in works
+    }
+    newest = [
+        clipping
+        for clipping
+        in clippings
+        if clipping.stated == highest_by_work[clipping.work]
+    ]
+
+    return newest
 
 
 def _note_field_problems(
@@ -1599,10 +1711,7 @@ def _plain(
     """
     A cell's text without its markdown: a link's text kept, emphasis, code marks and quotes dropped.
     """
-    without_links = MARKDOWN_LINK_TEXT.sub(
-        r'\1',
-        cell,
-    )
+    without_links = library.without_links(cell)
     without_code = without_links.replace('`', '')
     without_emphasis = without_code.replace('*', '')
     plain = library.unquoted(without_emphasis)
@@ -1664,6 +1773,29 @@ def _reading_unit(
     unit = note.path.parent if note.kind in book_kinds else note.path
 
     return unit
+
+
+def _repository_names(
+    note: library.LibraryFile,
+) -> list[list[str]]:
+    """
+    The repositories a note's citation and its source name, each name as its words:
+    `KaxaNuk/Backtest-Engine` and `https://github.com/KaxaNuk/Backtest-Engine.git` both give
+    `backtest` and `engine`.
+    """
+    named_text = ' '.join([
+        library.field_value(note.front, 'citation'),
+        library.field_value(note.front, 'source'),
+    ])
+    names = [
+        library.words(repository.removesuffix('.git'))
+        for repository_match
+        in REPOSITORY.finditer(named_text)
+        for repository
+        in [repository_match.group('linked') or repository_match.group('named')]
+    ]
+
+    return names
 
 
 def _row_folder(
@@ -1807,8 +1939,9 @@ def _stated_version(
     clipping: library.LibraryFile,
 ) -> tuple[int, int, int] | None:
     """
-    The version a clipping says it read: the one its citation or its title names after *version*,
-    *release* or *v*, else the newest its citation names; None when they name none.
+    The version a clipping says it read: the highest its citation or its title names after
+    *version*, *release* or *v* — a note on 0.66.0 that records the same text at 0.67.0 has read
+    0.67.0 — else the highest its citation names; None when they name none.
     """
     citation = library.field_value(
         clipping.front,
@@ -1825,7 +1958,7 @@ def _stated_version(
         for version_match
         in VERSION.finditer(citation)
     ]
-    stated = named[0] if named else max(bare, default=None)
+    stated = max(named) if named else max(bare, default=None)
 
     return stated
 
@@ -2012,6 +2145,25 @@ def _version_text(
     )
 
     return text
+
+
+def _work_name(
+    note: library.LibraryFile,
+) -> str:
+    """
+    The name of the file a note reads, as every copy of it shares it: its `local_copy`'s, else the
+    note's own, without the date, time or version a later copy adds, case folded.
+    `Engine_README_2026-10-18.md` and `Engine_README_0.67.0.md` both give `engine_readme`.
+    """
+    copy_stem = unread_sources.copy_stem(note)
+    stem = copy_stem or note.path.stem
+    unmarked = COPY_MARK.sub(
+        '',
+        stem,
+    )
+    work = unmarked.casefold()
+
+    return work
 
 
 def _wrapped_in(
