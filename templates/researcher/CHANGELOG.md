@@ -6,6 +6,33 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.30.0 (2026-10-18)
+
+**MINOR** — the home keeps the choices a computer or an account would otherwise keep, in
+`settings.yml`, so `update` sets a new computer, account or assistant up from it.
+
+**What to do differently:** say `update` in your home: it brings `settings.yml`, filled from this
+computer, and the change to `AGENTS.md` and `README.md` as a diff.
+
+### Added
+
+* **`settings.yml`**: `assistants:`, `versions:` and `brief:`, each written by its own skill on
+  its own go — `backup`, `brief setup`, `update` — and by hand whenever the owner likes. It never
+  holds a key, a token, a password or a holding.
+
+### Changed
+
+* **`AGENTS.md`**, *The researcher's home*: *The researcher travels* — what `settings.yml` keeps,
+  that `update` sets a new place up from it and `next` names what this place lacks, and what
+  cannot travel; `update` installs for each assistant the file lists.
+* **`AGENTS.md`**, *What is learned goes home*: what an assistant remembered on its own comes home
+  through `bring-home`, on the owner's go; `RESEARCHER.md`'s fourth addition names it.
+* **`AGENTS.md`**: a paragraph on `settings.yml`, the owner's file; `brief setup` saves it alone;
+  *Versions* says the sending choice and the e-mail travel in it; `bring-home` joins the skills run
+  by name; *Hard don'ts* keeps a secret or a holding out of it.
+* **`README.md`**: `settings.yml` in *Your folders*; *Take it with you*, after *A copy off this
+  computer*; *Installing and updating* points a new machine to it.
+
 ## 0.29.0 (2026-10-18)
 
 **MINOR** — a scan can be made searchable beside itself in `Sources/`, and the library's tools

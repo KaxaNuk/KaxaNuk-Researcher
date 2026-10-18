@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.7
+  version: 0.2.0
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -68,10 +68,11 @@ for a first copy.
 ## Step 4: Plan and go
 
 In chat, short: the folder; the first way of *Step 5* that applies; the repository's name, and
-that it is private; what the copy holds and what stays here (*Step 9*); and what is the owner's to
-do — sign in to GitHub, or create an account, in any browser window that opens. A home whose
-`AGENTS.md` has no *Versions* paragraph gets one line more: `update` brings it, so every skill that
-saves knows how to send. Then ask, in one call:
+that it is private; what the copy holds and what stays here (*Step 9*); at home, `settings.yml`'s
+change as a diff (*Step 9*); and what is the owner's to do — sign in to GitHub, or create an
+account, in any browser window that opens. A home whose `AGENTS.md` has no *Versions* paragraph
+gets one line more: `update` brings it, so every skill that saves knows how to send. Then ask, in
+one call:
 
 - `Go?` (`¿Adelante?`) — *Go*, *Change something*, *Stop*; in chat, any of the go words in the
   home's `AGENTS.md`. On *Change something*, ask again with options: another name, another way.
@@ -136,7 +137,8 @@ private address (recommended)*, which links each version to their GitHub account
 nothing, *Keep it empty* (*the versions show your name alone*). The private one, ending in
 `@users.noreply.github.com`, is on <https://github.com/settings/emails>: ask them to copy it from
 there and paste it here. Set for that folder only, `git config user.email <it>`, it signs new
-versions only: those already saved keep theirs, and history is never rewritten.
+versions only: those already saved keep theirs, and history is never rewritten. At home the choice
+also goes in `settings.yml`, as *Step 9* says, so a new computer signs the same way.
 
 If GitHub refuses a send because it would publish a private e-mail — error `GH007` — say so plainly,
 and give the two choices: allow it once in GitHub's e-mail settings, or keep the copy as it is.
@@ -144,8 +146,9 @@ and give the two choices: allow it once in GitHub's e-mail settings, or keep the
 ## Step 7: Sending each new version
 
 Asked once, `Send?` (`¿Envío?`) — *Send each new version automatically (recommended)*, *Only when I
-ask*: `git config kaxanuk.autosend true` or `false`, in that folder only. With *Only when I ask*,
-*back up* sends what has piled up, as *Step 3* does.
+ask*: `git config kaxanuk.autosend true` or `false`, in that folder only, and at home in
+`settings.yml` too, as *Step 9* says. With *Only when I ask*, *back up* sends what has piled up, as
+*Step 3* does.
 
 ## Step 8: Sending a version
 
@@ -177,22 +180,39 @@ stop and explain: two computers saved different versions, and joining them is th
 ## Step 9: What the copy holds
 
 What the folder's saved versions hold, and nothing its `.gitignore` keeps out. At home: the notes,
-the studies, the lessons, `Philosophy/`, `RESEARCHER.md` and the clippings in text; **not** the
+the studies, the lessons, `Philosophy/`, `RESEARCHER.md`, `settings.yml` and the clippings in text;
+**not** the
 PDFs and other files kept out of `Sources/`, nor `Extracts/`, `Briefs/`, `Portfolio/` or any
 `.env` — they stay on this computer by design. In a strategy: the code, the documents and the
 notes; not the PDFs, the data, the engines' output or `Config/.env`. Suggest keeping the PDFs and
 `Portfolio/` somewhere private of their own — a personal cloud folder outside the home, or an
 external disk — never in this copy, and never force a kept-out file into it.
 
+**At home, `settings.yml` travels in the copy**, so a new computer is set up from it. On *Step 4*'s
+go, and on *Step 3*'s *Send* when the file lags, `backup` writes two parts of it, shown in the plan
+as a diff and nothing else touched: `versions:` — `email` as *Step 6* chose, `"<>"` for none, and
+`send` as *Step 7* chose — and `assistants:`, adding each one `~/.apm/apm.yml` lists under
+`targets:` that the home's `apm.yml` lists too, read with the file tool. Then it saves that file
+alone, `git add settings.yml` and `git commit -m "Backup: settings"`, before the send. A home
+without the file gets it first from the template, by the script in the `init-strategy` skill's
+folder, run from the home's root, never written from memory —
+`scaffold.py researcher . --only settings.yml`, as `update` runs it. A strategy has no
+`settings.yml`.
+
 ## Step 10: A new computer
 
 Install the package as the package's `SETUP.md` says — git and uv in its step 1, the package in its
-step 2. Then, in a new session, clone the copy into a short folder —
-`git clone <the address> <folder>` — run `update` there, and open a new session. `update` rewrites
-the researcher's skill and the agent's path for the new folder and installs the home for the user;
-a strategy's clone takes its own `SETUP.md` instead. The e-mail and *Send?* do not travel: set them
-again, as *Step 6* and *Step 7* say; the name is asked again at the first save, as any save asks
-it. The PDFs and `Portfolio/` come from wherever they were kept.
+step 2; the README's line for bringing a researcher back runs both and this step. Then clone the
+copy into a short folder — `git clone <the address> <folder>`, the address the owner pastes, or,
+with `gh` signed in, the one they pick from `gh repo list --visibility private` — and run `update`
+there, in the same session. `update` rewrites the researcher's skill and the agent's path for the
+new folder, installs the home for the user and sets this computer up from `settings.yml`: the
+package and the home for each assistant it lists, the e-mail and `kaxanuk.autosend` from its
+`versions:`, and the brief, through `brief setup`, which asks only for the go. A choice the file
+leaves empty — or a home from before it — is asked again: the e-mail and *Send?* as *Step 6* and
+*Step 7* say; the name at the first save, as any save asks it. A strategy's clone takes its own
+`SETUP.md` instead. The PDFs and `Portfolio/` come from wherever they were kept, and `Extracts/` is
+made again by `read`'s script. Then a new session, where the researcher is.
 
 ## Never
 
@@ -206,4 +226,4 @@ the owner did not ask; offering a copy, or reminding the owner of one, unasked.
 - The home's `AGENTS.md`, *Versions*: what a saved version is, and the send each saving skill makes.
 - `next`: at home, starts the versions where there are none, and saves changes made by hand.
 - `update`: on a new computer, rewrites the researcher's skill and the agent's path for the new
-  folder, and installs the home.
+  folder, installs the home, and sets the computer up from `settings.yml`.

@@ -17,7 +17,17 @@ researcher, the owner and the home by path. So every session knows who it is bef
 loaded, in any folder and on any assistant listed under `targets:` in both `~/.apm/apm.yml` and
 this home's `apm.yml`, and the agent is callable by name from any folder. For another assistant,
 install the package with `--target <assistant>`, list it with `init-researcher`'s
-`user_targets.py add <assistant>`, and install the home again: the researcher follows.
+`user_targets.py add <assistant>`, and install the home again: the researcher follows. `update`
+does all three for each assistant `settings.yml` lists.
+
+**The researcher travels.** The home is plain files the owner keeps, so another computer, another
+account or another assistant is set up again from it, never from scratch. What a computer or an
+account would otherwise keep — the assistants the owner uses, how versions are signed and sent, the
+daily brief and the connectors it reads — is kept in `settings.yml`, and `update` sets a new place
+up from it: on another computer once `backup` has brought the home back, and under another account
+or on another assistant as it is. `next` names what this place lacks. What cannot travel is said,
+never worked around: an account's connectors are the owner's to connect again, and what an
+assistant remembered on its own comes home through `bring-home`, on the owner's go.
 
 There are two ways to work:
 
@@ -67,7 +77,10 @@ plan it. The researcher writes only on the owner's go:
   *Non-negotiables*;
 - a fact inside one project stays there, in the file its rules give it.
 
-From another folder, the write is saved in the home, with `git -C "<the home>"`.
+From another folder, the write is saved in the home, with `git -C "<the home>"`. What an assistant
+remembered on its own — its memory files, outside the home — comes home the same way, through
+`bring-home`: each item sorted as above, on the owner's go, and the assistant's memory never
+edited.
 
 ## What each folder is, and who may write in it
 
@@ -94,12 +107,21 @@ its diff shown, and four additions, each after the owner's go:
   round unless its preview leaves *Find first* alone — are appended to the closing *Find first*
   line, add-only;
 - the rules they settle in `philosophy` go under *Non-negotiables*;
-- what they teach with *learn this*, as above.
+- what they teach with *learn this*, or what `bring-home` brings from an assistant's memory, as
+  above.
 
 A home starts with no non-negotiables beyond the hard don'ts; the first rule written there replaces
 *None yet.* The owner edits `RESEARCHER.md`, and their files in `Philosophy/`, by hand whenever
 they like; the template ships no file in `Philosophy/`. A prompt in angle brackets — an older
 template's — is never the owner's view: a heading holding nothing but its prompt says nothing yet.
+
+`settings.yml` is the owner's as well: the choices a computer or an account would otherwise keep,
+kept here so they travel — the assistants they use, how versions are signed and sent, the daily
+brief and the connectors it reads. Three skills write it, each its own part and nothing else, on
+its own go, shown as a diff: `backup` the `versions:` and the `assistants:`, `brief setup` the
+`brief:`, and `update` the `assistants:`, and an older home's first copy of the file. The owner
+edits it by hand whenever they like. It never holds a key, a token, a password or a holding, and
+anything it does not say is asked, never guessed.
 
 **Anything else the owner asks for at home is answered in chat**, or as a page they can share where
 the assistant offers one. It is never written as a file unless they keep it as a study. Strategy
@@ -237,9 +259,9 @@ saved, never sent. Running `audit` or `brief` by name is the go for that write, 
 
 **Every go also saves a version** of what it wrote — `git add` by name, never `--all` or an ignored
 path, then `git commit` — said in one line, *Saved*, with no second question. Running `audit` saves
-its line; a brief is never saved. Where no go covers a save — the owner's edits, which `next` finds,
-or a tree `update` finds unsaved — ask `Save?`: *Save this version* or *Not now* (*Stop*, in
-`update`). No version is saved unasked.
+its line; `brief setup` saves `settings.yml` alone, and a brief is never saved. Where no go covers a
+save — the owner's edits, which `next` finds, or a tree `update` finds unsaved — ask `Save?`: *Save
+this version* or *Not now* (*Stop*, in `update`). No version is saved unasked.
 
 **Every step offers options, and the go is one of them.** Where the assistant has a question tool —
 Claude Code's `AskUserQuestion` — a plan ends by asking through it: *Go*, *Change something*,
@@ -265,7 +287,8 @@ it. Only `backup` makes a copy off this computer, when they ask: a private GitHu
 `git config --get kaxanuk.autosend` prints `true`, every saved version is sent there too, with
 `git -c credential.interactive=never push` and `GIT_TERMINAL_PROMPT=0` — never `--force`, and never
 a pull or a merge on its own. A failed send keeps the version here, says so in one line and sets
-`kaxanuk.autosend` to `paused` until they say *back up*.
+`kaxanuk.autosend` to `paused` until they say *back up*. The choice itself, and the e-mail versions
+are signed with, are kept in `settings.yml` too, so a new computer gets them back.
 
 **The agent never writes at all**: a subagent reports back once and cannot ask for the owner's go.
 It answers, it cites, and it names the skill or command the owner should run.
@@ -279,7 +302,7 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
 
 | Primitive | Where | What it is |
 | --- | --- | --- |
-| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read`, `query`, `workshop` and `known-answer`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief` and `backup`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
+| **Skill** | `.apm/skills/<name>/` in the package | the package's skills, each a folder: its `SKILL.md`, what it runs in `scripts/`, what it reads on demand in `references/`. The researcher's — `read`, `query`, `workshop` and `known-answer`, which it reaches for on its own, and `init-*`, `interview`, `next`, `philosophy`, `brief`, `backup` and `bring-home`, run by name — are skills so that every assistant has them, Codex included; the process's, each Lab library's and the house rules' load when the work calls for them |
 | **Command** | `.apm/prompts/<name>.prompt.md` in the package | the other nine — `objective`, `blueprint`, `challenge`, `audit`, `refine`, `refresh-index`, `study`, `teach` and `update` — tasks the owner starts by name, with arguments, each producing one thing. Each says *only when the owner runs it by name* in its own description, the one place every harness reads |
 | **Agent** | `.apm/agents/<name>.agent.md`, here | the researcher as a subagent the harness can call by name, with its own tool boundary. Written by `interview` from `RESEARCHER.md`, so a fresh home has none until the interview runs. The package ships one agent of its own, `blueprint-critic`, a read-only reviewer that `blueprint` calls on its draft before it asks for the go, so this home's agent takes another name |
 | **The researcher's skill** | `.apm/skills/<slug>/`, here | the researcher present in every session: its description names the researcher, the owner and the home by path, as *The researcher's home* says, and its body says who is speaking, where what is learned goes and what may be written from where the session is — *Who is speaking* above. Written by `interview` beside the agent, under the agent's name. `update` writes it for a home that lacks it, and again when the home has moved or the skill is behind the template in `interview` — an older version, or a slug outside a to z, digits and hyphens — shown as a diff, the owner's own lines kept |
@@ -349,7 +372,9 @@ has the commands and says the home's own version is the owner's; *Troubleshootin
   repository its rules govern its code, and none of it leaves.
 - Don't rewrite a note in generic voice; match the library's existing notes.
 - Don't write any file without the owner's go on the plan, the first `interview` aside.
-- Never print a value from a `.env` file. Never use the section symbol; write "section".
+- Never print a value from a `.env` file. Never write a key, a token, a password or a holding into
+  `settings.yml`, which every saved version and the copy on GitHub carry. Never use the section
+  symbol; write "section".
 
 ## Working in a strategy
 

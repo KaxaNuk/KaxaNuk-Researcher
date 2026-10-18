@@ -12,7 +12,9 @@
 > save included, at 1.15.3. At 1.17.0, on the owner's word, `read` offers a scan a searchable copy,
 > reads a page's image for what an extract dropped, and lists its sources and updates existing
 > concept pages by script; this run is unchanged, its paper having a text layer and its concept
-> pages being new.
+> pages being new. At 1.19.0, on the owner's word, `SETUP.md` gains a way back for a researcher
+> kept on GitHub — a second line to paste, step 3's first paragraph, *Later*'s *A new machine* —
+> which a newcomer's run never reaches: this run is unchanged.
 
 What varies from run to run: the language — in Spanish every line is in Spanish, with the headers
 the skills give — the names proposed, the paths, the owner's answers and what is proposed from

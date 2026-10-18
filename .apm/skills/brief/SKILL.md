@@ -6,11 +6,12 @@ description: >
   earnings and filings per holding), and on one day a week, Week (the owner's weekly update, ready
   to paste into team chat). "brief setup" asks the parts, days and measures, plan first, and
   schedules it on the Claude desktop app; "brief" writes today's file now, and changes it the same
-  day on the owner's word. Only when the owner runs it by name, or as the task its setup created.
-  It does NOT compute a figure about the book or add to the library, never says buy, sell, trim,
+  day on the owner's word. Its choices are kept in the home's settings.yml, so another computer,
+  account or assistant asks only for the go. Only when the owner runs it by name, or as the task
+  its setup created. It does NOT compute a figure about the book or add to the library, never says buy, sell, trim,
   add or hold, and never sends, posts or trades.
 metadata:
-  version: 1.1.0
+  version: 1.2.0
 ---
 
 # Brief — one dated file a day: work, markets, portfolio, and the week
@@ -44,9 +45,18 @@ writes. Running either by name is the owner asking for that write by name.
   owner's: the brief reads it, and nothing writes there again.
 - **The scheduled task**, on the Claude desktop app — created, or changed, by `brief setup` on its
   go. Elsewhere nothing is scheduled.
+- **`settings.yml`, its `brief:` part** — the choices setup's plan confirmed, written on its go and
+  shown in the plan as a diff, so the brief travels with the home: another computer, another
+  account or another assistant reads them and asks only for the go. Nothing else in the file is
+  touched. A home without the file gets it first from the template, by the script in the
+  `init-strategy` skill's folder, run from the home's root — never written from memory:
 
-Both folders are gitignored, and this skill saves no version: a brief and a holding stay on this
-computer.
+  ```bash
+  uv run --no-project python "<the init-strategy skill's directory>/scripts/scaffold.py" researcher . --only settings.yml
+  ```
+
+Both folders are gitignored: a brief and a holding stay on this computer, never in a saved version.
+The one version this skill saves is `settings.yml`'s, on setup's go.
 
 **The contract.** `references/brief-contract.md`, in this skill's folder, is the one set of steps
 a brief follows: the scheduled task's prompt, and what `brief` by name follows. It has slots for
@@ -83,7 +93,9 @@ one for any other — twelve characters at most.
    - **Whether each connector can read.** A connector listed as connected may still lack the
      permission to read: a Google connector granted fewer scopes than it asks answers every call
      with *requires additional permissions*. Make one harmless read with each — the calendar's
-     events for today, one mail thread, one chat search — and keep nothing of what comes back. A
+     events for today, one mail thread, one chat search — and keep nothing of what comes back. Each
+     connector `settings.yml` names under `connectors` and this session lacks is named too: after a
+     new account, it is the one to connect again. A
      connector that refuses is named with its fix, in one line in the owner's language: in
      claude.ai, *Settings → Connectors*, disconnect it and connect it again, ticking every
      permission on the provider's screen; on a company account, an administrator may have to allow
@@ -97,8 +109,10 @@ one for any other — twelve characters at most.
    With no web search and no connector, there is nothing to brief from here: say so, and stop.
 4. **What is already set.** On the desktop app, the app's list of scheduled tasks,
    `list_scheduled_tasks`: a task whose prompt names this home's `Briefs/` is this home's brief,
-   and this run changes it — never a second task beside it. And whether `Portfolio/holdings.csv`
-   and `Portfolio/RULES.md` exist.
+   and this run changes it — never a second task beside it. Then the `brief:` part of
+   `settings.yml`, whose choices are the current answers even on a computer or an account with no
+   task yet; where it and the task differ, the task is what runs, and the plan says so. And whether
+   `Portfolio/holdings.csv` and `Portfolio/RULES.md` exist.
 5. **What to propose for *Markets*.** The broad set, US first as the package is: the S&P 500, the
    Nasdaq Composite, the Russell 2000 and the VIX; the 2-year and 10-year US Treasury yields; the
    10-year TIPS real yield; the US dollar index (DXY); the US high-yield spread (OAS); WTI crude;
@@ -151,9 +165,18 @@ one for any other — twelve characters at most.
   it; *The short set*; *Other* to add a measure, another market's index or currency, or drop one.
   In plain words, as step 1 says, *The short set* comes first and takes the *(suggested)* mark.
 
-On a re-run, the current answer is each question's first option, marked *(current)* — one option
-however many parts or measures it holds. An answer typed under *Other* is taken in the owner's
-words; a measure is kept by the name a dated source gives it.
+On a re-run — a task found, or `parts` in `settings.yml` — the current answer is each question's
+first option, marked *(current)* — one option however many parts or measures it holds. An answer
+typed under *Other* is taken in the owner's words; a measure is kept by the name a dated source
+gives it.
+
+**Saved choices that can all run here skip the questions.** When `settings.yml` names parts and
+step 1 finds each of them can run in this session — its connectors reading, the web, git and the
+folders for *Week*, a scheduler for `when` — and the owner asked for no change with the command,
+nothing is asked here: step 3's plan is shown from the saved choices, marked *(saved)*, and its go
+is the only question. *Change something* asks these questions then, their current answers first. A
+saved choice that cannot run here — a connector missing, a folder not found on this computer — is
+named in one line, and only its question is asked.
 
 ### Step 3: The plan, then the go
 
@@ -169,11 +192,14 @@ In chat, short:
 - the files: `Portfolio/holdings.csv` and `Portfolio/RULES.md`, *created empty* or *already there,
   not touched*; `Briefs/`, made by the first brief;
 - the task, *<Name> daily brief*, new or changed — its prompt, the contract filled, shown only when
-  the owner asks; elsewhere, that nothing is scheduled and no file keeps these choices: the brief
-  is run by name each morning with the line *Step 4* gives, and *brief* alone takes the defaults;
+  the owner asks; elsewhere, that nothing is scheduled: *brief*, said each morning, follows the
+  choices `settings.yml` keeps;
+- `settings.yml`, its `brief:` part, as a diff — the choices that travel with the home — and that
+  it is saved as a version, that file alone;
 - one line on privacy: `Briefs/` and `Portfolio/` stay on this computer, never in a saved version;
-  what the brief reads passes through the owner's assistant, and *Work* quotes no more of a message
-  than the line that says what it asks.
+  `settings.yml` names the parts, the measures and the connectors, never a holding; what the brief
+  reads passes through the owner's assistant, and *Work* quotes no more of a message than the line
+  that says what it asks.
 
 Then ask for the go — header `Go?` (`¿Escribo?`) — *Go*, *Change something*, *Stop*; in chat,
 any of the go words in the home's `AGENTS.md` is the go. **On *Change something*, ask again with
@@ -200,21 +226,29 @@ or on a rejection.
    *Step 4* says — `Sofía` becomes `sofia`; the title *<Name> daily brief*; a one-line
    description; the cron line in local time; and the filled contract as its prompt. A change is
    `update_scheduled_task` on the task step 1 found. The app may ask the owner to allow it.
-4. **Elsewhere, no task is created, and the choices are kept nowhere.** Give the one line that
-   carries them, in the owner's language, to say each morning — *brief*, the parts, the set or the
-   measures, and each measure tied to a question with *for question N*: *brief, Markets and
-   Portfolio, the short set*, or *brief, Markets, the broad set, the 10-year yield for question 2*.
-   *brief* alone takes the defaults of `brief`'s step 3, which may not be what the plan confirmed.
-   A scheduler of the machine's own — cron, Task Scheduler — that runs the assistant unattended
-   changes the machine: it is the owner's to register, never the researcher's. A scheduler that
-   runs in the cloud cannot read this home, and is not offered.
+4. **Elsewhere, no task is created**; the choices are kept in `settings.yml`, and *brief*, said
+   each morning, follows them. A run that differs takes its change with the command — *brief,
+   markets only*. A scheduler of the machine's own — cron, Task Scheduler — that runs the assistant
+   unattended changes the machine: it is the owner's to register, never the researcher's. A
+   scheduler that runs in the cloud cannot read this home, and is not offered.
+5. **`settings.yml`, its `brief:` part**, brought from the template first when the home lacks the
+   file, as *What it writes* says: `parts`, `measures`, `questions`, `week_day` and `week_folders`
+   as the plan confirmed; `when` as scheduled on the desktop app, left as it was elsewhere; and
+   `connectors`, the ones *Work* reads that were found reading. Nothing else in the file changes.
+   Then save it alone — `git add settings.yml`, `git commit -m "Brief: settings"` — said as
+   *Saved*, and sent when `git config --get kaxanuk.autosend` prints `true`, as the `backup` skill
+   says. If git wants a name, ask in one open message, with no options, *What's your name, or what
+   would you like me to call you?*, never invented, and no e-mail; set it in the home only, with
+   `user.email` as `"<>"`, and save again.
 
 ### Step 5: Hand over
 
 Short, in the owner's voice and language:
 
-- When the first brief comes, and where: `Briefs/YYYY-MM-DD.md`; or, elsewhere, the line from
-  *Step 4* to say each morning, word for word — *brief* alone takes the defaults.
+- When the first brief comes, and where: `Briefs/YYYY-MM-DD.md`; or, elsewhere, *brief*, said each
+  morning, which follows the saved choices.
+- That the choices travel: on another computer, account or assistant, `update` or `brief setup`
+  there reads them and asks only for the go, and a connector the new account lacks is named.
 - With *Portfolio*: fill `Portfolio/holdings.csv`, one row a holding — `ticker` as the exchange
   lists it, `name`, `asset_class` (stock, ETF, fund, bond, cash), `account` and `notes`, which are
   theirs and which the brief does not quote — and the headings of `Portfolio/RULES.md` in their
@@ -242,9 +276,12 @@ Short, in the owner's voice and language:
    or the measures, and a measure *for question N*, as in *brief, markets only* or the line setup
    gave — for this run only. Else this home's scheduled task, on the desktop app, whose prompt
    `list_scheduled_tasks` locates: the parts, the measures and the questions are read from it.
-   Else the defaults — *Work* from the calendar, mail and chat connectors connected now, if any;
-   *Markets* with the broad set and no *Regime watch*; *Portfolio* when `Portfolio/holdings.csv`
-   exists; *Week* only when the owner names it. Say in one line which were used.
+   Else the `brief:` part of `settings.yml`, when its `parts` are not empty: the parts, the
+   measures, the questions and *Week*'s day and folders, a part whose connector this session lacks
+   left out and named. Else the defaults — *Work* from the calendar, mail and chat connectors
+   connected now, if any; *Markets* with the broad set and no *Regime watch*; *Portfolio* when
+   `Portfolio/holdings.csv` exists; *Week* only when the owner names it. Say in one line which were
+   used.
 4. **Follow the contract.** Fill `references/brief-contract.md` as setup does, and follow the
    prompt between its markers: it is the run's whole instruction, and its safety lines hold here as
    they hold in the task.
@@ -256,7 +293,8 @@ Short, in the owner's voice and language:
 - Write a second brief the same day; edit today's unless the owner asks for that change by name;
   edit one of an earlier day, ever; or let the scheduled task edit any.
 - Write anywhere but `Briefs/`, or in `Portfolio/` beyond the two files setup copies once, when
-  they are missing.
+  they are missing, or in `settings.yml` beyond its `brief:` part, on setup's go.
+- Put a holding, a key or a token in `settings.yml`.
 - Write a `Portfolio/` file from memory. Both are copied from this skill's `references/`.
 - Compute, convert or estimate a figure; quote one without its dated source; write a guess where a
   figure was *not found*.

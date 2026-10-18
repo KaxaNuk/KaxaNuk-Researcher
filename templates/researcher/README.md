@@ -30,6 +30,7 @@ prices, shown to teach the method, never a promise or a recommendation.
 | `Lessons/` | lessons from `teach`, a folder per topic | appears with your first `teach <topic>` |
 | `Briefs/` | your daily brief, one file a day, every figure quoted from a dated source, never advice | `brief setup` once; `brief` writes today's now |
 | `Portfolio/` | your holdings and the rules you hold them by, `holdings.csv` and `RULES.md` | `brief setup` starts both, empty, when you choose its portfolio part; you fill them |
+| `settings.yml` | the choices that travel with this home: the assistants you use, how versions are signed and sent, your brief and the connectors it reads | nothing to do — the skills keep it, each on your go; edit it by hand whenever you like |
 | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md` | the rules the researcher works by | nothing to do |
 | `.apm/`, `apm.yml` | the researcher's agent and skill, installed for your user | nothing to do |
 | `Extracts/` | text pulled out of the PDFs for `read`, remade when needed | nothing to do |
@@ -38,6 +39,13 @@ prices, shown to teach the method, never a promise or a recommendation.
 computer only. For a private copy on GitHub, which a lost laptop does not take with it, say *keep a
 copy*, or run `backup`. The PDFs, `Briefs/`, `Portfolio/` and `Extracts/` stay on this computer
 only: they never go in a saved version, nor in that copy.
+
+**Take it with you.** On another computer, say *a new computer*: `backup` brings this home back
+from your copy, and `update` sets it up from `settings.yml` — the package and this home for each
+assistant you use, your sending choice, and your brief, which asks only for your go. Under another
+account or on another assistant, say `update` there. Connectors belong to an account: connect them
+again, and your researcher names the ones your brief reads. What an assistant remembered on its own
+comes home with `bring-home`.
 
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: notes come only from
 sources, never from a study or a brief, and `Philosophy/` is cited, never compiled into notes, so
@@ -183,10 +191,10 @@ The skills and commands — `read`, `query`, `objective`, `blueprint` and the re
 folder: they are installed once for your user and updated with
 `uvx --from apm-cli==0.33.0 apm update -g`, which `update` runs for you. For another assistant on
 this computer, paste the install line from the package's README in it, and it does what follows
-for you. By hand, or on a new machine, run these three lines, with `<your assistant>` one of those
-under `targets:` in this home's `apm.yml`: they install the package for it, list it in
-`~/.apm/apm.yml` — without that, the next update removes what was installed for it — and install
-this home, once:
+for you. On a new machine, *Take it with you* above says what to do. By hand, run these three
+lines, with `<your assistant>` one of those under `targets:` in this home's `apm.yml`: they install
+the package for it, list it in `~/.apm/apm.yml` — without that, the next update removes what was
+installed for it — and install this home, once:
 
 ```bash
 uvx --from apm-cli==0.33.0 apm install -g KaxaNuk/KaxaNuk-Researcher --target <your assistant>
