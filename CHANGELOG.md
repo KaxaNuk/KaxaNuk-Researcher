@@ -6,6 +6,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.17.3] - 2026-10-18
+The worked example's one book now lists its chapters, each marked read or skipped, as every book's
+index does, so checking the example's library finds nothing.
+
+**What to do differently:** nothing; a copy of the example you made before keeps its own index.
+### Fixed
+- **Paleologo's `INDEX.md` in the worked example** (example 0.17.6) has the chapter table
+  `references/note.md` gives a book's index: its eleven chapters, from the publisher's contents;
+  chapters 3, 5, 6, 8 and 9 *read*, the ones its sections cite, each row linked to its sections and
+  the claims they bear on; the other six *skipped*. No copy of the book is kept, so the table has
+  no pages. The sections, written before the convention, are kept word for word. The library check
+  `check_library.py`, new in 1.16.0, reported it as the example's only finding, and reports none
+  now. The example's `Bibliotheca/LOG.md` records the fix.
+
 ## [1.17.2] - 2026-10-18
 Your researcher now knows Portfolio Construction 2.0.1, which adds the library's documentation and
 changes nothing you do with it.

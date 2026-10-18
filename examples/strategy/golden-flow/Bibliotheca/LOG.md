@@ -28,4 +28,11 @@
 - left as leads: Daniel & Moskowitz (2016), Novy-Marx (2012), Barroso & Santa-Clara (2015), George &
   Hwang (2004) and Moreira & Muir (2017) — their notes not carried
 
+## [2026-10-18] audit | 1 finding
+- flagged: `Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md` has no table with a
+  Status column, by the library check
+- updated: that index, a chapter table above its sections — chapters 3, 5, 6, 8 and 9 read, the
+  ones its sections cite, each linked to them; 1, 2, 4, 7, 10 and 11 skipped. Its sections kept as
+  they were
+
 <!-- example: end -->

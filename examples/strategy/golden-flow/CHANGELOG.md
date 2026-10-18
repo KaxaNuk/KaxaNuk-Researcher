@@ -41,6 +41,21 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.6 (2026-10-18)
+
+**PATCH** — Paleologo's index gains its chapter table; prose only, nothing re-run, no number moves.
+
+**What to do differently:** nothing.
+
+### Fixed
+
+- **`Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md`** has the chapter
+  table a book's index holds, which the library check found missing: chapters 3, 5, 6, 8 and 9
+  *read*, the ones its sections cite, each linked to its sections; 1, 2, 4, 7, 10 and 11
+  *skipped*. No copy of the book is kept here, so the table gives no pages. Its sections are
+  unchanged. `Bibliotheca/LOG.md` records the fix, and `BIBLIOGRAPHY.md` says the sections sit
+  under the table.
+
 ## 0.17.5 (2026-10-18)
 
 **PATCH** — the first save asks only a name; prose only, nothing re-run, no number moves.
