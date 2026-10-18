@@ -6,6 +6,33 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.17.4] - 2026-10-18
+`audit`'s library check no longer raises four false alarms a first run on a real library showed,
+and finds a clipping behind its project when your projects table names a folder of them.
+
+**What to do differently:** say `update` in your home.
+### Fixed
+- **An unread source's leads, short and to the point** (`unread_sources.py`, and so
+  `check_library.py`). A note reading another copy of the same name — `Deck_2026-10-04_0936.pdf`
+  for `Deck.pdf`, an earlier or a later copy — is named first and alone. With none, a note of the
+  same first author and year is named only when it shares a word of the source's title, at most
+  three, those sharing the most first: an organisation's clippings of one year no longer list every
+  note of that year, each line thousands of characters long.
+- **A clipping behind its project, when a projects-table row names a folder of projects**
+  (`check_library.py`). A row whose path holds no `CHANGELOG.md` of its own is read as one project
+  per folder inside it that holds one — still that one file of each, never its code — and the
+  report names the rows it could not check, so *none of: stale clipping* no longer reads as all
+  clear when nothing was checked. A one-word project name must be in the note's file name. A
+  version at the end of a sentence, `version 0.66.0.`, is now read: it was missed before.
+- **Cites an extract** flags a link into `Extracts/` or the path of a file there,
+  `Extracts/<slug>/<file>`, no longer a mention of the folder, *`Extracts/` is gitignored*.
+- **A claim that links no note** reads the whole claim: every indented line after its first, a
+  blank line between them included, and a link whose text wraps onto the next line. Every link the
+  library check reads, in any note, may now wrap so.
+- **A broken link that is not a file** — text in brackets followed by brackets, as an equation
+  writes `[X′X/n](X′X/n)⁻¹` — adds a hint: if it is not a link, escape its bracket, `\[`.
+- **`audit`**, *Step 1*: a row naming a folder of projects, and the rows the check could not read.
+
 ## [1.17.3] - 2026-10-18
 The worked example's one book now lists its chapters, each marked read or skipped, as every book's
 index does, so checking the example's library finds nothing.

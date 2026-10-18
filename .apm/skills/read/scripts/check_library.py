@@ -10,8 +10,9 @@ What it checks — each a kind of finding, printed under its name
     broken link       a link to a file that is not there
     link leaves       a link out of the library's own repository: into the home from a strategy, or
                       into another project
-    cites an extract  a note, page or study that links into Extracts/ or names a path there; a page
-                      or a study that links to a PDF
+    cites an extract  a note, page or study that links into Extracts/ or names a file there,
+                      Extracts/<slug>/<file>; a page or a study that links to a PDF. A mention of
+                      the folder itself is not a citation
     orphan            a note or a page that no other file links to — a chapter is linked from its
                       book's INDEX.md, a paper or a book from the index
     index             at home, a note or a page that Knowledge/INDEX.md does not link, and a line of
@@ -32,7 +33,9 @@ What it checks — each a kind of finding, printed under its name
     unread source     a source no note's local_copy names, as unread_sources.py finds it
     stale clipping    at home, a clipping of a project in RESEARCHER.md's projects table that states
                       a version older than the newest in the CHANGELOG.md at the project's path —
-                      the only file of the project it opens
+                      the only file of the project it opens. A row whose path is a folder of
+                      projects, with no CHANGELOG.md of its own, is read as one project per folder
+                      inside it that holds one; the report names every row it could not check
     missing copies    notes whose local_copy names a file that is not on this computer: one finding
                       with the count, since a fresh clone holds no PDF; --verbose lists them
 
@@ -132,13 +135,13 @@ PROJECT_STOP_WORDS = frozenset({
 CHANGELOG_VERSION = re.compile(r'^#{2,3}\s+\[?v?(\d+)\.(\d+)\.(\d+)\b')
 CHAPTER_NUMBER = re.compile(r'^(\d+)_')
 DATE_ONLY = re.compile(r'^\d{4}-\d{2}-\d{2}\.?$')
-EXTRACTS_PATH = re.compile(r'(?<![\w/])(?:Bibliotheca/)?Extracts/')
+EXTRACTS_PATH = re.compile(r'(?<![\w/])(?:Bibliotheca/)?Extracts/[^/\s`\'"()<>\[\]]+/[^\s`\'"()<>\[\]]+')
 HEADING = re.compile(r'^#{1,2}\s')
 INLINE_LIST = re.compile(r'^\[(.*)\]$')
 LIST_ITEM = re.compile(r'^[-*+]\s+')
 MARKDOWN_LINK_TEXT = re.compile(r'\[([^\]]*)\]\([^)]*\)')
 NAMED_VERSION = re.compile(
-    r'(?:version|versión|release|\bv)\s*(\d+)\.(\d+)\.(\d+)(?![.\d])',
+    r'(?:version|versión|release|\bv)\s*(\d+)\.(\d+)\.(\d+)(?!\.?\d)',
     re.IGNORECASE,
 )
 SOURCES_SAY_HEADING = re.compile(
@@ -147,7 +150,8 @@ SOURCES_SAY_HEADING = re.compile(
 )
 TABLE_ROW = re.compile(r'^\s*\|')
 TABLE_SEPARATOR = re.compile(r'^\s*\|?\s*:?-{3,}')
-VERSION = re.compile(r'(?<![\w.])(\d+)\.(\d+)\.(\d+)(?![.\d])')
+# A version, never part of a longer dotted number; the full stop after it may end a sentence.
+VERSION = re.compile(r'(?<![\w.])(\d+)\.(\d+)\.(\d+)(?!\.?\d)')
 
 
 @dataclasses.dataclass(frozen=True)
@@ -289,6 +293,38 @@ def check_library(
     ]
 
     return findings
+
+
+def clipping_check_line(
+    found: library.Library,
+) -> str:
+    """
+    What the stale-clipping check could read: the projects it checked clippings against, and the
+    rows of the projects table with a path but no CHANGELOG.md, at it or one folder down.
+    """
+    researcher_text = (found.root / 'RESEARCHER.md').read_text(
+        encoding='utf-8-sig',
+        errors='replace',
+    )
+    rows = _path_table_rows(researcher_text.splitlines())
+    unchecked = [
+        f'{row.name} ({row.path_text})'
+        for row
+        in rows
+        if _row_folder(found, row) is not None
+        and not _row_projects(found, row)
+    ]
+    checked_count = len(projects_on_disk(found))
+    checked_text = library.counted(
+        checked_count,
+        'project',
+    )
+    unchecked_text = '; no CHANGELOG.md at, or one folder inside, {}'.format(
+        ', '.join(unchecked),
+    ) if unchecked else ''
+    line = f'clippings checked against {checked_text} in the projects table{unchecked_text}'
+
+    return line
 
 
 def concept_page_findings(
@@ -490,7 +526,7 @@ def link_findings(
         Finding(
             kind=CITES_EXTRACT,
             line=line_number,
-            message='names a path in Extracts/: notes cite the source and its pages',
+            message='names a file in Extracts/: notes cite the source and its pages',
             path=name,
         )
         for naming
@@ -678,6 +714,9 @@ def print_report(
     )
     clean_line = f'none of: {clean_kinds}' if clean_kinds else 'a finding of every kind'
     print(clean_line)
+
+    if found.kind == 'home':
+        print(clipping_check_line(found))
     total = library.counted(
         len(findings),
         'finding',
@@ -702,8 +741,10 @@ def projects_on_disk(
         for row
         in rows
         for project
-        in [_project(found, row)]
-        if project is not None
+        in _row_projects(
+            found,
+            row,
+        )
     ]
 
     return projects
@@ -1009,7 +1050,8 @@ def _describes(
 ) -> bool:
     """
     Whether a note describes a project: every distinctive word of the project's name, or of its
-    folder's, is in the note's file name, its title or its citation.
+    folder's, is in the note's file name, its title or its citation — a name of one word, in the
+    note's file name.
     """
     citation = library.field_value(
         clipping.front,
@@ -1021,14 +1063,16 @@ def _describes(
         citation,
     ])
     note_words = set(library.words(note_text))
+    stem_words = set(library.words(clipping.path.stem))
     name_keys = [
         _distinctive_words(project.name),
         _distinctive_words(project.folder.name),
     ]
     describes = any(
-        key and key <= note_words
+        key <= note_words and (len(key) > 1 or key <= stem_words)
         for key
         in name_keys
+        if key
     )
 
     return describes
@@ -1055,10 +1099,12 @@ def _ends_item(
     line: str,
 ) -> bool:
     """
-    Whether a line ends the list item above it: a blank line, or a callout or a quote.
+    Whether a line ends the list item above it: a line with text at the margin, unindented — the
+    next item, a callout, a paragraph. A blank line or an indented one belongs to the item.
     """
-    stripped = line.strip()
-    ends = not stripped or stripped.startswith('>')
+    has_text = bool(line.strip())
+    indented = line[:1].isspace()
+    ends = has_text and not indented
 
     return ends
 
@@ -1180,8 +1226,8 @@ def _item_lines(
     end: int,
 ) -> list[str]:
     """
-    A list item's own lines: its first, and those after it up to a blank line, a callout or the
-    next item.
+    A list item's own lines: its first, and every line after it that is indented or blank, up to the
+    first line at the margin — the next item, a callout, a paragraph — or the section's end.
     """
     stop = next(
         (
@@ -1230,6 +1276,8 @@ def _link_problems(
         found.root,
     )
     broken_kind = INDEX if linking.kind == library.INDEX else BROKEN_LINK
+    last_part = target_parts[-1] if target_parts else ''
+    not_a_file = '' if '.' in last_part else '; if it is not a link, escape its bracket, \\['
     candidates = [
         Finding(
             kind=CITES_EXTRACT,
@@ -1246,7 +1294,7 @@ def _link_problems(
         Finding(
             kind=broken_kind,
             line=link.line,
-            message=f'links {cleaned}, which is not there',
+            message=f'links {cleaned}, which is not there{not_a_file}',
             path=name,
         ) if not exists else None,
         Finding(
@@ -1563,20 +1611,13 @@ def _plain(
 
 
 def _project(
-    found: library.Library,
-    row: ProjectRow,
+    folder: pathlib.Path,
+    name: str,
 ) -> Project | None:
     """
-    A projects-table row as a project on disk, or None when its path is not a folder holding a
-    CHANGELOG.md with a version in it.
+    A folder as a project, or None when it holds no CHANGELOG.md with a version in it — the one file
+    of the project this reads.
     """
-    if row.path_text.casefold() in NO_PATH:
-
-        return None
-
-    given_path = pathlib.Path(row.path_text)
-    given = given_path.expanduser()
-    folder = given if given.is_absolute() else found.root / given
     changelog = folder / 'CHANGELOG.md'
 
     if not changelog.is_file():
@@ -1602,7 +1643,7 @@ def _project(
 
     project = Project(
         folder=folder,
-        name=row.name,
+        name=name,
         newest=max(versions),
     )
 
@@ -1623,6 +1664,25 @@ def _reading_unit(
     unit = note.path.parent if note.kind in book_kinds else note.path
 
     return unit
+
+
+def _row_folder(
+    found: library.Library,
+    row: ProjectRow,
+) -> pathlib.Path | None:
+    """
+    The folder a projects-table row's Path names, from the home when it is relative; None for a row
+    with no path.
+    """
+    if row.path_text.casefold() in NO_PATH:
+
+        return None
+
+    given_path = pathlib.Path(row.path_text)
+    given = given_path.expanduser()
+    folder = given if given.is_absolute() else found.root / given
+
+    return folder
 
 
 def _row_links(
@@ -1669,6 +1729,45 @@ def _row_problems(
     ]
 
     return problems
+
+
+def _row_projects(
+    found: library.Library,
+    row: ProjectRow,
+) -> list[Project]:
+    """
+    The projects a projects-table row names: its folder, when it holds a CHANGELOG.md; otherwise
+    each folder inside it that holds one, a folder of projects, named by its folder.
+    """
+    folder = _row_folder(
+        found,
+        row,
+    )
+
+    if folder is None or not folder.is_dir():
+
+        return []
+
+    own = _project(
+        folder,
+        row.name,
+    )
+
+    if own is not None:
+
+        return [own]
+
+    inner = [
+        project
+        for child
+        in sorted(folder.iterdir())
+        if child.is_dir()
+        for project
+        in [_project(child, child.name)]
+        if project is not None
+    ]
+
+    return inner
 
 
 def _sorted_names(
@@ -1823,19 +1922,15 @@ def _unread_message(
     status: unread_sources.SourceStatus,
 ) -> str:
     """
-    What an unread source's finding says: that no note names it, and any namesake.
+    What an unread source's finding says: that no note names it, and its leads — another copy of
+    its name, read, or a note of the same first author and year sharing a word of its title.
     """
-    namesake_texts = [
-        ' '.join([
-            f'{namesake.kind} of the same first author and year,',
-            f'{library.relative_name(found, namesake.path)}, has local_copy',
-            library.field_value(namesake.front, 'local_copy') or 'missing',
-        ])
-        for namesake
-        in status.namesakes
-    ]
+    leads = unread_sources.lead_texts(
+        found,
+        status,
+    )
     unread_text = 'no note names it in local_copy'
-    message = '; '.join([unread_text] + namesake_texts)
+    message = '; '.join([unread_text] + leads)
 
     return message
 
@@ -1931,7 +2026,6 @@ def _wrapped_in(
     wrapped = is_long_enough and opens_and_closes
 
     return wrapped
-
 
 if __name__ == '__main__':
     sys.exit(main())
