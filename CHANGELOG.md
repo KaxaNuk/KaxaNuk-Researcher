@@ -6,7 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
-## [1.18.1] - 2026-10-19
+## [1.18.2] - 2026-10-18
+The changelog now dates 1.18.0 and 1.18.1 on the day they were released.
+
+**What to do differently:** nothing.
+### Fixed
+- **`CHANGELOG.md`**: 1.18.0 and 1.18.1 read 2026-10-19; both were released and tagged on
+  2026-10-18.
+
+## [1.18.1] - 2026-10-18
 `audit`'s library check no longer raises four more false alarms a real library showed: on a link
 whose text holds brackets, on a bracket you escaped, on a note kept beside a newer one, and on a
 version that belongs to another project.
@@ -37,7 +45,7 @@ version that belongs to another project.
   clipping comes in under the old copy's name with its date or version after it; and, left to
   judgement, an older note the check passes over with no `> [!WARNING]` naming the newer one.
 
-## [1.18.0] - 2026-10-19
+## [1.18.0] - 2026-10-18
 Your tutor follows the four Training Workshops as they now publish: a deck at the repository's root
 or in its session's folder, each language's own deck, and the code a session ships beside it.
 
