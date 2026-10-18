@@ -46,24 +46,30 @@ whose first line gives no state; every source no note's `local_copy` names, what
 its date; and the notes whose `local_copy` is not on this computer, as one line with their count,
 since PDFs are ignored by git and a fresh clone or a copy `init-example` made holds none —
 `--verbose` lists them. At home it also finds **a clipping behind its project**: a note on a
-project in `RESEARCHER.md`'s projects table, a KaxaNuk library say, that states a version older than
-the newest in the `CHANGELOG.md` at the project's path, the only file of the project it opens. A
-row whose path is a folder of projects — `~/Lab`, holding a folder per library — is read as one
-project per folder inside it with a `CHANGELOG.md`, and the report's last lines name the rows it
-could not check: say so, rather than read *none of: stale clipping* as all clear. `--help` has the
-rest.
+project in `RESEARCHER.md`'s projects table, a KaxaNuk library say — its file name names the
+project, or its citation or `source` the project's repository, `KaxaNuk/Backtest-Engine`; a library
+its text only mentions, as another one's pin, does not count — that states a version older than the
+newest in the `CHANGELOG.md` at the project's path, the only file of the project it opens. Of the
+notes on copies of one file, `README.md` and `README_2026-10-18.md`, only the one stating the
+highest version is checked, and a note states the highest version its citation names. A row whose
+path is a folder of projects — `~/Lab`, holding a folder per library — is read as one project per
+folder inside it with a `CHANGELOG.md`, and the report's last lines name the rows it could not
+check: say so, rather than read *none of: stale clipping* as all clear. `--help` has the rest.
 
 Report its findings as it groups them, and never make again by hand a check it makes. An unread
 source's fix is `read <the source>`; one it names beside a note of the same first author and year
 may be that note's under another path, and its fix is the note's `local_copy`, on the owner's go. A
 stale clipping's fix is the project's new `README.md` and `CHANGELOG.md` copied into
-`Sources/Clippings/` on the go, then `read`: the old note stays, under a `> [!WARNING]` callout
-naming the new one.
+`Sources/Clippings/` on the go, each under the old copy's name with the date or the version after
+it, `README_2026-10-18.md`, then `read`: the old note stays, under a `> [!WARNING]` callout naming
+the new one.
 
 Then what the script leaves to judgement:
 
 - Duplicate or overlapping notes it cannot see: one source read twice under two paths, or one
   chapter read twice under two numbers.
+- A note on an older copy that the clipping check passes over, a newer note beside it, with no
+  `> [!WARNING]` callout naming the newer note.
 - A `read` field whose words do not say what was read — the whole paper, the abstract, the
   chapters, as the `read` skill's `references/note.md` asks: a note on an abstract that does not say
   so claims more than it read.
