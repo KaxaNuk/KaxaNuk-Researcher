@@ -6,6 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.17.2] - 2026-10-18
+Your researcher now knows Portfolio Construction 2.0.1, which adds the library's documentation and
+changes nothing you do with it.
+
+**What to do differently:** say `update` in your home. A strategy on Portfolio Construction 2.0.0
+needs nothing new: 2.0.1 changes no code.
+### Changed
+- **`references/investment-lab.md`** (`next` 1.9.1): Portfolio Construction's *Latest* is 2.0.1
+  (2026-10-06). The Backtest Engine's 0.67.0 is still its newest.
+- **`portfolio-construction-runs`** (0.5.3) gains a *Changed in 2.0.1* paragraph, from the
+  library's changelog and not yet checked by a run here: a documentation site the README links,
+  which did not answer on 2026-10-18; three behaviours its User Guide states — a rebalance date
+  absent from the data gives a snapshot of nulls, the KN Index applies `min_weight` only when
+  `max_constituents` is empty, and `min_constituents` is validated but not enforced; HRP's and
+  HERC's registry text, where the Methodology follows the code instead; and the README agreeing with
+  the changelog on `calendars`, input files and `examples/`. Its `library_version` stays 1.28.0, the
+  build its traps were checked on.
+
 ## [1.17.1] - 2026-10-18
 Keeping a copy on GitHub now offers to keep your e-mail empty, as your researcher saves it since
 1.15.2, and the list of uses says every write made without asking.
