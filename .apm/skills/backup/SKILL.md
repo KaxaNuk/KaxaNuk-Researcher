@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.6
+  version: 0.1.7
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -129,11 +129,14 @@ sign-in, in the browser it opens. Then the first way.
 ## Step 6: Their e-mail
 
 Every saved version is signed with `git config user.name` and `user.email`, and on GitHub both
-travel with it. Once they are signed in, ask `E-mail` (`Correo`): *Use GitHub's private address
-(recommended)*, *Keep the one I have*. The private one, ending in `@users.noreply.github.com`, is
-on <https://github.com/settings/emails>: ask them to copy it from there and paste it here. Set for
-that folder only, `git config user.email <it>`, it signs new versions only: those already saved
-keep theirs, and history is never rewritten.
+travel with it. Since the researcher asks no e-mail, the address is usually empty, `<>`, and a
+version shows the name alone. Once they are signed in, ask `E-mail` (`Correo`): *Use GitHub's
+private address (recommended)*, which links each version to their GitHub account; and, when
+`git config user.email` prints an address, *Keep the one I have*, or, when it prints `<>` or
+nothing, *Keep it empty* (*the versions show your name alone*). The private one, ending in
+`@users.noreply.github.com`, is on <https://github.com/settings/emails>: ask them to copy it from
+there and paste it here. Set for that folder only, `git config user.email <it>`, it signs new
+versions only: those already saved keep theirs, and history is never rewritten.
 
 If GitHub refuses a send because it would publish a private e-mail — error `GH007` — say so plainly,
 and give the two choices: allow it once in GitHub's e-mail settings, or keep the copy as it is.
