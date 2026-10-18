@@ -41,6 +41,19 @@ for somebody who was not in the room:
 
 ---
 
+## 0.19.3 (2026-10-18)
+
+**PATCH** — a strategy's first save asks only a name, as every save of the researcher's does.
+Nothing about any result changes.
+
+**What to do differently:** nothing.
+
+### Changed
+
+- **`SETUP.md`**, *Step 1*, the note for the agent: when the first commit wants a git identity, it
+  asks *What's your name, or what would you like me to call you?* in one open message, and no
+  e-mail; `user.email` is set to `"<>"`, an empty address.
+
 ## 0.19.2 (2026-10-11)
 
 **PATCH** — the Analytics Factory's files are asked of `analytics@kaxanuk.mx`. Nothing about any

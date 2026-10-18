@@ -6,6 +6,67 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.16.0] - 2026-10-18
+Your researcher now finds every source you have not read yet, whatever its name, checks your
+library the same way on every `audit`, and can show you a page of a PDF as an image.
+
+**What to do differently:** say `update` in your home.
+### Added
+- **`unread_sources.py`**, in the `read` skill's `scripts/`: every file under `Sources/` — in a
+  strategy, every PDF and clipping in `Bibliotheca/` — that no note's `local_copy` names, matched
+  by its full path, so a name with commas, parentheses, spaces or accents is safe, and filtered by
+  nothing, date included. A searchable copy of a scan, `<name> (OCR).pdf`, reads for its scan. An
+  unread source beside a note of the same first author and year is named with it, since it may be
+  that note's under another path. `next` (1.9.0) runs it for its row 4, and `audit` through the
+  library check.
+- **`check_library.py`**, beside it: `audit`'s every-run checks as a script, the same way each time
+  — links broken or leaving the repository, extracts and PDFs cited, orphans, the index against the
+  notes, each book's `INDEX.md` against its chapter files, frontmatter fields and a `read` that is
+  only a date, two notes on one file, chapters no concept page names, a page's claim that links no
+  note, a study with no state line, stray files, unread sources, and the notes whose `local_copy` is
+  not on this computer, as one line. `audit` runs it first and reports what it prints, then makes
+  only the checks that need judgement.
+- **A clipping behind its project**, a new `audit` finding: a note on a project in `RESEARCHER.md`'s
+  projects table — a KaxaNuk library, say — that states a version older than the newest in the
+  `CHANGELOG.md` at the project's path. The script opens that one file of the project, never its
+  code. The fix is the new README and CHANGELOG brought in as clippings, then `read`.
+- **`render_pages.py`**, beside it: a PDF's pages, or a part of one, as PNG images, at the dpi
+  asked, in the system's temporary folder, never in a library. It renders with PDFium, through
+  `pypdfium2`, so it needs no Poppler and no `pdftoppm`, which Windows lacks and the assistant's PDF
+  reader needs. `audit deep` looks at a cited page with it before it calls a figure in a table or an
+  equation *not found*, and the home's `AGENTS.md` names it for the contents pages `read` reads of a
+  PDF with no outline.
+- **`update_concept_pages.py`**, beside it: concept pages brought up to date in one pass from a spec
+  of what each gains — sources, claims, the blockquote for the owner's questions, lines under
+  *Open* — with `updated` set and nothing else touched. It shows the diff unless told `--write`,
+  checks every page before writing any, skips what a page already holds, and never creates a page.
+  The home's `AGENTS.md` makes it how `read` and an approved `audit` fix update an existing page.
+- **The home's `AGENTS.md`** (home template 0.28.0): the library's tools, what each is for; a
+  delegate's draft staged outside the home and checked against its extract before the plan; and a
+  download behind a login, a refusal, a busy server or a bot check, such as Cloudflare's, is the
+  owner's to fetch in their browser, never got past.
+### Changed
+- **`check_numbers.py`** leaves out years and the numbers of equations, sections, tables, figures,
+  chapters, pages and footnotes, in English and Spanish, which were most of its *not found*. A note
+  whose figures sit at one offset from the pages it cites is reported once, with the offset, and
+  those figures are counted *at offset*, no longer each *elsewhere*. `audit deep` reports such a
+  note as one finding: it cites printed pages, where `references/note.md` cites the extract's.
+- **`audit`**: *Step 1* runs the library check and lists only what it leaves to judgement; *Step 2*
+  no longer repeats the bibliography and link checks the script makes.
+- **`AGENTS.md`**: the library's tools among the skills' scripts, and every script works under
+  `python -I`: it prints UTF-8 and finds its neighbours itself.
+- **`read`'s `SKILL.md`, its note convention and its extractor are unchanged**, as frozen; its
+  version stays 0.12.7, and `FROZEN.json` holds the same fingerprints.
+### Fixed
+- **Every save that finds no name in git asks only for a name**, as since 1.15.2: `teach`,
+  `refresh-index`, `objective`, `challenge` and `blueprint` still asked for a name and an e-mail,
+  and so did the strategy template's `SETUP.md` (template 0.19.3, example 0.17.5).
+- **`experiment-lifecycle`** (0.14.8): `references/structure.md` names the template version its tree
+  matches, 0.19.3, and the three templates an experiment copies, not four.
+- **`backup`** (0.1.6): on a new computer, the name is asked again at the first save; *Step 6* sets
+  only the e-mail.
+- **The home's `AGENTS.md`**: the researcher's skills include `workshop` and `known-answer`.
+
 ## [1.15.3] - 2026-10-16
 Reading a document no longer asks for your e-mail either: when git has no name, it asks only your
 name, or what you'd like it to call you.

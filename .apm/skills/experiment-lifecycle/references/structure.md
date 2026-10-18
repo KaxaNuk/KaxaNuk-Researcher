@@ -11,7 +11,7 @@ strategy's own lines between example markers. **The template is the source of tr
 this file is a copy of what it looked like at the version named below**, kept by hand. When they
 disagree, the template wins.
 
-Template version: **0.18.4**. The template ships `Experiments/Experiment_1/` and
+Template version: **0.19.3**. The template ships `Experiments/Experiment_1/` and
 `Paper_Trading/Paper_Trading_1/`; the blanks for every experiment after the first are this skill's
 `references/`. `Bibliotheca/Papers/`, `Books/` and `Notes/` appear with their first note.
 
@@ -117,7 +117,7 @@ for d in Portfolio Backtest Attribution; do
 done
 ```
 
-Then copy the four templates from this skill's `references/` into `$base/`, renaming `N`, and copy
+Then copy the three templates from this skill's `references/` into `$base/`, renaming `N`, and copy
 `experiment-notebook.ipynb` to `$base/experiment_$N.ipynb`. The notebook is Experiment 1's: retitle
 it `Experiment N`, replace every `_1` in it with `_N`, and delete the sentences that only apply to
 Experiment 1. Then, in the notebook, declare the experiment's columns in section 0, import the
