@@ -124,8 +124,8 @@ them**. This is the part of the bibliography that should argue with you.
 <!-- example: begin -->
 
 These notes predate the note shape above: each paper has *What it says* and *What it implies
-for Golden Flow*, and Paleologo's index has one section per idea, each with its implication. The
-claim each note serves is its row below.
+for Golden Flow*, and Paleologo's index has one section per idea, each with its implication,
+under the chapter table a book's index holds. The claim each note serves is its row below.
 
 | Claim | Source | What it bears on |
 | --- | --- | --- |
