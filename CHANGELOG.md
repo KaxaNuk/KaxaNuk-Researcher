@@ -19,6 +19,13 @@ or in its session's folder, each language's own deck, and the code a session shi
   course's README says, a solution opened only after their own attempt. The map's
   `pillar_sessions` name each other workshop's session the course links to. The live blocks have
   no drill any more; the checkpoint is the example of an AI-off block.
+- **A clone is read on the course's branch** (`workshop` 0.3.0): the owner's language, else
+  `english`, through `git show`, which changes nothing, so a clone left on an older `main` no
+  longer gives an earlier edition's session; a file the clone lacks comes from the public
+  repository. A `deck` that already holds its folder is not prefixed twice; with no folder, the
+  README's own section for the session stands beside the deck. A session's `state`, `prework` and
+  the course's `dates` are read — a sealed window is never opened early —, a course's own track
+  names stand, and a rule the course's README sets on the assistant holds over a block's `ai`.
 
 ## [1.15.3] - 2026-10-16
 Reading a document no longer asks for your e-mail either: when git has no name, it asks only your
