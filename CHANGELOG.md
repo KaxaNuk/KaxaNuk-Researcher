@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.17.5] - 2026-10-18
+The worked example's notes on its one book now name its chapter 11 rightly: the quantitative
+appendix, not a chapter on hedging and optimisation.
+
+**What to do differently:** nothing.
+### Fixed
+- **Paleologo's `INDEX.md` in the worked example** (example 0.17.6 to 0.17.7): *What this book does
+  not settle* called chapters 7 and 11 "the hedging and optimisation chapters". The publisher's
+  contents, which the chapter table follows since 1.17.3, title chapter 7 *Manage Factor Risk* and
+  chapter 11 *Appendix*, the book's quantitative appendix. The line now names each so, and still
+  says both are out of reach while the factor model is not inside portfolio construction.
+
 ## [1.17.4] - 2026-10-18
 `audit`'s library check no longer raises four false alarms a first run on a real library showed,
 and finds a clipping behind its project when your projects table names a folder of them.
