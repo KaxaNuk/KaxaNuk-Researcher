@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.1.5
+  version: 0.1.6
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -187,9 +187,9 @@ Install the package as the package's `SETUP.md` says — git and uv in its step 
 step 2. Then, in a new session, clone the copy into a short folder —
 `git clone <the address> <folder>` — run `update` there, and open a new session. `update` rewrites
 the researcher's skill and the agent's path for the new folder and installs the home for the user;
-a strategy's clone takes its own `SETUP.md` instead. The name, the e-mail and *Send?* do not travel:
-set them again, as *Step 6* and *Step 7* say. The PDFs and `Portfolio/` come from wherever they were
-kept.
+a strategy's clone takes its own `SETUP.md` instead. The e-mail and *Send?* do not travel: set them
+again, as *Step 6* and *Step 7* say; the name is asked again at the first save, as any save asks
+it. The PDFs and `Portfolio/` come from wherever they were kept.
 
 ## Never
 

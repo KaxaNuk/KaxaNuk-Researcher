@@ -205,10 +205,11 @@ entry, version bump or ruff gate: the next change-set's entry names them. Every 
 `git commit -m "Blueprint N, before the rule" -- Experiments/Experiment_N/BLUEPRINT_N.md`, so
 nothing else staged goes with either. To the owner, one plain line, never the commands: *Saved: your
 proof the idea came before the result.* When `git config --get kaxanuk.autosend` prints `true`, it
-also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name and an
-e-mail, ask for both in one plain line, set them in that folder only, never invented, and save
-again; with no `.git/`, say in one line that the strategy keeps no versions yet. This replaces the
-owner's own commit an older home's `AGENTS.md` asks for.
+also goes to the owner's copy on GitHub, as the `backup` skill says. If git wants a name, ask in
+one open message, with no options, *What's your name, or what would you like me to call you?*,
+never invented, and no e-mail; set it in that folder only, with `user.email` as `"<>"`, an empty
+address, and save again; with no `.git/`, say in one line that the strategy keeps no versions yet.
+This replaces the owner's own commit an older home's `AGENTS.md` asks for.
 
 Then say what comes next in the order of work: the broad reading, for what the blueprint left as
 leads; and the cycle — portfolio construction, backtest, attribution — until it is finished.
