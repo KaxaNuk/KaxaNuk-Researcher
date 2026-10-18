@@ -41,6 +41,19 @@ for somebody who was not in the room:
 
 ---
 
+## 0.17.7 (2026-10-18)
+
+**PATCH** — Paleologo's index names chapter 11 as the appendix it is; prose only, no number moves.
+
+**What to do differently:** nothing.
+
+### Fixed
+
+- **`Bibliotheca/Books/Paleologo_2021_Advanced_Portfolio_Management/INDEX.md`**, *What this book
+  does not settle*: chapters 7 and 11 were "the hedging and optimisation chapters", but the
+  book's contents title chapter 11 *Appendix*. The line names chapter 7, *Manage Factor Risk*,
+  and the quantitative appendix, chapter 11, both still out of reach here.
+
 ## 0.17.6 (2026-10-18)
 
 **PATCH** — Paleologo's index gains its chapter table; prose only, nothing re-run, no number moves.
