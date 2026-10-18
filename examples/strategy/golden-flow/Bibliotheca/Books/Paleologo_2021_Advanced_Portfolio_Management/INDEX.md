@@ -25,6 +25,23 @@ attribution — without becoming quants.
 > +2.70 points over the window, against −0.27 for its control
 > ([`FINDINGS_1.md`](../../../Experiments/Experiment_1/FINDINGS_1.md), *What attribution says*).
 
+No copy of the book is kept here, so the table gives no pages. Which chapters were read was not
+recorded: a chapter is *read* where a section below cites it, *skipped* otherwise.
+
+| # | Chapter | Status | Claim | Note |
+| --- | --- | --- | --- | --- |
+| 1 | For Whom? Why? And How? | skipped | | |
+| 2 | The Problem: From Ideas to Profit | skipped | | |
+| 3 | A Tour of Risk and Performance | read | C1, C2 | [section 4](INDEX.md#4-alpha-estimates-are-far-noisier-than-beta-estimates) |
+| 4 | An Introduction to Multi-Factor Models | skipped | | |
+| 5 | Understand Factors | read | C1 | [sections 1 to 3](INDEX.md#1-momentum-is-relative-trend-following-is-absolute) |
+| 6 | Use Effective Heuristics for Alpha Sizing | read | C2 | [sections 6 and 7](INDEX.md#6-size-by-risk-adjusted-alpha) |
+| 7 | Manage Factor Risk | skipped | | |
+| 8 | Understand Your Performance | read | C1, C2, C3 | [sections 5, 9 and 10](INDEX.md#5-decompose-pl-into-factor-and-idiosyncratic--then-decompose-the-idiosyncratic-part) |
+| 9 | Manage Your Losses | read | C1 | [section 8](INDEX.md#8-stop-losses-the-real-cost-is-forgone-profit-not-commission) |
+| 10 | Set Your Leverage Ratio for a Sustainable Business | skipped | | |
+| 11 | Appendix | skipped | | |
+
 ---
 
 ## 1. Momentum is relative; trend-following is absolute
