@@ -263,8 +263,8 @@ and past some point extra names dilute the edge without materially reducing risk
 >
 > - It assumes a **factor risk model is available** and mostly discusses what to do with one. We
 >   have the KN US Equity Factor Model through the attribution stage but not inside portfolio
->   construction, so the hedging and optimisation chapters (7, 11) are currently unreachable
->   machinery.
+>   construction, so chapter 7, *Manage Factor Risk*, and the quantitative appendix, chapter 11,
+>   are currently unreachable machinery.
 > - It is written for **long/short, factor-neutral, market-neutral** books. Golden Flow is long-only
 >   and deliberately carries beta. Several recommendations — factor neutralisation before sizing
 >   above all — would change the strategy into a different one rather than improve it.
