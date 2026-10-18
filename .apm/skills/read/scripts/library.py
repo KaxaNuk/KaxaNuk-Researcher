@@ -15,6 +15,7 @@ import itertools
 import os
 import pathlib
 import re
+import string
 import sys
 import typing
 import unicodedata
@@ -47,17 +48,30 @@ IGNORED_FILE_NAMES = frozenset({
     'Thumbs.db',
     'desktop.ini',
 })
+# The pieces a link is read by, as CommonMark reads them: a backslash before an ASCII punctuation
+# mark makes it a plain character, so `\[` opens no link and `\]` closes none; a character of a
+# link's text is such a mark, a backslash before anything else, a line break that is not a blank
+# line, or any character but a bracket.
+ASCII_PUNCTUATION = f'[{re.escape(string.punctuation)}]'
+ESCAPED_PUNCTUATION = rf'\\{ASCII_PUNCTUATION}'
+LINK_TEXT_CHARACTER = rf'(?:{ESCAPED_PUNCTUATION}|\\(?!{ASCII_PUNCTUATION})|\n(?![ \t]*\n)|[^\[\]\\\n])'
 # The markdown a file is read by.
 FENCE = re.compile(r'^\s*(```|~~~)')
 FRONTMATTER_FIELD = re.compile(r'^([A-Za-z_][\w-]*):\s*(.*)$')
 FRONTMATTER_ITEM = re.compile(r'^\s+-\s*(.*)$')
 INLINE_CODE = re.compile(r'`[^`\n]*`')
-# A link's text may run over a line break, as a wrapped paragraph does, but never over a blank
-# line; its target may hold one level of balanced parentheses, `Markowitz_(1952).md`, or anything
-# between angle brackets, `<A paper, with commas.md>`.
-MARKDOWN_LINK = re.compile(
-    r'!?\[(?P<text>(?:[^\]\n]|\n(?![ \t]*\n))*)\]\((?P<target><[^>\n]*>|(?:[^()\s]|\([^()\s]*\))+)(?:\s+"[^"\n]*")?\)',
-)
+# A link, or an escaped mark, which a scan from the left steps over so that no link opens at it. A
+# link's text may hold one level of balanced brackets, `entry *[0.3.0]*`, and run over a line
+# break, as a wrapped paragraph does, but never over a blank line; its target may hold one level of
+# balanced parentheses, `Markowitz_(1952).md`, or anything between angle brackets,
+# `<A paper, with commas.md>`.
+MARKDOWN_LINK = re.compile('|'.join([
+    rf'(?P<escaped>{ESCAPED_PUNCTUATION})',
+    ''.join([
+        rf'!?\[(?P<text>(?:{LINK_TEXT_CHARACTER}|\[{LINK_TEXT_CHARACTER}*\])*)\]',
+        r'\((?P<target><[^>\n]*>|(?:[^()\s]|\([^()\s]*\))+)(?:\s+"[^"\n]*")?\)',
+    ]),
+]))
 QUOTES = '"\''
 URL_SCHEME = re.compile(r'^[A-Za-z][A-Za-z0-9+.-]*:')
 WINDOWS_DRIVE = re.compile(r'^[A-Za-z]:[\\/]')
@@ -433,7 +447,8 @@ def markdown_links(
 ) -> list[Link]:
     """
     Every markdown link in a text, outside fenced code and inline code, with the number of the line
-    it opens on — a link whose text wraps onto the next line included.
+    it opens on — a link whose text wraps onto the next line, or holds brackets, included; an
+    escaped bracket, `\\[`, opens none.
     """
     lines = text.splitlines()
     fenced = fenced_lines(lines)
@@ -454,6 +469,7 @@ def markdown_links(
         )
         for match
         in MARKDOWN_LINK.finditer(visible)
+        if match.group('escaped') is None
     ]
 
     return links
@@ -598,6 +614,21 @@ def unquoted(
     return value
 
 
+def without_links(
+    text: str,
+) -> str:
+    """
+    A text with each markdown link replaced by its text, as it reads once rendered:
+    `[Backtest Engine](../Lab/Backtest-Engine)` gives `Backtest Engine`.
+    """
+    plain = MARKDOWN_LINK.sub(
+        _shown_text,
+        text,
+    )
+
+    return plain
+
+
 def words(
     text: str,
 ) -> list[str]:
@@ -729,6 +760,19 @@ def _read_file(
     )
 
     return read_file
+
+
+def _shown_text(
+    match: re.Match[str],
+) -> str:
+    """
+    What a match of a link, or of an escaped mark, shows once rendered: the link's text, or the
+    escape as written.
+    """
+    escaped = match.group('escaped')
+    shown = match.group('text') if escaped is None else escaped
+
+    return shown
 
 
 def _strategy_kind(
