@@ -14,7 +14,7 @@ description: >
   files (`init-example`), cover a step's tool (that step's own skill), compute a performance
   number or give investment advice.
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Workshop — the researcher as tutor in a KaxaNuk Training Workshop
@@ -60,7 +60,11 @@ Codex, Gemini — it is one chat message: each question numbered, its options nu
 2. **Where the course is.** Only these places, in this order; nothing else is searched:
    - a local clone — the folder the session is open in, or one above it, when it is the
      workshop's repository, its `README.md` naming the workshop at its root; the path in the
-     projects table; a path the owner gives. A clone is read as it stands, on its branch;
+     projects table; a path the owner gives. A clone holds every language's branch: read the
+     branch the public repository would serve, below — the owner's language, else `english` —
+     with `git -C <clone> show <branch>:<path>` and `git -C <clone> ls-tree --name-only <branch>`,
+     which change nothing; the checked-out branch only when neither exists. A file the map names
+     that the clone lacks is read from the public repository, said in one line;
    - otherwise the public repository, at
      `https://raw.githubusercontent.com/KaxaNuk/<repository>/<branch>/<path>`. Each language is a
      branch, named in English and lowercase: the owner's language, `spanish`, when it exists;
@@ -85,20 +89,32 @@ Codex, Gemini — it is one chat message: each question numbered, its options nu
    clone that still holds a `course.yml` at its root, from before the map moved, that file stands
    in for it. A map whose first line carries a number other than 1 is read for the same keys, said
    in one line. From the session's entry under `sessions`, found by its `id`:
-   - `folder`, `title` and `deck`, the deck's file name in the folder;
+   - `folder`, `title` and `deck`: the deck's path. A `deck` that already starts with the folder is
+     the whole path; otherwise it is the file's name in the folder or, when `folder` is empty or
+     `null`, at the repository's root, where the Bootcamp keeps its decks. Each language's branch
+     names its own deck: the Spanish branch's map names the Spanish PDF;
+   - `state`: a session not *ready* or *in production* has no deck yet — say so in one line and
+     offer its `needs`; `prework`, what *Before the session* asks;
    - `steps` and `parts`, named through the map's `process`;
    - `lab`, each module with its `state`, and with *coming*, `instead`: the Golden-Flow file the
      no-code track works until the module ships;
    - `researcher` — `commands`, `skills` and `teach` —, `example_files` and `pillars`;
+   - the session's code, where the course ships it beside the deck, in the session's folder: a
+     notebook (`.ipynb`), `exercises/` with `solutions/`, or an example module with its output.
+     The course's `README.md` says how it runs — a clone of the course beside the owner's
+     strategy, `uv sync` at the clone's root, then the notebook or `uv run` as written;
    - where the course has them, `module` and `level` — *beginner*, *intermediate* or *advanced* —,
      `needs`, the earlier sessions this one builds on, and `data`: each thing the session's case
      needs, with the KaxaNuk `tool` tried first, its `state`, and, while the tool does not cover
      it, the outside source `instead`.
 
-   For the whole course: `blocks`, each with its `name`, `minutes`, `ai` — `on`, `off` or `none` —
+   For the whole course: `dates`, where the course has them — a window it seals, such as a final
+   test, is never opened, looked at or described before the session the course opens it in;
+   `blocks`, each with its `name`, `minutes`, `ai` — `on`, `off` or `none` —
    and `assessed`, true on the checkpoint; `tracks`; `example`; `pillars`, the other workshops by
-   code; `providers`; `modules`, where the course has them; and `tools`,
-   `tools.researcher.version` among them.
+   code; `pillar_sessions`, each other workshop's session by code — *FM S07* — with its `folder`
+   and `title`, read from that workshop's repository when the owner wants it; `providers`;
+   `modules`, where the course has them; and `tools`, `tools.researcher.version` among them.
 4. **What the map lacks** — the whole map, or a key of it — comes from the course's other files,
    all of them said together in one line:
    - the sessions: the folders at the root whose names start with an id, `S03-`, each with its
@@ -107,13 +123,17 @@ Codex, Gemini — it is one chat message: each question numbered, its options nu
    - the blocks: the block table of a `SYLLABUS.md` the course still has, else the README's own
      account of how a session runs. A block a table leaves without an AI mode is `none`, and the
      one the course calls the checkpoint is the assessed one;
-   - the deck: the folder's one PDF;
+   - the deck: the folder's one PDF, or, with no folder, the PDF at the root whose name starts with
+     the session's id;
    - a module's `instead`: the Golden-Flow file the deck, or a README beside it, names for the
      no-code track in the module's place;
    - the tracks: as the README names them.
-5. **The deck**, `<folder>/<deck>`, is the walkthrough: the first artefact, the AI mode of each
+5. **The deck**, at the path above, is the walkthrough: the first artefact, the AI mode of each
    task, the tracks, *Ask your researcher*, the homework and the checkpoint, under whatever titles
-   it gives them. A `<folder>/README.md` beside it is read too. Where the two differ, the one that
+   it gives them. A `<folder>/README.md` beside it is read too, and, with no folder, the course
+   README's own section for the session, `## S02 · <title>`. The deck's acts are its own order of
+   ideas, not the blocks: the idea and doing it run through the acts, the checkpoint and the
+   homework are their own slides. Where the two differ, the one that
    calls the other a previous edition wins, else the README, said in one line.
 6. **Unreachable** — not published yet, a private repository, no connection: say so in one line,
    and ask for the path of a local clone, or for the deck attached. Never fill a session in from
@@ -131,10 +151,11 @@ Codex, Gemini — it is one chat message: each question numbered, its options nu
 Ask only what the owner has not said — the session first, when they named none, since it decides
 what is read:
 
-- **Where they are:** each block by name with its AI mode — *Drill (AI off)* — then *Before the
-  session* and *Homework*.
-- **Their track**, each as the course names it in `tracks`; `meet_in` says where the tracks meet
-  and is not one. Asked once they are somewhere the tutor works with them — a block with the AI on
+- **Where they are:** each block by name with its AI mode — *Checkpoint (AI off)* — then *Before
+  the session* and *Homework*.
+- **Their track**, each as the course names it in `tracks` — *no code* and *code*, or a course's
+  own pair, such as *buttons* and *terminal*; `meet_in` says where the tracks meet and is not one.
+  Below, *the code track* is whichever track writes code, and *the no-code track* the other. Asked once they are somewhere the tutor works with them — a block with the AI on
   or none, before the session or the homework — never in a block with the AI off.
 
 Then say in one line where they are — the session's id and title, the block and its AI mode, the
@@ -149,9 +170,15 @@ track — and keep it for the conversation, asking again only when they say they
 | A block with `ai: none` | explains, the prediction first, as the rules below say; a full lesson is `teach`, this skill's *Step 4* |
 | A block with `ai: on` | works the step with them, with the hints below and the step's skill; at the end the owner explains back what was done |
 | **Before the session**, or the **homework** | what the deck asks before the session, or its homework at the level the owner chose, as with the AI on unless the course gives it another AI mode, never the whole answer |
+| **The session's code** — a notebook or an exercise | the owner runs it: their prediction first, a cell or a test at a time; a failing test is read with them, hints in three levels; a file in `solutions/` is opened only after their own attempt passes or they ask for it, and then read side by side with theirs |
 
 A task the deck, or a README beside it, marks as AI off is held in any block, as in a block with
-the AI off, until the owner says it is done.
+the AI off, until the owner says it is done. A rule the course's README sets on the assistant —
+that it writes no code in the first sessions, say, or that it runs a notebook on the no-code track
+on the owner's go — holds over a block's `ai`: the stricter one where they differ, and the
+course's own permission where it gives one, its figures still read from the run, never the
+tutor's own. A command the course asks of the owner before a session — pulling the course into
+their clone, `uv sync` — is named with its words, and the owner runs it.
 
 In every block:
 

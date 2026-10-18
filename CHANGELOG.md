@@ -6,6 +6,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.18.0] - 2026-10-19
+Your tutor follows the four Training Workshops as they now publish: a deck at the repository's root
+or in its session's folder, each language's own deck, and the code a session ships beside it.
+
+**What to do differently:** say `update` in your home.
+### Changed
+- **The workshops' new layout** (`workshop` 0.3.0): a session with no `folder` in the course map
+  has its deck at the root, as the Investment Bootcamp's six decks are since 2026-10-18; each
+  language's branch names its own deck. The session's code — a notebook, `exercises/` with
+  `solutions/`, or an example module — is read from its folder and run by the owner as the
+  course's README says, a solution opened only after their own attempt. The map's
+  `pillar_sessions` name each other workshop's session the course links to. The live blocks have
+  no drill any more; the checkpoint is the example of an AI-off block.
+- **A clone is read on the course's branch** (`workshop` 0.3.0): the owner's language, else
+  `english`, through `git show`, which changes nothing, so a clone left on an older `main` no
+  longer gives an earlier edition's session; a file the clone lacks comes from the public
+  repository. A `deck` that already holds its folder is not prefixed twice; with no folder, the
+  README's own section for the session stands beside the deck. A session's `state`, `prework` and
+  the course's `dates` are read — a sealed window is never opened early —, a course's own track
+  names stand, and a rule the course's README sets on the assistant holds over a block's `ai`.
+
 ## [1.17.5] - 2026-10-18
 The worked example's notes on its one book now name its chapter 11 rightly: the quantitative
 appendix, not a chapter on hedging and optimisation.
