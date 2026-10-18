@@ -47,8 +47,11 @@ its date; and the notes whose `local_copy` is not on this computer, as one line 
 since PDFs are ignored by git and a fresh clone or a copy `init-example` made holds none —
 `--verbose` lists them. At home it also finds **a clipping behind its project**: a note on a
 project in `RESEARCHER.md`'s projects table, a KaxaNuk library say, that states a version older than
-the newest in the `CHANGELOG.md` at the project's path, the only file of the project it opens.
-`--help` has the rest.
+the newest in the `CHANGELOG.md` at the project's path, the only file of the project it opens. A
+row whose path is a folder of projects — `~/Lab`, holding a folder per library — is read as one
+project per folder inside it with a `CHANGELOG.md`, and the report's last lines name the rows it
+could not check: say so, rather than read *none of: stale clipping* as all clear. `--help` has the
+rest.
 
 Report its findings as it groups them, and never make again by hand a check it makes. An unread
 source's fix is `read <the source>`; one it names beside a note of the same first author and year

@@ -22,8 +22,11 @@ and accents are safe, and in the case the platform folds to. Nothing filters by 
 filed months ago and never read is listed as one filed today is. A searchable copy of a scan,
 named `<the scan's name> (OCR).pdf` beside it, reads for both: a note on either covers the other.
 
-For an unread source it names any note of the same first author and year whose local_copy names
-something else — the note may be on this source under another path, or on another work.
+For an unread source it names, first and alone, any note that reads another copy of the same name
+— `Deck_2026-10-04_0936.pdf` for `Deck.pdf`, an earlier or a later copy of one work. With none, it
+names at most three notes of the same first author and year that share a word of its title, those
+sharing the most first: an organisation that authors many clippings has many notes of one year,
+and only a shared word makes one of them a lead.
 
 Exit codes: 0 every source read · 1 usage: the folder is not a library · 2 at least one unread.
 It needs only the standard library, and writes nothing.
@@ -44,14 +47,45 @@ import library  # noqa: E402 - found beside this file once its folder is on the 
 
 OCR_SUFFIX = ' (OCR)'
 YEAR = re.compile(r'^(?:1[5-9]|20)\d\d$')
+# What may follow a name in another copy's name: a date, a time, a version, a note in brackets.
+COPY_SEPARATORS = frozenset({
+    ' ',
+    '(',
+    '-',
+    '.',
+    '_',
+})
+MAXIMUM_NAMESAKES = 3
+# What a `local_copy` writes when there is no copy.
+NO_COPY = frozenset({
+    '',
+    'none',
+})
+# Words a title shares with any other, never a reason to name a note.
+TITLE_STOP_WORDS = frozenset({
+    'and',
+    'del',
+    'for',
+    'from',
+    'into',
+    'las',
+    'los',
+    'md',
+    'pdf',
+    'readme',
+    'the',
+    'with',
+})
 
 
 @dataclasses.dataclass(frozen=True)
 class SourceStatus:
     """
     One source and what the library holds on it: the notes that name it, the copy they read it
-    through, and, when none does, the notes of the same first author and year.
+    through, and, when none does, the notes that read another copy of the same name, or those of the
+    same first author and year that share a word of its title.
     """
+    copies: list[library.LibraryFile]
     namesakes: list[library.LibraryFile]
     notes: list[library.LibraryFile]
     path: pathlib.Path
@@ -78,6 +112,36 @@ class UnreadReport:
         ]
 
         return unread_sources
+
+
+def lead_texts(
+    found: library.Library,
+    status: SourceStatus,
+) -> list[str]:
+    """
+    What an unread source's leads say: each note reading another copy of its name, else each
+    namesake, with the `local_copy` it names.
+    """
+    copy_texts = [
+        ' '.join([
+            f'another copy of it is read: {library.relative_name(found, note.path)}',
+            f'reads {library.field_value(note.front, "local_copy")}',
+        ])
+        for note
+        in status.copies
+    ]
+    namesake_texts = [
+        ' '.join([
+            f'{note.kind} of the same first author and year, with a word of its title:',
+            f'{library.relative_name(found, note.path)}, whose local_copy is',
+            library.field_value(note.front, 'local_copy') or 'missing',
+        ])
+        for note
+        in status.namesakes
+    ]
+    texts = copy_texts + namesake_texts
+
+    return texts
 
 
 def main(
@@ -235,26 +299,85 @@ def _build_parser() -> library.CommandLineParser:
     return parser
 
 
+def _copy_stem(
+    note: library.LibraryFile,
+) -> str:
+    """
+    The file name, without its extension, a note's `local_copy` names; empty when it names none.
+    """
+    value = library.field_value(
+        note.front,
+        'local_copy',
+    )
+    forward = value.replace('\\', '/')
+    names_none = value.casefold() in NO_COPY
+    stem = '' if names_none else pathlib.PurePosixPath(forward).stem
+
+    return stem
+
+
+def _is_other_copy(
+    source_stem: str,
+    copy_stem: str,
+) -> bool:
+    """
+    Whether two file names are two copies of one work: the same name in another folder, or one name
+    with something after it — a date, a time, a version — joined by a space, a hyphen, an
+    underscore, a dot or a bracket.
+    """
+    source_name = source_stem.casefold()
+    copy_name = copy_stem.casefold()
+    shorter, longer = sorted(
+        [
+            source_name,
+            copy_name,
+        ],
+        key=len,
+    )
+    extends = longer != shorter and longer.startswith(shorter)
+    is_extended = extends and longer[len(shorter)] in COPY_SEPARATORS
+    is_copy = bool(shorter) and (longer == shorter or is_extended)
+
+    return is_copy
+
+
 def _namesakes(
     source: pathlib.Path,
     notes: list[library.LibraryFile],
 ) -> list[library.LibraryFile]:
     """
-    The notes whose file name — or, for a chapter, whose book folder's name — starts with the same
-    first author and has the same year as the source's file name.
+    At most three notes whose name — for a book, its folder's — has the source's first author and
+    year and shares at least one word of its title, those sharing the most first.
     """
-    source_key = _author_and_year(library.words(source.stem))
+    source_words = library.words(source.stem)
+    source_key = _author_and_year(source_words)
 
     if source_key is None:
 
         return []
 
-    namesakes = [
-        note
+    title_words = _title_words(source_words)
+    shared_counts = {
+        note.path: len(title_words & _note_title_words(note))
         for note
         in notes
         if note.kind != library.CHAPTER
         and _note_author_and_year(note) == source_key
+    }
+    ranked = sorted(
+        (
+            -shared_counts[note.path],
+            note.path.as_posix(),
+            note,
+        )
+        for note
+        in notes
+        if shared_counts.get(note.path, 0) > 0
+    )
+    namesakes = [
+        note
+        for _, _, note
+        in ranked[:MAXIMUM_NAMESAKES]
     ]
 
     return namesakes
@@ -281,6 +404,18 @@ def _note_name(
     name = note.path.parent.name if note.kind == library.BOOK_INDEX else note.path.stem
 
     return name
+
+
+def _note_title_words(
+    note: library.LibraryFile,
+) -> set[str]:
+    """
+    The title words of the name a note is known by.
+    """
+    name_words = library.words(_note_name(note))
+    title_words = _title_words(name_words)
+
+    return title_words
 
 
 def _notes_text(
@@ -328,6 +463,28 @@ def _ocr_partner(
     return searchable
 
 
+def _other_copies(
+    source: pathlib.Path,
+    notes: list[library.LibraryFile],
+) -> list[library.LibraryFile]:
+    """
+    The notes — a book by its `INDEX.md`, never its chapters — whose `local_copy` is another copy of
+    the source's name: an earlier or a later copy of one work.
+    """
+    copies = [
+        note
+        for note
+        in notes
+        if note.kind != library.CHAPTER
+        and _is_other_copy(
+            source.stem,
+            _copy_stem(note),
+        )
+    ]
+
+    return copies
+
+
 def _source_status(
     source: pathlib.Path,
     notes_by_path: dict[str, list[library.LibraryFile]],
@@ -341,11 +498,16 @@ def _source_status(
     partner = _ocr_partner(source)
     through_partner = [] if direct else notes_by_path.get(library.comparable_path(partner), [])
     namers = direct or through_partner
-    namesakes = [] if namers else _namesakes(
+    copies = [] if namers else _other_copies(
+        source,
+        notes,
+    )
+    namesakes = [] if namers or copies else _namesakes(
         source,
         notes,
     )
     status = SourceStatus(
+        copies=copies,
         namesakes=namesakes,
         notes=namers,
         path=source,
@@ -370,16 +532,15 @@ def _status_lines(
     )
 
     if not status.notes:
-        namesake_lines = [
-            '  {} of the same first author and year: {}, whose local_copy is {}'.format(
-                namesake.kind,
-                library.relative_name(found, namesake.path),
-                library.field_value(namesake.front, 'local_copy') or 'missing',
+        lead_lines = [
+            f'  {lead}'
+            for lead
+            in lead_texts(
+                found,
+                status,
             )
-            for namesake
-            in status.namesakes
         ]
-        unread_lines = [f'unread: {name}'] + namesake_lines
+        unread_lines = [f'unread: {name}'] + lead_lines
 
         return unread_lines
 
@@ -398,6 +559,32 @@ def _status_lines(
 
     return read_lines
 
+
+def _title_words(
+    name_words: list[str],
+) -> set[str]:
+    """
+    The words of a name's title — after its first year, so never its author's — that can tell one
+    work from another: no number, no word of two letters or fewer, none of the words every title
+    shares.
+    """
+    year_positions = [
+        position
+        for position, word
+        in enumerate(name_words)
+        if YEAR.match(word)
+    ]
+    title_start = year_positions[0] + 1 if year_positions else len(name_words)
+    distinctive = {
+        word
+        for word
+        in name_words[title_start:]
+        if len(word) > 2
+        and not word.isdigit()
+        and word not in TITLE_STOP_WORDS
+    }
+
+    return distinctive
 
 if __name__ == '__main__':
     sys.exit(main())
