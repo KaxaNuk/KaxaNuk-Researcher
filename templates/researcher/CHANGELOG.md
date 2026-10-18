@@ -6,6 +6,22 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.29.0 (2026-10-18)
+
+**MINOR** — a scan can be made searchable beside itself in `Sources/`, and the library's tools
+include the OCR that does it.
+
+**What to do differently:** say `update` in your home; the change to `AGENTS.md` comes as a diff.
+
+### Changed
+
+* **`AGENTS.md`**, the row for `Sources/`: a scan's searchable copy, `<its name> (OCR).pdf`, made
+  beside it by the `read` skill's `scripts/ocr_pdf.py` on the owner's go, is the second write
+  there; *Hard don'ts* says the two copies.
+* **`AGENTS.md`**, *Knowledge conventions*: the library's tools include `ocr_pdf.py`, and
+  `render_pages.py` also shows the page images `read` reads for what an extract dropped or OCR
+  may have misread.
+
 ## 0.28.0 (2026-10-18)
 
 **MINOR** — the library's tools are named where every skill reads them, a delegate's draft is

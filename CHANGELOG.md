@@ -6,6 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.17.0] - 2026-10-18
+Your researcher can now read a scanned book or paper: it makes a searchable copy of the scan, on
+your go, and reads a page's image where the text alone falls short.
+
+**What to do differently:** say `update` in your home; a scan you could not read before can be
+read now — say `read` and name it.
+### Added
+- **`ocr_pdf.py`**, in the `read` skill's `scripts/`: a scan's searchable copy, `<its name>
+  (OCR).pdf`, beside it, never over a file. Each page is rendered at 200 dpi in shades of grey and
+  read by RapidOCR on this computer, with its angle classifier off — on, it turned about one line in
+  ten upside down. Each line is laid over the page as invisible Helvetica, at its place and sized
+  to it, so the copy looks exactly like the scan and `extract.py` reads it like any PDF; a rotated
+  page is laid the right way. `--pages` reads only some pages, for a book only some of whose
+  chapters are scanned; a PDF that has a text layer already is refused. It needs only `uv`: the
+  engine and its models, about 100 MB, download on its first run. pypdfium2 renders, pypdf writes;
+  no PyMuPDF, whose AGPL licence the package avoids.
+### Changed
+- **`read`** (0.13.0), **on the owner's word**, the frozen first read:
+  - *Step 2*: a PDF with no text layer is offered a searchable copy, `Scan`: *Make a searchable
+    copy*, *Leave it unread*; on the go, `ocr_pdf.py` makes it, the copy is read like any PDF, and
+    the note's `local_copy` names it. Without the go, the source is reported unreadable, as before.
+    Scanned chapters in a book that has text get a copy of those pages. The copy is, with the copy
+    of an attachment, the only write into `Sources/`. The unread sources are listed by
+    `unread_sources.py`; the contents pages a PDF reader cannot show — on Windows, with no
+    Poppler — are read as images from `render_pages.py`.
+  - *Step 4*, **Page images**: a table, an equation or a figure the extract dropped or garbled, and
+    any figure, name or formula from an OCR copy, is read from its page's image; the note cites the
+    page as any other, and what an image does not make clear is quoted as unclear. Delegates'
+    drafts are staged outside the library and checked against the extract before the plan.
+  - *Step 6*: an existing concept page is updated through `update_concept_pages.py`, its diff
+    checked against the plan; a new page is written whole.
+  - *References* names every script in its folder; *What this skill will not let you do* names the
+    page images and the searchable copy as the exceptions they are.
+- **`read`'s `references/note.md`**: `local_copy` names a scan's searchable copy, and *Where the
+  text came from* — the provenance line says *from an OCR copy*, and which pages came from an image.
+- **`extract.py`**: a scan's message points to `ocr_pdf.py`, and so does a chapter not written for
+  want of a text layer when others were.
+- **`ONBOARDING.md`** records the change; the approved run is unchanged, its paper having a text
+  layer. **`FROZEN.json`** holds the new fingerprints of `read`'s `SKILL.md`, `note.md`,
+  `extract.py` and `ONBOARDING.md`.
+- **The home's `AGENTS.md`** (home template 0.29.0): a scan's searchable copy is the second write
+  into `Sources/`, and the tools include `ocr_pdf.py`.
+- **`AGENTS.md`** and **`README.md`** name `ocr_pdf.py` and the searchable copy.
+
 ## [1.16.0] - 2026-10-18
 Your researcher now finds every source you have not read yet, whatever its name, checks your
 library the same way on every `audit`, and can show you a page of a PDF as an image.

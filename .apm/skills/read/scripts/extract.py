@@ -27,6 +27,9 @@ Options
                     which tables and verse prefer
     --min-chars N   fewer characters per page than this, on average, means no text layer (default 40)
 
+A scan has no text layer: ocr_pdf.py, beside this file, makes a searchable copy of it,
+`<its name> (OCR).pdf`, which this reads like any PDF.
+
 Exit codes: 0 done · 1 usage · 2 no text layer or a password needed, no chapter written ·
 3 no outline for --chapters. A command line argparse itself rejects — no mode, an unknown option,
 a --depth that is not a number — exits 2 as well.
@@ -65,7 +68,12 @@ NO_OUTLINE_MESSAGE = ' '.join([
 ])
 NOTHING_WRITTEN_MESSAGE = ' '.join([
     'no chapter written: no text layer in what was asked for — a scanned PDF.',
-    'Report it as unreadable.',
+    'ocr_pdf.py, beside this script, makes a searchable copy, "<its name> (OCR).pdf", to extract',
+    "instead, on the owner's go; without it, report the source as unreadable.",
+])
+SCANNED_PAGES_MESSAGE = ' '.join([
+    '  the chapters not written are scanned pages: ocr_pdf.py --pages, beside this script, makes a',
+    "searchable copy, on the owner's go",
 ])
 PAGE_RANGE = re.compile(r'\s*(\d+)\s*(?:-\s*(\d+))?\s*')
 CHAPTER_NUMBERS = re.compile(r'(\d+)(?:-(\d+))?')
@@ -1105,6 +1113,9 @@ def _report(
             f'{average:.0f} chars/page, no text layer',
         ])
         print(empty_warning, file=sys.stderr)
+
+    if extraction.empty and extraction.written:
+        print(SCANNED_PAGES_MESSAGE, file=sys.stderr)
 
 
 def _split_chapter(
