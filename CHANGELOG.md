@@ -6,17 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
-## [1.21.0] - 2026-10-22
-Your researcher now walks you through the new *Primeros pasos* sessions of the Training Workshops,
-where it does the session's task with you: you predict first, it builds, and you check every number.
+## [1.21.1] - 2026-10-22
+Your researcher now names only the Investment Bootcamp among the Training Workshops; the others
+join as each is published.
 
-**What to do differently:** say `update` in your home. Then, in a *Primeros pasos* session, say
-*CF P01* (or *FM P01*, *MF P01*): your researcher offers the deck's prompts in order, and does the
-task once you have made your prediction and said go.
+**What to do differently:** say `update` in your home.
+### Changed
+- **`workshop`** (0.4.1) names the Investment Bootcamp alone in its table of workshops. A workshop
+  joins it once it is published; one the course map lists under `pillars` with `public: false` is
+  not named or offered, and its sessions are not read. The starter sessions, `ai_role: doer`, work
+  as 1.21.0 says, for any course that has them. Its examples say *Bootcamp S03*.
+- **`known-answer`** (0.1.1) loads when a session of a KaxaNuk Training Workshop names it, and its
+  recipes no longer cite a course for their numbers.
+- **`CHANGELOG.md`**: the earlier entries name no workshop but the Bootcamp.
+
+## [1.21.0] - 2026-10-22
+Your researcher now walks you through a workshop's starter sessions, where it does the session's
+task with you: you predict first, it builds, and you check every number.
+
+**What to do differently:** say `update` in your home. Then, in a starter session, name it: your
+researcher offers the deck's prompts in order, and does the task once you have made your prediction
+and said go.
 ### Added
-- **Starter sessions in `workshop`** (0.4.0). Coding Foundations, Financial Markets and
-  Mathematical Finance each open with a first level, *Primeros pasos* (*First Steps*): six short
-  sessions, `P01` to `P06`, for someone who starts from zero. `workshop` reads two keys of a
+- **Starter sessions in `workshop`** (0.4.0): short first sessions for someone who starts from
+  zero. `workshop` reads two keys of a
   session in the course map: `level: starter`, beside *beginner*, *intermediate* and *advanced*,
   and `ai_role`. With `ai_role: doer`, the new section *A starter session* applies: the deck's
   prediction with the AI off and its checkpoint stay held as before; the tutor offers the deck's
@@ -26,7 +39,7 @@ task once you have made your prediction and said go.
   and the owner checks every number and explains it back. The file is written only where the owner
   says, the one exception to *Write a file*, and the task's figures are the one exception to *No
   figure of the tutor's own*. With `ai_role: tutor`, or no `ai_role`, a session is tutored as
-  before. A bare *P03* is a session of the pillar whose clone is open, else asked; *practice* on a
+  before. *practice* on a
   starter session sets beginner problems in the deck's business language, with no code. The course
   map stays `# kaxanuk-course-map 1`: both keys are additive.
 ### Changed
@@ -460,7 +473,7 @@ you set, and see how it fails: say *known-answer test for my half-life estimate*
 **What to do differently:** say `update` in your home.
 ### Added
 - **`known-answer`** (0.1.0), a skill, so Codex has it too. It loads when you ask to check a method
-  before it touches real data, or when a Mathematical Finance session names it, even where the
+  before it touches real data, or when a workshop session names it, even where the
   course still calls it coming. It asks your prediction first — what the method should give back,
   and what a failure will do to it — then plans one notebook and, on your go, writes it in a new
   folder you name beside your strategy: data simulated from a model whose truth is set and seeded,
@@ -489,7 +502,7 @@ you set, and see how it fails: say *known-answer test for my half-life estimate*
 
 ## [1.14.0] - 2026-10-14
 Your tutor in a KaxaNuk Training Workshop can now set you practice problems from a session, at
-your level: say *practice MF S01, beginner*.
+your level: say *practice Bootcamp S03, beginner*.
 
 **What to do differently:** say `update` in your home.
 ### Added
@@ -505,8 +518,7 @@ your level: say *practice MF S01, beginner*.
 - **`workshop` reads a course's levels and data**: a session's `module`, `level` and `needs`, the
   course's `modules`, and its `data` — what the case needs, the KaxaNuk tool tried first, its
   state, and the outside source used `instead` until the tool covers it, which the tutor names as
-  the course's stand-in and never as its own pick. The Mathematical Finance workshop's course map
-  carries them.
+  the course's stand-in and never as its own pick.
 ### Changed
 - **`README.md`** names *practice* beside the workshop rows.
 
@@ -547,13 +559,12 @@ Your researcher can now be your tutor in a KaxaNuk Training Workshop: name the s
 the session you are on.
 ### Added
 - **`workshop`** (0.1.0), a skill, so Codex has it too. It loads when you say you are working
-  through a session of the Investment Bootcamp, Coding Foundations, Financial Markets or
-  Mathematical Finance, or ask for help with one. Each time, it reads the course map at the end of
-  the workshop's `README.md` and the session's deck, from your clone or the public repository, on
-  the branch in your language where there is one, and never keeps a copy of the course: the course
-  changes, and the tutor follows it. Where the map is not published yet, it reads the course's
-  other files and says so; a workshop it cannot reach, not yet published or private, it says so
-  and asks for your clone or the deck.
+  through a session of the Investment Bootcamp, or ask for help with one. Each time, it reads the
+  course map at the end of the workshop's `README.md` and the session's deck, from your clone or the
+  public repository, on the branch in your language where there is one, and never keeps a copy of
+  the course: the course changes, and the tutor follows it. Where the map is not published yet, it
+  reads the course's other files and says so; a workshop it cannot reach, not yet published or
+  private, it says so and asks for your clone or the deck.
 - **It tutors as the course asks.** It places you in the session's block, from the course's own
   list of blocks, and on your track, no code or code. Your prediction comes first, and hints come in
   three levels: a nudge, a pointer to the file or skill, then a worked step. While the AI is off it

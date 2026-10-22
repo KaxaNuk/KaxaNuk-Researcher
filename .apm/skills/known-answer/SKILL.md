@@ -2,8 +2,8 @@
 name: known-answer
 description: >
   Load this skill when the owner asks to check a method before it touches real data — *a
-  known-answer test for my half-life estimate* — or when a session of the Mathematical Finance
-  workshop names it among its skills, even where the course still lists it as coming. It plans,
+  known-answer test for my half-life estimate* — or when a session of a KaxaNuk Training Workshop
+  names it among its skills, even where the course still lists it as coming. It plans,
   and on the owner's go writes, one notebook in a new folder of the owner's naming beside their
   strategy: data simulated from a model whose truth is set and seeded (an AR(1) and its half-life,
   a GBM's drift and volatility, a regression's beta, a factor model's loadings, a planted signal's
@@ -16,7 +16,7 @@ description: >
   session (`workshop`), explain the model or its theory (`teach`, at home), or say what the
   library holds (`query`).
 metadata:
-  version: 0.1.0
+  version: 0.1.1
 ---
 
 # Known answer — a method proved on data whose truth you set
@@ -36,7 +36,7 @@ dear anywhere else.
 - The owner asks to check a method before it touches real data — *known-answer test for my
   half-life estimate*, *check my beta before I run it on my names*, *will my clustering find
   groups I planted?* — or again after they change it.
-- A session of the Mathematical Finance workshop lists `known-answer` among its skills, in its
+- A session of a KaxaNuk Training Workshop lists `known-answer` among its skills, in its
   course map's `researcher.skills`, which `workshop` reads, and the owner wants their own method
   checked. The session's deck says which method; this skill's recipe gives the model. A course
   written before this release lists it under `tools.researcher.coming`, or greys it on a slide as

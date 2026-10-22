@@ -2,20 +2,19 @@
 name: workshop
 description: >
   Load this skill when the owner says they are working through a session of a KaxaNuk Training
-  Workshop — the Investment Bootcamp, Coding Foundations, Financial Markets or Mathematical
-  Finance; *Bootcamp S03*, *CF S06* — or asks for help with one, its homework or its checkpoint.
-  It reads the course map at the end of the workshop's README.md and the session's deck, from a
-  local clone or the public repository, in the owner's language where the course has it, never
-  from memory; places the owner in the session's block and on their track, no code or code; and
-  tutors as the course asks: their prediction first, hints in three levels, nothing done for them
-  while the AI is off; in a starter session, *CF P01*, with `ai_role: doer`, it offers the deck's
+  Workshop — the Investment Bootcamp, *Bootcamp S03* — or asks for help with one, its homework or
+  its checkpoint. It reads the course map at the end of the workshop's README.md and the session's
+  deck, from a local clone or the public repository, in the owner's language where the course has
+  it, never from memory; places the owner in the session's block and on their track, no code or
+  code; and tutors as the course asks: their prediction first, hints in three levels, nothing done
+  for them while the AI is off; in a starter session, with `ai_role: doer`, it offers the deck's
   prompts in order, does the task on the owner's go after their prediction, and checks every number
-  with them. *practice MF S01, beginner* sets problems from the deck. It writes only a starter
-  session's file. It does NOT give a lesson (`teach`), answer from the library (`query`), copy
-  Golden-Flow's files (`init-example`), cover a step's tool (its own skill), compute a performance
-  number no starter task asks for, or give investment advice.
+  with them. *practice Bootcamp S03, beginner* sets problems from the deck. It writes only a
+  starter session's file. It does NOT give a lesson (`teach`), answer from the library (`query`),
+  copy Golden-Flow's files (`init-example`), cover a step's tool (its own skill), compute a
+  performance number no starter task asks for, or give investment advice.
 metadata:
-  version: 0.4.0
+  version: 0.4.1
 ---
 
 # Workshop — the researcher as tutor in a KaxaNuk Training Workshop
@@ -38,15 +37,12 @@ stricter holds.
 | Workshop | A session is said | Repository |
 | --- | --- | --- |
 | Investment Bootcamp, the one everyone takes first | *Bootcamp S03* | `KaxaNuk/Investment-Bootcamp` |
-| Coding Foundations | *CF S06* | `KaxaNuk/Coding-Foundations` |
-| Financial Markets | *FM S05* | `KaxaNuk/Financial-Markets` |
-| Mathematical Finance | *MF S08* | `KaxaNuk/Mathematical-Finance` |
 
-Coding Foundations, Financial Markets and Mathematical Finance each open with a first level,
-*Primeros pasos* (*First Steps*): sessions `P01` on, before the pillar's `S01`, said *CF P01* or
-*FM P03*. A bare *S03* is a session of the workshop whose clone the session is open in, else of the
-Bootcamp, said in one line; a bare *P03*, of the pillar whose clone it is open in, else asked.
-With no session named, list the workshop's sessions, each `id` and `title`, and ask which.
+A workshop joins this table once it is published. One the course map lists under `pillars` with
+`public: false` is not published yet: it is not named or offered, and its sessions under
+`pillar_sessions` are not read. A bare *S03* is a session of the workshop whose clone the session
+is open in, else of the Bootcamp, said in one line. With no session named, list the workshop's
+sessions, each `id` and `title`, and ask which.
 
 **Every question this skill asks** — which session, where they are, a clone's path — goes through
 the question tool where the harness has one, Claude Code's `AskUserQuestion`, and a question with
@@ -106,19 +102,20 @@ Codex, Gemini — it is one chat message: each question numbered, its options nu
      notebook (`.ipynb`), `exercises/` with `solutions/`, or an example module with its output.
      The course's `README.md` says how it runs — a clone of the course beside the owner's
      strategy, `uv sync` at the clone's root, then the notebook or `uv run` as written;
-   - where the course has them, `module` and `level` — *starter*, a *Primeros pasos* session,
-     *beginner*, *intermediate* or *advanced* —, `ai_role` — *doer* in a starter session, where
-     the assistant does the task, as *A starter session* below says; *tutor*, or no `ai_role`,
-     everywhere else, as Step 3 says —, `needs`, the earlier sessions this one builds on, and
-     `data`: each thing the session's case needs, with the KaxaNuk `tool` tried first, its
+   - where the course has them, `module` and `level` — *starter*, a first session for someone who
+     starts from zero, *beginner*, *intermediate* or *advanced* —, `ai_role` — *doer* in a starter
+     session, where the assistant does the task, as *A starter session* below says; *tutor*, or no
+     `ai_role`, everywhere else, as Step 3 says —, `needs`, the earlier sessions this one builds on,
+     and `data`: each thing the session's case needs, with the KaxaNuk `tool` tried first, its
      `state`, and, while the tool does not cover it, the outside source `instead`.
 
    For the whole course: `dates`, where the course has them — a window it seals, such as a final
    test, is never opened, looked at or described before the session the course opens it in;
    `blocks`, each with its `name`, `minutes`, `ai` — `on`, `off` or `none` —
    and `assessed`, true on the checkpoint; `tracks`; `example`; `pillars`, the other workshops by
-   code; `pillar_sessions`, each other workshop's session by code — *FM S07* — with its `folder`
-   and `title`, read from that workshop's repository when the owner wants it; `providers`;
+   code, each with `public`; `pillar_sessions`, each other workshop's session by code, with its
+   `folder` and `title`, read from that workshop's repository when the owner wants it and the
+   workshop is published; `providers`;
    `modules`, where the course has them; and `tools`, `tools.researcher.version` among them.
 4. **What the map lacks** — the whole map, or a key of it — comes from the course's other files,
    all of them said together in one line:
@@ -222,7 +219,7 @@ In every block:
 
 ## A starter session: the AI does the task
 
-A session whose map entry says `ai_role: doer` — a *Primeros pasos* session, `level: starter` —
+A session whose map entry says `ai_role: doer` — a starter session, `level: starter` —
 asks more of the assistant than tutoring: it does the session's task in the chat, building the
 table, the chart, the note or the file the deck asks for, while the owner predicts first and then
 checks every number it gives. With `ai_role: tutor`, or no `ai_role`, the session is tutored as
@@ -270,16 +267,16 @@ them. This skill adds the tutoring around each, and repeats none of what they co
   own go.
 - **To check it:** the check in the deck's *Ask your researcher* — `next`, or `challenge`.
 - **To practise it:** *practice <session>, <level>*, as *Practice* below says.
-- **The background behind a step:** the session's `pillars`, `core` first, named by code — *MF S08*
-  — and read from that workshop when the owner wants it.
+- **The background behind a step:** the session's `pillars`, `core` first, named by code and read
+  from that workshop when the owner wants it, once that workshop is published.
 
 ## Practice
 
-When the owner says *practice*, with a session and a level — *practice MF S01, beginner* — or asks
-for problems, the tutor sets them from the session's own material. A level not said is asked —
+When the owner says *practice*, with a session and a level — *practice Bootcamp S03, beginner* — or
+asks for problems, the tutor sets them from the session's own material. A level not said is asked —
 *beginner*, *intermediate* or *advanced* — with the session's `level` from the map named as the
-course's; for a *starter* session, *beginner*, set in the deck's business language, with no code
-and no formula the deck does not show.
+course's; for a *starter* session, *beginner*, set in the deck's business language, with no code and
+no formula the deck does not show.
 
 - **Never in a block with the AI off**, and never the checkpoint's own questions, in its words or
   with new numbers: practice is for before the session, after a block, or the homework.

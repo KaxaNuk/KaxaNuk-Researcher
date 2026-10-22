@@ -60,11 +60,10 @@ this skill: the notebook is written fresh from them, and no code is copied from 
   length it can stop checking anything. Once four standard errors reach 1 − φ, that is once
   n ≤ 16·(1 + φ) / (1 − φ), the band on φ̂ crosses 1, the half-life's band has no upper end, and a
   method with no intercept passes; Kendall's bias moves the centre as well. (A half-life of three
-  months, φ = 0.794, over 120 months, as the Mathematical Finance course's S03 has it, the mean
-  kept at 0.2, c = 0.2·(1 − φ), and σ at 0.01: four standard errors are 0.222 and 1 − φ is 0.206,
-  so the band reaches 1.016, and least squares without an intercept, at 0.999, lands inside it in
-  all of 1,000 samples, seeds 2000 to 2999.)
-  Then one of two routes, said in the plan:
+  months, φ = 0.794, over 120 months, the mean kept at 0.2, c = 0.2·(1 − φ), and σ at 0.01: four
+  standard errors are 0.222 and 1 − φ is 0.206, so the band reaches 1.016, and least squares without
+  an intercept, at 0.999, lands inside it in all of 1,000 samples, seeds 2000 to 2999.) Then one of
+  two routes, said in the plan:
   - **(a) The pass on the long sample.** The recipe's n = 50,000, at the owner's φ, decides the
     pass; the owner's length is used only to show the failure, as the course's own known answer
     does: the middle and the 90-in-100 range of φ̂ and ĥ over 1,000 repetitions, seeds 2000 to
@@ -256,10 +255,9 @@ this skill: the notebook is written fresh from them, and no code is copied from 
   σ_t² = ω + a·r_{t−1}² + b·σ_{t−1}², with a, b ≥ 0 and a + b < 1. A shock to the variance decays
   by a + b a day, so it halves in ln(1/2) / ln(a + b) days, and the variance returns to its
   long-run level, v = ω / (1 − a − b).
-- **The truth.** a = 0.08 and b = 0.90, so a + b = 0.98 and the half-life is 34.3 days, as in the
-  Mathematical Finance course's S03 practice market; v set to a volatility of 0.20 a year,
-  v = 0.20² / 252, so ω = v·(1 − a − b) = 3.17 × 10⁻⁶. The recursion starts at v, and the first
-  500 days are drawn and dropped.
+- **The truth.** a = 0.08 and b = 0.90, so a + b = 0.98 and the half-life is 34.3 days; v set to a
+  volatility of 0.20 a year, v = 0.20² / 252, so ω = v·(1 − a − b) = 3.17 × 10⁻⁶. The recursion
+  starts at v, and the first 500 days are drawn and dropped.
 - **Seed and size.** Seed 61; n = 10,000 days, forty years; repetitions on seeds 6100 to 6299.
 - **The estimator.** Gaussian maximum likelihood, the recursion started at the sample variance:
   the owner's own, or a library's. Checked on â, b̂, â + b̂ and the long-run volatility, √(252·v̂),
