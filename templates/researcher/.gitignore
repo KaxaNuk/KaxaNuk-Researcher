@@ -29,9 +29,13 @@ apm_modules/
 apm.lock.yaml
 .mcp.json
 
-# Secrets: a key kept in a .env file stays on this machine and never reaches a push
+# Secrets: a key kept in a .env file, or a licence, stays on this machine and never reaches a push
 .env
+.env.*
 *.env
+.kaxanuk_license
+CLAUDE.local.md
+*.duckdb
 
 # Personal and daily: the briefs and the holdings stay on this machine
 Briefs/

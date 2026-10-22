@@ -10,7 +10,7 @@ description: >
   it. It does NOT cover the research process itself (use `experiment-lifecycle`) or Python style
   (the `python-bloom-code` and `python-pep8` instructions).
 metadata:
-  version: 0.5.4
+  version: 0.6.0
 ---
 
 # How we work — issues, branches, changelogs, versions
@@ -47,7 +47,8 @@ A long-lived branch other than `main`, such as a deployed `dev`, exists only whe
 - **The `CHANGELOG.md` entry is part of the change-set**, not a follow-up. If you cannot write the
   entry, the change-set is not finished.
 - **No secrets, no binaries.** Nothing from a `.env` file, no keys in a notebook output or a log
-  line, no charts, workbooks or PDFs unless the repository explicitly keeps them.
+  line, no charts, workbooks or PDFs unless the repository explicitly keeps them. Before a push,
+  the `security` skill's check finds nothing to fix in the folder.
 - **Code is written in English** — names, docstrings, comments and commit messages — whatever
   language its owner speaks, and so are folder and file names and every heading or label a skill
   or a tool reads by name. A repository's prose documents — a strategy's `OBJECTIVE.md`, its
@@ -134,4 +135,5 @@ book on paper trading, its results reproduced from a clean clone.
 - **Never rewrite pushed history on a shared branch.** Fix forward with a new commit; the exception
   is a branch only you have ever pushed.
 - **Never print a secret to find out whether it is set.** Check for its presence, report *set* or
-  *missing*, and stop there. An exposed key is rotated, not edited out of a file.
+  *missing*, and stop there. An exposed key is rotated, not edited out of a file: the `security`
+  skill's *A key leaked* walks through it.

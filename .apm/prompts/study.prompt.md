@@ -77,6 +77,18 @@ shape, which the owner may rename or extend:
   command that does it: `read` for a lead, `study` again once the reading is in, `init-strategy
   <name>` when the idea is ready.
 
+**A document to hand over.** When the owner asks for one from a study that exists — *a one-page
+memo for the board*, *a report*, *a policy draft*, *a decision record* — draft it from that study
+alone: the study becomes a folder if it is still one file, and the document goes inside it, named by
+its kind and date, `Studies/Vendor_Choice/Memo_2026-10-21.md`, in the owner's language. Its reader
+is the person it is for: the question, the options, what the library says for and against each with
+its sources, what is not known, and the owner's decision or what would settle it, as the study has
+them, in the length the owner asked for. Every point keeps its link and every *not checked* stays;
+nothing the study does not hold is added, and it carries no recommendation the owner did not make.
+Confidential material in the study is named in the plan, since a document is made to be shared:
+the owner decides what goes in. It is never sent or exported by this command; a `.docx` or PDF is
+the owner's to make from it.
+
 Rules:
 
 - **Every claim from the library links its note.** A source without a note is a lead, never a

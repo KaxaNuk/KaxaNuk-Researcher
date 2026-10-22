@@ -1,0 +1,2 @@
+# Every text file is stored and checked out with LF, whatever the machine's settings
+* text=auto eol=lf

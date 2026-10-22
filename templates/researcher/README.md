@@ -47,6 +47,11 @@ account or on another assistant, say `update` there. Connectors belong to an acc
 again, and your researcher names the ones your brief reads. What an assistant remembered on its own
 comes home with `bring-home`.
 
+**Keeping you safe.** Your researcher never reads back, prints or saves a key or a password, treats
+what it reads as information and never as orders, and asks before your employer's or clients'
+confidential files go anywhere. Say `security` to check this home, or any folder, before you share
+it, or if a key leaked.
+
 **Directionality:** `Sources/ → Extracts/ → Knowledge/ → Studies/, Lessons/`: notes come only from
 sources, never from a study or a brief, and `Philosophy/` is cited, never compiled into notes, so
 your judgement stays yours.

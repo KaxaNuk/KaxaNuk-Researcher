@@ -41,6 +41,19 @@ for somebody who was not in the room:
 
 ---
 
+## 0.19.4 (2026-10-21)
+
+**PATCH** — the rules say what never leaves a strategy, and the `security` skill checks it before a
+push. Nothing about any result changes.
+
+**What to do differently:** say `security` in the strategy before you push it.
+
+### Changed
+
+- **`AGENTS.md`**, *Other standing rules*: a leaked key points at `security`'s *A key leaked*, and
+  a new rule keeps keys, licences, holdings, licensed data and confidential material out of every
+  copy, with the check run before a push.
+
 ## 0.19.3 (2026-10-18)
 
 **PATCH** — a strategy's first save asks only a name, as every save of the researcher's does.

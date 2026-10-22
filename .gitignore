@@ -34,3 +34,8 @@ Thumbs.db
 # one would leave a lock that `git add --all` commits
 /uv.lock
 /templates/*/uv.lock
+
+# Secrets: a key file is never committed here
+.env
+.env.*
+*.env

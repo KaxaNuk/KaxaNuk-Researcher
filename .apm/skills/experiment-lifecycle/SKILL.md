@@ -4,7 +4,7 @@ description: >
   Load this skill whenever you start, structure, run or document a KaxaNuk Investment Lab strategy
   repository or one of its experiments. Use it when the user asks to start a strategy from the
   KaxaNuk Strategy Template, scaffold an Experiments/Experiment_N/ folder, write a blueprint,
-  journal or findings file, update RESULTS.md or the changelog, or move a strategy
+  journal or findings file, update RESULTS.md, or move a strategy
   through the order of work and the eight steps. It defines the document architecture, each file's
   contract, the notebook section contract and where each kind of logic goes, and points to the
   restrictions, the bar a new signal must clear and the graduation gate. It does NOT cover what
@@ -13,7 +13,7 @@ description: >
   `backtest-engine-runs`, `attribution-analysis-runs`, `alpha-decomposition`,
   `paper-trading-gate`, or branches and changelogs (`how-we-work`).
 metadata:
-  version: 0.14.8
+  version: 0.14.9
 ---
 
 # The research process — how a strategy repository is worked in

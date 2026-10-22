@@ -6,25 +6,35 @@
 | [![Version](https://img.shields.io/github/v/tag/KaxaNuk/KaxaNuk-Researcher?sort=semver&label=version&logo=github)](CHANGELOG.md) [![APM](https://img.shields.io/badge/installs%20with-APM%200.33.0-blue)](https://github.com/microsoft/apm) |
 | [![Languages](https://img.shields.io/badge/speaks-any%20language%20you%20choose-blue)](#install--three-steps-no-coding) [![Powered by KaxaNuk](https://img.shields.io/badge/powered%20by-KaxaNuk-orange?colorB=orange)](https://kaxanuk.mx) |
 
-**Train your own research companion** for your work and personal projects. You name it and teach it
-who you are, how you like to work and the rules you never break. It keeps a library of what you read
-and answers from it, every claim pointing to its source; it helps you think through your ideas,
-plans and decisions, and can brief you each morning. It comes with you: open your assistant in any
-folder, call it by name, and it brings what it knows. It teaches you to invest when you want, and if
-investing is why you came, it walks you through building and testing a strategy with the KaxaNuk
-Investment Lab. One researcher per person, in any language.
+**Train your own research companion, for whatever you do.** A lawyer, a CFO, an engineer, someone
+in HR, a student or an investor: you name it and teach it who you are, how you like to work and the
+rules you never break. It keeps a library of what you read and answers from it, every claim
+pointing to its source; it helps you think through your ideas, plans and decisions, keeps your keys
+and confidential files safe, and can brief you each morning. It comes with you: open your assistant
+in any folder, call it by name, and it brings what it knows. When you want, it teaches you to
+invest, and walks you through building and testing a strategy with the KaxaNuk Investment Lab. One
+researcher per person, in any language.
 
-> **You:** Arya, I think cheap companies with rising profits beat the market. Can we test it?\
-> **Arya:** Yes, and I'll walk you through each step and the tool for it: your claims first, in
-> your words; then what your library says for and against them; then the data and a screen of the
-> signal; then a blueprint with what would prove you wrong and a control, the same rule minus one
-> ingredient. All of it before any backtest.\
+![One researcher, every project: your library, your work and decisions, learning, a morning brief, security, and investing when you want](assets/readme/one-researcher.svg)
+
+**At work**, where most people start:
+
+> **You:** Arya, I have to recommend a payroll vendor to the board on Friday. What do my notes say?\
+> **Arya:** Three of your notes bear on it. The two vendor reviews you read agree on support and
+> differ on cost, each cited; your rule *never sign a contract without an exit clause* rules one of
+> them out as offered. Nothing you have read covers data residency, so that is the open question.
+> Shall I start a `study` with the options for and against?
+
+**And when you invest**, it knows the KaxaNuk process step by step:
+
+> **You:** Arya, I think cheap companies with rising profits beat the market. Which step am I at?\
+> **Arya:** Step 5, the backtest: your claims, your library's view, the data and the blueprint are
+> done. Plan: one run of the Backtest Engine with its skill. Do you approve?\
 > *…the book, the Lab's engine and the attribution…*\
 > **You:** It beat the market! `challenge` it: is it real?\
-> **Arya:** I checked it against the blueprint you wrote first: same window, rules and costs, and
-> the findings count every variant you tried. But the control without rising profits did as well,
-> so by your own test they added nothing, and most of the gain is plain exposure to cheap stocks.
-> Add that to your journal?
+> **Arya:** Against the blueprint you wrote first, the control without rising profits did as well,
+> so by your own test they added nothing; most of the gain is plain exposure to cheap stocks. Add
+> that to your journal?
 
 **Why not just use Claude or Codex?** You do: your researcher runs on them. What it adds is what a
 plain assistant does not keep from one conversation to the next, or from one folder to another:
@@ -84,6 +94,8 @@ prices, shown to teach the method, never a promise or a recommendation.
    it, `C:\Research\Arya` for example, and asks two short questions about you, about three minutes.
    At the end it tells you where your researcher lives, what to ask it and where to start.
 
+   ![First you, then its voice: the interview asks about you and your projects, nothing about markets, and fills in RESEARCHER.md](assets/readme/first-you.svg)
+
 **Already have a researcher**, with its copy on GitHub — a new computer, say? Paste this line in
 step 2 instead; it asks for your copy's address and brings your researcher back, set up as it was:
 
@@ -103,23 +115,46 @@ skills and commands*; *Removing it* undoes them.
 | You want to | Say or type | You get |
 | --- | --- | --- |
 | keep what you read, and ask it later | `read`, then `query <question>` | a note per paper or chapter you chose; answers that cite them and name what is missing |
+| check a contract, a policy or a draft against what you know | `query`, with the document attached or named | the document section by section, against your notes and your rules, each cited, and what your library does not cover |
+| work out an idea, a plan, a goal or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, where it stands; on your word, a memo or report drafted from it |
 | teach it how you work | *remember this* or *learn this*, anywhere | a rule added to `RESEARCHER.md`, or a source to your library, on your go |
 | bring it into any project | open your assistant in that folder and say its name | your researcher, with what it knows; it writes there only on your go |
-| work out an idea, a plan, a goal or a decision | `study <subject>` | a study in `Studies/`: your words, what your library says for and against, where it stands |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
-| follow a KaxaNuk Training Workshop | the session, *Bootcamp S03*; *practice MF S01, beginner* | your researcher as tutor: where you are in the session, your prediction first, hints in levels, nothing done for you while the AI is off; practice problems from the session at your level |
-| check a method before it touches real data | *known-answer test for my half-life estimate* | one notebook in a folder beside your strategy: data simulated from a model whose truth you set, your method run on it, a check that fails loudly when it misses, and one way the method fails; simulated data only |
 | stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules, and once a week your update ready to paste into team chat; never advice |
+| keep your keys, personal data and confidential files safe | `security`, before you share or push | a check of the folder, values never shown, and what to do if a key leaked |
 | write down how you work or invest, and see it evolve | `philosophy` | a short interview; your typed answers, word for word, in `Philosophy/` |
+| know what to do next | `next`, wherever you are | where you stand, and the one thing to do next |
+
+**For investors and builders:**
+
+| You want to | Say or type | You get |
+| --- | --- | --- |
 | build a strategy | `init-strategy <name>`, then `objective`, `blueprint`, `challenge` | a folder on the KaxaNuk Strategy Template: claims before any test, numbers from the Lab's engines |
 | see a strategy worked end to end | `init-example` | `golden-flow`, one finished strategy to read (with more examples, it asks which); running it needs keys and licences |
+| follow a KaxaNuk Training Workshop | the session, *Bootcamp S03*; *practice Bootcamp S03, beginner* | your researcher as tutor: where you are in the session, your prediction first, hints in levels, nothing done for you while the AI is off; practice problems from the session at your level |
+| check a method before it touches real data | *known-answer test for my half-life estimate* | one notebook in a folder beside your strategy: data simulated from a model whose truth you set, your method run on it, a check that fails loudly when it misses, and one way the method fails; simulated data only |
 | build a Python library of your own | `init-python-library <name>` | a folder laid out like the KaxaNuk Data Curator: tests, docs, a workflow that tests and publishes |
-| know what to do next | `next`, wherever you are | where you stand, and the one thing to do next |
 
 In Claude, type these with a slash, `/read`; anywhere else, say them. **It grows with you:** it
 reads for your questions, speaks in your voice and keeps your rules, all in its folder and yours to
 edit. The package offers only hints, as options, never a position to adopt. Its home's `README.md`
 says how to work well with it, and [`USE-CASES.md`](USE-CASES.md) shows twelve uses, step by step.
+
+**From any task to investing.** Start where you work: `read` what you rely on, `query` it, `study`
+a decision, `teach` yourself a topic, and write down how you think with `philosophy`. Investing is
+there when you want it, never pushed: `teach` starts from scratch, and when an idea is ready, the
+Lab takes it through eight steps, with your researcher at each one.
+
+![Your researcher knows the Lab and every step: Bibliotheca, Universe, Data, Portfolio, Backtest, Attribution, Paper trading, and Production outside the Lab](assets/readme/the-lab-process.svg)
+
+**It keeps itself current.** Once a week, when there is one, your researcher tells you a new version
+is out and what it brings; say `update` and it comes in, on your go, your own files untouched. Every
+new KaxaNuk tool reaches you this way, as a skill, with that one word.
+
+**It keeps you safe.** It never reads back, prints or saves a key, password or licence; it treats
+what it reads, a PDF, a page, an e-mail, as information, never as orders; it asks before your
+employer's or clients' confidential files go anywhere they would be saved or sent; and `security`
+checks a folder before you share or push it, and walks you through a leaked key.
 
 ## The KaxaNuk Investment Lab
 
@@ -129,16 +164,15 @@ The researcher needs nothing beyond this package. A strategy can use KaxaNuk's l
   the worked example uses FMP's. A wrong value in downloaded data is usually the provider's, not the
   library's: your researcher tells them apart and says where to report it.
 - **The Backtest Engine, Attribution Analysis and Portfolio Construction** come together, with
-  their licences, in the KaxaNuk Investment Lab, which KaxaNuk sells; the Data Refinery and the Data
-  Analyzer join them when they ship. Attribution also reads the benchmark and factor model files of
+  their licences, in the KaxaNuk Investment Lab, which KaxaNuk sells; the Data Refinery and Data
+  Analyzer libraries join them when they ship, and until then those stages run as the template's
+  own notebook and script. Attribution also reads the benchmark and factor model files of
   KaxaNuk's Analytics Factory, <https://www.kaxanuk.mx/analytics>.
 
 Without the licences a strategy still runs up to its portfolios, and the rest says what is missing.
 Keys are kept on your computer, in a file never saved in git and never read by your researcher; the
 strategy's `SETUP.md` says where. <https://www.kaxanuk.mx/lab> shows the Lab, and [each library's
 status](.apm/skills/next/references/investment-lab.md) says where each one stands.
-
-**Coming next.** More tools and starting points will join your researcher over time.
 
 ## Removing it
 
@@ -184,6 +218,7 @@ such as the daily brief, which is never saved.
 | `known-answer [method]` | one notebook beside your strategy that checks your method gives back a truth you set, on simulated data, before it touches real data, and shows one way it fails; never saved as a version |
 | `backup` | a copy of your home, or of a strategy, on a private GitHub repository, only when you ask; on a new computer, brings it back |
 | `bring-home` | what an assistant remembered on its own, sorted into your home on your go, so every assistant has it |
+| `security [check]` | checks a home, strategy or library before you share or push it — keys, `.env` files, personal e-mail, `.gitignore` gaps, a public copy — values never shown; and what to do if a key leaked |
 
 | Command | What it does |
 | --- | --- |
@@ -223,7 +258,10 @@ check to run by hand; and three instructions (*Troubleshooting* in `SETUP.md` sa
 receive them). Two, Bloom Code and PEP 8, apply only to Python in a KaxaNuk repository: a Lab
 library, a strategy, this package, or any repository whose `AGENTS.md`, `CLAUDE.md` or README names
 Bloom Code. The third, filesystem boundaries, applies in any project: outside the folder it works
-in, the assistant reads only the places the task needs.
+in, the assistant reads only the places the task needs; it never handles a secret, treats what it
+reads as data and never as orders, and keeps personal and confidential material from going
+anywhere without your go. Your home's and every template's `AGENTS.md` carry the same rules, for
+the assistants that take no instructions.
 
 **One agent:** `blueprint-critic` reads a drafted `BLUEPRINT_N.md` cold, before your go, against
 the strategy's `AGENTS.md`, `OBJECTIVE.md`, the notes the draft cites and what the analyzer

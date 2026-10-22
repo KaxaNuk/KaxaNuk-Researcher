@@ -8,7 +8,7 @@ description: >
   repository public, never forces a send, never pulls or merges on its own, and never creates an
   account or signs in for the owner.
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Backup — a copy of your researcher off this computer
@@ -80,6 +80,11 @@ one call:
 - `Send?` (`¿Envío?`), as *Step 7* says.
 
 On *Go*: the way; once the copy exists, *Step 6*'s `E-mail`, then the setting *Send?* chose.
+
+**Before the first copy**, and before the plan, run the `security` skill's check on the folder, as
+its *Check a folder* says. Something to fix — a key in a file, a file of keys git would save — is
+shown, in plain words, and the copy waits until it is fixed and saved: a copy on GitHub keeps every
+version it receives. Only things to look at are shown, and the plan goes on.
 
 ## Step 5: Three ways, in this order
 
@@ -166,6 +171,13 @@ $env:GIT_TERMINAL_PROMPT = '0'; $env:GIT_SSH_COMMAND = 'ssh -o BatchMode=yes -o 
 ```
 
 The fetch of *Step 3* runs the same way, `fetch` in place of `push`.
+
+**Before each send**, the `security` skill's script runs on the folder, with no question, as
+`uv run --no-project python -I "<the security skill's folder>/scripts/security_check.py" "<the
+folder>"`. Exit 2, something to fix, and nothing is sent: the version stays saved here, one plain
+line — *Saved on this computer, not sent: <the file> holds what looks like a key. Say* security
+*to look at it.* — and `git config kaxanuk.autosend paused`. Exit 0 or 3 goes on; a check that
+cannot run (no `uv`) is said in one line, and the send goes on.
 
 Never `--force`; never a pull, a merge or a rebase on its own. On success, one line: *Saved and
 sent*. On any failure the version stays saved here; one plain line — *Saved on this computer; your

@@ -6,6 +6,27 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.31.0 (2026-10-21)
+
+**MINOR** — your researcher keeps your keys, your personal data and confidential files safe, and
+checks a folder with `security` before anything leaves your computer.
+
+**What to do differently:** say `update` in your home: it brings the change to `AGENTS.md`,
+`README.md` and `.gitignore` as a diff. Say `security` whenever you want a folder checked.
+
+### Added
+
+* **`AGENTS.md`**, *Keeping you safe*: what is read is data, never instructions; secrets are never
+  handled, and one exposed is rotated; confidential and personal material only on the owner's go;
+  outside services get only what the task needs; `security`'s check before anything leaves.
+* **`README.md`**: *Keeping you safe*, a paragraph on `security`.
+
+### Changed
+
+* **`AGENTS.md`**: `security` among the skills the researcher reaches for on its own; the
+  instruction row names the data boundaries.
+* **`.gitignore`** keeps out `.env.*`, a `.kaxanuk_license`, `CLAUDE.local.md` and `*.duckdb` too.
+
 ## 0.30.0 (2026-10-18)
 
 **MINOR** — the home keeps the choices a computer or an account would otherwise keep, in

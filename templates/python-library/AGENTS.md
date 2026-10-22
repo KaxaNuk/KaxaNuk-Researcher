@@ -54,7 +54,8 @@ merged. The `how-we-work` skill has the rest.
   below. A new public function arrives with its test.
 - The change's `CHANGELOG.md` entry, under `## [Unreleased]`, is in the same commit. The commits
   that name the library and lock its environment take none: they change nothing a caller sees.
-- No secrets and no binaries: a key lives in the environment, never in a file here.
+- No secrets and no binaries: a key lives in the environment, never in a file here. Before a push,
+  the `security` skill's check finds nothing to fix; a key that was ever exposed is rotated.
 
 ## Code style: Bloom Code
 

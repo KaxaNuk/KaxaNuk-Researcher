@@ -1,7 +1,6 @@
 # This repository's ruff settings, for the skills' scripts. The worked example in `examples/`
 # carries its own `pyproject.toml`, which governs it alone.
 [tool.ruff]
-line-length = 120
 target-version = "py312"
 extend-exclude = ["examples", "templates"]
 
