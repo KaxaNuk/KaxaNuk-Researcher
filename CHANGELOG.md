@@ -8,7 +8,7 @@ tagged `vX.Y.Z`.
 
 ## [1.21.2] - 2026-10-22
 The README's investing example now shows how a strategy starts, with its objective, instead of a
-backtest's result.
+backtest's result, and a table shows what your researcher adds to a plain Claude or Codex.
 
 **What to do differently:** nothing.
 ### Changed
@@ -17,6 +17,9 @@ backtest's result.
   rising profits, becomes two claims that `init-strategy` and `objective` put in `OBJECTIVE.md` on
   your go. The earlier example jumped to a backtest and its verdict, which read as a promise of
   results.
+- **`README.md`**, *Why not just use Claude or Codex?*: a table, a plain assistant beside your
+  researcher, row by row — your library, you, portability, KaxaNuk's knowledge and a method — in
+  place of three bullets.
 
 ## [1.21.1] - 2026-10-22
 Your researcher now names only the Investment Bootcamp among the Training Workshops; the others

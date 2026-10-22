@@ -36,16 +36,16 @@ researcher per person, in any language.
 > beyond it. Plan: `init-strategy` makes its folder, and `objective` writes your idea and both
 > claims in `OBJECTIVE.md`, each with the reading that would settle it. Do you approve?
 
-**Why not just use Claude or Codex?** You do: your researcher runs on them. What it adds is what a
-plain assistant does not keep from one conversation to the next, or from one folder to another:
+**Why not just use Claude or Codex?** You do: your researcher runs on them, and adds what a plain
+assistant does not keep from one conversation to the next, or from one folder to another:
 
-- **Your library.** What you read becomes notes on your computer; answers cite them and name what
-  is missing.
-- **You.** Your questions, your voice and your rules, in your own files: the same researcher in
-  every folder and on each assistant you install it for, and it moves with you, as *Take it with
-  you* says just below.
-- **A method.** A plan and your go before it writes anything, a saved version of each change, and,
-  for investing, your claims and what would prove them wrong before any test.
+| | A plain assistant | Your researcher |
+| --- | --- | --- |
+| **Your library** | forgets what it read | what you read becomes notes on your computer; its answers cite them and name what is missing |
+| **You** | starts from zero in each chat | your questions, your voice and your rules, in your own files, the same in every folder |
+| **Portability** | change assistant or computer, and you start again | Claude, Codex or Gemini, another account or another computer: install it and it keeps everything, with a private copy on your GitHub, as *Take it with you* says just below |
+| **KaxaNuk's knowledge** | knows what anyone knows | skills for the eight-step process and for each Lab library, with their traps |
+| **A method** | writes when asked | a plan and your go first, and a saved version of each change; for investing, your claims and what would prove them wrong before any test |
 
 **Take it with you.** Your researcher is its home: a folder of plain files on your computer, yours,
 with a saved version of each change, and a private copy on your GitHub once you ask `backup` for
