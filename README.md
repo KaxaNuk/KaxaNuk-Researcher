@@ -27,14 +27,14 @@ researcher per person, in any language.
 
 **And when you invest**, it knows the KaxaNuk process step by step:
 
-> **You:** Arya, I think cheap companies with rising profits beat the market. Which step am I at?\
-> **Arya:** Step 5, the backtest: your claims, your library's view, the data and the blueprint are
-> done. Plan: one run of the Backtest Engine with its skill. Do you approve?\
-> *…the book, the Lab's engine and the attribution…*\
-> **You:** It beat the market! `challenge` it: is it real?\
-> **Arya:** Against the blueprint you wrote first, the control without rising profits did as well,
-> so by your own test they added nothing; most of the gain is plain exposure to cheap stocks. Add
-> that to your journal?
+> **You:** Arya, how do I build an investment strategy?\
+> **Arya:** Step by step, each with its own test: the objective in your words, the reading behind
+> it, the universe of stocks, the data, a blueprint written before any result, then the backtest,
+> the attribution and paper trading. We start with the objective: what is your idea?\
+> **You:** A strategy that invests in stocks with a positive trend and rising profits.\
+> **Arya:** Then two claims to check: that the trend helps, and that rising profits add something
+> beyond it. Plan: `init-strategy` makes its folder, and `objective` writes your idea and both
+> claims in `OBJECTIVE.md`, each with the reading that would settle it. Do you approve?
 
 **Why not just use Claude or Codex?** You do: your researcher runs on them. What it adds is what a
 plain assistant does not keep from one conversation to the next, or from one folder to another:

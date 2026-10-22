@@ -6,6 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.21.2] - 2026-10-22
+The README's investing example now shows how a strategy starts, with its objective, instead of a
+backtest's result.
+
+**What to do differently:** nothing.
+### Changed
+- **`README.md`**, *And when you invest*: you ask Arya how to build an investment strategy, Arya
+  names the steps and starts with the objective, and your idea, stocks with a positive trend and
+  rising profits, becomes two claims that `init-strategy` and `objective` put in `OBJECTIVE.md` on
+  your go. The earlier example jumped to a backtest and its verdict, which read as a promise of
+  results.
+
 ## [1.21.1] - 2026-10-22
 Your researcher now names only the Investment Bootcamp among the Training Workshops; the others
 join as each is published.
