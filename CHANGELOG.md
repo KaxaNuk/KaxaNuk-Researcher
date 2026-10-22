@@ -29,6 +29,12 @@ task once you have made your prediction and said go.
   before. A bare *P03* is a session of the pillar whose clone is open, else asked; *practice* on a
   starter session sets beginner problems in the deck's business language, with no code. The course
   map stays `# kaxanuk-course-map 1`: both keys are additive.
+### Changed
+- **Two branches in this repository, `dev` and `main`.** Work is committed on `dev`; `main` is
+  production, what `update` installs, and receives `dev` by a fast-forward only when a release is
+  ready, tagged there. `AGENTS.md`'s rule *Work lands on `dev`; a release reaches `main`* and
+  `CONTRIBUTING.md`'s *Branches* say how; GitHub refuses to delete either branch or force a push
+  onto it. A strategy and a library still work on `main` alone, as `how-we-work` says.
 
 ## [1.20.0] - 2026-10-21
 Your researcher now guards your keys, your personal data and confidential documents, and checks a

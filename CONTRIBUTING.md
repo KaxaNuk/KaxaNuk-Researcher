@@ -238,3 +238,13 @@ there, never beside your own.
 Delete the scratch folder afterwards: under the throwaway home, nothing the walk installed or
 scheduled reached your own. A newer APM is adopted only when these installs pass with it, on
 Windows.
+
+**Branches.** Work is committed on `dev`; `main` is what every user installs. When `dev` holds a
+release, its checks above passed and its install tried, it reaches `main` by a fast-forward, and
+the release is tagged there, as `AGENTS.md` says:
+
+```bash
+git switch main && git merge --ff-only dev && git push origin main
+git tag -a vX.Y.Z -m "X.Y.Z: <the entry's first sentence>" && git push origin vX.Y.Z
+git switch dev
+```

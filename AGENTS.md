@@ -63,9 +63,15 @@ CSV and every file only the example has — its notes, `Universe/seed.py` and a 
   weekly word on a new version quotes it. Its *What to do differently* says what the owner says
   (*say `update` in your home*), never the `apm` command `update` runs for them. Once the release's
   commit is on `main`, tag it `vX.Y.Z` with the message `X.Y.Z: <that sentence>`.
-- **Work lands on `main`**, as the `how-we-work` skill says: a branch and a pull request only for a
-  change you want reviewed, deleted once merged. `main` is the only branch that stays, and
-  `apm update -g` installs it as it stands, so nothing reaches `main` without its version.
+- **Work lands on `dev`; a release reaches `main`.** This repository keeps two branches, the
+  long-lived `dev` the `how-we-work` skill allows where a repository says so. Every change is
+  committed on `dev`, with its `CHANGELOG.md` entry and its version, as above. `main` is
+  production: `apm update -g` installs it as it stands, so it receives `dev` only when a release is
+  ready, by a fast-forward, `git merge --ff-only dev`, never by a pull request on GitHub, which
+  would delete `dev` once merged; then the release is tagged on `main`. A branch for a change you
+  want reviewed, `issues/<number>`, is cut from `dev`, goes back into `dev` and is deleted once
+  merged. `main` and `dev` are the only branches that stay, and GitHub refuses to delete either or
+  force a push onto it.
 - **Every KaxaNuk skill lives here.** A skill for a new Lab library is a folder in `.apm/skills/`.
   A change to a library's API changes its skill in the same release, and the worked example where
   it uses that library, with a new example version and a journal entry, re-run where a figure
