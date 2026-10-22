@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.21.0] - 2026-10-22
+Your researcher now walks you through the new *Primeros pasos* sessions of the Training Workshops,
+where it does the session's task with you: you predict first, it builds, and you check every number.
+
+**What to do differently:** say `update` in your home. Then, in a *Primeros pasos* session, say
+*CF P01* (or *FM P01*, *MF P01*): your researcher offers the deck's prompts in order, and does the
+task once you have made your prediction and said go.
+### Added
+- **Starter sessions in `workshop`** (0.4.0). Coding Foundations, Financial Markets and
+  Mathematical Finance each open with a first level, *Primeros pasos* (*First Steps*): six short
+  sessions, `P01` to `P06`, for someone who starts from zero. `workshop` reads two keys of a
+  session in the course map: `level: starter`, beside *beginner*, *intermediate* and *advanced*,
+  and `ai_role`. With `ai_role: doer`, the new section *A starter session* applies: the deck's
+  prediction with the AI off and its checkpoint stay held as before; the tutor offers the deck's
+  ready prompts in order, word for word, for the owner to paste; on the owner's go, after their
+  prediction, it does the task in the chat — the table, the chart, the note or the file the deck
+  asks for — from the data the deck names, never invented; each figure is shown with its source,
+  and the owner checks every number and explains it back. The file is written only where the owner
+  says, the one exception to *Write a file*, and the task's figures are the one exception to *No
+  figure of the tutor's own*. With `ai_role: tutor`, or no `ai_role`, a session is tutored as
+  before. A bare *P03* is a session of the pillar whose clone is open, else asked; *practice* on a
+  starter session sets beginner problems in the deck's business language, with no code. The course
+  map stays `# kaxanuk-course-map 1`: both keys are additive.
+
 ## [1.20.0] - 2026-10-21
 Your researcher now guards your keys, your personal data and confidential documents, and checks a
 folder with the new `security` skill before anything leaves your computer.
