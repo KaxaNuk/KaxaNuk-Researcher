@@ -6,6 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.22.0] - 2026-10-23
+Your researcher now makes interactive presentations from your own work with the new `deck` skill:
+every claim cited, every figure quoted from its file, built with HyperFrames.
+
+**What to do differently:** say `update` in your home. Then say `deck` and what you want to
+present — a study, a strategy's results, your notes: your researcher asks the message and the
+audience, shows the outline for your go, and builds the deck in a folder of its own.
+### Added
+- **`deck`** (0.1.0), a skill, so Codex has it too. It writes a `BRIEF.md` and an outline, slide by
+  slide, from the files you name — a study, notes, a strategy's `OBJECTIVE.md`, `RESULTS.md` or
+  `FINDINGS_N.md` — for your go, then builds the deck with HyperFrames' `slideshow` skill,
+  <https://github.com/heygen-com/hyperframes>, open source: slides in a browser with reveals,
+  branches and a presenter view, and a PDF to send. Every claim is cited in the presenter notes,
+  every figure quoted from its file, never computed, a backtest's marked hypothetical; nothing
+  that is not yours to show goes in without your go, and no slide advises. Node.js and `slideshow`
+  are installed on your go, `slideshow` from HyperFrames' own source, never copied into the
+  package. The deck lives in a folder of its own, beside your home unless you say otherwise; the
+  `security` check runs before it leaves your computer, and `hyperframes publish`, which uploads
+  it to HeyGen with a private link, runs only when you ask.
+- **`README.md`**: `deck` in *You want to* and in *Every skill and command*.
+### Changed
+- **`CONTRIBUTING.md`**: the install deploys 27 skills.
+- **The home template** (0.32.0): `AGENTS.md` names `deck` among the skills run by name.
+
 ## [1.21.3] - 2026-10-22
 The README now shows, in one picture, what your researcher adds to a plain Claude or Codex.
 

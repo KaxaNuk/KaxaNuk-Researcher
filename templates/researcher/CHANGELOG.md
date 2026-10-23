@@ -6,6 +6,17 @@ Every notable change to this repository, newest first: `## X.Y.Z (YYYY-MM-DD)` w
 This is the home template's changelog, which `init-researcher` copies into every home and `update`
 extends with a *Brought to template* entry at the top; the home's own entries go there too.
 
+## 0.32.0 (2026-10-23)
+
+**MINOR** — your researcher makes interactive presentations from your own work with `deck`.
+
+**What to do differently:** say `update` in your home: it brings the change to `AGENTS.md` as a
+diff. Then say `deck` and what you want to present.
+
+### Changed
+
+* **`AGENTS.md`**, the *Skill* row: `deck` among the skills run by name.
+
 ## 0.31.0 (2026-10-21)
 
 **MINOR** — your researcher keeps your keys, your personal data and confidential files safe, and

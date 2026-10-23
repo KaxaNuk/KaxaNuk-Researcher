@@ -115,6 +115,7 @@ skills and commands*; *Removing it* undoes them.
 | bring it into any project | open your assistant in that folder and say its name | your researcher, with what it knows; it writes there only on your go |
 | learn a topic | `teach <topic>` | a lesson a session from what you have read, with a quiz |
 | stay informed, on the days you choose | `brief setup`, then `brief` | a dated file: your work, your markets, news on your holdings beside your own rules, and once a week your update ready to paste into team chat; never advice |
+| present your work | `deck` | an interactive presentation in a folder of its own, built with HyperFrames from your files: every claim cited, every figure quoted, a PDF to send |
 | keep your keys, personal data and confidential files safe | `security`, before you share or push | a check of the folder, values never shown, and what to do if a key leaked |
 | write down how you work or invest, and see it evolve | `philosophy` | a short interview; your typed answers, word for word, in `Philosophy/` |
 | know what to do next | `next`, wherever you are | where you stand, and the one thing to do next |
@@ -210,6 +211,7 @@ such as the daily brief, which is never saved.
 | `next [strategy]` | the one next thing; at home, it offers to save what you changed by hand |
 | `workshop [session]` | your tutor in a session of a KaxaNuk Training Workshop, read from the course each time, never from memory; *practice* sets problems at your level |
 | `known-answer [method]` | one notebook beside your strategy that checks your method gives back a truth you set, on simulated data, before it touches real data, and shows one way it fails; never saved as a version |
+| `deck` | an interactive presentation from your own work, in a folder of its own, built with HyperFrames' `slideshow`: every claim cited, every figure quoted, published only when you ask |
 | `backup` | a copy of your home, or of a strategy, on a private GitHub repository, only when you ask; on a new computer, brings it back |
 | `bring-home` | what an assistant remembered on its own, sorted into your home on your go, so every assistant has it |
 | `security [check]` | checks a home, strategy or library before you share or push it — keys, `.env` files, personal e-mail, `.gitignore` gaps, a public copy — values never shown; and what to do if a key leaked |
