@@ -6,6 +6,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). Releases are
 tagged `vX.Y.Z`.
 
+## [1.21.3] - 2026-10-22
+The README now shows, in one picture, what your researcher adds to a plain Claude or Codex.
+
+**What to do differently:** nothing.
+### Changed
+- **`README.md`**, *Why not just use Claude or Codex?*: the table becomes a picture,
+  `assets/readme/why-not-just-an-assistant.svg`, drawn by hand as the README's other pictures are:
+  a plain assistant beside your researcher, row by row — your library, you, portability, KaxaNuk's
+  knowledge and a method — with its alt text, `<title>` and `<desc>`.
+
 ## [1.21.2] - 2026-10-22
 The README's investing example now shows how a strategy starts, with its objective, instead of a
 backtest's result, and a table shows what your researcher adds to a plain Claude or Codex.
